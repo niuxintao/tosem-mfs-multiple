@@ -1,0 +1,208 @@
+% v2-acmsmall-sample.tex, dated March 6 2012
+% This is a sample file for ACM small trim journals
+%
+% Compilation using 'acmsmall.cls' - version 1.3 (March 2012), Aptara Inc.
+% (c) 2010 Association for Computing Machinery (ACM)
+%
+% Questions/Suggestions/Feedback should be addressed to => "acmtexsupport@aptaracorp.com".
+% Users can also go through the FAQs available on the journal's submission webpage.
+%
+% Steps to compile: latex, bibtex, latex latex
+%
+% For tracking purposes => this is v1.3 - March 2012
+
+\documentclass[prodmode,acmtecs]{acmsmall} % Aptara syntax
+
+% Package to generate and customize Algorithm as per ACM style
+\usepackage[ruled]{algorithm2e}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+% Metadata Information
+\acmVolume{9}
+\acmNumber{4}
+\acmArticle{39}
+\acmYear{2010}
+\acmMonth{3}
+
+% Document starts
+\begin{document}
+
+% Page heads
+\markboth{X. Niu et al.}{Identify failure-causing schemas for multiple faults}
+
+% Title portion
+\title{Identify minimal failure-causing schemas for multiple faults}
+\author{Xintao Niu, and Changhai Nie
+\affil{State Key Laboratory for Novel Software Technology, Nanjing University}
+HARETON LEUNG
+}
+% NOTE! Affiliations placed here should be for the institution where the
+%       BULK of the research was done. If the author has gone to a new
+%       institution, before publication, the (above) affiliation should NOT be changed.
+%       The authors 'current' address may be given in the "Author's addresses:" block (below).
+%       So for example, Mr. Abdelzaher, the bulk of the research was done at UIUC, and he is
+%       currently affiliated with NASA.
+
+\begin{abstract}
+Combinatorial testing(CT) is proven to be effective to reveal the potential failures caused by the interaction of the inputs or options of the System Under Test(SUT). To extend and make full use of CT, the theory of Minimal Failure-Causing Schema(MFS) was proposed. The use of MFS helps to isolate the root cause of the failure, which is the next step of detecting them by CT designed test suite. Many algorithms has been proposed to find the MFS in SUT, in our recently studies, however, we find these approaches cannot behave effectively when encounter multiple faults. The main reason why these methods failed to behave normally is that most of them ignore the masking effects hiding test cases, which can bias their identified results. In this paper, we extend the MFS theory to make it support the multiple faults testing scenarios, and hence can deal masking effects. Based on this, we gave an approach to identify the MFS which can alleviate the impacts of masking effects for multiple faults. In addition, we combine multiple algorithms to further improve the performance. Several empirical studies were conducted and showed that our approach can considerably improve the accuracy when identifying MFS in SUT with masking effects.
+
+%analysed how the masking effect of multiple faults affect on the isolation of failure-inducing combinations. We further give a strategy of selecting test cases to alleviate this impact, which works by pruning these test cases that may trigger masking effect and replacing them with no-masking-effect ones. The test case selecting process repeated until we get enough information to isolate the failure-inducing combinations. We conducted some empirical studies on several open-source software. The result of the studies shows that multiple faults as well as the masking effects do exist in real software and our approach can assist combinatorial-based failure-inducing identifying methods to get a better result when handling multiple faults in SUT.
+%A key problem in CT is to isolate the failure-inducing combinations of the related failure as it can facilitate the debugging efforts by reducing the scope of code that needs to be inspected. Many algorithms has been proposed to identify such combinations, however, most of these studies either just consider the condition of one fault or ignore masking effects among multiple faults which can bias their identified results. 
+\end{abstract}
+
+
+\category{D.2.5}{Software Engineering}{Testing and debugging}[Debugging aids,testing tools]
+\terms{Reliability, Verification}
+
+\keywords{Software Testing, Combinatorial Testing, Failure-inducing combinations, Masking effects}
+
+\acmformat{Xintao Niu,
+and Changhai Nie, 2014.Identify failure-causing schemas for multiple faults.}
+% At a minimum you need to supply the author names, year and a title.
+% IMPORTANT:
+% Full first names whenever they are known, surname last, followed by a period.
+% In the case of two authors, 'and' is placed between them.
+% In the case of three or more authors, the serial comma is used, that is, all author names
+% except the last one but including the penultimate author's name are followed by a comma,
+% and then 'and' is placed before the final author's name.
+% If only first and middle initials are known, then each initial
+% is followed by a period and they are separated by a space.
+% The remaining information (journal title, volume, article number, date, etc.) is 'auto-generated'.
+
+\begin{bottomstuff}
+This work was supported by the National Natural Science Foundation of China (No. 61272079), the Research Fund for the Doctoral Program of Higher Education of China (No.20130091110032), the Science Fund for Creative Research Groups of the National Natural Science Foundation of China(No. 61321491), and the Major Program of National Natural Science Foundation of China (No. 91318301)
+\end{bottomstuff}
+
+\maketitle
+
+
+\section{Introduction}
+
+With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can influence the behaviour of the SUT. The unexpected faults caused by the interaction among these factors can make testing such software a big challenge if the interaction space is too large. One remedy for this problem is combinatorial testing, which systematically sample the interaction space and select a relatively small set of test cases that cover all the valid iterations with the number of factors involved in the interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction.
+
+Once failures are detected, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected.
+
+
+In this article, we propose MMSN, abbreviation for Multifrequency
+Media access control for wireless Sensor Networks. The main
+contributions of this work can be summarized as follows.
+% itemize
+\begin{itemize}
+\item To the best of our knowledge, the MMSN protocol is the first
+multifrequency MAC protocol especially designed for WSNs, in which
+each device is equipped with a single radio transceiver and
+the MAC layer packet size is very small.
+\item Instead of using pairwise RTS/CTS frequency negotiation
+[Adya 2001,Culler 2001; Tzamaloukas 2001; Zhou 2006],
+we propose lightweight frequency assignments, which are good choices
+for many deployed comparatively static WSNs.
+\item We develop new toggle transmission and snooping techniques to
+enable a single radio transceiver in a sensor device to achieve
+scalable performance, avoiding the nonscalable ``one
+control channel + multiple data channels'' design [Natarajan 2001].
+\end{itemize}
+
+% Head 1
+\section{Background}
+
+% Head 2
+\subsection{Definitions}
+
+%% Head 3
+%\subsubsection{Exclusive Frequency Assignment}
+%
+%
+%% Head 4
+%\paragraph{Eavesdropping}
+
+
+\subsection{Propositions}
+
+
+
+\section{Algorithms}
+
+
+\subsection{Problem Formulation}
+
+\section{Performance Evaluation}
+
+
+\section{Conclusions}
+
+
+
+% Start of "Sample References" section
+
+\section{Typical references in new ACM Reference Format}
+%A paginated journal article \cite{Abril07}, an enumerated
+%journal article \cite{Cohen07}, a reference to an entire issue \cite{JCohen96},
+%a monograph (whole book) \cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)
+%\cite{Harel79}, a divisible-book such as an anthology or compilation \cite{Editor00}
+%followed by the same example, however we only output the series if the volume number is given
+%\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.),
+%a chapter in a divisible book \cite{Spector90}, a chapter in a divisible book
+%in a series \cite{Douglass98}, a multi-volume work as book \cite{Knuth97},
+%an article in a proceedings (of a conference, symposium, workshop for example)
+%(paginated proceedings article) \cite{Andler79}, a proceedings article
+%with all possible elements \cite{Smith10}, an example of an enumerated
+%proceedings article \cite{VanGundy07},
+%an informally published work \cite{Harel78}, a doctoral dissertation \cite{Clarkson85},
+%a master's thesis: \cite{anisi03}, an online document / world wide web resource \cite{Thornburg01}, \cite{Ablamowicz07},
+%\cite{Poker06}, a video game (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03}
+%and \cite{Lee05} and (Case 3) a patent \cite{JoeScientist001},
+%work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
+%\cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might contain
+%'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
+%Boris / Barbara Beeton: multi-volume works as books
+%\cite{MR781536} and \cite{MR781537}.
+
+% Appendix
+\appendix
+\section*{APPENDIX}
+\setcounter{section}{1}
+
+
+\appendixhead{ZHOU}
+
+% Acknowledgments
+\begin{acks}
+The authors would like to thank Dr. Maura Turolla of Telecom
+Italia for providing specifications about the application scenario.
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{acmsmall-sample-bibfile}
+                             % Sample .bib file with references that match those in
+                             % the 'Specifications Document (V1.5)' as well containing
+                             % 'legacy' bibs and bibs with 'alternate codings'.
+                             % Gerry Murray - March 2012
+
+% History dates
+\received{February 2007}{March 2009}{June 2009}
+
+% Electronic Appendix
+\elecappendix
+
+\medskip
+
+\section{This is an example of Appendix section head}
+
+
+\section{Appendix section head}
+
+The primary consumer of energy in WSNs is idle listening. The key to
+reduce idle listening is executing low duty-cycle on nodes. Two
+primary approaches are considered in controlling duty-cycles in the
+MAC layer.
+
+\end{document}
+% End of v2-acmsmall-sample.tex (March 2012) - Gerry Murray, ACM
+
+
