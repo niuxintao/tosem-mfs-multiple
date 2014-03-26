@@ -1,12 +1,12 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  25 MAR 2014 21:19
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  25 MAR 2014 21:38
 entering extended mode
 **v2-acmsmall-sample.tex
-(C:\Users\niuxintao\Desktop\v2-acmsmall\v2-acmsmall-sample.tex
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
-(C:\Users\niuxintao\Desktop\v2-acmsmall\acmsmall.cls
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\acmsmall.cls
 Document Class: acmsmall 2012/03/05, fonts included on 28 June 2010
-(C:\Users\niuxintao\Desktop\v2-acmsmall\url.sty
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
@@ -97,7 +97,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `normal'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3619.
 LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3620.
-) (C:\Users\niuxintao\Desktop\v2-acmsmall\algorithm2e.sty
+) (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\algorithm2e.sty
 Invalid UTF-8 byte or sequence at line 322 replaced by U+FFFD.
 Package: algorithm2e 2008/00/00 v3.10 algorithms environments
 \c@AlgoLine=\count91
@@ -159,7 +159,7 @@ Invalid UTF-8 byte or sequence at line 2532 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2584 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2592 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2592 replaced by U+FFFD.
-) (C:\Users\niuxintao\Desktop\v2-acmsmall\v2-acmsmall-sample.aux)
+) (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
@@ -257,7 +257,7 @@ Requested font "pncr7t" at 7.0pt
  [1
 
 ]
-(C:\Users\niuxintao\Desktop\v2-acmsmall\v2-acmsmall-sample.bbl [2]
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl [2]
 Underfull \hbox (badness 5217) in paragraph at lines 243--250
 []\OT1/pnc/m/n/8 Dave No-vak. 2003. Sol-der man. Video. In \OT1/pnc/m/it/8 ACM 
 SIG-GRAPH 2003 Video Re-view on An-i-ma-
@@ -286,14 +286,14 @@ Requested font "phvr7t" at 8.0pt
  -> phvr7t
  [3] [1
 
-] (C:\Users\niuxintao\Desktop\v2-acmsmall\v2-acmsmall-sample.aux) ) 
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
  2426 strings out of 430478
- 29089 string characters out of 3191502
+ 29138 string characters out of 3191502
  103384 words of memory out of 3000000
  5576 multiletter control sequences out of 15000+200000
  12778 words of font info for 38 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 32i,9n,22p,1263b,285s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 32i,9n,22p,1243b,285s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on v2-acmsmall-sample.pdf (4 pages).
