@@ -32,317 +32,302 @@
 \ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
 \ifx \showURL      \undefined \def \showURL       #1{#1}          \fi
 
-\bibitem[\protect\citeauthoryear{Ablamowicz and Fauser}{Ablamowicz and
-  Fauser}{2007}]%
-        {Ablamowicz07}
-{Rafal Ablamowicz} {and} {Bertfried Fauser}. 2007.
-\newblock CLIFFORD: a Maple 11 Package for Clifford Algebra Computations,
-  version 11.
-\newblock   (2007).
-\newblock
-\showURL{%
-Retrieved February 28, 2008 from
-  \url{http://math.tntech.edu/rafal/cliff11/index.html}}
-
-
-\bibitem[\protect\citeauthoryear{Abril and Plant}{Abril and Plant}{2007}]%
-        {Abril07}
-{Patricia~S. Abril} {and} {Robert Plant}. 2007.
-\newblock \showarticletitle{The patent holder's dilemma: Buy, sell, or troll?}
-\newblock {\it Commun. ACM} {50}, 1 (Jan. 2007), 36--44.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1145/1188913.1188915}}
-
-
-\bibitem[\protect\citeauthoryear{Andler}{Andler}{1979}]%
-        {Andler79}
-{Sten Andler}. 1979.
-\newblock \showarticletitle{Predicate Path expressions}. In {\em Proceedings of
-  the 6th. ACM SIGACT-SIGPLAN symposium on Principles of Programming Languages}
-  {\em (POPL '79)}. ACM Press, New York, NY, 226--236.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1145/567752.567774}}
-
-
-\bibitem[\protect\citeauthoryear{Anisi}{Anisi}{2003}]%
-        {anisi03}
-{David~A. Anisi}. 2003.
-\newblock {\em Optimal Motion Control of a Ground Vehicle}.
-\newblock Master's\ thesis. Royal Institute of Technology (KTH), Stockholm,
-  Sweden.
+\bibitem[\protect\citeauthoryear{Bryce and Colbourn}{Bryce and
+  Colbourn}{2006}]%
+        {bryce2006prioritized}
+{Ren{\'e}e~C Bryce} {and} {Charles~J Colbourn}. 2006.
+\newblock \showarticletitle{Prioritized interaction testing for pair-wise
+  coverage with seeding and constraints}.
+\newblock {\em Information and Software Technology\/} {48}, 10 (2006),
+  960--970.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Clarkson}{Clarkson}{1985}]%
-        {Clarkson85}
-{Kenneth~L. Clarkson}. 1985.
-\newblock {\em Algorithms for Closest-Point Problems (Computational Geometry)}.
-\newblock Ph.D. Dissertation. Stanford University, Palo Alto, CA.
-\newblock
-\newblock
-\shownote{UMI Order Number: AAT 8506171.}
-
-
-\bibitem[\protect\citeauthoryear{Cohen}{Cohen}{1996}]%
-        {JCohen96}
-{Jacques Cohen} (Ed.). 1996.
-\newblock \showarticletitle{Special Issue: Digital Libraries}.
-\newblock {\em Commun. {ACM}\/} {39}, 11 (Nov. 1996).
+\bibitem[\protect\citeauthoryear{Calvagna and Gargantini}{Calvagna and
+  Gargantini}{2008}]%
+        {calvagna2008logic}
+{Andrea Calvagna} {and} {Angelo Gargantini}. 2008.
+\newblock \showarticletitle{A logic-based approach to combinatorial testing
+  with constraints}.
+\newblock In {\em Tests and proofs}. Springer, 66--83.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Cohen, Nutt, and Sagic}{Cohen
-  et~al\mbox{.}}{2007}]%
-        {Cohen07}
-{Sarah Cohen}, {Werner Nutt}, {and} {Yehoshua Sagic}. 2007.
-\newblock \showarticletitle{Deciding equivalances among conjunctive aggregate
-  queries}.
-\newblock {\em J. ACM\/} {54}, 2, Article 5 (April 2007), 50 pages.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1145/1219092.1219093}}
-
-
-\bibitem[\protect\citeauthoryear{Douglass, Harel, and Trakhtenbrot}{Douglass
-  et~al\mbox{.}}{1998}]%
-        {Douglass98}
-{Bruce~P. Douglass}, {David Harel}, {and} {Mark~B. Trakhtenbrot}. 1998.
-\newblock \showarticletitle{Statecarts in use: structured analysis and
-  object-orientation}.
-\newblock In {\em Lectures on Embedded Systems}, {Grzegorz Rozenberg} {and}
-  {Frits~W. Vaandrager} (Eds.). Lecture Notes in Computer Science, Vol. 1494.
-  Springer-Verlag, London, 368--394.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1007/3-540-65193-4_29}}
-
-
-\bibitem[\protect\citeauthoryear{Editor}{Editor}{2007}]%
-        {Editor00}
-{Ian Editor} (Ed.). 2007.
-\newblock {\em The title of book one\/} (1st. ed.). The name of the series one,
-  Vol.~9.
-\newblock University of Chicago Press, Chicago.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1007/3-540-09237-4}}
-
-
-\bibitem[\protect\citeauthoryear{Editor}{Editor}{2008}]%
-        {Editor00a}
-{Ian Editor} (Ed.). 2008.
-\newblock {\em The title of book two\/} (2nd. ed.).
-\newblock University of Chicago Press, Chicago, Chapter 100.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1007/3-540-09237-4}}
-
-
-\bibitem[\protect\citeauthoryear{Gundy, Balzarotti, and Vigna}{Gundy
-  et~al\mbox{.}}{2007}]%
-        {VanGundy07}
-{Matthew~Van Gundy}, {Davide Balzarotti}, {and} {Giovanni Vigna}. 2007.
-\newblock \showarticletitle{Catch me, if you can: Evading network signatures
-  with web-based polymorphic worms}. In {\em Proceedings of the first USENIX
-  workshop on Offensive Technologies} {\em (WOOT '07)}. USENIX Association,
-  Berkley, CA, Article 7, 9 pages.
+\bibitem[\protect\citeauthoryear{Chen, Yan, and Zhang}{Chen
+  et~al\mbox{.}}{2010}]%
+        {chen2010combinatorial}
+{Baiqiang Chen}, {Jun Yan}, {and} {Jian Zhang}. 2010.
+\newblock \showarticletitle{Combinatorial testing with shielding parameters}.
+  In {\em Software Engineering Conference (APSEC), 2010 17th Asia Pacific}.
+  IEEE, 280--289.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Harel}{Harel}{1978}]%
-        {Harel78}
-{David Harel}. 1978.
-\newblock {\em LOGICS of Programs: AXIOMATICS and DESCRIPTIVE POWER}.
-\newblock MIT Research Lab Technical Report TR-200. Massachusetts Institute of
-  Technology, Cambridge, MA.
+\bibitem[\protect\citeauthoryear{Cohen, Dwyer, and Shi}{Cohen
+  et~al\mbox{.}}{2007a}]%
+        {cohen2007exploiting}
+{Myra~B Cohen}, {Matthew~B Dwyer}, {and} {Jiangfan Shi}. 2007a.
+\newblock \showarticletitle{Exploiting constraint solving history to construct
+  interaction test suites}. In {\em Testing: Academic and Industrial Conference
+  Practice and Research Techniques-MUTATION, 2007.} IEEE, 121--132.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Harel}{Harel}{1979}]%
-        {Harel79}
-{David Harel}. 1979.
-\newblock {\em First-Order Dynamic Logic}. Lecture Notes in Computer Science,
-  Vol.~68.
-\newblock Springer-Verlag, New York, NY.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1007/3-540-09237-4}}
-
-
-\bibitem[\protect\citeauthoryear{H{\"o}rmander}{H{\"o}rmander}{1985a}]%
-        {MR781537}
-{Lars H{\"o}rmander}. 1985a.
-\newblock {\em The analysis of linear partial differential operators. {III}}.
-  Grundlehren der Mathematischen Wissenschaften [Fundamental Principles of
-  Mathematical Sciences], Vol. 275.
-\newblock Springer-Verlag, Berlin, Germany. viii+525 pages.
-\newblock
-\showISBNx{3-540-13828-5}
-\newblock
-\shownote{Pseudodifferential operators.}
-
-
-\bibitem[\protect\citeauthoryear{H{\"o}rmander}{H{\"o}rmander}{1985b}]%
-        {MR781536}
-{Lars H{\"o}rmander}. 1985b.
-\newblock {\em The analysis of linear partial differential operators. {IV}}.
-  Grundlehren der Mathematischen Wissenschaften [Fundamental Principles of
-  Mathematical Sciences], Vol. 275.
-\newblock Springer-Verlag, Berlin, Germany. vii+352 pages.
-\newblock
-\showISBNx{3-540-13829-3}
-\newblock
-\shownote{Fourier integral operators.}
-
-
-\bibitem[\protect\citeauthoryear{Kirschmer and Voight}{Kirschmer and
-  Voight}{2010}]%
-        {Kirschmer:2010:AEI:1958016.1958018}
-{Markus Kirschmer} {and} {John Voight}. 2010.
-\newblock \showarticletitle{Algorithmic Enumeration of Ideal Classes for
-  Quaternion Orders}.
-\newblock {\em SIAM J. Comput.\/} {39}, 5 (Jan. 2010), 1714--1747.
-\newblock
-\showISSN{0097-5397}
-\showDOI{%
-\url{http://dx.doi.org/10.1137/080734467}}
-
-
-\bibitem[\protect\citeauthoryear{Knuth}{Knuth}{1997}]%
-        {Knuth97}
-{Donald~E. Knuth}. 1997.
-\newblock {\em The Art of Computer Programming, Vol. 1: Fundamental Algorithms
-  (3rd. ed.)}.
-\newblock Addison Wesley Longman Publishing Co., Inc.
+\bibitem[\protect\citeauthoryear{Cohen, Dwyer, and Shi}{Cohen
+  et~al\mbox{.}}{2007b}]%
+        {cohen2007interaction}
+{Myra~B Cohen}, {Matthew~B Dwyer}, {and} {Jiangfan Shi}. 2007b.
+\newblock \showarticletitle{Interaction testing of highly-configurable systems
+  in the presence of constraints}. In {\em Proceedings of the 2007
+  international symposium on Software testing and analysis}. ACM, 129--139.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Kosiur}{Kosiur}{2001}]%
-        {Kosiur01}
-{David Kosiur}. 2001.
-\newblock {\em Understanding Policy-Based Networking\/} (2nd. ed.).
-\newblock Wiley, New York, NY.
+\bibitem[\protect\citeauthoryear{Cohen, Dwyer, and Shi}{Cohen
+  et~al\mbox{.}}{2008}]%
+        {cohen2008constructing}
+{Myra~B Cohen}, {Matthew~B Dwyer}, {and} {Jiangfan Shi}. 2008.
+\newblock \showarticletitle{Constructing interaction test suites for
+  highly-configurable systems in the presence of constraints: A greedy
+  approach}.
+\newblock {\em Software Engineering, IEEE Transactions on\/} {34}, 5 (2008),
+  633--650.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Lee}{Lee}{2005}]%
-        {Lee05}
-{Newton Lee}. 2005.
-\newblock \showarticletitle{Interview with Bill Kinder: January 13, 2005}.
-\newblock Video, {\em Comput. Entertain.\/} {3}, 1, Article 4 (Jan.-March
-  2005).
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1145/1057270.1057278}}
-
-
-\bibitem[\protect\citeauthoryear{Novak}{Novak}{2003}]%
-        {Novak03}
-{Dave Novak}. 2003.
-\newblock \showarticletitle{Solder man}. Video. In {\em ACM SIGGRAPH 2003 Video
-  Review on Animation theater Program: Part I - Vol. 145 (July 27--27, 2003)}.
-  ACM Press, New York, NY, 4.
-\newblock
-\showDOI{%
-\url{http://dx.doi.org/99.9999/woot07-S422}}
-
-
-\bibitem[\protect\citeauthoryear{Obama}{Obama}{2008}]%
-        {Obama08}
-{Barack Obama}. 2008.
-\newblock A more perfect union.
-\newblock Video.   (5 March 2008).
-\newblock
-\showURL{%
-Retrieved March 21, 2008 from
-  \url{http://video.google.com/videoplay?docid=6528042696351994555}}
-
-
-\bibitem[\protect\citeauthoryear{Poker-Edge.Com}{Poker-Edge.Com}{2006}]%
-        {Poker06}
-{Poker-Edge.Com}. 2006.
-\newblock Stats and Analysis.
-\newblock   (March 2006).
-\newblock
-\showURL{%
-Retrieved June 7, 2006 from \url{http://www.poker-edge.com/stats.php}}
-
-
-\bibitem[\protect\citeauthoryear{Rous}{Rous}{2008}]%
-        {rous08}
-{Bernard Rous}. 2008.
-\newblock \showarticletitle{The Enabling of Digital Libraries}.
-\newblock {\em Digital Libraries\/} {12}, 3, Article 5 (July 2008).
-\newblock
-\newblock
-\shownote{To appear.}
-
-
-\bibitem[\protect\citeauthoryear{Saeedi, Zamani, and Sedighi}{Saeedi
-  et~al\mbox{.}}{2010a}]%
-        {SaeediMEJ10}
-{Mehdi Saeedi}, {Morteza~Saheb Zamani}, {and} {Mehdi Sedighi}. 2010a.
-\newblock \showarticletitle{A library-based synthesis methodology for
-  reversible logic}.
-\newblock {\em Microelectron. J.\/} {41}, 4 (April 2010), 185--194.
+\bibitem[\protect\citeauthoryear{Colbourn and McClary}{Colbourn and
+  McClary}{2008}]%
+        {colbourn2008locating}
+{Charles~J Colbourn} {and} {Daniel~W McClary}. 2008.
+\newblock \showarticletitle{Locating and detecting arrays for interaction
+  faults}.
+\newblock {\em Journal of combinatorial optimization\/} {15}, 1 (2008), 17--48.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Saeedi, Zamani, Sedighi, and Sasanian}{Saeedi
-  et~al\mbox{.}}{2010b}]%
-        {SaeediJETC10}
-{Mehdi Saeedi}, {Morteza~Saheb Zamani}, {Mehdi Sedighi}, {and} {Zahra
-  Sasanian}. 2010b.
-\newblock \showarticletitle{Synthesis of Reversible Circuit Using Cycle-Based
-  Approach}.
-\newblock {\em J. Emerg. Technol. Comput. Syst.\/} {6}, 4 (Dec. 2010).
+\bibitem[\protect\citeauthoryear{Dumlu, Yilmaz, Cohen, and Porter}{Dumlu
+  et~al\mbox{.}}{2011}]%
+        {dumlu2011feedback}
+{Emine Dumlu}, {Cemal Yilmaz}, {Myra~B Cohen}, {and} {Adam Porter}. 2011.
+\newblock \showarticletitle{Feedback driven adaptive combinatorial testing}. In
+  {\em Proceedings of the 2011 International Symposium on Software Testing and
+  Analysis}. ACM, 243--253.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Scientist}{Scientist}{2009}]%
-        {JoeScientist001}
-{Joseph Scientist}. 2009.
-\newblock The fountain of youth.
-\newblock   (Aug. 2009).
+\bibitem[\protect\citeauthoryear{Fouch{\'e}, Cohen, and Porter}{Fouch{\'e}
+  et~al\mbox{.}}{2009}]%
+        {fouche2009incremental}
+{Sandro Fouch{\'e}}, {Myra~B Cohen}, {and} {Adam Porter}. 2009.
+\newblock \showarticletitle{Incremental covering array failure characterization
+  in large configuration spaces}. In {\em Proceedings of the eighteenth
+  international symposium on Software testing and analysis}. ACM, 177--188.
 \newblock
+
+
+\bibitem[\protect\citeauthoryear{Garvin, Cohen, and Dwyer}{Garvin
+  et~al\mbox{.}}{2011}]%
+        {garvin2011evaluating}
+{Brady~J Garvin}, {Myra~B Cohen}, {and} {Matthew~B Dwyer}. 2011.
+\newblock \showarticletitle{Evaluating improvements to a meta-heuristic search
+  for constrained interaction testing}.
+\newblock {\em Empirical Software Engineering\/} {16}, 1 (2011), 61--102.
 \newblock
-\shownote{Patent No. 12345, Filed July 1st., 2008, Issued Aug. 9th., 2009.}
 
 
-\bibitem[\protect\citeauthoryear{Smith}{Smith}{2010}]%
-        {Smith10}
-{Stan~W. Smith}. 2010.
-\newblock \showarticletitle{An experiment in bibliographic mark-up: Parsing
-  metadata for XML export}. In {\em Proceedings of the 3rd. annual workshop on
-  Librarians and Computers} {\em (LAC '10)}, {Reginald~N. Smythe} {and}
-  {Alexander Noble} (Eds.), Vol.~3. Paparazzi Press, Milan Italy, 422--431.
+\bibitem[\protect\citeauthoryear{Ghandehari, Lei, Kung, Kacker, and
+  Kuhn}{Ghandehari et~al\mbox{.}}{2013}]%
+        {ghandehari2013fault}
+{Laleh~Sh Ghandehari}, {Yu Lei}, {David Kung}, {Raghu Kacker}, {and} {Richard
+  Kuhn}. 2013.
+\newblock \showarticletitle{Fault localization based on failure-inducing
+  combinations}. In {\em Software Reliability Engineering (ISSRE), 2013 IEEE
+  24th International Symposium on}. IEEE, 168--177.
 \newblock
-\showDOI{%
-\url{http://dx.doi.org/99.9999/woot07-S422}}
 
 
-\bibitem[\protect\citeauthoryear{Spector}{Spector}{1990}]%
-        {Spector90}
-{Asad~Z. Spector}. 1990.
-\newblock \showarticletitle{Achieving application requirements}.
-\newblock In {\em Distributed Systems} (2nd. ed.), {Sape Mullender} (Ed.). ACM
-  Press, New York, NY, 19--33.
+\bibitem[\protect\citeauthoryear{Ghandehari, Lei, Xie, Kuhn, and
+  Kacker}{Ghandehari et~al\mbox{.}}{2012}]%
+        {ghandehari2012identifying}
+{Laleh Shikh~Gholamhossein Ghandehari}, {Yu Lei}, {Tao Xie}, {Richard Kuhn},
+  {and} {Raghu Kacker}. 2012.
+\newblock \showarticletitle{Identifying failure-inducing combinations in a
+  combinatorial test set}. In {\em Software Testing, Verification and
+  Validation (ICST), 2012 IEEE Fifth International Conference on}. IEEE,
+  370--379.
 \newblock
-\showDOI{%
-\url{http://dx.doi.org/10.1145/90417.90738}}
 
 
-\bibitem[\protect\citeauthoryear{Thornburg}{Thornburg}{2001}]%
-        {Thornburg01}
-{Harry Thornburg}. 2001.
-\newblock Introduction to Bayesian Statistics.
-\newblock   (March 2001).
+\bibitem[\protect\citeauthoryear{Grindal, Offutt, and Mellin}{Grindal
+  et~al\mbox{.}}{2006}]%
+        {grindal2006handling}
+{Mats Grindal}, {Jeff Offutt}, {and} {Jonas Mellin}. 2006.
+\newblock \showarticletitle{Handling constraints in the input space when using
+  combination strategies for software testing}.
+\newblock  (2006).
 \newblock
-\showURL{%
-Retrieved March 2, 2005 from
-  \url{http://ccrma.stanford.edu/~jos/bayes/bayes.html}}
+
+
+\bibitem[\protect\citeauthoryear{Hall, Frank, Holmes, Pfahringer, Reutemann,
+  and Witten}{Hall et~al\mbox{.}}{2009}]%
+        {hall2009weka}
+{Mark Hall}, {Eibe Frank}, {Geoffrey Holmes}, {Bernhard Pfahringer}, {Peter
+  Reutemann}, {and} {Ian~H Witten}. 2009.
+\newblock \showarticletitle{The WEKA Data Mining Software: An Update; SIGKDD
+  Explorations, Volume 11, Issue 1}.
+\newblock  (2009).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Nie, and Lei}{Li et~al\mbox{.}}{2012}]%
+        {li2012improved}
+{Jie Li}, {Changhai Nie}, {and} {Yu Lei}. 2012.
+\newblock \showarticletitle{Improved Delta Debugging Based on Combinatorial
+  Testing}. In {\em Quality Software (QSIC), 2012 12th International Conference
+  on}. IEEE, 102--105.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mart{\'\i}nez, Moura, Panario, and
+  Stevens}{Mart{\'\i}nez et~al\mbox{.}}{2008}]%
+        {martinez2008algorithms}
+{Conrado Mart{\'\i}nez}, {Lucia Moura}, {Daniel Panario}, {and} {Brett
+  Stevens}. 2008.
+\newblock \showarticletitle{Algorithms to locate errors using covering arrays}.
+\newblock In {\em LATIN 2008: Theoretical Informatics}. Springer, 504--519.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mart{\'\i}nez, Moura, Panario, and
+  Stevens}{Mart{\'\i}nez et~al\mbox{.}}{2009}]%
+        {martinez2009locating}
+{Conrado Mart{\'\i}nez}, {Lucia Moura}, {Daniel Panario}, {and} {Brett
+  Stevens}. 2009.
+\newblock \showarticletitle{Locating errors using ELAs, covering arrays, and
+  adaptive testing algorithms}.
+\newblock {\em SIAM Journal on Discrete Mathematics\/} {23}, 4 (2009),
+  1776--1799.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nie and Leung}{Nie and Leung}{2011a}]%
+        {nie2011minimal}
+{Changhai Nie} {and} {Hareton Leung}. 2011a.
+\newblock \showarticletitle{The minimal failure-causing schema of combinatorial
+  testing}.
+\newblock {\em ACM Transactions on Software Engineering and Methodology
+  (TOSEM)\/} {20}, 4 (2011), 15.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nie and Leung}{Nie and Leung}{2011b}]%
+        {nie2011survey}
+{Changhai Nie} {and} {Hareton Leung}. 2011b.
+\newblock \showarticletitle{A survey of combinatorial testing}.
+\newblock {\em ACM Computing Surveys (CSUR)\/} {43}, 2 (2011), 11.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Niu, Nie, Lei, and Chan}{Niu
+  et~al\mbox{.}}{2013}]%
+        {niu2013identifying}
+{Xintao Niu}, {Changhai Nie}, {Yu Lei}, {and} {Alvin~TS Chan}. 2013.
+\newblock \showarticletitle{Identifying Failure-Inducing Combinations Using
+  Tuple Relationship}. In {\em Software Testing, Verification and Validation
+  Workshops (ICSTW), 2013 IEEE Sixth International Conference on}. IEEE,
+  271--280.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Petke, Yoo, Cohen, and Harman}{Petke
+  et~al\mbox{.}}{2013}]%
+        {petke2013efficiency}
+{Justyna Petke}, {Shin Yoo}, {Myra~B Cohen}, {and} {Mark Harman}. 2013.
+\newblock \showarticletitle{Efficiency and early fault detection with lower and
+  higher strength combinatorial interaction testing}. In {\em Proceedings of
+  the 2013 9th Joint Meeting on Foundations of Software Engineering}. ACM,
+  26--36.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Shakya, Xie, Li, Lei, Kacker, and Kuhn}{Shakya
+  et~al\mbox{.}}{2012}]%
+        {shakya2012isolating}
+{Kiran Shakya}, {Tao Xie}, {Nuo Li}, {Yu Lei}, {Raghu Kacker}, {and} {Richard
+  Kuhn}. 2012.
+\newblock \showarticletitle{Isolating Failure-Inducing Combinations in
+  Combinatorial Testing using Test Augmentation and Classification}. In {\em
+  Software Testing, Verification and Validation (ICST), 2012 IEEE Fifth
+  International Conference on}. IEEE, 620--623.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Shi, Nie, and Xu}{Shi et~al\mbox{.}}{2005}]%
+        {shi2005software}
+{Liang Shi}, {Changhai Nie}, {and} {Baowen Xu}. 2005.
+\newblock \showarticletitle{A software debugging method based on pairwise
+  testing}.
+\newblock In {\em Computational Science--ICCS 2005}. Springer, 1088--1091.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wang, Xu, Chen, and Xu}{Wang
+  et~al\mbox{.}}{2010}]%
+        {wang2010adaptive}
+{Ziyuan Wang}, {Baowen Xu}, {Lin Chen}, {and} {Lei Xu}. 2010.
+\newblock \showarticletitle{Adaptive interaction fault location based on
+  combinatorial testing}. In {\em Quality Software (QSIC), 2010 10th
+  International Conference on}. IEEE, 495--502.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yilmaz}{Yilmaz}{2013}]%
+        {yilmaz2013test}
+{Cemal Yilmaz}. 2013.
+\newblock \showarticletitle{Test case-aware combinatorial interaction testing}.
+\newblock {\em Software Engineering, IEEE Transactions on\/} {39}, 5 (2013),
+  684--706.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yilmaz, Cohen, and Porter}{Yilmaz
+  et~al\mbox{.}}{2006}]%
+        {yilmaz2006covering}
+{Cemal Yilmaz}, {Myra~B Cohen}, {and} {Adam~A Porter}. 2006.
+\newblock \showarticletitle{Covering arrays for efficient fault
+  characterization in complex configuration spaces}.
+\newblock {\em Software Engineering, IEEE Transactions on\/} {32}, 1 (2006),
+  20--34.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yilmaz, Dumlu, Cohen, and Porter}{Yilmaz
+  et~al\mbox{.}}{2013}]%
+        {yilmaz2013reducing}
+{Cemal Yilmaz}, {Emine Dumlu}, {M Cohen}, {and} {Adam Porter}. 2013.
+\newblock \showarticletitle{Reducing Masking Effects in Combinatorial
+  Interaction Testing: A Feedback Driven Adaptive Approach}.
+\newblock  (2013).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zeller and Hildebrandt}{Zeller and
+  Hildebrandt}{2002}]%
+        {zeller2002simplifying}
+{Andreas Zeller} {and} {Ralf Hildebrandt}. 2002.
+\newblock \showarticletitle{Simplifying and isolating failure-inducing input}.
+\newblock {\em Software Engineering, IEEE Transactions on\/} {28}, 2 (2002),
+  183--200.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zhang and Zhang}{Zhang and Zhang}{2011}]%
+        {zhang2011characterizing}
+{Zhiqiang Zhang} {and} {Jian Zhang}. 2011.
+\newblock \showarticletitle{Characterizing failure-causing parameter
+  interactions by adaptive testing}. In {\em Proceedings of the 2011
+  International Symposium on Software Testing and Analysis}. ACM, 331--341.
+\newblock
 
 
 \end{thebibliography}

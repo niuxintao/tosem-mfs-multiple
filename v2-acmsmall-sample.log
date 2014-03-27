@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  25 MAR 2014 21:38
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  27 MAR 2014 23:43
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -159,20 +159,54 @@ Invalid UTF-8 byte or sequence at line 2532 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2584 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2592 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2592 replaced by U+FFFD.
-) (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Try loading font information for OT1+pnc on input line 33.
+) (D:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.sty
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip60
+\subfigcapskip=\skip61
+\subfigcaptopadj=\dimen119
+\subfigbottomskip=\skip62
+\subfigcapmargin=\dimen120
+\subfiglabelskip=\skip63
+\c@subfigure=\count95
+\c@lofdepth=\count96
+\c@subtable=\count97
+\c@lotdepth=\count98
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(D:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.cfg)
+\subfig@top=\skip64
+\subfig@bottom=\skip65
+)
+(D:\CTEX\MiKTeX\tex\latex\ulem\ulem.sty
+\UL@box=\box41
+\UL@hyphenbox=\box42
+\UL@skip=\skip66
+\UL@hook=\toks15
+\UL@height=\dimen121
+\UL@pe=\count99
+\UL@pixel=\dimen122
+\ULC@box=\box43
+Requested font "lasy6" scaled 1000
+ -> lasy6
+Package: ulem 2011/03/18
+\ULdepth=\dimen123
+)
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Try loading font information for OT1+pnc on input line 37.
 
 (D:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
@@ -194,32 +228,30 @@ Requested font "cmsy8" at 8.0pt
 Requested font "cmsy6" at 6.0pt
  -> cmsy6
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 80.
+(Font)              <8> on input line 88.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 80.
+(Font)              <6> on input line 88.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 80.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 80.
+(Font)              <5> on input line 88.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 88.
 
 (D:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 Requested font "lasy8" at 8.0pt
  -> lasy8
-Requested font "lasy6" at 6.0pt
- -> lasy6
 Requested font "lasy5" at 5.0pt
  -> lasy5
-LaTeX Font Info:    Try loading font information for OMS+pnc on input line 80.
+LaTeX Font Info:    Try loading font information for OMS+pnc on input line 88.
 
 (D:\CTEX\MiKTeX\tex\latex\psnfss\omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
 Requested font "cmtt8" at 8.0pt
  -> cmtt8
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 82.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 90.
 
 (D:\CTEX\MiKTeX\tex\latex\psnfss\ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
@@ -227,13 +259,13 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 Requested font "phvr7t" at 12.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 90.
 Requested font "phvb7t" at 12.0pt
  -> phvb7t
 Requested font "phvr7t" at 10.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 82.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 90.
 Requested font "pncb7t" at 8.0pt
  -> pncb7t
 Requested font "pncri7t" at 8.0pt
@@ -241,7 +273,7 @@ Requested font "pncri7t" at 8.0pt
 Requested font "phvr7t" at 9.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 93.
 Requested font "phvb7t" at 9.0pt
  -> phvb7t
 Requested font "pncri7t" at 10.0pt
@@ -257,43 +289,102 @@ Requested font "pncr7t" at 7.0pt
  [1
 
 ]
-(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl [2]
-Underfull \hbox (badness 5217) in paragraph at lines 243--250
-[]\OT1/pnc/m/n/8 Dave No-vak. 2003. Sol-der man. Video. In \OT1/pnc/m/it/8 ACM 
-SIG-GRAPH 2003 Video Re-view on An-i-ma-
- []
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 120.
+Requested font "pncb7t" at 10.0pt
+ -> pncb7t
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 243--250
-\OT1/pnc/m/it/8 tion the-ater Pro-gram: Part I - Vol. 145 (Ju-ly 27--27, 2003)\
-OT1/pnc/m/n/8 . ACM Press, New Y-ork, NY, 4.
- []
+LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
+t line 120.
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 316--324
-\OT1/pnc/m/n/8 In \OT1/pnc/m/it/8 Pro-ceed-ings of the 3rd. an-nu-al work-shop 
-on Li-brar-i-an-s and Com-put-er-s (LAC '10)\OT1/pnc/m/n/8 , Regi-
- []
+LaTeX Warning: Citation `yilmaz2006covering' on page 2 undefined on input line 
+120.
 
 
-Underfull \hbox (badness 2005) in paragraph at lines 316--324
-\OT1/pnc/m/n/8 nald N. S-mythe and Alexan-der No-ble (Ed-s.), Vol. 3. Pa-parazz
--i Press, Mi-lan I-taly, 422--431.
- []
+LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 120.
 
-)
-Requested font "phvr7t" at 8.0pt
- -> phvr7t
- [3] [1
 
-] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
-Here is how much of TeX's memory you used:
- 2426 strings out of 430478
- 29138 string characters out of 3191502
- 103384 words of memory out of 3000000
- 5576 multiletter control sequences out of 15000+200000
- 12778 words of font info for 38 fonts, out of 3000000 for 9000
- 14 hyphenation exceptions out of 8191
- 32i,9n,22p,1243b,285s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (4 pages).
+LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
+t line 120.
+
+
+LaTeX Warning: Citation `martinez2008algorithms' on page 2 undefined on input l
+ine 120.
+
+
+LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
+e 120.
+
+
+LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 120.
+
+
+
+LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
+t line 120.
+
+
+LaTeX Warning: Citation `niu2013identifying' on page 2 undefined on input line 
+120.
+
+
+LaTeX Warning: Citation `zhang2011characterizing' on page 2 undefined on input 
+line 120.
+
+
+LaTeX Warning: Citation `shakya2012isolating' on page 2 undefined on input line
+ 120.
+
+
+LaTeX Warning: Citation `wang2010adaptive' on page 2 undefined on input line 12
+0.
+
+
+LaTeX Warning: Citation `li2012improved' on page 2 undefined on input line 120.
+
+
+
+LaTeX Warning: Citation `yilmaz2006covering' on page 2 undefined on input line 
+120.
+
+
+LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
+e 120.
+
+
+LaTeX Warning: Citation `martinez2008algorithms' on page 2 undefined on input l
+ine 120.
+
+
+LaTeX Warning: Citation `martinez2009locating' on page 2 undefined on input lin
+e 120.
+
+
+LaTeX Warning: Citation `fouche2009incremental' on page 2 undefined on input li
+ne 120.
+
+
+LaTeX Warning: Citation `dumlu2011feedback' on page 2 undefined on input line 1
+24.
+
+
+LaTeX Warning: Citation `yilmaz2013reducing' on page 2 undefined on input line 
+124.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 124.
+Requested font "lasy10" at 10.0pt
+ -> lasy10
+Requested font "lasy7" at 7.0pt
+ -> lasy7
+LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 124.
+
+LaTeX Warning: Citation `dumlu2011feedback' on page 2 undefined on input line 1
+24.
+
+
+LaTeX Warning: Citation
