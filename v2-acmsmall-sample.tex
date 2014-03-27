@@ -638,50 +638,41 @@ We then generated the exhaustive test suite consist of all the possible combinat
    \hline
    2.0rc8 & \multicolumn{3}{c}{$2^{9} \times 3^{2} \times 4^{1}$} &\multicolumn{2}{c}{} \\
     2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
-     2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} 
+     2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{}
 \end{tabular}
 }
 \end{table}
 
-
-\begin{table}\renewcommand{\arraystretch}{1.3}
- \tbl{Input model of JFlex\label{modelJFlex}}{
-  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
+\begin{table}[h]
+\tbl{Input model of JFlex\label{modelJFlex}}{
+\begin{tabular}{llllll}
+\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
-  \bfseries common options &   \bfseries values \\
-   \hline
-        generation & switch, table, pack \\
-     charset &default, 7bit, 8bit, 16bit\\
-   \end{tabular}
 
-     \begin{tabular}{p{0.9\columnwidth}}
-     \hline
-    \bfseries common boolean options \\
+ \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{switch, table, pack}  \\
+  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{default, 7bit, 8bit, 16bit}  \\
+
     \hline
-     public, apiprivate,cup,caseless,char,line,column,notunix, yyeof\\
-
-  \end{tabular}
-
-    \begin{tabular}{c*{3}{p{0.33\columnwidth}}}
-  \hline
-  \bfseries versions &   \bfseries specific options  & \bfseries values\\
+   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+    \hline
+    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
+      \hline
+      
+   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ true, false, default}\\
+      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{ true, false }\\
+    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, default}\\
+       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{ true, false}\\
+     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{true, false}\\
+ 
+        \hline
+   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
-    1.4.1 & hasReturn & true, false, default\\
-      & normal & true, false \\
-    1.4.2 & lookAhead & one, multi, default\\
-       & type & true, false\\
-        & standalone & true, false \\
-    \end{tabular}
-   \begin{tabular}{c*{2}{p{0.7\columnwidth}}}
-   \hline
-   \bfseries versions &   \bfseries Config space\\
-   \hline
-    1.4.1  & $2^{10} \times 3^{2} \times 4^{1} $ \\
-    1.4.2 &  $2^{11} \times 3^{2} \times 4^{1} $ \\
-  \end{tabular}
+  1.4.1  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
+   1.4.2 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\
+\end{tabular}
 }
 \end{table}
-
 
 \subsubsection{Result and discusssion}
 
