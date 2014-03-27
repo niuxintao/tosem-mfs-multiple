@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  27 MAR 2014 23:43
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  27 MAR 2014 23:49
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -289,91 +289,6 @@ Requested font "pncr7t" at 7.0pt
  [1
 
 ]
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 120.
-Requested font "pncb7t" at 10.0pt
- -> pncb7t
-
-
-LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
-t line 120.
-
-
-LaTeX Warning: Citation `yilmaz2006covering' on page 2 undefined on input line 
-120.
-
-
-LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 120.
-
-
-
-LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
-t line 120.
-
-
-LaTeX Warning: Citation `martinez2008algorithms' on page 2 undefined on input l
-ine 120.
-
-
-LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
-e 120.
-
-
-LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 120.
-
-
-
-LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
-t line 120.
-
-
-LaTeX Warning: Citation `niu2013identifying' on page 2 undefined on input line 
-120.
-
-
-LaTeX Warning: Citation `zhang2011characterizing' on page 2 undefined on input 
-line 120.
-
-
-LaTeX Warning: Citation `shakya2012isolating' on page 2 undefined on input line
- 120.
-
-
-LaTeX Warning: Citation `wang2010adaptive' on page 2 undefined on input line 12
-0.
-
-
-LaTeX Warning: Citation `li2012improved' on page 2 undefined on input line 120.
-
-
-
-LaTeX Warning: Citation `yilmaz2006covering' on page 2 undefined on input line 
-120.
-
-
-LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
-e 120.
-
-
-LaTeX Warning: Citation `martinez2008algorithms' on page 2 undefined on input l
-ine 120.
-
-
-LaTeX Warning: Citation `martinez2009locating' on page 2 undefined on input lin
-e 120.
-
-
-LaTeX Warning: Citation `fouche2009incremental' on page 2 undefined on input li
-ne 120.
-
-
-LaTeX Warning: Citation `dumlu2011feedback' on page 2 undefined on input line 1
-24.
-
-
-LaTeX Warning: Citation `yilmaz2013reducing' on page 2 undefined on input line 
-124.
-
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 124.
 Requested font "lasy10" at 10.0pt
@@ -383,8 +298,126 @@ Requested font "lasy7" at 7.0pt
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 124.
 
-LaTeX Warning: Citation `dumlu2011feedback' on page 2 undefined on input line 1
-24.
+[2]
+Requested font "cmtt10" at 10.0pt
+ -> cmtt10
+Requested font "phvr7t" at 8.0pt
+ -> phvr7t
+ [3]
+Underfull \vbox (badness 4060) has occurred while \output is active []
+
+ [4]
+[5]
+Requested font "pncrc7t" at 10.0pt
+ -> pncrc7t
+ [6] [7]
+Underfull \hbox (badness 3364) in paragraph at lines 418--420
+[]\OT1/pnc/m/n/10 As an ex-am-ple, in the mo-ti-va-tion ex-am-ple in sec-tion 2
+, the $\OML/cmm/m/it/10 F[]$
+ []
 
 
-LaTeX Warning: Citation
+Underfull \hbox (badness 10000) in paragraph at lines 418--420
+\OT1/pnc/m/n/10 is \OMS/cmsy/m/n/10 f \OT1/pnc/m/n/10 (7,4,4,5),(11,4,4,5)\OMS/
+cmsy/m/n/10 g\OT1/pnc/m/n/10 , So the failure-inducing com-bi-na-tion-s for $\O
+ML/cmm/m/it/10 Ex\OT1/cmr/m/n/10 2$ \OT1/pnc/m/n/10 is
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 426.
+Requested font "phvro7t" at 9.0pt
+ -> phvro7t
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+Underfull \hbox (badness 1817) in paragraph at lines 447--448
+\OT1/pnc/m/n/10 com-bi-na-tion-s is that we can-not fig-ure out the $\OML/cmm/m
+/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 mask[]\OT1/cmr/m/n/10 )$\OT1/pnc/m/n/
+10 . As $\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 mask[]\OT1/cmr/m/n
+/10 ) \OMS/cmsy/m/n/10 ^^Z
+ []
+
+Requested font "pncr7t" at 9.0pt
+ -> pncr7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 498.
+Requested font "pncb7t" at 9.0pt
+ -> pncb7t
+Requested font "cmr9" at 9.0pt
+ -> cmr9
+Requested font "cmmi9" at 9.0pt
+ -> cmmi9
+Requested font "cmsy9" at 9.0pt
+ -> cmsy9
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 498.
+Requested font "lasy9" at 9.0pt
+ -> lasy9
+Requested font "pncri7t" at 9.0pt
+ -> pncri7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 514.
+Requested font "pncbi7t" at 9.0pt
+ -> pncbi7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 517.
+Requested font "pncb7t" at 10.0pt
+ -> pncb7t
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
+[10]
+Requested font "pncr7t" at 6.0pt
+ -> pncr7t
+ [11] [12]
+Underfull \vbox (badness 2772) has occurred while \output is active []
+
+ [13]
+File: FIC_BS_normal.eps Graphic file (type eps)
+
+<FIC_BS_normal.eps>
+File: OFOT_normal.eps Graphic file (type eps)
+ <OFOT_normal.eps>
+File: CTA_normal.eps Graphic file (type eps)
+ <CTA_normal.eps>
+Underfull \vbox (badness 2245) has occurred while \output is active []
+
+ [14]
+File: FIC_BS_our.eps Graphic file (type eps)
+
+<FIC_BS_our.eps>
+File: OFOT_our.eps Graphic file (type eps)
+ <OFOT_our.eps>
+File: CTA_our.eps Graphic file (type eps)
+ <CTA_our.eps>
+Underfull \vbox (badness 2922) has occurred while \output is active []
+
+ [15]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+Underfull \vbox (badness 2245) has occurred while \output is active []
+
+ [17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18]
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+Underfull \vbox (badness 7047) has occurred while \output is active []
+
+ [19])
+[20] [1
+
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+Here is how much of TeX's memory you used:
+ 2740 strings out of 430478
+ 33119 string characters out of 3191502
+ 110868 words of memory out of 3000000
+ 5865 multiletter control sequences out of 15000+200000
+ 18361 words of font info for 53 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 32i,14n,27p,1613b,496s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on v2-acmsmall-sample.pdf (21 pages).
