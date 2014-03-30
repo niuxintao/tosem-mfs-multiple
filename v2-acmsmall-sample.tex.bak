@@ -54,8 +54,7 @@ HARETON LEUNG
 %       currently affiliated with NASA.
 
 \begin{abstract}
-Combinatorial testing(CT) is proven to be effective to reveal the potential failures caused by the interaction of the inputs or options of the System Under Test(SUT). To extend and make full use of CT, the theory of Minimal Failure-Causing Schema(MFS) was proposed. The use of MFS helps to isolate the root cause of the failure, which is the next step of detecting them by CT. Most existed algorithms based on MFS theory focus on identifying the MFS in SUT with the single fault, however, we argue that multiple faults is the more common testing scenario, under which these algorithms may ineffective to find the MFS. To address this problem, we proposed a new MFS model with considering multiple faults. We first formally analyse the impact of the multiple faults on existed MFS isolating algorithms, especially when masking effects was triggered between these multiple faults. Based on this, we then give an approach that can assist traditional algorithms to better handle the multiple faults testing scenarios. Empirical studies with several open-source software were conducted, which shows that multiple faults with masking effects do have a negatively influence on traditional MFS identifying approach and our approach can help them to alleviate these effects.
-
+Combinatorial testing(CT) is proven to be effective to reveal the potential failures caused by the interaction of the inputs or options of the System Under Test(SUT). To extend and make full use of CT, the theory of Minimal Failure-Causing Schema(MFS) has been proposed. The use of MFS helps to isolate the root cause of the failure, which is the next step of detecting them by CT. Most existed algorithms based on MFS theory focus on identifying the MFS in SUT with the single fault, however, we argue that multiple faults is the more common testing scenario, and under which masking effects that prevent test case normally executing to detect expect faults may be triggered. Traditional MFS theory as well as its identifying algorithms lack a mechanism to handle such effects, hence will make them incorrectly isolate the MFS in SUT.  To address this problem, we proposed a new MFS model with considering multiple faults. We first formally analyse the impact of the multiple faults on existed MFS isolating algorithms, especially when masking effects were triggered between these multiple faults. Based on this, we then give an approach that can assist traditional algorithms to better handle the multiple faults testing scenarios. Empirical studies with several open-source software were conducted, which shows that multiple faults with masking effects do negatively affect on traditional MFS identifying approach and our approach can help them to alleviate these effects.
 %proven to for single fault, however, we argue that it lose effectiveness in the multiple faults scenarios, which is the more common scenario than single faults. So to address this problem, we propose a new MFS model to support the multiple faults, moveover, based on the new model, we extend several existed algorithms which aims to find the MFS to make them support the multiple faults. In addition, we combine multiple algorithms to further improve the performance. Several empirical studies were conducted and showed that our approach can considerably improve the accuracy when identifying MFS in SUT with masking effects.
 
 %Many algorithms has been proposed to find the MFS in SUT, in our recently studies, however, we find these approaches cannot behave effectively when encounter multiple faults. The main reason why these methods failed to behave normally is that most of them ignore the masking effects hiding test cases, which can bias their identified results. In this paper, we extend the MFS theory to make it support the multiple faults testing scenarios, and hence can deal masking effects. Based on this, we gave an approach to identify the MFS which can alleviate the impacts of masking effects for multiple faults.
@@ -71,7 +70,7 @@ Combinatorial testing(CT) is proven to be effective to reveal the potential fail
 \keywords{Software Testing, Combinatorial Testing, Failure-inducing combinations, Masking effects}
 
 \acmformat{Xintao Niu,
-and Changhai Nie, 2014.Identify failure-causing schemas for multiple faults.}
+Changhai Nie and Hareton Leung, 2014.Identify failure-causing schemas for multiple faults.}
 % At a minimum you need to supply the author names, year and a title.
 % IMPORTANT:
 % Full first names whenever they are known, surname last, followed by a period.
@@ -91,33 +90,9 @@ This work was supported by the National Natural Science Foundation of China (No.
 
 
 \section{Introduction}
-
 With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can influence the behaviour of the SUT. The unexpected faults caused by the interaction among these factors can make testing such software a big challenge if the interaction space is too large. One remedy for this problem is combinatorial testing, which systematically sample the interaction space and select a relatively small set of test cases that cover all the valid iterations with the number of factors involved in the interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction.
 
-Once failures are detected, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected.
-
-
-In this article, we propose MMSN, abbreviation for Multifrequency
-Media access control for wireless Sensor Networks. The main
-contributions of this work can be summarized as follows.
-% itemize
-\begin{itemize}
-\item To the best of our knowledge, the MMSN protocol is the first
-multifrequency MAC protocol especially designed for WSNs, in which
-each device is equipped with a single radio transceiver and
-the MAC layer packet size is very small.
-\item Instead of using pairwise RTS/CTS frequency negotiation
-[Adya 2001,Culler 2001; Tzamaloukas 2001; Zhou 2006],
-we propose lightweight frequency assignments, which are good choices
-for many deployed comparatively static WSNs.
-\item We develop new toggle transmission and snooping techniques to
-enable a single radio transceiver in a sensor device to achieve
-scalable performance, avoiding the nonscalable ``one
-control channel + multiple data channels'' design [Natarajan 2001].
-\end{itemize}
-With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can influence the behaviour of the SUT. The unexpected faults caused by the interaction among these factors can make testing such software a big challenge if the interaction space is too large. One remedy for this problem is combinatorial testing, which systematically sample the interaction space and select a relatively small set of test cases that cover all the valid iterations with the number of factors involved in the interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction.
-
-Once failures are detected, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected\cite{ghandehari2012identifying}. Many algorithms have been proposed to identify the failure-inducing combinations in SUT, which include approaches such as building classification tree model \cite{yilmaz2006covering}, exploiting the methodology of minimal failure-causing schema \cite{nie2011minimal}, ranking suspicious combinations based on some rules\cite{ghandehari2012identifying}, using graphic-based deduction \cite{martinez2008algorithms} and so on. These approaches can be partitioned into two categories \cite{colbourn2008locating}: \emph{adaptive}--test cases are chosen based on the outcomes of the executed tests \cite{nie2011minimal,ghandehari2012identifying,niu2013identifying,zhang2011characterizing,shakya2012isolating,wang2010adaptive,li2012improved}or \emph{nonadaptive}--test cases are chosen independently and can be executed parallel \cite{yilmaz2006covering,colbourn2008locating,martinez2008algorithms,martinez2009locating,fouche2009incremental}.
+Once failures are detected, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected\cite{ghandehari2012identifying}. This task, in detail, following the detecting process in the CT life-cycle\cite{nie2011minimal}, Many algorithms have been proposed to identify the failure-inducing combinations in SUT, which include approaches such as building classification tree model \cite{yilmaz2006covering}, exploiting the methodology of minimal failure-causing schema \cite{nie2011minimal}, ranking suspicious combinations based on some rules\cite{ghandehari2012identifying}, using graphic-based deduction \cite{martinez2008algorithms} and so on. These approaches can be partitioned into two categories \cite{colbourn2008locating}: \emph{adaptive}--test cases are chosen based on the outcomes of the executed tests \cite{nie2011minimal,ghandehari2012identifying,niu2013identifying,zhang2011characterizing,shakya2012isolating,wang2010adaptive,li2012improved}or \emph{nonadaptive}--test cases are chosen independently and can be executed parallel \cite{yilmaz2006covering,colbourn2008locating,martinez2008algorithms,martinez2009locating,fouche2009incremental}.
 
 %jieLi and paritiion
 
@@ -140,12 +115,11 @@ Based on the insight we proposed a strategy to alleviate this impact. This strat
 To evaluate the performance of our strategy, we applied our strategy on three FCI approaches, which are CTA \cite{yilmaz2006covering}, OFOT \cite{nie2011minimal}, FIC\_BS \cite{zhang2011characterizing} respectively. The subjects we used are several open-source software with the developers' forum in Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manual guide, we built the testing model which can reproduce the reported bugs with specific test cases. We then applied the traditional FCI approaches and their augmented versions to identify the failure-inducing combinations in the subjects respectively. The results of our empirical studies shows that the masking effects do impact on the FCI approaches, although to what the extent varies, and the approaches augmented with our strategy can identify failure-inducing combinations more accurately than traditional ones when facing masking effects.
 
 The main contributions of this paper are:
-\begin{enumerate}
- \item We studied the impact of the masking effects among multiple faults on the isolation of the failure-inducing combinations in SUT.
- \item We proposed a divide and conquer strategy of selecting test cases to alleviate the impact of this effects.
- \item We conducted several empirical studies and showed that our strategy can assist FCI approaches to get better performance on identifying failure-inducing combinations in SUT with masking effects.
-\end{enumerate}
-
+\begin{itemize}
+\item We studied the impact of the masking effects among multiple faults on the isolation of the failure-inducing combinations in SUT.
+\item  We proposed a divide and conquer strategy of selecting test cases to alleviate the impact of this effects.
+\item We conducted several empirical studies and showed that our strategy can assist FCI approaches to get better performance on identifying failure-inducing combinations in SUT with masking effects.
+\end{itemize}
 
 
 %In our recent studies, however, we find these algorithms cannot behave as expected in some subject software. Through a deep analysis, we find that there are multiple faults with different levels in these subject. It means that when we set up a test configuration and execute the SUT to observe the result, the high level fault will trigger first and perturb we examining the code that may trigger the low level fault. As a result we will omit some options or component in this test configuration that may be the cause of the low level fault. We call this a masking effect which make the MFS identifying algorithms not able to work properly.
@@ -222,14 +196,14 @@ We first generate every possible inputs listed in the Column ``test inputs" of T
 
 \begin{table}
 \centering
-\caption{Identified failure-inducing combinations and their corresponding Exception}
-\label{identify-example}
+ \tbl{Identified failure-inducing combinations and their corresponding Exception\label{identify-example}}{
 \begin{tabular}{|c|c|} \hline
 Failure-inducing combinations & Exception\\ \hline
 (-, 4, 4, -) &  Ex 1\\ \hline
 (-, 2, 4, 5) &  Ex 2\\ \hline
 (-, 3, 4, 5) &  Ex 2\\ \hline
 \hline\end{tabular}
+}
 \end{table}
 
 Note that we didn't get the expected result with traditional FCI approaches in this case. The failure-inducing combinations we get for Ex 2 are (-,2,4,5) and (-,3,4,5) respectively instead of the expected combination (-,-,4,5). So why we failed in getting the (-,-,4,5)? The reason lies in \emph{input 6}: (7,4,4,5) and \emph{input 18}: (11,4,4,5). This two inputs contain the combination (-,-,4,5), but didn't trigger the Ex 2, instead,  Ex 1 was triggered.
@@ -374,8 +348,7 @@ We illustrate these scenarios in Table \ref{example_three_condition}. There are 
 
 \begin{table}
 \centering
-\caption{Example of the scenarios}
-\label{example_three_condition}
+\tbl{Example of the scenarios\label{example_three_condition}}{
   \begin{tabular}{cc}
 $T_{l}$&$T_{k}$ \\ \hline
 (0, 0, 0)&(0, 0, 0)\\
@@ -401,6 +374,7 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 (0, 1, 0)&  (0, 1, 0)\\
 		 &  (1, -, -)\\  \hline
   \end{tabular}
+  }
   \end{table}
 
 \subsection{Masking effect}
@@ -495,28 +469,25 @@ The process of replacing a test case with a new one keeping some fixed part is d
 
 \begin{algorithm}[t]
 \SetAlgoNoLine
-\KwIn{ $t_{original}$ original test case, and node $\alpha$'s
-neighbors' IDs within two communication hops.}
-\KwOut{ $t_{new}$ the regenerate test case,The frequency number ($FreNum_{\alpha}$) node $\alpha$ gets assigned.}
+\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$}
+\KwOut{ $t_{new}$ the regenerate test case,The frequency number }
 $index$ = 0; $FreNum_{\alpha}$ = -1\;
-\Repeat{$FreNum_{\alpha} > -1$}{
-        $Rnd_{\alpha}$ = Random($ID_{\alpha}$, $index$)\;
-        $Found$ = $TRUE$\;
-        \For{each node $\beta$ in $\alpha$'s two communication hops
-    }{
-      $Rnd_{\beta}$ = Random($ID_{\beta}$, $index$)\;
-      \If{($Rnd_{\alpha} < Rnd_{\beta}$) \text{or} ($Rnd_{\alpha}$ ==
-          $Rnd_{\beta}$ \text{and} $ID_{\alpha} < ID_{\beta}$)\;
-      }{
-        $Found$ = $FALSE$; break\;
-      }
-        }
-     \eIf{$Found$}{
-           $FreNum_{\alpha}$ = $index$\;
-         }{
-           $index$ ++\;
-     }
-      }
+\While{\textbf{not} MeetEndCriteria()}{
+       $s_{mutant} \leftarrow t_{original} - s_{fixed}$\;
+       \ForAll {$opt \in s_{mutant}$}{
+          $i = getIndex(Param,opt) $\;
+           $opt \leftarrow opt' \ s.t.\ opt' \in Param[i]\ and\ opt' != opt$\;
+          }
+       $t_{new} \leftarrow s_{fixed} \bigcup s_{mutant} $\;
+       $result \leftarrow execute(t_{new})$\;
+        \eIf {$result == PASS\ or\ result ==  F_{m}$}{
+         \Return $t_{new}$\;
+           }{
+         continue\;
+         }
+       }
+       \Return \emph{null}
+
 \caption{replace test cases triggering unexpected faults}
 \label{alg:one}
 \end{algorithm}
@@ -545,35 +516,25 @@ From table \ref{ofot-aug}, we can find the algorithm mutates one factor to take 
 
 However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0) which triggered err 1 (in this case, the fixed part of the test case is (0, - - -)), and replace the test case $t_{3}$--(0 0 1 0) with $t_{3}'$--(0 0 2 0) which passed, we will find that only when we change the third and fourth factor will we broke the failure-inducing combination for err 1, therefore,  the failure-inducing combination for err 1 should be (- - 0 0).
 
-\begin{table}\renewcommand{\arraystretch}{1.3}
-\caption{OFOT with our strategy}
-\label{ofot-aug}
 
-\begin{tabular}{|p{0.5\columnwidth}|p{0.3\columnwidth}|} \hline
-\bfseries original test case & \bfseries fault info \\
-\end{tabular}
-\begin{tabular}{|p{0.05\columnwidth}|p{0.405\columnwidth}|p{0.3\columnwidth}|} \hline
- $t$ & 0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0  & Err 1
-\end{tabular}
-\begin{tabular}{|p{0.5\columnwidth}|p{0.3\columnwidth}|} \hline
-\bfseries gen test case   &\bfseries result \\
-\end{tabular}
-\begin{tabular}{|p{0.05\columnwidth}|p{0.405\columnwidth}|p{0.3\columnwidth}|} \hline
-$t_{1}$ &1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 & Err 1 \\
-$t_{2}$ &\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 } & \sout{Err 2} \\
-$t_{2}'$ &\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0} & \uwave{Err 1} \\
-$t_{3}$ &\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 } & \sout{Err 2} \\
-$t_{3}'$ &\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0} & \uwave{Pass} \\
-$t_{4}$ &0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1 & Pass
-\end{tabular}
-
-\begin{tabular}{|p{0.4\columnwidth} p{0.4\columnwidth}|} \hline
-\bfseries regard as one fault &  \bfseries replacing strategy\\
-(  -  \ \ \  - \ \ \  -  \ \ \ 0 ) &(  -  \ \ \  - \ \ \  0  \ \ \ 0 ) \\
-\bfseries distinguish faults &  \\
-(  -  \ \ \  0 \ \ \  0  \ \ \ 0 ) & \\
+\begin{table}[h]
+\tbl{OFOT with our strategy\label{ofot-aug}}{
+\begin{tabular}{llllll}
+\multicolumn{5}{c}{\bfseries original test case} & \bfseries fault info \\
+ $t$ & \multicolumn{4}{l}{0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0 } & Err 1 \\
+ \hline
+$t_{1}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 }& Err 1 \\
+$t_{2}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 }} & \sout{Err 2} \\
+$t_{2}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0}} & \uwave{Err 1} \\
+$t_{3}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 }} & \sout{Err 2} \\
+$t_{3}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0}} & \uwave{Pass} \\
+$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
 \hline
-\end{tabular}
+\multicolumn{3}{l}{\bfseries regard as one fault} &  \multicolumn{3}{l}{\bfseries replacing strategy} \\
+\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  -  \ \ \ 0) } &\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  0  \ \ \ 0) } \\
+\multicolumn{3}{l}{\bfseries distinguish faults} &\multicolumn{3}{l}{} \\
+\multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{3}{l}{} \\
+\end{tabular}}
 \end{table}
 
 
@@ -592,8 +553,7 @@ We conducted several empirical studies to address the following questions:
 In the first study, we surveyed two open-source software to gain an insight on the existence of multiple faults and their effects. The software under study are: HSQLDB and JFlex, the first is a database management software written in pure java and the second is a lexical analyser generator. Each of them contain different versions. All the two subjects are highly configurable so that the options and their combination can influence their behaviour. Additionally, they all have developers' community so that we can easily get the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code, number of classes in the project and the bug's id of each software we studied.
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
-\caption{Software under survey}
-\label{software description}
+\tbl{Software under survey\label{software description}}{
 \begin{tabular}{c|c|c|c|c} \hline
 software & versions & LOC & classes & bug pairs\footnote{ http://sourceforge.net/p/hsqldb/bugs
 http://sourceforge.net/p/jflex/bugs  } \\ \hline
@@ -604,6 +564,7 @@ HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005\\
 JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
       &1.4.2 &  10745 &61 &  \#98 \& \#93  \\
 \hline\end{tabular}
+}
 \end{table}
 %http://hsqldb2.0.sourcearchive.com/downloads/2.0.0$\scriptsize{\sim}$rc8/
 
@@ -620,249 +581,72 @@ Next we built the input model which consist of the options related to the failur
 
 We then generated the exhaustive test suite consist of all the possible combinations of these options and under each of them we executed the merged test file. We recorded the output of each test case to observe whether there are test cases contain prior failure-inducing combination but do not produce the corresponding bug.
 
-%\begin{table}\renewcommand{\arraystretch}{1.3}
-%  \caption{Input model of HSQLDB} \centering
-%  \label{modelHSQLDB}
-%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%  \hline
-%  \bfseries Common options &   \bfseries values \\
-%   \hline
-%     sql.enforce\_strict\_size & true, false \\
-%      sql.enforce\_names & true, false \\
-%      sql.enforce\_refs & true, false \\
-%%      sql.enforce\_size & true, false \\
-%%      sql.enforce\_types & true, false\\
-%%   hsqldb.default\_table\_type & cached, memory \\
-%%   hsqldb.tx & locks, mvlocks, mvcc\\
-%%   hsqldb.tx\_level & read\_commited, serializable\\
-%%  \end{tabular}
-%%
-%%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%%  \hline
-%%  \bfseries Server properties &   \bfseries values \\
-%%   \hline
-%   Server Type & server, webserver, inprocess \\
-%    existed form & mem, file \\
-%%  \end{tabular}
-%%
-%%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%%  \hline
-%%  \bfseries Result Set properties &   \bfseries values \\
-%%   \hline
-%    resultSetTypes & forwad, insensitive, sensitive\\\
-%    resultSetConcurrencys & read\_only, updatable \\
-%    resultSetHoldabilitys & hold, close\\
-%%  \end{tabular}
-%%
-%%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%%  \hline
-%%  \bfseries option in test script &   \bfseries values\\
-%%   \hline
-%   StatementType & statement, prepared \\
-%  \end{tabular}
-%
-%    \begin{tabular}{c*{3}{p{0.33\columnwidth}}}
-%  \hline
-%  \bfseries versions &   \bfseries specific options  & \bfseries values\\
-%   \hline
-%    2.0rc8 & more & true, false\\
-%      & placeHolder & true, false \\
-%      & cursorAction & next,previous,first,last\\
-%    2.2.5 & multiple & one, multi, default\\
-%       & placeHolder & true, false\\
-%    2.2.9 & duplicate & dup, single, default\\
-%     & default\_commit & true, false \\
-%    \end{tabular}
-%   \begin{tabular}{c*{2}{p{0.7\columnwidth}}}
-%   \hline
-%   \bfseries versions &   \bfseries Config space\\
-%   \hline
-%    2.0rc8 & $2^{9} \times 3^{2} \times 4^{1}$ \\
-%    2.2.5 &  $2^{8} \times 3^{3}$ \\
-%    2.2.9 & $2^{8} \times 3^{3}$
-%  \end{tabular}
-%\end{table}
-\begin{table}\renewcommand{\arraystretch}{1.3}
-  \caption{Input model of HSQLDB} \centering
-  \label{modelHSQLDB}
-  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-  \hline
-  \bfseries common options &   \bfseries values \\
-   \hline
-%     sql.enforce\_strict\_size & true, false \\
-%      sql.enforce\_names & true, false \\
-%      sql.enforce\_refs & true, false \\
-%      sql.enforce\_size & true, false \\
-%      sql.enforce\_types & true, false\\
-%   hsqldb.default\_table\_type & cached, memory \\
-%   hsqldb.tx & locks, mvlocks, mvcc\\
-%   hsqldb.tx\_level & read\_commited, serializable\\
-%  \end{tabular}
-%
-%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%  \hline
-%  \bfseries Server properties &   \bfseries values \\
-%   \hline
-   Server Type & server, webserver, inprocess \\
-    existed form & mem, file \\
-%  \end{tabular}
-%
-%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%  \hline
-%  \bfseries Result Set properties &   \bfseries values \\
-%   \hline
-    resultSetTypes & forwad, insensitive, sensitive\\\
-    resultSetConcurrencys & read\_only, updatable \\
-    resultSetHoldabilitys & hold, close\\
-%  \end{tabular}
-%
-%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%  \hline
-%  \bfseries option in test script &   \bfseries values\\
-%   \hline
-   StatementType & statement, prepared \\
-  \end{tabular}
 
-   \begin{tabular}{p{0.95\columnwidth}}
-     \hline
-    \bfseries common boolean options \\
+
+\begin{table}[h]
+\tbl{Input model of HSQLDB\label{modelHSQLDB}}{
+\begin{tabular}{llllll}
+\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
+  \hline
+ \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{server, webserver, inprocess}  \\
+  \multicolumn{3}{c}{  existed form}  & \multicolumn{3}{c}{mem, file}  \\
+   \multicolumn{3}{c}{ resultSetTypes}  & \multicolumn{3}{c}{forwad, insensitive, sensitive} \\
+   \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{read\_only, updatable}  \\
+  \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ hold, close} \\
+  \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{statement, prepared}  \\
     \hline
-     sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs\\
-
-  \end{tabular}
-
-
-    \begin{tabular}{c*{3}{p{0.33\columnwidth}}}
-  \hline
-  \bfseries versions &   \bfseries specific options  & \bfseries values\\
+   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+    \hline
+    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
+      \hline
+   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+    2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{ true, false}\\
+      & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{ true, false }\\
+      & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{ next,previous,first,last}\\
+    2.2.5 &\multicolumn{2}{c}{  multiple} & \multicolumn{3}{c}{ one, multi, default}\\
+       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{ true, false}\\
+    2.2.9 & \multicolumn{2}{c}{ duplicate }& \multicolumn{3}{c}{ dup, single, default}\\
+     & \multicolumn{2}{c}{ default\_commit} & \multicolumn{3}{c}{ true, false} \\
+        \hline
+   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
-    2.0rc8 & more & true, false\\
-      & placeHolder & true, false \\
-      & cursorAction & next,previous,first,last\\
-    2.2.5 & multiple & one, multi, default\\
-       & placeHolder & true, false\\
-    2.2.9 & duplicate & dup, single, default\\
-     & default\_commit & true, false \\
-    \end{tabular}
-   \begin{tabular}{c*{2}{p{0.7\columnwidth}}}
-   \hline
-   \bfseries versions &   \bfseries Config space\\
-   \hline
-    2.0rc8 & $2^{9} \times 3^{2} \times 4^{1}$ \\
-    2.2.5 &  $2^{8} \times 3^{3}$ \\
-    2.2.9 & $2^{8} \times 3^{3}$
-  \end{tabular}
+   2.0rc8 & \multicolumn{3}{c}{$2^{9} \times 3^{2} \times 4^{1}$} &\multicolumn{2}{c}{} \\
+    2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
+     2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{}
+\end{tabular}
+}
 \end{table}
 
-%\begin{table}\renewcommand{\arraystretch}{1.3}
-%  \caption{Input model of JFlex} \centering
-%  \label{modelJFlex}
-%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%  \hline
-%  \bfseries Common options &   \bfseries values \\
-%   \hline
-%     public & true, false \\
-%     apiprivate & true, false \\
-%     cup & true, false \\
-%     caseless & true, false \\
-%     char & true, false \\
-%     line & true, false\\
-%     column & true, false \\
-%     notunix & true, false \\
-%     yyeof & true, false \\
-%     generation & switch, table, pack \\
-%     charset &default, 7bit, 8bit, 16bit\\
-%
-%%      sql.enforce\_size & true, false \\
-%%      sql.enforce\_types & true, false\\
-%%   hsqldb.default\_table\_type & cached, memory \\
-%%   hsqldb.tx & locks, mvlocks, mvcc\\
-%%   hsqldb.tx\_level & read\_commited, serializable\\
-%%  \end{tabular}
-%%
-%%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%%  \hline
-%%  \bfseries Server properties &   \bfseries values \\
-%%   \hline
-%
-%%  \end{tabular}
-%
-%  \end{tabular}
-%
-%    \begin{tabular}{c*{3}{p{0.33\columnwidth}}}
-%  \hline
-%  \bfseries versions &   \bfseries specific options  & \bfseries values\\
-%   \hline
-%    1.4.1 & hasReturn & true, false, default\\
-%      & normal & true, false \\
-%    1.4.2 & lookAhead & one, multi, default\\
-%       & type & true, false\\
-%        & standalone & true, false \\
-%    \end{tabular}
-%   \begin{tabular}{c*{2}{p{0.7\columnwidth}}}
-%   \hline
-%   \bfseries versions &   \bfseries Config space\\
-%   \hline
-%    1.4.1  & $2^{10} \times 3^{2} \times 4^{1} $ \\
-%    1.4.2 &  $2^{11} \times 3^{2} \times 4^{1} $ \\
-%  \end{tabular}
-%
-%\end{table}
-\begin{table}\renewcommand{\arraystretch}{1.3}
-  \caption{Input model of JFlex} \centering
-  \label{modelJFlex}
-  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
+\begin{table}[h]
+\tbl{Input model of JFlex\label{modelJFlex}}{
+\begin{tabular}{llllll}
+\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
-  \bfseries common options &   \bfseries values \\
-   \hline
-        generation & switch, table, pack \\
-     charset &default, 7bit, 8bit, 16bit\\
-   \end{tabular}
 
-     \begin{tabular}{p{0.9\columnwidth}}
-     \hline
-    \bfseries common boolean options \\
+ \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{switch, table, pack}  \\
+  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{default, 7bit, 8bit, 16bit}  \\
+
     \hline
-     public, apiprivate,cup,caseless,char,line,column,notunix,
-     \\yyeof\\
+   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+    \hline
+    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
+      \hline
 
+   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ true, false, default}\\
+      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{ true, false }\\
+    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, default}\\
+       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{ true, false}\\
+     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{true, false}\\
 
-%      sql.enforce\_size & true, false \\
-%      sql.enforce\_types & true, false\\
-%   hsqldb.default\_table\_type & cached, memory \\
-%   hsqldb.tx & locks, mvlocks, mvcc\\
-%   hsqldb.tx\_level & read\_commited, serializable\\
-%  \end{tabular}
-%
-%  \begin{tabular}{c*{2}{p{0.53\columnwidth}}}
-%  \hline
-%  \bfseries Server properties &   \bfseries values \\
-%   \hline
-
-%  \end{tabular}
-
-  \end{tabular}
-
-    \begin{tabular}{c*{3}{p{0.33\columnwidth}}}
-  \hline
-  \bfseries versions &   \bfseries specific options  & \bfseries values\\
+        \hline
+   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
-    1.4.1 & hasReturn & true, false, default\\
-      & normal & true, false \\
-    1.4.2 & lookAhead & one, multi, default\\
-       & type & true, false\\
-        & standalone & true, false \\
-    \end{tabular}
-   \begin{tabular}{c*{2}{p{0.7\columnwidth}}}
-   \hline
-   \bfseries versions &   \bfseries Config space\\
-   \hline
-    1.4.1  & $2^{10} \times 3^{2} \times 4^{1} $ \\
-    1.4.2 &  $2^{11} \times 3^{2} \times 4^{1} $ \\
-  \end{tabular}
-
+  1.4.1  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
+   1.4.2 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\
+\end{tabular}
+}
 \end{table}
-
 
 \subsubsection{Result and discusssion}
 
@@ -871,8 +655,7 @@ Table \ref{masking effect condition} lists the results of our survey. Column ``a
 
 %[!ht]
 \begin{table}\renewcommand{\arraystretch}{1.3}
-\caption{Number of faults and their masking effects}
-\label{masking effect condition}
+\tbl{Number of faults and their masking effects\label{masking effect condition}}{
 \begin{tabular}{c|c|c|c|c} \hline
 software & versions & all tests & failure & masking\\ \hline
 HSQLDB & 2cr8 & 18432 & 4608 & 768\\ \hline
@@ -881,6 +664,7 @@ HSQLDB & 2cr8 & 18432 & 4608 & 768\\ \hline
 JFlex & 1.4.1 & 36864 & 24576 &6144\\ \hline
      -& 1.4.2 & 73728 & 36864 &6144\\ \hline
 \hline\end{tabular}
+}
 \end{table}
 
 We observed that for each version of the software under analysis we listed in the Table \ref{masking effect condition}, the test cases with masking effects do exist, i.e., test cases containing failure inducing combinations did not trigger the corresponding bug. In effect, there is about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\% respectively for the remaining software versions, which is not trivial.
