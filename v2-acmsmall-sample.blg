@@ -32,6 +32,8 @@ Warning--empty address in petke2013efficiency
 Warning--empty publisher in shakya2012isolating
 Warning--empty address in shakya2012isolating
 Warning--empty address in shi2005software
+Warning--empty publisher in song2012itree
+Warning--empty address in song2012itree
 Warning--empty publisher in wang2010adaptive
 Warning--empty address in wang2010adaptive
 Warning--no journal in yilmaz2013reducing
@@ -39,4 +41,4 @@ Warning--no number and no volume in yilmaz2013reducing
 Warning--page numbers missing in both pages and numpages fields in yilmaz2013reducing
 Warning--empty publisher in zhang2011characterizing
 Warning--empty address in zhang2011characterizing
-(There were 38 warnings)
+(There were 40 warnings)

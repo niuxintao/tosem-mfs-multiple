@@ -271,6 +271,16 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Song, Porter, and Foster}{Song
+  et~al\mbox{.}}{2012}]%
+        {song2012itree}
+{Charles Song}, {Adam Porter}, {and} {Jeffrey~S Foster}. 2012.
+\newblock \showarticletitle{iTree: Efficiently discovering high-coverage
+  configurations using interaction trees}. In {\em Proceedings of the 2012
+  International Conference on Software Engineering}. IEEE Press, 903--913.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Wang, Xu, Chen, and Xu}{Wang
   et~al\mbox{.}}{2010}]%
         {wang2010adaptive}
