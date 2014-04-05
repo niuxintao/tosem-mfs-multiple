@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  4 APR 2014 23:37
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  5 APR 2014 23:40
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -286,60 +286,58 @@ Requested font "pncr7t" at 7.0pt
  [1
 
 ]
+Requested font "phvr7t" at 8.0pt
+ -> phvr7t
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 98.
+(Font)              <7> on input line 114.
 Requested font "lasy10" at 10.0pt
  -> lasy10
 Requested font "lasy7" at 7.0pt
  -> lasy7
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 114.
 
-[2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
 Requested font "cmtt10" at 10.0pt
  -> cmtt10
-Requested font "phvr7t" at 8.0pt
- -> phvr7t
 
-Underfull \vbox (badness 7379) has occurred while \output is active []
-
- [3]
-[4] [5]
+[3] [4] [5]
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
-Underfull \hbox (badness 3364) in paragraph at lines 391--393
+Underfull \hbox (badness 3364) in paragraph at lines 407--409
 []\OT1/pnc/m/n/10 As an ex-am-ple, in the mo-ti-va-tion ex-am-ple in sec-tion 2
 , the $\OML/cmm/m/it/10 F[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--393
+Underfull \hbox (badness 10000) in paragraph at lines 407--409
 \OT1/pnc/m/n/10 is \OMS/cmsy/m/n/10 f \OT1/pnc/m/n/10 (7,4,4,5),(11,4,4,5)\OMS/
 cmsy/m/n/10 g\OT1/pnc/m/n/10 , So the failure-inducing com-bi-na-tion-s for $\O
 ML/cmm/m/it/10 Ex\OT1/cmr/m/n/10 2$ \OT1/pnc/m/n/10 is
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 399.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 415.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
 
-Underfull \hbox (badness 1817) in paragraph at lines 420--421
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+Underfull \hbox (badness 1817) in paragraph at lines 436--437
 \OT1/pnc/m/n/10 com-bi-na-tion-s is that we can-not fig-ure out the $\OML/cmm/m
 /it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 mask[]\OT1/cmr/m/n/10 )$\OT1/pnc/m/n/
 10 . As $\OML/cmm/m/it/10 T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 mask[]\OT1/cmr/m/n
 /10 ) \OMS/cmsy/m/n/10 ^^Z
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 471.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 487.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -349,72 +347,59 @@ Requested font "cmmi9" at 9.0pt
 Requested font "cmsy9" at 9.0pt
  -> cmsy9
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 471.
+(Font)              <9> on input line 487.
 Requested font "lasy9" at 9.0pt
  -> lasy9
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 487.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 503.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 490.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 506.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
-
-Underfull \vbox (badness 1163) has occurred while \output is active []
-
- [9]
+[9] [10]
+Requested font "pncr7t" at 6.0pt
+ -> pncr7t
+ [11]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10]
-Requested font "pncr7t" at 6.0pt
- -> pncr7t
- [11] [12] [13]
+[12] [13]
 File: FIC_BS_normal.eps Graphic file (type eps)
  <FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps>
-Underfull \vbox (badness 2245) has occurred while \output is active []
-
- [14]
+ <CTA_normal.eps> [14] [15]
 File: FIC_BS_our.eps Graphic file (type eps)
 
 <FIC_BS_our.eps>
 File: OFOT_our.eps Graphic file (type eps)
  <OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
- <CTA_our.eps>
-Underfull \vbox (badness 2922) has occurred while \output is active []
-
- [15]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-Underfull \vbox (badness 2245) has occurred while \output is active []
-
- [17]
+ <CTA_our.eps> [16] [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
-Underfull \vbox (badness 7047) has occurred while \output is active []
-
+Missing character: There is no ’ in font pncr7t!
  [19])
-[20] [1
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20]
+[1
 
 ] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 2741 strings out of 430478
- 33134 string characters out of 3191502
- 110922 words of memory out of 3000000
- 5866 multiletter control sequences out of 15000+200000
+ 2743 strings out of 430478
+ 33161 string characters out of 3191502
+ 112981 words of memory out of 3000000
+ 5868 multiletter control sequences out of 15000+200000
  18361 words of font info for 53 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 32i,14n,27p,2125b,496s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 32i,14n,27p,1613b,496s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on v2-acmsmall-sample.pdf (21 pages).

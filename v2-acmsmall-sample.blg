@@ -1,6 +1,8 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: v2-acmsmall-sample.aux
 The style file: ACM-Reference-Format-Journals.bst
 Database file #1: acmsmall-sample-bibfile.bib
+Warning--empty publisher in bach2004pairwise
+Warning--empty address in bach2004pairwise
 Warning--empty address in calvagna2008logic
 Warning--empty publisher in chen2010combinatorial
 Warning--empty address in chen2010combinatorial
@@ -41,4 +43,4 @@ Warning--no number and no volume in yilmaz2013reducing
 Warning--page numbers missing in both pages and numpages fields in yilmaz2013reducing
 Warning--empty publisher in zhang2011characterizing
 Warning--empty address in zhang2011characterizing
-(There were 40 warnings)
+(There were 42 warnings)

@@ -32,6 +32,16 @@
 \ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
 \ifx \showURL      \undefined \def \showURL       #1{#1}          \fi
 
+\bibitem[\protect\citeauthoryear{Bach and Schroeder}{Bach and
+  Schroeder}{2004}]%
+        {bach2004pairwise}
+{James Bach} {and} {Patrick Schroeder}. 2004.
+\newblock \showarticletitle{Pairwise testing: A best practice that isn’t}. In
+  {\em Proceedings of 22nd Pacific Northwest Software Quality Conference}.
+  Citeseer, 180--196.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Bryce and Colbourn}{Bryce and
   Colbourn}{2006}]%
         {bryce2006prioritized}
