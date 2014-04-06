@@ -53,6 +53,16 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Bryce, Colbourn, and Cohen}{Bryce
+  et~al\mbox{.}}{2005}]%
+        {bryce2005framework}
+{Ren{\'e}e~C Bryce}, {Charles~J Colbourn}, {and} {Myra~B Cohen}. 2005.
+\newblock \showarticletitle{A framework of greedy methods for constructing
+  interaction test suites}. In {\em Proceedings of the 27th international
+  conference on Software engineering}. ACM, 146--155.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Calvagna and Gargantini}{Calvagna and
   Gargantini}{2008}]%
         {calvagna2008logic}
@@ -70,6 +80,18 @@
 \newblock \showarticletitle{Combinatorial testing with shielding parameters}.
   In {\em Software Engineering Conference (APSEC), 2010 17th Asia Pacific}.
   IEEE, 280--289.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Cohen, Dalal, Fredman, and Patton}{Cohen
+  et~al\mbox{.}}{1997}]%
+        {cohen1997aetg}
+{David~M. Cohen}, {Siddhartha~R. Dalal}, {Michael~L Fredman}, {and} {Gardner~C.
+  Patton}. 1997.
+\newblock \showarticletitle{The AETG system: An approach to testing based on
+  combinatorial design}.
+\newblock {\em Software Engineering, IEEE Transactions on\/} {23}, 7 (1997),
+  437--444.
 \newblock
 
 
@@ -102,6 +124,17 @@
   approach}.
 \newblock {\em Software Engineering, IEEE Transactions on\/} {34}, 5 (2008),
   633--650.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Cohen, Gibbons, Mugridge, and Colbourn}{Cohen
+  et~al\mbox{.}}{2003}]%
+        {cohen2003constructing}
+{Myra~B Cohen}, {Peter~B Gibbons}, {Warwick~B Mugridge}, {and} {Charles~J
+  Colbourn}. 2003.
+\newblock \showarticletitle{Constructing test suites for interaction testing}.
+  In {\em Software Engineering, 2003. Proceedings. 25th International
+  Conference on}. IEEE, 38--48.
 \newblock
 
 
