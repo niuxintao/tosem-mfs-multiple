@@ -107,7 +107,7 @@ id& \emph{Highlight} & \emph{Status bar} & \emph{Bookmarks}& \emph{Smart tags} &
   }
 \end{table}
 
-To address this problem, prior work \cite{nie2011minimal} specifically studied the properties of the minimal failure-causing schemas in SUT, based on which, a further diagnosis with generating additional test cases was applied and therefore can identify the MFS in the test case. 
+To address this problem, prior work \cite{nie2011minimal} specifically studied the properties of the minimal failure-causing schemas in SUT, based on which, a further diagnosis with generating additional test cases was applied and therefore can identify the MFS in the test case.
 %the MFS theory was proposed, it propose the complete life circle of software, studied the properties of the failure-inducing combinations and the test cases, based on which, it propose the . This task, in detail, following the detecting process in the CT life-cycle\cite{nie2011minimal,nie2011survey}, needs to. The proposed MFS theory \cite{nie2011minimal} present a completed seven-step methodology to detect and isolate such failure-inducing combinations, in which this is belong to the fault diagnosis circle.
 Other works have been proposed to identify the failure-inducing combinations in SUT, which include approaches such as building tree model \cite{yilmaz2006covering}, exploiting the methodology of minimal failure-causing schema \cite{nie2011minimal}, ranking suspicious classification ous combinations based on some rules\cite{ghandehari2012identifying}, using graphic-based deduction \cite{martinez2008algorithms} and so on. These approaches can be partitioned into two categories \cite{colbourn2008locating}: \emph{adaptive}--test cases are chosen based on the outcomes of the executed tests \cite{nie2011minimal,ghandehari2012identifying,niu2013identifying,zhang2011characterizing,shakya2012isolating,wang2010adaptive,li2012improved}or \emph{nonadaptive}--test cases are chosen independently and can be executed parallel \cite{yilmaz2006covering,colbourn2008locating,martinez2008algorithms,martinez2009locating,fouche2009incremental}.
 
@@ -396,7 +396,7 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
   \end{tabular}
   }
   \end{table}
-  
+
 \subsection{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurate figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too big.
 
@@ -404,7 +404,11 @@ So for traditional FCI approaches, they need to select part test cases, and then
 \subsubsection{Make assumption}
 Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinze, Nevertheless, we can deduce the following properties:
 
-MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{assumed}})$ 
+MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{assumed}})$
+
+In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbrun, it can learn from the covering array to be all according the number and t.
+
+
 \subsubsection{Suspicious}
 SP, CTA. The first one will, while the later not.
 
