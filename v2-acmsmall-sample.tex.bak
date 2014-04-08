@@ -91,7 +91,7 @@ This work was supported by the National Natural Science Foundation of China (No.
 \section{Introduction}
 With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can influence the behaviour of the SUT. The unexpected faults caused by the interaction among these factors can make testing such software a big challenge if the interaction space is too large. In the worst case we need to examine each possible combination of these factors as each such combination can contain unique faults\cite{song2012itree}. While conducting such exhaustive testing is ideal and necessary in theory, it is impractical and not economical in consideration of limited testing time and computing resource. One remedy for this problem is combinatorial testing, which systematically sample the interaction space and select a relatively small set of test cases that cover all the valid iterations with the number of factors involved in the interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction. Many works in CT aims to construct the smallest set of such efficient testing object \cite{cohen1997aetg}\cite{bryce2005framework}\cite{cohen2003constructing}, which also called \emph{covering array}.
 
-Once failures are detected by covering array, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected\cite{ghandehari2012identifying}. Only with the information stum from the covering array sometimes is far from clear to identify the location and magnitude of the failure-inducing combinations \cite{colbourn2008locating}. Deeper analysis needed to be conducted. Take an example \cite{bach2004pairwise}, Fig \ref{MS_word} present a 2-way covering array for testing the MS word application, in which we want to examine various combination of options `Highlight',`Status Bar', `Bookmarks' and `Smart tags'. Assume the third test case was failed, then we can get that there are five 2-way suspicious combination for this failure: (Highlight: Off, Bookmarks: Off),(Highlight: Off, Smart tags: Off), (Status Bar: On, Bookmarks: Off), (Status Bar: On, Smart tags: Off),(Bookmarks: Off, Smart tags: Off). (It is not for (Highlight: Off, Status Bar: On) as it appeared in the fifth passing test case). Without any more information, we cannot figure out which one or some in this five owes to this failure. In fact, taking account of the higher-strength combination, e.g.,(Highlight: Off,Status Bar: On, Smart tags: Off), the problem will grow more complicated.
+Once failures are detected by covering array, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected\cite{ghandehari2012identifying}. Only with the information stum from the covering array sometimes is far from clear to identify the location and magnitude of the failure-inducing combinations \cite{colbourn2008locating}. Thus,deeper analysis needed to be conducted. Take an example \cite{bach2004pairwise}, Fig \ref{MS_word} present a 2-way covering array for testing the MS word application, in which we want to examine various combination of options `Highlight',`Status Bar', `Bookmarks' and `Smart tags'. Assume the third test case was failed, then we can get that there are five 2-way suspicious combination for this failure: (Highlight: Off, Bookmarks: Off),(Highlight: Off, Smart tags: Off), (Status Bar: On, Bookmarks: Off), (Status Bar: On, Smart tags: Off),(Bookmarks: Off, Smart tags: Off). (It is not for (Highlight: Off, Status Bar: On) as it appeared in the fifth passing test case). Without any more information, we cannot figure out which one or some in this five owes to this failure. In fact, taking account of the higher-strength combination, e.g.,(Highlight: Off,Status Bar: On, Smart tags: Off), the problem will grow more complicated.
 
 \begin{table}
   \tbl{MS word example\label{MS_word}}{
@@ -400,9 +400,9 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 \subsection{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too big.
 
-So for traditional FCI approaches, they need to select part test cases, and then either using some assumption to make prediction of the remaining test cases or just deduce a suspicious rank. Formally, we can describe the two ways as following:
+So for traditional FCI approaches, they need to select part test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. Formally, we can describe the two ways as following:
 \subsubsection{Make assumption}
-Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinze, Nevertheless, we can deduce the following properties:
+Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinez, Nevertheless, we can deduce the following properties:
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{assumed}})$
 
@@ -410,7 +410,7 @@ In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{f
 
 
 \subsubsection{Suspicious}
-SP, CTA. The first one will, while the later not.
+SP, CTA. The first one will, while the latter not.
 
 
 

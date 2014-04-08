@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  7 APR 2014 17:04
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  8 APR 2014 16:28
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -300,16 +300,10 @@ LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
-Underfull \vbox (badness 1817) has occurred while \output is active []
-
- [3]
+[3]
 Requested font "cmtt10" at 10.0pt
  -> cmtt10
-
-Underfull \vbox (badness 4341) has occurred while \output is active []
-
- [4]
-[5]
+ [4] [5]
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
@@ -400,6 +394,6 @@ Here is how much of TeX's memory you used:
  5871 multiletter control sequences out of 15000+200000
  18361 words of font info for 53 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 32i,14n,27p,1535b,496s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 32i,14n,27p,1539b,496s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on v2-acmsmall-sample.pdf (22 pages).
