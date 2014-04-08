@@ -400,14 +400,19 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 \subsection{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too big.
 
-So for traditional FCI approaches, they need to select part test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. Formally, we can describe the two ways as following:
+So for traditional FCI approaches, they need to select part test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
+%Formally, we can describe the two ways as following:
+
+We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaing it predict as $T_{fail_{assumed}}$.
+
 \subsubsection{Make assumption}
 Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinez, Nevertheless, we can deduce the following properties:
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{assumed}})$
 
-In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbrun, it can learn from the covering array to be all according the number and t.
+In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
 
+\subsubsection{Proposition of MFS identifying process}
 
 \subsubsection{Suspicious}
 SP, CTA. The first one will, while the latter not.
