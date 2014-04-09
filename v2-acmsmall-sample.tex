@@ -403,19 +403,55 @@ According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actual
 So for traditional FCI approaches, they need to select part test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
 %Formally, we can describe the two ways as following:
 
-We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaing it predict as $T_{fail_{assumed}}$.
+We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaining test cases the approach predict to be failed as $T_{fail_{predicted}}$. Then the MFS identified by FCI approaches can be depicted as:
 
-\subsubsection{Make assumption}
-Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinez, Nevertheless, we can deduce the following properties:
+MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
-MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{assumed}})$
+%
+%\subsubsection{Make assumption}
+%Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinez, Nevertheless, we can deduce the following properties:
+For each FCI approach, the way it predict the $T_{fail_{predicted}}$ according to observed failing test cases varies, further more, as the test cases it generates is different, the failing test cases observed by different test cases, i.e., $T_{fail_{observed}}$ also varies.  We take an example using OFOT approach to illustrate this formula.
 
-In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
+Suppose SUT has 3 parameters, each can take 2 values. And it find the test case (1, 1, 1) failed. Then we can describe the FCI process as Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutate one factor of the \emph{t} one time to generate new test cases: $t_{1}$ -- $t_{3}$, It found the the $t_{1}$ passed, which indicates that this test case break the MFS in the original test case \emph{t}. So the (1,-,-) should be one failure-causing factor, and as other mutating process all failed, which means no other failure-inducing factors, therefore, the MFS in \emph{t} is (1,-,-).
 
-\subsubsection{Proposition of MFS identifying process}
+Now let us explain this process with our formal model. The $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as finding (0,-,-) break the MFS, hence, all the test cases contain (0,-,-) should pass the test cases, so {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either pass or fail the testing(we label the skip the testing as a special case of failing), so the remaining test case(1,0,0), OFOT predict it as failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taking together, the MFS using OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
 
-\subsubsection{Suspicious}
-SP, CTA. The first one will, while the latter not.
+\begin{table}[h]
+\tbl{OFOT with our strategy\label{ofot-identify}}{
+\begin{tabular}{llllll}
+\multicolumn{5}{c}{\bfseries original test case} & \bfseries Outcome \\
+ $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1 } & Fail \\
+ \hline
+\multicolumn{5}{c}{\bfseries observed} &  \\
+$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1 }& Pass \\
+$t_{2}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  1 } & Fail \\
+$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0 } & Fail \\
+\hline
+\multicolumn{5}{c}{\bfseries predicted} & \\
+$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  1 } & Pass \\
+$t_{5}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  0 } & Pass \\
+$t_{6}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0 } & Fail \\
+$t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
+\end{tabular}}
+\end{table}
+%In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
+
+Similarly, other FCI approaches can also be modeled into this formal description. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. Thus, besides FCI predicted completely accurate, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
+
+\begin{proposition}
+ If neither $T_{m} \subset T_{n}$ nor $T_{n} \subset T_{m}$, then it must be that $c \in $ $\mathcal{C}(T_{n}) $ is irrelevant to $\mathcal{C}(T_{m})$ and must be some $c' \in $ $\mathcal{C}(T_{m}) $ is irrelevant to $\mathcal{C}(T_{n})$  .
+\end{proposition}
+
+\begin{proof}
+We just need to prove the first one, as the latter is equivalent to the first one. The first one can be proven by contradiction.
+\end{proof}
+
+So either of this three circumstance can make FCI identifying inaccurately as we discussed earlier, and each FCI should avoid these circumstances as much as possible.
+
+%\subsubsection{Proposition of MFS identifying process}
+
+%\subsubsection{Suspicious}
+%SP, CTA. The first one will, while the latter not.
 
 
 
@@ -452,6 +488,10 @@ Distinguishing the faults by the exception traces or error code can help make FC
 This strategy in fact identifies the set of $\mathcal{C}(T_{F_{m}})$, and as $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, consequently, some combinations get through this strategy may be the parent-combination of some failure-inducing combinations. Moreover, some failure-inducing combinations may be irrelevant to the combinations get with this strategy, which means that this combinations set ignore some failure-inducing combinations.
 
 It is noted that, the FCI approach listed in motivation example in section 2 actually adopted this strategy, which made the combinations identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent combinations of the correct failure-inducing combination(-,-,4,5).
+
+\subsubsection{masking effects for FCI approaches}
+
+
 
 \subsection{Summary of the formal model}
 From the analysis of formal model, we can learn that masking effects do influence the FCI approaches, worse more, both strategies \emph{regard as one fault} and \emph{distinguish faults} are harmful, which specifically the former may get the sub-combinations of the failure-inducing combinations or get combinations which are irrelevant to the failure-inducing ones, while the latter may get the parent combinations of the failure-inducing combinations or may ignore some of them.
