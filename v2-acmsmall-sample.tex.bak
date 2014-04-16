@@ -402,7 +402,7 @@ According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actual
 
 So for traditional FCI approaches, they need to select the subset of the exhaustive test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
 %Formally, we can describe the two ways as following:
-We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaining test cases the approach predict to be failed as $T_{fail_{predicted}}$. Then the MFS identified by FCI approaches can be depicted as:
+We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaining test cases the approach predict to be failed as $T_{fail_{predicted}}$. We also denote the actual complete failing test cases as $T_{fail}$Then the MFS identified by FCI approaches can be depicted as:
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
@@ -413,7 +413,7 @@ For each FCI approach, the way it predict the $T_{fail_{predicted}}$ according t
 
 Suppose SUT has 3 parameters, each can take 2 values. And assume the test case (1, 1, 1) failed. Then we can describe the FCI process as Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the \emph{t} one time to generate new test cases: $t_{1}$ -- $t_{3}$, It found the the $t_{1}$ passed, which indicates that this test case break the MFS in the original test case \emph{t}. So the (1,-,-) should be one failure-causing factor, and as other mutating process all failed, which means no other failure-inducing factors were broken, therefore, the MFS in \emph{t} is (1,-,-).
 
-Now let us explain this process with our formal model. Obviously the $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as having found (0,-,-) broke the MFS, hence by OFOT theory, all the test cases contain (0,-,-) should pass the test cases, so {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails the testing(we label the skip the testing as a special case of failing), so the remaining test case(1,0,0), will be predicted as failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taking together, the MFS using OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
+Now let us explain this process with our formal model. Obviously the $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as having found (0,-,-) broke the MFS, hence by OFOT theory, all the test cases contain (0,-,-) should pass the test cases (This conclusion is built on the assumption that SUT just contain one failure-causing schema).  As a result, {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails the testing(we label the skip the testing as a special case of failing), so the remaining test case(1,0,0), will be predicted as failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taking together, the MFS using OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
 
 \begin{table}[h]
 \tbl{OFOT with our strategy\label{ofot-identify}}{
@@ -435,7 +435,7 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 \end{table}
 %In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
 
-Similarly, other FCI approaches can also be modeled into this formal description. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. Thus, besides the perfect prediction making by FCI, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
+Similarly, other FCI approaches can also be modeled into this formal description. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
 
 \begin{proposition}
  If neither $T_{m} \subset T_{n}$ nor $T_{n} \subset T_{m}$, then it must be that $c \in $ $\mathcal{C}(T_{n}) $ is irrelevant to $\mathcal{C}(T_{m})$ and must be some $c' \in $ $\mathcal{C}(T_{m}) $ is irrelevant to $\mathcal{C}(T_{n})$  .
@@ -443,6 +443,8 @@ Similarly, other FCI approaches can also be modeled into this formal description
 
 \begin{proof}
 We just need to prove the first one, as the latter is equivalent to the first one. The first one can be proven by contradiction.
+
+Assume that for $\forall c \in \mathcal{C}(T_{m})$, have $c either \in \mathcal{C}(T_{n} $
 \end{proof}
 
 So either of this three circumstance can make FCI identifying inaccurately as we discussed earlier, and each FCI should avoid these circumstances as much as possible.

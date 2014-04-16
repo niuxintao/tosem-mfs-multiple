@@ -296,7 +296,7 @@ Suppose $ \forall t \in T(c_{k})$, we have that $t$ hits $c_{k}$. Then as $c_{l}
 
 \begin{proposition}
 
-For any set $T$ of test cases of a SUT, we can always get a set of minimal combinations $\mathcal{C}(T) = \{c \}$, i.e., $\not\exists c', c \in \mathcal{C}(T), s.t. c' \prec  c $,  such that,
+For any set $T$ of test cases of a SUT, we can always get a set of minimal combinations $\mathcal{C}(T)$, i.e., $\not\exists c', c \in \mathcal{C}(T), s.t. c' \prec  c $,  such that,
 
 \begin{displaymath} T  =  \bigcup_{c \in \mathcal{C}(T)} T(c) \end{displaymath}
 
@@ -443,6 +443,8 @@ Similarly, other FCI approaches can also be modeled into this formal description
 
 \begin{proof}
 We just need to prove the first one, as the latter is equivalent to the first one. The first one can be proven by contradiction.
+
+Assume that for $\forall c \in \mathcal{C}(T_{m})$, have $c either \in \mathcal{C}(T_{n} $
 \end{proof}
 
 So either of this three circumstance can make FCI identifying inaccurately as we discussed earlier, and each FCI should avoid these circumstances as much as possible.
