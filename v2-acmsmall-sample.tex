@@ -342,6 +342,30 @@ From the construction process of $\mathcal{C}(T)$, one observation is that the c
 %Further observation,
 %
 %From this two observation, we can have the following lemma:
+For different set of test cases, the minimal schemas of these set varies. However, we can still get some properties of these various minimal schemas, which is based on the relationship between with set of test cases we examine. In fact, there are three possible relationships between different set of test cases: \emph{inclusion}, \emph{disjoint}, and \emph{intersection} as listed in figure \ref{fig:testSuite}. We didn't list the condition that two set that are identical, because on that condition the minimal schemas must also be identical by proposition 3.6. Next we will separately discuss the relationship between minimal schemas under the three conditions.
+
+\begin{figure*}[ht]
+\centering
+\subfigure[]{
+  %  \rule{4cm}{3cm}
+    \label{fig:inclusion}
+    \includegraphics[width=1.31in]{testSuite1.eps}
+}
+\subfigure[]{
+  %  \rule{4cm}{3cm}
+    \label{fig:disjoint}
+    \includegraphics[width=2.01in]{testSuite2.eps}
+}
+\subfigure[]{
+  %  \rule{4cm}{3cm}
+    \label{fig:intersect}
+    \includegraphics[width=1.81in]{testSuite3.eps}
+}
+\caption[]{Test Suites relationship}
+\label{fig:testSuite}
+\end{figure*}
+
+\subsection{Test Cases with inclusion relationship}
 
 Based on this proposition, we can easily get the following lemma:
 %\newtheorem{lemma}{Lemma}
@@ -397,7 +421,45 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
   }
   \end{table}
 
-\subsection{Identify the MFS}
+\subsection{disjoint}
+This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two different set of test cases, one obvious properties is listed as follows:
+\begin{proposition}
+ For two set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $S(T_{1}) \bigcap S(T_{2}) = \emptyset$.
+\end{proposition}
+\begin{proof}
+If $S(T_{1}) \bigcap S(T_{2}) \ne \emptyset$. Without loss of generality, we let $c \in S(T_{1}) \bigcap S(T_{2}) $ we can learn that $T(c)$ must both in $T_{1}$ and $T_{2}$, which is contradiction.
+\end{proof}
+
+%Sometimes they can be merged.
+
+\subsection{intersect}
+
+
+This relationship is corresponding to the Fig.\ref{fig:intersect}, For two different set of test cases, one obvious properties is listed as follows:
+Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. 
+
+This is also for $T_{2}$.
+
+Let me discuss the combination of them.
+
+a. 1) vs 1)'. there must be identical. Other tuples cannot, because, if so, they must be identical test cases or inclusion test cases.
+b. 
+
+1. dou bu xiao, xiang si de di fang zhi you xiangjiao.
+
+2. xiangjiao de difang xiaoqu (1. fu zi, 2. irrelevant)
+
+3. bu xiangjiao de di fang xiaoqu, 
+
+\begin{proposition}
+ For two set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $S(T_{1}) \bigcap S(T_{2}) = \emptyset$.
+\end{proposition}
+\begin{proof}
+ We first have $\mathcal{C}(T(c)) = \{c\}$, and $ \mathcal{C}(T(c)) \subset S(T(c)) $. Then as $T(c) \subset T$, it follows $S(T(c)) \subset S(T)$ by definition. So we can have $\mathcal{C}(T(c)) \subset S(T) $ and hence $c \in S(T)$.
+\end{proof}
+
+
+\section{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
 
 So for traditional FCI approaches, they need to select the subset of the exhaustive test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
