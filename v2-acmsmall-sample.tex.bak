@@ -436,13 +436,28 @@ If $S(T_{1}) \bigcap S(T_{2}) \ne \emptyset$. Without loss of generality, we let
 
 
 This relationship is corresponding to the Fig.\ref{fig:intersect}, For two different set of test cases, one obvious properties is listed as follows:
-Without loss of generality, 
+Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$.
+
+This is also for $T_{2}$.
+
+Let me discuss the combination of them.
+
+a. 1) vs 1)'. there must be identical. Other tuples cannot, because, if so, they must be identical test cases or inclusion test cases.
+b.
+\begin{proposition}
+ It must be 
+\end{proposition}
+\begin{proof}
+ We first have $\mathcal{C}(T(c)) = \{c\}$, and $ \mathcal{C}(T(c)) \subset S(T(c)) $. Then as $T(c) \subset T$, it follows $S(T(c)) \subset S(T)$ by definition. So we can have $\mathcal{C}(T(c)) \subset S(T) $ and hence $c \in S(T)$.
+\end{proof}
+
+
 
 1. dou bu xiao, xiang si de di fang zhi you xiangjiao.
 
 2. xiangjiao de difang xiaoqu (1. fu zi, 2. irrelevant)
 
-3. bu xiangjiao de di fang xiaoqu, 
+3. bu xiangjiao de di fang xiaoqu,
 
 \begin{proposition}
  For two set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $S(T_{1}) \bigcap S(T_{2}) = \emptyset$.

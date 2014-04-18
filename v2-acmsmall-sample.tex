@@ -66,7 +66,7 @@ Combinatorial testing(CT) is proven to be effective to reveal the potential fail
 \category{D.2.5}{Software Engineering}{Testing and debugging}[Debugging aids,testing tools]
 \terms{Reliability, Verification}
 
-\keywords{Software Testing, Combinatorial Testing, Failure-inducing combinations, Masking effects}
+\keywords{Software Testing, Combinatorial Testing, Failure-causing schemas, Masking effects}
 
 \acmformat{Xintao Niu,
 Changhai Nie and Hareton Leung, 2014.Identify failure-causing schemas for multiple faults.}
@@ -436,27 +436,33 @@ If $S(T_{1}) \bigcap S(T_{2}) \ne \emptyset$. Without loss of generality, we let
 
 
 This relationship is corresponding to the Fig.\ref{fig:intersect}, For two different set of test cases, one obvious properties is listed as follows:
-Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. 
+Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$.
 
 This is also for $T_{2}$.
 
 Let me discuss the combination of them.
-
-a. 1) vs 1)'. there must be identical. Other tuples cannot, because, if so, they must be identical test cases or inclusion test cases.
-b. 
-
-1. dou bu xiao, xiang si de di fang zhi you xiangjiao.
-
-2. xiangjiao de difang xiaoqu (1. fu zi, 2. irrelevant)
-
-3. bu xiangjiao de di fang xiaoqu, 
-
 \begin{proposition}
- For two set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $S(T_{1}) \bigcap S(T_{2}) = \emptyset$.
+ It must be there some schemas. s.t. are irrelevant
 \end{proposition}
 \begin{proof}
- We first have $\mathcal{C}(T(c)) = \{c\}$, and $ \mathcal{C}(T(c)) \subset S(T(c)) $. Then as $T(c) \subset T$, it follows $S(T(c)) \subset S(T)$ by definition. So we can have $\mathcal{C}(T(c)) \subset S(T) $ and hence $c \in S(T)$.
 \end{proof}
+
+\begin{proposition}
+If there exist identical schemas, is must be in $T_{3}$
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table. 
+
+
+\begin{proposition}
+If there exist parent and sub schemas, the parent schema must be in $T_{3}$. 
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+It must also be that this $c$ must in $T_{3}$, for the father suites set that it should not all be children tuples like table. 
 
 
 \section{Identify the MFS}
