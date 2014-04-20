@@ -367,7 +367,7 @@ For different set of test cases, the minimal schemas of these set varies. Howeve
 
 \subsection{Test Cases with inclusion relationship}
 
-Based on this proposition, we can easily get the following lemma:
+It is the first relationship corresponding to Fig. \ref{fig:inclusion}. Based on this proposition, we can easily get the following lemma:
 %\newtheorem{lemma}{Lemma}
 \begin{lemma}
 For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then we have
@@ -430,39 +430,55 @@ This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two differ
 If $S(T_{1}) \bigcap S(T_{2}) \ne \emptyset$. Without loss of generality, we let $c \in S(T_{1}) \bigcap S(T_{2}) $ we can learn that $T(c)$ must both in $T_{1}$ and $T_{2}$, which is contradiction.
 \end{proof}
 
+This properties tells that the minimal schemas of two disjoint test cases should be irrelevant to each other, Table \ref{example_disjoint} list the example of this scenario, we can learn in this table that for two different test cases set $T_{l}$,$T_{k}$, their minimal schemas, i.e., (0, - , 0) and (1, 0, -),(1, -, 0) respectively, are irrelevant to each other.
+\begin{table}
+\centering
+\tbl{Example of disjoint examples \label{example_disjoint}}{
+  \begin{tabular}{cc}
+$T_{l}$&$T_{k}$ \\ \hline
+(0, 0, 0)&  (1, 0, 0)\\
+(0, 1, 0)&  (1, 0, 1)\\
+		 &  (1, 1, 0)\\  \hline
+ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
+(0, -, 0)&(1, 0, -)\\
+         &(1, -, 0)	\\ \hline
+  \end{tabular}
+  }
+  \end{table}
 %Sometimes they can be merged.
 
 \subsection{intersect}
+This relationship is corresponding to the Fig.\ref{fig:intersect}, This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we denote that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
+%For two different set of test cases, one obvious properties is listed as follows:
+%Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
 
-
-This relationship is corresponding to the Fig.\ref{fig:intersect}, For two different set of test cases, one obvious properties is listed as follows:
-Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$.
-
-This is also for $T_{2}$.
-
-Let me discuss the combination of them.
+%Let me discuss the combination of them.
 \begin{proposition}
- It must be there some schemas. s.t. are irrelevant
+ It must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$are irrelevant.
 \end{proposition}
 \begin{proof}
+
+
 \end{proof}
 
 \begin{proposition}
-If there exist identical schemas, is must be in $T_{3}$
+If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is identical to $c_{2}$, Then it must have $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
 \end{proposition}
 \begin{proof}
+
 \end{proof}
 
-It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table. 
+It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
 
 
 \begin{proposition}
-If there exist parent and sub schemas, the parent schema must be in $T_{3}$. 
+If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, Then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
 \end{proposition}
 \begin{proof}
+
 \end{proof}
 
-It must also be that this $c$ must in $T_{3}$, for the father suites set that it should not all be children tuples like table. 
+It must also be that this $c$ must in $T_{3}$, for the father suites set that it should not all be children tuples like table.
 
 
 \section{Identify the MFS}
