@@ -421,7 +421,7 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
   }
   \end{table}
 
-\subsection{disjoint}
+\subsection{Disjoint}
 This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two different set of test cases, one obvious properties is listed as follows:
 \begin{proposition}
  For two set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $S(T_{1}) \bigcap S(T_{2}) = \emptyset$.
@@ -447,8 +447,8 @@ $T_{l}$&$T_{k}$ \\ \hline
   \end{table}
 %Sometimes they can be merged.
 
-\subsection{intersect}
-This relationship is corresponding to the Fig.\ref{fig:intersect}, This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we denote that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
+\subsection{Intersect}
+This relationship is corresponding to the Fig.\ref{fig:intersect}, This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume without of loss of generality that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
 %For two different set of test cases, one obvious properties is listed as follows:
 %Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
 
@@ -457,29 +457,110 @@ This relationship is corresponding to the Fig.\ref{fig:intersect}, This scenario
  It must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$are irrelevant.
 \end{proposition}
 \begin{proof}
+Firstly, we can learn that $\mathcal{C}(T_{1} - T_{3})$ are irrelevant to $\mathcal{C}(T_{2} - T_{3})$, as $T_{1} - T_{3} \bigcap T_{2} - T_{3} = \emptyset$.
 
+As $\mathcal{C}(T_{1} - T_{3})$ is either identical to some combinations in $\mathcal{C}(T_{1})$ or be parent schemas of them. If is identical, then these identical ones must be irrelevant to $ \mathcal{C}(T_{2})$ as $T_{1} - T_{3} \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} - T_{3})$ is identical to some combinations in $\mathcal{C}(T_{2})$.
 
+Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas, then this parent must also be irrelevant to each other, because for any c, c'(subschemas), their test cases is not contain each other and not identical.
 \end{proof}
+
+For example, Table \ref{example_intersect_irrelevant} shows two test cases interact each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0) respectively, are irrelevant to each other.
+
+\begin{table}
+\centering
+\tbl{Example of Intersect by irrelevant examples \label{example_intersect_irrelevant}}{
+  \begin{tabular}{cc}
+$T_{1}$&$T_{2}$ \\ \hline
+(1, 0, 0) &  (1, 0, 0)\\
+(1, 0, 1) &  (1, 1, 0)\\  \hline
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
+(1, 0, -)&(1, -, 0)\\
+  \end{tabular}
+  }
+  \end{table}
 
 \begin{proposition}
 If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is identical to $c_{2}$, Then it must have $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
 \end{proposition}
 \begin{proof}
-
+As we get that the identical schema must share the identical test cases, then the only identical test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
+We must know that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ also in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, this can be satisfied at some condition because $T_{3} \in T_{1}$ and  $T_{3} \in T_{2}$.
+
+For example, Table \ref{example_intersect_identical} shows two test cases interact each other at test cases (1,0,0),(1,0,1),(1,1,0)and (1,1,1), and they have identical minimal schemas, i.e., (1,-,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
+
+\begin{table}
+\centering
+\tbl{Example of Intersect by identical examples \label{example_intersect_identical}}{
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
+(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
+(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
+(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
+(1, 1, 0)	& (1, 0, 1) & (1, 1, 1)\\
+(1, 1, 1)	& (1, 1, 0)\\
+		    & (1, 1, 1)\\ \hline
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+(0, 1, 0)&  (0, 0, -) & (1, -, -)\\
+(1, -, -)&  (1, -, -) &\\ \hline
+  \end{tabular}
+  }
+  \end{table}
+
+%It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
 
 
 \begin{proposition}
 If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, Then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
 \end{proposition}
 \begin{proof}
-
+It is also obviously that if two schemas have have subsumes relationship, then their test cases must also have subsumes relationship. And as the only subsume relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset T_{1} \bigcap T_{2} = T_{3} $   and $T_{2} \subset T_{1} \bigcap T_{2} = T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-It must also be that this $c$ must in $T_{3}$, for the father suites set that it should not all be children tuples like table.
+It is noted that this proposition holds when the condition holds when the parent schema in $\mathcal{C}(T_{3})$ is also in the parent schemas test cases , say $T_{1}$, and the other child schemas in another parent test cases, say , $T_{2}$. This also can be satisfied as $T_{3} \in T_{1}$ and  $T_{3} \in T_{2}$. And the condition can hold.
 
+Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0) is the parent schema of the minimal schema of $T_{2}$: (1,-,-). What's more, (1,0,-),(1,-,0) is the identical schemas of their interest test cases.
+
+\begin{table}
+\centering
+\tbl{Example of Intersect by subsume examples \label{example_intersect_subsume}}{
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
+(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
+(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
+(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
+(1, 1, 0)	& (1, 0, 1) &         \\
+        	& (1, 1, 0)\\
+		    & (1, 1, 1)\\ \hline
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+(0, 1, 0)&  (0, 0, -) & (1, 0, -)\\
+(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
+ (1, -, 0) & & \\ \hline
+  \end{tabular}
+  }
+  \end{table}
+
+Another point need to be noted is that this three scenario can appear at one time, like Table \ref{example_intersect_all}.
+
+\begin{table}
+\centering
+\tbl{Example of Intersect by all examples \label{example_intersect_all}}{
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
+(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
+(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
+(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
+(1, 1, 0)	& (1, 0, 1) &         \\
+        	& (1, 1, 0)\\
+		    & (1, 1, 1)\\ \hline
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+(0, 1, 0)&  (0, 0, -) & (1, 0, -)\\
+(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
+ (1, -, 0) & & \\ \hline
+  \end{tabular}
+  }
+  \end{table}
 
 \section{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
@@ -519,7 +600,18 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 \end{table}
 %In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
 
-Similarly, other FCI approaches can also be modeled into this formal description. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
+
+\begin{figure}
+\centering
+\includegraphics[width=3.31in]{FCI.eps}
+\caption{generally modeling of FCI}
+\label{fig:fci_process}
+\end{figure}
+
+Similarly, other FCI approaches can also be modeled into this formal description. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
+
+
+Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
 
 \begin{proposition}
  If neither $T_{m} \subset T_{n}$ nor $T_{n} \subset T_{m}$, then it must be that $c \in $ $\mathcal{C}(T_{n}) $ is irrelevant to $\mathcal{C}(T_{m})$ and must be some $c' \in $ $\mathcal{C}(T_{m}) $ is irrelevant to $\mathcal{C}(T_{n})$  .
