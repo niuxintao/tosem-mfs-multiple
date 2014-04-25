@@ -421,6 +421,8 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
   }
   \end{table}
 
+%It is noted that as the
+
 \subsection{Disjoint}
 This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two different set of test cases, one obvious properties is listed as follows:
 \begin{proposition}
@@ -562,6 +564,9 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
   }
   \end{table}
 
+%\subsection{Summary of the formal model}
+%From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
+
 \section{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
 
@@ -608,22 +613,26 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 \label{fig:fci_process}
 \end{figure}
 
-Similarly, other FCI approaches can also be modeled into this formal description. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
+Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach into this formal description as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
+
+We can see this figure is one sample of the interest test cases, in which, area $A \bigcap B \bigcap C $= $T_{1}$, area $D \bigcap B \bigcap C $= $T_{2}$ and area$ B \bigcap C$ = $T_{3}$. We learn previously this scenario makes MFS in $T_{1}$ based from $T_{2}$. So for FCI approaches, it need to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
+
+However, even though FCI try each best to make area B and C as large as possible. Masking effects raised from test cases will break this trail. We next will disscuss the masking problem and how it affect the FCI approaches.
 
 
-Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
-
-\begin{proposition}
- If neither $T_{m} \subset T_{n}$ nor $T_{n} \subset T_{m}$, then it must be that $c \in $ $\mathcal{C}(T_{n}) $ is irrelevant to $\mathcal{C}(T_{m})$ and must be some $c' \in $ $\mathcal{C}(T_{m}) $ is irrelevant to $\mathcal{C}(T_{n})$  .
-\end{proposition}
-
-\begin{proof}
-We just need to prove the first one, as the latter is equivalent to the first one. The first one can be proven by contradiction.
-
-Assume that for $\forall c \in \mathcal{C}(T_{m})$, have $c either \in \mathcal{C}(T_{n} $
-\end{proof}
-
-So either of this three circumstance can make FCI identifying inaccurately as we discussed earlier, and each FCI should avoid these circumstances as much as possible.
+%Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
+%
+%\begin{proposition}
+% If neither $T_{m} \subset T_{n}$ nor $T_{n} \subset T_{m}$, then it must be that $c \in $ $\mathcal{C}(T_{n}) $ is irrelevant to $\mathcal{C}(T_{m})$ and must be some $c' \in $ $\mathcal{C}(T_{m}) $ is irrelevant to $\mathcal{C}(T_{n})$  .
+%\end{proposition}
+%
+%\begin{proof}
+%We just need to prove the first one, as the latter is equivalent to the first one. The first one can be proven by contradiction.
+%
+%Assume that for $\forall c \in \mathcal{C}(T_{m})$, have $c either \in \mathcal{C}(T_{n}) $.
+%\end{proof}
+%
+%So either of this three circumstance can make FCI identifying inaccurately as we discussed earlier, and each FCI should avoid these circumstances as much as possible.
 
 %\subsubsection{Proposition of MFS identifying process}
 
@@ -633,7 +642,6 @@ So either of this three circumstance can make FCI identifying inaccurately as we
 
 
 \subsection{Masking effect}
-This section formally introduces the masking effects and analyses how this effect impact on the FCI approaches.
 \begin{definition}
 A \emph{masking effect} is the effect that while a test case \emph{t} hit a failure-inducing combination for a particular fault, however, $t$ didn't trigger the expected fault because other fault was triggered ahead which prevents $t$ to be normally checked.
 
