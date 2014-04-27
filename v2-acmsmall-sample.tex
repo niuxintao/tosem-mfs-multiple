@@ -291,7 +291,7 @@ if $c_{l} \prec c_{k}$, then $T(c_{k}) \subset T(c_{l})$
 Suppose $ \forall t \in T(c_{k})$, we have that $t$ hits $c_{k}$. Then as $c_{l} \prec c_{k}$, so $t$ must also hit $c_{l}$, as all the element in $c_{l}$ must in $c_{k}$, which also in the test case $t$. Therefore we get $t \in T(c_{l})$. Thus $t \in T(c_{k})$ implies $t \in T(c_{l})$, so it follows that $T(c_{k}) \subset T(c_{l})$.
 \end{proof}
 
-Table \ref{example_subsume} illustrates an example of SUT with four binary parameters. The left column lists the schema (0,0,-,-) as well as all the test cases hit this schema, while the right column lists the test cases for schema(0,-,-,-). We can observe that (0,-,-,-) $\prec$ (0,0,-,-) and the the set of test cases which hit (0,-,-,-) contains the set that hits (0,0,-,-).
+Table \ref{example_subsume} illustrates an example of SUT with four binary parameters (Unless otherwise specified, following examples also assume the SUT with binary parameters). The left column lists the schema (0,0,-,-) as well as all the test cases hit this schema, while the right column lists the test cases for schema(0,-,-,-). We can observe that (0,-,-,-) $\prec$ (0,0,-,-) and the the set of test cases which hit (0,-,-,-) contains the set that hits (0,0,-,-).
 
 \begin{table}
 \centering
@@ -302,7 +302,7 @@ $c$ \\ \hline
  $T(c)$\\ \hline
 (0, 0, 0 ,0)\\
 (0, 0, 0 ,1)\\
-(0, 0, 1 ,0)\\ 
+(0, 0, 1 ,0)\\
 (0, 0, 1 ,1)\\  \hline
   \end{tabular}
   \hspace{1em}
@@ -313,7 +313,7 @@ $c$ \\ \hline
 (0, 0, 0 ,0)\\
 (0, 0, 0 ,1)\\
 (0, 0, 1 ,0)\\
-(0, 0, 1 ,1)\\ 
+(0, 0, 1 ,1)\\
 (0, 1, 0 ,0)\\
 (0, 1, 0 ,1)\\
 (0, 1, 1 ,0)\\
@@ -354,8 +354,20 @@ In fact by definition of $M(S(T))$, for $\forall c'\in S(T) \backslash M(S(T))$,
 Hence, $\bigcup_{c \in S(T)} T(c) = \bigcup_{c \in M(S(T))} T(c)$, and $M(S(T))$ is the set of schemas that holds this proposition.
 \end{proof}
 
-For example, in table, for these test cases, the minimal MFS is .
-
+For example, table \ref{example_minimal_schemas} lists the $S(T)$ and minimal schemas $\mathcal{C}(T)$ for set of test cases $T$. We can see that for any other schemas not in $\mathcal{C}(T)$, either can we find a test case not in $T$  hit the schema, e.g.,(0,0,-,-) with the test case (0,0,1,1) not in $T$, or is the parent schema of one of this two minimal schemas, e.g.,(0,0,0,0) the parent schema of both (0,0,0,-) and (0,0,-,0).
+\begin{table}
+\centering
+\tbl{Example of the minimal schemas\label{example_minimal_schemas}}{
+  \begin{tabular}{c | c | c }
+ $T$ & $S(T)$ & $\mathcal{C}(T)$\\ \hline
+(0, 0, 0 ,0) & (0, 0, 0, 0) & (0, 0, 0, -)\\
+(0, 0, 0 ,1) & (0, 0, 0, 1) & (0, 0, -, 0)\\
+(0, 0, 1 ,0) & (0, 0, 1, 0) & \\
+             & (0, 0, 0, -) & \\
+             & (0, 0, -, 0) & \\ \hline
+  \end{tabular}
+  }
+  \end{table}
 
 Let $\mathcal{C}(T_{F_{m}})$ denote the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. And obviously for $\forall c_{m}$ we have $\mathcal{C}(T(c_{m})) = \{c_{m}\}$.
 
@@ -376,7 +388,7 @@ From the construction process of $\mathcal{C}(T)$, one observation is that the s
 %Further observation,
 %
 %From this two observation, we can have the following lemma:
-For two different set of test cases, the minimal schemas of these set varies. However, we can still get some properties of these various minimal schemas, which is based on the relationship between with set of test cases we examine. In fact, there are three possible relationships between different set of test cases: \emph{inclusion}, \emph{disjoint}, and \emph{intersection} as listed in figure \ref{fig:testSuite}. We didn't list the condition that two set that are identical, because on that condition the minimal schemas must also be identical by proposition 3.6. Next we will separately discuss the relationship between minimal schemas under the three conditions.
+For two different set of test cases, there exist some relationships between the minimal schemas of these two set, which varies in the relevancy between this two different set of test cases. In fact, there are three possible associations between two different set of test cases: \emph{inclusion}, \emph{disjoint}, and \emph{intersection} as listed in figure \ref{fig:testSuite}. We didn't list the condition that two set that are identical, because on that condition the minimal schemas must also be identical by proposition 3.6. To discuss the properties of the relationship of the minimal schemas between two different set of test cases is important as we can learn later the masking effects between multiple faults will make the MFS identifying process incorrectly works, i.e., these FCI approaches may isolate the minimal schemas for biased set of test cases from the expected failing set of test cases.  Next we will separately discuss the relationship between minimal schemas under the three conditions.
 
 \begin{figure*}[ht]
 \centering
@@ -399,22 +411,22 @@ For two different set of test cases, the minimal schemas of these set varies. Ho
 \label{fig:testSuite}
 \end{figure*}
 
-\subsection{Test Cases with inclusion relationship}
+\subsection{Inclusion}
 
-It is the first relationship corresponding to Fig. \ref{fig:inclusion}. Based on this proposition, we can easily get the following lemma:
+It is the first relationship corresponding to Fig. \ref{fig:inclusion}. We can have the following proposition with two set of test cases which have the inclusion relationship.
 %\newtheorem{lemma}{Lemma}
-\begin{lemma}
+\begin{proposition}
 For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then we have
  \begin{displaymath} \forall c_{l} \in \mathcal{C}(T_{l})\,  either\ c_{l} \in \mathcal{C}(T_{k})\ or \exists c_{k} \in \mathcal{C}(T_{k}), s.t., c_{k} \prec c_{l}.
  \end{displaymath}
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
-Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3, we can have $c_{l} \in S(T_{k})$. So this lemma holds as the combinations in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some combination in $\mathcal{C}(T_{k})$.
+Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
 \end{proof}.
-Based on this lemma, in fact, the $c_{k} \in \mathcal{C}(T_{k})$  remains the following three possibilities: 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
+Based on this proposition, in fact, the $c_{k} \in \mathcal{C}(T_{k})$  remains the following three possibilities: 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
 
-We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, each part shows two set of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. For the left part, we can see that the combination in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, 1, 0), both are the parent of the combination of the one in $\mathcal{C}(T_{k})$:(0,-,-). While for the right part, the combinations in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, 1, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one combination in $\mathcal{C}(T_{k})$: (1,-,-) is irrelevant to $\mathcal{C}(T_{l})$.
+We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, each part shows two set of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. For the left part, we can see that the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the parent of the schema of the one in $\mathcal{C}(T_{k})$:(0,-,-). While for the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
 
 %in which the left part shows the case that the failure-inducing combinations satisfy the first properties( both (0,0,-) and (0,1,0) subsume (0,-,-)). While the right part give an example to the second properties, as (1,-,-) is irrelevant to any one of (0,0,-) and (0,1,0).
 
@@ -435,7 +447,7 @@ $T_{l}$&$T_{k}$ \\ \hline
          &(0, 1, 1) \\ \hline
  $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 (0, 0, -)&(0, -, -)\\
-(0, 1, 0)&		   \\ \hline
+(0, -, 0)&		   \\ \hline
   \end{tabular}
   \hspace{1em}
   \begin{tabular}{cc}
@@ -443,14 +455,12 @@ $T_{l}$&$T_{k}$\\ \hline
 (0, 0, 0) & (0, 0, 0)\\
 (0, 0, 1) & (0, 0, 1)\\
 (0, 1, 0) & (0, 1, 0)\\
-		  & (1, 0, 0)\\
-		  & (1, 0, 1)\\
 		  & (1, 1, 0)\\
 		  & (1, 1, 1)\\ \hline
 $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 (0, 0, -)&  (0, 0, -)\\
-(0, 1, 0)&  (0, 1, 0)\\
-		 &  (1, -, -)\\  \hline
+(0, -, 0)&  (0, -, 0)\\
+		 &  (1, 1, -)\\  \hline
   \end{tabular}
   }
   \end{table}
@@ -484,7 +494,7 @@ $T_{l}$&$T_{k}$ \\ \hline
 %Sometimes they can be merged.
 
 \subsection{Intersect}
-This relationship is corresponding to the Fig.\ref{fig:intersect}, This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume without of loss of generality that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
+This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume without of loss of generality that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
 %For two different set of test cases, one obvious properties is listed as follows:
 %Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
 
@@ -495,9 +505,9 @@ This relationship is corresponding to the Fig.\ref{fig:intersect}, This scenario
 \begin{proof}
 Firstly, we can learn that $\mathcal{C}(T_{1} - T_{3})$ are irrelevant to $\mathcal{C}(T_{2} - T_{3})$, as $T_{1} - T_{3} \bigcap T_{2} - T_{3} = \emptyset$.
 
-As $\mathcal{C}(T_{1} - T_{3})$ is either identical to some combinations in $\mathcal{C}(T_{1})$ or be parent schemas of them. If is identical, then these identical ones must be irrelevant to $ \mathcal{C}(T_{2})$ as $T_{1} - T_{3} \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} - T_{3})$ is identical to some combinations in $\mathcal{C}(T_{2})$.
+As $\mathcal{C}(T_{1} - T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them. If some of them are identical, then these identical ones must be irrelevant to $ \mathcal{C}(T_{2})$ as $T_{1} - T_{3} \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} - T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
 
-Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas, then this parent must also be irrelevant to each other, because for any c, c'(subschemas), their test cases is not contain each other and not identical.
+Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we make $c_{1-3} \prec c_{1}$ ($c_{1-3}\in\mathcal{C}(T_{1} - T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2-3}\prec c_{2}$ ($c_{2-3}\in\mathcal{C}(T_{2} - T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $T(c_{1}) \supset T(c_{1-3})$ and  $T(c_{2}) \supset T(c_{1-3})$. And as $ T(c_{1-3}) \bigcap  T(c_{2-3}) = \emptyset $  So $T(c_{1})$ and $T(c_{2})$ are neither identical nor including each other.
 \end{proof}
 
 For example, Table \ref{example_intersect_irrelevant} shows two test cases interact each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0) respectively, are irrelevant to each other.
@@ -524,34 +534,32 @@ As we get that the identical schema must share the identical test cases, then th
 
 We must know that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ also in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, this can be satisfied at some condition because $T_{3} \in T_{1}$ and  $T_{3} \in T_{2}$.
 
-For example, Table \ref{example_intersect_identical} shows two test cases interact each other at test cases (1,0,0),(1,0,1),(1,1,0)and (1,1,1), and they have identical minimal schemas, i.e., (1,-,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
+For example, Table \ref{example_intersect_identical} shows two test cases interact each other at test cases (1,1,0)and (1,1,1), and they have identical minimal schemas, i.e., (1,1,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
 
 \begin{table}
 \centering
 \tbl{Example of Intersect by identical examples \label{example_intersect_identical}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
-(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
-(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
-(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
-(1, 1, 0)	& (1, 0, 1) & (1, 1, 1)\\
-(1, 1, 1)	& (1, 1, 0)\\
-		    & (1, 1, 1)\\ \hline
+ (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
+ (1, 1, 0) & (0, 0, 1) & (1, 1, 1)\\
+ (1, 1, 1) & (1, 1, 0) & \\ 
+	       & (1, 1, 1) & \\\hline
+
  $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(0, 1, 0)&  (0, 0, -) & (1, -, -)\\
-(1, -, -)&  (1, -, -) &\\ \hline
+(-, 1, 0)&  (0, 0, -) & (1, 1, -)\\
+(1, 1, -)&  (1, 1, -) &\\ \hline
   \end{tabular}
   }
   \end{table}
 
 %It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
 
-
 \begin{proposition}
 If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, Then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
 \end{proposition}
 \begin{proof}
-It is also obviously that if two schemas have have subsumes relationship, then their test cases must also have subsumes relationship. And as the only subsume relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset T_{1} \bigcap T_{2} = T_{3} $   and $T_{2} \subset T_{1} \bigcap T_{2} = T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
+It is also obviously that if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset  T_{3} $  and $T_{2} \subset  T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
 \end{proof}
 
 It is noted that this proposition holds when the condition holds when the parent schema in $\mathcal{C}(T_{3})$ is also in the parent schemas test cases , say $T_{1}$, and the other child schemas in another parent test cases, say , $T_{2}$. This also can be satisfied as $T_{3} \in T_{1}$ and  $T_{3} \in T_{2}$. And the condition can hold.
