@@ -543,7 +543,7 @@ For example, Table \ref{example_intersect_identical} shows two test cases intera
 $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
  (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
  (1, 1, 0) & (0, 0, 1) & (1, 1, 1)\\
- (1, 1, 1) & (1, 1, 0) & \\ 
+ (1, 1, 1) & (1, 1, 0) & \\
 	       & (1, 1, 1) & \\\hline
 
  $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
@@ -562,9 +562,9 @@ If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \math
 It is also obviously that if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset  T_{3} $  and $T_{2} \subset  T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-It is noted that this proposition holds when the condition holds when the parent schema in $\mathcal{C}(T_{3})$ is also in the parent schemas test cases , say $T_{1}$, and the other child schemas in another parent test cases, say , $T_{2}$. This also can be satisfied as $T_{3} \in T_{1}$ and  $T_{3} \in T_{2}$. And the condition can hold.
+It is noted that this proposition holds when holds when some schema in $\mathcal{C}(T_{3})$ is also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the parent-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
-Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0) is the parent schema of the minimal schema of $T_{2}$: (1,-,-). What's more, (1,0,-),(1,-,0) is the identical schemas of their interest test cases.
+Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0),which is also the schemas in $\mathcal{C}(T_{3})$, is the parent schema of the minimal schema of $T_{2}$: (1,-,-).
 
 \begin{table}
 \centering
@@ -572,39 +572,38 @@ Table \ref{example_intersect_subsume} illustrates this scenario, in which, the m
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
 (0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
-(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
-(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
-(1, 1, 0)	& (1, 0, 1) &         \\
-        	& (1, 1, 0)\\
-		    & (1, 1, 1)\\ \hline
+(1, 0, 0)   & (1, 0, 0) & (1, 0, 1)\\
+(1, 0, 1)	& (1, 0, 1) & (1, 1, 0)\\
+(1, 1, 0)	& (1, 1, 0) &         \\
+        	& (1, 1, 1) & \\ \hline
  $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(0, 1, 0)&  (0, 0, -) & (1, 0, -)\\
+(-, 1, 0)&  (-, 0, 0) & (1, 0, -)\\
 (1, 0, -)&  (1, -, -) & (1, -, 0)   \\
- (1, -, 0) & & \\ \hline
+(1, -, 0)&     & \\ \hline
   \end{tabular}
   }
   \end{table}
 
-Another point need to be noted is that this three scenario can appear at one time, like Table \ref{example_intersect_all}.
+ It is noted that this three scenario can appear at one time.%, like Table \ref{example_intersect_all}.
 
-\begin{table}
-\centering
-\tbl{Example of Intersect by all examples \label{example_intersect_all}}{
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
-(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
-(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
-(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
-(1, 1, 0)	& (1, 0, 1) &         \\
-        	& (1, 1, 0)\\
-		    & (1, 1, 1)\\ \hline
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(0, 1, 0)&  (0, 0, -) & (1, 0, -)\\
-(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
- (1, -, 0) & & \\ \hline
-  \end{tabular}
-  }
-  \end{table}
+%\begin{table}
+%\centering
+%\tbl{Example of Intersect by all examples \label{example_intersect_all}}{
+%  \begin{tabular}{ccc}
+%$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
+%(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
+%(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
+%(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
+%(1, 1, 0)	& (1, 0, 1) &         \\
+%        	& (1, 1, 0)\\
+%		    & (1, 1, 1)\\ \hline
+% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+%(0, 1, 0)&  (0, 0, -) & (1, 0, -)\\
+%(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
+% (1, -, 0) & & \\ \hline
+%  \end{tabular}
+%  }
+%  \end{table}
 
 %\subsection{Summary of the formal model}
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
