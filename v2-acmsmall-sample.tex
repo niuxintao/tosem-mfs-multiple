@@ -609,7 +609,7 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
 
 \section{Identify the MFS}
-According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-inducing combinations of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
+According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
 
 So for traditional FCI approaches, they need to select the subset of the exhaustive test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
 %Formally, we can describe the two ways as following:
@@ -656,11 +656,9 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 
 Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach into this formal description as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
 
-We can see this figure is one sample of the interest test cases, in which, area $A \bigcap B \bigcap C $= $T_{1}$, area $D \bigcap B \bigcap C $= $T_{2}$ and area$ B \bigcap C$ = $T_{3}$. We learn previously this scenario makes MFS in $T_{1}$ based from $T_{2}$. So for FCI approaches, it need to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
+We can see in this figure, area A denotes the test cases that should be passing while it predicted to be failing , area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor predicted.  This figure is actually one sample of the condition that two set of test cases interest with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$. We learned previously this scenario makes the schemas identified in $T_{1}$ based from the expected MFS in $T_{2}$. So for FCI approaches, it needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
 
-However, even though FCI try each best to make area B and C as large as possible. Masking effects raised from test cases will break this trail. We next will disscuss the masking problem and how it affect the FCI approaches.
-
-
+However, even though each FCI approach tries its best to make area B and C as large as possible, masking effects raised from test cases will make their efforts in vain. We next will discusses the masking problem and how it affect the FCI approaches.
 %Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
 %
 %\begin{proposition}
@@ -684,26 +682,26 @@ However, even though FCI try each best to make area B and C as large as possible
 
 \subsection{Masking effect}
 \begin{definition}
-A \emph{masking effect} is the effect that while a test case \emph{t} hit a failure-inducing combination for a particular fault, however, $t$ didn't trigger the expected fault because other fault was triggered ahead which prevents $t$ to be normally checked.
+A \emph{masking effect} is the effect that while a test case \emph{t} hit a MFS for a particular fault, however, $t$ didn't trigger the expected fault because other fault was triggered ahead which prevents $t$ to be normally checked.
 
 %This masking effect can be presented as $t(F_{b})[F_{a}]$, which means test case \emph{t} should trigger $F_{a}$ if didn't trigger $F_{b}$.
 \end{definition}
 
-Taking the masking effects into account, when identifying the failure-inducing combinations for a specific fault, say, $F_{m}$, we should not ignore these test cases which should have triggered $F_{m}$ if they didn't trigger other faults. We call these test cases $T_{mask(F_{m})}$. Hence, the failure-inducing combinations for fault $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$
+Taking the masking effects into account, when identifying the MFS for a specific fault, say, $F_{m}$, we should not ignore these test cases which should have triggered $F_{m}$ if they didn't trigger other faults. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS for fault $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$
 
 %So in fact, the failure-inducing combination for $F_{m}$ should be the combination which have the test cases $T_{F_{m}} \bigcup T_{mask(F_{m})}$. We call the failure-inducing combinations with considering the masking effects the \emph{perfect failure-inducing combinations}.
 
-As an example, in the motivation example in section 2, the $F_{mask(F_{Ex\ 2})}$  is \{ (7,4,4,5),(11,4,4,5)\}, So the failure-inducing combinations for $Ex 2$ is $\mathcal{C}(T_{F_{Ex\ 2}} \bigcup T_{mask(F_{Ex\ 2})})$, which is (-,-,4,5).
+As an example, in the motivation example in section 2, the $F_{mask(F_{Ex\ 2})}$  is \{ (7,4,4,5),(11,4,4,5)\}, So the MFS for $Ex 2$ is $\mathcal{C}(T_{F_{Ex\ 2}} \bigcup T_{mask(F_{Ex\ 2})})$, which is (-,-,4,5).
  %taking this test cases into account, we can get the failure-inducing combinations for Ex 1 is .
 
-In practice with masking effects, however, it is not possible to correctly identifying the failure-inducing combinations, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
+In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
 In effect for traditional FCI approaches, without knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem.
 
 \subsubsection{Regard as one fault}
 The first one is the most common strategy, it doesn't distinguish the faults, i.e., regard all the types of faults as one fault--\emph{failure}, others as the \emph{pass}.
 
-With this strategy, the FCI process turns into identifying the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$, $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset T_{F}$ . So in this case, by Lemma 1, some combinations we get may be the sub-combination of some of the failure-inducing combination, or irrelevant to the failure-inducing combinations.
+With this strategy, the FCI process turns into identifying the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Lemma 1, some combinations we get may be the sub-combination of some of the failure-inducing combination, or irrelevant to the failure-inducing combinations.
 
 As an example, Suppose we take this strategy in the motivation example, then the failure-inducing combinations we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that combination (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the failure-inducing combinations of Ex 2 and (- - 4 5) is irrelevant to the failure-inducing combinations of Ex 1.
 
@@ -716,7 +714,7 @@ This strategy in fact identifies the set of $\mathcal{C}(T_{F_{m}})$, and as $T_
 It is noted that, the FCI approach listed in motivation example in section 2 actually adopted this strategy, which made the combinations identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent combinations of the correct failure-inducing combination(-,-,4,5).
 
 \subsubsection{masking effects for FCI approaches}
-Previously we just discussed how failure-inducing combinations under exhaustive testing. Next we see what traditional FCI will face, i.e., $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ will grow into what.
+Previously we just discussed how failure-inducing combinations under exhaustive testing. Next we see what traditional FCI will face, i.e., $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ will grow into what. As the $predicted$ mechanism is not under controlled as it varies in different FCI approaches, what we need to do is ensure the observed is correctly.
 
 In fact, the masking effects firstly change the $T_{fail_{observed}}$, as masking effects, FCI either will identify $T_{fail_{observed}}$ less or more than it expected to be, as a consequence, regardless of $T_{fail_{predicted}}$ can be, masking effects makes FCI approaches never reach a perfect result, i.e., accurately and completely find each MFS.
 
@@ -742,41 +740,6 @@ Commonly, when we replace the test case that triggers unexpected fault with a ne
 The \emph{fixed part} can be the factors that should not be changed in the OFOT algorithm, or the part that should not be mutated of the test case in the last iteration for FIC\_BS algorithm.
 
 The process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
-
-%\begin{algorithm}
-%  \caption{replace test cases triggering unexpected faults}
-%  \begin{algorithmic}[1]
-%     \Require
-%
-%     $t_{original}$ \Comment{original test case}
-%
-%     $F_{m}$ \Comment{fault type}
-%
-%     $s_{fixed}$ \Comment{fixed part}
-%
-%     $Param$ \Comment{values set that each option can take}
-%
-%
-%     \Ensure  $t_{new}$ \Comment{the regenerate test case}
-%
-%     \While{\textbf{not} MeetEndCriteria()}
-%       \State $s_{mutant} \leftarrow t_{original} - s_{fixed}$
-%       \ForAll {$opt \in s_{mutant}$}
-%          \State $i = getIndex(Param,opt) $
-%          \State $opt \leftarrow opt' \ s.t.\ opt' \in Param[i]\ and\ opt' != opt$
-%       \EndFor
-%       \State $t_{new} \leftarrow s_{fixed} \bigcup s_{mutant} $
-%       \State $result \leftarrow execute(t_{new})$
-%       \If {$result == PASS\ or\ result ==  F_{m}$}
-%         \State \Return $t_{new}$
-%       \Else
-%         \State continue
-%       \EndIf
-%     \EndWhile
-%
-%     \State \Return \emph{null}
-%  \end{algorithmic}
-%\end{algorithm}
 
 \begin{algorithm}[t]
 \SetAlgoNoLine
@@ -847,6 +810,9 @@ $t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
 \multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{3}{l}{} \\
 \end{tabular}}
 \end{table}
+
+
+\subsection{Complexity analysis}
 
 
 \section{empirical studies}
