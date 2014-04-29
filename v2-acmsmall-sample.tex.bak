@@ -696,7 +696,7 @@ As an example, in the motivation example in section 2, the $F_{mask(F_{Ex\ 2})}$
 
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
-In effect for traditional FCI approaches, without knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem. 
+In effect for traditional FCI approaches, without knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem.
 %We will analyse the two strategies under exhaustive testing condition and normal FCI testing condition.
 
 \subsubsection{Regard as one fault}
@@ -715,15 +715,34 @@ This strategy in fact identifies the set of $\mathcal{C}(T_{F_{m}})$, and as $T_
 It is noted that, the FCI approach listed in motivation example in section 2 actually adopted this strategy, which made the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
 
 \subsubsection{masking effects for FCI approaches}
-Previously we just discussed how masking effects affect the exhaustive testing with two strategies. Next we see how traditional FCI process will be interfered with, i.e., how $T_{fail_{observed}}$ and $T_{fail_{predicted}}$ will grow into. As the $predicted$ mechanism is not under controlled as it varies in different FCI approaches, what we need to do is ensure the observed is correctly.
+Previously we just discussed how masking effects affect the exhaustive testing with two strategies. Next we see how traditional FCI process will be interfered with, i.e., how $T_{fail_{observed}}$ and $T_{fail_{predicted}}$ will grow into.
+%As the $predicted$ mechanism is not under controlled as it varies in different FCI approaches, what we need to do is ensure the observed is correctly.
 
+The abstract scenario of FCI approaches with masking effects will grow into the Figure \ref{fig:fci_mask}, in which area A, C and D is the same as Figure \ref{fig:fci_process}. Area B is divided into three sub-areas, in which $B_{1}$ is still the observed failing test cases for the current analysed fault, area $B_{2}$ is the test cases triggered other fault which masked the current fault, area $B_{3}$ is the test cases triggered other fault which did not mask the current fault.
+
+With this model, if we have known which test cases masking the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  However, as we discussed forehead, this is not possible and what can do is the forehead two strategies.
+
+Then for \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.
+
+\begin{figure}
+\centering
+\includegraphics[width=3.31in]{FCI-mask.eps}
+\caption{FCI with masking effects}
+\label{fig:fci_mask}
+\end{figure}
+
+For the first strategy: \emph{regard as one fault}, the influence can be described as following figure.
+
+So what this two mutation than is , we first learn that
+
+So actually, when encountering masking effects, both this two strategies is not good.
 
 
 %Previous analysis just based on the the observed changed, in fact, the if we changing the analysis, the pridicted and observed will aslo be changed?
 
-In fact, the masking effects firstly change the $T_{fail_{observed}}$, as masking effects, FCI either will identify $T_{fail_{observed}}$ less or more than it expected to be, as a consequence, regardless of $T_{fail_{predicted}}$ can be, masking effects makes FCI approaches never reach a perfect result, i.e., accurately and completely find each MFS.
-
-Secondly, as $T_{fail_{observed}}$ changed, $T_{fail_{predicted}}$ consequently changed. As a result, if $T_{fail_{predicted}}$ it can accurate predict without masking effects, then masking effects obviously makes the FCI approaches worse. However, if it originally cannot predicted inaccurately, then this changing will have a possibility make the $T_{fail_{observed}}$ changing better, and of course, it also can have a possibility make the $ T_{fail_{predicted}}$ changing worse.
+%In fact, the masking effects firstly change the $T_{fail_{observed}}$, as masking effects, FCI either will identify $T_{fail_{observed}}$ less or more than it expected to be, as a consequence, regardless of $T_{fail_{predicted}}$ can be, masking effects makes FCI approaches never reach a perfect result, i.e., accurately and completely find each MFS.
+%
+%Secondly, as $T_{fail_{observed}}$ changed, $T_{fail_{predicted}}$ consequently changed. As a result, if $T_{fail_{predicted}}$ it can accurate predict without masking effects, then masking effects obviously makes the FCI approaches worse. However, if it originally cannot predicted inaccurately, then this changing will have a possibility make the $T_{fail_{observed}}$ changing better, and of course, it also can have a possibility make the $ T_{fail_{predicted}}$ changing worse.
 
 \subsection{Summary of the formal model}
 From the analysis of formal model, we can learn that masking effects do influence the FCI approaches, worse more, both strategies \emph{regard as one fault} and \emph{distinguish faults} are harmful, which specifically the former may get the sub-combinations of the failure-inducing combinations or get combinations which are irrelevant to the failure-inducing ones, while the latter may get the parent combinations of the failure-inducing combinations or may ignore some of them.
@@ -818,6 +837,7 @@ $t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
 
 
 \subsection{Complexity analysis}
+This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
 
 \section{empirical studies}
