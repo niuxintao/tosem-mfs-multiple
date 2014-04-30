@@ -608,7 +608,7 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
 %\subsection{Summary of the formal model}
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
 
-\section{Identify the MFS}
+\subsection{Identify the MFS}
 According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
 
 So for traditional FCI approaches, they need to select the subset of the exhaustive test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
@@ -680,7 +680,7 @@ However, even though each FCI approach tries its best to make area B and C as la
 
 
 
-\subsection{Masking effect}
+\section{Masking effect}
 \begin{definition}
 A \emph{masking effect} is the effect that while a test case \emph{t} hit a MFS for a particular fault, however, $t$ didn't trigger the expected fault because other fault was triggered ahead which prevents $t$ to be normally checked.
 
@@ -699,14 +699,14 @@ In practice with masking effects, however, it is not possible to correctly ident
 In effect for traditional FCI approaches, without knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem.
 %We will analyse the two strategies under exhaustive testing condition and normal FCI testing condition.
 
-\subsubsection{Regard as one fault}
+\subsection{Regard as one fault}
 The first one is the most common strategy, it doesn't distinguish the faults, i.e., regard all the types of faults as one fault--\emph{failure}, others as the \emph{pass}.
 
 With this strategy, the FCI process turns into identifying the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the MFS, or irrelevant to the MFS.
 
 As an example, Suppose we take this strategy in the motivation example, then the failure-inducing combinations we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that combination (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the failure-inducing combinations of Ex 2 and (- - 4 5) is irrelevant to the failure-inducing combinations of Ex 1.
 
-\subsubsection{Distinguish faults}
+\subsection{Distinguish faults}
 Distinguishing the faults by the exception traces or error code can help make FCI approaches focus on particular fault. Yilmaz in  \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterize method instead of \emph{ternary-class} approach to make the characterizing process more accurately. Besides, other approaches can also be easily extended with this strategy to be applied on SUT with multiple faults.
 %We call this strategy \emph{distinguish faults}.
 
@@ -714,7 +714,7 @@ This strategy in fact identifies the set of $\mathcal{C}(T_{F_{m}})$, and as $T_
 
 It is noted that, the FCI approach listed in motivation example in section 2 actually adopted this strategy, which made the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
 
-\subsubsection{masking effects for FCI approaches}
+\subsection{masking effects for FCI approaches}
 Previously we just discussed how masking effects affect the exhaustive testing with two strategies. Next we see how traditional FCI process will be interfered with, i.e., how $T_{fail_{observed}}$ and $T_{fail_{predicted}}$ will grow into.
 %As the $predicted$ mechanism is not under controlled as it varies in different FCI approaches, what we need to do is ensure the observed is correctly.
 
@@ -727,12 +727,13 @@ The abstract scenario of FCI approaches with masking effects will grow into the 
 \label{fig:fci_mask}
 \end{figure}
 
-With this model, if we have known which test cases masking the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  However, as we discussed forehead, this is not possible and what can do is the forehead two strategies.
+With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  However, as we discussed forehead, this is not possible and what can do is the forehead two strategies.
 
 Then for \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.
 
+\subsubsection{using regard as one fault strategy}
 
-For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}.
+For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the properties of minimal schemas' relationship between two different set of test cases. We known if we have known masking effects, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, grow into the condition of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical or irrelevant to the known masking effects. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}. 
 
 \begin{figure}
 \centering
@@ -741,17 +742,59 @@ For the first strategy: \emph{regard as one fault}, the influence can be describ
 \label{fig:fci_mask_regard}
 \end{figure}
 
-As for the first one, there are three possiblities, and then less one area make it father schema or identical to the original ones. Then the influnce will dive into figure \ref{fig:fci_mask_regard}. The first two is easy to understand, that identical with identical is also identical, father . 
-The hard to understand is the sub and father, and irrelevant father.
+Now we can easily understand this figure, the left column in this figure means the schemas identified by FCI knowing masking effects at ahead, then as we take the \emph{regard as one fault} strategy, the schemas will be either sub-schema or identical or irrelevant to the previous schemas. So if we originally get the identical schema to actual MFS with knowing masking effects, then after applying the strategy, if we still get the identical as originally identified, then the final result is still identical to the actual MFS, else if we get the sub-schema to the originally identified, then the final result is the sub-schema to the actual MFS. In this figure, the directed-line represent the changing method from the original identified, and the right column represent the final transformed result against the actual MFS.
 
-We prove by this
+Some transformation in this figure is obviously, such as original sub-schema changing by sub-schema is still the sub-schema. Next we just prove the transformation that is hard to understand.
+
+\begin{proposition}
+Original parent-schema, the sub-schema must be irrelevant.
+
+\end{proposition}
+
+%As for the first one, there are three possibilities, and then less one area make it father schema or identical to the original ones. Then the influence will dive into figure \ref{fig:fci_mask_regard}. The first two is easy to understand, that identical with identical is also identical, father .
+%The hard to understand is the sub and father, and irrelevant father.
 
 \begin{proof}
+Without loss of generality, we assume $c$ is the parent schema to the actual MFS. Based on previous proposition 3.12, we have $c \in \mathcal{C}(T_{3})$, which means $c \in \mathcal{C}(B_{1} \bigcup B_{2})$. 
+
+Then apply \emph{regard as one fault}, i.e., the $B_{3}$ is appended for analysis. Now if we find some schema, say $c' \prec c$,s.t., $c' \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3})$, then $T(c')$ must contain some test cases in in $B_{3}$ (if not, $c$ must be the minimal schemas).
+
+This time, for $c'$, as $T(c')$ contain other test cases besides $T_{failing}$, then $c'$ is not the parent-schema or identical of any MFS. And $c'$ is also not possible the sub-schema of some MFS. This is because, based on proposition 3.12, if exist $c_{m}$ is the parent-schema of some identified minimal schema,then the MFS must have $c_{m} \in \mathcal{C}(T_{3})$, and $T(c_{m}) \subset T(c')$. As we see all the set $T(c')$ contained in the failing test cases is $T(c)$. So either $T(c) \supset T(c_{m})$ or  $T(c) = T(c_{m})$, which means that $c \prec c_{m}$ or  $c = c_{m}$, this is impossible as $c$ is the parent-schema of some MFS, and $c_{m}$ is the MFS. So $c'$ is not possible the sub-schema of some MFS.
+
+Thus, at last $c'$ must be irrelevant to the actual MFS.
+\end{proof}
+
+\begin{proposition}
+Original irrelevant, the sub-schema must be irrelevant.
+
+\end{proposition}
+
+\begin{proof}
+Without loss of generality, we assume $c$ is irrelevant to the actual MFS. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{regard as one fault} strategy, the same as the previous proposition, if we have $c' \prec c$, then $T(c')$ must append some test cases in $B_{3}$.
+
+Still $c'$ is not possible the parent-schema or identical ones. If we assume there is MFS $c_{m}$ s.t., $c' \prec c_{m}$, we must have $T(c') \supset T(c_{m})$. Then as $T_{c'}$ is just some test case in $B_{3}$ with $T_{c}$, so we must also have$T_{c} \supset T(c_{m})$, which means $c \prec c_{m}$, which is not possible, as $c$ is irrelevant to the MFS.
+
+Thus,$c'$ must be irrelevant.
+\end{proof}
+
+For the irrelevant transformation, we just prove the transformation for the identical one, as others can be deduced the same way.
+
+\begin{proposition}
+Original identical, the irrelevant must be irrelevant.
+
+\end{proposition}
+
+\begin{proof}
+Without loss of generality, we assume $c$ is identical to the actual MFS. Then as be irrelevant transformation, we get new $c'$ irrelevant to $c$. Similarly as previous propositions, it must have that $T(c')$ contain some test cases in $B_{3}$. And also we can have $T(c') \not\supset T(c)$.
+
+So as T(c') contain other test cases, then $c'$ neither be the parent-schema nor be the identical ones. Then we assume some MFS $c_{m}$, s.t., $c' \prec c_{m}$, s.t., $T(c') \supset T(c_{m})$, So the $c_{m}$ must be in $T_{3}$. So previously we will have, 
 
 \end{proof}
 
-Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
 
+\subsubsection{using distinguish strategy}
+
+Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
 
 And for the second strategy: \emph{distinguish faults}, the influence can be described as Figure \ref{fig:fci_mask_distinguish}.
 \begin{figure}
