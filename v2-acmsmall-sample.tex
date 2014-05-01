@@ -733,7 +733,7 @@ Then for \emph{regard as one fault} strategy, the MFS traditional FCI identify a
 
 \subsubsection{using regard as one fault strategy}
 
-For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the properties of minimal schemas' relationship between two different set of test cases. We known if we have known masking effects, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, grow into the condition of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical or irrelevant to the known masking effects. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}. 
+For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the properties of minimal schemas' relationship between two different set of test cases. We known if we have known masking effects, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, grow into the condition of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical or irrelevant to the known masking effects. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
 
 \begin{figure}
 \centering
@@ -755,7 +755,7 @@ Original parent-schema, the sub-schema must be irrelevant.
 %The hard to understand is the sub and father, and irrelevant father.
 
 \begin{proof}
-Without loss of generality, we assume $c$ is the parent schema to the actual MFS. Based on previous proposition 3.12, we have $c \in \mathcal{C}(T_{3})$, which means $c \in \mathcal{C}(B_{1} \bigcup B_{2})$. 
+Without loss of generality, we assume $c$ is the parent schema to the actual MFS. Based on previous proposition 3.12, we have $c \in \mathcal{C}(T_{3})$, which means $c \in \mathcal{C}(B_{1} \bigcup B_{2})$.
 
 Then apply \emph{regard as one fault}, i.e., the $B_{3}$ is appended for analysis. Now if we find some schema, say $c' \prec c$,s.t., $c' \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3})$, then $T(c')$ must contain some test cases in in $B_{3}$ (if not, $c$ must be the minimal schemas).
 
@@ -777,17 +777,17 @@ Still $c'$ is not possible the parent-schema or identical ones. If we assume the
 Thus,$c'$ must be irrelevant.
 \end{proof}
 
-For the irrelevant transformation, we just prove the transformation for the identical one, as others can be deduced the same way.
+For the newly derived irrelevant ones, we can have
 
 \begin{proposition}
-Original identical, the irrelevant must be irrelevant.
+Newly irrelevant ones must be irrelevant to MFS.
 
 \end{proposition}
 
 \begin{proof}
 Without loss of generality, we assume $c$ is identical to the actual MFS. Then as be irrelevant transformation, we get new $c'$ irrelevant to $c$. Similarly as previous propositions, it must have that $T(c')$ contain some test cases in $B_{3}$. And also we can have $T(c') \not\supset T(c)$.
 
-So as T(c') contain other test cases, then $c'$ neither be the parent-schema nor be the identical ones. Then we assume some MFS $c_{m}$, s.t., $c' \prec c_{m}$, s.t., $T(c') \supset T(c_{m})$, So the $c_{m}$ must be in $T_{3}$. So previously we will have, 
+So as T(c') contain other test cases, then $c'$ neither be the parent-schema nor be the identical ones. Then we assume some MFS $c_{m}$, s.t., $c' \prec c_{m}$, s.t., $T(c') \supset T(c_{m})$, So the $c_{m}$ must be in $T_{3}$. So previously we will have,
 
 \end{proof}
 
