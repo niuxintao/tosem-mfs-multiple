@@ -657,7 +657,7 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach into this formal description as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
 
 We can see in this figure, area A denotes the test cases that should be passing while it predicted to be failing , area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor predicted.  This figure is actually one sample of the condition that two set of test cases interest with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$.
- 
+
 We learned previously this scenario makes the schemas identified in $T_{1}$ based from the expected MFS in $T_{2}$, in specific, their must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that FCI approach will identify some minimal schemas that is irrelevant to actual MFS, and must ignore some actual MFS. Moreover, under the appropriate condition list in proposition 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So for FCI approaches aiming to identify the schemas as accurate as possible, it needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
 
 However, even though each FCI approach tries its best to make area B and C as large as possible, masking effects raised from test cases will make their efforts in vain. We next will discusses the masking problem and how it affect the FCI approaches.
@@ -735,7 +735,7 @@ Then for \emph{regard as one fault} strategy, the MFS traditional FCI identify a
 
 \subsubsection{using regard as one fault strategy}
 
-For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the properties of minimal schemas' relationship between two different set of test cases. We known if we have known masking effects, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, grow into the condition of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical or irrelevant to the known masking effects. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
+For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the properties of minimal schemas' relationship between two different set of test cases. We known if we have known masking effects, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, grow into the condition of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical to some schemas from the known masking effects, or irrelevant to all the ones. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
 
 \begin{figure}
 \centering
@@ -787,7 +787,7 @@ Newly irrelevant ones must be irrelevant or subsume to MFS.
 \end{proposition}
 
 \begin{proof}
-Without loss of generality, we get new $c$ irrelevant to $\mathcal{C}(A \bigcup B_{1} \bigcup B_{3})$. Similarly as previous propositions, it must have that $T(c)$ contain some test cases in $B_{3}$. 
+Without loss of generality, we get new $c$ irrelevant to $\mathcal{C}(A \bigcup B_{1} \bigcup B_{3})$. Similarly as previous propositions, it must have that $T(c)$ contain some test cases in $B_{3}$.
 
 So as T(c) contain other test cases, then $c$ neither be the parent-schema nor be the identical ones. %Then we assume some MFS $c_{m}$, s.t., $c \prec c_{m}$, s.t., $T(c) \supset T(c_{m})$, So the $T(c_{m})$ must be included in $T_{3}$. So previously we will have,
 
@@ -806,10 +806,30 @@ And for the second strategy: \emph{distinguish faults}, the influence can be des
 \label{fig:fci_mask_distinguish}
 \end{figure}
 
+This figure is organised the same way as figure \ref{fig:fci_mask_regard}. As with distinguish strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So this transformation should be either parent-schema or identical to the originally schemas.
 
-So what this two mutation than is , we first learn that
+Similarly, we just give the proof of some transformation that is not so obviously.
+\begin{proposition}
+Original sub-schema, the parent-schema must be irrelevant.
 
-So actually, when encountering masking effects, both this two strategies is not good.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+
+\begin{proposition}
+Original identical-schema, the parent-schema must be irrelevant.
+
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
+%So what this two mutation than is , we first learn that
+%
+%So actually, when encountering masking effects, both this two strategies is not good.
 
 
 %Previous analysis just based on the the observed changed, in fact, the if we changing the analysis, the pridicted and observed will aslo be changed?
@@ -819,15 +839,15 @@ So actually, when encountering masking effects, both this two strategies is not 
 %Secondly, as $T_{fail_{observed}}$ changed, $T_{fail_{predicted}}$ consequently changed. As a result, if $T_{fail_{predicted}}$ it can accurate predict without masking effects, then masking effects obviously makes the FCI approaches worse. However, if it originally cannot predicted inaccurately, then this changing will have a possibility make the $T_{fail_{observed}}$ changing better, and of course, it also can have a possibility make the $ T_{fail_{predicted}}$ changing worse.
 
 \subsection{Summary of the masking effects on FCI approach}
-From the analysis of formal model, we can learn that masking effects do influence the FCI approaches, worse more, both strategies \emph{regard as one fault} and \emph{distinguish faults} are harmful, which specifically the former may get the sub-combinations of the failure-inducing combinations or get combinations which are irrelevant to the failure-inducing ones, while the latter may get the parent combinations of the failure-inducing combinations or may ignore some of them.
+From the analysis of formal model, we can learn that masking effects do influence the FCI approaches, worse more, both strategies \emph{regard as one fault} and \emph{distinguish faults} are harmful, which specifically the former comparing the knowing masking effects have a large possibility that get more sub-schemas of the actual MFS and get more schemas which are irrelevant to the MFS, while the latter may get more parent schemas of the MFS and get more irrelevant MFS and also may ignore some of them.
 
 Note that our discussion is based on that SUT is a deterministic software, i.e., the random failing information of test case will be ignored. The non-deterministic problem will complex our test scenario, which will not be discussed in this paper.
 
 \section{Test case replacing strategy}
 %Previous section formally studied the case that under the masking effects, neither regarding as one fault approach nor distinguishing faults approach is not accurate .
-The main reason why both strategies cannot accurately identify the failure-inducing combinations is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subset \bigcup_{i = 1 \& j \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other faults as much as possible.
+The main reason why both strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subset \bigcup_{i = 1 \& j \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other faults as much as possible.
 
-In the exhaustive testing, as all the test cases will be used to identify the failure-inducing combinations, there is no room left to improve accuracy. However, when just needing to select part of the whole test cases to identify failure-inducing combinations, which is practical and sometimes the only solution for large-scale SUT, we can adjust the test cases we need to use by selecting proper ones so that we can limit the size of $T(mask_{F_{m}})$ to be as small as possible.
+In the exhaustive testing, as all the test cases will be used to identify the MFS, there is no room left to improve accuracy. However, when just needing to select part of the whole test cases to identify MFS, which is practical and sometimes the only solution for large-scale SUT, we can adjust the test cases we need to use by selecting proper ones so that we can limit the size of $T(mask_{F_{m}})$ to be as small as possible.
 
 \subsection{Replace test case triggering unexpected fault}
 
@@ -880,13 +900,13 @@ In this paper, we just set 3 as the biggest repeated times for this function. Wh
 \subsection{A case study with the replacing strategy}
 %Next we will take the FCI approach--OFOT algorithm as the subject to see how our approach works on them.
 
-Suppose we have to test a system with four parameters, each has three options. And when we execute the test case (0 0 0 0), a failure--$Err 1$ is triggered. Next we will use the FCI approach -- OFOT with replacing strategy to identify the failure-inducing combinations for the $Err 1$. The process is listed in Table \ref{ofot-aug}. In this table, the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
+Suppose we have to test a system with four parameters, each has three options. And when we execute the test case (0 0 0 0), a failure--$Err 1$ is triggered. Next we will use the FCI approach -- OFOT with replacing strategy to identify the MFS for the $Err 1$. The process is listed in Table \ref{ofot-aug}. In this table, the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
 
-From table \ref{ofot-aug}, we can find the algorithm mutates one factor to take the different value from the original test case one time. Originally if the test case encounter the result different from the expected error, OFOT will derive the fact that the failure-inducing combination was broken, in another word, if we change one factor and it does not trigger the expect error, we will label it as one failure-inducing factor, after we changed all the elements, we will get the failure-inducing combinations. For this case, if we take the \emph{regard as one fault} strategy, then the failure-inducing combination we got is (- - - 0) because the last case passed test case while the remaining test cases triggered either $Err 1$ or $Err 2$(regard as one fault).  Additionally when we take the \emph{distinguish faults} strategy, the failure-inducing combinations obtained is (- 0 0 0) as when we changed the second factor, third factor and the fourth factor, it didn't trigger the $Err 1$ ( for second factor, it triggered $Err 2$ and for the third and fourth, it passed).
+From table \ref{ofot-aug}, we can find the algorithm mutates one factor to take the different value from the original test case one time. Originally if the test case encounter the result different from the expected error, OFOT will derive the fact that the MFS was broken, in another word, if we change one factor and it does not trigger the expect error, we will label it as one failure-inducing factor, after we changed all the elements, we will get the MFS. For this case, if we take the \emph{regard as one fault} strategy, then the MFS we got is (- - - 0) because the last case passed test case while the remaining test cases triggered either $Err 1$ or $Err 2$(regard as one fault).  Additionally when we take the \emph{distinguish faults} strategy, the MFS obtained is (- 0 0 0) as when we changed the second factor, third factor and the fourth factor, it didn't trigger the $Err 1$ ( for second factor, it triggered $Err 2$ and for the third and fourth, it passed).
 
 % So if we do not regenerate the test configuration (0 2 0 0), we will get the MFS -- ( - 0 0 0) for the err 1(which are also labeled with a delete line).
 
-However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0) which triggered err 1 (in this case, the fixed part of the test case is (0, - - -)), and replace the test case $t_{3}$--(0 0 1 0) with $t_{3}'$--(0 0 2 0) which passed, we will find that only when we change the third and fourth factor will we broke the failure-inducing combination for err 1, therefore,  the failure-inducing combination for err 1 should be (- - 0 0).
+However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0) which triggered err 1 (in this case, the fixed part of the test case is (0, - - -)), and replace the test case $t_{3}$--(0 0 1 0) with $t_{3}'$--(0 0 2 0) which passed, we will find that only when we change the third and fourth factor will we broke the MFS for err 1, therefore,  the failure-inducing combination for err 1 should be (- - 0 0).
 
 
 \begin{table}[h]
@@ -911,6 +931,14 @@ $t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
 
 
 \subsection{Complexity analysis}
+This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be selected to generate a non-masking-effects test case to replace a test case that trigger the other fault. The last complexity is the product of this two factor.
+
+The first factor is according to the extra test cases that needed to identify the MFS in the failing test cases, following table list the algorithms that needed to get a .
+
+
+
+To get the first complexity of the first factor, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. 
+
 This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
 
@@ -922,6 +950,8 @@ We conducted several empirical studies to address the following questions:
 \textbf{Q2}: How much do traditional approaches suffer from these real masking effects?
 
 \textbf{Q3}: Can our approach do better than traditional approaches when facing these masking effects?
+
+\textbf{Q4}: Comparing with 
 
 \textbf{Q4}: Does voting system that consists of different approaches can make improvements?
 %

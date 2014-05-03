@@ -857,6 +857,8 @@ Commonly, when we replace the test case that triggers unexpected fault with a ne
 
 The \emph{fixed part} can be the factors that should not be changed in the OFOT algorithm, or the part that should not be mutated of the test case in the last iteration for FIC\_BS algorithm.
 
+It is noted that this replacement may need to execute multiple times for one fixed part as we could not always find a test case that happen to satisfy our requirement. Our previous work just randomly choose test cases until find one satisfied test case. That brute method may be simple and really works, but also may need too many test cases to get one satisfied test case, which contain many wasteful trial. So to handle this problem and reduce the cost, we augment our approach with one data structure -- "suspicious set", which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other faults.
+
 The process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
 
 \begin{algorithm}[t]
@@ -931,7 +933,16 @@ $t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
 
 
 \subsection{Complexity analysis}
-This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
+This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be selected to generate a non-masking-effects test case to replace a test case that trigger the other fault. The last complexity is the product of this two factor.
+
+The first factor is according to the extra test cases that needed to identify the MFS in the failing test cases, following table list the algorithms that needed to get a .
+
+To get the complexity of the second factor, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part.
+
+
+This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
+%
+%This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
 
 \section{empirical studies}
@@ -943,7 +954,9 @@ We conducted several empirical studies to address the following questions:
 
 \textbf{Q3}: Can our approach do better than traditional approaches when facing these masking effects?
 
-\textbf{Q4}: Does voting system that consists of different approaches can make improvements?
+\textbf{Q4}: Comparing with previous work, do our new approach get improvement in handling effects and limiting the costs(reducing extra test cases).
+
+\textbf{Q5}: Does voting system that consists of different approaches can make improvements?
 %
 %Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
