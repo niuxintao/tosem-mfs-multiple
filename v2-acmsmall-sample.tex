@@ -814,7 +814,9 @@ Original sub-schema, the parent-schema must be irrelevant.
 
 \end{proposition}
 \begin{proof}
+Without loss of generality, we assume $c$ is sub-schema to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
 
+So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
 \end{proof}
 
 
@@ -823,7 +825,9 @@ Original identical-schema, the parent-schema must be irrelevant.
 
 \end{proposition}
 \begin{proof}
+Without loss of generality, we assume $c$ is irrelevant to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
 
+So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
 \end{proof}
 
 Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
