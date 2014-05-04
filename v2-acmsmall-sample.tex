@@ -369,7 +369,7 @@ For example, table \ref{example_minimal_schemas} lists the $S(T)$ and minimal sc
   }
   \end{table}
 
-Let $\mathcal{C}(T_{F_{m}})$ denote the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. And obviously for $\forall c_{m}$ we have $\mathcal{C}(T(c_{m})) = \{c_{m}\}$.
+Let $\mathcal{C}(T_{F_{m}})$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. And obviously for $\forall c_{m}$ we have $\mathcal{C}(T(c_{m})) = \{c_{m}\}$.
 
 From the construction process of $\mathcal{C}(T)$, one observation is that the schemas in $S(T)$ either belongs to $\mathcal{C}(T)$, or be the parent schema of one element of $\mathcal{C}(T)$. Then we can have the following proposition.
 \begin{proposition}
@@ -388,7 +388,7 @@ From the construction process of $\mathcal{C}(T)$, one observation is that the s
 %Further observation,
 %
 %From this two observation, we can have the following lemma:
-For two different set of test cases, there exist some relationships between the minimal schemas of these two set, which varies in the relevancy between this two different set of test cases. In fact, there are three possible associations between two different set of test cases: \emph{inclusion}, \emph{disjoint}, and \emph{intersection} as listed in figure \ref{fig:testSuite}. We didn't list the condition that two set that are identical, because on that condition the minimal schemas must also be identical by proposition 3.6. To discuss the properties of the relationship of the minimal schemas between two different set of test cases is important as we can learn later the masking effects between multiple faults will make the MFS identifying process incorrectly works, i.e., these FCI approaches may isolate the minimal schemas for biased set of test cases from the expected failing set of test cases.  Next we will separately discuss the relationship between minimal schemas under the three conditions.
+For two different set of test cases, there exist some relationships between the minimal schemas of these two set, which varies in the relevancy between this two different set of test cases. In fact, there are three possible associations between two different set of test cases: \emph{inclusion}, \emph{disjoint}, and \emph{intersection} as listed in figure \ref{fig:testSuite}. We didn't list the condition that two set that are identical, because on that condition the minimal schemas must also be identical. To discuss the properties of the relationship of the minimal schemas between two different set of test cases is important as we can learn later the masking effects between multiple faults will make the MFS identifying process incorrectly works, i.e., these FCI approaches may isolate the minimal schemas for the set of test cases which are biased from the expected failing set of test cases. And these properties can help us to figure out the impact of masking effects on the FCI approaches. Next we will separately discuss the relationship between minimal schemas under the three conditions.
 
 \begin{figure*}[ht]
 \centering
@@ -423,7 +423,8 @@ For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$
 
 \begin{proof}
 Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
-\end{proof}.
+\end{proof}
+
 Based on this proposition, in fact, the $c_{k} \in \mathcal{C}(T_{k})$  remains the following three possibilities: 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
 
 We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, each part shows two set of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. For the left part, we can see that the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the parent of the schema of the one in $\mathcal{C}(T_{k})$:(0,-,-). While for the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
@@ -503,11 +504,11 @@ This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario
  It must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$are irrelevant.
 \end{proposition}
 \begin{proof}
-Firstly, we can learn that $\mathcal{C}(T_{1} - T_{3})$ are irrelevant to $\mathcal{C}(T_{2} - T_{3})$, as $T_{1} - T_{3} \bigcap T_{2} - T_{3} = \emptyset$.
+Firstly, we can learn that $\mathcal{C}(T_{1} - T_{3})$ are irrelevant to $\mathcal{C}(T_{2} - T_{3})$, as $(T_{1} - T_{3}) \bigcap (T_{2} - T_{3}) = \emptyset$.
 
 As $\mathcal{C}(T_{1} - T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them. If some of them are identical, then these identical ones must be irrelevant to $ \mathcal{C}(T_{2})$ as $T_{1} - T_{3} \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} - T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
 
-Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we make $c_{1-3} \prec c_{1}$ ($c_{1-3}\in\mathcal{C}(T_{1} - T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2-3}\prec c_{2}$ ($c_{2-3}\in\mathcal{C}(T_{2} - T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $T(c_{1}) \supset T(c_{1-3})$ and  $T(c_{2}) \supset T(c_{1-3})$. And as $ T(c_{1-3}) \bigcap  T(c_{2-3}) = \emptyset $  So $T(c_{1})$ and $T(c_{2})$ are neither identical nor including each other.
+Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we make $c_{1-3} \prec c_{1}$, ($c_{1-3}\in\mathcal{C}(T_{1} - T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2-3}\prec c_{2}$, ($c_{2-3}\in\mathcal{C}(T_{2} - T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $T(c_{1}) \supset T(c_{1-3})$ and  $T(c_{2}) \supset T(c_{1-3})$. And as $ T(c_{1-3}) \bigcap  T(c_{2-3}) = \emptyset $  So $T(c_{1})$ and $T(c_{2})$ are neither identical nor subsuming each other.
 \end{proof}
 
 For example, Table \ref{example_intersect_irrelevant} shows two test cases interact each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0) respectively, are irrelevant to each other.
@@ -532,7 +533,7 @@ If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \math
 As we get that the identical schema must share the identical test cases, then the only identical test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-We must know that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ also in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, this can be satisfied at some condition because $T_{3} \in T_{1}$ and  $T_{3} \in T_{2}$.
+We must know that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ is identical some schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
 
 For example, Table \ref{example_intersect_identical} shows two test cases interact each other at test cases (1,1,0)and (1,1,1), and they have identical minimal schemas, i.e., (1,1,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
 
@@ -559,10 +560,10 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
 If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, Then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
 \end{proposition}
 \begin{proof}
-It is also obviously that if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset  T_{3} $  and $T_{2} \subset  T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
+We have proved previously if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset  T_{3} $  and $T_{2} \subset  T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-It is noted that this proposition holds when holds when some schema in $\mathcal{C}(T_{3})$ is also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the parent-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
+It is noted that this proposition holds when holds when some schema in $\mathcal{C}(T_{3})$ is identical in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the parent-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
 Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0),which is also the schemas in $\mathcal{C}(T_{3})$, is the parent schema of the minimal schema of $T_{2}$: (1,-,-).
 
@@ -584,7 +585,7 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
   }
   \end{table}
 
- It is noted that this three scenario can appear at one time.%, like Table \ref{example_intersect_all}.
+ It is noted that this three condition can simultaneously appears when two set of test cases interest with each other.%, like Table \ref{example_intersect_all}.
 
 %\begin{table}
 %\centering
@@ -609,11 +610,11 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
 
 \subsection{Identify the MFS}
-According to aforehand analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
+According to these analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
 
 So for traditional FCI approaches, they need to select the subset of the exhaustive test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
 %Formally, we can describe the two ways as following:
-We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaining test cases the approach predict to be failed as $T_{fail_{predicted}}$. We also denote the actual complete failing test cases as $T_{fail}$Then the MFS identified by FCI approaches can be depicted as:
+We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaining test cases the approach predict to be failed as $T_{fail_{predicted}}$. We also denote the actually entire failing test cases as $T_{fail}$. Then the MFS identified by FCI approaches can be depicted as:
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
@@ -654,13 +655,13 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 \label{fig:fci_process}
 \end{figure}
 
-Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach into this formal description as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
+Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
 
-We can see in this figure, area A denotes the test cases that should be passing while it predicted to be failing , area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor predicted.  This figure is actually one sample of the condition that two set of test cases interest with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$.
+We can see in this figure, area A denotes the test cases that should be passing ones while it predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor to be predicted.  This figure is actually one sample of the condition that two set of test cases interest with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$.
 
-We learned previously this scenario makes the schemas identified in $T_{1}$ based from the expected MFS in $T_{2}$, in specific, their must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that FCI approach will identify some minimal schemas that is irrelevant to actual MFS, and must ignore some actual MFS. Moreover, under the appropriate condition list in proposition 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So for FCI approaches aiming to identify the schemas as accurate as possible, it needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
+We learned previously this scenario makes the schemas identified in $T_{1}$ biased from the expected MFS in $T_{2}$, in specific, their must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that FCI approach will identify some minimal schemas that is irrelevant to actual MFS, and must ignore some actual MFS. Moreover, under the appropriate condition list in proposition 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So in order to identify the schemas as accurate as possible, the FCI approach needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
 
-However, even though each FCI approach tries its best to make area B and C as large as possible, masking effects raised from test cases will make their efforts in vain. We next will discusses the masking problem and how it affect the FCI approaches.
+However, even though each FCI approach tries its best to identify the MFS as accurate as possible, masking effects raised from test cases will make their efforts in vain. We next will discusses the masking problem and how it affect the FCI approaches.
 %Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
 %
 %\begin{proposition}
@@ -706,7 +707,7 @@ The first one is the most common strategy, it doesn't distinguish the faults, i.
 
 With this strategy, the FCI process turns into identifying the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the MFS, or irrelevant to the MFS.
 
-As an example, Suppose we take this strategy in the motivation example, then the failure-inducing combinations we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that combination (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the failure-inducing combinations of Ex 2 and (- - 4 5) is irrelevant to the failure-inducing combinations of Ex 1.
+As an example, Suppose we take this strategy in the motivation example, then the MFS we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that schemas (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the MFS of Ex 2 and (- - 4 5) is irrelevant to the MFS of Ex 1.
 
 \subsection{Distinguish faults}
 Distinguishing the faults by the exception traces or error code can help make FCI approaches focus on particular fault. Yilmaz in  \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterize method instead of \emph{ternary-class} approach to make the characterizing process more accurately. Besides, other approaches can also be easily extended with this strategy to be applied on SUT with multiple faults.
@@ -939,12 +940,55 @@ $t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
 \subsection{Complexity analysis}
 This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be selected to generate a non-masking-effects test case to replace a test case that trigger the other fault. The last complexity is the product of this two factor.
 
-The first factor is according to the extra test cases that needed to identify the MFS in the failing test cases, following table list the algorithms that needed to get a .
+The first factor is according to the extra test cases that needed to identify the MFS in the failing test cases, this number varies in different FCI approaches, Table \ref{extra-testcases-complexisty} list the number of test cases that each algorithms that needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the degree of the MFS in the SUT. \emph{c} is an upper bond, satisfies, $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
 
-To get the complexity of the second factor, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part.
+\begin{table}
+\centering
+\tbl{The number of test cases each FCI approach needed to identify MFS\label{extra-testcases-complexisty}}{
+  \begin{tabular}{c | c}
+\bfseries Method & \bfseries number of test cases to identify MFS\\ \hline
+Charles ELA &  \\
+Martinez’ with safe value \cite{martinez2008algorithms,martinez2009locating} & $O(\hat{d}log k + \hat{d}^{2})$ \\
+Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} & $O(d^{2} + dlog k + log^{c} k)$  \\
+Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} &  $ds^{v}log k$\\
+Shi SOFOT \cite{shi2005software}& $k$ \\
+Nie OFOT \cite{nie2011minimal} & $kd$\\
+Ylimaz classification tree & \\
+FIC \cite{zhang2011characterizing} &  $k$ \\
+FIC\_BS \cite{zhang2011characterizing}& $t(log k + 1) + 1$\\
+Ghandehari's suspicous based  \cite{ghandehari2012identifying}& \\
+TRT \cite{niu2013identifying}&  \\
+  \end{tabular}
+  }
+  \end{table}
 
+It must be noted that each algorithm may be limited to some restrictions to identify the result, details can be saw in \cite{zhang2011characterizing}.
 
-This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
+To get the complexity of the second factor, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. This complexity also varies in the adaptive method and non-adaptive. Adaptive method, is commonly identify the MFS in a existed failing test case, while non-adaptive will not limited to this existed failing test case. We can generate $v^{k - p}$  (\emph{p} is the number of factors in the \emph{fixed} part)possible test cases that contain the \emph{fixed} part. Apart from the one that need to be replaced, there remain $v^{k - p} - 1$. For non-adaptive method, in theory, all the remained $v^{k - p} -1$ can trigger other faults, which indicates the complexity is $O(v^{k - p} - 1)$. While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
+
+It is noted that exponential factor $k - p$ directly affects the complexity of the second factor, the more $p$ is, the less test cases could be generated. For different approach, $p$ is different. As for OFOT, $p$ is a fixed number, which is $k - 1$, it is the minimal number of the test cases we need to give. While for FIC\_BS, the $p$ varies in the test cases it generates, ranges from $k-1$ to $1$. While for non-adaptive, as the $fixed $ part is the coverage, we list them as $t$ and this is also for suspicious. We list them all in Table \ref{fixed-part-complexisty}.
+
+\begin{table}
+\centering
+\tbl{The complexity of second part\label{fixed-part-complexisty}}{
+  \begin{tabular}{c | c}
+\bfseries Method & \bfseries fixed part\\ \hline
+Charles ELA &   $O(v^{k - t} - 1)$\\
+Martinez’ with safe value \cite{martinez2008algorithms,martinez2009locating} &$O(v - 2) ~ O(v^{k - 1} - 2)$\\
+Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$O(v - 2) ~ O(v^{k - 1} - 2)$  \\
+Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O(v^{k - t} - 1)$\\
+Shi SOFOT \cite{shi2005software}& $O(v - 2) $\\
+Nie OFOT \cite{nie2011minimal} & $O(v - 2)$\\
+Ylimaz classification tree & $O(v^{k - t} - 1)$\\
+FIC \cite{zhang2011characterizing} &  $O(v - 2) ~ O(v^{k - 1} - 2)$\\
+FIC\_BS \cite{zhang2011characterizing}& $O(v - 2) ~ O(v^{k - 1} - 2)$\\
+Ghandehari's suspicous based  \cite{ghandehari2012identifying}&$ O(v^{k - t} - 2)$\\
+TRT \cite{niu2013identifying}&$ O(v - 2) ~ O(v^{k - 1} - 2) $\\
+  \end{tabular}
+  }
+  \end{table}
+
+The production of this two complexity is the final complexity for our approach. This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
 %
 %This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
@@ -1063,7 +1107,7 @@ We then generated the exhaustive test suite consist of all the possible combinat
 }
 \end{table}
 
-\subsubsection{Result and discusssion}
+\subsubsection{Result and discussion}
 
 Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" give the total number of test cases we executed , Column ``failure" indicate the number of test cases that failed during testing and Column ``masking" indicate the number of test cases which trigger the masking effect.
 

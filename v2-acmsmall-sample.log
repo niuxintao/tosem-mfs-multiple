@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  3 MAY 2014 22:24
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  4 MAY 2014 23:05
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -317,52 +317,47 @@ File: testSuite2.eps Graphic file (type eps)
  <testSuite2.eps>
 File: testSuite3.eps Graphic file (type eps)
  <testSuite3.eps> [8] [9]
-Underfull \hbox (badness 2050) in paragraph at lines 525--525
+Underfull \hbox (badness 2050) in paragraph at lines 526--526
 \OT1/phv/m/n/8 In-ter-sec-t by ir-rel-e-van-
  []
 
 [10]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: FCI.eps Graphic file (type eps)
-<FCI.eps>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+File: FCI.eps Graphic file (type eps)
 
- [12]
-Underfull \vbox (badness 1546) has occurred while \output is active []
-
- [13]
+<FCI.eps> [12] [13]
 File: FCI-mask.eps Graphic file (type eps)
-
-<FCI-mask.eps>
-Underfull \hbox (badness 3547) in paragraph at lines 734--735
+ <FCI-mask.eps>
+Underfull \hbox (badness 3547) in paragraph at lines 735--736
 []\OT1/pnc/m/n/10 Then for \OT1/pnc/m/it/10 re-gard as one fault \OT1/pnc/m/n/1
 0 s-trat-e-gy, the MF-S tra-di-tion-al F-CI i-den-ti-fy
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 734--735
+Underfull \hbox (badness 2903) in paragraph at lines 735--736
 \OT1/pnc/m/n/10 are $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B
 [] [] B[] [] B[] [] C\OT1/cmr/m/n/10 )$\OT1/pnc/m/n/10 . And for \OT1/pnc/m/it/
 10 dis-tin-guish fault-s \OT1/pnc/m/n/10 s-trat-e-gy, the MF-S is
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 738.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 739.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
 File: fci-mask-influence2.eps Graphic file (type eps)
-<fci-mask-influence2.eps> [14] [15]
+<fci-mask-influence2.eps>
+Underfull \vbox (badness 1616) has occurred while \output is active []
+
+ [14]
+[15]
 File: fci-mask-influence.eps Graphic file (type eps)
  <fci-mask-influence.eps> [16] [17]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 866.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 871.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -372,60 +367,70 @@ Requested font "cmmi9" at 9.0pt
 Requested font "cmsy9" at 9.0pt
  -> cmsy9
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 866.
+(Font)              <9> on input line 871.
 Requested font "lasy9" at 9.0pt
  -> lasy9
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 882.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 887.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 885.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 890.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
  [18]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [19]
+Missing character: There is no ^^92 in font pncr7t!
+Missing character: There is no ^^92 in font pncr7t!
+
+Underfull \vbox (badness 1097) has occurred while \output is active []
+
+ [20]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
- [20] [21] [22]
+
+[21]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22] [23]
 File: FIC_BS_normal.eps Graphic file (type eps)
  <FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps>
-[23]
+ <CTA_normal.eps> [24]
 File: FIC_BS_our.eps Graphic file (type eps)
- <FIC_BS_our.eps>
+
+<FIC_BS_our.eps>
 File: OFOT_our.eps Graphic file (type eps)
  <OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
- <CTA_our.eps> [24]
+ <CTA_our.eps> [25] [26] [27]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-[26]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [27]
+ [28]
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
- [28]
+ [29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29])
-[30] [1
+ [30])
+[31] [1
 
 ] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 2778 strings out of 430478
- 33785 string characters out of 3191502
- 110352 words of memory out of 3000000
- 5896 multiletter control sequences out of 15000+200000
+ 2780 strings out of 430478
+ 33838 string characters out of 3191502
+ 114377 words of memory out of 3000000
+ 5898 multiletter control sequences out of 15000+200000
  18361 words of font info for 53 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  32i,14n,27p,1539b,496s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (31 pages).
+Output written on v2-acmsmall-sample.pdf (32 pages).
