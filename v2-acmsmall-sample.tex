@@ -699,29 +699,29 @@ As an example, in the motivation example in section 2, the $F_{mask(F_{Ex\ 2})}$
 
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
-In effect for traditional FCI approaches, without knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem.
-%We will analyse the two strategies under exhaustive testing condition and normal FCI testing condition.
+In effect for traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem. We will separately analyse the two strategies under exhaustive testing condition and normal FCI testing condition.
+\subsection{masking effects for exhaustive testing}
 
-\subsection{Regard as one fault}
-The first one is the most common strategy, it doesn't distinguish the faults, i.e., regard all the types of faults as one fault--\emph{failure}, others as the \emph{pass}.
+\subsubsection{Regard as one fault}
+The first one is the most common strategy, it doesn't distinguish the faults, i.e., regard all the types of faults as one fault--\emph{failure}, others as \emph{pass}.
 
-With this strategy, the FCI process turns into identifying the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the MFS, or irrelevant to the MFS.
+With this strategy, The minimal schemas we identify are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the actual MFS, or irrelevant to the actual MFS.
 
-As an example, Suppose we take this strategy in the motivation example, then the MFS we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that schemas (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the MFS of Ex 2 and (- - 4 5) is irrelevant to the MFS of Ex 1.
+As an example, Suppose we take this strategy in the motivation example, then the minimal schemas we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that schemas (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the MFS of Ex 2 and (- - 4 5) is irrelevant to the MFS of Ex 1.
 
-\subsection{Distinguish faults}
-Distinguishing the faults by the exception traces or error code can help make FCI approaches focus on particular fault. Yilmaz in  \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterize method instead of \emph{ternary-class} approach to make the characterizing process more accurately. Besides, other approaches can also be easily extended with this strategy to be applied on SUT with multiple faults.
+\subsubsection{Distinguish faults}
+Distinguishing the faults by the exception traces or error code can help make the MFS related to particular fault. Yilmaz in  \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of \emph{ternary-class} approach to make the characterizing process more accurately. Besides, other approaches can also be easily extended with this strategy to be applied on SUT with multiple faults.
 %We call this strategy \emph{distinguish faults}.
 
-This strategy in fact identifies the set of $\mathcal{C}(T_{F_{m}})$, and as $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, consequently, some schemas get through this strategy may be the parent-schema of some MFS. Moreover, some MFS may be irrelevant to the schemas get with this strategy, which means this schemas set ignore these MFS.
+This strategy focus identifying the set of $\mathcal{C}(T_{F_{m}})$, and as $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, consequently, some schemas get through this strategy may be the parent-schema of some MFS. Moreover, some MFS may be irrelevant to the schemas get with this strategy, which means this strategy will ignore these MFS.
 
-It is noted that, the FCI approach listed in motivation example in section 2 actually adopted this strategy, which made the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
+It is noted that, motivation example in section 2 actually adopted this strategy, which made the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
 
 \subsection{masking effects for FCI approaches}
-Previously we just discussed how masking effects affect the exhaustive testing with two strategies. Next we see how traditional FCI process will be interfered with, i.e., how $T_{fail_{observed}}$ and $T_{fail_{predicted}}$ will grow into.
+%Previously we just discussed how masking effects affect the exhaustive testing with two strategies. Next we see how traditional FCI process will be interfered with, i.e., how $T_{fail_{observed}}$ and $T_{fail_{predicted}}$ will grow into.
 %As the $predicted$ mechanism is not under controlled as it varies in different FCI approaches, what we need to do is ensure the observed is correctly.
 
-The abstract scenario of FCI approaches with masking effects will grow into the Figure \ref{fig:fci_mask}, in which area A, C and D is the same as Figure \ref{fig:fci_process}. Area B is divided into three sub-areas, in which $B_{1}$ is still the observed failing test cases for the current analysed fault, area $B_{2}$ is the test cases triggered other fault which masked the current fault, area $B_{3}$ is the test cases triggered other fault which did not mask the current fault.
+With masking effects, the scenario of traditional FCI approaches is a bit complicated than previous two exhaustive testing scenario, which can be depicted in the Figure \ref{fig:fci_mask}. In this figure,  area A, C and D is the same as Figure \ref{fig:fci_process},  area B is divided into three sub-areas, in which $B_{1}$ is still the observed failing test cases for the current analysed fault, area $B_{2}$ is the test cases triggered other fault which masked the current fault and area $B_{3}$ is the test cases triggered other fault which did not mask the current fault.
 
 \begin{figure}
 \centering
@@ -730,13 +730,13 @@ The abstract scenario of FCI approaches with masking effects will grow into the 
 \label{fig:fci_mask}
 \end{figure}
 
-With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  However, as we discussed forehead, this is not possible and what can do is the forehead two strategies.
+With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. We next denote this result as \emph{knowing masking effects}. However, as we discussed before, this is not possible and what can do is the aforementioned two strategies.
 
 Then for \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.
 
 \subsubsection{using regard as one fault strategy}
 
-For the first strategy: \emph{regard as one fault}, the influence can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the properties of minimal schemas' relationship between two different set of test cases. We known if we have known masking effects, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, grow into the condition of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical to some schemas from the known masking effects, or irrelevant to all the ones. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
+For the first strategy: \emph{regard as one fault}, the impact of masking effects on FCI approaches can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the relationship between the minimal schemas of two different set of test cases. For the \emph{knowing masking effects} condition, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, is yet one sample of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical to some schemas from the condition \emph{known masking effects}, or exist some schemas irrelevant to all of them. Taking together this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
 
 \begin{figure}
 \centering
@@ -745,12 +745,12 @@ For the first strategy: \emph{regard as one fault}, the influence can be describ
 \label{fig:fci_mask_regard}
 \end{figure}
 
-Now we can easily understand this figure, the left column in this figure means the schemas identified by FCI knowing masking effects at ahead, then as we take the \emph{regard as one fault} strategy, the schemas will be either sub-schema or identical or irrelevant to the previous schemas. So if we originally get the identical schema to actual MFS with knowing masking effects, then after applying the strategy, if we still get the identical as originally identified, then the final result is still identical to the actual MFS, else if we get the sub-schema to the originally identified, then the final result is the sub-schema to the actual MFS. In this figure, the directed-line represent the changing method from the original identified, and the right column represent the final transformed result against the actual MFS.
+The left column in this figure means the schemas identified under the \emph{knowing masking effects} condition, then as we take the \emph{regard as one fault} strategy, the schemas will be either sub-schema or identical or irrelevant to the previous schemas. So assume we originally get one identical schema to actual MFS under the \emph{knowing masking effects} condition, then after applying the strategy, if we still get the identical as originally identified, then the final result is still identical to the actual MFS, otherwise if we get the sub-schema to the originally identified, then the final result is the sub-schema to the actual MFS. In this figure, the directed-line represents the way that schemas changing from the from original identified schemas under the condition \emph{knowing masking effects}, and the right column represent the final transformed result against the actual MFS.
 
-Some transformation in this figure is obviously, such as original sub-schema changing by sub-schema is still the sub-schema. Next we just prove the transformation that is hard to understand.
+Some transformation in this figure is obviously, such as the sub-schema of original schemas which are sub-schema to the actual MFS is still the sub-schema of the actual MFS. Next we just prove the transformation that is not that obvious.
 
 \begin{proposition}
-Original parent-schema, the sub-schema must be irrelevant.
+The schema using \emph{knowing masking effects}, say, $c$, which are parent-schema of the actual MFS, say $c_{m}$, after applying \emph{regard as one fault}, assume we get the new schema, $c'$, which are sub-schema of $c$, then c' must be irrelevant to the MFS.
 
 \end{proposition}
 
@@ -758,14 +758,17 @@ Original parent-schema, the sub-schema must be irrelevant.
 %The hard to understand is the sub and father, and irrelevant father.
 
 \begin{proof}
-Without loss of generality, we assume $c$ is the parent schema to the actual MFS. Based on previous proposition 3.12, we have $c \in \mathcal{C}(T_{3})$, which means $c \in \mathcal{C}(B_{1} \bigcup B_{2})$.
+Based on previous proposition 3.12, we first have $c \in \mathcal{C}(T_{3})$, which means $c \in \mathcal{C}(B_{1} \bigcup B_{2})$.
 
-Then apply \emph{regard as one fault}, i.e., the $B_{3}$ is appended for analysis. Now if we find some schema, say $c' \prec c$,s.t., $c' \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3})$, then $T(c')$ must contain some test cases in in $B_{3}$ (if not, $c$ must be the minimal schemas).
+Then apply \emph{regard as one fault}, i.e., the $B_{3}$ is appended for analysis. Now as $c' \prec c$ and  $c' \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3})$, then $T(c')$ must contain some test cases in in $B_{3}$ (if not, $c$ must be the minimal schemas).
 
-This time, for $c'$, as $T(c')$ contain other test cases besides $T_{failing}$, then $c'$ is not the parent-schema or identical of any MFS. And $c'$ is also not possible the sub-schema of some MFS. This is because, based on proposition 3.12, if exist $c_{m}$ is the parent-schema of some identified minimal schema,then the MFS must have $c_{m} \in \mathcal{C}(T_{3})$, and $T(c_{m}) \subset T(c')$. As we see all the set $T(c')$ contained in the failing test cases is $T(c)$. So either $T(c) \supset T(c_{m})$ or  $T(c) = T(c_{m})$, which means that $c \prec c_{m}$ or  $c = c_{m}$, this is impossible as $c$ is the parent-schema of some MFS, and $c_{m}$ is the MFS. So $c'$ is not possible the sub-schema of some MFS.
+This time, for $c'$, as $T(c')$ contain other test cases besides the failing test cases for the current fault, then $c'$ is not the parent-schema or identical of any MFS. And $c'$ is also not possible the sub-schema of some MFS. This is because, based on proposition 3.12, if exist $c_{m}$ is the parent-schema of some identified minimal schema,then the MFS must have $c_{m} \in \mathcal{C}(T_{3})$, and $T(c_{m}) \subset T(c')$. As we see all the set $T(c')$ contained in the failing test cases is $T(c)$. So either $T(c) \supset T(c_{m})$ or  $T(c) = T(c_{m})$, which means that $c \prec c_{m}$ or  $c = c_{m}$, this is impossible as $c$ is the parent-schema of some MFS, and $c_{m}$ is the MFS. So $c'$ is not possible the sub-schema of some MFS.
 
 Thus, at last $c'$ must be irrelevant to the actual MFS.
 \end{proof}
+
+Take an example, we can learn. 
+
 
 \begin{proposition}
 Original irrelevant, the sub-schema must be irrelevant.
