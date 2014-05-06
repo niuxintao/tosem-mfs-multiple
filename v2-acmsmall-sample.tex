@@ -760,14 +760,18 @@ The schema using \emph{knowing masking effects}, say, $c$, which are parent-sche
 \begin{proof}
 Based on previous proposition 3.12, we first have $c \in \mathcal{C}(T_{3})$, which means $c \in \mathcal{C}(B_{1} \bigcup B_{2})$.
 
-Then apply \emph{regard as one fault}, i.e., the $B_{3}$ is appended for analysis. Now as $c' \prec c$ and  $c' \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3})$, then $T(c')$ must contain some test cases in in $B_{3}$ (if not, $c$ must be the minimal schemas).
+Then apply \emph{regard as one fault}, i.e., the $B_{3}$ is appended for analysis. Now as $c' \prec c$ and  $c' \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3})$, then $T(c')$ must contain some test cases in in $B_{3}$ (if not so, $c'$ must not be sub-schema of $c$).
 
-This time, for $c'$, as $T(c')$ contain other test cases besides the failing test cases for the current fault, then $c'$ is not the parent-schema or identical of any MFS. And $c'$ is also not possible the sub-schema of some MFS. This is because, based on proposition 3.12, if exist $c_{m}$ is the parent-schema of some identified minimal schema,then the MFS must have $c_{m} \in \mathcal{C}(T_{3})$, and $T(c_{m}) \subset T(c')$. As we see all the set $T(c')$ contained in the failing test cases is $T(c)$. So either $T(c) \supset T(c_{m})$ or  $T(c) = T(c_{m})$, which means that $c \prec c_{m}$ or  $c = c_{m}$, this is impossible as $c$ is the parent-schema of some MFS, and $c_{m}$ is the MFS. So $c'$ is not possible the sub-schema of some MFS.
+This time, for $c'$, as $T(c')$ contain other test cases besides the failing test cases for the current fault, then $c'$ is not the parent-schema or identical of any MFS. 
+
+Then we assume that there exists $c_{n}$, such that $c' \prec c_{n}$. It must have $T(c') \supset T(c_{n})$. And $c_{n} \in \mathcal{C}(T_{3})$. 
+
+And $c'$ is also not possible the sub-schema of some MFS. This is because, based on proposition 3.12, if exist $c_{m}$ is the parent-schema of some identified minimal schema,then the MFS must have $c_{m} \in \mathcal{C}(T_{3})$, and $T(c_{m}) \subset T(c')$. As we see all the set $T(c')$ contained in the failing test cases is $T(c)$. So either $T(c) \supset T(c_{m})$ or  $T(c) = T(c_{m})$, which means that $c \prec c_{m}$ or  $c = c_{m}$, this is impossible as $c$ is the parent-schema of some MFS, and $c_{m}$ is the MFS. So $c'$ is not possible the sub-schema of some MFS.
 
 Thus, at last $c'$ must be irrelevant to the actual MFS.
 \end{proof}
 
-Take an example, we can learn. 
+Take an example, we can learn.
 
 
 \begin{proposition}
