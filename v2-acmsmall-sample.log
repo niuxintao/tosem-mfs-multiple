@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  5 MAY 2014 17:03
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  8 MAY 2014 22:50
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -355,7 +355,7 @@ File: fci-mask-influence.eps Graphic file (type eps)
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 874.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 882.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -365,41 +365,50 @@ Requested font "cmmi9" at 9.0pt
 Requested font "cmsy9" at 9.0pt
  -> cmsy9
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 874.
+(Font)              <9> on input line 882.
 Requested font "lasy9" at 9.0pt
  -> lasy9
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 890.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 898.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 893.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 901.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
- [18]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19]
-[20]
+ [18]
+[19] [20]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
+
+Underfull \vbox (badness 1783) has occurred while \output is active []
+
  [21]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[22] [23]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22]
+Underfull \vbox (badness 4341) has occurred while \output is active []
+
+ [23]
 File: FIC_BS_normal.eps Graphic file (type eps)
- <FIC_BS_normal.eps>
+
+<FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps> [24] [25]
+ <CTA_normal.eps> [24]
+Underfull \vbox (badness 1297) has occurred while \output is active []
+
+ [25]
 File: FIC_BS_our.eps Graphic file (type eps)
 
 <FIC_BS_our.eps>
@@ -426,7 +435,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Here is how much of TeX's memory you used:
  2780 strings out of 430478
  33838 string characters out of 3191502
- 112377 words of memory out of 3000000
+ 114377 words of memory out of 3000000
  5898 multiletter control sequences out of 15000+200000
  18361 words of font info for 53 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
