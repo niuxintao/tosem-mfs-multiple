@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  9 MAY 2014 17:07
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  10 MAY 2014 17:09
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -359,7 +359,7 @@ File: fci-mask-influence.eps Graphic file (type eps)
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 886.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 888.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -369,24 +369,20 @@ Requested font "cmmi9" at 9.0pt
 Requested font "cmsy9" at 9.0pt
  -> cmsy9
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 886.
+(Font)              <9> on input line 888.
 Requested font "lasy9" at 9.0pt
  -> lasy9
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 902.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 904.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 905.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 907.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [18]
-[19] [20]
+ [18] [19] [20]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21]
