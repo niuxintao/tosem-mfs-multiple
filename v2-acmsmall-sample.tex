@@ -743,9 +743,15 @@ Note that there exists two types of directed line, solid line and dashed line, w
 
 In this figure, only two transformation can make $c_{new} = c_{m}$ and $c_{m} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{m}$ and $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, according to the proposition 3.11 and 3.12, it must have $T(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in T(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no schema that is the sub-schema of $c_{origin}$. Consequently, $T(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
 
-Table  \ref{example-of-fci-influence} illustrate the samples of these conditions.
+Table  \ref{example-of-fci-influence} illustrate the samples of these conditions.  The table comprise of two parts, which upper part give the test cases for each area in the abstract FCI model, and the below part shows the minimal schemas that using particular method. We merged the area $B_{1}$, $B_{2}$ and $C$ into one column as the way of computing the minimal schemas of three approaches \emph{actual MFS, knowing masking effects, regard as one fault} are all dependent on the merging test cases of this three area,  not on the specific distribution of this three area.
 
+From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c$ identified by \emph{knowing masking effects} are identical to some actual MFS, and the with the \emph{regard as one fault} strategy we identify some newly schema that is the sub-schema of $c$, can be find in . and it.
+the parent-subsume transformation can be 
+the subsume-subsume transformation can be
+the irrelevant-subsume transformation can be
+the all irrelevant transformation can be.
 
+the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent schema of the actual MFS (1,1,-,-). Correspondingly, the (1,-,1,-,-) got by \emph{regard as one fault}, is the sub-schema of the (1,1,1,-,-), which is irrelevant to actual MFS (1,1,-,-). It should be noted that, the sub-schema of the originally is not for all the acual MFS, it just irrelevant to the corresponding actual MFS, as an example, it also appear that.
 
 \begin{table}
 \tbl{Example the influence of regard as one fault for FCI approach\label{example-of-fci-influence}}{
