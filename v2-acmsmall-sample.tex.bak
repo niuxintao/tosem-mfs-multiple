@@ -741,10 +741,66 @@ The left column of ellipses in this figure illustrated the relation between the 
 
 Note that there exists two types of directed line, solid line and dashed line, which the former indicates that this transformation is deterministic, e.g., if $c_{origin} \prec c_{m}$ and $c_{new} \prec c_{origin}$, then we must have $c_{new} \prec c_{m}$.  The latter type means there is possibility that the transformation can realised, i.e., indeterministic, e.g., if $c_{origin}\ irrelevant\ c_{m}$ and $c_{new} \prec c_{origin}$, then we can have either $c_{new} \prec c_{m}$ or $c_{new}\ irrelevant\ c_{m}$.(We will later give examples to illustrate them).
 
-In this figure, only two transformation can make $c_{new} = c_{m}$ and $c_{m} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{m}$ and $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, according to the proposition 3.11 and 3.12, $T(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in T(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no schema that is the sub-schema of $c_{origin}$. Consequently, $T(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
+In this figure, only two transformation can make $c_{new} = c_{m}$ and $c_{m} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{m}$ and $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, according to the proposition 3.11 and 3.12, it must have $T(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in T(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no schema that is the sub-schema of $c_{origin}$. Consequently, $T(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
 
-Table illustrate the samples of these conditions.
+Table  \ref{example-of-fci-influence} illustrate the samples of these conditions.
 
+
+
+\begin{table}
+\tbl{Example the influence of regard as one fault for FCI approach\label{example-of-fci-influence}}{
+\begin{tabular}{ccccccccccc}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,1,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0)}\\
+\multicolumn{3}{c}{(0,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,0,1)}&\multicolumn{3}{c}{(1,0,1,0,1)}&\multicolumn{3}{c}{(1,1,0,0,1)}\\
+\multicolumn{3}{c}{(0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,0,1)}&\multicolumn{3}{c}{(1,1,0,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,1,1)} & \multicolumn{3}{c}{(0,0,1,1,1)}&\multicolumn{3}{c}{(1,1,0,1,1)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,0)}&\multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1)} & \multicolumn{3}{c}{(0,1,0,1,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1)} & \multicolumn{3}{c}{(0,1,1,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,0,0)}   & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,0,1)} & \multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ fault$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
+\multicolumn{4}{c}{(1,1,-,-,-) } &\multicolumn{4}{c}{(1,1,1,-,-)} & \multicolumn{4}{c}{(1,-,1,-, -)} \\
+\multicolumn{4}{c}{(1,-,1,1,-) } &\multicolumn{4}{c}{(1,-,1,1,- )} & \multicolumn{4}{c}{(0,0,-,-,-)}\\
+\multicolumn{4}{c}{(0,0,0,0,-) } &\multicolumn{4}{c}{(0,0,0,-,-)} & \multicolumn{4}{c}{(0,-,-,-,0)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,0,-,-,0)} & \multicolumn{4}{c}{(-,0,1,-,-)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,-,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,-,0,-)}\\
+\end{tabular}}
+\end{table}
+
+
+%\begin{table}
+%\tbl{Example the influence of regard as one fault for FCI approach\label{example-of-fci-influence}}{
+%\begin{tabular}{llllllllllll}
+%\multicolumn{2}{c}{\bfseries $A$} &\multicolumn{2}{c}{\bfseries $B_{1}$} & \multicolumn{2}{c}{\bfseries $B_{2}$} & \multicolumn{2}{c}{\bfseries $B_{3}$} & \multicolumn{2}{c}{\bfseries $C$} & \multicolumn{2}{c}{\bfseries $D$}\\ \hline
+%\multicolumn{2}{c}{(0,0,0,1,0)} &\multicolumn{2}{c}{(1, 0, 1, 1)} & \multicolumn{2}{c}{(1, 1, 1, 0,0)} & \multicolumn{2}{c}{(1,0,1,0,0)} & \multicolumn{2}{c}{(1,1,1,1)} & \multicolumn{2}{c}{(1,1,0,0,0)}\\
+%\multicolumn{2}{c}{(0,0,0,1,1)} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{(1, 0, 1, 1,0)} & \multicolumn{2}{c}{(1,0,1,0,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,1,0,0,1)}\\
+%\multicolumn{2}{c}{(0,0,1,0,0)} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,0,1,0,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,1,0,1,0)}\\
+%\multicolumn{2}{c}{(0,0,1,1,0)} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,0,1,1,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,1,0,1,1)}\\
+%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,0,0,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
+%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,0,1,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
+%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,1,0,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
+%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,1,1,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
+%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,0,0,0,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
+%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,0,0,0,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
+% \hline
+%\multicolumn{3}{c}{\bfseries $actual\ MFS$} &\multicolumn{3}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{3}{c}{\bfseries $one\ fault$} & \multicolumn{3}{c}{\bfseries $distingush\ faults$}\\
+%\multicolumn{3}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{3}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$}\\  \hline
+%\multicolumn{3}{c}{(1,1,-,-,-) } &\multicolumn{3}{c}{(1,1,1,-,-)} & \multicolumn{3}{c}{(1,-,1,-, -)} & \multicolumn{3}{c}{(1,1,1,1,-)}\\
+%\multicolumn{3}{c}{(1,-,1,1,-) } &\multicolumn{3}{c}{(1,-,1,1,- )} & \multicolumn{3}{c}{(0,0,-,-,-)} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{(0,0,0,0,-) } &\multicolumn{3}{c}{(0,0,0,-,-)} & \multicolumn{3}{c}{(0,-,-,-,0)} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{}             &\multicolumn{3}{c}{(0,0,-,-,0)} & \multicolumn{3}{c}{(-,0,1,-,-)} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{}             &\multicolumn{3}{c}{ } &           \multicolumn{3}{c}{(-,-,1,-,0)} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{}             &\multicolumn{3}{c}{ } &           \multicolumn{3}{c}{(-,0,-,0,-)} & \multicolumn{3}{c}{}\\
+%\end{tabular}}
+%\end{table}
 
 %\begin{proposition}
 %The schema using \emph{knowing masking effects}, say, $c$, which are parent-schema of the actual MFS, say $c_{m}$, after applying \emph{regard as one fault}, assume we get the new schema, $c'$, which are sub-schema of $c$, then c' must be irrelevant to the MFS.
