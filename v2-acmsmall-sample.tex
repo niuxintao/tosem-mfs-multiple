@@ -746,7 +746,7 @@ In this figure, only two transformation can make $c_{new} = c_{m}$ and $c_{m} \p
 Table  \ref{example-of-fci-influence} illustrate the samples of these conditions.  The table comprise of two parts, which upper part give the test cases for each area in the abstract FCI model, and the below part shows the minimal schemas that using particular method. We merged the area $B_{1}$, $B_{2}$ and $C$ into one column as the way of computing the minimal schemas of three approaches \emph{actual MFS, knowing masking effects, regard as one fault} are all dependent on the merging test cases of this three area,  not on the specific distribution of this three area.
 
 From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c$ identified by \emph{knowing masking effects} are identical to some actual MFS, and the with the \emph{regard as one fault} strategy we identify some newly schema that is the sub-schema of $c$, can be find in . and it.
-the parent-subsume transformation can be 
+the parent-subsume transformation can be
 the subsume-subsume transformation can be
 the irrelevant-subsume transformation can be
 the all irrelevant transformation can be.
@@ -860,6 +860,37 @@ So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It 
 \end{proof}
 
 Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
+
+\begin{table}
+\tbl{Example the influence of distinguish faults for FCI approach\label{example-of-fci-influence-distiguish}}{
+\begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(0,0,0,1,1)}&\multicolumn{3}{c}{(0,0,0,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{(0,1,1,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,1)}&\multicolumn{3}{c}{(0,0,1,1,1)}&\multicolumn{3}{c}{(0,1,1,0,1)}\\
+\multicolumn{3}{c}{(0,0,1,0,1)}&\multicolumn{3}{c}{(0,0,0,1,0)} & \multicolumn{3}{c}{}&\multicolumn{3}{c}{(0,1,1,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,0)}&\multicolumn{3}{c}{} & \multicolumn{3}{c}{}&\multicolumn{3}{c}{(0,1,1,1,1)}\\
+\multicolumn{3}{c}{(1,1,0,0,0)} &\multicolumn{3}{c}{(1,1,1,1,1)} & \multicolumn{3}{c}{(1,1,0,1,0)}&\multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguish faults$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
+\multicolumn{4}{c}{(-,1,1,-,-) } &\multicolumn{4}{c}{(1,1,-,-,-)} & \multicolumn{4}{c}{(0,0,0,-,-)} \\
+\multicolumn{4}{c}{(1,1,-,1,-) } &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,-,-,0)}\\
+\multicolumn{4}{c}{(1,1,-,-,1) } &\multicolumn{4}{c}{(0,0,-,-,-)} & \multicolumn{4}{c}{(0,0,-,0,-)}\\
+\multicolumn{4}{c}{(0,0,0,-,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{} \\
+\multicolumn{4}{c}{(0,0,0,0,-)}  &\multicolumn{4}{c}{} &  \multicolumn{4}{c}{} \\
+\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,1,-,-)}\\
+\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,-,-,1)}\\
+\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,-,0,-)}\\
+\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\end{tabular}}
+\end{table}
 %So what this two mutation than is , we first learn that
 %
 %So actually, when encountering masking effects, both this two strategies is not good.
