@@ -745,7 +745,7 @@ In this figure, only two transformation can make $c_{new} = c_{m}$ and $c_{m} \p
 
 Table  \ref{example-of-fci-influence} illustrate the samples of these conditions.  The table comprise of two parts, which upper part give the test cases for each area in the abstract FCI model, and the below part shows the minimal schemas that using particular method. We merged the area $B_{1}$, $B_{2}$ and $C$ into one column as the way of computing the minimal schemas of three approaches -- \emph{actual MFS, knowing masking effects, regard as one fault} are all dependent on the merging test cases of this three area,  not on the specific distribution of this three area.
 
-From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c$ identified by \emph{knowing masking effects} are identical to some actual MFS, and the with the \emph{regard as one fault} strategy we identify some newly schema that is the sub-schema of $c$, can be find in the schema (1,-,1,1,-) which is both in the \emph{actual MFS} and \emph{knowing masking effects}, and the schema (1,-,1,-,-) which is in the \emph{regard as one fault} is the sub-schema of the \emph{knowing masking effects} and also the sub-schema of the corresponding actual MFS.  For the parent-subsume transformation, we can find the actual MFS :(1,1,-,-,-),corresponding knowing masking effects minimal schemas:(KMEMS) (1,1,1,-,-) and corresponding regard as one fault minimal schemas(ROMS) (1,-,1,-,-), we can find (1,-,1,-,-) is irrelevant to (1,1,-,-,-). Note that this transformation is make the ROMS irrelevant to the corresponding actual MFS, not all the MFSs, for example, the ROMS (1,-,1,-,-) is the sub-schema of (1,-,1,1,-). For
+From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c$ identified by \emph{knowing masking effects} are identical to some actual MFS, and the with the \emph{regard as one fault} strategy we identify some newly schema that is the sub-schema of $c$, can be find in the schema (1,-,1,1,-,0) which is both in the \emph{actual MFS} and \emph{knowing masking effects}, and the schema (1,-,1,-,-,0) which is in the \emph{regard as one fault} is the sub-schema of the \emph{knowing masking effects} and also the sub-schema of the corresponding actual MFS.  For the parent-subsume transformation, we can find the actual MFS :(1,1,-,-,-,0),corresponding knowing masking effects minimal schemas:(KMEMS) (1,1,1,-,-,0) and corresponding regard as one fault minimal schemas(ROMS) (1,-,1,-,-,0), we can find (1,-,1,-,-) is the subschme of actual MFS (1,-,1,1,0). Note that this transformation is make the ROMS irrelevant to the corresponding actual MFS, not all the MFSs, for example, the ROMS (1,-,1,-,-) is the sub-schema of (1,-,1,1,-). For
 the subsume-subsume transformation can be
 the irrelevant-subsume transformation can be
 the all irrelevant transformation can be.
@@ -762,14 +762,14 @@ the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent sche
 \multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
 \multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
 \multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{0,1,1,1,0,1}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
  \hline
 \multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ fault$} \\
 \multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
@@ -778,8 +778,10 @@ the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent sche
 \multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
 \multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,1,1,1,1,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\
 \end{tabular}}
 \end{table}
 
