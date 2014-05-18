@@ -760,13 +760,13 @@ From this table, we can observe that, the identical--subsume transformation, i.e
 \multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
 \multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
 \multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{0,1,1,1,0,1}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
  \hline
 \multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ fault$} \\
 \multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
@@ -777,7 +777,7 @@ From this table, we can observe that, the identical--subsume transformation, i.e
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,1,1,1,1,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\
 \end{tabular}}
 \end{table}
@@ -809,31 +809,35 @@ And for the second strategy: \emph{distinguish faults}, the influence can be des
 \label{fig:fci_mask_distinguish}
 \end{figure}
 
-This figure is organised the same way as figure \ref{fig:fci_mask_regard}. As with distinguish strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So this transformation should be either parent-schema or identical to the originally schemas.
+This figure is organised the same way as figure \ref{fig:fci_mask_regard}. As with distinguish strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So under this transformation, the $c_{new}$ should be either parent-schema or identical to the $c_{origin}$.
 
-Similarly, we just give the proof of some transformation that is not so obviously.
-\begin{proposition}
-Original sub-schema, the parent-schema must be irrelevant.
+As an example to illustrate this type of transformation, we list each possible scenario in table \ref{example-of-fci-influence-distiguish}. We not in detail explain all of them.
 
-\end{proposition}
-\begin{proof}
-Without loss of generality, we assume $c$ is sub-schema to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
+Despite the transformations depicted in Figure \ref{fig:fci_mask_distinguish}, there is one more transformation can appear in this strategy, which can make some $c_{origin}$ \emph{"removed"} from the newly minimal schemas, i.e., $\not\exists c_{new}, s.t., c_{new} = c_{origin}\ or\ c_{origin} \prec c_{new}$. This appears when $T(c_{origin}) \subset B_{2}$, as such that all the test cases hit $c_{origin}$ will be ignored with the strategy \emph{distinguish faults}. When this transformation happens, no more other relationship between $c_{new}$ and $c_{m}$ increased, but it make the newly minimal schemas \emph{ignore} some actual MFS as we discussed before.
 
-So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
-\end{proof}
-
-
-\begin{proposition}
-Original identical-schema, the parent-schema must be irrelevant.
-
-\end{proposition}
-\begin{proof}
-Without loss of generality, we assume $c$ is irrelevant to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
-
-So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
-\end{proof}
-
-Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
+%Similarly, we just give the proof of some transformation that is not so obviously.
+%\begin{proposition}
+%Original sub-schema, the parent-schema must be irrelevant.
+%
+%\end{proposition}
+%\begin{proof}
+%Without loss of generality, we assume $c$ is sub-schema to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
+%
+%So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
+%\end{proof}
+%
+%
+%\begin{proposition}
+%Original identical-schema, the parent-schema must be irrelevant.
+%
+%\end{proposition}
+%\begin{proof}
+%Without loss of generality, we assume $c$ is irrelevant to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
+%
+%So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
+%\end{proof}
+%
+%Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
 
 \begin{table}
 \tbl{Example the influence of distinguish faults for FCI approach\label{example-of-fci-influence-distiguish}}{
@@ -860,19 +864,19 @@ Another point need to be noted is that this transformation also mean some ignore
 \multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
 \multicolumn{4}{c}{(-,1,1,-,-,0) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
 \multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
-\multicolumn{4}{c}{(1,1,-,-,1,0) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
+\multicolumn{4}{c}{(1,1,-,-,1,-) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
 \multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
 \multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
 \multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,1,-,0,1,1)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
-\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
+\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{(1,1,-,0,1,-)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
 \multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
-\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{(1,1,-,0,1,-)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
+\multicolumn{4}{c}{(0,-,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
 \multicolumn{4}{c}{(-,-,0,0,1,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(-,1,1,0,1,1)}\\
 \multicolumn{4}{c}{(-,1,-,-,1,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
-\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,0,1,1,-)}\\
-\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(1,1,-,-,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,1,0,1,-)}\\
 \multicolumn{4}{c}{(-,1,1,-,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+
 \end{tabular}}
 \end{table}
 %So what this two mutation than is , we first learn that
