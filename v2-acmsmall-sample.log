@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  19 MAY 2014 19:59
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  19 MAY 2014 22:50
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -351,13 +351,7 @@ Underfull \hbox (badness 2903) in paragraph at lines 727--728
 File: fci-mask-influence2.eps Graphic file (type eps)
  <fci-mask-influence2.eps> [15]
 File: fci-mask-influence.eps Graphic file (type eps)
- <fci-mask-influence.eps> [16]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
-Underfull \vbox (badness 3735) has occurred while \output is active []
-
- [18]
+ <fci-mask-influence.eps> [16] [17] [18]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
@@ -385,31 +379,18 @@ LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[20]
-Underfull \vbox (badness 1097) has occurred while \output is active []
-
- [21]
+[19] [20] [21]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
-
-[22]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[23] [24]
+ [22] [23] [24]
 File: FIC_BS_normal.eps Graphic file (type eps)
  <FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps>
-Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<CTA_normal.eps>
+Underfull \vbox (badness 2245) has occurred while \output is active []
 
  [25]
 File: FIC_BS_our.eps Graphic file (type eps)
@@ -418,7 +399,11 @@ File: FIC_BS_our.eps Graphic file (type eps)
 File: OFOT_our.eps Graphic file (type eps)
  <OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
- <CTA_our.eps> [26] [27] [28]
+ <CTA_our.eps> [26]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27]
+[28]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [29]
@@ -430,11 +415,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [31])
 [32] [1
 
-] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  2782 strings out of 430478
  33901 string characters out of 3191502
- 126398 words of memory out of 3000000
+ 116398 words of memory out of 3000000
  5900 multiletter control sequences out of 15000+200000
  18361 words of font info for 53 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191

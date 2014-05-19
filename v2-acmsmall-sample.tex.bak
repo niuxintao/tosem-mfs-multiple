@@ -861,41 +861,41 @@ Despite the transformations depicted in Figure \ref{fig:fci_mask_distinguish}, t
 \multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
 \multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
 \multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,0,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,0,1,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,0,1,1,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,1,1,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
  \hline
 \multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguish faults$} \\
 \multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(-,1,1,-,-,0) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
+\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
 \multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
-\multicolumn{4}{c}{(1,1,-,-,1,-) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
+\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
 \multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
-\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
-\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,1,-,0,1,1)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
-\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{(1,1,-,0,1,-)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
-\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
-\multicolumn{4}{c}{(0,-,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
-\multicolumn{4}{c}{(-,-,0,0,1,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(-,1,1,0,1,1)}\\
-\multicolumn{4}{c}{(-,1,-,-,1,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
-\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,1,0,1,-)}\\
-\multicolumn{4}{c}{(-,1,1,-,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
+\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
+\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
+\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
+\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
+\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
+\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
 
 \multicolumn{4}{c}{\bfseries transformation} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m'}$}\\ \hline
 \multicolumn{4}{c}{$c_{m} = c_{origin}  \rightarrow c_{m'} \prec c_{new} $} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
-\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{()}  & \multicolumn{2}{c}{()} & \multicolumn{2}{c}{()} &\multicolumn{2}{c}{()} \\
+\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{((1,0,-,-,1,1))} \\
 \multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new}\ irrele $} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
 \multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
 \multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m'}\prec c_{new} $} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
 \multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m'} = c_{new} $} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
 \multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
 \multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
+
+\multicolumn{4}{c}{$c_{origin}\ ignored $} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
 %\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
 %\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
 
