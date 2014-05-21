@@ -618,9 +618,6 @@ We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
-%
-%\subsubsection{Make assumption}
-%Most approaches belong to this partition. Such as one factor one time, FIC\_BS, ELA, Martinez, Nevertheless, we can deduce the following properties:
 For each FCI approach, the way it predict the $T_{fail_{predicted}}$ according to observed failing test cases varies, further more, as the test cases it generates is different, the failing test cases observed by different test cases, i.e., $T_{fail_{observed}}$ also varies.  We take an example using OFOT approach to illustrate this formula.
 
 Suppose SUT has 3 parameters, each can take 2 values. And assume the test case (1, 1, 1) failed. Then we can describe the FCI process as Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the \emph{t} one time to generate new test cases: $t_{1}$ -- $t_{3}$, It found the the $t_{1}$ passed, which indicates that this test case break the MFS in the original test case \emph{t}. So the (1,-,-) should be one failure-causing factor, and as other mutating process all failed, which means no other failure-inducing factors were broken, therefore, the MFS in \emph{t} is (1,-,-).
@@ -702,13 +699,34 @@ The first one is the most common strategy, it doesn't distinguish the faults, i.
 
 With this strategy, The minimal schemas we identify are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the actual MFS, or irrelevant to the actual MFS.
 
-As an example, Suppose we take this strategy in the motivation example, then the minimal schemas we get will be (- 4 4 -) and (- - 4 5). In this example, with \emph{regard as one fault strategy} we consider that schemas (- 4 4 -) and (- - 4 5) should be the cause of both Ex 1 and Ex 2, which in fact, (- 4 4 -) is irrelevant to the MFS of Ex 2 and (- - 4 5) is irrelevant to the MFS of Ex 1.
+As an example, consider the test cases in Table \ref{masking-effects-exhaustive}. In this example, assume we need to characterize the MFS for error \emph{1}, all the test cases that triggered error 1 is listed in the column \emph{$T_{1}$}, similarly, we list the test cases that triggered other fault in column \emph{$T_{mask(1)}$} and \emph{$T_{*}$} respectively, in which the former masked the error 1 while the latter not. Actually the MFS for error 1 should be (1,1,-,-) and (-,1,1,1) as we listed them in the column \emph{actual MFS for 1}. However, when we take \emph{regard as one fault} strategy, the minimal schemas we got will be (-,-,0,0), (1,1,-,-), (-,-,1,1), in which the (-,-,0,0) is irrelevant to the actual MFS for error 1 and the (-,-,1,1) is the sub-schema of the actual MFS (-,1,1,1).
+
+\begin{table}
+\centering
+\tbl{masking effects for exhaustive testing \label{masking-effects-exhaustive}}{
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{mask(1)}$ &$T_{*}$\\ \hline
+(1, 1, 1, 1)& (1, 1, 0, 0) & (0, 1, 0, 0) \\
+(1, 1, 1, 0)& (0, 1, 1, 1) & (0, 0, 0, 0)\\
+(1, 1, 0, 1)&              & (1, 0, 0, 0)\\
+          	&              & (1, 0, 1, 1)\\
+        	&              & (0, 0, 1, 1)\\ \hline
+actual MFS for 1&  regard as one fault & distinguish faults  \\
+$\mathcal{C}(T_{1}  \bigcup T_{mask(1)})$& $\mathcal{C}(T_{1}  \bigcup T_{mask(1)}  \bigcup T_{*})$ & $\mathcal{C}(T_{1})$  \\ \hline
+(1, 1, -, -)&  (-, -, 0, 0) & (1, 1, -, 1)\\
+(-, 1, 1, 1)&  (1, 1, -, -) & (1, 1, 1, -)   \\
+            &  (-, -, 1, 1) &         \\ \hline
+  \end{tabular}
+  }
+  \end{table}
 
 \subsubsection{Distinguish faults}
 Distinguishing the faults by the exception traces or error code can help make the MFS related to particular fault. Yilmaz in  \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of \emph{ternary-class} approach to make the characterizing process more accurately. Besides, other approaches can also be easily extended with this strategy to be applied on SUT with multiple faults.
 %We call this strategy \emph{distinguish faults}.
 
 This strategy focus identifying the set of $\mathcal{C}(T_{F_{m}})$, and as $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, consequently, some schemas get through this strategy may be the parent-schema of some MFS. Moreover, some MFS may be irrelevant to the schemas get with this strategy, which means this strategy will ignore these MFS.
+
+For the simple example in Table \ref{masking-effects-exhaustive}, when we using this strategy, we will get the minimal schemas (1, 1, -, 1) and (1, 1, 1, -), which are both the parent schemas of actual MFS (1,1,-,-), and we will observe that there is no schemas got by this strategy have any relationship with the actual MFS (-,1,1,1), which means it ignored the schema.
 
 It is noted that, motivation example in section 2 actually adopted this strategy, which made the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
 
@@ -722,13 +740,11 @@ With masking effects, the scenario of traditional FCI approaches is a bit compli
 \label{fig:fci_mask}
 \end{figure}
 
-With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. We next denote this result as \emph{knowing masking effects}. However, as we discussed before, this is not possible and what can do is the aforementioned two strategies.
-
-Then for \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.
+With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. We next denote this result as \emph{knowing masking effects}. However, as we discussed before, to get this result is not possible without human involvement. Correspondingly, when taking \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$. Next, we will respectively discuss the influence of masking effects on the two strategies.
 
 \subsubsection{Taking regard as one fault strategy}
 
-For the first strategy: \emph{regard as one fault}, the impact of masking effects on FCI approaches can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the relationship between the minimal schemas of two different set of test cases. For the \emph{knowing masking effects} condition, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, is yet one sample of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the result is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. It is obviously $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical to some schemas from the condition \emph{known masking effects}, or exist some schemas irrelevant to all of them. Taking this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
+For the first strategy: \emph{regard as one fault}, the impact of masking effects on FCI approaches can be described as Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us get back to the relationship between the minimal schemas of two different set of test cases. For the \emph{knowing masking effects} condition, the result identified by FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, is one case of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, irrelevant to the actual MFS. And then apply the \emph{regard as one fault}, the minimal schemas we got are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously we have $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema get by this strategy is either the sub-schema or identical to some schemas from the ones got by \emph{known masking effects}, or exist some schemas irrelevant to all of them. Taking this two properties together, we will get Figure \ref{fig:fci_mask_regard}.
 
 \begin{figure}
 \centering
@@ -737,21 +753,17 @@ For the first strategy: \emph{regard as one fault}, the impact of masking effect
 \label{fig:fci_mask_regard}
 \end{figure}
 
-The left column of ellipses in this figure illustrated the relation between the schemas identified under the \emph{knowing masking effects} condition with the actual MFS, which includes the four possibilities: identical, sub-schema, parent-schema and irrelevant. For each relationship in this part, without of loss of generality, we consider $c_{origin}$ and $c_{m}$, $c_{origin}$ is the minima schema got by strategy \emph{knowing masking effects}, and $c_{m}$ is the actual MFS. Then when we apply \emph{regard as one fault} strategy, we may get some schemas which are identical or sub-schema of $c_{origin}$, say $c_{new}$ s.t., $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$. In this figure, we use the directed line to represent this two transformations with different labels in each directed line. As for the schemas $c_{new}$ that is irrelevant to all $c_{origin}$, to distinguish the relation that one new schema to one original schema, we in the bottom of this figure use a rhombus labeled with "Irrelevant" to express them. Then we can have there exist some relationship between the $c_{new}$ and $c_{m}$, which also have four possibilities represented as rectangles in the right column.
+The ellipses in the left column of this figure illustrated the relation between the schemas identified under the \emph{knowing masking effects} condition with the actual MFS, which includes the four possibilities: identical, sub-schema, parent-schema and irrelevant. For each relationship in this part, without of loss of generality, we consider $c_{origin}$ and $c_{m}$, $c_{origin}$ is the minima schema got by \emph{knowing masking effects}, and $c_{m}$ is the actual MFS. Then when we apply \emph{regard as one fault} strategy, we may get some schemas which are identical or sub-schema of $c_{origin}$, say $c_{new}$ s.t., $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$. In this figure, we use the directed line to represent this two transformations with different labels in each line. As for the schemas $c_{new}$ that is irrelevant to all the $c_{origin}$, we in the bottom of this figure use a rhombus labeled with "Irrelevant" to express them. Then we must have some relationship between the $c_{new}$ and actual MFS, which also have four possibilities represented as rectangles in the right column.
 
-Note that there exists two types of directed line, solid line and dashed line, which the former indicates that this transformation is deterministic, e.g., if $c_{origin} \prec c_{m}$ and $c_{new} \prec c_{origin}$, then we must have $c_{new} \prec c_{m}$.  The latter type means there is possibility that the transformation can realised, i.e., indeterministic, e.g., if $c_{origin}\ irrelevant\ c_{m}$ and $c_{new} \prec c_{origin}$, then we can have either $c_{new} \prec c_{m}$ or $c_{new}\ irrelevant\ c_{m}$.(We will later give examples to illustrate them).
+Note that there exists two types of directed line, solid line and dashed line, in which the former indicates that this transformation is deterministic, e.g., if $c_{origin} \prec c_{m}$ and $c_{new} \prec c_{origin}$, then we must have $c_{new} \prec c_{m}$.  The latter type means the transformation is just one of all the possibilities in such conidtion, e.g., if $c_{origin}\ irrelevant\ c_{m}$ and $c_{new} \prec c_{origin}$, then we can have either $\exists c_{m'}\ is\ one\ actual\ MFS, s.t. c_{new} \prec c_{m}$ or $c_{new}\ irrelevant \ to\ all\ actual\ MFS$.(We will later give examples to illustrate them).
 
-In this figure, only two transformation can make $c_{new} = c_{m}$ and $c_{m} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{m}$ and $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, according to the proposition 3.11 and 3.12, it must have $T(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in T(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no schema that is the sub-schema of $c_{origin}$. Consequently, $T(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m}$ or $c_{m} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
+In this figure, only two transformation can make $\exists c_{m'}\ is\ one\ actual\ MFS, s.t.$ $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{origin} $ or $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, according to the proposition 3.11 and 3.12, it must have $T(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in T(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no newly schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $T(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if we have $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
 
-Table  \ref{example-of-fci-influence} illustrate the samples of these conditions.  The table comprise of two parts, which upper part give the test cases for each area in the abstract FCI model, and the below part shows the minimal schemas that using particular method. We merged the area $B_{1}$, $B_{2}$ and $C$ into one column as the way of computing the minimal schemas of three approaches \emph{actual MFS, knowing masking effects, regard as one fault} are all dependent on the merging test cases of this three area,  not on the specific distribution of this three area.
+As the identical transformation is simple, so next we will ignore them and just take examples to illustrate the other transformations. Table \ref{example-of-fci-influence} presents all these possibilities except these identical transformation. This table comprises of three parts, which the upper part give the test cases for each area in the abstract FCI model. It is noted that we merged the area $B_{1}$, $B_{2}$ and $C$ into one column as the way of computing the minimal schemas of three approaches -- \emph{actual MFS, knowing masking effects, regard as one fault} are all dependent on the merging test cases of this three area,  not on the specific distribution of them. The middle part of this table shows the minimal schemas that using particular method. At last the bellow part in specific depicts the sample of each possible result of the transformation in the Figure \ref{fig:fci_mask_regard}. In this part, $c_{m} = c_{origin}  \rightarrow c_{new} \prec c_{m'}$ indicates the scenario that the schema $c_{origin}$ got by \emph{knowing masking effects} is identical to one actual MFS $c_{m}$, then taking \emph{regard as one fault}, we got $c_{new} \prec c_{origin}$, and such that we can have $\exists c_{m'}\ is\ one\ actual\ MFS, s.t., c_{new} \prec c_{m}$.  Other formula in this column can be explained in this way, in which $c_{new}\ irrele$ and $c_{origin}\ irrele$  means the schema $c_{new}$ and $c_{origin}$ is irrelevant to all the actual MFS respectively. The formula in the last two rows, $c_{new_{irrele}} \prec c_{m'}$ and $c_{new_{irrele} irrele}$ indicate the schemas $c_{new_{irrele}}$ got by \emph{regard as one fault} is irrelevant to all the $c_{origin}$, in which the former is the subschema of some actual MFS $c_{m'}$ while the latter is irrelevant to all the actual MFS.
 
-From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c$ identified by \emph{knowing masking effects} are identical to some actual MFS, and the with the \emph{regard as one fault} strategy we identify some newly schema that is the sub-schema of $c$, can be find in . and it.
-the parent-subsume transformation can be
-the subsume-subsume transformation can be
-the irrelevant-subsume transformation can be
-the all irrelevant transformation can be.
+%From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c_{origin}$ identified by \emph{knowing masking effects} are identical to some actual MFS $c_{m}$, and the with the \emph{regard as one fault} strategy we identify some newly schema $c_{new}$ that is the sub-schema of one actual MFS $c_{m'}$, can be instanced when $c_{m}$ , $c_{origin}$  and $c_{m'}$ are all (1,-,1,1,-,0), while the $c_{new}$ is (1,-,1,-,-,0). For the parent-subsume transformation, we can find an instance that $c_{m}$ is (1,1,-,-,-,0), corresponding $c_{origin}$ is (1,1,1,-,-,0) and $c_{new}$ is (1,-,1,-,-,0), and the corresponding $c_{m'}$ which is the parent-schema of $c_{new}$ is  (1,-,1,1,-,0). In fact we can find each possible transformation and its corresponding result in this table, we will not in detail list them here.
 
-the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent schema of the actual MFS (1,1,-,-). Correspondingly, the (1,-,1,-,-) got by \emph{regard as one fault}, is the sub-schema of the (1,1,1,-,-), which is irrelevant to actual MFS (1,1,-,-). It should be noted that, the sub-schema of the originally is not for all the acual MFS, it just irrelevant to the corresponding actual MFS, as an example, it also appear that.
+%the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent schema of the actual MFS (1,1,-,-). Correspondingly, the (1,-,1,-,-) got by \emph{regard as one fault}, is the sub-schema of the (1,1,1,-,-), which is irrelevant to actual MFS (1,1,-,-). It should be noted that, the sub-schema of the originally is not for all the acual MFS, it just irrelevant to the corresponding actual MFS, as an example, it also appear that.
 
 \begin{table}
 \tbl{Example the influence of regard as one fault for FCI approach\label{example-of-fci-influence}}{
@@ -759,54 +771,42 @@ the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent sche
 %\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
 
-\multicolumn{3}{c}{(0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,1,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0)}\\
-\multicolumn{3}{c}{(0,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,0,1)}&\multicolumn{3}{c}{(1,0,1,0,1)}&\multicolumn{3}{c}{(1,1,0,0,1)}\\
-\multicolumn{3}{c}{(0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,0,1)}&\multicolumn{3}{c}{(1,1,0,1,0)}\\
-\multicolumn{3}{c}{(0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,1,1)} & \multicolumn{3}{c}{(0,0,1,1,1)}&\multicolumn{3}{c}{(1,1,0,1,1)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,0)}&\multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1)} & \multicolumn{3}{c}{(0,1,0,1,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1)} & \multicolumn{3}{c}{(0,1,1,0,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,0,0)}   & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,0,1)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
+\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
  \hline
 \multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ fault$} \\
 \multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(1,1,-,-,-) } &\multicolumn{4}{c}{(1,1,1,-,-)} & \multicolumn{4}{c}{(1,-,1,-, -)} \\
-\multicolumn{4}{c}{(1,-,1,1,-) } &\multicolumn{4}{c}{(1,-,1,1,- )} & \multicolumn{4}{c}{(0,0,-,-,-)}\\
-\multicolumn{4}{c}{(0,0,0,0,-) } &\multicolumn{4}{c}{(0,0,0,-,-)} & \multicolumn{4}{c}{(0,-,-,-,0)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,0,-,-,0)} & \multicolumn{4}{c}{(-,0,1,-,-)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,-,0)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,-,0,-)}\\
+\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
+\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
+\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
+\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
+
+\multicolumn{4}{c}{\bfseries transformation} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m'}$}\\ \hline
+\multicolumn{4}{c}{$c_{m} = c_{origin}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
+\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{new}\ irrele $} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
+\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
 \end{tabular}}
 \end{table}
-
-
-%\begin{table}
-%\tbl{Example the influence of regard as one fault for FCI approach\label{example-of-fci-influence}}{
-%\begin{tabular}{llllllllllll}
-%\multicolumn{2}{c}{\bfseries $A$} &\multicolumn{2}{c}{\bfseries $B_{1}$} & \multicolumn{2}{c}{\bfseries $B_{2}$} & \multicolumn{2}{c}{\bfseries $B_{3}$} & \multicolumn{2}{c}{\bfseries $C$} & \multicolumn{2}{c}{\bfseries $D$}\\ \hline
-%\multicolumn{2}{c}{(0,0,0,1,0)} &\multicolumn{2}{c}{(1, 0, 1, 1)} & \multicolumn{2}{c}{(1, 1, 1, 0,0)} & \multicolumn{2}{c}{(1,0,1,0,0)} & \multicolumn{2}{c}{(1,1,1,1)} & \multicolumn{2}{c}{(1,1,0,0,0)}\\
-%\multicolumn{2}{c}{(0,0,0,1,1)} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{(1, 0, 1, 1,0)} & \multicolumn{2}{c}{(1,0,1,0,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,1,0,0,1)}\\
-%\multicolumn{2}{c}{(0,0,1,0,0)} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,0,1,0,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,1,0,1,0)}\\
-%\multicolumn{2}{c}{(0,0,1,1,0)} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,0,1,1,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,1,0,1,1)}\\
-%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,0,0,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
-%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,0,1,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
-%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,1,0,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
-%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(0,1,1,1,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
-%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,0,0,0,0)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
-%\multicolumn{2}{c}{} &\multicolumn{2}{c}{} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{(1,0,0,0,1)} & \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\
-% \hline
-%\multicolumn{3}{c}{\bfseries $actual\ MFS$} &\multicolumn{3}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{3}{c}{\bfseries $one\ fault$} & \multicolumn{3}{c}{\bfseries $distingush\ faults$}\\
-%\multicolumn{3}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{3}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$}\\  \hline
-%\multicolumn{3}{c}{(1,1,-,-,-) } &\multicolumn{3}{c}{(1,1,1,-,-)} & \multicolumn{3}{c}{(1,-,1,-, -)} & \multicolumn{3}{c}{(1,1,1,1,-)}\\
-%\multicolumn{3}{c}{(1,-,1,1,-) } &\multicolumn{3}{c}{(1,-,1,1,- )} & \multicolumn{3}{c}{(0,0,-,-,-)} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{(0,0,0,0,-) } &\multicolumn{3}{c}{(0,0,0,-,-)} & \multicolumn{3}{c}{(0,-,-,-,0)} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{}             &\multicolumn{3}{c}{(0,0,-,-,0)} & \multicolumn{3}{c}{(-,0,1,-,-)} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{}             &\multicolumn{3}{c}{ } &           \multicolumn{3}{c}{(-,-,1,-,0)} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{}             &\multicolumn{3}{c}{ } &           \multicolumn{3}{c}{(-,0,-,0,-)} & \multicolumn{3}{c}{}\\
-%\end{tabular}}
-%\end{table}
 
 %\begin{proposition}
 %The schema using \emph{knowing masking effects}, say, $c$, which are parent-schema of the actual MFS, say $c_{m}$, after applying \emph{regard as one fault}, assume we get the new schema, $c'$, which are sub-schema of $c$, then c' must be irrelevant to the MFS.
@@ -835,31 +835,35 @@ And for the second strategy: \emph{distinguish faults}, the influence can be des
 \label{fig:fci_mask_distinguish}
 \end{figure}
 
-This figure is organised the same way as figure \ref{fig:fci_mask_regard}. As with distinguish strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So this transformation should be either parent-schema or identical to the originally schemas.
+This figure is organised the same way as figure \ref{fig:fci_mask_regard}. As with distinguish strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So under this transformation, the $c_{new}$ should be either parent-schema or identical to the $c_{origin}$.
 
-Similarly, we just give the proof of some transformation that is not so obviously.
-\begin{proposition}
-Original sub-schema, the parent-schema must be irrelevant.
+Similar with the first strategy, we take an example to illustrate this type of transformation, we list each possible scenario in table \ref{example-of-fci-influence-distiguish}.
 
-\end{proposition}
-\begin{proof}
-Without loss of generality, we assume $c$ is sub-schema to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
+It is noted that despite the transformations corresponds each one depicted in Figure \ref{fig:fci_mask_distinguish}, there is one more transformation can appear in this strategy, which can make some $c_{origin}$ \emph{"removed"} from the newly minimal schemas, i.e., $\not\exists c_{new}, s.t., c_{new} = c_{origin}\ or\ c_{origin} \prec c_{new}$. This appears when $T(c_{origin}) \subset B_{2}$, as such that all the test cases hit $c_{origin}$ will be ignored with the strategy \emph{distinguish faults}. When this transformation happens, no more other relationship between $c_{new}$ and $c_{m}$ increased, but it make the newly minimal schemas \emph{ignore} some actual MFS as we discussed before.
 
-So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
-\end{proof}
-
-
-\begin{proposition}
-Original identical-schema, the parent-schema must be irrelevant.
-
-\end{proposition}
-\begin{proof}
-Without loss of generality, we assume $c$ is irrelevant to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
-
-So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
-\end{proof}
-
-Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
+%Similarly, we just give the proof of some transformation that is not so obviously.
+%\begin{proposition}
+%Original sub-schema, the parent-schema must be irrelevant.
+%
+%\end{proposition}
+%\begin{proof}
+%Without loss of generality, we assume $c$ is sub-schema to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
+%
+%So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
+%\end{proof}
+%
+%
+%\begin{proposition}
+%Original identical-schema, the parent-schema must be irrelevant.
+%
+%\end{proposition}
+%\begin{proof}
+%Without loss of generality, we assume $c$ is irrelevant to the actual MFS, say, $c_{n}$. Then $T(c)$ must contain some other test cases in $A$. After using the  \emph{distinguish  faults} strategy, if we have $c \prec c'$, then $T(c')$ must lose some test cases in $B_{2}$.(If not so, there must be no c').
+%
+%So as it contain other test cases in $A$ and lose some test case in $B_{2}$. It cannot be the parent and identical to the MFS. If it is sub-schema of some MFS, say $c_{m}$. Then we must have $T(c_{m}) \subset T(c_{n})$. As Both $c_{m}$ and $c_{n}$ are MFS, which contradicts.
+%\end{proof}
+%
+%Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
 
 \begin{table}
 \tbl{Example the influence of distinguish faults for FCI approach\label{example-of-fci-influence-distiguish}}{
@@ -867,28 +871,50 @@ Another point need to be noted is that this transformation also mean some ignore
 %\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
 
-\multicolumn{3}{c}{(0,0,0,1,1)}&\multicolumn{3}{c}{(0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1)}&\multicolumn{3}{c}{(0,1,1,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,1)}&\multicolumn{3}{c}{(1,1,0,1,0)}&\multicolumn{3}{c}{(0,1,1,0,1)}\\
-\multicolumn{3}{c}{(0,0,1,0,1)}&\multicolumn{3}{c}{(0,0,0,1,0)} & \multicolumn{3}{c}{(1,0,1,1,0)}&\multicolumn{3}{c}{(0,1,1,1,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1)} & \multicolumn{3}{c}{}&\multicolumn{3}{c}{(0,1,1,1,1)}\\
-\multicolumn{3}{c}{(1,1,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1)} & \multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{(0,0,1,1,0)} &\multicolumn{3}{c}{(1,1,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(0,1,1,0,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(0,0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}&\multicolumn{3}{c}{(0,1,1,0,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,1,0,0)} & \multicolumn{3}{c}{(1,0,1,1,0,1)}&\multicolumn{3}{c}{(0,1,1,1,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
+\multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
  \hline
 \multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguish faults$} \\
 \multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(-,1,1,-,-) } &\multicolumn{4}{c}{(1,1,-,-,-)} & \multicolumn{4}{c}{(0,0,0,-,-)} \\
-\multicolumn{4}{c}{(1,1,-,1,-) } &\multicolumn{4}{c}{(0,0,-,-,-)} & \multicolumn{4}{c}{(0,0,-,-,0)}\\
-\multicolumn{4}{c}{(1,1,-,-,1) } &\multicolumn{4}{c}{(-,0,1,1,-)} & \multicolumn{4}{c}{(0,0,-,0,-)}\\
-\multicolumn{4}{c}{(0,0,0,-,0)}  &\multicolumn{4}{c}{(1,-,1,1,-)} & \multicolumn{4}{c}{(1,1,1,-,-)} \\
-\multicolumn{4}{c}{(0,0,0,0,-)}  &\multicolumn{4}{c}{} &  \multicolumn{4}{c}{(1,1,-,-,1)} \\
-\multicolumn{4}{c}{(-,-,1,1,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,1,-,0,-)}\\
-\multicolumn{4}{c}{(1,-,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,1,-,0)}\\
-\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,-,1,0)}\\
-\multicolumn{4}{c}{}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(1,-,1,1,1)}\\
+\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
+\multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
+\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
+\multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
+\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
+\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
+\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
+\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
+\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
+\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
+\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+
+\multicolumn{4}{c}{\bfseries transformation} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m'}$}\\ \hline
+\multicolumn{4}{c}{$c_{m} = c_{origin}  \rightarrow c_{m'} \prec c_{new} $} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
+\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{((1,0,-,-,1,1))} \\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new}\ irrele $} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m'}\prec c_{new} $} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m'} = c_{new} $} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
+\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
+\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
+
+\multicolumn{4}{c}{$c_{origin}\ ignored $} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
+%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+%\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+
 \end{tabular}}
 \end{table}
 %So what this two mutation than is , we first learn that
