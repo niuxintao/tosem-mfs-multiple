@@ -16,6 +16,7 @@
 % Package to generate and customize Algorithm as per ACM style
 \usepackage[ruled]{algorithm2e}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{subfigure}
 \usepackage[normalem]{ulem}
 
@@ -954,7 +955,7 @@ Commonly, when we replace the test case that triggers unexpected fault with a ne
 The \emph{fixed part} can varies for different FCI approaches, e.g, for OFOT algorithm, the fixed part is the factors except for the one that need to be validated whether it is the component of the MFS, while for FIC\_BS, we will fix the factors that should not be mutated of the test case in the next iteration of FIC\_BS process.
 
 It is noted that this replacement may need to execute multiple times for one fixed part as we could not always find a test case that by coincidence satisfy our requirement. Our previous work just randomly choose test cases until find one satisfied test case. That brute method may be simple and really works, but also may need to try too many times to get the satisfied one. So to handle this problem and reduce the cost, we augment our previous approach with computing the \emph{strength} of the test case with the other faults, and then we will select one test case from a group of candidate test cases that has the least \emph{strength} that is related to other faults.
- 
+
 % which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other faults.
 
 To explain the \emph{strength} notation, we need first introduce the \emph{strength} that a factor is related to a particular fault. We use $all(o)$ to represent the number of executed test cases that contain this factor, and $m(o)$ to indicate the number of test cases that trigger the fault $F_{m}$ and contain this factor. Then a the \emph{strength} that a factor is related to a particular fault, i.e., $S(o, F_{m})$, is $\frac{m(o)}{all(o)}$. Then for a test case $f$, the \emph{strength} it is related to a particular fault $F_{m}$ is defined as:
@@ -969,17 +970,22 @@ In this formula, $L$ is the number of all the faults, $n$ is the current analyse
 Then the process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
 
 \begin{algorithm}[t]
-\SetAlgoNoLine
-\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$}
+%\SetAlgoNoLine
+\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$, the size of candidate test cases $N$}
 \KwOut{ $t_{new}$ the regenerate test case,The frequency number }
-$index$ = 0; $FreNum_{\alpha}$ = -1\;
+%$index$ = 0; $FreNum_{\alpha}$ = -1\;
 \While{\textbf{not} MeetEndCriteria()}{
        $s_{mutant} \leftarrow t_{original} - s_{fixed}$\;
+       $Candi \leftarrow inital\ set\ of\ size\ N$ \;
+       \While{$Candi\ is\ not\ full$}{
        \ForAll {$opt \in s_{mutant}$}{
           $i = getIndex(Param,opt) $\;
            $opt \leftarrow opt' \ s.t.\ opt' \in Param[i]\ and\ opt' != opt$\;
           }
-       $t_{new} \leftarrow s_{fixed} \bigcup s_{mutant} $\;
+       $t' \leftarrow s_{fixed} \bigcup s_{mutant} $\;
+       $Candi.append(t')$ \;
+       }
+       $t_{new} \leftarrow \operatorname*{arg\,min}_{t' \in Candi} \max_{i < L \& i \neq m}S(t',F_{i})$\;
        $result \leftarrow execute(t_{new})$\;
         \eIf {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
@@ -993,8 +999,7 @@ $index$ = 0; $FreNum_{\alpha}$ = -1\;
 \label{alg:one}
 \end{algorithm}
 
-
-The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, and the values sets that each option can take from respectively.  The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
+The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, the values sets that each option can take from respectively and the size of the candidate test cases in which we will select one best test case to execute -- $N$. The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
 
 This algorithm is a loop(line 1 - 14) containing two parts:
 
