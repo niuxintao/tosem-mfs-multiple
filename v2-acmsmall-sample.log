@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  23 MAY 2014 13:56
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  24 MAY 2014 20:39
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -239,23 +239,13 @@ Package: subfigure 2002/07/30 v2.1.4 subfigure package
 \subfig@top=\skip67
 \subfig@bottom=\skip68
 )
-(D:\CTEX\MiKTeX\tex\latex\algorithms\algorithmic.sty
-Invalid UTF-8 byte or sequence at line 11 replaced by U+FFFD.
-Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count111
-\c@ALC@line=\count112
-\c@ALC@rem=\count113
-\c@ALC@depth=\count114
-\ALC@tlm=\skip69
-\algorithmicindent=\skip70
-)
 (D:\CTEX\MiKTeX\tex\latex\ulem\ulem.sty
 \UL@box=\box43
 \UL@hyphenbox=\box44
-\UL@skip=\skip71
+\UL@skip=\skip69
 \UL@hook=\toks20
 \UL@height=\dimen130
-\UL@pe=\count115
+\UL@pe=\count111
 \UL@pixel=\dimen131
 \ULC@box=\box45
 Requested font "lasy6" scaled 1000
@@ -264,19 +254,19 @@ Package: ulem 2011/03/18
 \ULdepth=\dimen132
 )
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Try loading font information for OT1+pnc on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Try loading font information for OT1+pnc on input line 38.
 
 (D:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
@@ -303,7 +293,7 @@ Requested font "cmex7" at 6.0pt
  -> cmex7
 Requested font "cmex7" at 5.0pt
  -> cmex7
-LaTeX Font Info:    Try loading font information for U+lasy on input line 88.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 87.
 
 (D:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -312,16 +302,16 @@ Requested font "lasy8" at 8.0pt
  -> lasy8
 Requested font "lasy5" at 5.0pt
  -> lasy5
-LaTeX Font Info:    Try loading font information for OMS+pnc on input line 88.
+LaTeX Font Info:    Try loading font information for OMS+pnc on input line 87.
 
 (D:\CTEX\MiKTeX\tex\latex\psnfss\omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 87.
 Requested font "cmtt8" at 8.0pt
  -> cmtt8
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 90.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 89.
 
 (D:\CTEX\MiKTeX\tex\latex\psnfss\ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
@@ -329,13 +319,13 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 Requested font "phvr7t" at 12.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 90.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 89.
 Requested font "phvb7t" at 12.0pt
  -> phvb7t
 Requested font "phvr7t" at 10.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 90.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 89.
 Requested font "pncb7t" at 8.0pt
  -> pncb7t
 Requested font "pncri7t" at 8.0pt
@@ -343,30 +333,11 @@ Requested font "pncri7t" at 8.0pt
 Requested font "phvr7t" at 9.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 93.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 92.
 Requested font "phvb7t" at 9.0pt
  -> phvb7t
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 94.
-Requested font "pncb7t" at 10.0pt
- -> pncb7t
-
-
-LaTeX Warning: Citation `song2012itree' on page 1 undefined on input line 94.
-
 Requested font "pncri7t" at 10.0pt
  -> pncri7t
-
-LaTeX Warning: Citation `cohen1997aetg' on page 1 undefined on input line 94.
-
-
-LaTeX Warning: Citation `bryce2005framework' on page 1 undefined on input line 
-94.
-
-
-LaTeX Warning: Citation `cohen2003constructing' on page 1 undefined on input li
-ne 94.
-
 
 Overfull \vbox (72.27pt too high) has occurred while \output is active []
 
@@ -375,103 +346,8 @@ Requested font "pncr7t" at 7.0pt
  [1
 
 ]
-
-LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
-t line 96.
-
-
-LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
-e 96.
-
-
-LaTeX Warning: Citation `bach2004pairwise' on page 2 undefined on input line 96
-.
-
-
-LaTeX Warning: Reference `MS_word' on page 2 undefined on input line 96.
-
 Requested font "phvr7t" at 8.0pt
  -> phvr7t
-
-LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 112.
-
-
-
-LaTeX Warning: Citation `yilmaz2006covering' on page 2 undefined on input line 
-114.
-
-
-LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 114.
-
-
-
-LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
-t line 114.
-
-
-LaTeX Warning: Citation `martinez2008algorithms' on page 2 undefined on input l
-ine 114.
-
-
-LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
-e 114.
-
-
-LaTeX Warning: Citation `nie2011minimal' on page 2 undefined on input line 114.
-
-
-
-LaTeX Warning: Citation `ghandehari2012identifying' on page 2 undefined on inpu
-t line 114.
-
-
-LaTeX Warning: Citation `niu2013identifying' on page 2 undefined on input line 
-114.
-
-
-LaTeX Warning: Citation `zhang2011characterizing' on page 2 undefined on input 
-line 114.
-
-
-LaTeX Warning: Citation `shakya2012isolating' on page 2 undefined on input line
- 114.
-
-
-LaTeX Warning: Citation `wang2010adaptive' on page 2 undefined on input line 11
-4.
-
-
-LaTeX Warning: Citation `li2012improved' on page 2 undefined on input line 114.
-
-
-
-LaTeX Warning: Citation `yilmaz2006covering' on page 2 undefined on input line 
-114.
-
-
-LaTeX Warning: Citation `colbourn2008locating' on page 2 undefined on input lin
-e 114.
-
-
-LaTeX Warning: Citation `martinez2008algorithms' on page 2 undefined on input l
-ine 114.
-
-
-LaTeX Warning: Citation `martinez2009locating' on page 2 undefined on input lin
-e 114.
-
-
-LaTeX Warning: Citation `fouche2009incremental' on page 2 undefined on input li
-ne 114.
-
-
-LaTeX Warning: Citation `dumlu2011feedback' on page 2 undefined on input line 1
-16.
-
-
-LaTeX Warning: Citation `yilmaz2013reducing' on page 2 undefined on input line 
-116.
-
 Requested font "cmex7" at 7.0pt
  -> cmex7
 Requested font "lasy10" at 10.0pt
@@ -479,84 +355,155 @@ Requested font "lasy10" at 10.0pt
 Requested font "lasy7" at 7.0pt
  -> lasy7
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
-[2]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 115.
 
-LaTeX Warning: Citation `yilmaz2006covering' on page 3 undefined on input line 
-136.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-LaTeX Warning: Citation `nie2011minimal' on page 3 undefined on input line 136.
-
-
-
-LaTeX Warning: Citation `zhang2011characterizing' on page 3 undefined on input 
-line 136.
-
+ [2]
+[3]
 Requested font "cmtt10" at 10.0pt
  -> cmtt10
-
-Underfull \vbox (badness 1097) has occurred while \output is active []
-
- [3]
-
-LaTeX Warning: Reference `toy-program' on page 4 undefined on input line 174.
-
-
-LaTeX Warning: Reference `toy-program' on page 4 undefined on input line 176.
-
-
-LaTeX Warning: Reference `test-example' on page 4 undefined on input line 217.
-
-
-LaTeX Warning: Reference `test-example' on page 4 undefined on input line 217.
-
-
-LaTeX Warning: Reference `test-example' on page 4 undefined on input line 217.
-
-
-LaTeX Warning: Reference `identify-example' on page 4 undefined on input line 2
-17.
-
-[4]
-
-LaTeX Warning: Citation `nie2011survey' on page 5 undefined on input line 244.
-
-[5]
+ [4] [5]
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
+ [6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-LaTeX Warning: Reference `example_subsume' on page 6 undefined on input line 29
-6.
-
-[6]
-
-LaTeX Warning: Reference `example_minimal_schemas' on page 7 undefined on input
- line 359.
-
-
-LaTeX Warning: Reference `fig:testSuite' on page 7 undefined on input line 393.
-
-
-[7]
+ [7]
 File: testSuite1.eps Graphic file (type eps)
- <testSuite1.eps>
+
+<testSuite1.eps>
 File: testSuite2.eps Graphic file (type eps)
  <testSuite2.eps>
 File: testSuite3.eps Graphic file (type eps)
- <testSuite3.eps>
+ <testSuite3.eps> [8] [9]
+Underfull \hbox (badness 2050) in paragraph at lines 527--527
+\OT1/phv/m/n/8 In-ter-sec-t by ir-rel-e-van-
+ []
 
-LaTeX Warning: Reference `fig:inclusion' on page 8 undefined on input line 418.
+[10]
+Underfull \vbox (badness 1189) has occurred while \output is active []
+
+ [11]
+File: FCI.eps Graphic file (type eps)
+
+<FCI.eps> [12]
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 699.
+Requested font "phvro7t" at 9.0pt
+ -> phvro7t
+ [13]
+File: FCI-mask.eps Graphic file (type eps)
+ <FCI-mask.eps> [14]
+File: fci-mask-influence2.eps Graphic file (type eps)
+ <fci-mask-influence2.eps> [15]
+File: fci-mask-influence.eps Graphic file (type eps)
+
+<fci-mask-influence.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+[17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18]
+Underfull \vbox (badness 6893) has occurred while \output is active []
+
+ [19]
+Requested font "pncr7t" at 9.0pt
+ -> pncr7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 974.
+Requested font "pncb7t" at 9.0pt
+ -> pncb7t
+Requested font "cmr9" at 9.0pt
+ -> cmr9
+Requested font "cmmi9" at 9.0pt
+ -> cmmi9
+Requested font "cmsy9" at 9.0pt
+ -> cmsy9
+Requested font "cmex9" at 9.0pt
+ -> cmex9
+Requested font "lasy9" at 9.0pt
+ -> lasy9
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 995.
+Requested font "pncb7t" at 7.0pt
+ -> pncb7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 995.
+Requested font "pncb7t" at 6.25002pt
+ -> pncb7t
+Requested font "pncri7t" at 9.0pt
+ -> pncri7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 995.
+Requested font "pncbi7t" at 9.0pt
+ -> pncbi7t
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 998.
+Requested font "pncb7t" at 10.0pt
+ -> pncb7t
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20]
+[21]
+Requested font "pncri7t" at 7.0pt
+ -> pncri7t
+Requested font "pncr7t" at 5.0pt
+ -> pncr7t
+Requested font "pncri7t" at 5.0pt
+ -> pncri7t
+ [22] [23]
+Requested font "pncr7t" at 6.0pt
+ -> pncr7t
 
 
-
-LaTeX Warning: Reference `example_three_condition' on page 8 undefined on input
- line 432.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `fig:disjoint' on page 8 undefined on input line 474.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8]
+[24] [25]
+File: FIC_BS_normal.eps Graphic file (type eps)
+ <FIC_BS_normal.eps>
+File: OFOT_normal.eps Graphic file (type eps)
+ <OFOT_normal.eps>
+File: CTA_normal.eps Graphic file (type eps)
+ <CTA_normal.eps> [26]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Reference `example_disjoint' on page 9 undefined on
+ [27]
+File: FIC_BS_our.eps Graphic file (type eps)
+
+<FIC_BS_our.eps>
+File: OFOT_our.eps Graphic file (type eps)
+ <OFOT_our.eps>
+File: CTA_our.eps Graphic file (type eps)
+ <CTA_our.eps> [28] [29]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+Missing character: There is no ’ in font pncr7t!
+
+Underfull \vbox (badness 6625) has occurred while \output is active []
+
+ [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32])
+[33] [1
+
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+Here is how much of TeX's memory you used:
+ 3388 strings out of 430478
+ 40403 string characters out of 3191502
+ 129730 words of memory out of 3000000
+ 6488 multiletter control sequences out of 15000+200000
+ 21805 words of font info for 63 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 33i,18n,29p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on v2-acmsmall-sample.pdf (34 pages).

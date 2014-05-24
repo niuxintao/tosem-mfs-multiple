@@ -14,7 +14,7 @@
 \documentclass[prodmode,acmtecs]{acmsmall} % Aptara syntax
 
 % Package to generate and customize Algorithm as per ACM style
-\usepackage[ruled]{algorithm2e}
+\usepackage[ruled,linesnumbered]{algorithm2e}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{subfigure}
@@ -970,21 +970,22 @@ In this formula, $L$ is the number of all the faults, $n$ is the current analyse
 Then the process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
 
 \begin{algorithm}[t]
-\SetAlgoNoLine
-\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$}
+%\SetAlgoNoLine
+\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$, the size of candidate test cases $N$}
 \KwOut{ $t_{new}$ the regenerate test case,The frequency number }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 \While{\textbf{not} MeetEndCriteria()}{
        $s_{mutant} \leftarrow t_{original} - s_{fixed}$\;
-       \While{$Set\ is\ not\ full$}{
+       $Candi \leftarrow inital\ set\ of\ size\ N$ \;
+       \While{$Candi\ is\ not\ full$}{
        \ForAll {$opt \in s_{mutant}$}{
           $i = getIndex(Param,opt) $\;
            $opt \leftarrow opt' \ s.t.\ opt' \in Param[i]\ and\ opt' != opt$\;
           }
        $t' \leftarrow s_{fixed} \bigcup s_{mutant} $\;
-       $Set.append(t')$
+       $Candi.append(t')$ \;
        }
-       $t_{new} \leftarrow \operatorname*{arg\,min}_{t' \in Set} \max_{i < L \& i \neq m}S(t',F_{i})$\;
+       $t_{new} \leftarrow \operatorname*{arg\,min}_{t' \in Candi} \max_{i < L \& i \neq m}S(t',F_{i})$\;
        $result \leftarrow execute(t_{new})$\;
         \eIf {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
@@ -998,8 +999,7 @@ Then the process of replacing a test case with a new one keeping some fixed part
 \label{alg:one}
 \end{algorithm}
 
-
-The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, and the values sets that each option can take from respectively.  The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
+The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, the values sets that each option can take from respectively and the size of the candidate test cases in which we will select one best test case to execute -- $N$. The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
 
 This algorithm is a loop(line 1 - 14) containing two parts:
 
