@@ -958,14 +958,17 @@ It is noted that this replacement may need to execute multiple times for one fix
 
 % which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other faults.
 
-To explain the \emph{strength} notation, we need first introduce the \emph{strength} that a factor is related to a particular fault. We use $all(o)$ to represent the number of executed test cases that contain this factor, and $m(o)$ to indicate the number of test cases that trigger the fault $F_{m}$ and contain this factor. Then a the \emph{strength} that a factor is related to a particular fault, i.e., $S(o, F_{m})$, is $\frac{m(o)}{all(o)}$. Then for a test case $f$, the \emph{strength} it is related to a particular fault $F_{m}$ is defined as:
+To explain the \emph{strength} notation, we need first introduce the \emph{strength} that a factor is related to a particular fault. We use $all(o)$ to represent the number of executed test cases that contain this factor, and $m(o)$ to indicate the number of test cases that trigger the fault $F_{m}$ and contain this factor. Then a the \emph{strength} that a factor is related to a particular fault, i.e., $S(o, F_{m})$, is $\frac{m(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a factor frequently appears in the test cases that trigger the particular fault, then it is more likely to be the inducing factor that trigger this type of fault. We plus 1 in the denominator for two facts:  1. avoid the division by zero when the factor is never appears before, 2. reduce the bias when a factor rarely appears in the test set but by coincidence appears in a failing test case with a particular fault.
+
+With this \emph{strength} of the factor, we then define the \emph{strength} a test case $f$ is related to a particular fault $F_{m}$ as:
 
 \begin{displaymath} S(f,F_{m})  = \frac{1}{|f|}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
 
-For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults, so we need to choose the test case that make the following formula as small as possible.
+This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults, so we need to choose the test case that make the following formula as small as possible.
 \begin{displaymath} \max_{m < L \& m \neq n}  S(f, F_{m}) \end{displaymath}
 
-In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault. So to make it as less as possible is actually make the test case $f$ less related to other faults.
+In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault.
+% So to make it as less as possible is actually make the test case $f$ less related to other faults.
 
 Then the process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
 
@@ -1027,22 +1030,34 @@ However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0)
 \begin{table}[h]
 \tbl{OFOT with our strategy\label{ofot-aug}}{
 \begin{tabular}{lllllll}
-\multicolumn{5}{c}{\bfseries original test case} & \bfseries fault info \\
- $t$ & \multicolumn{4}{l}{0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0 } & Err 1 \\
+\multicolumn{5}{c}{\bfseries original test case} & \multicolumn{2}{c}{\bfseries fault info} \\
+ $t$ & \multicolumn{4}{l}{0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0 } & \multicolumn{2}{c}{Err 1 }\\
  \hline
-$t_{1}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 }& Err 1 \\
-$t_{2}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 }} & \sout{Err 2} \\
-$t_{2}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0}} & \uwave{Err 1} \\
-$t_{3}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 }} & \sout{Err 2} \\
-$t_{3}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0}} & \uwave{Pass} \\
-$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
+$t_{1}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 }&\multicolumn{2}{c}{ Err 1} \\
+$t_{2}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 }} &\multicolumn{2}{c}{ \sout{Err 2}} \\
+         &\multicolumn{4}{l}{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+         &\multicolumn{4}{l}{0  \ \ \ \  4 \ \ \ \  0  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+         &\multicolumn{4}{l}{0  \ \ \ \  5 \ \ \ \  0  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
+$t_{2}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0}} & \multicolumn{2}{c}{\uwave{Err 1} }\\
+$t_{3}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 }} & \multicolumn{2}{c}{\sout{Err 3} }\\
+         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  3  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  5  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  7  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
+$t_{3}'$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  3  \ \ \ \  0}} & \multicolumn{2}{c}{\sout{Err 3}} \\
+         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  4  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  7  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
+$t_{3}''$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0}} & \multicolumn{2}{c}{\uwave{Pass}} \\
+$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & \multicolumn{2}{c}{Pass} \\
 \hline
-\multicolumn{3}{l}{\bfseries regard as one fault} &  \multicolumn{3}{l}{\bfseries replacing strategy} \\
-\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  -  \ \ \ 0) } &\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  0  \ \ \ 0) } \\
-\multicolumn{3}{l}{\bfseries distinguish faults} &\multicolumn{3}{l}{} \\
-\multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{3}{l}{} \\
+\multicolumn{3}{l}{\bfseries regard as one fault} &  \multicolumn{4}{l}{\bfseries replacing strategy} \\
+\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  -  \ \ \ 0) } &\multicolumn{4}{l}{ ( -  \ \ \  - \ \ \  0  \ \ \ 0) } \\
+\multicolumn{3}{l}{\bfseries distinguish faults} &\multicolumn{4}{l}{} \\
+\multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{4}{l}{} \\
 \end{tabular}}
 \end{table}
+
+
 
 
 \subsection{Complexity analysis}
