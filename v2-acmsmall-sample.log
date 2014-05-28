@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  28 MAY 2014 20:54
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  28 MAY 2014 23:07
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -445,44 +445,40 @@ LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
 
-[20]
-
-LaTeX Warning: Reference `ofot-aug' on page 21 undefined on input line 1023.
-
-[21]
+[20] [21]
 File: table.eps Graphic file (type eps)
- <table.eps> [22]
+ <table.eps>
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncr7t" at 5.0pt
  -> pncr7t
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
+ [22]
+Underfull \vbox (badness 3343) has occurred while \output is active []
+
  [23]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
- [24] [25] [26]
+
+[24]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25] [26]
 File: FIC_BS_normal.eps Graphic file (type eps)
  <FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
-
-<OFOT_normal.eps>
+ <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps>
-Underfull \vbox (badness 2245) has occurred while \output is active []
-
- [27]
+ <CTA_normal.eps> [27] [28]
 File: FIC_BS_our.eps Graphic file (type eps)
 
 <FIC_BS_our.eps>
 File: OFOT_our.eps Graphic file (type eps)
  <OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
- <CTA_our.eps> [28]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [29]
-[30]
+ <CTA_our.eps> [29] [30]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [31]
@@ -494,19 +490,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [33])
 [34] [1
 
-] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3390 strings out of 430478
- 40436 string characters out of 3191502
+ 3389 strings out of 430478
+ 40426 string characters out of 3191502
  129728 words of memory out of 3000000
- 6490 multiletter control sequences out of 15000+200000
+ 6489 multiletter control sequences out of 15000+200000
  21805 words of font info for 63 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,29p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
