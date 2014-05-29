@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  28 MAY 2014 23:07
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  29 MAY 2014 22:47
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -448,20 +448,28 @@ Requested font "pncb7t" at 10.0pt
 [20] [21]
 File: table.eps Graphic file (type eps)
  <table.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22]
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncr7t" at 5.0pt
  -> pncr7t
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
- [22]
-Underfull \vbox (badness 3343) has occurred while \output is active []
+
+Underfull \vbox (badness 1424) has occurred while \output is active []
 
  [23]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-[24]
+Underfull \vbox (badness 1783) has occurred while \output is active []
+
+ [24]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -471,7 +479,10 @@ File: FIC_BS_normal.eps Graphic file (type eps)
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps> [27] [28]
+ <CTA_normal.eps> [27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
 File: FIC_BS_our.eps Graphic file (type eps)
 
 <FIC_BS_our.eps>
@@ -484,13 +495,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [31]
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
+
+Underfull \vbox (badness 6625) has occurred while \output is active []
+
  [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [33])
 [34] [1
 
-] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  3389 strings out of 430478
  40426 string characters out of 3191502
