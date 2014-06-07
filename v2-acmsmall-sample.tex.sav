@@ -14,8 +14,9 @@
 \documentclass[prodmode,acmtecs]{acmsmall} % Aptara syntax
 
 % Package to generate and customize Algorithm as per ACM style
-\usepackage[ruled]{algorithm2e}
+\usepackage[ruled,linesnumbered]{algorithm2e}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{subfigure}
 \usepackage[normalem]{ulem}
 
@@ -953,31 +954,41 @@ Commonly, when we replace the test case that triggers unexpected fault with a ne
 
 The \emph{fixed part} can varies for different FCI approaches, e.g, for OFOT algorithm, the fixed part is the factors except for the one that need to be validated whether it is the component of the MFS, while for FIC\_BS, we will fix the factors that should not be mutated of the test case in the next iteration of FIC\_BS process.
 
-It is noted that this replacement may need to execute multiple times for one fixed part as we could not always find a test case that by coincidence satisfy our requirement. Our previous work just randomly choose test cases until find one satisfied test case. That brute method may be simple and really works, but also may need to try too many times to get the satisfied one. So to handle this problem and reduce the cost, we augment our previous approach with one data structure -- "suspicious set", which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other faults.
+It is noted that this replacement may need to execute multiple times for one fixed part as we could not always find a test case that by coincidence satisfy our requirement. Our previous work just randomly choose test cases until find one satisfied test case. That brute method may be simple and really works, but also may need to try too many times to get the satisfied one. So to handle this problem and reduce the cost, we augment our previous approach with computing the \emph{strength} of the test case with the other faults, and then we will select one test case from a group of candidate test cases that has the least \emph{strength} that is related to other faults.
 
-To explain the \emph{suspicious set} notation, we need first introduce the \emph{suspicious} degree between two test cases.
-\begin{definition}
-The \emph{suspicious} of two test cases $t_{1}$ and $t_{2}$ is defined as follows:
+% which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other faults.
 
-\begin{displaymath} Suspicious(t_{1},t_{2})  =  \bigcup_{c \in \mathcal{C}(T)} T(c) \end{displaymath}
+To explain the \emph{strength} notation, we need first introduce the \emph{strength} that a factor is related to a particular fault. We use $all(o)$ to represent the number of executed test cases that contain this factor, and $m(o)$ to indicate the number of test cases that trigger the fault $F_{m}$ and contain this factor. Then a the \emph{strength} that a factor is related to a particular fault, i.e., $S(o, F_{m})$, is $\frac{m(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a factor frequently appears in the test cases that trigger the particular fault, then it is more likely to be the inducing factor that trigger this type of fault. We plus 1 in the denominator for two facts:  1. avoid the division by zero when the factor is never appears before, 2. reduce the bias when a factor rarely appears in the test set but by coincidence appears in a failing test case with a particular fault.
 
-\end{definition}
+With this \emph{strength} of the factor, we then define the \emph{strength} a test case $f$ is related to a particular fault $F_{m}$ as:
 
+\begin{displaymath} S(f,F_{m})  = \frac{1}{|f|}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
 
-The process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
+This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults, so we need to choose the test case that make the following formula as small as possible.
+\begin{displaymath} \max_{m < L \& m \neq n}  S(f, F_{m}) \end{displaymath}
+
+In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault.
+% So to make it as less as possible is actually make the test case $f$ less related to other faults.
+
+Then the process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
 
 \begin{algorithm}[t]
-\SetAlgoNoLine
-\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$}
+%\SetAlgoNoLine
+\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$, the size of candidate test cases $N$}
 \KwOut{ $t_{new}$ the regenerate test case,The frequency number }
-$index$ = 0; $FreNum_{\alpha}$ = -1\;
+%$index$ = 0; $FreNum_{\alpha}$ = -1\;
 \While{\textbf{not} MeetEndCriteria()}{
        $s_{mutant} \leftarrow t_{original} - s_{fixed}$\;
+       $Candi \leftarrow inital\ set\ of\ size\ N$ \;
+       \While{$Candi\ is\ not\ full$}{
        \ForAll {$opt \in s_{mutant}$}{
           $i = getIndex(Param,opt) $\;
            $opt \leftarrow opt' \ s.t.\ opt' \in Param[i]\ and\ opt' != opt$\;
           }
-       $t_{new} \leftarrow s_{fixed} \bigcup s_{mutant} $\;
+       $t' \leftarrow s_{fixed} \bigcup s_{mutant} $\;
+       $Candi.append(t')$ \;
+       }
+       $t_{new} \leftarrow \operatorname*{arg\,min}_{t' \in Candi} \max_{i < L \& i \neq m}S(t',F_{i})$\;
        $result \leftarrow execute(t_{new})$\;
         \eIf {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
@@ -991,56 +1002,88 @@ $index$ = 0; $FreNum_{\alpha}$ = -1\;
 \label{alg:one}
 \end{algorithm}
 
+The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, the values sets that each option can take from respectively and the size of the candidate test cases in which we will select one best test case to execute -- $N$. The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
 
-The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, and the values sets that each option can take from respectively.  The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
+This algorithm is a outer loop(line 1 - 19) containing two parts:
 
-This algorithm is a loop(line 1 - 14) containing two parts:
+The first part(line 2 - 12) generates a new test case which is different from the original one. Different from the original algorithm, we generate a set of candidate test cases (line 3 - 11) instead of only one, and then choose the one that has the least possibility that is related to other faults(line 12) according to our previous formula. Our candidate set of test cases is initialed as size \emph{N}, the specific number it is assigned is a tradeoff between how quickly this algorithm ended in getting a candidate test case and how many times you'd like to try to find a really satisfied test case. It is noted that when \emph{N} = 1, it grows into our previous algorithm. Each test cases in the candidate set is generated by random(line 4 - 11), they must be different from existed test cases(we don't show in this pseudo code) and each one of them should keep the fixed part (line 9), and just mutate the factors which are not in that part(line 2). The mutation for each factor works by selecting one legal value which is different from the original one(line 5 - 8).
+%The generated newly test case must be different from each iteration(we implemented it by hashing method).
 
-The first part(line 2 - 7) generates a new test case which is different from the original one. This test case will keep the fixed part (line 7), and just mutate the factors which are not in that part(line 2). The mutation for each factor works by selecting one legal value(by random) which is different from the original one(line 3 - 6). The generated newly test case must be different from each iteration(we implemented it by hashing method).
+Second part is to check whether the newly generated test case is as expected(line 13 - 18). We first execute the SUT under the newly generated test case(line 13) and then check the executed result. Either the test case passes or triggers the same fault -- $F_{m}$ meets the requirement(line 14), and if so we will directly return this test case(line 15). Otherwise, we will repeat the process, i.e., generate newly test case and check again(line 16 - 17).
 
-Second part is to check whether the newly generated test case is as expected(line 8 - 13). We first execute the SUT under the newly generated test case(line 8) and then check the executed result. Either the test case passes or triggers the same fault -- $F_{m}$ meets the requirement(line 9), and if so we will directly return this test case(line 10). Otherwise, we will repeat the process, i.e., generate newly test case and check again(line 11 -12).
-
-It is noted that the loop has another exit besides we find an expected test case(line 10), which is when the function \emph{MeetEndCriteria()} returns \emph{true}(line 1). We didn't explicitly show what the function \emph{MeetEndCriteria()} is like, because this is depending on the computing resource and how accurate you want to the identifying result to be. In detail, if you want to get a high quality result and you have enough computing resource, you can try much times to get the expected test case, otherwise, a relatively small number of attempts is recommended.
+Similar as our previous work, this algorithm has another exit besides we find an expected test case(line 10), which is when the function \emph{MeetEndCriteria()} returns \emph{true}(line 1). We didn't explicitly show what the function \emph{MeetEndCriteria()} is like, because this is depending on the computing resource and how accurate you want to the identifying result to be. In detail, if you want to get a high quality result and you have enough computing resource, you can try much times to get the expected test case, otherwise, a relatively small number of attempts is recommended.
 
 In this paper, we just set 3 as the biggest repeated times for this function. When it ended with \emph{MeetEndCriteria()} is true, we will return null(line 15), which means we cannot find an expected test case.
 
 \subsection{A case study with the replacing strategy}
 %Next we will take the FCI approach--OFOT algorithm as the subject to see how our approach works on them.
 
-Suppose we have to test a system with four parameters, each has three options. And when we execute the test case (0 0 0 0), a failure--$Err 1$ is triggered. Next we will use the FCI approach -- OFOT with replacing strategy to identify the MFS for the $Err 1$. The process is listed in Table \ref{ofot-aug}. In this table, the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
+Suppose we have to test a system with eight parameters, each has three options. And when we execute the test case $T_{0}$ -- (0 0 0 0 0 0 0 0), a failure--$Err 1$ is triggered. Next we will use the FCI approach -- FIC\_BS \cite{zhang2011characterizing} with replacing strategy to identify the MFS for the $Err 1$. Furthermore, there are two more potential faults $Err 2$ and $Err 3$ may be triggered during the testing, which will mask the desired fault $Err 1$. The process is listed in Figure \ref{fig:fci_case_study}. In this figure, there is two main columns in this figure, the left column indicate the executed test ases during testing, while the right column represents the candidate test cases that are used to select one to replace the test case that trigger other faults.  Each executed test case corresponds to a specific label $T_{1}$ -- $T_{9}$ in the left. The executed test case which is in bold indicate the one that trigger other faults, and at the right column the test case that is selected to be replaced the undesired test case is marked by a shaded background to be distinguished from other candidate test cases.
+%the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
 
-From table \ref{ofot-aug}, we can find the algorithm mutates one factor to take the different value from the original test case one time. Originally if the test case encounter the result different from the expected error, OFOT will derive the fact that the MFS was broken, in another word, if we change one factor and it does not trigger the expect error, we will label it as one failure-inducing factor, after we changed all the elements, we will get the MFS. For this case, if we take the \emph{regard as one fault} strategy, then the MFS we got is (- - - 0) because the last case passed test case while the remaining test cases triggered either $Err 1$ or $Err 2$(regard as one fault).  Additionally when we take the \emph{distinguish faults} strategy, the MFS obtained is (- 0 0 0) as when we changed the second factor, third factor and the fourth factor, it didn't trigger the $Err 1$ ( for second factor, it triggered $Err 2$ and for the third and fourth, it passed).
+From Figure \ref{fig:fci_case_study}, for the test case that triggered other faults -- (1 1 0 0 0 0 0 0) (in this case, the fixed part of the test case is (- - 0 0 0 0 0 0), which the last four factors is the same as the original test case $T_{0}$), we randomly generate three test cases as the candidate test cases, which are (2 1 0 0 0 0 0 0), (2 2 0 0 0 0 0 0), (1 2 0 0 0 0 0 0) respectively.  For one candidate test case in the set--(2 1 0 0 0 0 0 0), the \emph{strength} it is related to the $Err 2$ can be computed as
+
+$$\frac{1}{8} (\frac{0}{1 + 1} + \frac{1}{1 + 1} + \frac{1}{2 + 1}  + \frac{1}{2 + 1} + \frac{1}{2 + 1} + \frac{1}{3 + 1} + \frac{1}{3 + 1}  + \frac{1}{3 + 1} ) = 0.27083$$
+
+In this formula, each sub item in the right parentheses shows the \emph{strength} for each factor that is related to \emph{Err 2}. For example, for the first factor which has value 2, we can only find one test case $T_{1}$ -- (2 2 1 2 0 0 0 0) contain this factor. This test case passed during testing and no other test case contain this factor. So the M(o) and ALl(o) for this factor is 0 and 1 respectively, and the \emph{strength} it is related to the $Err 2$ is is $\frac{0}{1 + 1}$. For the second factor of candidate test case (2 1 0 0 0 0 0 0), we can only find the test case (1 1 0 0 0 0 0 0 ) contain it and trigger the fault -- $Err 2$. So M(o) and ALl(o) for this factor are both 1, and the corresponding \emph{strength} is $\frac{1}{1 + 1}$. The \emph{strength} of remaining factors in this test case is computed in the same way and finally the average \emph{strength} of all these factors is regard as the \emph{strength} of the candidate test case (2 1 0 0 0 0 0 0) that is related to the fault $Err 2$. We also follow the same way to compute the \emph{strength} that these test cases that is related to $Err 3$, as this type fault is never triggered currently, so these \emph{strength} are all 0.
+
+After computed the \emph{strength} for all these candidate test cases, we then choose the one that is least likely to be related to other faults. In this case, we choose the candidate test case (2 2 0 0 0 0 0 0) , its maximal \emph{strength} related to the other fault is against Err 2, which is  0.2083. It is smaller that other two candidate test cases, which both 0.27083. So we choose it as the replaced the test case in the next iteration, i.e., $T_{2}'$.
+
+This replace process trigged each time the newly test case trigger other fault, and until we finally get the MFS. Some times we could not find a satisfied replacing test case in just one trial.  When it happened, we will need repeat searching the proper test case we desired, e.g., for the $T_{8}$ which triggered $Err 3$ in Figure \ref{fig:fci_case_study}, we have tried two times --$T_{8}'$ and $T_{8}''$ to get the satisfied test case $T_{8}''$ .
+
+There is a point need to be noted here, i.e., this approach is actually an augmented random approach, to be exactly choose the one that has the smallest \emph{strength}, we in theory need to rank the $(\prod_{i \in \neg fixed}|v_{i} - 1| - 1)$ (every combination of the value options except the ones in the fixed part) possible candidate test cases. For example, when we find (0 0 1 2 1 2 2 1 ) triggered other fault, we need to select one candidate test case from the set \{(0 0 1 1 1 1 1 1),(0 0 1 1 1 1 1 2),(0 0 1 1 1 1 2 1),(0 0 1 1 1 1 2 2)...(0 0 2 2 2 2 2 2)\}, of which the size is $2^{6} - 1$ (the 1 that is subtracted is the originally test case (0 0 1 2 1 2 2 1 ) triggered other fault). We should note that in the algorithm when we replace the factor value, we do not assign it with the value that appears in the original failing test case, e.g., for  (0 0 1 2 1 2 2 1 ), we will not replace them with test case such as (0 0 0 2 1 0 0 1), this is because we do not want the fixed part we try to test may be interfered with other factors in the original failing test case. So the possible number of test cases we can generate is $(\prod_{i \in \neg fixed}|v_{i} - 1| - 1)$ instead of $(\prod_{i \in \neg fixed}|v_{i}| - 1)$.
+
+It could cause an exponential explosion in the searching space when k is large and fixed part is small. So in this paper we just give this augmented random approach just choose the one "best" test case in a prior given number of randomly generated candidate test cases set. Nevertheless, we believe there may exists other better approaches, e.g., the heuristic approach or greedy approach, may do better at searching a test case with less \emph{strength} related to other faults, which however, will not be discussed in this paper.
+
+%we can find the algorithm mutates one factor to take the different value from the original test case one time. Originally if the test case encounter the result different from the expected error, OFOT will derive the fact that the MFS was broken, in another word, if we change one factor and it does not trigger the expect error, we will label it as one failure-inducing factor, after we changed all the elements, we will get the MFS. For this case, if we take the \emph{regard as one fault} strategy, then the MFS we got is (- - - 0) because the last case passed test case while the remaining test cases triggered either $Err 1$ or $Err 2$(regard as one fault).  Additionally when we take the \emph{distinguish faults} strategy, the MFS obtained is (- 0 0 0) as when we changed the second factor, third factor and the fourth factor, it didn't trigger the $Err 1$ ( for second factor, it triggered $Err 2$ and for the third and fourth, it passed).
 
 % So if we do not regenerate the test configuration (0 2 0 0), we will get the MFS -- ( - 0 0 0) for the err 1(which are also labeled with a delete line).
 
-However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0) which triggered err 1 (in this case, the fixed part of the test case is (0, - - -)), and replace the test case $t_{3}$--(0 0 1 0) with $t_{3}'$--(0 0 2 0) which passed, we will find that only when we change the third and fourth factor will we broke the MFS for err 1, therefore,  the failure-inducing combination for err 1 should be (- - 0 0).
+%However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0) which triggered err 1 (in this case, the fixed part of the test case is (0, - - -)), and replace the test case $t_{3}$--(0 0 1 0) with $t_{3}'$--(0 0 2 0) which passed, we will find that only when we change the third and fourth factor will we broke the MFS for err 1, therefore,  the failure-inducing combination for err 1 should be (- - 0 0).
 
 
-\begin{table}[h]
-\tbl{OFOT with our strategy\label{ofot-aug}}{
-\begin{tabular}{llllll}
-\multicolumn{5}{c}{\bfseries original test case} & \bfseries fault info \\
- $t$ & \multicolumn{4}{l}{0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0 } & Err 1 \\
- \hline
-$t_{1}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 }& Err 1 \\
-$t_{2}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 }} & \sout{Err 2} \\
-$t_{2}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0}} & \uwave{Err 1} \\
-$t_{3}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 }} & \sout{Err 2} \\
-$t_{3}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0}} & \uwave{Pass} \\
-$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & Pass \\
-\hline
-\multicolumn{3}{l}{\bfseries regard as one fault} &  \multicolumn{3}{l}{\bfseries replacing strategy} \\
-\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  -  \ \ \ 0) } &\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  0  \ \ \ 0) } \\
-\multicolumn{3}{l}{\bfseries distinguish faults} &\multicolumn{3}{l}{} \\
-\multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{3}{l}{} \\
-\end{tabular}}
-\end{table}
+%\begin{table}[h]
+%\tbl{OFOT with our strategy\label{ofot-aug}}{
+%\begin{tabular}{lllllll}
+%\multicolumn{5}{c}{\bfseries original test case} & \multicolumn{2}{c}{\bfseries fault info} \\
+% $t$ & \multicolumn{4}{l}{0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0 } & \multicolumn{2}{c}{Err 1 }\\
+% \hline
+%$t_{1}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 }&\multicolumn{2}{c}{ Err 1} \\
+%$t_{2}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 }} &\multicolumn{2}{c}{ \sout{Err 2}} \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  4 \ \ \ \  0  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  5 \ \ \ \  0  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
+%$t_{2}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0}} & \multicolumn{2}{c}{\uwave{Err 1} }\\
+%$t_{3}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 }} & \multicolumn{2}{c}{\sout{Err 3} }\\
+%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  3  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  5  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  7  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
+%$t_{3}'$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  3  \ \ \ \  0}} & \multicolumn{2}{c}{\sout{Err 3}} \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  4  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
+%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  7  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
+%$t_{3}''$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0}} & \multicolumn{2}{c}{\uwave{Pass}} \\
+%$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & \multicolumn{2}{c}{Pass} \\
+%\hline
+%\multicolumn{3}{l}{\bfseries regard as one fault} &  \multicolumn{4}{l}{\bfseries replacing strategy} \\
+%\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  -  \ \ \ 0) } &\multicolumn{4}{l}{ ( -  \ \ \  - \ \ \  0  \ \ \ 0) } \\
+%\multicolumn{3}{l}{\bfseries distinguish faults} &\multicolumn{4}{l}{} \\
+%\multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{4}{l}{} \\
+%\end{tabular}}
+%\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=4.31in]{table.eps}
+\caption{A case study of our approach}
+\label{fig:fci_case_study}
+\end{figure}
 
 
 \subsection{Complexity analysis}
-This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be selected to generate a non-masking-effects test case to replace a test case that trigger the other fault. The last complexity is the product of this two factor.
+This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effects test case. The complexity is the product of this two facts.
 
-The first factor is according to the extra test cases that needed to identify the MFS in the failing test cases, this number varies in different FCI approaches, Table \ref{extra-testcases-complexisty} list the number of test cases that each algorithms that needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the degree of the MFS in the SUT. \emph{c} is an upper bond, satisfies, $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
+The first fact is comparable to the extra test cases that needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} list the number of test cases that each algorithms that needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the degree of the MFS in the SUT. \emph{c} is an upper bond, satisfies, $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
 
 \begin{table}
 \centering
@@ -1064,36 +1107,38 @@ TRT \cite{niu2013identifying}&  \\
 
 It must be noted that each algorithm may be limited to some restrictions to identify the result, details can be saw in \cite{zhang2011characterizing}.
 
-To get the complexity of the second factor, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. This complexity also varies in the adaptive method and non-adaptive. Adaptive method, is commonly identify the MFS in a existed failing test case, while non-adaptive will not limited to this existed failing test case. We can generate $v^{k - p}$  (\emph{p} is the number of factors in the \emph{fixed} part)possible test cases that contain the \emph{fixed} part. Apart from the one that need to be replaced, there remain $v^{k - p} - 1$. For non-adaptive method, in theory, all the remained $v^{k - p} -1$ can trigger other faults, which indicates the complexity is $O(v^{k - p} - 1)$. While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
+To get the magnitude of the second fact, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. As we have mentioned before we can in fact generate $(v-1)^{k - p} $  (\emph{p} is the number of factors in the \emph{fixed} part)possible test cases that contain the \emph{fixed} part. Apart from the one that need to be replaced, there remain $(v-1)^{k - p}- 1$, which indicates the complexity is $O((v-1)^{k - p} - 1)$. However, to avoid the exponential computational complexity, we in this algorithm use a method $MeetEndCriteria()$ (line 1) function to end the algorithm when the trying times is over a prior given constant, say $N$, so the final complexity for the second part is $O( min (N, (v-1)^{k - p} - 1))$.
+%
+%While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
 
-It is noted that exponential factor $k - p$ directly affects the complexity of the second factor, the more $p$ is, the less test cases could be generated. For different approach, $p$ is different. As for OFOT, $p$ is a fixed number, which is $k - 1$, it is the minimal number of the test cases we need to give. While for FIC\_BS, the $p$ varies in the test cases it generates, ranges from $k-1$ to $1$. While for non-adaptive, as the $fixed $ part is the coverage, we list them as $t$ and this is also for suspicious. We list them all in Table \ref{fixed-part-complexisty}.
+It is noted that exponential factor $k - p$ directly affects the complexity of the second factor, the more $p$ is, the less test cases could be generated. For different approach, $p$ is different. As for OFOT, $p$ is a fixed number, which is $k - 1$, it is the minimal number of the test cases we need to give. While for FIC\_BS, the $p$ varies in the test cases it generates, ranges from $k-1$ to $1$. While for non-adaptive, as the $fixed $ part is the coverage, we list them as $t$. We list them all in Table \ref{fixed-part-complexisty}. It is noted that the $Martinez without safe values$ have no such complexity, this is because this approach works when $v = 2$, and this will result in that we will not have other test cases to be replaced if we test a fixed part when trigger other faults.
 
 \begin{table}
 \centering
 \tbl{The complexity of second part\label{fixed-part-complexisty}}{
   \begin{tabular}{c | c}
 \bfseries Method & \bfseries fixed part\\ \hline
-Charles ELA &   $O(v^{k - t} - 1)$\\
-Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O(v - 2) ~ O(v^{k - 1} - 2)$\\
-Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$O(v - 2) ~ O(v^{k - 1} - 2)$  \\
-Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O(v^{k - t} - 1)$\\
-Shi SOFOT \cite{shi2005software}& $O(v - 2) $\\
-Nie OFOT \cite{nie2011minimal} & $O(v - 2)$\\
-Ylimaz classification tree & $O(v^{k - t} - 1)$\\
-FIC \cite{zhang2011characterizing} &  $O(v - 2) ~ O(v^{k - 1} - 2)$\\
-FIC\_BS \cite{zhang2011characterizing}& $O(v - 2) ~ O(v^{k - 1} - 2)$\\
-Ghandehari's suspicous based  \cite{ghandehari2012identifying}&$ O(v^{k - t} - 2)$\\
-TRT \cite{niu2013identifying}&$ O(v - 2) ~ O(v^{k - 1} - 2) $\\
+Charles ELA &   $O( min (N, (v - t)^{k - p} - 1))$\\
+Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$ - $  \\
+Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - t)^{k - p} - 1))$\\
+Shi SOFOT \cite{shi2005software}& $O( min (N, (v-1) - 1))) $\\
+Nie OFOT \cite{nie2011minimal} & $O( min (N, (v-1) - 1)))$\\
+Ylimaz classification tree & $O( min (N, (v - t)^{k - p} - 1)$\\
+FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+Ghandehari's suspicous based  \cite{ghandehari2012identifying}&$ O( min (N, (v - t)^{k - p} - 1))$\\
+TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1)) $\\
   \end{tabular}
   }
   \end{table}
 
-The production of this two complexity is the final complexity for our approach. This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
+%The production of this two complexity is the final complexity for our approach. This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
 %
 %This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
 
-\section{empirical studies}
+\section{empirical studies}\overleftarrow{}
 We conducted several empirical studies to address the following questions:
 
 \textbf{Q1}: Do masking effects exist in real software when it contain multiple faults?

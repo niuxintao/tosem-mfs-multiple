@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  30 MAY 2014 16:41
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  7 JUN 2014 23:11
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -451,57 +451,57 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [22]
 File: table.eps Graphic file (type eps)
 
-<table.eps> [23]
-Underfull \vbox (badness 2020) has occurred while \output is active []
-
- [24]
+<table.eps> [23] [24]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
+ [25]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[26]
+Underfull \vbox (badness 1178) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
+ [27]
 File: FIC_BS_normal.eps Graphic file (type eps)
 
 <FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps> [27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
+ <CTA_normal.eps> [28]
 File: FIC_BS_our.eps Graphic file (type eps)
-
-<FIC_BS_our.eps>
+ <FIC_BS_our.eps>
 File: OFOT_our.eps Graphic file (type eps)
- <OFOT_our.eps>
+
+<OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
- <CTA_our.eps>
+ <CTA_our.eps> [29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29]
-[30] [31] [32]
+ [30]
+[31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
- [33])
-[34] [1
+ [33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34])
+[35] [1
 
 ] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3386 strings out of 430478
- 40385 string characters out of 3191502
- 129728 words of memory out of 3000000
- 6486 multiletter control sequences out of 15000+200000
+ 3387 strings out of 430478
+ 40406 string characters out of 3191502
+ 129739 words of memory out of 3000000
+ 6487 multiletter control sequences out of 15000+200000
  20316 words of font info for 60 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,29p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (35 pages).
+Output written on v2-acmsmall-sample.pdf (36 pages).

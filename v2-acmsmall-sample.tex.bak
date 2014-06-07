@@ -1099,7 +1099,7 @@ Nie OFOT \cite{nie2011minimal} & $kd$\\
 Ylimaz classification tree & \\
 FIC \cite{zhang2011characterizing} &  $k$ \\
 FIC\_BS \cite{zhang2011characterizing}& $t(log k + 1) + 1$\\
-Ghandehari's suspicous based  \cite{ghandehari2012identifying}& \\
+Ghandehari's suspicious based  \cite{ghandehari2012identifying}& \\
 TRT \cite{niu2013identifying}&  \\
   \end{tabular}
   }
@@ -1107,52 +1107,57 @@ TRT \cite{niu2013identifying}&  \\
 
 It must be noted that each algorithm may be limited to some restrictions to identify the result, details can be saw in \cite{zhang2011characterizing}.
 
-To get the magnitude of the second fact, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. This complexity also varies in the adaptive method and non-adaptive. Adaptive methods commonly identify the MFS in a existed failing test case, while non-adaptive will not limited to this existed failing test case. We can generate $(v-1)^{k - p}$  (\emph{p} is the number of factors in the \emph{fixed} part)possible test cases that contain the \emph{fixed} part. Apart from the one that need to be replaced, there remain $v^{k - p} - 1$. For non-adaptive method, in theory, all the remained $v^{k - p} -1$ can trigger other faults, which indicates the complexity is $O(v^{k - p} - 1)$. While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
+To get the magnitude of the second fact, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. As we have mentioned before we can in fact generate $(v-1)^{k - p} $  (\emph{p} is the number of factors in the \emph{fixed} part)possible test cases that contain the \emph{fixed} part. Apart from the one that need to be replaced, there remain $(v-1)^{k - p}- 1$, which indicates the complexity is $O((v-1)^{k - p} - 1)$. However, to avoid the exponential computational complexity, we in this algorithm use a method $MeetEndCriteria()$ (line 1) function to end the algorithm when the trying times is over a prior given constant, say $N$, so the final complexity for the second part is $O( min (N, (v-1)^{k - p} - 1))$.
+%
+%While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
 
-It is noted that exponential factor $k - p$ directly affects the complexity of the second factor, the more $p$ is, the less test cases could be generated. For different approach, $p$ is different. As for OFOT, $p$ is a fixed number, which is $k - 1$, it is the minimal number of the test cases we need to give. While for FIC\_BS, the $p$ varies in the test cases it generates, ranges from $k-1$ to $1$. While for non-adaptive, as the $fixed $ part is the coverage, we list them as $t$ and this is also for suspicious. We list them all in Table \ref{fixed-part-complexisty}.
+It is noted that exponential factor $k - p$ directly affects the complexity of the second factor, the more $p$ is, the less test cases could be generated. For different approach, $p$ is different. As for OFOT, $p$ is a fixed number, which is $k - 1$, it is the minimal number of the test cases we need to give. While for FIC\_BS, the $p$ varies in the test cases it generates, ranges from $k-1$ to $1$. While for non-adaptive, as the $fixed $ part is the coverage, we list them as $t$. We list them all in Table \ref{fixed-part-complexisty}. It is noted that the $Martinez without safe values$ have no such complexity, this is because this approach works when $v = 2$, and this will result in that we will not have other test cases to be replaced if we test a fixed part when trigger other faults.
 
 \begin{table}
 \centering
 \tbl{The complexity of second part\label{fixed-part-complexisty}}{
   \begin{tabular}{c | c}
 \bfseries Method & \bfseries fixed part\\ \hline
-Charles ELA &   $O(v^{k - t} - 1)$\\
-Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O(v - 2) ~ O(v^{k - 1} - 2)$\\
-Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$O(v - 2) ~ O(v^{k - 1} - 2)$  \\
-Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O(v^{k - t} - 1)$\\
-Shi SOFOT \cite{shi2005software}& $O(v - 2) $\\
-Nie OFOT \cite{nie2011minimal} & $O(v - 2)$\\
-Ylimaz classification tree & $O(v^{k - t} - 1)$\\
-FIC \cite{zhang2011characterizing} &  $O(v - 2) ~ O(v^{k - 1} - 2)$\\
-FIC\_BS \cite{zhang2011characterizing}& $O(v - 2) ~ O(v^{k - 1} - 2)$\\
-Ghandehari's suspicous based  \cite{ghandehari2012identifying}&$ O(v^{k - t} - 2)$\\
-TRT \cite{niu2013identifying}&$ O(v - 2) ~ O(v^{k - 1} - 2) $\\
+Charles ELA &   $O( min (N, (v - t)^{k - p} - 1))$\\
+Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$ - $  \\
+Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - t)^{k - p} - 1))$\\
+Shi SOFOT \cite{shi2005software}& $O( min (N, (v-1) - 1))) $\\
+Nie OFOT \cite{nie2011minimal} & $O( min (N, (v-1) - 1)))$\\
+Ylimaz classification tree & $O( min (N, (v - t)^{k - p} - 1)$\\
+FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+Ghandehari's suspicious based  \cite{ghandehari2012identifying}&$ O( min (N, (v - t)^{k - p} - 1))$\\
+TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1)) $\\
   \end{tabular}
   }
   \end{table}
 
-The production of this two complexity is the final complexity for our approach. This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
+%The production of this two complexity is the final complexity for our approach. This result is a upper bond, most times the system will just contain small size of faults which will significantly not reach this bond. Also, if a system with too many bugs that make the replacement too costly will just need to rewrite instead of identifying. Further more our "suspicious set" will largely reduce the replacement cost comparing with previous work, which will be validated in the empirical study later.
 %
 %This complexity is well lay on the number of faults and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
 
 \section{empirical studies}
-We conducted several empirical studies to address the following questions:
+To investigate the impact of masking effects for FCI approaches in real software testing scenario and to evaluate the performance that how well our approach handle this effect, we conduct several empirical studies in this section. Each one of the studies focus on addressing one particular problem, in which, the first study survey several real opens-source software to figure out the existence and the characteristics of masking effects in practice, the second study aims to determining the extent to which that two traditional strategies suffered from the masking effects, the third study focus on evaluating the performance of our approach as well as comparing it with two traditional strategies and the last study compares the efficiency between our new approach with previous approach with random replacing selection strategy.
+% to figure out the test cases.
 
-\textbf{Q1}: Do masking effects exist in real software when it contain multiple faults?
-
-\textbf{Q2}: How much do traditional approaches suffer from these real masking effects?
-
-\textbf{Q3}: Can our approach do better than traditional approaches when facing these masking effects?
-
-\textbf{Q4}: Comparing with previous work, do our new approach get improvement in handling effects and limiting the costs(reducing extra test cases).
-
-\textbf{Q5}: Does voting system that consists of different approaches can make improvements?
+%In this section, we conducted several empirical studies to address the following questions:
+%\textbf{Q1}: Do masking effects exist in real software when it contain multiple faults?
+%
+%\textbf{Q2}: How much do traditional approaches suffer from these real masking effects?
+%
+%\textbf{Q3}: Can our approach do better than traditional approaches when facing these masking effects?
+%
+%\textbf{Q4}: Comparing with previous work, do our new approach get improvement in handling effects and limiting the costs(reducing extra test cases).
+%
+%\textbf{Q5}: Does voting system that consists of different approaches can make improvements?
 %
 %Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
-\subsection{The existence of masking effects}
-In the first study, we surveyed two open-source software to gain an insight on the existence of multiple faults and their effects. The software under study are: HSQLDB and JFlex, the first is a database management software written in pure java and the second is a lexical analyser generator. Each of them contain different versions. All the two subjects are highly configurable so that the options and their combination can influence their behaviour. Additionally, they all have developers' community so that we can easily get the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code, number of classes in the project and the bug's id of each software we studied.
+\subsection{The existence and characteristics of masking effects}
+In the first study, we surveyed several open-source software to gain an insight on the existence of multiple faults and their effects. In addition to the software we have collected before(HSQLDB and JFlex), two newly open-source software is studied: (Apache and SpinChecker pr vsftpd ngIRCd).% The software under study are: HSQLDB and JFlex, the first is a database management software written in pure java and the second is a lexical analyser generator.
+Each of them contain different versions. All these subjects are highly configurable so that the options and their combination can influence their behaviour. Additionally, they all have developers' community so that we can easily get the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code, number of classes in the project and the bug's id of each software we studied.
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{Software under survey\label{software description}}{
@@ -1177,13 +1182,65 @@ JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
 \subsubsection{Study setup}
 We first looked through the bug tracker forum of each software and picked some bugs which are caused by the options combination. For each bug, we will derive its failure-inducing combinations by analysing the bug description report and its attached test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing combinations for this bug is: (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}), this three factors together form the condition on which the bug will be triggered. These analysed results will be regarded as the ``prior failure-inducing combinations" later.
 
-We further selected pairs of bugs belong to the same version and merged their test file, so that we can reproduce different faults through controlling the inputs to that merged test file. This merging manipulation varies with the pair of bugs we selected, and for each pair of bugs, the source code of the merging file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
+Then we focus on collecting the bugs that belong to one same version. It is naturally that the more bugs we collect for one version, the masking effects will more likely to be triggered in this software of this version. Table \ref{statitstics_of_bugs} list the result we collect.
+
+\begin{table}\renewcommand{\arraystretch}{1.3}
+\tbl{The bugs statistics of the software\label{statitstics_of_bugs}}{
+\begin{tabular}{c|c|c|c} \hline
+software & versions & Num of bugs & conflict number\\ \hline
+
+HSQLDB  &2.0rc8 & 139425 & 495 \\
+	   &2.2.5 & 156066 & 508 \\
+	    &2.2.9 & 162784 &525 \\
+JFlex  &1.4.1 &  10040 &58\\
+      &1.4.2 &  10745 &61 \\
+\hline\end{tabular}
+}
+\end{table}
+
+When two bugs conflict each other (cannot appear in one test case)
+
+1.possible situation, the 1 version, and the faults that are found in this version, and the possible faults can be .
+
+
+
+\subsubsection{Result and discussion}
+
+Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" give the total number of test cases we executed , Column ``failure" indicate the number of test cases that failed during testing and Column ``masking" indicate the number of test cases which trigger the masking effect.
+
+
+%[!ht]
+\begin{table}\renewcommand{\arraystretch}{1.3}
+\tbl{Number of faults and their masking effects\label{masking effect condition}}{
+\begin{tabular}{c|c|c|c|c} \hline
+software & versions & all tests & failure & masking\\ \hline
+HSQLDB & 2cr8 & 18432 & 4608 & 768\\ \hline
+     - & 2.2.5 & 6912 & 3456 & 576\\ \hline
+     - & 2.2.9 & 6912 & 3456 &1728\\ \hline
+JFlex & 1.4.1 & 36864 & 24576 &6144\\ \hline
+     -& 1.4.2 & 73728 & 36864 &6144\\ \hline
+\hline\end{tabular}
+}
+\end{table}
+
+We observed that for each version of the software under analysis we listed in the Table \ref{masking effect condition}, the test cases with masking effects do exist, i.e., test cases containing failure inducing combinations did not trigger the corresponding bug. In effect, there is about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\% respectively for the remaining software versions, which is not trivial.
+
+So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults, the masking effects do exist widely in the test cases.
+
+%All of these bug can be rebuilt by following the steps reported in the bug tracker. For example, Bug-\#29537 indicate that Grep incorrectly match unicode patterns with \textbackslash<\textbackslash>  and Bug-\#33080 claim that combination of --count (-c) and --only-matching (-o) will not work as expected. A simple test case liked the following command:
+%
+%\emph{grep --only-matching --count '\textbackslash<chai\textbackslash>' test.txt}
+%
+%can make these two bugs existed in one test case and only one fault will be observed. Other faults listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
+
+\subsection{Performance of the traditional algorithms}
+In the second study, our aim is to learn the degree that the masking effect impact on the traditional approaches. To conduct this study, we first need to construct the testing scenario that can produce the masking effects. To achieve this goal, we selected pairs of bugs belong to the same version of the particular software and merged their test file, so that we can reproduce different faults through controlling the inputs to that merged test file. This merging manipulation varies with the pair of bugs we selected, and for each pair of bugs, the source code of the merging file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
 
 Next we built the input model which consist of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options as well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose values type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software.
 
-We then generated the exhaustive test suite consist of all the possible combinations of these options and under each of them we executed the merged test file. We recorded the output of each test case to observe whether there are test cases contain prior failure-inducing combination but do not produce the corresponding bug.
+This work is time assuming, so to get a more general result, we further synthesized 30 more such scenarios and each of them is. The detailed model and the is listed in table.
 
-
+%We then generated the exhaustive test suite consist of all the possible combinations of these options and under each of them we executed the merged test file. We recorded the output of each test case to observe whether there are test cases contain prior failure-inducing combination but do not produce the corresponding bug.
 
 \begin{table}[h]
 \tbl{Input model of HSQLDB\label{modelHSQLDB}}{
@@ -1250,37 +1307,7 @@ We then generated the exhaustive test suite consist of all the possible combinat
 }
 \end{table}
 
-\subsubsection{Result and discussion}
-
-Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" give the total number of test cases we executed , Column ``failure" indicate the number of test cases that failed during testing and Column ``masking" indicate the number of test cases which trigger the masking effect.
-
-
-%[!ht]
-\begin{table}\renewcommand{\arraystretch}{1.3}
-\tbl{Number of faults and their masking effects\label{masking effect condition}}{
-\begin{tabular}{c|c|c|c|c} \hline
-software & versions & all tests & failure & masking\\ \hline
-HSQLDB & 2cr8 & 18432 & 4608 & 768\\ \hline
-     - & 2.2.5 & 6912 & 3456 & 576\\ \hline
-     - & 2.2.9 & 6912 & 3456 &1728\\ \hline
-JFlex & 1.4.1 & 36864 & 24576 &6144\\ \hline
-     -& 1.4.2 & 73728 & 36864 &6144\\ \hline
-\hline\end{tabular}
-}
-\end{table}
-
-We observed that for each version of the software under analysis we listed in the Table \ref{masking effect condition}, the test cases with masking effects do exist, i.e., test cases containing failure inducing combinations did not trigger the corresponding bug. In effect, there is about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\% respectively for the remaining software versions, which is not trivial.
-
-So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults, the masking effects do exist widely in the test cases.
-
-%All of these bug can be rebuilt by following the steps reported in the bug tracker. For example, Bug-\#29537 indicate that Grep incorrectly match unicode patterns with \textbackslash<\textbackslash>  and Bug-\#33080 claim that combination of --count (-c) and --only-matching (-o) will not work as expected. A simple test case liked the following command:
-%
-%\emph{grep --only-matching --count '\textbackslash<chai\textbackslash>' test.txt}
-%
-%can make these two bugs existed in one test case and only one fault will be observed. Other faults listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
-
-\subsection{Performance of the traditional algorithms}
-In the second study, our aim is to learn the degree that the masking effect impact on the traditional approaches. To conduct this study, we need to apply the traditional algorithms to identify the failure-inducing combinations for the prepared software in Table \ref{software description} and compare them with the prior failure-inducing combinations.
+ need to apply the traditional algorithms to identify the failure-inducing combinations for the prepared software in Table \ref{software description} and compare them with the prior failure-inducing combinations.
 
 %The detailed model is listed as table \ref{subject_model}. And the HSQLDB can be modeled as table \ref{modelHSQLDB}.
 %
