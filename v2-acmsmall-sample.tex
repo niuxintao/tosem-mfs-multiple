@@ -1139,7 +1139,7 @@ TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1
 
 
 \section{empirical studies}
-To investigate the impact of masking effects for FCI approaches in real software testing scenario and to evaluate the performance that how well our approach handle this effect, we conduct several empirical studies in this section. Each one of the studies focus on addressing one particular problem, in which, the first study survey several real opens-source software to figure out the existence and the characteristics of masking effects in practice, the second study aims to determining the extent to which that two traditional strategies suffered from the masking effects, the third study focus on evaluating the performance of our approach as well as comparing it with two traditional strategies and the last study compares the efficiency between our new approach with previous approach with random replacing selection strategy.
+To investigate the impact of masking effects for FCI approaches in real software testing scenario and to evaluate the performance that how well our approach handle this effect, we conduct several empirical studies in this section. Each one of the studies focus on addressing one particular problem, in which, the first study survey several real opens-source software to figure out the existence and the characteristics of masking effects in practice, the second study aims to determining the extent to which that two traditional strategies suffered from the masking effects, the last study focus on evaluating the performance of our approach as well as comparing it with two traditional strategies and still for the last study we will compares the efficiency between our new approach with previous approach using random replacing selection strategy.
 % to figure out the test cases.
 
 %In this section, we conducted several empirical studies to address the following questions:
@@ -1381,7 +1381,7 @@ After preparing the subjects under testing, we then apply three traditional appr
 
 %For OFOT and FIC, our set up is as follows:
 
-%For each test case in the exhaustive set for a particular software, we applied OFOT, FIC\_BS and CTA respectively to isolate the failure-inducing combinations in this test case. 
+%For each test case in the exhaustive set for a particular software, we applied OFOT, FIC\_BS and CTA respectively to isolate the failure-inducing combinations in this test case.
 As the subject under test has multiple faults, we adopted two traditional strategies in this case study, i.e., \emph{regard as one fault} and \emph{distinguish faults} described in Section 3.2. We then collected all the MFS as well as their generated additional test cases identified by each algorithm for each strategy respectively and refer them as \emph{identified combinations} for convenience. The purpose of recording the generated additional test cases is to quantify the additive cost of our approach in the next empirical study.
 %
 %For CTA, our setup is as follows:
@@ -1468,8 +1468,9 @@ The third empirical study aims to observe the performance of our approach and co
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
 \subsubsection{Study setup}
-The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
+The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different $endCritira$ will obviously influence the performance of the new approaches, we then set the most trial times $N$ to find a proper test case ranged from $1$ to the $maximum$. The maximum means the maximum possible test cases to try to find a test case. It is noted that when trial times is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
 
+Moveover, as our approach is an random based algorithm, to avoid the bias that come from the randomness, we repeat our approach 30 times to identify the MFS in each failing test case. We will compute the average additional test cases the new approach generated to get the cost when comparing the traditional ones. We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
 
 \subsubsection{Result and discussion}
@@ -1510,16 +1511,16 @@ Apart from these improvement, there is some slight decline for the augmented app
 
 In summary, the answer for \textbf{Q3} is: our approach do make the FCI approaches, to some extent, get better better performance at identifying failure-inducing combinations when facing masking effect between multiple faults.
 
-\subsection{Comparing with our previous work}
-The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
-%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
-
-\subsubsection{Study setup}
-The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
-
-%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
-
-\subsubsection{Result and discussion}
+%\subsection{Comparing with our previous work}
+%The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
+%%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
+%
+%\subsubsection{Study setup}
+%The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
+%
+%%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
+%
+%\subsubsection{Result and discussion}
 
 
 %\subsection{Voting System}
