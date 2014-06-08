@@ -1157,19 +1157,32 @@ To investigate the impact of masking effects for FCI approaches in real software
 
 \subsection{The existence and characteristics of masking effects}
 In the first study, we surveyed several open-source software to gain an insight on the existence of multiple faults and their effects. In addition to the software we have collected before(HSQLDB and JFlex), two newly open-source software is studied: (Apache and SpinChecker pr vsftpd ngIRCd).% The software under study are: HSQLDB and JFlex, the first is a database management software written in pure java and the second is a lexical analyser generator.
-Each of them contain different versions. All these subjects are highly configurable so that the options and their combination can influence their behaviour. Additionally, they all have developers' community so that we can easily get the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code, number of classes in the project and the bug's id of each software we studied.
+Each of them contain different versions. All these subjects are highly configurable so that the options and their combination can influence their behaviour. Additionally, they all have developers' community so that we can easily get the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code and number of classes in the project.
 
+%\begin{table}\renewcommand{\arraystretch}{1.3}
+%\tbl{Software under survey\label{software description}}{
+%\begin{tabular}{c|c|c|c|c} \hline
+%software & versions & LOC & classes & bug pairs\footnote{ http://sourceforge.net/p/hsqldb/bugs
+%http://sourceforge.net/p/jflex/bugs  } \\ \hline
+%
+%HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005\\
+%	   &2.2.5 & 156066 & 508 & \#1173 \&  \#1179\\
+%	    &2.2.9 & 162784 &525 & \#1286 \& \#1280\\
+%JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
+%      &1.4.2 &  10745 &61 &  \#98 \& \#93  \\
+%\hline\end{tabular}
+%}
+%\end{table}
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{Software under survey\label{software description}}{
-\begin{tabular}{c|c|c|c|c} \hline
-software & versions & LOC & classes & bug pairs\footnote{ http://sourceforge.net/p/hsqldb/bugs
-http://sourceforge.net/p/jflex/bugs  } \\ \hline
+\begin{tabular}{c|c|c|c} \hline
+software & versions & LOC & classes  \\ \hline
 
-HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005\\
-	   &2.2.5 & 156066 & 508 & \#1173 \&  \#1179\\
-	    &2.2.9 & 162784 &525 & \#1286 \& \#1280\\
-JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
-      &1.4.2 &  10745 &61 &  \#98 \& \#93  \\
+HSQLDB  &2.0rc8 & 139425 & 495 \\
+	   &2.2.5 & 156066 & 508 \\
+	    &2.2.9 & 162784 &525 \\
+JFlex  &1.4.1 &  10040 &58  \\
+      &1.4.2 &  10745 &61  \\
 \hline\end{tabular}
 }
 \end{table}
@@ -1180,9 +1193,9 @@ JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
 % \footnote{http://sourceforge.net/projects/hsqldb/files/hsqldb/ }
 
 \subsubsection{Study setup}
-We first looked through the bug tracker forum of each software and picked some bugs which are caused by the options combination. For each bug, we will derive its failure-inducing combinations by analysing the bug description report and its attached test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing combinations for this bug is: (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}), this three factors together form the condition on which the bug will be triggered. These analysed results will be regarded as the ``prior failure-inducing combinations" later.
+We first looked through the bug tracker forum of each software and picked some bugs which are caused by the options combination. For each bug, we will derive its failure-inducing combinations by analysing the bug description report and its attached test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing combinations for this bug is: (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}), this three factors together form the condition on which the bug will be triggered. These analysed results will be regarded as the ``prior MFS" later.
 
-Then we focus on collecting the bugs that belong to one same version. It is naturally that the more bugs we collect for one version, the masking effects will more likely to be triggered in this software of this version. Table \ref{statitstics_of_bugs} list the result we collect.
+Then we focus on collecting the bugs that belong to one same version. It is naturally that the more bugs we collect for one version, the masking effects will more likely to be triggered in this software of this version. Table \ref{statitstics_of_bugs} lists the result we collected. This table in turns provides the software name, the particular version and the number of bugs we have found in the bug tracker. The last column presents the number of pairs of bugs that can conflict with each other, i.e., these pairs of bugs cannot appear in one test case, such that they cannot mask each other.
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{The bugs statistics of the software\label{statitstics_of_bugs}}{
@@ -1197,12 +1210,11 @@ JFlex  &1.4.1 &  10040 &58\\
 \hline\end{tabular}
 }
 \end{table}
-
-When two bugs conflict each other (cannot appear in one test case)
-
-1.possible situation, the 1 version, and the faults that are found in this version, and the possible faults can be .
-
-
+%
+%When two bugs conflict each other (cannot appear in one test case)
+%
+%1.possible situation, the 1 version, and the faults that are found in this version, and the possible faults can be .
+%
 
 \subsubsection{Result and discussion}
 
@@ -1223,7 +1235,7 @@ JFlex & 1.4.1 & 36864 & 24576 &6144\\ \hline
 }
 \end{table}
 
-We observed that for each version of the software under analysis we listed in the Table \ref{masking effect condition}, the test cases with masking effects do exist, i.e., test cases containing failure inducing combinations did not trigger the corresponding bug. In effect, there is about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\% respectively for the remaining software versions, which is not trivial.
+We observed that for each version of the software under analysis we listed in the Table \ref{masking effect condition}, the test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In effect, there is about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\% respectively for the remaining software versions, which is not trivial.
 
 So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults, the masking effects do exist widely in the test cases.
 
@@ -1234,11 +1246,49 @@ So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults,
 %can make these two bugs existed in one test case and only one fault will be observed. Other faults listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
 
 \subsection{Performance of the traditional algorithms}
-In the second study, our aim is to learn the degree that the masking effect impact on the traditional approaches. To conduct this study, we first need to construct the testing scenario that can produce the masking effects. To achieve this goal, we selected pairs of bugs belong to the same version of the particular software and merged their test file, so that we can reproduce different faults through controlling the inputs to that merged test file. This merging manipulation varies with the pair of bugs we selected, and for each pair of bugs, the source code of the merging file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
+In the second study, our aim is to learn the extent that the masking effect impact on the traditional approaches. To conduct this study, we first need to construct the testing scenario that can produce the masking effects. To achieve this goal, we selected pairs of bugs belong to the same version of the particular software and merged their test file, so that we can reproduce different faults through controlling the inputs to that merged test file. This merging manipulation varies with the pair of bugs we selected, and for each pair of bugs, the source code of the merging file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
 
-Next we built the input model which consist of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options as well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose values type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software.
+Next we built the input model which consist of the options related to the failure-inducing combinations and additional noise options. Here we lists the two newly model in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options as well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose values type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software.
 
-This work is time assuming, so to get a more general result, we further synthesized 30 more such scenarios and each of them is. The detailed model and the is listed in table.
+To construct such real testing scenario is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report. So in order to give a more general result based on a large number of experiments, we then synthesize a bunch of such testing scenarios of which the characterization of masking effects are similar to the real software. In detail, we limited the scale of the SUT with the number of parameters \emph{k} range from 8 ~ 30, and randomly choose about 30 such SUTs. Then for each SUT, we randomly inject 2 ~ 4 different faults into it, for which these faults can mask each other. The degree of failure-inducing schemas of the faults we injected are randomly ranged from 2 ~ 6. Additionally, we randomly setting the level of each fault in such a SUT, i.e., 
+
+Above all, Table \ref{testing_models} list the testing model of both the real and synthesizing testing scenario. In this table, the column `software' indicate the SUT under test, for the real SUT, we label in this cell with the form ` \emph{name} + \emph{version}', while for the 
+
+\begin{table}\renewcommand{\arraystretch}{1.3}
+\tbl{The testing models of the case study\label{testing_models}}{
+\begin{tabular}{c|c|c} \hline
+software & CAModel & faults \\ \hline
+HSQLDB 2cr8 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+HSQLDB  2.2.5 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+HSQLDB  2.2.9 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+JFlex 1.4.1 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+JFlex  1.4.2 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  1 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  2 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  3 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  4 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  5 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  6 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  8 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  9 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  10 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  11 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  12 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  13 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  14 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  15 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  16 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  17 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  18 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  19 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  20 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+synthez  21 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
+\hline\end{tabular}
+}
+\end{table}
+
+%
+%we This work is time assuming, so to get a more general result, we further synthesized 30 more such scenarios and each of them is. The detailed model and the is listed in table.
 
 %We then generated the exhaustive test suite consist of all the possible combinations of these options and under each of them we executed the merged test file. We recorded the output of each test case to observe whether there are test cases contain prior failure-inducing combination but do not produce the corresponding bug.
 
@@ -1306,8 +1356,8 @@ This work is time assuming, so to get a more general result, we further synthesi
 \end{tabular}
 }
 \end{table}
-
- need to apply the traditional algorithms to identify the failure-inducing combinations for the prepared software in Table \ref{software description} and compare them with the prior failure-inducing combinations.
+%
+% need to apply the traditional algorithms to identify the failure-inducing combinations for the prepared software in Table \ref{software description} and compare them with the prior failure-inducing combinations.
 
 %The detailed model is listed as table \ref{subject_model}. And the HSQLDB can be modeled as table \ref{modelHSQLDB}.
 %
@@ -1326,7 +1376,7 @@ This work is time assuming, so to get a more general result, we further synthesi
 
 
 \subsubsection{Study setup}
-The traditional approaches we selected are: OFOT\cite{nie2011minimal}, FIC\_BS \cite{zhang2011characterizing} and CTA\cite{yilmaz2006covering}, in which CTA is a integrated failure characterization part of FDA-CIT\cite{yilmaz2013reducing}. As CTA is a post-analysis technique applied on given test cases, different test cases will influence the result of characterization process. So to avoid randomness and to be fair, we fed the CTA with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. %, the configuration options for J48, is .
+After preparing the subjects under testing, we then apply three traditional approaches: OFOT\cite{nie2011minimal}, FIC\_BS \cite{zhang2011characterizing} and CTA\cite{yilmaz2006covering} to identify the MFS in each failing test case we have detected after executing the possible test cases for that model. Among the three approaches, CTA is a integrated failure characterization part of FDA-CIT\cite{yilmaz2013reducing}. As CTA is a post-analysis technique applied on given test cases, different test cases will influence the result of characterization process. So to avoid randomness and to be fair, we fed the CTA with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. %, the configuration options for J48, is .
 % To make the first two approaches (OFOT and FIC) work, we need to feed them with a failing test case. And for CTA, however, it need to work with a covering array and the executing result for each test case in the covering array. As the input for the traditional approaches are different, we designed two different setups, one for OFOT and FIC, while the other for CTA.
 
 %For OFOT and FIC, our set up is as follows:
