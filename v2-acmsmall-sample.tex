@@ -1399,13 +1399,13 @@ We next compared the result with the prior MFS to quantify the degree that tradi
 Among these five metrics, high \emph{accurate number} value indicates FCI approaches performs effectively, while \emph{ignored number} and \emph{irrelevant number} indicate the degree of deviation for the FCI approaches. For \emph{parent number} and \emph{sub number}, they indicate FCI approaches that, although with additional noisy information, can determine part parameter values about the failure-inducing combinations.
 
 Different from previous work, we in addition give an composite criteria to measure the approaches. The computing formula is as follows:
-$$ \frac{accurate + related(parent) + related(sub)}{accurate + parent + sub + irrelevant + ignored} $$ 
+$$ \frac{accurate + related(parent) + related(sub)}{accurate + parent + sub + irrelevant + ignored} $$
 
 In this formula, \emph{accurate, parent, sub, irrelevant , ignored} respectively represents the number of each metric. \emph{related} function gives the similarity between the schemas (either parent or sub) and the real MFS. The similarity between two schemas $S_{A}$ and $S_{B}$ is computed as:
 
 \begin{displaymath} Similarity(S_{A},S_{B})= \frac{the\ elements\ in\ S_{A}\ and\ S_{B}}{\max (Degree(S_{A}),Degree(S_{B})) } \end{displaymath}.
 
-For example, the similarity of  (- 1\ 2 - 3) and  (- 2\ 2 - 3) is $\frac{2}{3}$, as the same elements of this two schemas are the third and last elements, and both of this two schemas is 3-degree. 
+For example, the similarity of  (- 1\ 2 - 3) and  (- 2\ 2 - 3) is $\frac{2}{3}$, as the same elements of this two schemas are the third and last elements, and both of this two schemas is 3-degree.
 %Besides, as we discussed in the formal model, \emph{regards as one fault} will, while \emph{distingush} will. So the four metric will to some extent validate this formal analysis.
 
 %This case study was conducted on the five subjects: HSQLDB with version 2rc8, 2.2.5 and 2.2.9, JFlex with versions 1.4.1 and 1.4.2. We summed up these metrics for each subject and illustrated them together in Figure \ref{fig:normalexperiment} for analysis.
@@ -1473,7 +1473,7 @@ The third empirical study aims to observe the performance of our approach and co
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
 \subsubsection{Study setup}
-The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different $endCritira$ will obviously influence the performance of the new approaches, we then set the most trial times $N$ to find a proper test case ranged from $1$ to the $maximum$. The maximum means the maximum possible test cases to try to find a test case. It is noted that when trial times is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
+The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different space of candidate set will obviously influence the performance of the new approaches, we then set the space of the candidate $N$ ranging from $1$ to the $maximum$. The maximum means the maximum possible test cases that can be selected to replace the unsatisfied test case. It is noted that when number is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
 
 Moveover, as our approach is an random based algorithm, to avoid the bias that come from the randomness, we repeat our approach 30 times to identify the MFS in each failing test case. We will compute the average additional test cases the new approach generated to get the cost when comparing the traditional ones. We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
