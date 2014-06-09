@@ -1139,7 +1139,7 @@ TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1
 
 
 \section{empirical studies}
-To investigate the impact of masking effects for FCI approaches in real software testing scenario and to evaluate the performance that how well our approach handle this effect, we conduct several empirical studies in this section. Each one of the studies focus on addressing one particular problem, in which, the first study survey several real opens-source software to figure out the existence and the characteristics of masking effects in practice, the second study aims to determining the extent to which that two traditional strategies suffered from the masking effects, the third study focus on evaluating the performance of our approach as well as comparing it with two traditional strategies and the last study compares the efficiency between our new approach with previous approach with random replacing selection strategy.
+To investigate the impact of masking effects for FCI approaches in real software testing scenario and to evaluate the performance that how well our approach handle this effect, we conduct several empirical studies in this section. Each one of the studies focus on addressing one particular problem, in which, the first study survey several real opens-source software to figure out the existence and the characteristics of masking effects in practice, the second study aims to determining the extent to which that two traditional strategies suffered from the masking effects, the last study focus on evaluating the performance of our approach as well as comparing it with two traditional strategies and still for the last study we will compares the efficiency between our new approach with previous approach using random replacing selection strategy.
 % to figure out the test cases.
 
 %In this section, we conducted several empirical studies to address the following questions:
@@ -1248,16 +1248,16 @@ So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults,
 \subsection{Performance of the traditional algorithms}
 In the second study, our aim is to learn the extent that the masking effect impact on the traditional approaches. To conduct this study, we first need to construct the testing scenario that can produce the masking effects. To achieve this goal, we selected pairs of bugs belong to the same version of the particular software and merged their test file, so that we can reproduce different faults through controlling the inputs to that merged test file. This merging manipulation varies with the pair of bugs we selected, and for each pair of bugs, the source code of the merging file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
 
-Next we built the input model which consist of the options related to the failure-inducing combinations and additional noise options. Here we lists the two newly model in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options as well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose values type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software.
+Next we built the input model which consist of the options related to the failure-inducing combinations and additional noise options. Here we lists the two newly model in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose values type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software.
 
-To construct such real testing scenario is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report. So in order to give a more general result based on a large number of experiments, we then synthesize a bunch of such testing scenarios of which the characterization of masking effects are similar to the real software. In detail, we limited the scale of the SUT with the number of parameters \emph{k} range from 8 ~ 30, and randomly choose about 30 such SUTs. Then for each SUT, we randomly inject 2 ~ 4 different faults into it, for which these faults can mask each other. The degree of failure-inducing schemas of the faults we injected are randomly ranged from 2 ~ 6. Additionally, we randomly setting the level of each fault in such a SUT, i.e., 
+To construct such real testing scenario is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report. So in order to give a more general result based on a large number of experiments, we then synthesize a bunch of such testing scenarios of which the characterization of masking effects are similar to the real software. In detail, we limited the scale of the SUT with the number of parameters \emph{k} range from 8 ~ 30, and randomly choose about 30 such SUTs. Then for each SUT, we randomly inject 2 ~ 4 different faults into it, for which these faults can mask each other. The degree of MFS of the faults we injected are randomly ranged from 2 ~ 6. Additionally, we randomly setting the level of each fault in such a SUT, i.e., for any two faults, which one has a higher level(such that can mask another one)is by random.
 
-Above all, Table \ref{testing_models} list the testing model of both the real and synthesizing testing scenario. In this table, the column `software' indicate the SUT under test, for the real SUT, we label in this cell with the form ` \emph{name} + \emph{version}', while for the 
+Above all, Table \ref{testing_models} lists the testing model of both the real and synthesizing testing scenario. In this table, the column `software' indicate the SUT under test, for the real SUT, we label it with the form ` \emph{name} + \emph{version}', while for the synthesizing ones, we just label as `\emph{synthez}+ \emph{id}'. The column `Model' presents the model of the input space for that software in the abbreviated form $\#values^{\#parameters}$, which shows the number of parameters has the same number of values can taken. Last column shows the faults either really existed or injected for synthesizing SUTs, we also presents them in an abbreviated form $\#degree^{\#faults}$, which means the number of faults that share the same degree.
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{The testing models of the case study\label{testing_models}}{
 \begin{tabular}{c|c|c} \hline
-software & CAModel & faults \\ \hline
+software & Model & faults \\ \hline
 HSQLDB 2cr8 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
 HSQLDB  2.2.5 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
 HSQLDB  2.2.9 & $2^{3}3^{2}$ & $2^{2}$ \\ \hline
@@ -1381,13 +1381,13 @@ After preparing the subjects under testing, we then apply three traditional appr
 
 %For OFOT and FIC, our set up is as follows:
 
-For each test case in the exhaustive set for a particular software, we applied OFOT, FIC\_BS and CTA respectively to isolate the failure-inducing combinations in this test case. As the subject under test has multiple faults, there are two strategies we adopted in this case study, i.e., \emph{regard as one fault} and \emph{distinguish faults} described in Section 3.2. We then collected all the failure-inducing combinations identified by each algorithm for each strategy respectively and refer them as \emph{identified combinations} for convenience.
+%For each test case in the exhaustive set for a particular software, we applied OFOT, FIC\_BS and CTA respectively to isolate the failure-inducing combinations in this test case.
+As the subject under test has multiple faults, we adopted two traditional strategies in this case study, i.e., \emph{regard as one fault} and \emph{distinguish faults} described in Section 3.2. We then collected all the MFS as well as their generated additional test cases identified by each algorithm for each strategy respectively and refer them as \emph{identified combinations} for convenience. The purpose of recording the generated additional test cases is to quantify the additive cost of our approach in the next empirical study.
 %
 %For CTA, our setup is as follows:
 %
 %We first utilize augment simulating algorithms(ASA) to generate 2-way covering arrays. And for each test case in the covering array, the executing result of them can be fetched from the exhaustive set we have got in the first study. Then we fed CTA approach with the covering array along with the corresponding executing results. We then collected the failure-inducing combinations after running CTA. As different covering array may affect the result of CTA approach, we repeated using ASA to generate 2-way covering array for 30 times and applied CTA for each of them. It is noted that ASA algorithm is a heuristic approach, which containing some random factors, so the 30 covering arrays are different from each other.
-
-We next compared the result with the prior failure-inducing combinations to quantify the degree that traditional approaches suffers from masking effect. There are five metrics we need to care in this study, which are listed as follows:
+We next compared the result with the prior MFS to quantify the degree that traditional approaches suffers from masking effect. There are five metrics we need to care in this study, which are listed as follows:
  \begin{enumerate}
  \item The number of the common combinations appeared in both identified combinations and prior failure-inducing combinations. We denote it as \emph{accurate number} later.
  \item The number of the identified combinations which is the parent combinations of some prior failure-inducing combinations. We refer it to \emph{parent number}.
@@ -1397,6 +1397,9 @@ We next compared the result with the prior failure-inducing combinations to quan
 \end{enumerate}
 
 Among these five metrics, high \emph{accurate number} value indicates FCI approaches performs effectively, while \emph{ignored number} and \emph{irrelevant number} indicate the degree of deviation for the FCI approaches. For \emph{parent number} and \emph{sub number}, they indicate FCI approaches that, although with additional noisy information, can determine part parameter values about the failure-inducing combinations.
+
+Different from previous work, we in addition give an composite criteria to measure the traditional strategies. The computing formula is as follows:
+$$ accurate number + (1/2) parent number + (1/2) sub number - irrelevant number - ignored number$$.
 
 %Besides, as we discussed in the formal model, \emph{regards as one fault} will, while \emph{distingush} will. So the four metric will to some extent validate this formal analysis.
 
@@ -1465,8 +1468,9 @@ The third empirical study aims to observe the performance of our approach and co
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
 \subsubsection{Study setup}
-The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
+The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different $endCritira$ will obviously influence the performance of the new approaches, we then set the most trial times $N$ to find a proper test case ranged from $1$ to the $maximum$. The maximum means the maximum possible test cases to try to find a test case. It is noted that when trial times is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
 
+Moveover, as our approach is an random based algorithm, to avoid the bias that come from the randomness, we repeat our approach 30 times to identify the MFS in each failing test case. We will compute the average additional test cases the new approach generated to get the cost when comparing the traditional ones. We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
 
 \subsubsection{Result and discussion}
@@ -1507,16 +1511,28 @@ Apart from these improvement, there is some slight decline for the augmented app
 
 In summary, the answer for \textbf{Q3} is: our approach do make the FCI approaches, to some extent, get better better performance at identifying failure-inducing combinations when facing masking effect between multiple faults.
 
-\subsection{Voting System}
-The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
-%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
+%\subsection{Comparing with our previous work}
+%The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
+%%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
+%
+%\subsubsection{Study setup}
+%The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
+%
+%%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
+%
+%\subsubsection{Result and discussion}
 
-\subsubsection{Study setup}
-The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
 
-%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
-
-\subsubsection{Result and discussion}
+%\subsection{Voting System}
+%The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
+%%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
+%
+%\subsubsection{Study setup}
+%The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
+%
+%%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
+%
+%\subsubsection{Result and discussion}
 
 
 
