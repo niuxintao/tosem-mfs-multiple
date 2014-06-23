@@ -1,12 +1,12 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.10.25)  10 JUN 2014 00:23
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  20 JUN 2014 11:52
 entering extended mode
 **v2-acmsmall-sample.tex
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\acmsmall.cls
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\acmsmall.cls
 Document Class: acmsmall 2012/03/05, fonts included on 28 June 2010
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\url.sty
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
@@ -14,38 +14,38 @@ ACM, Production Font style: 2010/06/28 by Aptara
 
 Using ACM, TECS option: 2010/05/04 by Aptara
 
-(F:\CTEX\MiKTeX\tex\latex\base\latexsym.sty
+(D:\CTEX\MiKTeX\tex\latex\base\latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
 )
-(F:\CTEX\MiKTeX\tex\latex\graphics\color.sty
+(D:\CTEX\MiKTeX\tex\latex\graphics\color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
-(F:\CTEX\MiKTeX\tex\latex\00miktex\color.cfg
+(D:\CTEX\MiKTeX\tex\latex\00miktex\color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: xetex.def on input line 130.
 
-(F:\CTEX\MiKTeX\tex\xelatex\xetex-def\xetex.def
+(D:\CTEX\MiKTeX\tex\xelatex\xetex-def\xetex.def
 File: xetex.def 2009/11/22 v0.94 LaTeX color/graphics driver for XeTeX (RRM/JK)
 
 ))
-(F:\CTEX\MiKTeX\tex\latex\graphics\graphicx.sty
+(D:\CTEX\MiKTeX\tex\latex\graphics\graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(F:\CTEX\MiKTeX\tex\latex\graphics\keyval.sty
+(D:\CTEX\MiKTeX\tex\latex\graphics\keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(F:\CTEX\MiKTeX\tex\latex\graphics\graphics.sty
+(D:\CTEX\MiKTeX\tex\latex\graphics\graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(F:\CTEX\MiKTeX\tex\latex\graphics\trig.sty
+(D:\CTEX\MiKTeX\tex\latex\graphics\trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(F:\CTEX\MiKTeX\tex\latex\00miktex\graphics.cfg
+(D:\CTEX\MiKTeX\tex\latex\00miktex\graphics.cfg
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: xetex.def on input line 91.
@@ -97,21 +97,21 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `normal'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3619.
 LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3620.
-) (C:\Users\xintao\Desktop\tosem-mfs-multiple\algorithm2e.sty
+) (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\algorithm2e.sty
 Invalid UTF-8 byte or sequence at line 322 replaced by U+FFFD.
 Package: algorithm2e 2008/00/00 v3.10 algorithms environments
 \c@AlgoLine=\count91
 
-(F:\CTEX\MiKTeX\tex\latex\base\ifthen.sty
+(D:\CTEX\MiKTeX\tex\latex\base\ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
 Invalid UTF-8 byte or sequence at line 778 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 780 replaced by U+FFFD.
 
-(F:\CTEX\MiKTeX\tex\latex\tools\xspace.sty
+(D:\CTEX\MiKTeX\tex\latex\tools\xspace.sty
 Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
 )
-(F:\CTEX\MiKTeX\tex\latex\ltxmisc\relsize.sty
+(D:\CTEX\MiKTeX\tex\latex\ltxmisc\relsize.sty
 Package: relsize 2003/07/04 ver 3.1
 )
 ********************************************************
@@ -159,26 +159,26 @@ Invalid UTF-8 byte or sequence at line 2532 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2584 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2592 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2592 replaced by U+FFFD.
-) (F:\CTEX\MiKTeX\tex\latex\ams\math\amsmath.sty
+) (D:\CTEX\MiKTeX\tex\latex\ams\math\amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip60
 
 For additional information on amsmath, use the `?' option.
-(F:\CTEX\MiKTeX\tex\latex\ams\math\amstext.sty
+(D:\CTEX\MiKTeX\tex\latex\ams\math\amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(F:\CTEX\MiKTeX\tex\latex\ams\math\amsgen.sty
+(D:\CTEX\MiKTeX\tex\latex\ams\math\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks15
 \ex@=\dimen119
 )
 LaTeX Info: Redefining \text on input line 53.
 )
-(F:\CTEX\MiKTeX\tex\latex\ams\math\amsbsy.sty
+(D:\CTEX\MiKTeX\tex\latex\ams\math\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen120
 )
-(F:\CTEX\MiKTeX\tex\latex\ams\math\amsopn.sty
+(D:\CTEX\MiKTeX\tex\latex\ams\math\amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count95
@@ -219,7 +219,7 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-(F:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.sty
+(D:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.sty
 Package: subfigure 2002/07/30 v2.1.4 subfigure package
 \subfigtopskip=\skip63
 \subfigcapskip=\skip64
@@ -235,11 +235,11 @@ Package: subfigure 2002/07/30 v2.1.4 subfigure package
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
-(F:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.cfg)
+(D:\CTEX\MiKTeX\tex\latex\subfigure\subfigure.cfg)
 \subfig@top=\skip67
 \subfig@bottom=\skip68
 )
-(F:\CTEX\MiKTeX\tex\latex\ulem\ulem.sty
+(D:\CTEX\MiKTeX\tex\latex\ulem\ulem.sty
 \UL@box=\box43
 \UL@hyphenbox=\box44
 \UL@skip=\skip69
@@ -253,7 +253,7 @@ Requested font "lasy6" scaled 1000
 Package: ulem 2011/03/18
 \ULdepth=\dimen132
 )
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
@@ -268,7 +268,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Try loading font information for OT1+pnc on input line 38.
 
-(F:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
+(D:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
 )
 Requested font "pncr7t" at 10.0pt
@@ -295,7 +295,7 @@ Requested font "cmex7" at 5.0pt
  -> cmex7
 LaTeX Font Info:    Try loading font information for U+lasy on input line 87.
 
-(F:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
+(D:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 Requested font "lasy8" at 8.0pt
@@ -304,7 +304,7 @@ Requested font "lasy5" at 5.0pt
  -> lasy5
 LaTeX Font Info:    Try loading font information for OMS+pnc on input line 87.
 
-(F:\CTEX\MiKTeX\tex\latex\psnfss\omspnc.fd
+(D:\CTEX\MiKTeX\tex\latex\psnfss\omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
@@ -313,7 +313,7 @@ Requested font "cmtt8" at 8.0pt
  -> cmtt8
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 89.
 
-(F:\CTEX\MiKTeX\tex\latex\psnfss\ot1phv.fd
+(D:\CTEX\MiKTeX\tex\latex\psnfss\ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 Requested font "phvr7t" at 12.0pt
@@ -410,10 +410,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 6893) has occurred while \output is active []
 
  [19]
+[20]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 977.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1011.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -427,32 +428,31 @@ Requested font "cmex9" at 9.0pt
 Requested font "lasy9" at 9.0pt
  -> lasy9
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 998.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1032.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 998.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1032.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 998.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1032.
+
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1001.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1035.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
-
-[20] [21]
+ [21] [22]
+File: table.eps Graphic file (type eps)
+ <table.eps>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22]
-File: table.eps Graphic file (type eps)
-
-<table.eps> [23]
-Underfull \vbox (badness 2020) has occurred while \output is active []
+ [23]
+Underfull \vbox (badness 1424) has occurred while \output is active []
 
  [24]
 [25] [26]
@@ -462,13 +462,20 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[27] [28]
+
+Underfull \vbox (badness 2418) has occurred while \output is active []
+
+ [27]
+
+LaTeX Warning: Text page 28 contains only floats.
+
+[28] [29]
 File: FIC_BS_normal.eps Graphic file (type eps)
  <FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
- <CTA_normal.eps> [29] [30]
+ <CTA_normal.eps> [30]
 File: FIC_BS_our.eps Graphic file (type eps)
 
 <FIC_BS_our.eps>
@@ -476,26 +483,29 @@ File: OFOT_our.eps Graphic file (type eps)
  <OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
  <CTA_our.eps> [31] [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2245) has occurred while \output is active []
 
  [33]
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
-Missing character: There is no ’ in font pncr7t!
-
-Underfull \vbox (badness 2970) has occurred while \output is active []
-
- [34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35])
-[36] [1
+ [34]
+(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+Missing character: There is no ’ in font pncr7t!
 
-] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+Underfull \vbox (badness 7047) has occurred while \output is active []
+
+ [35])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+[1
+
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3387 strings out of 430478
- 40388 string characters out of 3191501
- 129751 words of memory out of 3000000
- 6487 multiletter control sequences out of 15000+200000
+ 3389 strings out of 430478
+ 40429 string characters out of 3191502
+ 129777 words of memory out of 3000000
+ 6489 multiletter control sequences out of 15000+200000
  19845 words of font info for 59 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,29p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s

@@ -964,10 +964,43 @@ With this \emph{strength} of the factor, we then define the \emph{strength} a te
 
 \begin{displaymath} S(f,F_{m})  = \frac{1}{|f|}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
 
-This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults, so we need to choose the test case that make the following formula as small as possible.
-\begin{displaymath} \max_{m < L \& m \neq n}  S(f, F_{m}) \end{displaymath}
+This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults. In practice, one test case can have different related \emph{strength} to different faults, so we can not always find a test case that have the least relating \emph{strength} to all the faults when comparing other test cases. With this fact in mind, our target changes to find a test case that the maximal \emph{strength} it is related fault among other faults should be the minimal comparing other test cases. Formally, we should choose a test case $f$, s.t.,
 
-In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault.
+\begin{displaymath} \min_{f \in R} \max_{m < L \& m \neq n}  S(f, F_{m}) \tag{EQ1} \end{displaymath}
+
+In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault. $R$ is the set of all the possible test cases except those tested that contain the $fixed part$. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |{t\ |\ t\ contains\ fixed\ part\ \&\ t\ is\ tested}|$.
+
+We can further resolve this problem. Consider the test case we get -- $f$ satisfied the EQ1. Without loss of generality, we assume that the fault $F_{k}, k \neq n $ is the fault that the test case $f$ has the maximal related \emph{strength} than other faults. Then a natural property for $f$ is that any other test case $f'$ which satisfies that fault $F_{k}$ is the maximal related fault for this test case
+must have $ S(f, F_{k}) <= S(f', F_{k})$. Formally, to get such a test case is to solve the following formula :
+
+\begin{alignat}{2}
+\min\quad &  S(f, F_{k}) &{}& \tag{EQ2} \label{eqn - lp}\\
+\mbox{s.t.}\quad
+&f \in R &\quad& {}\nonumber\\
+&S(f, F_{k}) > S(f, F_{i}), &{}& 1 \leq i \leq L\ \&\ i\neq k, n \nonumber
+\end{alignat}
+
+With this formula, to solve the EQ1, we just need to find the particular fault $F_{k}$, such that the related \emph{strength} between the test case $f$ satisfies the EQ2 and this fault is the smallest than other faults. Formally, we need to find :
+\begin{alignat}{2}
+\min\quad &  S(f, F_{k}) &{}& \tag{EQ3} \label{eqn - 2p}\\
+\mbox{s.t.}\quad
+& 1 \leq k \leq L \ \& \ k \neq n &\quad& {}\nonumber\\
+& f , F_{k}\ satisfies\ EQ2 &{}& {} \nonumber
+\end{alignat}
+
+According to the EQ3, the problem that to get such a test case lies on to solve the EQ2 because if that is solved we just need to rank the one has the minimal value from the solutions to EQ2.
+
+%s.t.
+%
+%S(f, F_{k}) > S(f, F_{1})
+%S(f, F_{k}) > S(f, F_{2})
+%...
+%S(f, F_{k}) > S(f, F_{n-1})
+%S(f, F_{k}) > S(f, F_{n+1})
+%...
+%S(f, F_{k}) > S(f, F_{L})
+
+
 % So to make it as less as possible is actually make the test case $f$ less related to other faults.
 
 Then the process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
@@ -1399,16 +1432,18 @@ We next compared the result with the prior MFS to quantify the degree that tradi
 Among these five metrics, high \emph{accurate number} value indicates FCI approaches performs effectively, while \emph{ignored number} and \emph{irrelevant number} indicate the degree of deviation for the FCI approaches. For \emph{parent number} and \emph{sub number}, they indicate FCI approaches that, although with additional noisy information, can determine part parameter values about the failure-inducing combinations.
 
 Different from previous work, we in addition give an composite criteria to measure the approaches. The computing formula is as follows:
-$$ \frac{accurate + related(parent) + related(sub)}{accurate + parent + sub + irrelevant + ignored} $$ 
+$$ \frac{accurate + related(parent) + related(sub)}{accurate + parent + sub + irrelevant + ignored} $$
 
 In this formula, \emph{accurate, parent, sub, irrelevant , ignored} respectively represents the number of each metric. \emph{related} function gives the similarity between the schemas (either parent or sub) and the real MFS. The similarity between two schemas $S_{A}$ and $S_{B}$ is computed as:
 
 \begin{displaymath} Similarity(S_{A},S_{B})= \frac{the\ elements\ in\ S_{A}\ and\ S_{B}}{\max (Degree(S_{A}),Degree(S_{B})) } \end{displaymath}.
 
-For example, the similarity of  (- 1\ 2 - 3) and  (- 2\ 2 - 3) is $\frac{2}{3}$, as the same elements of this two schemas are the third and last elements, and both of this two schemas is 3-degree. 
+For example, the similarity of  (- 1\ 2 - 3) and  (- 2\ 2 - 3) is $\frac{2}{3}$, as the same elements of this two schemas are the third and last elements, and both of this two schemas is 3-degree.
+
+So the \emph{related} function is the summation of similarity of all the parent or sub schemas with their corresponding MFS.
 %Besides, as we discussed in the formal model, \emph{regards as one fault} will, while \emph{distingush} will. So the four metric will to some extent validate this formal analysis.
 
-This case study was conducted on the five subjects: HSQLDB with version 2rc8, 2.2.5 and 2.2.9, JFlex with versions 1.4.1 and 1.4.2. We summed up these metrics for each subject and illustrated them together in Figure \ref{fig:normalexperiment} for analysis.
+%This case study was conducted on the five subjects: HSQLDB with version 2rc8, 2.2.5 and 2.2.9, JFlex with versions 1.4.1 and 1.4.2. We summed up these metrics for each subject and illustrated them together in Figure \ref{fig:normalexperiment} for analysis.
 
 %, which indicate the less impact do on the FCI approaches.
 
@@ -1473,7 +1508,7 @@ The third empirical study aims to observe the performance of our approach and co
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
 \subsubsection{Study setup}
-The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different $endCritira$ will obviously influence the performance of the new approaches, we then set the most trial times $N$ to find a proper test case ranged from $1$ to the $maximum$. The maximum means the maximum possible test cases to try to find a test case. It is noted that when trial times is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
+The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different space of candidate set will obviously influence the performance of the new approaches, we then set the space of the candidate $N$ ranging from $1$ to the $maximum$. The maximum means the maximum possible test cases that can be selected to replace the unsatisfied test case. It is noted that when number is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
 
 Moveover, as our approach is an random based algorithm, to avoid the bias that come from the randomness, we repeat our approach 30 times to identify the MFS in each failing test case. We will compute the average additional test cases the new approach generated to get the cost when comparing the traditional ones. We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
