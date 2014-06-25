@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  20 JUN 2014 11:52
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  25 JUN 2014 22:46
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -411,10 +411,22 @@ Underfull \vbox (badness 6893) has occurred while \output is active []
 
  [19]
 [20]
+Requested font "pncri7t" at 7.0pt
+ -> pncri7t
+Requested font "pncr7t" at 5.0pt
+ -> pncr7t
+Requested font "pncri7t" at 5.0pt
+ -> pncri7t
+Requested font "msbm10" at 10.0pt
+ -> msbm10
+Requested font "msbm10" at 7.0pt
+ -> msbm10
+Requested font "msbm10" at 5.0pt
+ -> msbm10
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1011.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1020.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -427,87 +439,99 @@ Requested font "cmex9" at 9.0pt
  -> cmex9
 Requested font "lasy9" at 9.0pt
  -> lasy9
+Requested font "msbm10" at 9.0pt
+ -> msbm10
+Requested font "msbm10" at 6.0pt
+ -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1032.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1040.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1032.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1040.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1032.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1040.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1035.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1043.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
- [21] [22]
-File: table.eps Graphic file (type eps)
- <table.eps>
+ [21]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23]
-Underfull \vbox (badness 1424) has occurred while \output is active []
+ [22]
+[23]
+File: table.eps Graphic file (type eps)
+ <table.eps>
+Underfull \vbox (badness 1152) has occurred while \output is active []
 
  [24]
+Requested font "msbm10" at 8.0pt
+ -> msbm10
+
 [25] [26]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 2418) has occurred while \output is active []
+Underfull \vbox (badness 2762) has occurred while \output is active []
 
  [27]
 
-LaTeX Warning: Text page 28 contains only floats.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28] [29]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 3260) has occurred while \output is active []
+
+ [28]
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+ [29]
 File: FIC_BS_normal.eps Graphic file (type eps)
- <FIC_BS_normal.eps>
+
+<FIC_BS_normal.eps>
 File: OFOT_normal.eps Graphic file (type eps)
  <OFOT_normal.eps>
 File: CTA_normal.eps Graphic file (type eps)
  <CTA_normal.eps> [30]
+Underfull \vbox (badness 1297) has occurred while \output is active []
+
+ [31]
 File: FIC_BS_our.eps Graphic file (type eps)
 
 <FIC_BS_our.eps>
 File: OFOT_our.eps Graphic file (type eps)
  <OFOT_our.eps>
 File: CTA_our.eps Graphic file (type eps)
- <CTA_our.eps> [31] [32]
-Underfull \vbox (badness 2245) has occurred while \output is active []
+ <CTA_our.eps>
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
- [33]
+ [32]
+[33]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [34]
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
-
-Underfull \vbox (badness 7047) has occurred while \output is active []
-
- [35])
+ [35]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36]
-[1
+ [36])
+[37] [1
 
 ] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3389 strings out of 430478
- 40429 string characters out of 3191502
- 129777 words of memory out of 3000000
- 6489 multiletter control sequences out of 15000+200000
- 19845 words of font info for 59 fonts, out of 3000000 for 9000
+ 3401 strings out of 430478
+ 40584 string characters out of 3191502
+ 129861 words of memory out of 3000000
+ 6500 multiletter control sequences out of 15000+200000
+ 22552 words of font info for 68 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,18n,29p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,18n,30p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (37 pages).
+Output written on v2-acmsmall-sample.pdf (38 pages).

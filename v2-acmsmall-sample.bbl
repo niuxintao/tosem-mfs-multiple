@@ -222,6 +222,17 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Le~Berre, Parrain, et~al\mbox{.}}{Le~Berre
+  et~al\mbox{.}}{2010}]%
+        {le2010sat4j}
+{Daniel Le~Berre}, {Anne Parrain}, {and} {others}. 2010.
+\newblock \showarticletitle{The sat4j library, release 2.2, system
+  description}.
+\newblock {\em Journal on Satisfiability, Boolean Modeling and Computation\/}
+  {7} (2010), 59--64.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Li, Nie, and Lei}{Li et~al\mbox{.}}{2012}]%
         {li2012improved}
 {Jie Li}, {Changhai Nie}, {and} {Yu Lei}. 2012.

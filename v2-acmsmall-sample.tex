@@ -810,7 +810,6 @@ As the identical transformation is simple, so next we will ignore them and just 
 \multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
 \end{tabular}}
 \end{table}
-
 %\begin{proposition}
 %The schema using \emph{knowing masking effects}, say, $c$, which are parent-schema of the actual MFS, say $c_{m}$, after applying \emph{regard as one fault}, assume we get the new schema, $c'$, which are sub-schema of $c$, then c' must be irrelevant to the MFS.
 %
@@ -825,11 +824,8 @@ As the identical transformation is simple, so next we will ignore them and just 
 %
 %Thus, at last $c'$ must be irrelevant to the actual MFS.
 %\end{proof}
-
 \subsubsection{using distinguish strategy}
-
 %Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
-
 And for the second strategy: \emph{distinguish faults}, the influence can be described as Figure \ref{fig:fci_mask_distinguish}.
 \begin{figure}
 \centering
@@ -926,8 +922,6 @@ In fact, besides this special case that may make the FCI approach ignore some ac
 %So what this two mutation than is , we first learn that
 %
 %So actually, when encountering masking effects, both this two strategies is not good.
-
-
 %Previous analysis just based on the the observed changed, in fact, the if we changing the analysis, the pridicted and observed will aslo be changed?
 
 %In fact, the masking effects firstly change the $T_{fail_{observed}}$, as masking effects, FCI either will identify $T_{fail_{observed}}$ less or more than it expected to be, as a consequence, regardless of $T_{fail_{predicted}}$ can be, masking effects makes FCI approaches never reach a perfect result, i.e., accurately and completely find each MFS.
@@ -988,9 +982,26 @@ With this formula, to solve the EQ1, we just need to find the particular fault $
 & f , F_{k}\ satisfies\ EQ2 &{}& {} \nonumber
 \end{alignat}
 
-According to the EQ3, the problem that to get such a test case lies on to solve the EQ2 because if that is solved we just need to rank the one has the minimal value from the solutions to EQ2. As to EQ2, it is actually an integer programming problem, as the test case $f$ is the vector of component $o$, which is concrete variable. However, it dose not belongs to the integer linear programming (ILP) problem, because the objective function  $S(f, F_{k})$, i.e., $\frac{1}{|f|}\sum_{o \in f} S(o, F_{m})$, is not linear to the component $o$.
+According to the EQ3, the problem that to get such a test case lies on to solve the EQ2 because if that is solved we just need to rank the one has the minimal value from the solutions to EQ2. As to EQ2, it can be formulated as an 0-1 integer linear programming (ILP) problem. Assume the SUT we test have $K$ factors, in which the $i$th factor has $V_{i}$ values can take from. And the SUT has $L$ faults. We then define the variable $x_{ij}$ as:
+\begin{displaymath}
+x_{ij} = \begin{cases}1 & the\ \emph{i}th\ factor\ of\ the\ test\ case\ take\ the\ \emph{j}th\ value\ for\ that\ factor\\0 & otherwise\end{cases}
+\end{displaymath}
+We then take $o_{m_{ij}}$ to be the related \emph{strength} between the \emph{j}th value of the \emph{i}th factor of the SUT and the fault $F_{m}$. And we use a set $R$ of factors with its values to define the fixed part in the test case we should not change, i.e., $R = \{(i, j) |i\ is\ the\ fixed\ factor\ in\ the\ test\ case, j\ is\ the\ corresponding\ value\}$. Then the EQ2 can be formulated as the following ILP:
 
+\begin{alignat}{2}
+\min\quad & \frac{1}{|K|}\sum_{i = 0}^{K}\sum_{j = 0}^{V_{i}}  o_{m_{ij}} \times x_{ij} &{}& \tag{EQ4} \label{eqn - 3p}\\
+\mbox{s.t.}\quad
+& 0 \leq x_{ij} \leq 1 &\quad& { i = 0 .. K - 1, j = 0,.. V_{i} - 1 }\\
+&  x_{ij} \in  \mathbb{Z}&\quad& { i = 0 .. K - 1, j = 0,.. V_{i} - 1 }\\
+& \sum_{j = 0}^{V_{j}} x_{ij} = 1&\quad& { i = 0 ... K - 1}\\
+&  x_{ij} = 1 &\quad& { (i,j) \in R }\\
+& \sum_{i = 0}^{K}\sum_{j = 0}^{V_{i}} (o_{m_{ij}} - o_{m'_{ij}})\times  x_{ij} \geq 0 &\quad& {1 \leq m' \neq m \leq L}
+\end{alignat}
 
+In this formula, the constraint (1) and (2) indicate that the variable $x_{ij}$ is a 0-1 integer. Constraint (3) indicates that a factor in one test case can only take one value. Constraint (4) indicates the test case should not change values to the fixed part. Constraint (5) indicates that the related strength between Fault $F_{m}$ and the test case is maximal than other.
+
+As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize a ILP solver to solve this formula. In this paper, we use a the solver introduced in \cite{le2010sat4j}, which is a java library for solving boolean satisfaction and optimization problems.
+%this actually an integer programming problem, as the test case $f$ is the vector of component $o$, which is concrete variable. However, it dose not belongs to the integer linear programming (ILP) problem, because the objective function  $S(f, F_{k})$, i.e., $\frac{1}{|f|}\sum_{o \in f} S(o, F_{m})$, is not linear to the component $o$.
 %s.t.
 %
 %S(f, F_{k}) > S(f, F_{1})
@@ -1000,30 +1011,27 @@ According to the EQ3, the problem that to get such a test case lies on to solve 
 %S(f, F_{k}) > S(f, F_{n+1})
 %...
 %S(f, F_{k}) > S(f, F_{L})
-
-
 % So to make it as less as possible is actually make the test case $f$ less related to other faults.
 
-Then the process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
+The complete process of replacing a test case with a new one keeping some fixed part is depicted in Algorithm 1:
 
 \begin{algorithm}[t]
 %\SetAlgoNoLine
-\KwIn{ the original test case $t_{original}$,fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$, the size of candidate test cases $N$}
+\KwIn{ fault type $F_{m}$,fixed part $s_{fixed}$, values set that each option can take $Param$, the related strength matrix $o_{1} ... o_{L}$}
 \KwOut{ $t_{new}$ the regenerate test case,The frequency number }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 \While{\textbf{not} MeetEndCriteria()}{
-       $s_{mutant} \leftarrow t_{original} - s_{fixed}$\;
-       $Candi \leftarrow inital\ set\ of\ size\ N$ \;
-       \While{$Candi\ is\ not\ full$}{
-       \ForAll {$opt \in s_{mutant}$}{
-          $i = getIndex(Param,opt) $\;
-           $opt \leftarrow opt' \ s.t.\ opt' \in Param[i]\ and\ opt' != opt$\;
+       $optimal \leftarrow MAX$ ;
+       $t_{new} \leftarrow null$ \;
+       \ForAll {$F_{k} \in {F_{1},...F_{m}, F_{m+1} ... F_{L}}$}{
+                $solver \leftarrow setup(s_{fixed}, Param, F_{m}, o_{1} ... o_{L})$\;
+                $(optimal', t_{new}') \leftarrow solver.getOptimalTest()$ \;
+                \If {$optimal' < optimal$}{
+                       $t_{new} \leftarrow t_{new}'$\;
+                    }
           }
-       $t' \leftarrow s_{fixed} \bigcup s_{mutant} $\;
-       $Candi.append(t')$ \;
-       }
-       $t_{new} \leftarrow \operatorname*{arg\,min}_{t' \in Candi} \max_{i < L \& i \neq m}S(t',F_{i})$\;
        $result \leftarrow execute(t_{new})$\;
+       $updatetRelatedStrengthMatrix(t_{new})$ \;
         \eIf {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
            }{
@@ -1036,18 +1044,19 @@ Then the process of replacing a test case with a new one keeping some fixed part
 \label{alg:one}
 \end{algorithm}
 
-The inputs for this algorithm consists of a test case which trigger an unexpected fault -- $t_{original}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the fault type which we currently focus on -- $F_{m}$, the values sets that each option can take from respectively and the size of the candidate test cases in which we will select one best test case to execute -- $N$. The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
+The inputs for this algorithm consists of the fault type we currently focus on -- $F_{m}$, the fixed part which we want to keep from the original test case -- $s_{fixed}$ , the values sets that each factor can take from respectively -- $Param$ and the set of matrix $o_{1},...o_{L}$, for any element in which, say $o_{m}$, record the related strength between each specific factor with each value and the fault $F_{m}$, i.e., $o_{m} = \{o_{m_{ij}} | 0 \leq i \leq K - 1, 0 \leq j \leq V_{i}\}$. The output of this algorithm is a test case $t_{new}$ which either trigger the expected $F_{m}$ or passes.
 
 This algorithm is a outer loop(line 1 - 19) containing two parts:
 
-The first part(line 2 - 12) generates a new test case which is different from the original one. Different from the original algorithm, we generate a set of candidate test cases (line 3 - 11) instead of only one, and then choose the one that has the least possibility that is related to other faults(line 12) according to our previous formula. Our candidate set of test cases is initialed as size \emph{N}, the specific number it is assigned is a tradeoff between how quickly this algorithm ended in getting a candidate test case and how many times you'd like to try to find a really satisfied test case. It is noted that when \emph{N} = 1, it grows into our previous algorithm. Each test cases in the candidate set is generated by random(line 4 - 11), they must be different from existed test cases(we don't show in this pseudo code) and each one of them should keep the fixed part (line 9), and just mutate the factors which are not in that part(line 2). The mutation for each factor works by selecting one legal value which is different from the original one(line 5 - 8).
+The first part(line 2 - 9) generates a new test case which is supposed to be least likely to trigger faults different from $F_{m}$. The basic idea for this part is to search each fault different from $F_{m}$ (line 3) and find the best test case that has the least related strength with other faults. In detail, for each fault we setup an ILP solver (line 4) and use it to get an optimal test case for that fault according to EQ4 (line 5). We compare the optimal value for each fault, and choose the one has an less strength related to other faults (line 6 - 9). 
+%Different from the original algorithm, we generate a set of candidate test cases (line 3 - 11) instead of only one, and then choose the one that has the least possibility that is related to other faults(line 12) according to our previous formula. Our candidate set of test cases is initialed as size \emph{N}, the specific number it is assigned is a tradeoff between how quickly this algorithm ended in getting a candidate test case and how many times you'd like to try to find a really satisfied test case. It is noted that when \emph{N} = 1, it grows into our previous algorithm. Each test cases in the candidate set is generated by random(line 4 - 11), they must be different from existed test cases(we don't show in this pseudo code) and each one of them should keep the fixed part (line 9), and just mutate the factors which are not in that part(line 2). The mutation for each factor works by selecting one legal value which is different from the original one(line 5 - 8).
 %The generated newly test case must be different from each iteration(we implemented it by hashing method).
 
-Second part is to check whether the newly generated test case is as expected(line 13 - 18). We first execute the SUT under the newly generated test case(line 13) and then check the executed result. Either the test case passes or triggers the same fault -- $F_{m}$ meets the requirement(line 14), and if so we will directly return this test case(line 15). Otherwise, we will repeat the process, i.e., generate newly test case and check again(line 16 - 17).
+Second part is to check whether the newly generated test case is as expected(line 10 - 16). We first execute the SUT under the newly generated test case(line 10) and update the related strength matrix ($o_{1} ... o_{L}$) for each factor that is involved in this newly generated test case (line 11). We then check the executed result: if either the test case passes or triggers the same fault -- $F_{m}$, we will get an satisfied test case(line 12), and we will directly return this test case(line 13). Otherwise, we will repeat the process, i.e., generate newly test case and check again(line 14 - 15).
 
-Similar as our previous work, this algorithm has another exit besides we find an expected test case(line 10), which is when the function \emph{MeetEndCriteria()} returns \emph{true}(line 1). We didn't explicitly show what the function \emph{MeetEndCriteria()} is like, because this is depending on the computing resource and how accurate you want to the identifying result to be. In detail, if you want to get a high quality result and you have enough computing resource, you can try much times to get the expected test case, otherwise, a relatively small number of attempts is recommended.
+It is noted that this algorithm has another exit besides we find an expected test case(line 12), which is when the function \emph{MeetEndCriteria()} returns \emph{true}(line 1). We didn't explicitly show what the function \emph{MeetEndCriteria()} is like, because this is depending on the computing resource and how accurate you want to the identifying result to be. In detail, if you want to get a high quality result and you have enough computing resource, you can try much times to get the expected test case, otherwise, a relatively small number of attempts is recommended.
 
-In this paper, we just set 3 as the biggest repeated times for this function. When it ended with \emph{MeetEndCriteria()} is true, we will return null(line 15), which means we cannot find an expected test case.
+In this paper, we just set 3 as the biggest repeated times for this function. When it ended with \emph{MeetEndCriteria()} is true, we will return null(line 18), which means we cannot find an expected test case.
 
 \subsection{A case study with the replacing strategy}
 %Next we will take the FCI approach--OFOT algorithm as the subject to see how our approach works on them.
