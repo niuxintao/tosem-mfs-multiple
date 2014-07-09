@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  1 JUL 2014 16:32
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2013.4.23)  9 JUL 2014 22:40
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -507,14 +507,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [34] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-[35]) [36] [1
+Underfull \vbox (badness 1210) has occurred while \output is active []
 
-]
-(C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+ [35])
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+ [36]
+[37] [1
 
- ) 
+] (C:\Users\niuxintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
  3401 strings out of 430478
  40584 string characters out of 3191502
@@ -524,4 +525,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  33i,18n,30p,2038b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (37 pages).
+Output written on v2-acmsmall-sample.pdf (38 pages).

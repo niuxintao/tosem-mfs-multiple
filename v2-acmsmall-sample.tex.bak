@@ -1320,8 +1320,8 @@ synthez  5 & $2^{4}\times 3^{3} \times 4^{2}$ & $ (0_{0},1_{1},3_{0},6_{1},8_{0}
 synthez  6 & $2^{9}\times 3^{2}$ & $ (2_{0},7_{1},8_{1}) \rightarrow (3_{1},5_{1}) = (4_{0}) \rightarrow(3_{1},6_{0},7_{1}) \rightarrow(3_{1},7_{1},8_{0})$ \\ \hline
 synthez  7 & $2^{10}\times 3^{1}\times 4^{1}$& $ (3_{1},4_{0},5_{0}) \rightarrow (2_{0}, 4_{0}, 7_{1},9_{0}) \rightarrow (6_{1},10_{0},11_{1}) $ \\ \hline
 synthez  8 & $2^{11}\times 3^{1}\times 4^{1}$& $ (1_{0},3_{1},4_{0},7_{1},9_{0},12_{1}) \rightarrow (0_{0},2_{1},3_{1},7_{1},10_{0},11_{1}) $\\ \hline
-synthez  9 & $2^{4}\times 4^{3}$ & $ () \rightarrow () = () \rightarrow () $ \\ \hline
-synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ () \rightarrow () = () \rightarrow () $\\ \hline
+synthez  9 & $2^{4}\times 4^{3}$ & $ (3_{1},5_{0}) \rightarrow (5_{0},6_{1}) $ \\ \hline
+synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ (0_{1},3_{0},4_{1},7_{0}) \rightarrow (2_{0},3_{0},5_{1}) = (2_{0},3_{0},5_{0}) $\\ \hline
 \hline\end{tabular}
 }
 \end{table}
@@ -1579,7 +1579,7 @@ In summary, the answer for \textbf{Q3} is: our approach do make the FCI approach
 %%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
 %
 %\subsubsection{Result and discussion}
-
+\subsection{compare with Feedback driven combiantiorail testing}
 
 
 \subsection{Threats to validity}
