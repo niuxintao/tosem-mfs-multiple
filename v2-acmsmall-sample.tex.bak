@@ -1512,26 +1512,47 @@ So the \emph{related} function is the summation of similarity of all the parent 
 %Particularly, if the value of discrepancy number metric is 0 and the value of similarity metric is 1, it means that multiple faults as well as their masking effect have no impacts on the algorithms, which is usually not feasible in practice.
 
 \subsubsection{Result and discussion}
-\begin{table}[h]
-\begin{tabular}{lllllllllllllllllllllllllllll}
-Subject      & test cases &             &           &          & accurate   &             &           &          & sub        &             &           &          & parent     &             &           &          & ignore     &             &           &          & irrelevant &             &           &          & overall    &             &           &          \\
-             & Regard one & Distinguish & ILP based & Randomly & Regard one & Distinguish & ILP based & Randomly & Regard one & Distinguish & ILP based & Randomly & Regard one & Distinguish & ILP based & Randomly & Regard one & Distinguish & ILP based & Randomly & Regard one & Distinguish & ILP based & Randomly & Regard one & Distinguish & ILP based & Randomly \\
-HSQLDB 2cr8  & 8.125      & 11.92       & 17        & 17.72    & 2          & 3           & 5         & 5        & 3          & 2           & 0         & 2        & 0          & 2           & 4         & 5        & 0(2.04)    & 0(3.91)     & 0(4.0)    & 0(4.1)   & 0          & 2           & 0         & 34       & 0.57       & 0.65        & 0.88      & 0.23     \\
-HSQLDB 2.2.5 & 8.67       & 7.67        & 10.17     & 11.3     & 2          & 2           & 2         & 2        & 1          & 0           & 0         & 0        & 0          & 1           & 1         & 1        & 0(0.83)    & 0(1.0)      & 0(1.0)    & 0(1.0)   & 7          & 0           & 0         & 0        & 0.25       & 0.83        & 0.83      & 0.83     \\
-HSQLDB 2.2.9 & 9.167      & 8.61        & 11.72     & 13.14    & 2          & 3           & 2         & 2        & 3          & 1           & 1         & 1        & 0          & 4           & 1         & 1        & 0(1.33)    & 0(2.83)     & 0(2.56)   & 0(2.56)  & 4          & 0           & 0         & 0        & 0.4        & 0.74        & 0.8       & 0.8      \\
-JFlex 1.4.1  & 23.5       & 6.5         & 8         & 9.68     & 2          & 2           & 2         & 2        & 0          & 0           & 0         & 0        & 0          & 1           & 0         & 0        & 0(0.75)    & 0(1.0)      & 0(1.0)    & 0(1.0)   & 25         & 0           & 0         & 0        & 0.07       & 0.83        & 1         & 1        \\
-JFlex 1.4.2  & 20.5       & 9           & 11.67     & 13.12    & 2          & 2           & 2         & 2        & 1          & 0           & 0         & 0        & 0          & 1           & 1         & 1        & 0(0.67)    & 0(1.0)      & 0(1.0)    & 0(1.0)   & 25         & 0           & 0         & 0        & 0.09       & 0.83        & 0.83      & 0.83     \\
-synthez 1    & 16.5       & 18          & 41.75     & 41.75    & 2          & 1           & 1         & 1        & 2          & 0           & 0         & 0        & 0          & 2           & 2         & 2        & 0(1.0)     & 0(2.0)      & 0(2.0)    & 0(2.0)   & 15         & 17          & 17        & 17       & 0.19       & 0.11        & 0.11      & 0.11     \\
-synthez 2    & 11.19      & 14.12       & 16.96     & 17.08    & 3          & 3           & 3         & 3        & 10         & 0           & 0         & 0        & 0          & 10          & 6         & 6        & 0(1.96)    & 0(2.0)      & 0(2.0)    & 0(2.0)   & 1          & 0           & 0         & 0        & 0.54       & 0.76        & 0.8       & 0.8      \\
-synthez 3    & 12.73      & 9.46        & 14.18     & 14.44    & 4          & 3           & 3         & 3        & 4          & 2           & 2         & 2        & 0          & 5           & 5         & 5        & 0(2.08)    & 0(2.84)     & 0(2.84)   & 0(2.84)  & 13         & 9           & 9         & 9        & 0.28       & 0.34        & 0.34      & 0.34     \\
-synthez 4    & 9.91       & 13.02       & 18.55     & 18.45    & 3          & 3           & 3         & 3        & 10         & 3           & 2         & 3        & 0          & 6           & 5         & 5        & 0(2.6)     & 0(2.8)      & 0(2.9)    & 0(2.85)  & 9          & 9           & 9         & 9        & 0.35       & 0.4         & 0.39      & 0.39     \\
-synthez 5    & 13.04      & 13.7        & 14.77     & 14.84    & 2          & 2           & 2         & 2        & 4          & 0           & 0         & 0        & 0          & 2           & 1         & 1        & 0(1.02)    & 0(1.0)      & 0(1.0)    & 0(1.0)   & 1          & 0           & 0         & 0        & 0.65       & 0.88        & 0.92      & 0.92     \\
-synthez 6    & 14.91      & 11.75       & 15.37     & 15.71    & 2          & 3           & 3         & 3        & 15         & 4           & 4         & 4        & 0          & 8           & 8         & 8        & 0(1.99)    & 0(3.72)     & 0(3.72)   & 0(3.72)  & 8          & 10          & 10        & 10       & 0.38       & 0.36        & 0.36      & 0.36     \\
-synthez 7    & 12.77      & 14.59       & 16.44     & 16.53    & 3          & 3           & 3         & 3        & 10         & 0           & 0         & 0        & 0          & 6           & 6         & 6        & 0(2.04)    & 0(2.0)      & 0(2.0)    & 0(2.0)   & 5          & 0           & 0         & 0        & 0.39       & 0.83        & 0.83      & 0.83     \\
-synthez 8    & 24.45      & 25.25       & 26.27     & 26.37    & 2          & 2           & 2         & 2        & 4          & 0           & 0         & 9        & 0          & 4           & 3         & 3        & 0(1.05)    & 0(1.0)      & 0(1.0)    & 0(1.0)   & 3          & 0           & 0         & 0        & 0.56       & 0.9         & 0.91      & 0.91     \\
-synthez 9    & 6.8        & 8           & 9         & 9        & 2          & 1           & 1         & 1        & 1          & 0           & 0         & 0        & 0          & 1           & 1         & 1        & 0(0.8)     & 0(1.0)      & 0(1.0)    & 0(1.0)   & 0          & 0           & 0         & 0        & 0.75       & 0.83        & 0.83      & 0.83     \\
-synthez 10   & 9.08       & 11          & 15.38     & 15.53    & 0          & 1           & 1         & 1        & 3          & 1           & 1         & 1        & 0          & 0           & 0         & 0        & 0(1.0)     & 0(1.46)     & 0(1.31)   & 0(1.31)  & 0          & 2           & 1         & 1        & 0.5        & 0.47        & 0.58      & 0.58
+\begin{table}[h]\renewcommand{\arraystretch}{1.3}
+\tbl{Result of the evaluation of each appraoch\label{evaluation_all}}{
+\begin{tabular}{lllllllllllllllll}
+\hline
+\multicolumn{1}{|l|}{Subject}      & \multicolumn{4}{l|}{accurate}                   & \multicolumn{4}{l|}{sub}                         & \multicolumn{4}{l|}{parent}                         & \multicolumn{4}{l}{ignore}            \\ \hline
+\multicolumn{1}{|l|}{}            & One & Distin & ILP & \multicolumn{1}{l|}{Rand}  & One  & Distin & ILP  & \multicolumn{1}{l|}{Rand} & One   & Distin & ILP   & \multicolumn{1}{l|}{Rand}  & One     & Distin  & ILP     & Rand    \\ \hline
+\multicolumn{1}{|l|}{HSQL2cr8}    & 2   & 3      & 5   & \multicolumn{1}{l|}{5}     & 3    & 2      & 0    & \multicolumn{1}{l|}{2}    & 0     & 2      & 4     & \multicolumn{1}{l|}{5}     & 0(2.04) & 0(3.91) & 0(4.0)  & 0(4.1)  \\
+\multicolumn{1}{|l|}{HSQL2.2.5}   & 2   & 2      & 2   & \multicolumn{1}{l|}{2}     & 1    & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 1      & 1     & \multicolumn{1}{l|}{1}     & 0(0.83) & 0(1.0)  & 0(1.0)  & 0(1.0)  \\
+\multicolumn{1}{|l|}{HSQL2.2.9}   & 2   & 3      & 2   & \multicolumn{1}{l|}{2}     & 3    & 1      & 1    & \multicolumn{1}{l|}{1}    & 0     & 4      & 1     & \multicolumn{1}{l|}{1}     & 0(1.33) & 0(2.83) & 0(2.56) & 0(2.56) \\
+\multicolumn{1}{|l|}{JFlex1.4.1}  & 2   & 2      & 2   & \multicolumn{1}{l|}{2}     & 0    & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 1      & 0     & \multicolumn{1}{l|}{0}     & 0(0.75) & 0(1.0)  & 0(1.0)  & 0(1.0)  \\
+\multicolumn{1}{|l|}{JFlex 1.4.2} & 2   & 2      & 2   & \multicolumn{1}{l|}{2}     & 1    & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 1      & 1     & \multicolumn{1}{l|}{1}     & 0(0.67) & 0(1.0)  & 0(1.0)  & 0(1.0)  \\
+\multicolumn{1}{|l|}{synthez 1}   & 2   & 1      & 1   & \multicolumn{1}{l|}{1}     & 2    & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 2      & 2     & \multicolumn{1}{l|}{2}     & 0(1.0)  & 0(2.0)  & 0(2.0)  & 0(2.0)  \\
+\multicolumn{1}{|l|}{synthez 2}   & 3   & 3      & 3   & \multicolumn{1}{l|}{3}     & 10   & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 10     & 6     & \multicolumn{1}{l|}{6}     & 0(1.96) & 0(2.0)  & 0(2.0)  & 0(2.0)  \\
+\multicolumn{1}{|l|}{synthez 3}   & 4   & 3      & 3   & \multicolumn{1}{l|}{3}     & 4    & 2      & 2    & \multicolumn{1}{l|}{2}    & 0     & 5      & 5     & \multicolumn{1}{l|}{5}     & 0(2.08) & 0(2.84) & 0(2.84) & 0(2.84) \\
+\multicolumn{1}{|l|}{synthez 4}   & 3   & 3      & 3   & \multicolumn{1}{l|}{3}     & 10   & 3      & 2    & \multicolumn{1}{l|}{3}    & 0     & 6      & 5     & \multicolumn{1}{l|}{5}     & 0(2.6)  & 0(2.8)  & 0(2.9)  & 0(2.85) \\
+\multicolumn{1}{|l|}{synthez 5}   & 2   & 2      & 2   & \multicolumn{1}{l|}{2}     & 4    & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 2      & 1     & \multicolumn{1}{l|}{1}     & 0(1.02) & 0(1.0)  & 0(1.0)  & 0(1.0)  \\
+\multicolumn{1}{|l|}{synthez 6}   & 2   & 3      & 3   & \multicolumn{1}{l|}{3}     & 15   & 4      & 4    & \multicolumn{1}{l|}{4}    & 0     & 8      & 8     & \multicolumn{1}{l|}{8}     & 0(1.99) & 0(3.72) & 0(3.72) & 0(3.72) \\
+\multicolumn{1}{|l|}{synthez 7}   & 3   & 3      & 3   & \multicolumn{1}{l|}{3}     & 10   & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 6      & 6     & \multicolumn{1}{l|}{6}     & 0(2.04) & 0(2.0)  & 0(2.0)  & 0(2.0)  \\
+\multicolumn{1}{|l|}{synthez 8}   & 2   & 2      & 2   & \multicolumn{1}{l|}{2}     & 4    & 0      & 0    & \multicolumn{1}{l|}{9}    & 0     & 4      & 3     & \multicolumn{1}{l|}{3}     & 0(1.05) & 0(1.0)  & 0(1.0)  & 0(1.0)  \\
+\multicolumn{1}{|l|}{synthez 9}   & 2   & 1      & 1   & \multicolumn{1}{l|}{1}     & 1    & 0      & 0    & \multicolumn{1}{l|}{0}    & 0     & 1      & 1     & \multicolumn{1}{l|}{1}     & 0(0.8)  & 0(1.0)  & 0(1.0)  & 0(1.0)  \\
+\multicolumn{1}{|l|}{synthez 10}  & 0   & 1      & 1   & \multicolumn{1}{l|}{1}     & 3    & 1      & 1    & \multicolumn{1}{l|}{1}    & 0     & 0      & 0     & \multicolumn{1}{l|}{0}     & 0(1.0)  & 0(1.46) & 0(1.31) & 0(1.31) \\ \hline
+                                  &     &        &     &                            &      &        &      &                           &       &        &       &                            &         &         &         &         \\ \cline{2-13}
+\multicolumn{1}{l|}{}             & \multicolumn{4}{l|}{irrelevant}                 & \multicolumn{4}{l|}{overall}                     & \multicolumn{4}{l|}{test cases}                     &         &         &         &         \\ \cline{2-13}
+\multicolumn{1}{l|}{}             & One & Distin & ILP & \multicolumn{1}{l|}{Rando} & One  & Distin & ILP  & \multicolumn{1}{l|}{Rand} & One   & Distin & ILP   & \multicolumn{1}{l|}{Rand}  &         &         &         &         \\ \cline{2-13}
+\multicolumn{1}{l|}{}             & 0   & 2      & 0   & \multicolumn{1}{l|}{34}    & 0.57 & 0.65   & 0.88 & \multicolumn{1}{l|}{0.23} & 8.125 & 11.92  & 17    & \multicolumn{1}{l|}{17.72} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 7   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.25 & 0.83   & 0.83 & \multicolumn{1}{l|}{0.83} & 8.67  & 7.67   & 10.17 & \multicolumn{1}{l|}{11.3}  &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 4   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.4  & 0.74   & 0.8  & \multicolumn{1}{l|}{0.8}  & 9.167 & 8.61   & 11.72 & \multicolumn{1}{l|}{13.14} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 25  & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.07 & 0.83   & 1    & \multicolumn{1}{l|}{1}    & 23.5  & 6.5    & 8     & \multicolumn{1}{l|}{9.68}  &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 25  & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.09 & 0.83   & 0.83 & \multicolumn{1}{l|}{0.83} & 20.5  & 9      & 11.67 & \multicolumn{1}{l|}{13.12} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 15  & 17     & 17  & \multicolumn{1}{l|}{17}    & 0.19 & 0.11   & 0.11 & \multicolumn{1}{l|}{0.11} & 16.5  & 18     & 41.75 & \multicolumn{1}{l|}{41.75} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 1   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.54 & 0.76   & 0.8  & \multicolumn{1}{l|}{0.8}  & 11.19 & 14.12  & 16.96 & \multicolumn{1}{l|}{17.08} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 13  & 9      & 9   & \multicolumn{1}{l|}{9}     & 0.28 & 0.34   & 0.34 & \multicolumn{1}{l|}{0.34} & 12.73 & 9.46   & 14.18 & \multicolumn{1}{l|}{14.44} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 9   & 9      & 9   & \multicolumn{1}{l|}{9}     & 0.35 & 0.4    & 0.39 & \multicolumn{1}{l|}{0.39} & 9.91  & 13.02  & 18.55 & \multicolumn{1}{l|}{18.45} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 1   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.65 & 0.88   & 0.92 & \multicolumn{1}{l|}{0.92} & 13.04 & 13.7   & 14.77 & \multicolumn{1}{l|}{14.84} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 8   & 10     & 10  & \multicolumn{1}{l|}{10}    & 0.38 & 0.36   & 0.36 & \multicolumn{1}{l|}{0.36} & 14.91 & 11.75  & 15.37 & \multicolumn{1}{l|}{15.71} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 5   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.39 & 0.83   & 0.83 & \multicolumn{1}{l|}{0.83} & 12.77 & 14.59  & 16.44 & \multicolumn{1}{l|}{16.53} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 3   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.56 & 0.9    & 0.91 & \multicolumn{1}{l|}{0.91} & 24.45 & 25.25  & 26.27 & \multicolumn{1}{l|}{26.37} &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 0   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.75 & 0.83   & 0.83 & \multicolumn{1}{l|}{0.83} & 6.8   & 8      & 9     & \multicolumn{1}{l|}{9}     &         &         &         &         \\
+\multicolumn{1}{l|}{}             & 0   & 2      & 1   & \multicolumn{1}{l|}{1}     & 0.5  & 0.47   & 0.58 & \multicolumn{1}{l|}{0.58} & 9.08  & 11     & 15.38 & \multicolumn{1}{l|}{15.53} &         &         &         &         \\ \cline{2-13} 
 \end{tabular}
+}
 \end{table}
 
 Figure \ref{fig:normalexperiment} depicts the result of the second case study. There are three sub-figures, respectively, corresponding to the result of three approaches: FIC\_BS, OFOT and CTA. In each sub-figure, the five columns ``accurate", ``parent",``sub",``ignore" and ``irrelevant" respectively presents the five metrics mentioned above. Two bars in each column respectively illustrate the result of strategy for \emph{regard as one fault} and \emph{distinguish faults}.
@@ -1570,7 +1591,7 @@ We further observed that, for different algorithms, the extent to what they suff
 
 Therefore, the answer we got for \textbf{Q2} is: traditional algorithms do suffer from the multiple faults and their masking effect, although the extent varies in different algorithms.
 
-\subsection{Performance of our approach}
+\subsection{evaluating the ILP-based test case searching method}
 The third empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
@@ -1641,7 +1662,15 @@ In summary, the answer for \textbf{Q3} is: our approach do make the FCI approach
 %
 %\subsubsection{Result and discussion}
 \subsection{compare with Feedback driven combinatorial testing}
-conlusion: if you want to get a more precies result and more helpful test cases generating supply, you should choose our appraoch, however if you are limited to the test cases execution, you can choose the feedback driven.
+
+\subsubsection{Result and discussion}
+
+
+
+the t more, the result is more good, but there must be the overfit problem, for example, for. 
+
+
+conclusion: if you want to get a more precise result and more helpful test cases generating supply, you should choose our approach, however if you are limited to the test cases execution, you can choose the feedback driven.
  but if
 
 
