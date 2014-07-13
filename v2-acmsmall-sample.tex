@@ -19,6 +19,7 @@
 \usepackage{amsmath}
 \usepackage{subfigure}
 \usepackage[normalem]{ulem}
+\usepackage{longtable}
 
 \renewcommand{\algorithmcfname}{ALGORITHM}
 \SetAlFnt{\small}
@@ -1550,41 +1551,47 @@ So the \emph{related} function is the summation of similarity of all the parent 
 \multicolumn{1}{l|}{}             & 5   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.39 & 0.83   & 0.83 & \multicolumn{1}{l|}{0.83} & 12.77 & 14.59  & 16.44 & \multicolumn{1}{l|}{16.53} &         &         &         &         \\
 \multicolumn{1}{l|}{}             & 3   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.56 & 0.9    & 0.91 & \multicolumn{1}{l|}{0.91} & 24.45 & 25.25  & 26.27 & \multicolumn{1}{l|}{26.37} &         &         &         &         \\
 \multicolumn{1}{l|}{}             & 0   & 0      & 0   & \multicolumn{1}{l|}{0}     & 0.75 & 0.83   & 0.83 & \multicolumn{1}{l|}{0.83} & 6.8   & 8      & 9     & \multicolumn{1}{l|}{9}     &         &         &         &         \\
-\multicolumn{1}{l|}{}             & 0   & 2      & 1   & \multicolumn{1}{l|}{1}     & 0.5  & 0.47   & 0.58 & \multicolumn{1}{l|}{0.58} & 9.08  & 11     & 15.38 & \multicolumn{1}{l|}{15.53} &         &         &         &         \\ \cline{2-13} 
+\multicolumn{1}{l|}{}             & 0   & 2      & 1   & \multicolumn{1}{l|}{1}     & 0.5  & 0.47   & 0.58 & \multicolumn{1}{l|}{0.58} & 9.08  & 11     & 15.38 & \multicolumn{1}{l|}{15.53} &         &         &         &         \\ \cline{2-13}
 \end{tabular}
 }
 \end{table}
 
-Figure \ref{fig:normalexperiment} depicts the result of the second case study. There are three sub-figures, respectively, corresponding to the result of three approaches: FIC\_BS, OFOT and CTA. In each sub-figure, the five columns ``accurate", ``parent",``sub",``ignore" and ``irrelevant" respectively presents the five metrics mentioned above. Two bars in each column respectively illustrate the result of strategy for \emph{regard as one fault} and \emph{distinguish faults}.
+ Table\ref{evaluation_all} depicts the result of the second case study. There are eight main columns in this table, (too wide so we break it into two parts), which respectively indicates: the subject we apply FCI approach, the number of accurate MFS each approach identified, the number of identified schemas which is the sub-schema \/ parent-schema of some prior MFS, The number ignored prior MFS, the number of identified schemas which is irrelevant to all the prior MFS, the metric which gives the overall evaluation of each approach and the extra test cases each algorithm needed. For each main colum, there are four sub-columns which respectively depcticts the result for the FCI with \emph{regard as one fault} strategy, FCI with \emph{distinguish faults} strategy, FCI with replacing strategy based on ILP test case searching and FCI with replacing strategy based on randomly searching. The last one will be discussed in the next case study.
 
-\begin{figure*}[ht]
-\centering
-\subfigure[]{
-  %  \rule{4cm}{3cm}
-    \label{fig:subfig1}
-    \includegraphics[width=2.21in]{FIC_BS_normal.eps}
-}
-\subfigure[]{
-  %  \rule{4cm}{3cm}
-    \label{fig:subfig2}
-    \includegraphics[width=2.21in]{OFOT_normal.eps}
-}
-\subfigure[]{
-  %  \rule{4cm}{3cm}
-    \label{fig:subfig3}
-    \includegraphics[width=2.21in]{CTA_normal.eps}
-}
-\caption[]{Results of two strategies for traditional approaches: FIC\_BS, OFOT and CTA}
-\label{fig:normalexperiment}
-\end{figure*}
+% three sub-figures, respectively, corresponding to the result of three approaches: FIC\_BS, OFOT and CTA. In each sub-figure, the five columns ``accurate", ``parent",``sub",``ignore" and ``irrelevant" respectively presents the five metrics mentioned above. Two bars in each column respectively illustrate the result of strategy for \emph{regard as one fault} and \emph{distinguish faults}.
 
-We first observed that, traditional approaches do suffer from the masking effect to some extent. Specifically, in the Figure \ref{fig:subfig1}, FIC\_BS approach only correctly identified 12 and 10 accurate combinations for the two traditional strategies respectively, while wrongly identified 14 and 69 combinations, among which \emph{parent number}, \emph{sub number}, \emph{irrelevant number} are 9,3,2 and 0,8,61 respectively. Similar results can be observed in Figure \ref{fig:subfig2} and \ref{fig:subfig3} for approach OFOT and CTA .
+%\begin{figure*}[ht]
+%\centering
+%\subfigure[]{
+%  %  \rule{4cm}{3cm}
+%    \label{fig:subfig1}
+%    \includegraphics[width=2.21in]{FIC_BS_normal.eps}
+%}
+%\subfigure[]{
+%  %  \rule{4cm}{3cm}
+%    \label{fig:subfig2}
+%    \includegraphics[width=2.21in]{OFOT_normal.eps}
+%}
+%\subfigure[]{
+%  %  \rule{4cm}{3cm}
+%    \label{fig:subfig3}
+%    \includegraphics[width=2.21in]{CTA_normal.eps}
+%}
+%\caption[]{Results of two strategies for traditional approaches: FIC\_BS, OFOT and CTA}
+%\label{fig:normalexperiment}
+%\end{figure*}
 
-Another interesting observations is that for the \emph{regard as one fault} and \emph{distinguish faults} strategy, the former get more \emph{sub combinations} than latter, while \emph{distinguish faults} strategy get more \emph{parent combinations} than \emph{regard as one} strategy. This result accorded with our formal analysis in section 3.2. With respect to the metrics \emph{irrelevant combinations}, however, we didn't get as expected as the formal analysis. In fact, both the case that \emph{regard as one fault} has more \emph{irrelevant combinations} ( see Figure \ref{fig:subfig1}) and the case that \emph{distinguish faults} obtained more \emph{irrelevant combinations} (see Figure \ref{fig:subfig2} and \ref{fig:subfig3}) exist. With checking the executing process and the combinations they got, we believed one possible main reason for this result is that the algorithm encountered the problem of importing newly faults which bias their identifying process.
+We first observed that, the results of two traditional strategies \emph{regard as one fault} and \emph{distinguish faults} are coincide with the formal analysis in section 4. In specific, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more parent-schemas of MFS that the former. For the `ignored MFS' metric, as we have executed all the failing test cases, we get 0 ignored MFS for all the approaches. So in order to evaluate this metric for the approaches, we record this metric for each FCI one test case one time and take the average value as the result, which is listed in the parentheses. We also found in most cases (except synthez 5 and synthez 6) the approach with \emph{distinguish} strategy get more ignored MFS than another one, which is also coincide with the formal analysis. And for the `irrelevant MFS', we found \emph{regard as one fault} strategy in most cases get more `irrelevant MFS' than another, which is also as expected.
+
+We then observed that our approach can preforms better than this two traditional strategies, the advantages are shown in the more accurate MFS and less irrelevant schemas. Our approach also identified the least number of sub-schemas. As for the `parent-schema' metric, our approach performs better than `distinguish faults' but not as good as `regard as one fault'. This is because our strategy is actually based on the `distinguish faults' strategy (the main difference is that our strategy filter these unsatisfied test cases). However, our approach is poor at the `ignored MFS' metric, the possible reason for this may be that the unsatisfied test cases we discard may contain some useful information about the MFS. Above all, our approach get the best performance comparing with another two strategies, which can be shown in the `overall' metric. This overall metric indicates that our approach performs better than `distinguish faults' strategy, which is better than the `regard as one fault' strategy.
+
+%has each test case    approaches do suffer from the masking effect to some extent. Specifically, in the Figure \ref{fig:subfig1}, FIC\_BS approach only correctly identified 12 and 10 accurate combinations for the two traditional strategies respectively, while wrongly identified 14 and 69 combinations, among which \emph{parent number}, \emph{sub number}, \emph{irrelevant number} are 9,3,2 and 0,8,61 respectively. Similar results can be observed in Figure \ref{fig:subfig2} and \ref{fig:subfig3} for approach OFOT and CTA .
+
+%Another interesting observations is that for the \emph{regard as one fault} and \emph{distinguish faults} strategy, the former get more \emph{sub combinations} than latter, while \emph{distinguish faults} strategy get more \emph{parent combinations} than \emph{regard as one} strategy. This result accorded with our formal analysis in section 3.2. With respect to the metrics \emph{irrelevant combinations}, however, we didn't get as expected as the formal analysis. In fact, both the case that \emph{regard as one fault} has more \emph{irrelevant combinations} ( see Figure \ref{fig:subfig1}) and the case that \emph{distinguish faults} obtained more \emph{irrelevant combinations} (see Figure \ref{fig:subfig2} and \ref{fig:subfig3}) exist. With checking the executing process and the combinations they got, we believed one possible main reason for this result is that the algorithm encountered the problem of importing newly faults which bias their identifying process.
 
 %\emph{regard as one fault} would get more \emph{} except the following case,  An exception is for the FIC\_BS, which we think when consider the regard as one fault faults strategy, it increase the possibility that import newly bugs so that bais the result. it always that . fahter and parent. which are accordant with the analysis in the formal model.
 
-We further observed that, for different algorithms, the extent to what they suffered from masking effects varied. For instance, for FIC\_BS approach, under the masking effects, they  identified the 61 and 2 irrelevant combinations for two strategies, while for OFOT and CTA, this value is 0 and 4, 5 and 19 respectively. There are two factors caused this difference: the chosen test cases and the analysis method. For FIC\_BS and OFOT, the test cases they chosen for isolating failure-inducing combinations is different, which consequently changed the masking effects they may encountered. For OFOT an CTA, while the test cases they chose are the same, the difference lies at the way they characterizing the failure-inducing combinations in the test cases: OFOT directly identify the parameter according to the passed test cases while CTA used classified tree analysis.
+We further observed that, the cost for different algorithms, the extent to what they suffered from masking effects varied. For instance, for FIC\_BS approach, under the masking effects, they  identified the 61 and 2 irrelevant combinations for two strategies, while for OFOT and CTA, this value is 0 and 4, 5 and 19 respectively. There are two factors caused this difference: the chosen test cases and the analysis method. For FIC\_BS and OFOT, the test cases they chosen for isolating failure-inducing combinations is different, which consequently changed the masking effects they may encountered. For OFOT an CTA, while the test cases they chose are the same, the difference lies at the way they characterizing the failure-inducing combinations in the test cases: OFOT directly identify the parameter according to the passed test cases while CTA used classified tree analysis.
 
 %
 %From this figure, we can easily find that Traditional MFS identifying approaches do suffer from the multiple faults and their masking effect. For example, for the Grep, version 3.14, all these three algorithm will lost some information. Additionally, the extent to which the impact has affected vary from algorithms. We can find that for HSQLDB with version 3.14, the similarity of CTA was just at 4 while FIC is 3. We list these points in figure 3. From this figure, we can learn that.
@@ -1665,9 +1672,111 @@ In summary, the answer for \textbf{Q3} is: our approach do make the FCI approach
 
 \subsubsection{Result and discussion}
 
+\begin{table}[h]\renewcommand{\arraystretch}{1.3}
+\tbl{Comparison with FDA-CIT\label{comparewithfda}}{
+\begin{tabular}{llllllllllllll}
+\hline
+\multicolumn{1}{|l|}{Subject}     & \multicolumn{1}{l|}{}  & accurate   &       & \multicolumn{1}{l|}{}      & sub     &      & \multicolumn{1}{l|}{}      & parent     &        & \multicolumn{1}{l|}{}       & ignore &      &       \\ \hline
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{t} & FDA        & ILP   & \multicolumn{1}{l|}{FDA-s} & FDA     & ILP  & \multicolumn{1}{l|}{FDA-s} & FDA        & ILP    & \multicolumn{1}{l|}{FDA-s}  & FDA    & ILP  & FDA-s \\ \hline
+\multicolumn{1}{|l|}{HSQL2cr8}    & \multicolumn{1}{l|}{2} & 0.17       & 2.27  & \multicolumn{1}{l|}{1.57}  & 0.57    & 0    & \multicolumn{1}{l|}{0}     & 0.17       & 0.4    & \multicolumn{1}{l|}{2.17}   & 3.87   & 2.3  & 2     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 1.47       & 3.67  & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 4.67       & 2      & \multicolumn{1}{l|}{6.07}   & 0.63   & 0.3  & 0.17  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.83       & 4.8   & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 9.03       & 3.37   & \multicolumn{1}{l|}{8}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{HSQL2.2.5}   & \multicolumn{1}{l|}{2} & 1          & 1.97  & \multicolumn{1}{l|}{0.37}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 2.4        & 0.73   & \multicolumn{1}{l|}{3.8}    & 0.4    & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0          & 2     & \multicolumn{1}{l|}{0.4}   & 0       & 0    & \multicolumn{1}{l|}{0}     & 5          & 1      & \multicolumn{1}{l|}{3.8}    & 0      & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0          & 2     & \multicolumn{1}{l|}{0.33}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 5          & 1      & \multicolumn{1}{l|}{4}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{HSQL2.2.9}   & \multicolumn{1}{l|}{2} & 0.9        & 1.77  & \multicolumn{1}{l|}{0.9}   & 0       & 0.77 & \multicolumn{1}{l|}{9}     & 1.47       & 0.47   & \multicolumn{1}{l|}{6.8}    & 1.93   & 0.53 & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 1          & 2     & \multicolumn{1}{l|}{0.83}  & 0       & 1    & \multicolumn{1}{l|}{0}     & 5.13       & 0.93   & \multicolumn{1}{l|}{7.1}    & 0.2    & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 1          & 2     & \multicolumn{1}{l|}{1}     & 0       & 1    & \multicolumn{1}{l|}{0}     & 5.87       & 1      & \multicolumn{1}{l|}{6.7}    & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{JFlex 1.4.1} & \multicolumn{1}{l|}{2} & 0          & 2     & \multicolumn{1}{l|}{0}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 4.03       & 0      & \multicolumn{1}{l|}{4}      & 0      & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0          & 2     & \multicolumn{1}{l|}{0}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 4          & 0      & \multicolumn{1}{l|}{0}      & 0      & 0    & 4     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0          & 2     & \multicolumn{1}{l|}{0}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 4          & 0      & \multicolumn{1}{l|}{0}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{JFlex 1.4.2} & \multicolumn{1}{l|}{2} & 0.3        & 1.97  & \multicolumn{1}{l|}{0.93}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 3.6        & 1      & \multicolumn{1}{l|}{2.16}   & 0.03   & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0          & 2     & \multicolumn{1}{l|}{0.97}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 5          & 1      & \multicolumn{1}{l|}{2.1}    & 0      & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0          & 2     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 5          & 1      & \multicolumn{1}{l|}{2}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 1}   & \multicolumn{1}{l|}{2} & 0.97       & 1     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 1.7        & 1.93   & \multicolumn{1}{l|}{2}      & 0      & 0.07 & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 1          & 1     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 2          & 2      & \multicolumn{1}{l|}{2}      & 0      & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 1          & 1     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 2          & 2      & \multicolumn{1}{l|}{2}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 2}   & \multicolumn{1}{l|}{2} & 0.17       & 1.3   & \multicolumn{1}{l|}{0.73}  & 0.37    & 0    & \multicolumn{1}{l|}{0}     & 0          & 0.4    & \multicolumn{1}{l|}{2.37}   & 2.27   & 1.2  & 1.03  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.73       & 2.23  & \multicolumn{1}{l|}{0.5}   & 0       & 0    & \multicolumn{1}{l|}{0}     & 1.9        & 1.3    & \multicolumn{1}{l|}{7.1}    & 1.2    & 0.43 & 0.53  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.63       & 2.97  & \multicolumn{1}{l|}{0.1}   & 0       & 0    & \multicolumn{1}{l|}{0}     & 5.3        & 2.33   & \multicolumn{1}{l|}{16.1}   & 0.53   & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 3}   & \multicolumn{1}{l|}{2} & 0.43       & 2.97  & \multicolumn{1}{l|}{0.73}  & 0       & 0.93 & \multicolumn{1}{l|}{0}     & 4.3        & 1.73   & \multicolumn{1}{l|}{5.3}    & 0.47   & 0.17 & 0.5   \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.2        & 3     & \multicolumn{1}{l|}{0.87}  & 0       & 1.57 & \multicolumn{1}{l|}{0}     & 7.2        & 3.67   & \multicolumn{1}{l|}{6.57}   & 0.07   & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.03       & 3     & \multicolumn{1}{l|}{1}     & 0       & 1.97 & \multicolumn{1}{l|}{0}     & 10.4       & 3      & \multicolumn{1}{l|}{6}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 4}   & \multicolumn{1}{l|}{2} & 0.3        & 2.3   & \multicolumn{1}{l|}{0.33}  & 0.07    & 0.63 & \multicolumn{1}{l|}{0}     & 2.63       & 1.97   & \multicolumn{1}{l|}{7.7}    & 1.93   & 0.63 & 0.4   \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.37       & 2.97  & \multicolumn{1}{l|}{0.07}  & 0       & 1.26 & \multicolumn{1}{l|}{0}     & 6.5        & 3.53   & \multicolumn{1}{l|}{10.97}  & 0.83   & 0.07 & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.07       & 3     & \multicolumn{1}{l|}{0}     & 0       & 1.77 & \multicolumn{1}{l|}{0}     & 11.7       & 4.67   & \multicolumn{1}{l|}{11.4}   & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 5}   & \multicolumn{1}{l|}{2} & 0.2        & 1.2   & \multicolumn{1}{l|}{0.8}   & 0.3     & 0    & \multicolumn{1}{l|}{0}     & 0.1        & 0.03   & \multicolumn{1}{l|}{0.83}   & 1.4    & 0.77 & 0.97  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.87       & 1.4   & \multicolumn{1}{l|}{0.53}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 0.5        & 0.23   & \multicolumn{1}{l|}{3.03}   & 1      & 0.6  & 0.77  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.7        & 1.9   & \multicolumn{1}{l|}{0.37}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 1.77       & 0.33   & \multicolumn{1}{l|}{6.5}    & 0.9    & 0.1  & 0.03  \\ \hline
+\multicolumn{1}{|l|}{synthez 6}   & \multicolumn{1}{l|}{2} & 0.23       & 2.63  & \multicolumn{1}{l|}{0.17}  & 0.2     & 2    & \multicolumn{1}{l|}{0}     & 2.93       & 1.63   & \multicolumn{1}{l|}{9.63}   & 2.6    & 0.5  & 0.4   \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.1        & 3     & \multicolumn{1}{l|}{0.1}   & 0       & 2.83 & \multicolumn{1}{l|}{0}     & 7.4        & 3.83   & \multicolumn{1}{l|}{12.5}   & 1.2    & 0.17 & 0.03  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0          & 3     & \multicolumn{1}{l|}{0}     & 0       & 3.8  & \multicolumn{1}{l|}{0}     & 10.2       & 6.03   & \multicolumn{1}{l|}{14.5}   & 0.47   & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 7}   & \multicolumn{1}{l|}{2} & 0.13       & 1.43  & \multicolumn{1}{l|}{0.83}  & 0.23    & 0    & \multicolumn{1}{l|}{0}     & 0.1        & 0.63   & \multicolumn{1}{l|}{1.4}    & 2.53   & 1.03 & 0.93  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.87       & 2.17  & \multicolumn{1}{l|}{0.93}  & 0       & 0    & \multicolumn{1}{l|}{0}     & 0.43       & 1.23   & \multicolumn{1}{l|}{2.97}   & 1.77   & 0.17 & 0.13  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 1          & 2.87  & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 3.23       & 2.53   & \multicolumn{1}{l|}{4.6}    & 0.27   & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez 8}   & \multicolumn{1}{l|}{2} & 0          & 0.2   & \multicolumn{1}{l|}{0.17}  & 0.03    & 0    & \multicolumn{1}{l|}{0}     & 0          & 0      & \multicolumn{1}{l|}{0.03}   & 0.3    & 0.13 & 0.13  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0          & 0.6   & \multicolumn{1}{l|}{0.5}   & 0.1     & 0    & \multicolumn{1}{l|}{0}     & 0          & 0      & \multicolumn{1}{l|}{0.03}   & 0.97   & 0.47 & 0.53  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0          & 1.33  & \multicolumn{1}{l|}{0.8}   & 0.1     & 0    & \multicolumn{1}{l|}{0}     & 0          & 0.07   & \multicolumn{1}{l|}{0.67}   & 1.53   & 0.4  & 0.5   \\ \hline
+\multicolumn{1}{|l|}{synthez 9}   & \multicolumn{1}{l|}{2} & 1          & 1     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 0.46       & 0.6    & \multicolumn{1}{l|}{0.77}   & 0.53   & 0    & 0.23  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 1          & 1     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 1          & 1      & \multicolumn{1}{l|}{1}      & 0      & 0    & 0     \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 1          & 1     & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 1          & 1      & \multicolumn{1}{l|}{1}      & 0      & 0    & 0     \\ \hline
+\multicolumn{1}{|l|}{synthez10}   & \multicolumn{1}{l|}{2} & 0          & 0.63  & \multicolumn{1}{l|}{0}     & 0.6     & 1    & \multicolumn{1}{l|}{0.2}   & 0          & 0      & \multicolumn{1}{l|}{0.83}   & 1.8    & 0.37 & 1.9   \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 0.07       & 0.97  & \multicolumn{1}{l|}{0}     & 0.23    & 1    & \multicolumn{1}{l|}{0.03}  & 0.36       & 0      & \multicolumn{1}{l|}{1.9}    & 2.23   & 0.03 & 1.97  \\
+\multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0          & 1     & \multicolumn{1}{l|}{0}     & 0.07    & 1    & \multicolumn{1}{l|}{0}     & 1.7        & 0      & \multicolumn{1}{l|}{2}      & 1.87   & 0    & 2     \\ \hline
+                                  &                        &            &       &                            &         &      &                            &            &        &                             &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{}  & irrelevant &       & \multicolumn{1}{l|}{}      & overall &      & \multicolumn{1}{l|}{}      & test cases &        & \multicolumn{1}{l|}{}       &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{t} & FDA        & ILP   & \multicolumn{1}{l|}{FDA-s} & FDA     & ILP  & \multicolumn{1}{l|}{FDA-s} & FDA        & ILP    & \multicolumn{1}{l|}{FDA-s}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 2.53       & 0     & \multicolumn{1}{l|}{1.97}  & 0.12    & 0.51 & \multicolumn{1}{l|}{0.39}  & 23.6       & 70.1   & \multicolumn{1}{l|}{70.1}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 3          & 0     & \multicolumn{1}{l|}{1.47}  & 0.51    & 0.87 & \multicolumn{1}{l|}{0.6}   & 76.6       & 241.8  & \multicolumn{1}{l|}{241.8}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0.97       & 0     & \multicolumn{1}{l|}{0}     & 0.65    & 0.9  & \multicolumn{1}{l|}{0.71}  & 183.5      & 606.6  & \multicolumn{1}{l|}{606.6}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 1.4        & 0     & \multicolumn{1}{l|}{0.1}   & 0.38    & 0.87 & \multicolumn{1}{l|}{0.56}  & 26.7       & 68.8   & \multicolumn{1}{l|}{68.8}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.52    & 0.83 & \multicolumn{1}{l|}{0.56}  & 67         & 202.4  & \multicolumn{1}{l|}{202.4}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.53    & 0.83 & \multicolumn{1}{l|}{0.56}  & 130.1      & 503.3  & \multicolumn{1}{l|}{503.3}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 2.37       & 0     & \multicolumn{1}{l|}{0.2}   & 0.28    & 0.72 & \multicolumn{1}{l|}{0.58}  & 29.2       & 78.3   & \multicolumn{1}{l|}{78.3}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0.1        & 0     & \multicolumn{1}{l|}{0}     & 0.61    & 0.8  & \multicolumn{1}{l|}{0.61}  & 72.8       & 221.7  & \multicolumn{1}{l|}{221.7}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.64    & 0.8  & \multicolumn{1}{l|}{0.62}  & 129.8      & 560.3  & \multicolumn{1}{l|}{560.3}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.49    & 1    & \multicolumn{1}{l|}{0.5}   & 30.5       & 87.3   & \multicolumn{1}{l|}{87.3}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.5     & 1    & \multicolumn{1}{l|}{0.5}   & 73.4       & 269.2  & \multicolumn{1}{l|}{269.2}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.5     & 1    & \multicolumn{1}{l|}{0.5}   & 190.6      & 724.7  & \multicolumn{1}{l|}{724.7}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 0.63       & 0     & \multicolumn{1}{l|}{0}     & 0.5     & 0.83 & \multicolumn{1}{l|}{0.62}  & 34.3       & 106.9  & \multicolumn{1}{l|}{106.9}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0.03       & 0     & \multicolumn{1}{l|}{0}     & 0.52    & 0.83 & \multicolumn{1}{l|}{0.61}  & 72.3       & 305.7  & \multicolumn{1}{l|}{305.7}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.53    & 0.83 & \multicolumn{1}{l|}{0.61}  & 186.8      & 836.9  & \multicolumn{1}{l|}{836.9}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 0.33       & 14.3  & \multicolumn{1}{l|}{0}     & 0.66    & 0.13 & \multicolumn{1}{l|}{0.78}  & 40.3       & 342.87 & \multicolumn{1}{l|}{342.87} &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0          & 16.73 & \multicolumn{1}{l|}{0}     & 0.78    & 0.12 & \multicolumn{1}{l|}{0.78}  & 93.4       & 809.1  & \multicolumn{1}{l|}{809.1}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0          & 17    & \multicolumn{1}{l|}{0}     & 0.78    & 0.12 & \multicolumn{1}{l|}{0.78}  & 218.8      & 1532.8 & \multicolumn{1}{l|}{1532.8} &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 1.37       & 0     & \multicolumn{1}{l|}{1.2}   & 0.11    & 0.52 & \multicolumn{1}{l|}{0.4}   & 19.77      & 54.4   & \multicolumn{1}{l|}{54.4}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 2.2        & 0     & \multicolumn{1}{l|}{1.33}  & 0.36    & 0.82 & \multicolumn{1}{l|}{0.52}  & 59.5       & 171.5  & \multicolumn{1}{l|}{171.5}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 2.6        & 0     & \multicolumn{1}{l|}{1}     & 0.44    & 0.89 & \multicolumn{1}{l|}{0.54}  & 152.7      & 415.1  & \multicolumn{1}{l|}{415.1}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 1.03       & 3.77  & \multicolumn{1}{l|}{1.13}  & 0.37    & 0.46 & \multicolumn{1}{l|}{0.37}  & 48.6       & 138.7  & \multicolumn{1}{l|}{138.7}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0.83       & 6.77  & \multicolumn{1}{l|}{0.07}  & 0.38    & 0.38 & \multicolumn{1}{l|}{0.44}  & 106.3      & 315.3  & \multicolumn{1}{l|}{315.3}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0.43       & 8.56  & \multicolumn{1}{l|}{0}     & 0.38    & 0.34 & \multicolumn{1}{l|}{0.45}  & 147.9      & 565.7  & \multicolumn{1}{l|}{565.7}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 3.4        & 1.4   & \multicolumn{1}{l|}{1.97}  & 0.24    & 0.6  & \multicolumn{1}{l|}{0.44}  & 42.7       & 142.2  & \multicolumn{1}{l|}{142.2}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 2.5        & 3.43  & \multicolumn{1}{l|}{1.03}  & 0.39    & 0.54 & \multicolumn{1}{l|}{0.51}  & 86.5       & 373.2  & \multicolumn{1}{l|}{373.2}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 1.33       & 6.73  & \multicolumn{1}{l|}{0.03}  & 0.48    & 0.44 & \multicolumn{1}{l|}{0.55}  & 202.2      & 899.7  & \multicolumn{1}{l|}{899.7}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 0.7        & 0     & \multicolumn{1}{l|}{1}     & 0.2     & 0.59 & \multicolumn{1}{l|}{0.4}   & 21.9       & 46.9   & \multicolumn{1}{l|}{46.9}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0.37       & 0     & \multicolumn{1}{l|}{1.63}  & 0.46    & 0.71 & \multicolumn{1}{l|}{0.43}  & 76.9       & 150.3  & \multicolumn{1}{l|}{150.3}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 1.87       & 0     & \multicolumn{1}{l|}{2.03}  & 0.34    & 0.92 & \multicolumn{1}{l|}{0.54}  & 232.9      & 433.2  & \multicolumn{1}{l|}{433.2}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 3.03       & 3.7   & \multicolumn{1}{l|}{2}     & 0.19    & 0.42 & \multicolumn{1}{l|}{0.37}  & 45.7       & 132.6  & \multicolumn{1}{l|}{132.6}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 2.3        & 6.5   & \multicolumn{1}{l|}{0.67}  & 0.31    & 0.38 & \multicolumn{1}{l|}{0.43}  & 99.5       & 338.9  & \multicolumn{1}{l|}{338.9}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 1.8        & 9.1   & \multicolumn{1}{l|}{0.03}  & 0.37    & 0.36 & \multicolumn{1}{l|}{0.44}  & 152.6      & 781.9  & \multicolumn{1}{l|}{781.9}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 1.93       & 0     & \multicolumn{1}{l|}{1.97}  & 0.09    & 0.61 & \multicolumn{1}{l|}{0.38}  & 20.3       & 58.8   & \multicolumn{1}{l|}{58.8}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 3.2        & 0     & \multicolumn{1}{l|}{2.87}  & 0.2     & 0.88 & \multicolumn{1}{l|}{0.44}  & 52.6       & 164.7  & \multicolumn{1}{l|}{164.7}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 4.5        & 0     & \multicolumn{1}{l|}{2.27}  & 0.35    & 0.9  & \multicolumn{1}{l|}{0.51}  & 145.3      & 413.1  & \multicolumn{1}{l|}{413.1}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 0.17       & 0     & \multicolumn{1}{l|}{0.3}   & 0.01    & 0.1  & \multicolumn{1}{l|}{0.05}  & 16.1       & 45.2   & \multicolumn{1}{l|}{45.2}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0.63       & 0     & \multicolumn{1}{l|}{0.87}  & 0.02    & 0.3  & \multicolumn{1}{l|}{0.17}  & 43.1       & 64.3   & \multicolumn{1}{l|}{64.3}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 1.4        & 0     & \multicolumn{1}{l|}{0.93}  & 0.04    & 0.67 & \multicolumn{1}{l|}{0.41}  & 109.3      & 145.6  & \multicolumn{1}{l|}{145.6}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 0.63       & 0.6   & \multicolumn{1}{l|}{0.67}  & 0.54    & 0.7  & \multicolumn{1}{l|}{0.6}   & 36.2       & 43.4   & \multicolumn{1}{l|}{43.4}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.83    & 0.83 & \multicolumn{1}{l|}{0.83}  & 84.3       & 145    & \multicolumn{1}{l|}{145}    &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 0          & 0     & \multicolumn{1}{l|}{0}     & 0.83    & 0.83 & \multicolumn{1}{l|}{0.83}  & 188        & 291.6  & \multicolumn{1}{l|}{291.6}  &        &      &       \\ \cline{2-11}
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 1.5        & 0.3   & \multicolumn{1}{l|}{3.97}  & 0.23    & 0.61 & \multicolumn{1}{l|}{0.17}  & 23.4       & 84.9   & \multicolumn{1}{l|}{84.9}   &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 4.03       & 0.53  & \multicolumn{1}{l|}{3.97}  & 0.13    & 0.66 & \multicolumn{1}{l|}{0.2}   & 73.4       & 263.2  & \multicolumn{1}{l|}{263.2}  &        &      &       \\
+\multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 4.03       & 1     & \multicolumn{1}{l|}{4}     & 0.21    & 0.58 & \multicolumn{1}{l|}{0.2}   & 202.2      & 685.9  & \multicolumn{1}{l|}{685.9}  &        &      &       \\ \cline{2-11}
+\end{tabular}
+}
+\end{table}
 
 
-the t more, the result is more good, but there must be the over-fit problem, for example, for. 
+the t more, the result is more good, but there must be the over-fit problem, for example, for.
 
 it is because the improvement by the t-coverage is increasing quickly when the bug is 2-4 or large than 2, if the bug itself is less than 2 -4 , than the improvement is not obviously.
 
