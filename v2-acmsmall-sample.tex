@@ -1011,7 +1011,7 @@ We then take $o_{m_{ij}}$ to be the related \emph{strength} between the \emph{j}
 
 In this formula, the constraint (1) and (2) indicate that the variable $x_{ij}$ is a 0-1 integer. Constraint (3) indicates that a factor in one test case can only take one value. Constraint (4) indicates the test case should not change values to the fixed part. Constraint (5) indicates that the related strength between Fault $F_{m}$ and the test case is maximal than other. Constraint (6) indicates the test cases generated should not be the same as the test cases in $T_{existed}$
 
-As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize a ILP solver to solve this formula. In this paper, we use a the solver introduced in \cite{le2010sat4j}, which is a java library for solving boolean satisfaction and optimization problems.
+As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize a ILP solver to solve this formula. In this paper, we use a the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver can handle satisfaction and optimization problems.
 %this actually an integer programming problem, as the test case $f$ is the vector of component $o$, which is concrete variable. However, it dose not belongs to the integer linear programming (ILP) problem, because the objective function  $S(f, F_{k})$, i.e., $\frac{1}{|f|}\sum_{o \in f} S(o, F_{m})$, is not linear to the component $o$.
 %s.t.
 %
@@ -1581,9 +1581,9 @@ So the \emph{related} function is the summation of similarity of all the parent 
 %\label{fig:normalexperiment}
 %\end{figure*}
 
-We first observed that, the results of two traditional strategies \emph{regard as one fault} and \emph{distinguish faults} are coincide with the formal analysis in section 4. In specific, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more parent-schemas of MFS that the former. For the `ignored MFS' metric, as we have executed all the failing test cases, we get 0 ignored MFS for all the approaches. So in order to evaluate this metric for the approaches, we record this metric for each FCI one test case one time and take the average value as the result, which is listed in the parentheses. We also found in most cases (except synthez 5 and synthez 6) the approach with \emph{distinguish} strategy get more ignored MFS than another one, which is also coincide with the formal analysis. And for the `irrelevant MFS', we found \emph{regard as one fault} strategy in most cases get more `irrelevant MFS' than another, which is also as expected.
+We first observed that, the results of two traditional strategies \emph{regard as one fault} and \emph{distinguish faults} are coincide with the formal analysis in section 4. In specific, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more parent-schemas of MFS that the former. For the `ignored MFS' metric, as we have executed all the failing test cases, we get 0 ignored MFS for all the approaches. So in order to evaluate this metric of the approaches, we record this metric for each FCI one test case one time and take the average value as the result, which is listed in the parentheses. We also found in most cases (except synthez 5 and synthez 6) the approach with \emph{distinguish} strategy get more ignored MFS than another one, which is also coincide with the formal analysis. And for the `irrelevant MFS', we found \emph{regard as one fault} strategy in most cases get more `irrelevant MFS' than another, which is also as expected.
 
-We then observed that our approach can preforms better than this two traditional strategies, the advantages are shown in the more accurate MFS and less irrelevant schemas. Our approach also identified the least number of sub-schemas. As for the `parent-schema' metric, our approach performs better than `distinguish faults' but not as good as `regard as one fault'. This is because our strategy is actually based on the `distinguish faults' strategy (the main difference is that our strategy filter these unsatisfied test cases). However, our approach is poor at the `ignored MFS' metric, the possible reason for this may be that the unsatisfied test cases we discard may contain some useful information about the MFS. Above all, our approach get the best performance comparing with another two strategies, which can be shown in the `overall' metric. This overall metric indicates that our approach performs better than `distinguish faults' strategy, which is better than the `regard as one fault' strategy.
+We then observed that our approach can preform better than this two traditional strategies, the advantages are shown in the more accurate MFS and less irrelevant schemas. Our approach also identified the least number of sub-schemas. As for the `parent-schema' metric, our approach performs better than `distinguish faults' but not as good as `regard as one fault'. This is because our strategy is actually based on the `distinguish faults' strategy (the main difference is that our strategy filter these unsatisfied test cases). However, our approach is poor at the `ignored MFS' metric, the possible reason for this may be that the unsatisfied test cases we discard may contain some useful information about the MFS. Above all, our approach get the best performance comparing with another two strategies, which can be shown in the `overall' metric. This overall metric indicates that our approach performs better than `distinguish faults' strategy, and which is better than the `regard as one fault' strategy.
 
 %has each test case    approaches do suffer from the masking effect to some extent. Specifically, in the Figure \ref{fig:subfig1}, FIC\_BS approach only correctly identified 12 and 10 accurate combinations for the two traditional strategies respectively, while wrongly identified 14 and 69 combinations, among which \emph{parent number}, \emph{sub number}, \emph{irrelevant number} are 9,3,2 and 0,8,61 respectively. Similar results can be observed in Figure \ref{fig:subfig2} and \ref{fig:subfig3} for approach OFOT and CTA .
 
@@ -1591,60 +1591,70 @@ We then observed that our approach can preforms better than this two traditional
 
 %\emph{regard as one fault} would get more \emph{} except the following case,  An exception is for the FIC\_BS, which we think when consider the regard as one fault faults strategy, it increase the possibility that import newly bugs so that bais the result. it always that . fahter and parent. which are accordant with the analysis in the formal model.
 
-We further observed that, the cost for different algorithms, the extent to what they suffered from masking effects varied. For instance, for FIC\_BS approach, under the masking effects, they  identified the 61 and 2 irrelevant combinations for two strategies, while for OFOT and CTA, this value is 0 and 4, 5 and 19 respectively. There are two factors caused this difference: the chosen test cases and the analysis method. For FIC\_BS and OFOT, the test cases they chosen for isolating failure-inducing combinations is different, which consequently changed the masking effects they may encountered. For OFOT an CTA, while the test cases they chose are the same, the difference lies at the way they characterizing the failure-inducing combinations in the test cases: OFOT directly identify the parameter according to the passed test cases while CTA used classified tree analysis.
+We further observed that, the extra cost (generated test cases) for our approach is acceptable, in fact, when comparing with `distinguish strategy', our approach in average need just 3$\sim$4 more test cases, and when comparing with `regard as one fault', our approach can even need smaller test cases in some cases(JFlex 1.4.1, JFlex 1.4.2, synthez 3 and synthez 6). This is because the extra test cases the FCI needed lies on what the MFS is, the difference at the identified MFS for FCI approaches will make their needed test cases  differs greatly, so that the cost for replacing test cases in our approach may just have little influence on the final needed test cases.
+
+ %for different algorithms, the extent to what they suffered from masking effects varied. For instance, for FIC\_BS approach, under the masking effects, they  identified the 61 and 2 irrelevant combinations for two strategies, while for OFOT and CTA, this value is 0 and 4, 5 and 19 respectively. There are two factors caused this difference: the chosen test cases and the analysis method. For FIC\_BS and OFOT, the test cases they chosen for isolating failure-inducing combinations is different, which consequently changed the masking effects they may encountered. For OFOT an CTA, while the test cases they chose are the same, the difference lies at the way they characterizing the failure-inducing combinations in the test cases: OFOT directly identify the parameter according to the passed test cases while CTA used classified tree analysis.
 
 %
 %From this figure, we can easily find that Traditional MFS identifying approaches do suffer from the multiple faults and their masking effect. For example, for the Grep, version 3.14, all these three algorithm will lost some information. Additionally, the extent to which the impact has affected vary from algorithms. We can find that for HSQLDB with version 3.14, the similarity of CTA was just at 4 while FIC is 3. We list these points in figure 3. From this figure, we can learn that.
 
-Therefore, the answer we got for \textbf{Q2} is: traditional algorithms do suffer from the multiple faults and their masking effect, although the extent varies in different algorithms.
+Therefore, the answer we got for \textbf{Q2} is: Our approach get a better performance than two traditional strategies when handling masking effects in a acceptable extra cost.
 
-\subsection{evaluating the ILP-based test case searching method}
-The third empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
+\subsection{Evaluating the ILP-based test case searching method}
+The third empirical study aims to evaluate the efficiency of the ILP-based test case searching component in our approach. To conduct this study, we implement a FCI approach which is also augmented with \emph{replacing test cases} strategy, but the test case replacing process is by random.
+
+%observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
 \subsubsection{Study setup}
-The setup of this case study based on the second case study, in fact, we use the same SUT model. Then we apply three new approaches augmented with our replacing strategy. As different space of candidate set will obviously influence the performance of the new approaches, we then set the space of the candidate $N$ ranging from $1$ to the $maximum$. The maximum means the maximum possible test cases that can be selected to replace the unsatisfied test case. It is noted that when number is $1$, it then turns into our previous work. So this study will give us a clearly view of the affects of $N$ on the performance of the approach as well as the comparison that our new approach with the older one.
+The setup of this case study based on the second case study, in fact, we use the same SUT model in Table\ref{testing_models}. Then we apply the newly randomly searching based FCI approach on identifying the MFS in these prepared SUT. In order to avoid the bias that come from the randomness, we repeat the newly approach 30 times to identify the MFS in each failing test case. We will compute the average additional test cases as well as other metrics listed in the precise section of the random-based approach.
 
-Moveover, as our approach is an random based algorithm, to avoid the bias that come from the randomness, we repeat our approach 30 times to identify the MFS in each failing test case. We will compute the average additional test cases the new approach generated to get the cost when comparing the traditional ones. We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
+% We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
 
 \subsubsection{Result and discussion}
-Figure \ref{fig:subfigureExample2} presents the result of the last case study. The organization of this figure is similar to the second study. The bar in each column depicts the results of the augmented approaches, which is labelled as ``replacing strategy". We marked two additional points in each column which represent the result of \emph{regard as one fault} and \emph{distinguish faults} strategy to get a comparison with the augmented approaches.
+The evaluation of this random-based approach is also listed in Table \ref{evaluation_all}. Comparing with our ILP-based approach, we observed that there is little distinction between them at the metric: accurate schemas, parent-schemas, sub-schemas, ignore schemas, irrelevant schemas(the ILP-based approach performs a slightly better, e.g., for subject HSQL2cr8, ILP-based approach identified less sub ,parent and irrelevant schemas than random-based).  This is because this two approaches is both \emph{test case replacing} strategy, so when examine a schema, both of this two approaches may get the same result, although the test cases generated will be different. However, when considering the cost each approach will take, we can find the ILP-based approach performs better, which can reduces in average 1$\sim$ 2 test cases than random-based one.
+
+% there is significant improvement for augmented approaches in reducing the wrongly identified combinations. For instance, CTA approach in Figure \ref{fig:subfig6} only got 2 irrelevant combinations with replacing strategy, while the traditional two strategy got 5 and 19 irrelevant combinations respectively. And for FIC\_BS in Figure \ref{fig:subfig4} this comparison is 2 for replacing strategy, and 2 , 61 for two traditional strategies.
+
+%Figure \ref{fig:subfigureExample2} presents the result of the last case study. The organization of this figure is similar to the second study. The bar in each column depicts the results of the augmented approaches, which is labelled as ``replacing strategy". We marked two additional points in each column which represent the result of \emph{regard as one fault} and \emph{distinguish faults} strategy to get a comparison with the augmented approaches.
 
 % We just added some information in the parentheses attached the value in each cell. This information display the  discrepancy between traditional ones. Notation '+' means promotions against traditional ones, while '-' indicates decrease. The value in parentheses has been normalized.
 
-\begin{figure*}[ht]
-\centering
-\subfigure[]{
-  %  \rule{4cm}{3cm}
-    \label{fig:subfig4}
-    \includegraphics[width=2.21in]{FIC_BS_our.eps}
-}
-\subfigure[]{
-  %  \rule{4cm}{3cm}
-    \label{fig:subfig5}
-    \includegraphics[width=2.21in]{OFOT_our.eps}
-}
-\subfigure[]{
-  %  \rule{4cm}{3cm}
-    \label{fig:subfig6}
-    \includegraphics[width=2.21in]{CTA_our.eps}
-}
-\caption[Optional caption for list of figures]{Three approaches augmented with the replacing strategy}
-\label{fig:subfigureExample2}
-\end{figure*}
+%\begin{figure*}[ht]
+%\centering
+%\subfigure[]{
+%  %  \rule{4cm}{3cm}
+%    \label{fig:subfig4}
+%    \includegraphics[width=2.21in]{FIC_BS_our.eps}
+%}
+%\subfigure[]{
+%  %  \rule{4cm}{3cm}
+%    \label{fig:subfig5}
+%    \includegraphics[width=2.21in]{OFOT_our.eps}
+%}
+%\subfigure[]{
+%  %  \rule{4cm}{3cm}
+%    \label{fig:subfig6}
+%    \includegraphics[width=2.21in]{CTA_our.eps}
+%}
+%\caption[Optional caption for list of figures]{Three approaches augmented with the replacing strategy}
+%\label{fig:subfigureExample2}
+%\end{figure*}
 
 
-Comparing our approach with two traditional strategies in Figure \ref{fig:subfigureExample2}, we observed that there is significant improvement for augmented approaches in reducing the wrongly identified combinations. For instance, CTA approach in Figure \ref{fig:subfig6} only got 2 irrelevant combinations with replacing strategy, while the traditional two strategy got 5 and 19 irrelevant combinations respectively. And for FIC\_BS in Figure \ref{fig:subfig4} this comparison is 2 for replacing strategy, and 2 , 61 for two traditional strategies.
 
-Besides, the augmented approaches also get a good performance at limiting the number of sub combinations and parent combination. In effect, compared with \emph{distinguish faults} which is good at limiting sub combinations while producing more parent combinations and \emph{regard as one fault} which is the other way around, the augmented ones get a more balanced result. Specifically, for instance, in Figure \ref{fig:subfig4} for approach FIC\_BS, \emph{distinguish faults} strategy obtained 9 parent combinations while got 3 sub combinations. And for \emph{regard as one fault} strategy, it got none parent combination but attained 8 sub combinations. For the replacing strategy, it only identified 4 parent combinations, which smaller than \emph{distinguish faults} strategy, and obtained 3 sub combinations which is smaller than \emph{regard as one fault} strategy and equal to \emph{distinguish faults} strategy.
 
-Apart from these improvement, there is some slight decline for the augmented approaches in some specific situation. For example, we noted that for replacing strategy, it nearly got 2 less accurate combinations on average than traditional strategies, and ignored 1 more failure-inducing combinations on average than traditional ones.
+%Besides, the augmented approaches also get a good performance at limiting the number of sub combinations and parent combination. In effect, compared with \emph{distinguish faults} which is good at limiting sub combinations while producing more parent combinations and \emph{regard as one fault} which is the other way around, the augmented ones get a more balanced result. Specifically, for instance, in Figure \ref{fig:subfig4} for approach FIC\_BS, \emph{distinguish faults} strategy obtained 9 parent combinations while got 3 sub combinations. And for \emph{regard as one fault} strategy, it got none parent combination but attained 8 sub combinations. For the replacing strategy, it only identified 4 parent combinations, which smaller than \emph{distinguish faults} strategy, and obtained 3 sub combinations which is smaller than \emph{regard as one fault} strategy and equal to \emph{distinguish faults} strategy.
+%
+%Apart from these improvement, there is some slight decline for the augmented approaches in some specific situation. For example, we noted that for replacing strategy, it nearly got 2 less accurate combinations on average than traditional strategies, and ignored 1 more failure-inducing combinations on average than traditional ones.
 % Further more it also that number of correctly identified combinations with replacing strategy slightly declines than traditional ones(about 2 less in average).
 
 %As a compensation, however, We noted that the augment approaches got slightly . But promotions against traditional ones. In fact, there are 10 out of 14 cases that augment ones outperform traditional ones at the metric of "similarity", and 9 out of 14 cases that augment ones are better than traditional ones at the metric of "num diff". Additional, this promotion is distinct. As we can see, the best promotion for similarity is 0.9 and the best promotion for num diff is 0.7. Furthermore, the average performance promotion for similarity reached '+ 0.6' and this value reached '+ 0.5' for the num diff metric.
 
-In summary, the answer for \textbf{Q3} is: our approach do make the FCI approaches, to some extent, get better better performance at identifying failure-inducing combinations when facing masking effect between multiple faults.
+In summary, the answer for \textbf{Q3} is: How to search a satisfied test case do have influence on the performance for our approach especially at the number of needed extra test cases, and the ILP based test cases can handle the masking effects at a relatively small cost than then random-based approach.
+
+%our approach do make the FCI approaches, to some extent, get better better performance at identifying failure-inducing combinations when facing masking effect between multiple faults.
 
 %\subsection{Comparing with our previous work}
 %The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
@@ -1669,15 +1679,39 @@ In summary, the answer for \textbf{Q3} is: our approach do make the FCI approach
 %
 %\subsubsection{Result and discussion}
 \subsection{compare with Feedback driven combinatorial testing}
+The FDA-CIT \cite{yilmaz2013reducing} approach can handles masking effects so that the covering array it generates can cover all the t-way schemas without being masked by the MFS. There is an integrated FCI approach in of FDA-CIT, of which this FCI approach has two versions, i.e., ternary-class and multiple-class. In this paper we use the multiple-class version as our compared approach, as it is claimed that the multiple-class version performs better than the former in \cite{yilmaz2013reducing}.   %, the configuration options for J48, is .
 
+\subsubsection{Study setup}
+As the FCI approach of FDA-CIT a post-analysis(classified tree) technique on given test cases, in this paper the same as \cite{yilmaz2013reducing} we fed the FDA-CIT the covering array as the input. The covering array we generated are ranged from 2-4 way. The covering array generating method we used is \cite{cohen2003augmenting}, as it can be easily extended with constraints dealing and seeds injecting \cite{cohen2007interaction}, which is needed in the FDA-CIT process. As different test cases will influence the result of characterization process, so we repeated generating 30 different 2-4 way covering array and fed them to FDA-CIT. Then we record the results of this approach, which consists of the metrics mentioned in the second case study.
+
+Besides the FDA-CIT, we also applied our ILP-based approach on generated the covering array. In specific, for each failing test case in the covering array, we separately apply our approach to identify the MFS in that case. In fact, we can reduce much extra test cases if we utilize the other test cases in the covering array \cite{li2012improved}), but we didn't utilize the information for simplify the experiment. We then merge all the test cases that our approach needed for each failing test case in the covering array, we also merged other metrics listed in the second case study for each failing test cases.
+
+As our approach generated different test cases from the FDA-CIT, we also let the multiple-class FCI approach of FDA-CIT to characterize the MFS using the test cases generated by our approach, so that we can get a more fair result when evaluating the FCI approach.
+%with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple faults in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FCI) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering},
 \subsubsection{Result and discussion}
-
-\begin{table}[h]\renewcommand{\arraystretch}{1.3}
-\tbl{Comparison with FDA-CIT\label{comparewithfda}}{
-\begin{tabular}{llllllllllllll}
+We list the average result of the 30 times experiment for FDA-CIT, ILP-based approach, and FDA-CIT using our test cases (FDAs) respectively in Table \ref{comparewithfda}. The result is organised almost the same way as Table \ref{evaluation_all}, except we added \emph{t} column which indicates the strength of the covering array we generated for this experiment.
+\begin{center}\renewcommand{\arraystretch}{1.3}
+\footnotesize
+\setlength\tabcolsep{2pt}
+\begin{longtable}{llllllllllllll}
+\caption[Comparison with FDA-CIT]{Comparison with FDA-CIT} \label{comparewithfda} \\
 \hline
 \multicolumn{1}{|l|}{Subject}     & \multicolumn{1}{l|}{}  & accurate   &       & \multicolumn{1}{l|}{}      & sub     &      & \multicolumn{1}{l|}{}      & parent     &        & \multicolumn{1}{l|}{}       & ignore &      &       \\ \hline
+
+
+
+
 \multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{t} & FDA        & ILP   & \multicolumn{1}{l|}{FDA-s} & FDA     & ILP  & \multicolumn{1}{l|}{FDA-s} & FDA        & ILP    & \multicolumn{1}{l|}{FDA-s}  & FDA    & ILP  & FDA-s \\ \hline
+\endfirsthead
+%\endhead
+
+\hline \multicolumn{4}{l}{{Continued on next page}} \\ \hline
+\endfoot
+
+
+\endlastfoot
+
+
 \multicolumn{1}{|l|}{HSQL2cr8}    & \multicolumn{1}{l|}{2} & 0.17       & 2.27  & \multicolumn{1}{l|}{1.57}  & 0.57    & 0    & \multicolumn{1}{l|}{0}     & 0.17       & 0.4    & \multicolumn{1}{l|}{2.17}   & 3.87   & 2.3  & 2     \\
 \multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 1.47       & 3.67  & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 4.67       & 2      & \multicolumn{1}{l|}{6.07}   & 0.63   & 0.3  & 0.17  \\
 \multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.83       & 4.8   & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 9.03       & 3.37   & \multicolumn{1}{l|}{8}      & 0      & 0    & 0     \\ \hline
@@ -1771,27 +1805,33 @@ In summary, the answer for \textbf{Q3} is: our approach do make the FCI approach
 \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{2} & 1.5        & 0.3   & \multicolumn{1}{l|}{3.97}  & 0.23    & 0.61 & \multicolumn{1}{l|}{0.17}  & 23.4       & 84.9   & \multicolumn{1}{l|}{84.9}   &        &      &       \\
 \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 4.03       & 0.53  & \multicolumn{1}{l|}{3.97}  & 0.13    & 0.66 & \multicolumn{1}{l|}{0.2}   & 73.4       & 263.2  & \multicolumn{1}{l|}{263.2}  &        &      &       \\
 \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 4.03       & 1     & \multicolumn{1}{l|}{4}     & 0.21    & 0.58 & \multicolumn{1}{l|}{0.2}   & 202.2      & 685.9  & \multicolumn{1}{l|}{685.9}  &        &      &       \\ \cline{2-11}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
+\end{center}
 
+From this result, we can first observe that in all the cases our ILP-based approach can identify more accurate MFS and less ignored MFS than FDA-CIT approach. For the metric `parent-schema', `sub-schema',`irrelevant schemas', there is ups and downs on both sides. With respect to the `overall metric', we can find our approach have a significant advantage over the FDA-CIT, but it also needed much more test cases than FDA-CIT.
 
-the t more, the result is more good, but there must be the over-fit problem, for example, for.
+It is noted that, when apply multiple-class FCI on the test cases generated using our approach, their `overall' metirc is still not as good as our ILP-based approach, but may get some improvement than the original FDA-CIT.
 
-it is because the improvement by the t-coverage is increasing quickly when the bug is 2-4 or large than 2, if the bug itself is less than 2 -4 , than the improvement is not obviously.
+Another interesting observation is that overall performance in most cases is increasing with the t, it can be easily understood: more test cases will contain more information about the MFS, so that we can utilize them to identified the MFS more precisely.
 
-conclusion: if you want to get a more precise result and more helpful test cases generating supply, you should choose our approach, however if you are limited to the test cases execution, you can choose the feedback driven.
- but if
+%
+%the t more, the result is more good, but there must be the over-fit problem, for example, for.
+%
+%it is because the improvement by the t-coverage is increasing quickly when the bug is 2-4 or large than 2, if the bug itself is less than 2 -4 , than the improvement is not obviously.
+
+So the answer for the \textbf{Q4} is: Our approach can get a more precise result about the MFS, and the FDA-CIT can make the identifying process using small amount extra test cases. Both of this two approaches have their ups and downs, choosing which approach in practice is depending on the specific scenario you test.
+% if you want to get a more precise result and more helpful test cases generating supply, you should choose our approach, however if you are limited to the test cases execution, you can choose the feedback driven.
+% but if
 
 
 
 
 \subsection{Threats to validity}
-There are several threats to validity for these empirical studies. First, we have only surveyed five open-source software, four of which are medium-sized and one is large-sized. This may impact the generality of our observations. Although we believe it is quite possible a common phenomenon in most software that contain multiple faults which can mask each other, we need to investigate more software to support our conjecture.
+There are several threats to validity for these empirical studies. First, we have only surveyed two open-source software with five different versions, of which the program scale is medium-sized. This may impact the generality of our observations. Although we believe it is quite possible a common phenomenon in most software that contain multiple faults which can mask each other, we need to investigate more software to support our conjecture.
 
 The second threat comes from the input model we built. As we focused on the options related to the perfect combinations and only augmented it with some noise options, there is a chance we will get different result if we choose other noise options. More different options needed to be opted to see whether our result is common or just appeared in some particular input model.
 
-The third threats is that we just observed three failure-inducing combinations identifying algorithms, further works needed to examine more algorithms in this filed to get a more general result.
+The third threat is that we just evaluated one FCI approach -- FIC\_BS \cite{zhang2011characterizing}, further works needed to examine more algorithms in this filed to get a more general result.
 
 \section{related works}
 
@@ -1824,7 +1864,7 @@ Masking effects of multiple faults in SUT can bias the result of traditional fai
 
 %This strategy separately handle each fault in SUT, and for a particular fault, it will discard these test cases that trigger faults different from the one under analysis and only keep those that either pass or trigger the expected fault. Additional test cases for compensation will be generated after discarding unsatisfied test cases.
 
-In the empirical studies, we extended three FCI approaches with our strategy. The comparison between this three traditional approaches and their improved variations was conducted on several open-source software. The results indicated that our strategy do assist traditional FCI approaches in getting a better performance when facing masking effects in SUT.
+In the empirical studies, we extended FCI approach -- FIC\_BS\cite{zhang2011characterizing} with our strategy. The comparison between our approach with its traditional ones were conducted on several open-source software. The results indicated that our strategy do assist traditional FCI approach in getting a better performance when facing masking effects in SUT. We also empirically evaluated the the efficiency of the test case searching component in our approach by comparing it with randomly searching based FCI approach, of which the result shows that the ILP based test case searching method can perform much more efficient. At last, we compared our approach with existed masking effects handling technique -- FDA-CIT\cite{yilmaz2013reducing}, and observed that our approach can get a more precise result which can support better debugging aids, though our approach need generating more test cases than FDA-CIT.
 
 As a future work, we need to do more empirical studies to make our conclusion more general. Our current experimental subjects are several middle-sized software, we would like to extend our approach into more complicated and large-scaled testing scenarios. Another promising work in the future is to combine white-box testing technique to make the FCI approaches get more accurate results when handling masking effects. We believe that figuring out the fault levels of different bugs through white-box testing technique is helpful to reduce misjudgement in the failure-inducing combinations identifying process. At last, as the extent to what the FCI suffers from masking effects varies in different algorithms, the combination of different FCI approaches is desired in the future to further improve the performance for identifying MFS for multiple faults.
 

@@ -8,6 +8,8 @@ Warning--empty address in bryce2005framework
 Warning--empty address in calvagna2008logic
 Warning--empty publisher in chen2010combinatorial
 Warning--empty address in chen2010combinatorial
+Warning--empty publisher in cohen2003augmenting
+Warning--empty address in cohen2003augmenting
 Warning--empty publisher in cohen2007exploiting
 Warning--empty address in cohen2007exploiting
 Warning--empty publisher in cohen2007interaction
@@ -47,4 +49,4 @@ Warning--no number and no volume in yilmaz2013reducing
 Warning--page numbers missing in both pages and numpages fields in yilmaz2013reducing
 Warning--empty publisher in zhang2011characterizing
 Warning--empty address in zhang2011characterizing
-(There were 46 warnings)
+(There were 48 warnings)

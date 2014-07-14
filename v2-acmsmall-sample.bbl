@@ -42,6 +42,20 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Berkelaar, Eikland, and Notebaert}{Berkelaar
+  et~al\mbox{.}}{2004}]%
+        {Berkelaar2004}
+{Michel Berkelaar}, {Kjell Eikland}, {and} {Peter Notebaert}. 2004.
+\newblock {lp\_solve} 5.5, Open source (Mixed-Integer) Linear Programming
+  system.
+\newblock Software.   (May 1 2004).
+\newblock
+\showURL{%
+\url{http://lpsolve.sourceforge.net/5.5/}}
+\newblock
+\shownote{Last accessed Dec, 18 2009.}
+
+
 \bibitem[\protect\citeauthoryear{Bryce and Colbourn}{Bryce and
   Colbourn}{2006}]%
         {bryce2006prioritized}
@@ -92,6 +106,16 @@
   combinatorial design}.
 \newblock {\em Software Engineering, IEEE Transactions on\/} {23}, 7 (1997),
   437--444.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Cohen, Colbourn, and Ling}{Cohen
+  et~al\mbox{.}}{2003}]%
+        {cohen2003augmenting}
+{Myra~B Cohen}, {Charles~J Colbourn}, {and} {Alan~CH Ling}. 2003.
+\newblock \showarticletitle{Augmenting simulated annealing to build interaction
+  test suites}. In {\em Software Reliability Engineering, 2003. ISSRE 2003.
+  14th International Symposium on}. IEEE, 394--405.
 \newblock
 
 
@@ -219,17 +243,6 @@
 \newblock \showarticletitle{The WEKA Data Mining Software: An Update; SIGKDD
   Explorations, Volume 11, Issue 1}.
 \newblock  (2009).
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Le~Berre, Parrain, et~al\mbox{.}}{Le~Berre
-  et~al\mbox{.}}{2010}]%
-        {le2010sat4j}
-{Daniel Le~Berre}, {Anne Parrain}, {and} {others}. 2010.
-\newblock \showarticletitle{The sat4j library, release 2.2, system
-  description}.
-\newblock {\em Journal on Satisfiability, Boolean Modeling and Computation\/}
-  {7} (2010), 59--64.
 \newblock
 
 
