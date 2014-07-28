@@ -250,7 +250,7 @@ This section presents some definitions and propositions to give a formal model f
 
 \subsection{Failure-causing Schemas in CT}
 
-Assume that the SUT is influenced by \emph{n} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..n). Some of the definitions below are originally defined in \cite{nie2011survey}.
+Assume that the SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..n). Some of the definitions below are originally defined in \cite{nie2011survey}.
 
 %\newdef{definition}{Definition}
 \begin{definition}
@@ -289,6 +289,21 @@ In fact, MFS is identical to the failure-inducing combinations we discussed prev
 
 %We have the following proposition based on these basic definitions.
 %
+Some notions will be used later are listed in the following for the convenience of reference:
+\begin{itemize}
+\item $k$ :   
+\item $T*$ :  The exhaustive set of test cases for the SUT. For a SUT with k factors
+\item $T_{F_{m}}$ :  All the test cases that can trigger the fault $F_{m}$.
+\item $\mathcal{T}(c)$ :  All the test cases that can hit the schema $c$, it is noted that, if a set of schemas is the MFS for the fault $F_{m}$, then without masking effects, $\mathcal{T}(c)$ should be identical to $T_{F_{m}}$.
+\item $T_{mask(F_{m})}$ :  All the test cases
+\item $T_{mask(F_{m})}$ : 
+\item $T_{mask(F_{m})}$ : 
+
+\item $\mathcal{I}(t)$ :  All the schemas that are hit in the test case $t$, e.g., test case  $\mathcal{I}(1 1 1) = \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
+\item $\mathcal{I}(T)$ :  All the schemas that are hit in a set of test cases $T$, i.e., $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$.
+\item  $\mathcal{I}(T)$:
+
+\end{itemize}
 
 Let $c_{m}$ be a m-value schema, we denote the set of all the test cases can \emph{hit} the schema $c_{m}$ as $T(c_{m})$. Further, for the test case $t$, let $\mathcal{I}(t)$ to denote the set of all the schemas that are hit by $t$, and for the set of test cases $T$, we let $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$. Then we have the following propositions.
 
@@ -306,7 +321,7 @@ Table \ref{example_subsume} illustrates an example of SUT with four binary param
 
 \begin{table}
 \centering
-\tbl{Example of the proposition 1\label{example_subsume}}{
+\tbl{Example of the proposition 3.5\label{example_subsume}}{
   \begin{tabular}{c}
 $c$ \\ \hline
 (0, 0, - , -) \\ \hline
@@ -360,7 +375,7 @@ Since $\bigcup_{c \in S(T)}T(c) \subset T$ and $ T \subset \bigcup_{c \in S(T)}T
 
 Then we denote the minimal schemas of $S(T)$ as $M(S(T)) = \{c | c \in S(T)\ and\ \not\exists c' \prec c, s.t., c' \in S(T)\}$. For this set, we can still have $ \bigcup_{c \in M(S(T))} T(c) = T$. We also prove this by two steps, first and obviously, $\bigcup_{c \in M(S(T))} T(c) \subset \bigcup_{c \in S(T)} T(c)$. Then we just need to prove that $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
 
-In fact by definition of $M(S(T))$, for $\forall c'\in S(T) \backslash M(S(T))$,  we can have some $c \in M(S(T))$, such that $c \prec c'$. According to the Proposition 1, $T(c') \subset T(c)$. So for any test case $t \in \bigcup_{c \in S(T)} T(c) $, as we have either $\exists c'\in S(T) \backslash M(S(T)), s.t., t \in T(c')$ or $\exists c \in M(S(T)), s.t., t \in T(c)$. Both cases can deduce $t \in \bigcup_{c \in M(S(T))} T(c)$. So, $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
+In fact by definition of $M(S(T))$, for $\forall c'\in S(T) \backslash M(S(T))$,  we can have some $c \in M(S(T))$, such that $c \prec c'$. According to the Proposition 3.5, $T(c') \subset T(c)$. So for any test case $t \in \bigcup_{c \in S(T)} T(c) $, as we have either $\exists c'\in S(T) \backslash M(S(T)), s.t., t \in T(c')$ or $\exists c \in M(S(T)), s.t., t \in T(c)$. Both cases can deduce $t \in \bigcup_{c \in M(S(T))} T(c)$. So, $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
 
 Hence, $\bigcup_{c \in S(T)} T(c) = \bigcup_{c \in M(S(T))} T(c)$, and $M(S(T))$ is the set of schemas that holds this proposition.
 \end{proof}
@@ -433,7 +448,7 @@ For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$
 \end{proposition}
 
 \begin{proof}
-Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
+Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3.7, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
 \end{proof}
 
 Based on this proposition, in fact, the $c_{k} \in \mathcal{C}(T_{k})$  remains the following three possibilities: 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
@@ -1690,13 +1705,28 @@ As our approach generated different test cases from the FDA-CIT, we also let the
 %with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple faults in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FCI) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering},
 \subsubsection{Result and discussion}
 We list the average result of the 30 times experiment for FDA-CIT, ILP-based approach, and FDA-CIT using our test cases (FDAs) respectively in Table \ref{comparewithfda}. The result is organised almost the same way as Table \ref{evaluation_all}, except we added \emph{t} column which indicates the strength of the covering array we generated for this experiment.
-
-\begin{table}[h]\renewcommand{\arraystretch}{1.3}
-\tbl{Comparison with FDA-CIT\label{comparewithfda}}{
+\begin{center}\renewcommand{\arraystretch}{1.3}
+\footnotesize
+\setlength\tabcolsep{2pt}
 \begin{longtable}{llllllllllllll}
+\caption[Comparison with FDA-CIT]{Comparison with FDA-CIT} \label{comparewithfda} \\
 \hline
 \multicolumn{1}{|l|}{Subject}     & \multicolumn{1}{l|}{}  & accurate   &       & \multicolumn{1}{l|}{}      & sub     &      & \multicolumn{1}{l|}{}      & parent     &        & \multicolumn{1}{l|}{}       & ignore &      &       \\ \hline
+
+
+
+
 \multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{t} & FDA        & ILP   & \multicolumn{1}{l|}{FDA-s} & FDA     & ILP  & \multicolumn{1}{l|}{FDA-s} & FDA        & ILP    & \multicolumn{1}{l|}{FDA-s}  & FDA    & ILP  & FDA-s \\ \hline
+\endfirsthead
+%\endhead
+
+\hline \multicolumn{4}{l}{{Continued on next page}} \\ \hline
+\endfoot
+
+
+\endlastfoot
+
+
 \multicolumn{1}{|l|}{HSQL2cr8}    & \multicolumn{1}{l|}{2} & 0.17       & 2.27  & \multicolumn{1}{l|}{1.57}  & 0.57    & 0    & \multicolumn{1}{l|}{0}     & 0.17       & 0.4    & \multicolumn{1}{l|}{2.17}   & 3.87   & 2.3  & 2     \\
 \multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{3} & 1.47       & 3.67  & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 4.67       & 2      & \multicolumn{1}{l|}{6.07}   & 0.63   & 0.3  & 0.17  \\
 \multicolumn{1}{|l|}{}            & \multicolumn{1}{l|}{4} & 0.83       & 4.8   & \multicolumn{1}{l|}{1}     & 0       & 0    & \multicolumn{1}{l|}{0}     & 9.03       & 3.37   & \multicolumn{1}{l|}{8}      & 0      & 0    & 0     \\ \hline
@@ -1791,16 +1821,22 @@ We list the average result of the 30 times experiment for FDA-CIT, ILP-based app
 \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{3} & 4.03       & 0.53  & \multicolumn{1}{l|}{3.97}  & 0.13    & 0.66 & \multicolumn{1}{l|}{0.2}   & 73.4       & 263.2  & \multicolumn{1}{l|}{263.2}  &        &      &       \\
 \multicolumn{1}{l|}{}             & \multicolumn{1}{l|}{4} & 4.03       & 1     & \multicolumn{1}{l|}{4}     & 0.21    & 0.58 & \multicolumn{1}{l|}{0.2}   & 202.2      & 685.9  & \multicolumn{1}{l|}{685.9}  &        &      &       \\ \cline{2-11}
 \end{longtable}
-}
-\end{table}
+\end{center}
 
+From this result, we can first observe that in all the cases our ILP-based approach can identify more accurate MFS and less ignored MFS than FDA-CIT approach. For the metric `parent-schema', `sub-schema',`irrelevant schemas', there is ups and downs on both sides. With respect to the `overall metric', we can find our approach have a significant advantage over the FDA-CIT, but it also needed much more test cases than FDA-CIT.
 
-the t more, the result is more good, but there must be the over-fit problem, for example, for.
+It is noted that, when apply multiple-class FCI on the test cases generated using our approach, their `overall' metirc is still not as good as our ILP-based approach, but may get some improvement than the original FDA-CIT.
 
-it is because the improvement by the t-coverage is increasing quickly when the bug is 2-4 or large than 2, if the bug itself is less than 2 -4 , than the improvement is not obviously.
+Another interesting observation is that overall performance in most cases is increasing with the t, it can be easily understood: more test cases will contain more information about the MFS, so that we can utilize them to identified the MFS more precisely.
 
-conclusion: if you want to get a more precise result and more helpful test cases generating supply, you should choose our approach, however if you are limited to the test cases execution, you can choose the feedback driven.
- but if
+%
+%the t more, the result is more good, but there must be the over-fit problem, for example, for.
+%
+%it is because the improvement by the t-coverage is increasing quickly when the bug is 2-4 or large than 2, if the bug itself is less than 2 -4 , than the improvement is not obviously.
+
+So the answer for the \textbf{Q4} is: Our approach can get a more precise result about the MFS, and the FDA-CIT can make the identifying process using small amount extra test cases. Both of this two approaches have their ups and downs, choosing which approach in practice is depending on the specific scenario you test.
+% if you want to get a more precise result and more helpful test cases generating supply, you should choose our approach, however if you are limited to the test cases execution, you can choose the feedback driven.
+% but if
 
 
 
@@ -1851,42 +1887,42 @@ As a future work, we need to do more empirical studies to make our conclusion mo
 
 % Start of "Sample References" section
 
-\section{Typical references in new ACM Reference Format}
-%A paginated journal article \cite{Abril07}, an enumerated
-%journal article \cite{Cohen07}, a reference to an entire issue \cite{JCohen96},
-%a monograph (whole book) \cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)
-%\cite{Harel79}, a divisible-book such as an anthology or compilation \cite{Editor00}
-%followed by the same example, however we only output the series if the volume number is given
-%\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.),
-%a chapter in a divisible book \cite{Spector90}, a chapter in a divisible book
-%in a series \cite{Douglass98}, a multi-volume work as book \cite{Knuth97},
-%an article in a proceedings (of a conference, symposium, workshop for example)
-%(paginated proceedings article) \cite{Andler79}, a proceedings article
-%with all possible elements \cite{Smith10}, an example of an enumerated
-%proceedings article \cite{VanGundy07},
-%an informally published work \cite{Harel78}, a doctoral dissertation \cite{Clarkson85},
-%a master's thesis: \cite{anisi03}, an online document / world wide web resource \cite{Thornburg01}, \cite{Ablamowicz07},
-%\cite{Poker06}, a video game (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03}
-%and \cite{Lee05} and (Case 3) a patent \cite{JoeScientist001},
-%work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
-%\cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might contain
-%'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
-%Boris / Barbara Beeton: multi-volume works as books
-%\cite{MR781536} and \cite{MR781537}.
-
-% Appendix
-\appendix
-\section*{APPENDIX}
-\setcounter{section}{1}
-
-
-\appendixhead{ZHOU}
+%\section{Typical references in new ACM Reference Format}
+%%A paginated journal article \cite{Abril07}, an enumerated
+%%journal article \cite{Cohen07}, a reference to an entire issue \cite{JCohen96},
+%%a monograph (whole book) \cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)
+%%\cite{Harel79}, a divisible-book such as an anthology or compilation \cite{Editor00}
+%%followed by the same example, however we only output the series if the volume number is given
+%%\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.),
+%%a chapter in a divisible book \cite{Spector90}, a chapter in a divisible book
+%%in a series \cite{Douglass98}, a multi-volume work as book \cite{Knuth97},
+%%an article in a proceedings (of a conference, symposium, workshop for example)
+%%(paginated proceedings article) \cite{Andler79}, a proceedings article
+%%with all possible elements \cite{Smith10}, an example of an enumerated
+%%proceedings article \cite{VanGundy07},
+%%an informally published work \cite{Harel78}, a doctoral dissertation \cite{Clarkson85},
+%%a master's thesis: \cite{anisi03}, an online document / world wide web resource \cite{Thornburg01}, \cite{Ablamowicz07},
+%%\cite{Poker06}, a video game (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03}
+%%and \cite{Lee05} and (Case 3) a patent \cite{JoeScientist001},
+%%work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
+%%\cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might contain
+%%'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
+%%Boris / Barbara Beeton: multi-volume works as books
+%%\cite{MR781536} and \cite{MR781537}.
+%
+%% Appendix
+%\appendix
+%\section*{APPENDIX}
+%\setcounter{section}{1}
+%
+%
+%\appendixhead{ZHOU}
 
 % Acknowledgments
-\begin{acks}
-The authors would like to thank Dr. Maura Turolla of Telecom
-Italia for providing specifications about the application scenario.
-\end{acks}
+%\begin{acks}
+%The authors would like to thank Dr. Maura Turolla of Telecom
+%Italia for providing specifications about the application scenario.
+%\end{acks}
 
 % Bibliography
 \bibliographystyle{ACM-Reference-Format-Journals}
@@ -1897,22 +1933,22 @@ Italia for providing specifications about the application scenario.
                              % Gerry Murray - March 2012
 
 % History dates
-\received{February 2007}{March 2009}{June 2009}
+%\received{February 2007}{March 2009}{June 2009}
 
 % Electronic Appendix
-\elecappendix
+%\elecappendix
 
-\medskip
+%\medskip
 
-\section{This is an example of Appendix section head}
-
-
-\section{Appendix section head}
-
-The primary consumer of energy in WSNs is idle listening. The key to
-reduce idle listening is executing low duty-cycle on nodes. Two
-primary approaches are considered in controlling duty-cycles in the
-MAC layer.
+%\section{This is an example of Appendix section head}
+%
+%
+%\section{Appendix section head}
+%
+%The primary consumer of energy in WSNs is idle listening. The key to
+%reduce idle listening is executing low duty-cycle on nodes. Two
+%primary approaches are considered in controlling duty-cycles in the
+%MAC layer.
 
 \end{document}
 % End of v2-acmsmall-sample.tex (March 2012) - Gerry Murray, ACM

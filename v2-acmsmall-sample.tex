@@ -250,11 +250,11 @@ This section presents some definitions and propositions to give a formal model f
 
 \subsection{Failure-causing Schemas in CT}
 
-Assume that the SUT is influenced by \emph{n} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..n). Some of the definitions below are originally defined in \cite{nie2011survey}.
+Assume that the SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..k). Some of the definitions below are originally defined in \cite{nie2011survey}.
 
 %\newdef{definition}{Definition}
 \begin{definition}
-A \emph{test case} of the SUT is an array of \emph{n} values, one for each parameter of the SUT, which is denoted as a \emph{n}-tuple ($v_{1}$, $v_{2}$,...,$v_{n}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{n} \in V_{n}$.
+A \emph{test case} of the SUT is an array of \emph{k} values, one for each parameter of the SUT, which is denoted as a \emph{k}-tuple ($v_{1}$, $v_{2}$,...,$v_{k}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{k} \in V_{k}$.
 \end{definition}
 
 In practice, these parameters in the test case can represent many factors, such as input variables, run-time options, building options or various combination of them. We need to execute the SUT with these test cases to ensure the correctness of the behaviour of the software.
@@ -268,9 +268,9 @@ We consider the fact that the abnormally executing test cases as a \emph{fault}.
 %Figuring out the execution outcomes of test cases must reveal the presence of faulty interactions among those considered. However, the location and magnitude of the fault is still far from clear, especially when there are too many parameters we need to care in this test case. Hence, we need to study some subsets of this test case, which can help isolate the cause of failures.
 
 \begin{definition}
-For the SUT, the \emph{n}-tuple (-,$v_{n_{1}}$,...,$v_{n_{k}}$,...)is called a \emph{k}-value \emph{schema} ($0 < k \leq n $) when some k parameters have fixed values and the others can take on their respective allowable values, represented as ``-".
+For the SUT, the \emph{t}-tuple (-,$v_{k_{1}}$,...,$v_{k_{t}}$,...)is called a \emph{t}-value \emph{schema} ($0 < t \leq k $) when some t parameters have fixed values and the others can take on their respective allowable values, represented as ``-".
 
-In effect a test case itself is a k-value \emph{schema}, when k = n. Furthermore, if a test case contain a \emph{schema}, i.e., every fixed value in the combination is in this test case, we say this test case \emph{hits} the \emph{schema}.
+In effect a test case itself is a t-value \emph{schema}, when t = k. Furthermore, if a test case contain a \emph{schema}, i.e., every fixed value in the combination is in this test case, we say this test case \emph{hits} the \emph{schema}.
 %, which can be denoted as $k-value\  combination \in T$
 \end{definition}
 
@@ -281,7 +281,7 @@ let $c_{l}$ be a \emph{l}-value schema, $c_{m}$ be an \emph{m}-value schema in S
 For example, in the motivation example section, the 2-value schema (-, 4, 4, -) is a sub-schema of the 3-value schema (-, 4, 4, 5), that is, (-,4,4,-) $\prec$ (-,4,4,5).
 
 \begin{definition}
-If all test cases contain a schema, say $c$, trigger a particular fault, say $F$, then we call this schema $c$ the \emph{failure-causing schema} for $F$. Additionally, if none sub-schema of $c$ is the \emph{faulty schema} for $F$, we then call the combination $c$ the \emph{Minimal Failure-causing Schema}, i.e.,(MFS) for $F$.
+If all test cases contain a schema, say $c$, trigger a particular fault, say $F$, then we call this schema $c$ the \emph{failure-causing schema} for $F$. Additionally, if none sub-schema of $c$ is the \emph{failure-causing schema} for $F$, we then call the schema $c$ the \emph{Minimal Failure-causing Schema}, i.e.,(MFS) for $F$.
 %Based on this, if a test case $t$ hit such a failure-inducing combination, say $c(F)$, it should trigger the fault $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
@@ -289,24 +289,43 @@ In fact, MFS is identical to the failure-inducing combinations we discussed prev
 
 %We have the following proposition based on these basic definitions.
 %
+Some notions will be used later are listed in the following for the convenience of reference:
+\begin{itemize} 
+\item $k$ : the number of parameters that influence the SUT.
+\item $V_{i}$ : the set of discrete values that the $i$th factor of the SUT can take.
+\item $T^{*}$ :  The exhaustive set of test cases for the SUT. For a SUT with $k$ factors, and each factor can take $|V_{i}|$ values, the number of this set of test cases $T^{*}$ is $\prod_{i = 1}^{i <= k} |V_{i}|$.  
+\item $L$ : the number of faults that contain in the SUT. 
+\item $F_{m}$ : the $m$th fault in the SUT, for different faults, we can differentiate them from their exception traces or other buggy information.
+\item $T_{F_{m}}$ :  All the test cases that can trigger the fault $F_{m}$.
+\item $\mathcal{T}(c)$ :  All the test cases that can hit(contain) the schema $c$. Based on the definition of MFS, we can learn that if schema $c$ is MFS for $F_{m}$, then $\mathcal{T}(c)$ must be subsumed in $T_{F_{m}}$.
+%\item $T_{mask(F_{m})}$ :  All the test cases that contain the
+%\item $T_{mask(F_{m})}$ :
+%\item $T_{mask(F_{m})}$ :
 
-Let $c_{m}$ be a m-value schema, we denote the set of all the test cases can \emph{hit} the schema $c_{m}$ as $T(c_{m})$. Further, for the test case $t$, let $\mathcal{I}(t)$ to denote the set of all the schemas that are hit by $t$, and for the set of test cases $T$, we let $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$. Then we have the following propositions.
+\item $\mathcal{I}(t)$ :  All the schemas that are hit in the test case $t$, e.g., $\mathcal{I}(\ (1 1 1)\ )= \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
+\item $\mathcal{I}(T)$ :  All the schemas that are hit in a set of test cases $T$, i.e., $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$.
+\item  $\mathcal{S}(T)$:  All the schemas that are only hit in the set of test cases, it is important to note that this set is different from $\mathcal{I}(T)$, as the schemas hit by the test cases in $T$ can also be hit by other test cases that are not belong to this set. In fact, $\mathcal{S}(T)$ is computed by $\{ c | c \in \mathcal{I}(T)\ and\ c\ \not\in \mathcal{I}(T^{*} \backslash T \}$.
+\item  $\mathcal{C}(T)$ : the minimal schemas only hit by the set of test cases $T$, this set is the sub-set of $\mathcal{S}(T)$, which is defined as  $ \{c | c \in S(T)\ and\ \not\exists c' \prec c, s.t., c' \in S(T)\}$.
+
+\end{itemize}
+
+%Let $c_{m}$ be a m-value schema, we denote the set of all the test cases can \emph{hit} the schema $c_{m}$ as $T(c_{m})$. Further, for the test case $t$, let $\mathcal{I}(t)$ to denote the set of all the schemas that are hit by $t$, and for the set of test cases $T$, we let $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$. Then we have the following propositions.
 
 
 %\newtheorem{proposition}{Proposition}
 \begin{proposition}
-if $c_{l} \prec c_{k}$, then $T(c_{k}) \subset T(c_{l})$
+For $l$-value schema $c_{l}$ and $m$-value schema $c_{m}$, if $c_{l} \prec c_{m}$, then we have $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proposition}
 
 \begin{proof}
-Suppose $ \forall t \in T(c_{k})$, we have that $t$ hits $c_{k}$. Then as $c_{l} \prec c_{k}$, so $t$ must also hit $c_{l}$, as all the element in $c_{l}$ must in $c_{k}$, which also in the test case $t$. Therefore we get $t \in T(c_{l})$. Thus $t \in T(c_{k})$ implies $t \in T(c_{l})$, so it follows that $T(c_{k}) \subset T(c_{l})$.
+Suppose $ \forall t \in \mathcal{T}(c_{m})$, we have that $t$ hits $c_{m}$. Then as $c_{l} \prec c_{m}$, it must have $t$ must also hit $c_{l}$. This is because all the elements in $c_{l}$ are also in $c_{m}$, which are contained in the test case $t$. Therefore we get $t \in \mathcal{T}(c_{l})$. Thus $t \in \mathcal{T}(c_{m})$ implies $t \in \mathcal{T}(c_{l})$, so it follows that $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proof}
 
 Table \ref{example_subsume} illustrates an example of SUT with four binary parameters (Unless otherwise specified, following examples also assume the SUT with binary parameters). The left column lists the schema (0,0,-,-) as well as all the test cases hit this schema, while the right column lists the test cases for schema(0,-,-,-). We can observe that (0,-,-,-) $\prec$ (0,0,-,-) and the the set of test cases which hit (0,-,-,-) contains the set that hits (0,0,-,-).
 
 \begin{table}
 \centering
-\tbl{Example of the proposition 1\label{example_subsume}}{
+\tbl{Example of the proposition 3.5\label{example_subsume}}{
   \begin{tabular}{c}
 $c$ \\ \hline
 (0, 0, - , -) \\ \hline
@@ -339,14 +358,14 @@ $c$ \\ \hline
 
 For any set $T$ of test cases of a SUT, we can always get a set of minimal schemas $\mathcal{C}(T)$ = $\{ c | \not\exists c'  \in \mathcal{C}(T), s.t. c' \prec  c \}$,  such that,
 
-\begin{displaymath} T  =  \bigcup_{c \in \mathcal{C}(T)} T(c) \end{displaymath}
+\begin{displaymath} T  =  \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) \end{displaymath}
 
 \end{proposition}
 
 \begin{proof}
 We prove by producing this set of schemas.
 
-We denote the exhaustive test cases for SUT as $T^{*}$. And let $T^{*} \backslash T$ be the test cases that in $T^{*}$ but not in $T$. It is obviously $\forall t \in T $, we can always find at least one schema $c \in \mathcal{I}(t)$, such that $c \not\in \mathcal{I}(T^{*} \backslash T)$. Specifically, at least the test case $t$ itself as schema holds.
+We have denoted the exhaustive test cases for SUT as $T^{*}$. And let $T^{*} \backslash T$ be the test cases that in $T^{*}$ but not in $T$. It is obviously $\forall t \in T $, we can always find at least one schema $c \in \mathcal{I}(t)$, such that $c \not\in \mathcal{I}(T^{*} \backslash T)$. Specifically, at least the test case $t$ itself as schema holds.
 %as  $t \not\in T^{*} \backslash T$
 
 Then we collect all the satisfied schemas($c \in \mathcal{I}(t)$  and $c \not\in \mathcal{I}(T^{*} \backslash T)$) in each test case $t$ of $T$, which can be denoted as:
@@ -360,7 +379,7 @@ Since $\bigcup_{c \in S(T)}T(c) \subset T$ and $ T \subset \bigcup_{c \in S(T)}T
 
 Then we denote the minimal schemas of $S(T)$ as $M(S(T)) = \{c | c \in S(T)\ and\ \not\exists c' \prec c, s.t., c' \in S(T)\}$. For this set, we can still have $ \bigcup_{c \in M(S(T))} T(c) = T$. We also prove this by two steps, first and obviously, $\bigcup_{c \in M(S(T))} T(c) \subset \bigcup_{c \in S(T)} T(c)$. Then we just need to prove that $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
 
-In fact by definition of $M(S(T))$, for $\forall c'\in S(T) \backslash M(S(T))$,  we can have some $c \in M(S(T))$, such that $c \prec c'$. According to the Proposition 1, $T(c') \subset T(c)$. So for any test case $t \in \bigcup_{c \in S(T)} T(c) $, as we have either $\exists c'\in S(T) \backslash M(S(T)), s.t., t \in T(c')$ or $\exists c \in M(S(T)), s.t., t \in T(c)$. Both cases can deduce $t \in \bigcup_{c \in M(S(T))} T(c)$. So, $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
+In fact by definition of $M(S(T))$, for $\forall c'\in S(T) \backslash M(S(T))$,  we can have some $c \in M(S(T))$, such that $c \prec c'$. According to the Proposition 3.5, $T(c') \subset T(c)$. So for any test case $t \in \bigcup_{c \in S(T)} T(c) $, as we have either $\exists c'\in S(T) \backslash M(S(T)), s.t., t \in T(c')$ or $\exists c \in M(S(T)), s.t., t \in T(c)$. Both cases can deduce $t \in \bigcup_{c \in M(S(T))} T(c)$. So, $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
 
 Hence, $\bigcup_{c \in S(T)} T(c) = \bigcup_{c \in M(S(T))} T(c)$, and $M(S(T))$ is the set of schemas that holds this proposition.
 \end{proof}
@@ -433,7 +452,7 @@ For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$
 \end{proposition}
 
 \begin{proof}
-Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
+Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3.7, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
 \end{proof}
 
 Based on this proposition, in fact, the $c_{k} \in \mathcal{C}(T_{k})$  remains the following three possibilities: 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
