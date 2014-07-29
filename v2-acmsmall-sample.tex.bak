@@ -250,11 +250,11 @@ This section presents some definitions and propositions to give a formal model f
 
 \subsection{Failure-causing Schemas in CT}
 
-Assume that the SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..n). Some of the definitions below are originally defined in \cite{nie2011survey}.
+Assume that the SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..k). Some of the definitions below are originally defined in \cite{nie2011survey}.
 
 %\newdef{definition}{Definition}
 \begin{definition}
-A \emph{test case} of the SUT is an array of \emph{n} values, one for each parameter of the SUT, which is denoted as a \emph{n}-tuple ($v_{1}$, $v_{2}$,...,$v_{n}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{n} \in V_{n}$.
+A \emph{test case} of the SUT is an array of \emph{k} values, one for each parameter of the SUT, which is denoted as a \emph{k}-tuple ($v_{1}$, $v_{2}$,...,$v_{k}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{k} \in V_{k}$.
 \end{definition}
 
 In practice, these parameters in the test case can represent many factors, such as input variables, run-time options, building options or various combination of them. We need to execute the SUT with these test cases to ensure the correctness of the behaviour of the software.
@@ -268,9 +268,9 @@ We consider the fact that the abnormally executing test cases as a \emph{fault}.
 %Figuring out the execution outcomes of test cases must reveal the presence of faulty interactions among those considered. However, the location and magnitude of the fault is still far from clear, especially when there are too many parameters we need to care in this test case. Hence, we need to study some subsets of this test case, which can help isolate the cause of failures.
 
 \begin{definition}
-For the SUT, the \emph{n}-tuple (-,$v_{n_{1}}$,...,$v_{n_{k}}$,...)is called a \emph{k}-value \emph{schema} ($0 < k \leq n $) when some k parameters have fixed values and the others can take on their respective allowable values, represented as ``-".
+For the SUT, the \emph{t}-tuple (-,$v_{k_{1}}$,...,$v_{k_{t}}$,...)is called a \emph{t}-value \emph{schema} ($0 < t \leq k $) when some t parameters have fixed values and the others can take on their respective allowable values, represented as ``-".
 
-In effect a test case itself is a k-value \emph{schema}, when k = n. Furthermore, if a test case contain a \emph{schema}, i.e., every fixed value in the combination is in this test case, we say this test case \emph{hits} the \emph{schema}.
+In effect a test case itself is a t-value \emph{schema}, when t = k. Furthermore, if a test case contain a \emph{schema}, i.e., every fixed value in the combination is in this test case, we say this test case \emph{hits} the \emph{schema}.
 %, which can be denoted as $k-value\  combination \in T$
 \end{definition}
 
@@ -281,7 +281,7 @@ let $c_{l}$ be a \emph{l}-value schema, $c_{m}$ be an \emph{m}-value schema in S
 For example, in the motivation example section, the 2-value schema (-, 4, 4, -) is a sub-schema of the 3-value schema (-, 4, 4, 5), that is, (-,4,4,-) $\prec$ (-,4,4,5).
 
 \begin{definition}
-If all test cases contain a schema, say $c$, trigger a particular fault, say $F$, then we call this schema $c$ the \emph{failure-causing schema} for $F$. Additionally, if none sub-schema of $c$ is the \emph{faulty schema} for $F$, we then call the combination $c$ the \emph{Minimal Failure-causing Schema}, i.e.,(MFS) for $F$.
+If all test cases contain a schema, say $c$, trigger a particular fault, say $F$, then we call this schema $c$ the \emph{failure-causing schema} for $F$. Additionally, if none sub-schema of $c$ is the \emph{failure-causing schema} for $F$, we then call the schema $c$ the \emph{Minimal Failure-causing Schema}, i.e.,(MFS) for $F$.
 %Based on this, if a test case $t$ hit such a failure-inducing combination, say $c(F)$, it should trigger the fault $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
@@ -291,30 +291,34 @@ In fact, MFS is identical to the failure-inducing combinations we discussed prev
 %
 Some notions will be used later are listed in the following for the convenience of reference:
 \begin{itemize}
-\item $k$ :   
-\item $T*$ :  The exhaustive set of test cases for the SUT. For a SUT with k factors
+\item $k$ : the number of parameters that influence the SUT.
+\item $V_{i}$ : the set of discrete values that the $i$th factor of the SUT can take.
+\item $T^{*}$ :  The exhaustive set of test cases for the SUT. For a SUT with $k$ factors, and each factor can take $|V_{i}|$ values, the number of this set of test cases $T^{*}$ is $\prod_{i = 1}^{i <= k} |V_{i}|$.
+\item $L$ : the number of faults that contain in the SUT.
+\item $F_{m}$ : the $m$th fault in the SUT, for different faults, we can differentiate them from their exception traces or other buggy information.
 \item $T_{F_{m}}$ :  All the test cases that can trigger the fault $F_{m}$.
-\item $\mathcal{T}(c)$ :  All the test cases that can hit the schema $c$, it is noted that, if a set of schemas is the MFS for the fault $F_{m}$, then without masking effects, $\mathcal{T}(c)$ should be identical to $T_{F_{m}}$.
-\item $T_{mask(F_{m})}$ :  All the test cases
-\item $T_{mask(F_{m})}$ : 
-\item $T_{mask(F_{m})}$ : 
+\item $\mathcal{T}(c)$ :  All the test cases that can hit(contain) the schema $c$. Based on the definition of MFS, we can learn that if schema $c$ is MFS for $F_{m}$, then $\mathcal{T}(c)$ must be subsumed in $T_{F_{m}}$.
+%\item $T_{mask(F_{m})}$ :  All the test cases that contain the
+%\item $T_{mask(F_{m})}$ :
+%\item $T_{mask(F_{m})}$ :
 
-\item $\mathcal{I}(t)$ :  All the schemas that are hit in the test case $t$, e.g., test case  $\mathcal{I}(1 1 1) = \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
+\item $\mathcal{I}(t)$ :  All the schemas that are hit in the test case $t$, e.g., $\mathcal{I}(\ (1 1 1)\ )= \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
 \item $\mathcal{I}(T)$ :  All the schemas that are hit in a set of test cases $T$, i.e., $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$.
-\item  $\mathcal{I}(T)$:
+\item  $\mathcal{S}(T)$:  All the schemas that are only hit in the set of test cases, it is important to note that this set is different from $\mathcal{I}(T)$, as the schemas hit by the test cases in $T$ can also be hit by other test cases that are not belong to this set. In fact, $\mathcal{S}(T)$ is computed by $\{ c | c \in \mathcal{I}(T)\ and\ c\ \not\in \mathcal{I}(T^{*} \backslash T \}$.
+\item  $\mathcal{C}(T)$ : the minimal schemas only hit by the set of test cases $T$, this set is the sub-set of $\mathcal{S}(T)$, which is defined as  $ \{c | c \in \mathcal{S}(T)\ and\ \not\exists c' \prec c, s.t., c' \in \mathcal{S}(T)\}$.
 
 \end{itemize}
 
-Let $c_{m}$ be a m-value schema, we denote the set of all the test cases can \emph{hit} the schema $c_{m}$ as $T(c_{m})$. Further, for the test case $t$, let $\mathcal{I}(t)$ to denote the set of all the schemas that are hit by $t$, and for the set of test cases $T$, we let $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$. Then we have the following propositions.
+%Let $c_{m}$ be a m-value schema, we denote the set of all the test cases can \emph{hit} the schema $c_{m}$ as $T(c_{m})$. Further, for the test case $t$, let $\mathcal{I}(t)$ to denote the set of all the schemas that are hit by $t$, and for the set of test cases $T$, we let $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$. Then we have the following propositions.
 
 
 %\newtheorem{proposition}{Proposition}
 \begin{proposition}
-if $c_{l} \prec c_{k}$, then $T(c_{k}) \subset T(c_{l})$
+For $l$-value schema $c_{l}$ and $m$-value schema $c_{m}$, if $c_{l} \prec c_{m}$, then we can have all the test cases hit $c_{m}$ must also hit $c_{l}$, i.e., $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proposition}
 
 \begin{proof}
-Suppose $ \forall t \in T(c_{k})$, we have that $t$ hits $c_{k}$. Then as $c_{l} \prec c_{k}$, so $t$ must also hit $c_{l}$, as all the element in $c_{l}$ must in $c_{k}$, which also in the test case $t$. Therefore we get $t \in T(c_{l})$. Thus $t \in T(c_{k})$ implies $t \in T(c_{l})$, so it follows that $T(c_{k}) \subset T(c_{l})$.
+Suppose $ \forall t \in \mathcal{T}(c_{m})$, we have that $t$ hits $c_{m}$. Then as $c_{l} \prec c_{m}$, it must have $t$ must also hit $c_{l}$. This is because all the elements in $c_{l}$ are also in $c_{m}$, which are contained in the test case $t$. Therefore we get $t \in \mathcal{T}(c_{l})$. Thus $t \in \mathcal{T}(c_{m})$ implies $t \in \mathcal{T}(c_{l})$, so it follows that $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proof}
 
 Table \ref{example_subsume} illustrates an example of SUT with four binary parameters (Unless otherwise specified, following examples also assume the SUT with binary parameters). The left column lists the schema (0,0,-,-) as well as all the test cases hit this schema, while the right column lists the test cases for schema(0,-,-,-). We can observe that (0,-,-,-) $\prec$ (0,0,-,-) and the the set of test cases which hit (0,-,-,-) contains the set that hits (0,0,-,-).
@@ -325,7 +329,7 @@ Table \ref{example_subsume} illustrates an example of SUT with four binary param
   \begin{tabular}{c}
 $c$ \\ \hline
 (0, 0, - , -) \\ \hline
- $T(c)$\\ \hline
+ $\mathcal{T}(c)$\\ \hline
 (0, 0, 0 ,0)\\
 (0, 0, 0 ,1)\\
 (0, 0, 1 ,0)\\
@@ -335,7 +339,7 @@ $c$ \\ \hline
   \begin{tabular}{c}
 $c$ \\ \hline
 (0, -, - , -) \\ \hline
- $T(c)$\\ \hline
+ $\mathcal{T}(c)$\\ \hline
 (0, 0, 0 ,0)\\
 (0, 0, 0 ,1)\\
 (0, 0, 1 ,0)\\
@@ -354,38 +358,38 @@ $c$ \\ \hline
 
 For any set $T$ of test cases of a SUT, we can always get a set of minimal schemas $\mathcal{C}(T)$ = $\{ c | \not\exists c'  \in \mathcal{C}(T), s.t. c' \prec  c \}$,  such that,
 
-\begin{displaymath} T  =  \bigcup_{c \in \mathcal{C}(T)} T(c) \end{displaymath}
+\begin{displaymath} T  =  \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) \end{displaymath}
 
 \end{proposition}
 
 \begin{proof}
 We prove by producing this set of schemas.
 
-We denote the exhaustive test cases for SUT as $T^{*}$. And let $T^{*} \backslash T$ be the test cases that in $T^{*}$ but not in $T$. It is obviously $\forall t \in T $, we can always find at least one schema $c \in \mathcal{I}(t)$, such that $c \not\in \mathcal{I}(T^{*} \backslash T)$. Specifically, at least the test case $t$ itself as schema holds.
+We have denoted the exhaustive test cases for SUT as $T^{*}$ and let $T^{*} \backslash T$ be the test cases that in $T^{*}$ but not in $T$. It is obviously $\forall t \in T $, we can always find at least one schema which hit by t, i.e., $c \in \mathcal{I}(t)$, such that $c \not\in \mathcal{I}(T^{*} \backslash T)$. Specifically, at least the test case $t$ itself as schema holds.
 %as  $t \not\in T^{*} \backslash T$
 
-Then we collect all the satisfied schemas($c \in \mathcal{I}(t)$  and $c \not\in \mathcal{I}(T^{*} \backslash T)$) in each test case $t$ of $T$, which can be denoted as:
-$S(T) = \{ \mathcal{I}(T)\ - \mathcal{I}(T^{*} \backslash T) \}$.
+Then we collect all the satisfied schemas which only hit by the test cases in the test cases of $T$, which can be denoted as:
+$\mathcal{S}(T) = \{ c | c \in \mathcal{I}(T)\ and\ c \not\in \mathcal{I}(T^{*} \backslash T) \}$.
 
-For the set $S(T)$, we can have $ \bigcup_{c \in S(T)}T(c) = T$. This is because first, for $\forall t \in T(c), (T(c) \subset \bigcup_{c \in S(T)}T(c))$. it must have $t \in T$, as if not so, then $t \in T^{*} \backslash T$, which contradict with the definition of $S(T)$. So $t \in T$. Hence, $\bigcup_{c \in S(T)}T(c) \subset T$.
+For the schemas in $\mathcal{S}(T)$, we can have $ \bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$. This is because first, for $\forall t \in \mathcal{T}(c), c \in \mathcal{S}(T)$, it must have $t \in T$. This is because if not so, then $t \in T^{*} \backslash T$, which contradict with the definition of $\mathcal{S}(T)$. So $t \in T$. Hence, $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) \subset T$.
 
-Then second, for any test case t in $T$, as we have learned at least find one $c$ in $\mathcal{I}(t)$, such that $c$ in $S(T)$. Then for $T(c) \subset \bigcup_{c \in S(T)} T(c)$ and $t \in T(c)$, so $t \in \bigcup_{c \in S(T)} T(c)$, therefore,  $ T \subset \bigcup_{c \in S(T)}T(c)$.
+Then second, for any test case $t$ in $T$, as we have learned at least find one $c'$ in $\mathcal{I}(t)$ , such that $c'$ in $\mathcal{S}(T)$ (The $t$ itself as a schema holds). In another word, the test case $t$  hit the schema $c'$,  which implies $t \in \mathcal{T}(c'), c' \in \mathcal{S}(T)$. And obviously $\mathcal{T}(c') \subset \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c)$, so $t \in \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c)$, therefore,  $ T \subset \bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c)$.
 
-Since $\bigcup_{c \in S(T)}T(c) \subset T$ and $ T \subset \bigcup_{c \in S(T)}T(c)$, so it follows $\bigcup_{c \in S(T)}T(c) = T$.
+Since $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) \subset T$ and $ T \subset \bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c)$, so it follows $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$.
 
-Then we denote the minimal schemas of $S(T)$ as $M(S(T)) = \{c | c \in S(T)\ and\ \not\exists c' \prec c, s.t., c' \in S(T)\}$. For this set, we can still have $ \bigcup_{c \in M(S(T))} T(c) = T$. We also prove this by two steps, first and obviously, $\bigcup_{c \in M(S(T))} T(c) \subset \bigcup_{c \in S(T)} T(c)$. Then we just need to prove that $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
+Then we denote the minimal schemas of $\mathcal{S}(T)$ as $M(\mathcal{S}(T)) = \{c | c \in \mathcal{S}(T)\ and\ \not\exists c' \prec c, s.t., c' \in \mathcal{S}(T)\}$. For this set, we can still have $ \bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c) = T$. We also prove this by two steps, first and obviously, $\bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c) \subset \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c)$. Then we just need to prove that $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) \subset \bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c)$.
 
-In fact by definition of $M(S(T))$, for $\forall c'\in S(T) \backslash M(S(T))$,  we can have some $c \in M(S(T))$, such that $c \prec c'$. According to the Proposition 3.5, $T(c') \subset T(c)$. So for any test case $t \in \bigcup_{c \in S(T)} T(c) $, as we have either $\exists c'\in S(T) \backslash M(S(T)), s.t., t \in T(c')$ or $\exists c \in M(S(T)), s.t., t \in T(c)$. Both cases can deduce $t \in \bigcup_{c \in M(S(T))} T(c)$. So, $\bigcup_{c \in S(T)} T(c) \subset \bigcup_{c \in M(S(T))} T(c)$.
+In fact by definition of $M(\mathcal{S}(T))$, for $\forall c'\in \mathcal{S}(T) \backslash M(\mathcal{S}(T))$,  we can have some $c \in M(\mathcal{S}(T))$, such that $c \prec c'$. According to the Proposition 3.5, $\mathcal{T}(c') \subset \mathcal{T}(c)$. So for any test case $t \in \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) $, as we have either $\exists c'\in \mathcal{S}(T) \backslash M(\mathcal{S}(T)), s.t., t \in \mathcal{T}(c')$ or $\exists c \in M(\mathcal{S}(T)), s.t., t \in \mathcal{T}(c)$. Both cases can deduce $t \in \bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c)$. So, $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) \subset \bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c)$.
 
-Hence, $\bigcup_{c \in S(T)} T(c) = \bigcup_{c \in M(S(T))} T(c)$, and $M(S(T))$ is the set of schemas that holds this proposition.
+Hence, $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) = \bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c)$, and $M(\mathcal{S}(T))$ is the set of schemas that holds this proposition.
 \end{proof}
 
-For example, table \ref{example_minimal_schemas} lists the $S(T)$ and minimal schemas $\mathcal{C}(T)$ for set of test cases $T$. We can see that for any other schemas not in $\mathcal{C}(T)$, either can we find a test case not in $T$  hit the schema, e.g.,(0,0,-,-) with the test case (0,0,1,1) not in $T$, or is the parent schema of one of this two minimal schemas, e.g.,(0,0,0,0) the parent schema of both (0,0,0,-) and (0,0,-,0).
+For example, table \ref{example_minimal_schemas} lists the $\mathcal{S}(T)$ and minimal schemas $\mathcal{C}(T)$ for the set of test cases $T$. We can see that for any other schemas not in $\mathcal{C}(T)$, either can we find a test case not in $T$  hit the schema, e.g.,(0,0,-,-) with the test case (0,0,1,1) not in $T$, or is the parent schema of one of this two minimal schemas, e.g.,(0,0,0,0) the parent schema of both (0,0,0,-) and (0,0,-,0).
 \begin{table}
 \centering
 \tbl{Example of the minimal schemas\label{example_minimal_schemas}}{
   \begin{tabular}{c | c | c }
- $T$ & $S(T)$ & $\mathcal{C}(T)$\\ \hline
+ $T$ & $\mathcal{S}(T)$ & $\mathcal{C}(T)$\\ \hline
 (0, 0, 0 ,0) & (0, 0, 0, 0) & (0, 0, 0, -)\\
 (0, 0, 0 ,1) & (0, 0, 0, 1) & (0, 0, -, 0)\\
 (0, 0, 1 ,0) & (0, 0, 1, 0) & \\
@@ -395,14 +399,22 @@ For example, table \ref{example_minimal_schemas} lists the $S(T)$ and minimal sc
   }
   \end{table}
 
-Let $\mathcal{C}(T_{F_{m}})$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. And obviously for $\forall c_{m}$ we have $\mathcal{C}(T(c_{m})) = \{c_{m}\}$.
+Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. 
 
-From the construction process of $\mathcal{C}(T)$, one observation is that the schemas in $S(T)$ either belongs to $\mathcal{C}(T)$, or be the parent schema of one element of $\mathcal{C}(T)$. Then we can have the following proposition.
+%And obviously for $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
+
+From the construction process of $\mathcal{C}(T)$, one observation is that the minimal schemas $\mathcal{C}(T)$ is the subset of the the schemas set $\mathcal{S}(T)$, i.e., $\mathcal{C}(T) \subset \mathcal{S}(T)$, and for any schema in $\mathcal{S}(T)$, it either belongs to $\mathcal{C}(T)$, or is the parent schema of one element of $\mathcal{C}(T)$.
+% Another obvious observation is that
+Then we can have the following proposition.
 \begin{proposition}
- For any $T(c) \subset T$, then it must be that $c \in S(T) $.
+ For any test cases set $T$ and schema $c$, if any test case hit $c$ is in the set $T$, i.e., $\mathcal{T}(c) \subset T$, then it must be that $c \in \mathcal{S}(T) $.
 \end{proposition}
 \begin{proof}
- We first have $\mathcal{C}(T(c)) = \{c\}$, and $ \mathcal{C}(T(c)) \subset S(T(c)) $. Then as $T(c) \subset T$, it follows $S(T(c)) \subset S(T)$ by definition. So we can have $\mathcal{C}(T(c)) \subset S(T) $ and hence $c \in S(T)$.
+ We first have $ c \in \mathcal{C}(\mathcal{T}(c))$, this is obviously and in fact the minimal schemas for the test cases set $\mathcal{T}(c)$ only contain one schema, which is exactly $c$ itself.  As discussed previously we have $ \mathcal{C}(\mathcal{T}(c)) \subset \mathcal{S}(\mathcal{T}(c)) $, so it must be $c \in \mathcal{S}(\mathcal{T}(c))$.
+  
+ Then as $\mathcal{T}(c) \subset T$, it follows $\mathcal{S}(\mathcal{T}(c)) \subset \mathcal{S}(T)$ by definition. In detail, $\mathcal{S}(\mathcal{T}(c)) = \{ c | c \in \mathcal{I}(\mathcal{T}(c))\ and\ c \not\in \mathcal{I}(T^{*} \backslash \mathcal{T}(c)) \}$, so $\mathcal{S}(\mathcal{T}(c)) \subset \{ c | c \in \mathcal{I}(T)\ and\ c \not\in \mathcal{I}(T^{*} \backslash T) \}$, which is exactly $\mathcal{S}(T)$.
+ 
+  So as $c \in \mathcal{S}(\mathcal{T}(c))$ and hence $c \in \mathcal{S}(T)$.
 \end{proof}
 
 %\newdef{proposition}{Proposition}
@@ -448,10 +460,10 @@ For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$
 \end{proposition}
 
 \begin{proof}
-Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $T(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3.7, we can have $c_{l} \in S(T_{k})$. So this proposition holds as the schema in $S(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
+Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $\mathcal{T}(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3.7, we can have $c_{l} \in \mathcal{S}(T_{k})$. So this proposition holds as the schema in $\mathcal{S}(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
 \end{proof}
 
-Based on this proposition, in fact, the $c_{k} \in \mathcal{C}(T_{k})$  remains the following three possibilities: 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
+Based on this proposition, in fact, the schema $c_{k} \in \mathcal{C}(T_{k})$ remains the following three possible relationships with $\mathcal{C}(T_{l})$ : 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
 
 We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, each part shows two set of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. For the left part, we can see that the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the parent of the schema of the one in $\mathcal{C}(T_{k})$:(0,-,-). While for the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
 
@@ -497,10 +509,10 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 \subsection{Disjoint}
 This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two different set of test cases, one obvious properties is listed as follows:
 \begin{proposition}
- For two set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $S(T_{1}) \bigcap S(T_{2}) = \emptyset$.
+ For two test cases set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) = \emptyset$.
 \end{proposition}
 \begin{proof}
-If $S(T_{1}) \bigcap S(T_{2}) \ne \emptyset$. Without loss of generality, we let $c \in S(T_{1}) \bigcap S(T_{2}) $ we can learn that $T(c)$ must both in $T_{1}$ and $T_{2}$, which is contradiction.
+If $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) \ne \emptyset$. Without loss of generality, we let $c \in \mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) $ we can learn that $\mathcal{T}(c)$ must both in $T_{1}$ and $T_{2}$, which is contradiction.
 \end{proof}
 
 This properties tells that the minimal schemas of two disjoint test cases should be irrelevant to each other, Table \ref{example_disjoint} list the example of this scenario, we can learn in this table that for two different test cases set $T_{l}$,$T_{k}$, their minimal schemas, i.e., (0, - , 0) and (1, 0, -),(1, -, 0) respectively, are irrelevant to each other.
@@ -521,20 +533,20 @@ $T_{l}$&$T_{k}$ \\ \hline
 %Sometimes they can be merged.
 
 \subsection{Intersect}
-This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume without of loss of generality that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
+This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
 %For two different set of test cases, one obvious properties is listed as follows:
 %Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
 
 %Let me discuss the combination of them.
 \begin{proposition}
- It must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$are irrelevant.
+ For two set of test cases $T_{1}$ and $T_{2}$, assume $T_{1} \bigcap T_{2} \neq \emptyset $   It must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$are irrelevant.
 \end{proposition}
 \begin{proof}
 Firstly, we can learn that $\mathcal{C}(T_{1} - T_{3})$ are irrelevant to $\mathcal{C}(T_{2} - T_{3})$, as $(T_{1} - T_{3}) \bigcap (T_{2} - T_{3}) = \emptyset$.
 
 As $\mathcal{C}(T_{1} - T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them. If some of them are identical, then these identical ones must be irrelevant to $ \mathcal{C}(T_{2})$ as $T_{1} - T_{3} \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} - T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
 
-Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we make $c_{1-3} \prec c_{1}$, ($c_{1-3}\in\mathcal{C}(T_{1} - T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2-3}\prec c_{2}$, ($c_{2-3}\in\mathcal{C}(T_{2} - T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $T(c_{1}) \supset T(c_{1-3})$ and  $T(c_{2}) \supset T(c_{1-3})$. And as $ T(c_{1-3}) \bigcap  T(c_{2-3}) = \emptyset $  So $T(c_{1})$ and $T(c_{2})$ are neither identical nor subsuming each other.
+Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we make $c_{1-3} \prec c_{1}$, ($c_{1-3}\in\mathcal{C}(T_{1} - T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2-3}\prec c_{2}$, ($c_{2-3}\in\mathcal{C}(T_{2} - T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $  So $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other.
 \end{proof}
 
 For example, Table \ref{example_intersect_irrelevant} shows two test cases interact each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0) respectively, are irrelevant to each other.
@@ -611,7 +623,7 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
   }
   \end{table}
 
- It is noted that this three condition can simultaneously appears when two set of test cases interest with each other.%, like Table \ref{example_intersect_all}.
+ It is noted that this three condition can simultaneously appears when two set of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
 
 %\begin{table}
 %\centering
@@ -680,7 +692,7 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 
 Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
 
-We can see in this figure, area A denotes the test cases that should be passing ones while it predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor to be predicted.  This figure is actually one sample of the condition that two set of test cases interest with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$.
+We can see in this figure, area A denotes the test cases that should be passing ones while it predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor to be predicted.  This figure is actually one sample of the condition that two set of test cases intersect with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$.
 
 We learned previously this scenario makes the schemas identified in $T_{1}$ biased from the expected MFS in $T_{2}$, in specific, their must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that FCI approach will identify some minimal schemas that is irrelevant to actual MFS, and must ignore some actual MFS. Moreover, under the appropriate condition list in proposition 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So in order to identify the schemas as accurate as possible, the FCI approach needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
 
@@ -783,7 +795,7 @@ The ellipses in the left column of this figure illustrated the relation between 
 
 Note that there exists two types of directed line, solid line and dashed line, in which the former indicates that this transformation is deterministic, e.g., if $c_{origin} \prec c_{m}$ and $c_{new} \prec c_{origin}$, then we must have $c_{new} \prec c_{m}$.  The latter type means the transformation is just one of all the possibilities in such conidtion, e.g., if $c_{origin}\ irrelevant\ c_{m}$ and $c_{new} \prec c_{origin}$, then we can have either $\exists c_{m'}\ is\ one\ actual\ MFS, s.t. c_{new} \prec c_{m}$ or $c_{new}\ irrelevant \ to\ all\ actual\ MFS$.(We will later give examples to illustrate them).
 
-In this figure, only two transformation can make $\exists c_{m'}\ is\ one\ actual\ MFS, s.t.$ $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{origin} $ or $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, according to the proposition 3.11 and 3.12, it must have $T(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in T(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no newly schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $T(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if we have $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
+In this figure, only two transformation can make $\exists c_{m'}\ is\ one\ actual\ MFS, s.t.$ $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{origin} $ or $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, according to the proposition 3.11 and 3.12, it must have $\mathcal{T}(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we got $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in \mathcal{T}(c_{new})$, otherwise, there should have no changing to the $c_{origin}$, and must have no newly schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $\mathcal{T}(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if we have $c_{new} \prec c_{origin}$. So in order to make e $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$ correspondingly.
 
 As the identical transformation is simple, so next we will ignore them and just take examples to illustrate the other transformations. Table \ref{example-of-fci-influence} presents all these possibilities except these identical transformation. This table comprises of three parts, which the upper part give the test cases for each area in the abstract FCI model. It is noted that we merged the area $B_{1}$, $B_{2}$ and $C$ into one column as the way of computing the minimal schemas of three approaches -- \emph{actual MFS, knowing masking effects, regard as one fault} are all dependent on the merging test cases of this three area,  not on the specific distribution of them. The middle part of this table shows the minimal schemas that using particular method. At last the bellow part in specific depicts the sample of each possible result of the transformation in the Figure \ref{fig:fci_mask_regard}. In this part, $c_{m} = c_{origin}  \rightarrow c_{new} \prec c_{m'}$ indicates the scenario that the schema $c_{origin}$ got by \emph{knowing masking effects} is identical to one actual MFS $c_{m}$, then taking \emph{regard as one fault}, we got $c_{new} \prec c_{origin}$, and such that we can have $\exists c_{m'}\ is\ one\ actual\ MFS, s.t., c_{new} \prec c_{m}$.  Other formula in this column can be explained in this way, in which $c_{new}\ irrele$ and $c_{origin}\ irrele$  means the schema $c_{new}$ and $c_{origin}$ is irrelevant to all the actual MFS respectively. The mark $*$ in $c_{m}$ and $c_{m'}$ respectively represent this two condition. The formula in the last two rows, $c_{new_{irrele}} \prec c_{m'}$ and $c_{new_{irrele} irrele}$ indicate the schemas $c_{new_{irrele}}$ got by \emph{regard as one fault} is irrelevant to all the $c_{origin}$, in which the former is the subschema of some actual MFS $c_{m'}$ while the latter is irrelevant to all the actual MFS. The $*$ in the $c_{origin}$ column means that the $c_{new}$ is irrelevant to all the $c_{origin}$.
 
@@ -963,7 +975,7 @@ Note that our discussion is based on that SUT is a deterministic software, i.e.,
 The main reason why FCI approach fails to properly work is that we cannot determine the area $B_{2}$ and $B_{3}$, i.e., if the test case under test trigger other faults which is different from the current one, we cannot figure out whether this test case will trigger the current expected fault as the masking effects may prevent that. So in order to limit the impact of this effect on FCI approach, we need to reduce the number of test cases that trigger other faults as much as possible.
 % strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subset \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other faults as much as possible.
 
-In the exhaustive testing, as all the test cases will be used to identify the MFS, there is no room left to improve the performance without fixing the other faults and re-executing all the test cases. However, when just needing to select part of the whole test cases to identify MFS, which is as traditional FCI approach works, we can adjust the test cases we need to use by selecting proper ones so that we can limit the size of $T(mask_{F_{m}})$ to be as small as possible.
+In the exhaustive testing, as all the test cases will be used to identify the MFS, there is no room left to improve the performance without fixing the other faults and re-executing all the test cases. However, when just needing to select part of the whole test cases to identify MFS, which is as traditional FCI approach works, we can adjust the test cases we need to use by selecting proper ones so that we can limit the size of $\mathcal{T}(mask_{F_{m}})$ to be as small as possible.
 
 \subsection{Replace test case triggering unexpected fault}
 
