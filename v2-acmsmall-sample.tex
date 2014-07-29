@@ -993,13 +993,13 @@ To explain the \emph{strength} notation, we need first introduce the \emph{stren
 
 With this \emph{strength} of the factor, we then define the \emph{strength} a test case $f$ is related to a particular fault $F_{m}$ as:
 
-\begin{displaymath} S(f,F_{m})  = \frac{1}{|f|}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
+\begin{displaymath} S(f,F_{m})  = \frac{1}{k}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
 
-This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults. In practice, one test case can have different related \emph{strength} to different faults, so we can not always find a test case that have the least relating \emph{strength} to all the faults when comparing other test cases. With this fact in mind, our target changes to find a test case that the maximal \emph{strength} it is related fault among other faults should be the minimal comparing other test cases. Formally, we should choose a test case $f$, s.t.,
+In this formula, $k$ is the number of factors in the test case $f$, $o$ is the specific factor in $f$. This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults. In practice, one test case can have different related \emph{strength} to different faults, so we can not always find a test case that have the least relating \emph{strength} to all the faults when comparing other test cases. With this fact in mind, our target changes to find a test case that the maximal \emph{strength} it is related fault among other faults should be the minimal comparing other test cases. Formally, we should choose a test case $f$, s.t.,
 
-\begin{displaymath} \min_{f \in R} \max_{m < L \& m \neq n}  S(f, F_{m}) \tag{EQ1} \end{displaymath}
+\begin{displaymath} \min_{f \in R} \max_{m \leq L \& m \neq n}  S(f, F_{m}) \tag{EQ1} \end{displaymath}
 
-In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault. $R$ is the set of all the possible test cases except those tested that contain the $fixed$  part. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |{t\ |\ t\ contains\ fixed\ part\ \&\ t\ is\ tested}|$.
+In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault. $R$ is the set of all the possible test cases that contain the $fixed$ part except those ones that have been tested. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |{t\ |\ t\ contains\ fixed\ part\ \&\ t\ is\ tested}|$.
 
 We can further resolve this problem. Consider the test case we get -- $f$ satisfied the EQ1. Without loss of generality, we assume that the fault $F_{k}, k \neq n $ is the fault that the test case $f$ has the maximal related \emph{strength} than other faults. Then a natural property for $f$ is that any other test case $f'$ which satisfies that fault $F_{k}$ is the maximal related fault for this test case
 must have $ S(f, F_{k}) <= S(f', F_{k})$. Formally, to get such a test case is to solve the following formula :
