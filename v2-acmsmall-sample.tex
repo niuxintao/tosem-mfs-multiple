@@ -1179,14 +1179,14 @@ The first fact is comparable to the extra test cases that needed to identify the
 Charles ELA & depends on the  covering array \\
 Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} & $O(\hat{d}log k + \hat{d}^{2})$ \\
 Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} & $O(d^{2} + dlog k + log^{c} k)$  \\
-Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} &  $ds^{v}log k$\\
-Shi SOFOT \cite{shi2005software}& $k$ \\
-Nie OFOT \cite{nie2011minimal} & $kd$\\
+Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} &  $O(ds^{v}log k)$\\
+Shi SOFOT \cite{shi2005software}& $O(k)$ \\
+Nie OFOT \cite{nie2011minimal} & $O(k \times d)$\\
 Ylimaz classification tree & depends on the  covering array\\
-FIC \cite{zhang2011characterizing} &  $k$ \\
-FIC\_BS \cite{zhang2011characterizing}& $t(log k + 1) + 1$\\
+FIC \cite{zhang2011characterizing} &  $O(k)$ \\
+FIC\_BS \cite{zhang2011characterizing}& $O(t(log k + 1) + 1)$\\
 Ghandehari's suspicious based  \cite{ghandehari2012identifying}& depends on the number and size of MFS\\
-TRT \cite{niu2013identifying}&  $d\times t \times log k + t^{d}$\\
+TRT \cite{niu2013identifying}&  $O(d\times t \times log k + t^{d})$\\
   \end{tabular}
   }
   \end{table}
@@ -1205,16 +1205,16 @@ It is noted that exponential factor $k - p$ directly affects the complexity of t
   \begin{tabular}{c | c}
 \bfseries Method & \bfseries fixed part\\ \hline
 Charles ELA &   $O( min (N, (v - t)^{k - p} - 1))$\\
-Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
 Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$ - $  \\
 Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - t)^{k - p} - 1))$\\
 Shi SOFOT \cite{shi2005software}& $O( min (N, (v-1) - 1))) $\\
 Nie OFOT \cite{nie2011minimal} & $O( min (N, (v-1) - 1)))$\\
 Ylimaz classification tree & $O( min (N, (v - t)^{k - p} - 1)$\\
-FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
-FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1))$\\
+FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
+FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
 Ghandehari's suspicious based  \cite{ghandehari2012identifying}&$ O( min (N, (v - t)^{k - p} - 1))$\\
-TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) ~ O( min (N, (v-1)^{k - 1} - 1)) $\\
+TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1)) $\\
   \end{tabular}
   }
   \end{table}
