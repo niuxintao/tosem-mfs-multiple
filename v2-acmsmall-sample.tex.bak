@@ -399,7 +399,7 @@ For example, table \ref{example_minimal_schemas} lists the $\mathcal{S}(T)$ and 
   }
   \end{table}
 
-Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. 
+Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS.
 
 %And obviously for $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
 
@@ -411,9 +411,9 @@ Then we can have the following proposition.
 \end{proposition}
 \begin{proof}
  We first have $ c \in \mathcal{C}(\mathcal{T}(c))$, this is obviously and in fact the minimal schemas for the test cases set $\mathcal{T}(c)$ only contain one schema, which is exactly $c$ itself.  As discussed previously we have $ \mathcal{C}(\mathcal{T}(c)) \subset \mathcal{S}(\mathcal{T}(c)) $, so it must be $c \in \mathcal{S}(\mathcal{T}(c))$.
-  
+
  Then as $\mathcal{T}(c) \subset T$, it follows $\mathcal{S}(\mathcal{T}(c)) \subset \mathcal{S}(T)$ by definition. In detail, $\mathcal{S}(\mathcal{T}(c)) = \{ c | c \in \mathcal{I}(\mathcal{T}(c))\ and\ c \not\in \mathcal{I}(T^{*} \backslash \mathcal{T}(c)) \}$, so $\mathcal{S}(\mathcal{T}(c)) \subset \{ c | c \in \mathcal{I}(T)\ and\ c \not\in \mathcal{I}(T^{*} \backslash T) \}$, which is exactly $\mathcal{S}(T)$.
- 
+
   So as $c \in \mathcal{S}(\mathcal{T}(c))$ and hence $c \in \mathcal{S}(T)$.
 \end{proof}
 
@@ -539,14 +539,14 @@ This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario
 
 %Let me discuss the combination of them.
 \begin{proposition}
- For two set of test cases $T_{1}$ and $T_{2}$, assume $T_{1} \bigcap T_{2} \neq \emptyset $   It must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$are irrelevant.
+ For two intersecting set of test cases $T_{1}$ and $T_{2}$ (this two set is not identical or subsume each other), it must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
 \end{proposition}
 \begin{proof}
-Firstly, we can learn that $\mathcal{C}(T_{1} - T_{3})$ are irrelevant to $\mathcal{C}(T_{2} - T_{3})$, as $(T_{1} - T_{3}) \bigcap (T_{2} - T_{3}) = \emptyset$.
+Firstly, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
 
-As $\mathcal{C}(T_{1} - T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them. If some of them are identical, then these identical ones must be irrelevant to $ \mathcal{C}(T_{2})$ as $T_{1} - T_{3} \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} - T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
+As $\mathcal{C}(T_{1} \backslash T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them, then if some of them are identical, i.e., $\exists c', s.t., c' \in \mathcal{C}(T_{1} \backslash T_{3})\ and\  c' \in \mathcal{C}(T_{1})$, then these schemas ${c'}$ must be irrelevant to $ \mathcal{C}(T_{2})$ as $(T_{1} \backslash T_{3}) \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} \backslash T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
 
-Next, if both $\mathcal{C}(T_{1} - T_{3})$  and $\mathcal{C}(T_{2} - T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we make $c_{1-3} \prec c_{1}$, ($c_{1-3}\in\mathcal{C}(T_{1} - T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2-3}\prec c_{2}$, ($c_{2-3}\in\mathcal{C}(T_{2} - T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $  So $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other.
+Next, if both $\mathcal{C}(T_{1} \backslash T_{3})$  and $\mathcal{C}(T_{2} \backslash T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we let $c_{1} \prec c_{1-3}$, ($c_{1-3}\in\mathcal{C}(T_{1} \backslash T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2}\prec c_{2-3}$, ($c_{2-3}\in\mathcal{C}(T_{2} \backslash T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $,  so $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other, which also implies that $c_{1}$ and $c_{2}$ is irrelevant to each other.
 \end{proof}
 
 For example, Table \ref{example_intersect_irrelevant} shows two test cases interact each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0) respectively, are irrelevant to each other.
@@ -565,13 +565,13 @@ $T_{1}$&$T_{2}$ \\ \hline
   \end{table}
 
 \begin{proposition}
-If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is identical to $c_{2}$, Then it must have $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
+ For two intersecting set of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is identical to $c_{2}$, Then it must have $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
 \end{proposition}
 \begin{proof}
 As we get that the identical schema must share the identical test cases, then the only identical test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-We must know that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ is identical some schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
+We must know that this proposition holds when some schemas in $\mathcal{C}(T_{1} \bigcap T_{2})$ is identical some schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
 
 For example, Table \ref{example_intersect_identical} shows two test cases interact each other at test cases (1,1,0)and (1,1,1), and they have identical minimal schemas, i.e., (1,1,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
 
@@ -579,7 +579,7 @@ For example, Table \ref{example_intersect_identical} shows two test cases intera
 \centering
 \tbl{Example of Intersect by identical examples \label{example_intersect_identical}}{
   \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
+$T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
  (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
  (1, 1, 0) & (0, 0, 1) & (1, 1, 1)\\
  (1, 1, 1) & (1, 1, 0) & \\
@@ -595,10 +595,10 @@ $T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
 %It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
 
 \begin{proposition}
-If there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, Then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
+ For two intersecting set of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
 \end{proposition}
 \begin{proof}
-We have proved previously if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $T_{1} \subset  T_{3} $  and $T_{2} \subset  T_{3}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
+We have proved previously if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $ T_{3} \subset  T_{1}  $  and $T_{3}\subset  T_{2}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
 \end{proof}
 
 It is noted that this proposition holds when holds when some schema in $\mathcal{C}(T_{3})$ is identical in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the parent-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
@@ -609,7 +609,7 @@ Table \ref{example_intersect_subsume} illustrates this scenario, in which, the m
 \centering
 \tbl{Example of Intersect by subsume examples \label{example_intersect_subsume}}{
   \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
+$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
 (1, 0, 0)   & (1, 0, 0) & (1, 0, 1)\\
 (1, 0, 1)	& (1, 0, 1) & (1, 1, 0)\\
@@ -658,9 +658,9 @@ MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
 For each FCI approach, the way it predict the $T_{fail_{predicted}}$ according to observed failing test cases varies, further more, as the test cases it generates is different, the failing test cases observed by different test cases, i.e., $T_{fail_{observed}}$ also varies.  We take an example using OFOT approach to illustrate this formula.
 
-Suppose SUT has 3 parameters, each can take 2 values. And assume the test case (1, 1, 1) failed. Then we can describe the FCI process as Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the \emph{t} one time to generate new test cases: $t_{1}$ -- $t_{3}$, It found the the $t_{1}$ passed, which indicates that this test case break the MFS in the original test case \emph{t}. So the (1,-,-) should be one failure-causing factor, and as other mutating process all failed, which means no other failure-inducing factors were broken, therefore, the MFS in \emph{t} is (1,-,-).
+Suppose SUT has 3 parameters, each can take 2 values. And assume the test case (1, 1, 1) failed. Then we can describe the FCI process as Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the \emph{t} one time to generate new test cases: $t_{1} ,t_{2},t_{3}$, It found the the $t_{1}$ passed, which indicates that this test case break the MFS in the original test case \emph{t}. So the (1,-,-) should be one failure-causing factor, and as other mutating process all failed, which means no other failure-inducing factors were broken, therefore, the MFS in \emph{t} is (1,-,-).
 
-Now let us explain this process with our formal model. Obviously the $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as having found (0,-,-) broke the MFS, hence by OFOT theory, all the test cases contain (0,-,-) should pass the test cases (This conclusion is built on the assumption that SUT just contain one failure-causing schema).  As a result, {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails the testing(we label the skip the testing as a special case of failing), so the remaining test case(1,0,0), will be predicted as failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taking together, the MFS using OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
+Now let us explain this process with our formal model. Obviously the $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as having found (0,-,-) broke the MFS, hence by theory\cite{nie2011minimal}, all the test cases contain (0,-,-) should pass the test cases (This conclusion is built on the assumption that SUT just contain one failure-causing schema).  As a result, {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails the testing(we label the skip the testing as a special case of failing), so the remaining test case(1,0,0), will be predicted as failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taking together, the MFS using OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
 
 \begin{table}[h]
 \tbl{OFOT with our strategy\label{ofot-identify}}{
@@ -686,13 +686,13 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 \begin{figure}
 \centering
 \includegraphics[width=3.31in]{FCI.eps}
-\caption{generally modeling of FCI}
+\caption{generally model of FCI}
 \label{fig:fci_process}
 \end{figure}
 
 Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
 
-We can see in this figure, area A denotes the test cases that should be passing ones while it predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that doesn't to be observed but be predicted to be failing test cases and area D illustrates the failing test cases that neither to be observed nor to be predicted.  This figure is actually one sample of the condition that two set of test cases intersect with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $T_{3}$.
+We can see in Fig. \ref{fig:fci_process}, area A denotes the test cases that should be passed test cases while it predicted to be failed ones, area B depicts the test cases that the approach observed to be failed test cases, area C refers to the failed test cases that doesn't to be observed but be predicted to be failed test cases and area D illustrates the failed test cases that neither to be observed nor to be predicted.  This figure is actually one sample of the condition that two set of test cases intersect with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$.
 
 We learned previously this scenario makes the schemas identified in $T_{1}$ biased from the expected MFS in $T_{2}$, in specific, their must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that FCI approach will identify some minimal schemas that is irrelevant to actual MFS, and must ignore some actual MFS. Moreover, under the appropriate condition list in proposition 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So in order to identify the schemas as accurate as possible, the FCI approach needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
 
@@ -993,13 +993,13 @@ To explain the \emph{strength} notation, we need first introduce the \emph{stren
 
 With this \emph{strength} of the factor, we then define the \emph{strength} a test case $f$ is related to a particular fault $F_{m}$ as:
 
-\begin{displaymath} S(f,F_{m})  = \frac{1}{|f|}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
+\begin{displaymath} S(f,F_{m})  = \frac{1}{k}\sum_{o \in f} S(o, F_{m}) \end{displaymath}
 
-This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults. In practice, one test case can have different related \emph{strength} to different faults, so we can not always find a test case that have the least relating \emph{strength} to all the faults when comparing other test cases. With this fact in mind, our target changes to find a test case that the maximal \emph{strength} it is related fault among other faults should be the minimal comparing other test cases. Formally, we should choose a test case $f$, s.t.,
+In this formula, $k$ is the number of factors in the test case $f$, $o$ is the specific factor in $f$. This formula computes the average \emph{strength} of all the factors in the test case as the \emph{strength} for this test case that is related to a particular fault. For a test case that is selected to be tested, we need to make it as small possibility to trigger other faults. In practice, one test case can have different related \emph{strength} to different faults, so we can not always find a test case that have the least relating \emph{strength} to all the faults when comparing other test cases. With this fact in mind, our target changes to find a test case that the maximal \emph{strength} it is related fault among other faults should be the minimal comparing other test cases. Formally, we should choose a test case $f$, s.t.,
 
-\begin{displaymath} \min_{f \in R} \max_{m < L \& m \neq n}  S(f, F_{m}) \tag{EQ1} \end{displaymath}
+\begin{displaymath} \min_{f \in R} \max_{m \leq L \& m \neq n}  S(f, F_{m}) \tag{EQ1} \end{displaymath}
 
-In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault. $R$ is the set of all the possible test cases except those tested that contain the $fixed$  part. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |{t\ |\ t\ contains\ fixed\ part\ \&\ t\ is\ tested}|$.
+In this formula, $L$ is the number of all the faults, $n$ is the current analysed fault. $R$ is the set of all the possible test cases that contain the $fixed$ part except those ones that have been tested. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |{t\ |\ t\ contains\ fixed\ part\ \&\ t\ is\ tested}|$.
 
 We can further resolve this problem. Consider the test case we get -- $f$ satisfied the EQ1. Without loss of generality, we assume that the fault $F_{k}, k \neq n $ is the fault that the test case $f$ has the maximal related \emph{strength} than other faults. Then a natural property for $f$ is that any other test case $f'$ which satisfies that fault $F_{k}$ is the maximal related fault for this test case
 must have $ S(f, F_{k}) <= S(f', F_{k})$. Formally, to get such a test case is to solve the following formula :

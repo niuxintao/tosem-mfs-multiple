@@ -399,7 +399,7 @@ For example, table \ref{example_minimal_schemas} lists the $\mathcal{S}(T)$ and 
   }
   \end{table}
 
-Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS. 
+Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS.
 
 %And obviously for $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
 
@@ -411,9 +411,9 @@ Then we can have the following proposition.
 \end{proposition}
 \begin{proof}
  We first have $ c \in \mathcal{C}(\mathcal{T}(c))$, this is obviously and in fact the minimal schemas for the test cases set $\mathcal{T}(c)$ only contain one schema, which is exactly $c$ itself.  As discussed previously we have $ \mathcal{C}(\mathcal{T}(c)) \subset \mathcal{S}(\mathcal{T}(c)) $, so it must be $c \in \mathcal{S}(\mathcal{T}(c))$.
-  
+
  Then as $\mathcal{T}(c) \subset T$, it follows $\mathcal{S}(\mathcal{T}(c)) \subset \mathcal{S}(T)$ by definition. In detail, $\mathcal{S}(\mathcal{T}(c)) = \{ c | c \in \mathcal{I}(\mathcal{T}(c))\ and\ c \not\in \mathcal{I}(T^{*} \backslash \mathcal{T}(c)) \}$, so $\mathcal{S}(\mathcal{T}(c)) \subset \{ c | c \in \mathcal{I}(T)\ and\ c \not\in \mathcal{I}(T^{*} \backslash T) \}$, which is exactly $\mathcal{S}(T)$.
- 
+
   So as $c \in \mathcal{S}(\mathcal{T}(c))$ and hence $c \in \mathcal{S}(T)$.
 \end{proof}
 
@@ -539,7 +539,7 @@ This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario
 
 %Let me discuss the combination of them.
 \begin{proposition}
- For two intersecting set of test cases $T_{1}$ and $T_{2}$ (this two set is not identical or subsume each other), it must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
+ For two intersecting set of test cases $T_{1}$ and $T_{2}$ (this two set is neither identical nor subsuming each other), it must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
 \end{proposition}
 \begin{proof}
 Firstly, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
@@ -609,7 +609,7 @@ Table \ref{example_intersect_subsume} illustrates this scenario, in which, the m
 \centering
 \tbl{Example of Intersect by subsume examples \label{example_intersect_subsume}}{
   \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2}) $\\ \hline
+$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
 (1, 0, 0)   & (1, 0, 0) & (1, 0, 1)\\
 (1, 0, 1)	& (1, 0, 1) & (1, 1, 0)\\
@@ -1169,7 +1169,7 @@ This replace process trigged each time the newly test case trigger other fault, 
 \subsection{Complexity analysis}
 This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effects test case. The complexity is the product of this two facts.
 
-The first fact is comparable to the extra test cases that needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} list the number of test cases that each algorithms that needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the degree of the MFS in the SUT. \emph{c} is an upper bond, satisfies, $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
+The first fact is comparable to the extra test cases that needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} list the number of test cases that each algorithms that needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the number of factors of the MFS in the SUT. \emph{c} is an upper bond, satisfies, $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
 
 \begin{table}
 \centering
@@ -1185,8 +1185,8 @@ Nie OFOT \cite{nie2011minimal} & $kd$\\
 Ylimaz classification tree & depends on the  covering array\\
 FIC \cite{zhang2011characterizing} &  $k$ \\
 FIC\_BS \cite{zhang2011characterizing}& $t(log k + 1) + 1$\\
-Ghandehari's suspicious based  \cite{ghandehari2012identifying}& \\
-TRT \cite{niu2013identifying}&  \\
+Ghandehari's suspicious based  \cite{ghandehari2012identifying}& depends on the number and size of MFS\\
+TRT \cite{niu2013identifying}&  $d\times t \times log k + t^{d}$\\
   \end{tabular}
   }
   \end{table}
