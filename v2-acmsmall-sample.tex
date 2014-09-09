@@ -39,13 +39,13 @@
 \begin{document}
 
 % Page heads
-\markboth{X. Niu et al.}{Identify failure-causing schemas for multiple faults}
+\markboth{X. Niu et al.}{Identifying failure-causing schemas for multiple faults}
 
 % Title portion
-\title{Identify minimal failure-causing schemas for multiple faults}
+\title{Identifying minimal failure-causing schemas for multiple faults}
 \author{XINTAO NIU and CHANGHAI NIE
 \affil{State Key Laboratory for Novel Software Technology, Nanjing University}
-HARETON LEUNG
+ALVIN CHAN
 \affil{Hong Kong Polytechnic University}
 JEFF Y. LEI
 \affil{Department of Computer Science and Engineering, The University of Texas at Arlington }
@@ -58,7 +58,7 @@ JEFF Y. LEI
 %       currently affiliated with NASA.
 
 \begin{abstract}
-Combinatorial testing(CT) is proven to be effective to reveal the potential failures caused by the interaction of the inputs or options of the System Under Test(SUT). To extend and make full use of CT, the theory of Minimal Failure-Causing Schema(MFS) has been proposed. The use of MFS helps to isolate the root cause of the failure, which is desired after detecting them by CT. Most existed algorithms based on MFS theory focus on identifying the MFS in SUT with the single fault, however, we argue that multiple faults is the more common testing scenario, and under which masking effects may be triggered so that some expect faults will not be observed normally. Traditional MFS theory as well as its identifying algorithms lack a mechanism to handle such effects, hence will make them incorrectly isolate the MFS in SUT.  To address this problem, we proposed a new MFS model with considering multiple faults. We first formally analyse the impact of the multiple faults on existed MFS isolating algorithms, especially when masking effects were triggered between these multiple faults. Based on this, we then give an approach that can assist traditional algorithms to better handle the multiple faults testing scenarios. Empirical studies with several open-source software were conducted, which show that multiple faults with masking effects do negatively affect on traditional MFS identifying approach and our approach can help them to alleviate these effects.
+Combinatorial testing(CT) has been proven to be effective to reveal the potential failures caused by the interaction of the inputs or options of the System Under Test (SUT). To extend and fully use CT, the theory of Minimal Failure-Causing Schema(MFS) is proposed. The use of MFS helps to isolate the root cause of a failure after CT detection. Most algorithms that have been based on MFS theory focus on identifying the MFS in SUT with the single fault, however, we argue that multiple faults are the more common testing scenario, and under which masking effects may be triggered so that some expected faults will not be observed. Traditional MFS theory, as well as the related identifying algorithms, lack a mechanism to handle such effects; hence, they may incorrectly isolate the MFS in the SUT.  To address this problem, we propose a new MFS model that takes into account multiple faults. We first formally analyse the impact of the multiple faults on extant MFS isolating algorithms, especially in situations where masking effects are triggered by these multiple faults. Based on this, we then develop an approach that can assist traditional algorithms to better handle multiple fault testing scenarios. Empirical studies were conducted using several kinds of open-source software, which showed that multiple faults with masking effects do negatively affect traditional MFS identifying approaches and that our approach can help to alleviate these effects.
 
 %Many algorithms has been proposed to find the MFS in SUT, in our recently studies, however, we find these approaches cannot behave effectively when encounter multiple faults. The main reason why these methods failed to behave normally is that most of them ignore the masking effects hiding test cases, which can bias their identified results. In this paper, we extend the MFS theory to make it support the multiple faults testing scenarios, and hence can deal masking effects. Based on this, we gave an approach to identify the MFS which can alleviate the impacts of masking effects for multiple faults.
 
@@ -93,9 +93,9 @@ This work was supported by the National Natural Science Foundation of China (No.
 
 
 \section{Introduction}
-With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can influence the behaviour of the SUT. The unexpected faults caused by the interaction among these factors can make testing such software a big challenge if the interaction space is too large. In the worst case we need to examine every possible combination of these factors as each such combination can contain unique faults\cite{song2012itree}. While conducting such exhaustive testing is ideal and necessary in theory, it is impractical and not economical in consideration of the limited testing time and computing resource. One remedy for this problem is combinatorial testing, which systematically sample the interaction space and select a relatively small set of test cases that cover all the valid iterations with the number of factors involved in the interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction. Many works in CT aims to construct the smallest set of such efficient testing object \cite{cohen1997aetg,bryce2005framework,cohen2003constructing}, which also called \emph{covering array}.
+With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can affect the behaviour of the SUT. The unexpected faults caused by the interaction of these factors can make software testing challenging if the interaction space is too large. In the worst case, we need to examine every possible combination of these factors as each combination can contain unique faults \cite{song2012itree}. While conducting exhaustive testing is ideal and necessary in theory, it is impractical and uneconomical. One remedy for this problem is combinatorial testing, which systematically samples the interaction space and selects a relatively small set of test cases that cover all valid iterations, with the number of factors involved in the interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction. Many works in CT aim to construct the smallest set of efficient testing objects \cite{cohen1997aetg,bryce2005framework,cohen2003constructing}, which also called \emph{covering array}.
 
-Once failures are detected by covering array, it is desired to isolate the failure-inducing combinations in these failing test cases. This task is important in CT as it can facilitate the debugging efforts by reducing the code scope that needed to inspected\cite{ghandehari2012identifying}. Only with the information stum from the covering array sometimes is far from clear to identify the location and magnitude of the failure-inducing combinations \cite{colbourn2008locating}. Thus, deeper analysis needed to be conducted. Take an example \cite{bach2004pairwise}, Fig \ref{MS_word} present a 2-way covering array for testing the MS word application, in which we want to examine various combination of options `Highlight',`Status Bar', `Bookmarks' and `Smart tags' of MS word. Assume the third test case failed, then we can get that there are five 2-way suspicious combinations may be responsible for this failure: (Highlight: Off, Bookmarks: Off),(Highlight: Off, Smart tags: Off), (Status Bar: On, Bookmarks: Off), (Status Bar: On, Smart tags: Off),(Bookmarks: Off, Smart tags: Off). (Note that (Highlight: Off, Status Bar: On) excludes in this set as it appeared in the fifth passing test case). Without any more information, we cannot figure out which one or some in this suspicious set caused this failure. In fact, taking account of the higher-strength combination, e.g.,(Highlight: Off,Status Bar: On, Smart tags: Off), the problem will grow more complicated.
+Once failures are detected by the covering array, the failure-inducing combinations in these failing test cases must be isolated. This task is important in CT as it can facilitate debugging efforts by reducing the code scope that needed for inspection \cite{ghandehari2012identifying}. However, information from the covering array sometimes does not clearly identify the location and magnitude of the failure-inducing combinations \cite{colbourn2008locating}. Thus, deeper analysis is needed. Consider the following example \cite{bach2004pairwise}, Fig \ref{MS_word} presents a two-way covering array for testing an MS-Word application in which we want to examine various combinations of options for the MS-Word `Highlight', `Status Bar', `Bookmarks' and `Smart tags'. Assume the third test case failed. We then can get five two-way suspicious combinations that may be responsible for this failure: (Highlight: Off, Bookmarks: Off), (Highlight: Off, Smart tags: Off), (Status Bar: On, Bookmarks: Off), (Status Bar: On, Smart tags: Off), and (Bookmarks: Off, Smart tags: Off). (Note that (Highlight: Off, Status Bar: On) is excluded in this set as it appeared in the fifth passing test case). Without any more information, we cannot figure out which one or more of the combinations in this suspicious set caused the failure. In fact, taking into account the higher strength combination, e.g., (Highlight: Off, Status Bar: On, Smart tags: Off),  the problem becomes more complicated.
 
 \begin{table}
   \tbl{MS word example\label{MS_word}}{
@@ -111,21 +111,21 @@ id& \emph{Highlight} & \emph{Status bar} & \emph{Bookmarks}& \emph{Smart tags} &
   }
 \end{table}
 
-To address this problem, prior work \cite{nie2011minimal} specifically studied the properties of the minimal failure-causing schemas in SUT, based on which, a further diagnosis with generating additional test cases was applied and therefore can identify the MFS in the test case.
+To address this problem, prior work \cite{nie2011minimal} specifically studied the properties of the minimal failure-causing schemas in SUT, based on which a further diagnosis by generating additional test cases was applied that can identify the MFS in the test case.
 %the MFS theory was proposed, it propose the complete life circle of software, studied the properties of the failure-inducing combinations and the test cases, based on which, it propose the . This task, in detail, following the detecting process in the CT life-cycle\cite{nie2011minimal,nie2011survey}, needs to. The proposed MFS theory \cite{nie2011minimal} present a completed seven-step methodology to detect and isolate such failure-inducing combinations, in which this is belong to the fault diagnosis circle.
-Other works have been proposed to identify the MFS in SUT, which include approaches such as building tree model \cite{yilmaz2006covering}, exploiting the methodology of minimal failure-causing schema \cite{nie2011minimal}, ranking suspicious classification ous combinations based on some rules\cite{ghandehari2012identifying}, using graphic-based deduction \cite{martinez2008algorithms} and so on. These approaches can be partitioned into two categories \cite{colbourn2008locating}: \emph{adaptive}--test cases are chosen based on the outcomes of the executed tests \cite{nie2011minimal,ghandehari2012identifying,niu2013identifying,zhang2011characterizing,shakya2012isolating,wang2010adaptive,li2012improved}or \emph{nonadaptive}--test cases are chosen independently and can be executed parallel \cite{yilmaz2006covering,colbourn2008locating,martinez2008algorithms,martinez2009locating,fouche2009incremental}.
+Other works have proposed ways to identify the MFS in SUT, which include approaches such as building a tree model \cite{yilmaz2006covering}, exploiting the methodology of minimal failure-causing schema \cite{nie2011minimal}, ranking suspicious combinations based on some rules \cite{ghandehari2012identifying}, using graphic-based deduction \cite{martinez2008algorithms}, among others. These approaches can be partitioned into two categories \cite{colbourn2008locating}: \emph{adaptive}--additional test cases are chosen based on the outcomes of the executed tests \cite{nie2011minimal,ghandehari2012identifying,niu2013identifying,zhang2011characterizing,shakya2012isolating,wang2010adaptive,li2012improved}or \emph{nonadaptive}--additional test cases are chosen independently and can be executed parallel \cite{yilmaz2006covering,colbourn2008locating,martinez2008algorithms,martinez2009locating,fouche2009incremental}.
 
-The MFS methodology as well as other MFS identifying approaches mainly focus on the ideal scenario that SUT only contains one fault, i.e., the test case under testing can either fails or passes the testing. However, in this paper, we argue that SUT with multiple distinguished faults is the more common testing scenario in practice, and moreover, this do have impact on the Failure-inducing Combinations Identifying(FCI) approaches. One main impact of multiple faults on FCI approaches is the masking effects.  A masking effect \cite{dumlu2011feedback,yilmaz2013reducing} is an effect that some failures prevents test cases from normally checking combinations that are supposed to be tested. Take the Linux command-- \emph{Grep} for example, we noticed that there are two different faults reported in the bug tracker system. The first one \footnote{http://savannah.gnu.org/bugs/?29537}  claims that Grep incorrectly match unicode patterns with `\textbackslash$<$\textbackslash$>$', while the second one \footnote{http://savannah.gnu.org/bugs/?33080} claims an incompatibility between option `-c' and `-o'. When we put this two scenarios into one test case, only one fault information will be observed, which means another fault is masked by the observed one. This effects will prevent test cases normally executing, consequently make approaches make a incorrectly judgements on the correlation between the combinations checked in the test case and the fault that been prevented to be observed.
+The MFS methodology as well as other MFS-identifying approaches mainly focus on the ideal scenario in which SUT only contains one fault, i.e., the test case either fails or passes the testing. However, in this paper, we argue that SUT with multiple distinguished faults is the more common testing scenario in practice, and moreover, this impacts the Failure-inducing Combinations Identifying(FCI) approaches. One main impact of multiple faults on FCI approaches is the masking effect.  A masking effect \cite{dumlu2011feedback,yilmaz2013reducing} is an effect in which some failures prevent test cases from normally checking combinations that are supposed to be tested. Take the Linux command \emph{Grep} for example. We noticed that there are two different faults reported in the bug tracker system. The first \footnote{http://savannah.gnu.org/bugs/?29537}  claims that Grep incorrectly matches unicode patterns with `\textbackslash$<$\textbackslash$>$', while the second \footnote{http://savannah.gnu.org/bugs/?33080} claims an incompatibility between option `-c' and `-o'. When we put these two scenarios into one test case, only one fault will be observed, which means another fault is masked by the observed fault. This effect will prevent test cases from executing normally, resulting incorrect judgments of the correlation between the combinations checked in the test case and the fault that been masked and therefore not observed.
 
 %While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple faults in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FCI) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering}, of which CTA has two versions, i.e., ternary-class and multiple-class.
 
 %Obviously this fact do trouble these algorithms as it make them unable to judge whether the test case under testing trigger only the fault observed or triggered both two faults. As a result, it will make wrong analysis in the failure-inducing interactions for these masked faults.
 
-As known that masking effects negatively affect the performance of FCI approaches, a natural question is how this effect bias the results of FCI approaches. In this paper, we formalized the process of identifying MFS under the circumstance that masking effects exist in SUT and try to answer this question. One insight from the formal analysis is that we cannot completely get away from the impact of the masking effect even if we do exhaustive testing. Furthermore, both ignoring the masking effects and regarding multiple faults as one fault are harmful for FCI process.
+As we know that masking effects negatively affect the performance of FCI approaches, a natural question is how this effect biases the results of these approaches. In this paper, we formalize the process of identifying the MFS under the circumstances in which masking effects exist in the SUT and try to answer this question. One insight from the formal analysis is that we cannot completely get away from the impact of masking effects even if we do exhaustive testing. But, both ignoring the masking effects and regarding multiple faults as one fault are detrimental to the FCI process.
 
-Based on the insight we proposed a strategy to alleviate this impact. This strategy adopts the divide and conquer framework, i.e., separately handles each fault in SUT. For a particular fault under analysis, when applying traditional FCI approaches to identify the failure-inducing combinations, we pick the test cases generated by FCI approaches that trigger unexpected faults and replace them with regenerated newly test cases. These newly test cases should either pass or trigger the same fault under analysis.
+Based on this concern, we propose a strategy to alleviate this impact. This strategy adopts the divide and conquer framework, i.e., separately handles each fault in the SUT. For a particular fault under analysis, when applying traditional FCI approaches to identify the failure-inducing combinations, we pick the test cases generated by FCI approaches that trigger unexpected faults and replace them with newly regenerated  test cases. These new test cases should either pass or trigger the same fault under analysis.
 
-The key to our approach is to search a test case that do not trigger unexpected faults that may import the masking effect. To guide the searching process, i.e., to reduce the possibility that the extra generated test case triggering unexpected fault, a natural idea is to learn some characteristics from the existed test cases and make the characteristic of the newly searched test case as much as different from those existed test cases which triggered unexpected fault. To reach this target, we define the \emph{related strength} between the factor and the faults, for which the more the \emph{related strength} is between a factor and a particular fault,  the more the factor is likely to trigger this fault. We then using the integer linear programming(ILP) technique to find a test case which has the smallest \emph{related strength} between unexpected fault.
+The key to our approach is to search for a test case that does not trigger unexpected faults which may import the masking effect. To guide the search process, i.e., to reduce the possibility that the extra generated test case will trigger an unexpected fault, a natural idea is to take some characteristics from the existing test cases and make the characteristics of the newly searched test case as much as different from the existing test cases which triggered the unexpected fault. To reach this target, we define the \emph{related strength} between the factor and the faults. The more the \emph{related strength} between a factor and a particular fault,  the greater the likelihood that the factor will trigger this fault. We then use the integer linear programming (ILP) technique to find a test case which has the least \emph{related strength} with the unexpected fault.
 
 %As it is not a natural. The inution is to learn from previous test cases generating process, to avoid the similar test case. To accomplish this task, we introduce the suspicous note that record the related strength to each other fault, and then
 
@@ -140,16 +140,16 @@ The key to our approach is to search a test case that do not trigger unexpected 
 
 %The key to the strategy is to prune test cases that may trigger a masking effect and then select or generate other test cases to test the interactions which were supposed to be tested in these pruned ones. We will keep these pruned test cases for the next iteration to isolate the failure-inducing interactions in these test cases. The process repeated until we characterize all the interactions for each fault. A point need to be noted is that these interactions supposed to be tested in the pruned test cases for one interaction vary in different algorithms we adopted. For example, for the classified tree method, we will generate more test cases that keep the same coverage, and for the one fact one time, we will generate test cases to keep the same.
 
-To evaluate the performance of our approach, we applied our strategy on the FCI approach FIC\_BS \cite{zhang2011characterizing}. The subjects we used are several open-source software with the developers' forum in Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manual guide, we built the testing model which can reproduce the reported bugs with specific test cases. We then respectively compare the FCI approach augment with our strategy (AUGFCI) with traditional FCI approach with these subjects. We further empirically studied the performance of the important component of our strategy -- searching satisfied test cases, to conduct this study, we compare our AUGFCI approach with the FCI approach augment by randomly searching satisfied test case. We finally compared our approach with the existed masking handling technique -- FDA-CIT\cite{yilmaz2013reducing}. All of these empirical studies showed that our replacing strategy as well as the searching test case component get a better performance than these traditional approaches when the subject is suffering multiple faults, especially when these faults can import masking effects.
+To evaluate the performance of our approach, we applied our strategy on the FCI approach FIC\_BS \cite{zhang2011characterizing}. The subjects we used were several open-source software found in the developers' forum in the Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manuals, we built a testing model which can reproduce the reported bugs with specific test cases. We then compare the FCI approach augmented with our strategy (AUGFCI) to the traditional FCI approach with these subjects. We further empirically studied the performance of the important component of our strategy -- searching satisfied test cases. To conduct this study, we compare our AUGFCI approach with the augmented FCI approach by randomly searching satisfied test cases. We finally compare our approach with the existing masking handling technique -- FDA-CIT\cite{yilmaz2013reducing}. All of these empirical studies showed that our replacing strategy as well as the searching test case component achieved a better performance than these traditional approaches when the subject suffered multiple faults, especially when these faults can import masking effects.
 
 %applied the traditional FCI approaches and their augmented versions to identify the failure-inducing combinations in the subjects respectively. The results of our empirical studies shows that the masking effects do impact on the FCI approaches, although to what the extent varies, and the approaches augmented with our strategy can identify failure-inducing combinations more accurately than traditional ones when facing masking effects, and moreover, this performance can get further improvement with using voting system.
 
 The main contributions of this paper are:
 \begin{itemize}
 \item We studied the impact of the masking effects among multiple faults on the isolation of the failure-inducing combinations in SUT.
-\item We proposed a divide and conquer strategy of selecting test cases to alleviate the impact of this effects.
-\item We designed an efficient test case searching method which can rapidly find a test case that does not trigger unexpected fault.
-\item We conducted several empirical studies and showed that our strategy can assist FCI approaches to get better performance on identifying failure-inducing combinations in SUT with masking effects.
+\item We proposed a divide and conquer strategy of selecting test cases to alleviate the impact of these effects.
+\item We designed an efficient test case searching method which can rapidly find a test case that does not trigger an unexpected fault.
+\item We conducted several empirical studies and showed that our strategy can assist FCI approaches to achieve better performance in identifying failure-inducing combinations in SUT with masking effects.
 \end{itemize}
 
 
@@ -180,11 +180,11 @@ public float foo(int a, int b, int c, int d){
 \caption{A toy program with four input parameters}
 \label{toy-program}
 \end{figure}
-This section constructed a small program example, for convenience to illustrate the motivation of our approach. Assume we have a method \emph{foo} which has four input parameters : \emph{a, b, c, d}. The types of these four parameters are all integers and the values that they can take are: $v_{a} = \{7, 11\}, v_{b} = \{2, 4, 5\}, v_{c} = \{4, 6\}, v_{d} = \{3, 5\}$. The detail code of the method is listed in Figure \ref{toy-program}.
+For convenience, we constructed a small program example to illustrate the motivation of our approach. Assume we have a method \emph{foo} which has four input parameters: \emph{a, b, c, } and \emph{d}. The four parameter types are all integers and the values that they can take are: $v_{a} = \{7, 11\}, v_{b} = \{2, 4, 5\}, v_{c} = \{4, 6\}, v_{d} = \{3, 5\}$. The code detail the method is shown in Figure \ref{toy-program}.
 
-Inspecting the simple code in Figure \ref{toy-program}, we can find two potential faults: First, in the step 1 we can get an \emph{ArithmeticException} when b is equal to c, i.e.,  b = 4 \& c = 4, that makes division by zero. Second, another \emph{ArithmeticException} will be triggered in step 2 when c $<$ d, i.e., c = 4 \& d = 5, which makes square roots of negative numbers. So the expected failure-inducing combinations in this example should be (-, 4, 4, -) and (-, -, 4, 5).
+Considering the simple code in Figure \ref{toy-program}, we can find two potential faults: first, in the step 1 we can get an \emph{Arithmetic Exception} when $b$ is equal to $c$, i.e.,  $b = 4$ and $c = 4$, that makes division by zero. Second, another \emph{Arithmetic Exception} will be triggered in step 2 when $c < d$, i.e., $c = 4$ and $d = 5$, which makes square roots of negative numbers. So the expected failure-inducing combinations in this example should be (-, 4, 4, -) and (-, -, 4, 5).
 
-Traditional FCI algorithms do not consider the detail of the code, instead, they apply black-box testing to test this program, i.e., feed inputs to those programs and execute them to observe the result. The basic justification behind those approaches is that the failure-inducing combinations for a particular fault must only appear in those inputs that trigger this fault. As traditional FCI approaches aim at using as few inputs as possible to get the same or approximate result as exhaustive testing, so the results derived from a exhaustive testing set must be the best that these FCI approaches can reach. Next we will illustrate how exhaustive testing works on identifying the failure-inducing combinations in the program.
+Traditional FCI algorithms do not consider the code detail; instead, they apply black-box testing to test this program, i.e., feed inputs to those programs and execute them to observe the result. The basic justification behind those approaches is that the failure-inducing combinations for a particular fault can only appear in those inputs that trigger this fault. Traditional FCI approaches aim at using as few inputs as possible to get the same (or approximate) result as exhaustive testing, so the results derived from an exhaustive testing set are the best that these FCI approaches can achieve. Next, we will show how exhaustive testing works to identify the failure-inducing combinations in the program.
 
 \begin{table}
   \tbl{test inputs and their corresponding result\label{test-example}}{
@@ -223,7 +223,7 @@ id&test inputs & result\\\hline
   }
   \end{table}
 
-We first generate every possible inputs listed in the Column ``test inputs" of Table \ref{test-example}, and their execution results are listed in Column ``result" of Table \ref{test-example}. In this Column, \emph{PASS} means that the program runs without any exception under the input in the same row. \emph{Ex 1} indicates that the program triggered an exception corresponding to the step 1 and \emph{Ex 2} indicates the program triggered an exception corresponding to the step 2. According to data listed in table \ref{test-example}, we can figure out that (-, 4 , 4, -) must be the failure-inducing combination of Ex 1 as all the inputs triggered Ex 1 contain this combination. Similarly, the combination (-, 2, 4, 5) and  (-, 3, 4, 5) must be the failure-inducing combinations of the Ex 2. We listed this three combinations and their corresponding exception in Table \ref{identify-example}.
+We first generate every possible input listed in the column ``test inputs" of Table \ref{test-example}, and the execution results are listed in the result column of Table \ref{test-example}. In this column, \emph{PASS} means that the program runs without any exception under the input in the same row. \emph{Ex 1} indicates that the program triggered an exception corresponding to step 1 and \emph{Ex 2} indicates the program triggered an exception corresponding to step 2. From the data listed in Table \ref{test-example}, we can determine that (-, 4 , 4, -) must be the failure-inducing combination of Ex 1 as all the inputs that triggered Ex 1 contain this combination. Similarly, the combination (-, 2, 4, 5) and  (-, 3, 4, 5) must be the failure-inducing combinations of Ex 2. We list these three combinations and the corresponding exceptions in Table \ref{identify-example}.
 
 \begin{table}
 \centering
@@ -237,30 +237,30 @@ Failure-inducing combinations & Exception\\ \hline
 }
 \end{table}
 
-Note that we didn't get the expected result with traditional FCI approaches in this case. The failure-inducing combinations we get for Ex 2 are (-,2,4,5) and (-,3,4,5) respectively instead of the expected combination (-,-,4,5). So why we failed in getting the (-,-,4,5)? The reason lies in \emph{input 6}: (7,4,4,5) and \emph{input 18}: (11,4,4,5). This two inputs contain the combination (-,-,4,5), but didn't trigger the Ex 2, instead,  Ex 1 was triggered.
+Note that in this case we did not get the expected result with traditional FCI approaches. The failure-inducing combinations we got for Ex 2 are (-,2,4,5) and (-,3,4,5),  respectively, instead of the expected combination (-,-,4,5). So why did we fail to get the (-,-,4,5)? The reason lies in \emph{input 6} (7,4,4,5) and \emph{input 18} (11,4,4,5). These two inputs contain the combination (-,-,4,5), but they didn't trigger Ex 2; instead,  Ex 1 was triggered.
 
 % if more than two faults, and the masking element is more, the result we got will be more noisy so that we cannot figure out the reals result
 
-Now let us get back to the source code of \emph{foo}, we can find that if Ex 1 is triggered, it will stop executing the remaining code and report the exception information. In another word, Ex 1 has a higher fault level than Ex 2 so that Ex 1 may mask Ex 2. Let us re-examine the combination (-,-,4,5): if we supposed that \emph{input 6} and \emph{input 18} should trigger Ex 2 if they didn't trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing combination of the Ex 2, which is identical to the expected one.
+Now let us get back to the source code of \emph{foo}. We can find that if Ex 1 is triggered, it will stop executing the remaining code and report the exception information. In another word, Ex 1 has a higher fault level than Ex 2, so Ex 1 may mask Ex 2. Let us re-examine the combination (-,-,4,5). If we suppose that \emph{input 6} and \emph{input 18} should trigger Ex 2 if they didn't trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing combination of the Ex 2, which is identical to the expected one.
 
-However, we cannot validate the supposition, i.e., \emph{input 6} and \emph{input 18} should trigger Ex 2 if they didn't trigger Ex 1, unless we have fixed the code that trigger Ex 1 and then re-executed all the test cases. So in practice, when we do not have enough resource to re-execute all the test cases again and again or can only take black-box testing, the more economic and efficient approach to alleviate the masking effect on FCI approaches is desired.
+However, we cannot validate the supposition, i.e., \emph{input 6} and \emph{input 18} should trigger Ex 2 if they didn't trigger Ex 1, unless we fix the code that triggers Ex 1 and then re-execute all the test cases. So in practice, when we do not have enough resources to re-execute all the test cases again and again or can only do black-box testing, a more economical and efficient approach to alleviate the masking effect on FCI approaches is desired.
 
 \section{Formal model}
-This section presents some definitions and propositions to give a formal model for the FCI problem.
+This section presents some definitions and propositions for a formal model to solve the FCI problem.
 
 \subsection{Failure-causing Schemas in CT}
 
-Assume that the SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..k). Some of the definitions below are originally defined in \cite{nie2011survey}.
+Assume that the SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,..k). Some of the definitions below were originally defined in \cite{nie2011survey}.
 
 %\newdef{definition}{Definition}
 \begin{definition}
 A \emph{test case} of the SUT is an array of \emph{k} values, one for each parameter of the SUT, which is denoted as a \emph{k}-tuple ($v_{1}$, $v_{2}$,...,$v_{k}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{k} \in V_{k}$.
 \end{definition}
 
-In practice, these parameters in the test case can represent many factors, such as input variables, run-time options, building options or various combination of them. We need to execute the SUT with these test cases to ensure the correctness of the behaviour of the software.
+In practice, these parameters in the test case can represent many factors, such as input variables, run-time options, building options, or various combinations of them. We need to execute the SUT with these test cases to ensure the correctness of the software behaviour.
 
 %\begin{definition}
-We consider the fact that the abnormally executing test cases as a \emph{fault}. It can be a thrown exception, compilation error, assertion failure or constraint violation. When faults are triggered by some test cases, what is desired is to figure out the cause of these faults, and hence some subsets of this test case should be analysed.
+We consider the abnormally execution of a test case to be a \emph{fault}. It can be a thrown exception, compilation error, assertion failure or constraint violation. When faults are triggered by some test cases, we need to determine the cause of these faults; hence, some subsets of the test case must be analysed.
 %\end{definition}
 
 %Figuring out the test case as well as the executing result is usually not enough to analyse the source of the bug, especially when there are too many parameters we need to care in this test case. In this circumstance, we need to study some subsets of this test case, so we need the following definition:
@@ -268,43 +268,43 @@ We consider the fact that the abnormally executing test cases as a \emph{fault}.
 %Figuring out the execution outcomes of test cases must reveal the presence of faulty interactions among those considered. However, the location and magnitude of the fault is still far from clear, especially when there are too many parameters we need to care in this test case. Hence, we need to study some subsets of this test case, which can help isolate the cause of failures.
 
 \begin{definition}
-For the SUT, the \emph{t}-tuple (-,$v_{k_{1}}$,...,$v_{k_{t}}$,...)is called a \emph{t}-value \emph{schema} ($0 < t \leq k $) when some t parameters have fixed values and the others can take on their respective allowable values, represented as ``-".
+For the SUT, the \emph{t}-tuple (-,$v_{k_{1}}$,...,$v_{k_{t}}$,...) is called a \emph{t}-value \emph{schema} ($0 < t \leq k $) when some t parameters have fixed values and the others can take on their respective allowable values, represented as ``-".
 
-In effect a test case itself is a t-value \emph{schema}, when t = k. Furthermore, if a test case contain a \emph{schema}, i.e., every fixed value in the combination is in this test case, we say this test case \emph{hits} the \emph{schema}.
+In effect a test case itself is a t-value \emph{schema}, when t = k. Furthermore, if a test case contains a \emph{schema}, i.e., every fixed value in the combination is in this test case, we say this test case \emph{hits} the \emph{schema}.
 %, which can be denoted as $k-value\  combination \in T$
 \end{definition}
 
 \begin{definition}
-let $c_{l}$ be a \emph{l}-value schema, $c_{m}$ be an \emph{m}-value schema in SUT and $l < m$. If all the fixed parameter values in $c_{l}$ are also in $c_{m}$, then $c_{m}$ \emph{subsumes} $c_{l}$. In this case we can also say that $c_{l}$ is a \emph{sub-schema} of $c_{m}$ and $c_{m}$ is a \emph{parent-schema} of $c_{l}$, which can be denoted as $c_{l} \prec  c_{m}$.
+Let $c_{l}$ be a \emph{l}-value schema, $c_{m}$ be an \emph{m}-value schema in SUT, and $l < m$. If all the fixed parameter values in $c_{l}$ are also in $c_{m}$, then $c_{m}$ \emph{subsumes} $c_{l}$. In this case, we can also say that $c_{l}$ is a \emph{sub-schema} of $c_{m}$, and $c_{m}$ is a \emph{parent-schema} of $c_{l}$, which can be denoted as $c_{l} \prec  c_{m}$.
 \end{definition}
 
-For example, in the motivation example section, the 2-value schema (-, 4, 4, -) is a sub-schema of the 3-value schema (-, 4, 4, 5), that is, (-,4,4,-) $\prec$ (-,4,4,5).
+For example, in the motivation example section, the two-value schema (-, 4, 4, -) is a sub-schema of the three-value schema (-, 4, 4, 5), that is, (-,4,4,-) $\prec$ (-,4,4,5).
 
 \begin{definition}
-If all test cases contain a schema, say $c$, trigger a particular fault, say $F$, then we call this schema $c$ the \emph{failure-causing schema} for $F$. Additionally, if none sub-schema of $c$ is the \emph{failure-causing schema} for $F$, we then call the schema $c$ the \emph{Minimal Failure-causing Schema}, i.e.,(MFS) for $F$.
+If all test cases contain a schema, say $c$, and trigger a particular fault, say $F$, then we call this schema $c$ the \emph{failure-causing schema} for $F$. Additionally, if none of the sub-schema of $c$ is the \emph{failure-causing schema} for $F$, we then call the schema $c$ the \emph{Minimal Failure-causing Schema}, i.e., the MFS for $F$.
 %Based on this, if a test case $t$ hit such a failure-inducing combination, say $c(F)$, it should trigger the fault $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing combinations we discussed previously. Figuring it out can eliminate all details that are irrelevant for causing the failure and hence facilitate the debugging efforts.
+In fact, MFS is identical to the failure-inducing combinations we discussed previously. Figuring this out can eliminate all details that are irrelevant to the cause of the failure and, hence, facilitate the debugging efforts.
 
 %We have the following proposition based on these basic definitions.
 %
-Some notions will be used later are listed in the following for the convenience of reference:
+Some notions used later are listed below for convenient reference:
 \begin{itemize}
 \item $k$ : the number of parameters that influence the SUT.
 \item $V_{i}$ : the set of discrete values that the $i$th factor of the SUT can take.
 \item $T^{*}$ :  The exhaustive set of test cases for the SUT. For a SUT with $k$ factors, and each factor can take $|V_{i}|$ values, the number of this set of test cases $T^{*}$ is $\prod_{i = 1}^{i <= k} |V_{i}|$.
-\item $L$ : the number of faults that contain in the SUT.
-\item $F_{m}$ : the $m$th fault in the SUT, for different faults, we can differentiate them from their exception traces or other buggy information.
+\item $L$ : the number of faults contained in the SUT.
+\item $F_{m}$ : the $m$th fault in the SUT; for different faults, we can differentiate them from their exception traces or other buggy information.
 \item $T_{F_{m}}$ :  All the test cases that can trigger the fault $F_{m}$.
-\item $\mathcal{T}(c)$ :  All the test cases that can hit(contain) the schema $c$. Based on the definition of MFS, we can learn that if schema $c$ is MFS for $F_{m}$, then $\mathcal{T}(c)$ must be subsumed in $T_{F_{m}}$.
+\item $\mathcal{T}(c)$ :  All the test cases that can hit (contain) the schema $c$. Based on the definition of MFS, we know that if schema $c$ is MFS for $F_{m}$, then $\mathcal{T}(c)$ must be subsumed in $T_{F_{m}}$.
 %\item $T_{mask(F_{m})}$ :  All the test cases that contain the
 %\item $T_{mask(F_{m})}$ :
 %\item $T_{mask(F_{m})}$ :
 
 \item $\mathcal{I}(t)$ :  All the schemas that are hit in the test case $t$, e.g., $\mathcal{I}(\ (1 1 1)\ )= \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
 \item $\mathcal{I}(T)$ :  All the schemas that are hit in a set of test cases $T$, i.e., $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$.
-\item  $\mathcal{S}(T)$:  All the schemas that are only hit in the set of test cases, it is important to note that this set is different from $\mathcal{I}(T)$, as the schemas hit by the test cases in $T$ can also be hit by other test cases that are not belong to this set. In fact, $\mathcal{S}(T)$ is computed by $\{ c | c \in \mathcal{I}(T)\ and\ c\ \not\in \mathcal{I}(T^{*} \backslash T \}$.
+\item  $\mathcal{S}(T)$:  All the schemas that are only hit in the set of test cases. It is important to note that this set is different from $\mathcal{I}(T)$, as the schemas hit by the test cases in $T$ can also be hit by other test cases that do not belong to this set. In fact, $\mathcal{S}(T)$ is computed by $\{ c | c \in \mathcal{I}(T)\ and\ c\ \not\in \mathcal{I}(T^{*} \backslash T \}$.
 \item  $\mathcal{C}(T)$ : the minimal schemas only hit by the set of test cases $T$, this set is the sub-set of $\mathcal{S}(T)$, which is defined as  $ \{c | c \in \mathcal{S}(T)\ and\ \not\exists c' \prec c, s.t., c' \in \mathcal{S}(T)\}$.
 
 \end{itemize}
@@ -314,18 +314,18 @@ Some notions will be used later are listed in the following for the convenience 
 
 %\newtheorem{proposition}{Proposition}
 \begin{proposition}
-For $l$-value schema $c_{l}$ and $m$-value schema $c_{m}$, if $c_{l} \prec c_{m}$, then we can have all the test cases hit $c_{m}$ must also hit $c_{l}$, i.e., $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
+For $l$-value schema $c_{l}$ and $m$-value schema $c_{m}$, if $c_{l} \prec c_{m}$, then we can have all the test cases that hit $c_{m}$ must also hit $c_{l}$, i.e., $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proposition}
 
 \begin{proof}
-Suppose $ \forall t \in \mathcal{T}(c_{m})$, we have that $t$ hits $c_{m}$. Then as $c_{l} \prec c_{m}$, it must have $t$ must also hit $c_{l}$. This is because all the elements in $c_{l}$ are also in $c_{m}$, which are contained in the test case $t$. Therefore we get $t \in \mathcal{T}(c_{l})$. Thus $t \in \mathcal{T}(c_{m})$ implies $t \in \mathcal{T}(c_{l})$, so it follows that $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
+Suppose $ \forall t \in \mathcal{T}(c_{m})$, we have that $t$ hits $c_{m}$. Then as $c_{l} \prec c_{m}$, it must have $t$ also hit $c_{l}$. This is because all the elements in $c_{l}$ are also in $c_{m}$, which are contained in the test case $t$. Therefore, we get $t \in \mathcal{T}(c_{l})$. Thus $t \in \mathcal{T}(c_{m})$ implies $t \in \mathcal{T}(c_{l})$, so it follows that $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proof}
 
-Table \ref{example_subsume} illustrates an example of SUT with four binary parameters (Unless otherwise specified, following examples also assume the SUT with binary parameters). The left column lists the schema (0,0,-,-) as well as all the test cases hit this schema, while the right column lists the test cases for schema(0,-,-,-). We can observe that (0,-,-,-) $\prec$ (0,0,-,-) and the the set of test cases which hit (0,-,-,-) contains the set that hits (0,0,-,-).
+Table \ref{example_subsume} illustrates an example of the SUT with four binary parameters (unless otherwise specified, the following examples also assume a SUT with binary parameters). The left column lists the schema (0,0,-,-) as well as all the test cases that hit this schema, while the right column lists the test cases for schema (0,-,-,-). We can observe that (0,-,-,-) $\prec$ (0,0,-,-), and the set of test cases which hit (0,-,-,-) contains the set that hits (0,0,-,-).
 
 \begin{table}
 \centering
-\tbl{Example of the proposition 3.5\label{example_subsume}}{
+\tbl{Example of proposition 3.5\label{example_subsume}}{
   \begin{tabular}{c}
 $c$ \\ \hline
 (0, 0, - , -) \\ \hline
@@ -363,9 +363,9 @@ For any set $T$ of test cases of a SUT, we can always get a set of minimal schem
 \end{proposition}
 
 \begin{proof}
-We prove by producing this set of schemas.
+We prove this by producing this set of schemas.
 
-We have denoted the exhaustive test cases for SUT as $T^{*}$ and let $T^{*} \backslash T$ be the test cases that in $T^{*}$ but not in $T$. It is obviously $\forall t \in T $, we can always find at least one schema which hit by t, i.e., $c \in \mathcal{I}(t)$, such that $c \not\in \mathcal{I}(T^{*} \backslash T)$. Specifically, at least the test case $t$ itself as schema holds.
+We have denoted the exhaustive test cases for SUT as $T^{*}$ and let $T^{*} \backslash T$ be the test cases that are in $T^{*}$ but not in $T$. It is obviously $\forall t \in T $, we can always find at least one schema which hit by t, i.e., $c \in \mathcal{I}(t)$, such that $c \not\in \mathcal{I}(T^{*} \backslash T)$. Specifically, at least the test case $t$ itself as schema holds.
 %as  $t \not\in T^{*} \backslash T$
 
 Then we collect all the satisfied schemas which only hit by the test cases in the test cases of $T$, which can be denoted as:
@@ -384,7 +384,7 @@ In fact by definition of $M(\mathcal{S}(T))$, for $\forall c'\in \mathcal{S}(T) 
 Hence, $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) = \bigcup_{c \in M(\mathcal{S}(T))} \mathcal{T}(c)$, and $M(\mathcal{S}(T))$ is the set of schemas that holds this proposition.
 \end{proof}
 
-For example, table \ref{example_minimal_schemas} lists the $\mathcal{S}(T)$ and minimal schemas $\mathcal{C}(T)$ for the set of test cases $T$. We can see that for any other schemas not in $\mathcal{C}(T)$, either can we find a test case not in $T$  hit the schema, e.g.,(0,0,-,-) with the test case (0,0,1,1) not in $T$, or is the parent schema of one of this two minimal schemas, e.g.,(0,0,0,0) the parent schema of both (0,0,0,-) and (0,0,-,0).
+For example, Table \ref{example_minimal_schemas} lists the $\mathcal{S}(T)$ and minimal schemas $\mathcal{C}(T)$ for the set of test cases $T$. We can see that for any other schema not in $\mathcal{C}(T)$, either we can find a test case not in $T$  hit the schema, e.g.,(0,0,-,-) with the test case (0,0,1,1) not in $T$, or that is the parent schema of one of the two minimal schemas, e.g.,(0,0,0,0) the parent schema of both (0,0,0,-) and (0,0,-,0).
 \begin{table}
 \centering
 \tbl{Example of the minimal schemas\label{example_minimal_schemas}}{
@@ -403,11 +403,11 @@ Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$ ,
 
 %And obviously for $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
 
-From the construction process of $\mathcal{C}(T)$, one observation is that the minimal schemas $\mathcal{C}(T)$ is the subset of the the schemas set $\mathcal{S}(T)$, i.e., $\mathcal{C}(T) \subset \mathcal{S}(T)$, and for any schema in $\mathcal{S}(T)$, it either belongs to $\mathcal{C}(T)$, or is the parent schema of one element of $\mathcal{C}(T)$.
+From the construction process of $\mathcal{C}(T)$, one observation is that the minimal schema set $\mathcal{C}(T)$ is the subset of the schema set $\mathcal{S}(T)$, i.e., $\mathcal{C}(T) \subset \mathcal{S}(T)$, and for any schema in $\mathcal{S}(T)$, it either belongs to $\mathcal{C}(T)$, or is the parent schema of one element of $\mathcal{C}(T)$.
 % Another obvious observation is that
-Then we can have the following proposition.
+Then, we can have the following proposition.
 \begin{proposition}
- For any test cases set $T$ and schema $c$, if any test case hit $c$ is in the set $T$, i.e., $\mathcal{T}(c) \subset T$, then it must be that $c \in \mathcal{S}(T) $.
+ For any test case set $T$ and schema $c$, if any test case hit $c$ is in the set $T$, i.e., $\mathcal{T}(c) \subset T$, then it must be that $c \in \mathcal{S}(T) $.
 \end{proposition}
 \begin{proof}
  We first have $ c \in \mathcal{C}(\mathcal{T}(c))$, this is obviously and in fact the minimal schemas for the test cases set $\mathcal{T}(c)$ only contain one schema, which is exactly $c$ itself.  As discussed previously we have $ \mathcal{C}(\mathcal{T}(c)) \subset \mathcal{S}(\mathcal{T}(c)) $, so it must be $c \in \mathcal{S}(\mathcal{T}(c))$.
@@ -426,7 +426,7 @@ Then we can have the following proposition.
 %Further observation,
 %
 %From this two observation, we can have the following lemma:
-For two different set of test cases, there exist some relationships between the minimal schemas of these two set, which varies in the relevancy between this two different set of test cases. In fact, there are three possible associations between two different set of test cases: \emph{inclusion}, \emph{disjoint}, and \emph{intersection} as listed in figure \ref{fig:testSuite}. We didn't list the condition that two set that are identical, because on that condition the minimal schemas must also be identical. To discuss the properties of the relationship of the minimal schemas between two different set of test cases is important as we can learn later the masking effects between multiple faults will make the MFS identifying process incorrectly works, i.e., these FCI approaches may isolate the minimal schemas for the set of test cases which are biased from the expected failing set of test cases. And these properties can help us to figure out the impact of masking effects on the FCI approaches. Next we will separately discuss the relationship between minimal schemas under the three conditions.
+For two different sets of test cases, there exist some relationships between the minimal schemas of these two sets that, varies in relevancy with respect to the two different sets of test cases. In fact, there are three possible associations between two different sets of test cases: \emph{inclusion}, \emph{disjointed}, and \emph{intersection}, as listed in Figure \ref{fig:testSuite}. We did not list the condition for two sets that are identical, because on that condition the minimal schemas must also be identical. To discuss the properties of the relationship of the minimal schemas between two different sets of test cases is important as we will learn later the masking effects between multiple faults will make the MFS identifying process work incorrectly, i.e., these FCI approaches may isolate the minimal schemas for the set of test cases which are biased from the expected failing set of test cases. And these properties can help us to figure out the impact of masking effects on the FCI approaches. Next, we will separately discuss the relationship between minimal schemas under the three conditions.
 
 \begin{figure*}[ht]
 \centering
@@ -445,27 +445,27 @@ For two different set of test cases, there exist some relationships between the 
     \label{fig:intersect}
     \includegraphics[width=1.81in]{testSuite3.eps}
 }
-\caption[]{Test Suites relationship}
+\caption[]{Test suite relationships}
 \label{fig:testSuite}
 \end{figure*}
 
 \subsection{Inclusion}
 
-It is the first relationship corresponding to Fig. \ref{fig:inclusion}. We can have the following proposition with two set of test cases which have the inclusion relationship.
+It is the first relationship corresponding to Fig. \ref{fig:inclusion}. We can have the following proposition with two sets of test cases which have the an inclusion relationship.
 %\newtheorem{lemma}{Lemma}
 \begin{proposition}
-For two set of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then we have
- \begin{displaymath} \forall c_{l} \in \mathcal{C}(T_{l})\,  either\ c_{l} \in \mathcal{C}(T_{k})\ or \exists c_{k} \in \mathcal{C}(T_{k}), s.t., c_{k} \prec c_{l}.
+For two sets of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then, we have
+ \begin{displaymath} \forall c_{l} \in \mathcal{C}(T_{l})\,\ either\ we\ have\ c_{l} \in \mathcal{C}(T_{k})\ or\ have\ \exists c_{k} \in \mathcal{C}(T_{k}), s.t., c_{k} \prec c_{l}.
  \end{displaymath}
 \end{proposition}
 
 \begin{proof}
-Obviously for $\forall c_{l} \in \mathcal{C}(T_{l}) $ we can get $\mathcal{T}(c_{l}) \subset T_{l} \subset T_{k}$. According to the proposition 3.7, we can have $c_{l} \in \mathcal{S}(T_{k})$. So this proposition holds as the schema in $\mathcal{S}(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
+Obviously for $\forall c_{l} \in \mathcal{C}(T_{l})$, we can get $\mathcal{T}(c_{l}) \subset T_{l} \subset T_{k}$. According to proposition 3.7, we can have $c_{l} \in \mathcal{S}(T_{k})$. So this proposition holds as the schema in $\mathcal{S}(T_{k})$ either is also in $\mathcal{C}(T_{k})$, or must be the parent of some schemas in $\mathcal{C}(T_{k})$.
 \end{proof}
 
-Based on this proposition, in fact, the schema $c_{k} \in \mathcal{C}(T_{k})$ remains the following three possible relationships with $\mathcal{C}(T_{l})$ : 1) $c_{k} \in \mathcal{C}(T_{l})$, or 2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or 3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
+Based on this proposition, in fact, the schema $c_{k} \in \mathcal{C}(T_{k})$ remains with the following three possible relationships with $\mathcal{C}(T_{l})$ : (1) $c_{k} \in \mathcal{C}(T_{l})$, or (2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or (3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, we call $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$
 
-We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, each part shows two set of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. For the left part, we can see that the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the parent of the schema of the one in $\mathcal{C}(T_{k})$:(0,-,-). While for the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
+We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, with each part showing two sets of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. For the left part, we can see that in the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the parent of the schema of the one in $\mathcal{C}(T_{k})$:(0,-,-). While for the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
 
 %in which the left part shows the case that the failure-inducing combinations satisfy the first properties( both (0,0,-) and (0,1,0) subsume (0,-,-)). While the right part give an example to the second properties, as (1,-,-) is irrelevant to any one of (0,0,-) and (0,1,0).
 
@@ -507,7 +507,7 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 %It is noted that as the
 
 \subsection{Disjoint}
-This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two different set of test cases, one obvious properties is listed as follows:
+This relationship corresponds to Figure.\ref{fig:disjoint}. For two different sets of test cases, one obvious property is listed as follows:
 \begin{proposition}
  For two test cases set $T_{1}$,$T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) = \emptyset$.
 \end{proposition}
@@ -515,10 +515,10 @@ This relationship is corresponding to the Fig.\ref{fig:disjoint}, For two differ
 If $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) \ne \emptyset$. Without loss of generality, we let $c \in \mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) $ we can learn that $\mathcal{T}(c)$ must both in $T_{1}$ and $T_{2}$, which is contradiction.
 \end{proof}
 
-This properties tells that the minimal schemas of two disjoint test cases should be irrelevant to each other, Table \ref{example_disjoint} list the example of this scenario, we can learn in this table that for two different test cases set $T_{l}$,$T_{k}$, their minimal schemas, i.e., (0, - , 0) and (1, 0, -),(1, -, 0) respectively, are irrelevant to each other.
+This property tells that the minimal schemas of two disjointed test cases should be irrelevant to each other. Table \ref{example_disjoint} shows an example of this scenario. We can learn from this table that for two different test case sets $T_{l}$,$T_{k}$, their minimal schemas, i.e., (0, - , 0) and (1, 0, -),(1, -, 0), respectively, are irrelevant to each other.
 \begin{table}
 \centering
-\tbl{Example of disjoint examples \label{example_disjoint}}{
+\tbl{Disjoint Example \label{example_disjoint}}{
   \begin{tabular}{cc}
 $T_{l}$&$T_{k}$ \\ \hline
 (0, 0, 0)&  (1, 0, 0)\\
@@ -533,27 +533,27 @@ $T_{l}$&$T_{k}$ \\ \hline
 %Sometimes they can be merged.
 
 \subsection{Intersect}
-This relationship is corresponding to the Fig.\ref{fig:intersect}. This scenario is the most common scenario for two set of test cases, but also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then we can have the following properties:
+This relationship corresponds to Figure.\ref{fig:intersect}. This scenario is the most common scenario for two sets of test cases, but is also the most complicated scenario for analysis. For convenience to illustrate the properties of the minimal schemas of this scenario, we assume that $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Fig.\ref{fig:intersect}. Then, we can have the following properties:
 %For two different set of test cases, one obvious properties is listed as follows:
 %Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
 
 %Let me discuss the combination of them.
 \begin{proposition}
- For two intersecting set of test cases $T_{1}$ and $T_{2}$ (this two set is neither identical nor subsuming each other), it must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
+ For two intersecting sets of test cases $T_{1}$ and $T_{2}$ (this two sets are neither identical nor do the members subsume each other), it must have $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
 \end{proposition}
 \begin{proof}
-Firstly, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
+First, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
 
-As $\mathcal{C}(T_{1} \backslash T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them, then if some of them are identical, i.e., $\exists c', s.t., c' \in \mathcal{C}(T_{1} \backslash T_{3})\ and\  c' \in \mathcal{C}(T_{1})$, then these schemas ${c'}$ must be irrelevant to $ \mathcal{C}(T_{2})$ as $(T_{1} \backslash T_{3}) \bigcap T_{2} = \emptyset$. This is also holds if $\mathcal{C}(T_{2} \backslash T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
+As $\mathcal{C}(T_{1} \backslash T_{3})$ is either identical to some schemas in $\mathcal{C}(T_{1})$ or be parent schemas of them, then if some of them are identical, i.e., $\exists c', s.t., c' \in \mathcal{C}(T_{1} \backslash T_{3})\ and\  c' \in \mathcal{C}(T_{1})$, then these schemas ${c'}$ must be irrelevant to $ \mathcal{C}(T_{2})$ as $(T_{1} \backslash T_{3}) \bigcap T_{2} = \emptyset$. This also holds if $\mathcal{C}(T_{2} \backslash T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
 
-Next, if both $\mathcal{C}(T_{1} \backslash T_{3})$  and $\mathcal{C}(T_{2} \backslash T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ respectively, without loss of generality, we let $c_{1} \prec c_{1-3}$, ($c_{1-3}\in\mathcal{C}(T_{1} \backslash T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2}\prec c_{2-3}$, ($c_{2-3}\in\mathcal{C}(T_{2} \backslash T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $,  so $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other, which also implies that $c_{1}$ and $c_{2}$ is irrelevant to each other.
+Next, if both $\mathcal{C}(T_{1} \backslash T_{3})$  and $\mathcal{C}(T_{2} \backslash T_{3})$ are parent schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, respectively, without loss of generality, we let $c_{1} \prec c_{1-3}$, ($c_{1-3}\in\mathcal{C}(T_{1} \backslash T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2}\prec c_{2-3}$, ($c_{2-3}\in\mathcal{C}(T_{2} \backslash T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then, these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $,  so $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsume each other, this also implies that $c_{1}$ and $c_{2}$ are irrelevant to each other.
 \end{proof}
 
-For example, Table \ref{example_intersect_irrelevant} shows two test cases interact each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0) respectively, are irrelevant to each other.
+For example, Table \ref{example_intersect_irrelevant} shows two test cases that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
 
 \begin{table}
 \centering
-\tbl{Example of Intersect by irrelevant examples \label{example_intersect_irrelevant}}{
+\tbl{Example of Intersection by irrelevant examples \label{example_intersect_irrelevant}}{
   \begin{tabular}{cc}
 $T_{1}$&$T_{2}$ \\ \hline
 (1, 0, 0) &  (1, 0, 0)\\
@@ -565,19 +565,19 @@ $T_{1}$&$T_{2}$ \\ \hline
   \end{table}
 
 \begin{proposition}
- For two intersecting set of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is identical to $c_{2}$, Then it must have $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
+ For two intersecting sets of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is identical to $c_{2}$, then it must have $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
 \end{proposition}
 \begin{proof}
-As we get that the identical schema must share the identical test cases, then the only identical test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
+As we see that identical schema must share identical test cases, then the only identical test case between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-We must know that this proposition holds when some schemas in $\mathcal{C}(T_{1} \bigcap T_{2})$ is identical some schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
+We must know that this proposition holds when some schemas in $\mathcal{C}(T_{1} \bigcap T_{2})$ are identical to some schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
 
-For example, Table \ref{example_intersect_identical} shows two test cases interact each other at test cases (1,1,0)and (1,1,1), and they have identical minimal schemas, i.e., (1,1,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
+For example, Table \ref{example_intersect_identical} shows two test cases that interact with each other at test cases (1,1,0) and (1,1,1), and they have identical minimal schema, i.e., (1,1,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
 
 \begin{table}
 \centering
-\tbl{Example of Intersect by identical examples \label{example_intersect_identical}}{
+\tbl{Example of Intersection by identical examples \label{example_intersect_identical}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
  (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
@@ -595,19 +595,19 @@ $T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
 %It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
 
 \begin{proposition}
- For two intersecting set of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if there we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is parent-schema of $c_{2}$, then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
+ For two intersecting sets of test cases $T_{1}$ and $T_{2}$, let $T_{3} = T_{1} \bigcap T_{2}$, if we can find $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, s.t., $c_{1}$ is the parent-schema of $c_{2}$, then it must have $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
 \end{proposition}
 \begin{proof}
-We have proved previously if two schemas have have subsumes relationship, then their test cases must also have inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $ T_{3} \subset  T_{1}  $  and $T_{3}\subset  T_{2}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
+We have proved previously if two schemas have have a subsuming relationship, then their test cases must also have an inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $ T_{3} \subset  T_{1}  $  and $T_{3}\subset  T_{2}$. So the parent schemas must be in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-It is noted that this proposition holds when holds when some schema in $\mathcal{C}(T_{3})$ is identical in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the parent-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
+It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the parent-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
-Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0),which is also the schemas in $\mathcal{C}(T_{3})$, is the parent schema of the minimal schema of $T_{2}$: (1,-,-).
+Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0),which are also the schemas in $\mathcal{C}(T_{3})$, is the parent schema of the minimal schema of $T_{2}$: (1,-,-).
 
 \begin{table}
 \centering
-\tbl{Example of Intersect by subsume examples \label{example_intersect_subsume}}{
+\tbl{Example of Intersect by subsuming examples \label{example_intersect_subsume}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
@@ -623,7 +623,7 @@ $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
   }
   \end{table}
 
- It is noted that this three condition can simultaneously appears when two set of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
+ It is noted that these three conditions can simultaneously appears when two sets of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
 
 %\begin{table}
 %\centering
@@ -648,19 +648,19 @@ $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
 
 \subsection{Identify the MFS}
-According to these analysis, we can get that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice especially when the testing space is too large.
+According to this analysis, we can determine that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice, especially when the testing space is very large.
 
-So for traditional FCI approaches, they need to select the subset of the exhaustive test cases, and then either take some assumption to make prediction of the remaining test cases or just give a suspicious rank. As giving a suspicious rank can also be regard as a special case of making prediction(with computing the possibility), so we next only formally describe the mechanism of FCI approaches belong to the first type.
+So for traditional FCI approaches, they need to select a subset of the exhaustive test cases, and then either use some assumptions to predict the remaining test cases or just give a suspicious ranking. As giving a suspicious ranking can also be regard as a special case of making a prediction (with computing the possibility), so we next only formally describe the mechanism of FCI approaches belonging to the first type.
 %Formally, we can describe the two ways as following:
-We refer the observed failing test case to  $T_{fail_{observed}}$, and refer the remaining test cases the approach predict to be failed as $T_{fail_{predicted}}$. We also denote the actually entire failing test cases as $T_{fail}$. Then the MFS identified by FCI approaches can be depicted as:
+We refer to the observed failing test case as  $T_{fail_{observed}}$, and refer to the remaining failed test cases based on prediction as $T_{fail_{predicted}}$. We also denote the actual entire failing test cases as $T_{fail}$. Then the MFS identified by FCI approaches can be depicted as:
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
-For each FCI approach, the way it predict the $T_{fail_{predicted}}$ according to observed failing test cases varies, further more, as the test cases it generates is different, the failing test cases observed by different test cases, i.e., $T_{fail_{observed}}$ also varies.  We take an example using OFOT approach to illustrate this formula.
+For each FCI approach, the way it predicts the $T_{fail_{predicted}}$ according to observed failed test cases varies; further more, as the test cases it generates are different, the failed test cases observed by different test cases, i.e., $T_{fail_{observed}}$ also varies.  We offer an example using the OFOT approach to illustrate this formula.
 
-Suppose SUT has 3 parameters, each can take 2 values. And assume the test case (1, 1, 1) failed. Then we can describe the FCI process as Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the \emph{t} one time to generate new test cases: $t_{1} ,t_{2},t_{3}$, It found the the $t_{1}$ passed, which indicates that this test case break the MFS in the original test case \emph{t}. So the (1,-,-) should be one failure-causing factor, and as other mutating process all failed, which means no other failure-inducing factors were broken, therefore, the MFS in \emph{t} is (1,-,-).
+Suppose that the SUT has 3 parameters, each of which can take 2 values. And assume the test case (1, 1, 1) failed. Then, we can describe the FCI process as shown in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the \emph{t} one time to generate new test cases: $t_{1}; t_{2}; t_{3}$, It found the $t_{1}$ passed, which indicates that this test case breaks the MFS in the original test case \emph{t}. So, the (1,-,-) should be one failure-causing factor, and as the other mutating processes all failed, this means no other failure-inducing factors were broken; therefore, the MFS in \emph{t} is (1,-,-).
 
-Now let us explain this process with our formal model. Obviously the $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as having found (0,-,-) broke the MFS, hence by theory\cite{nie2011minimal}, all the test cases contain (0,-,-) should pass the test cases (This conclusion is built on the assumption that SUT just contain one failure-causing schema).  As a result, {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails the testing(we label the skip the testing as a special case of failing), so the remaining test case(1,0,0), will be predicted as failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taking together, the MFS using OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
+Now let us explain this process with our formal model. Obviously the $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as having found (0,-,-) broke the MFS, hence by theory\cite{nie2011minimal}, all the test cases that contain (0,-,-) should pass the testing (This conclusion is built on the assumption that the SUT just contain one failure-causing schema).  As a result, {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails the testing (we label skipping the testing as a special case of failing), so the remaining test case(1,0,0), will be predicted to fail, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Taken together, the MFS using the OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one it got previously.
 
 \begin{table}[h]
 \tbl{OFOT with our strategy\label{ofot-identify}}{
@@ -690,13 +690,13 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 \label{fig:fci_process}
 \end{figure}
 
-Similarly, other FCI approaches can also be modeled into this formal description. We will not in detail discuss how to model each FCI approach as this is not the point of this paper. It is noted that the test cases FCI predict to be failing is not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches like Fig. \ref{fig:fci_process}.
+Similarly, other FCI approaches can also be modeled into this formal description. We will not discuss in detail how to model each FCI approach as this is not the point of this paper. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In fact, we can generally depict the process of FCI approaches as shown in Figure. \ref{fig:fci_process}.
 
-We can see in Fig. \ref{fig:fci_process}, area A denotes the test cases that should be passed test cases while it predicted to be failed ones, area B depicts the test cases that the approach observed to be failed test cases, area C refers to the failed test cases that doesn't to be observed but be predicted to be failed test cases and area D illustrates the failed test cases that neither to be observed nor to be predicted.  This figure is actually one sample of the condition that two set of test cases intersect with each other, in specific, area $A \bigcup B \bigcup C $= $T_{1}$, area $D \bigcup B \bigcup C $= $T_{2}$ and area$ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$.
+We can see in Figure. \ref{fig:fci_process} that area A denotes the test cases that should have passed testing but were predicted to be fail, area B depicts the test cases that the approach observed to be failed test cases, area C refers to the failed test cases that were not observed to be but were predicted to be failed test cases, and area D shows the failed test cases that are neither observed nor predicted.  This figure is actually one sample of the condition in which two sets of test cases intersect with each other; in specific, areas $A \bigcup B \bigcup C $= $T_{1}$,  $D \bigcup B \bigcup C $= $T_{2}$ and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$.
 
-We learned previously this scenario makes the schemas identified in $T_{1}$ biased from the expected MFS in $T_{2}$, in specific, their must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that FCI approach will identify some minimal schemas that is irrelevant to actual MFS, and must ignore some actual MFS. Moreover, under the appropriate condition list in proposition 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So in order to identify the schemas as accurate as possible, the FCI approach needs to make $T_{1}$ as similar as possible to $T_{2}$, specifically, makes area B and area C as large as possible, and make area A as small as possible.
+We learned previously that this scenario makes the schemas identified in $T_{1}$ biased from the expected MFS in $T_{2}$; specifically they must be irrelevant schemas between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in propositions 3.11 and 3.12, FCI may identify the identical schemas or parent-schema or sub-schema of the actual MFS. So to identify the schemas as accurately as possible, the FCI approach needs to make $T_{1}$ as similar as possible to $T_{2}$; specifically, it must make area B and area C as large as possible, and make area A as small as possible.
 
-However, even though each FCI approach tries its best to identify the MFS as accurate as possible, masking effects raised from test cases will make their efforts in vain. We next will discusses the masking problem and how it affect the FCI approaches.
+However, even though each FCI approach tries its best to identify the MFS as accurately as possible, masking effects raised from the test cases will result in their efforts being in vain. We next will discuss the masking problem and how it affects the FCI approaches.
 %Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
 %
 %\begin{proposition}
@@ -720,7 +720,7 @@ However, even though each FCI approach tries its best to identify the MFS as acc
 
 \section{Masking effect}
 \begin{definition}
-A \emph{masking effect} is the effect that while a test case \emph{t} hit a MFS for a particular fault, however, $t$ didn't trigger the expected fault because other fault was triggered ahead which prevents $t$ to be normally checked.
+A \emph{masking effect} is an effect that results when a test case \emph{t} hits an MFS for a particular fault, but the $t$ does not trigger the expected fault because another fault was triggered ahead of it that prevents $t$ from being normally checked.
 \end{definition}
 
 Taking the masking effects into account, when identifying the MFS for a specific fault, say, $F_{m}$, we should not ignore these test cases which should have triggered $F_{m}$ if they didn't trigger other faults. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS for fault $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$
@@ -730,14 +730,14 @@ As an example, in the motivation example in section 2, the $F_{mask(F_{Ex\ 2})}$
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
 In effect for traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  only two strategies can be adopted when facing the multiple faults problem. We will separately analyse the two strategies under exhaustive testing condition and normal FCI testing condition.
-\subsection{masking effects for exhaustive testing}
+\subsection{Masking effects for exhaustive testing}
 
-\subsubsection{Regard as one fault}
-The first one is the most common strategy, it doesn't distinguish the faults, i.e., regard all the types of faults as one fault--\emph{failure}, others as \emph{pass}.
+\subsubsection{Regarded as one fault}
+The first is the most common strategy, as it does not distinguish the faults, i.e., it treats all of the types of faults as one fault--\emph{failure}, and others as \emph{pass}.
 
-With this strategy, The minimal schemas we identify are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the actual MFS, or irrelevant to the actual MFS.
+With this strategy, the minimal schemas we identify are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition 3.8, some schemas we get may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
 
-As an example, consider the test cases in Table \ref{masking-effects-exhaustive}. In this example, assume we need to characterize the MFS for error \emph{1}, all the test cases that triggered error 1 is listed in the column \emph{$T_{1}$}, similarly, we list the test cases that triggered other fault in column \emph{$T_{mask(1)}$} and \emph{$T_{*}$} respectively, in which the former masked the error 1 while the latter not. Actually the MFS for error 1 should be (1,1,-,-) and (-,1,1,1) as we listed them in the column \emph{actual MFS for 1}. However, when we take \emph{regard as one fault} strategy, the minimal schemas we got will be (-,-,0,0), (1,1,-,-), (-,-,1,1), in which the (-,-,0,0) is irrelevant to the actual MFS for error 1 and the (-,-,1,1) is the sub-schema of the actual MFS (-,1,1,1).
+As an example, consider the test cases in Table \ref{masking-effects-exhaustive}. In this example, assume we need to characterize the MFS for error \emph{1}. All the test cases that triggered error 1 are listed in column \emph{$T_{1}$}; similarly, we list the test cases that triggered other faults in column \emph{$T_{mask(1)}$} and \emph{$T_{*}$}, respectively, in which the former masked the error 1, while the latter did not. Actually the MFS for error 1 should be (1,1,-,-) and (-,1,1,1) as we listed them in the column \emph{actual MFS for 1}. However, when we use the \emph{regard as one fault} strategy, the minimal schemas we get will be (-,-,0,0), (1,1,-,-), (-,-,1,1), in which the (-,-,0,0) is irrelevant to the actual MFS for error 1, and the (-,-,1,1) is the sub-schema of the actual MFS (-,1,1,1).
 
 \begin{table}
 \centering
@@ -758,17 +758,17 @@ $\mathcal{C}(T_{1}  \bigcup T_{mask(1)})$& $\mathcal{C}(T_{1}  \bigcup T_{mask(1
   }
   \end{table}
 
-\subsubsection{Distinguish faults}
-Distinguishing the faults by the exception traces or error code can help make the MFS related to particular fault. Yilmaz in  \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of \emph{ternary-class} approach to make the characterizing process more accurately. Besides, other approaches can also be easily extended with this strategy to be applied on SUT with multiple faults.
+\subsubsection{Distinguishing faults}
+Distinguishing the faults by the exception traces or error code can help make the MFS related to particular fault. Yilmaz \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of the \emph{ternary-class} approach to make the characterizing process more accurate. Besides, other approaches can also be easily extended with this strategy for testing SUT with multiple faults.
 %We call this strategy \emph{distinguish faults}.
 
-This strategy focus identifying the set of $\mathcal{C}(T_{F_{m}})$, and as $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, consequently, some schemas get through this strategy may be the parent-schema of some MFS. Moreover, some MFS may be irrelevant to the schemas get with this strategy, which means this strategy will ignore these MFS.
+This strategy focuses on identifying the set of $\mathcal{C}(T_{F_{m}})$, and as $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, consequently, some schemas that get through this strategy may be the parent-schema of some actual MFS. Moreover, some MFS may be irrelevant to the schemas we get with this strategy, which means this strategy will ignore these actual MFS.
 
-For the simple example in Table \ref{masking-effects-exhaustive}, when we using this strategy, we will get the minimal schemas (1, 1, -, 1) and (1, 1, 1, -), which are both the parent schemas of actual MFS (1,1,-,-), and we will observe that there is no schemas got by this strategy have any relationship with the actual MFS (-,1,1,1), which means it ignored the schema.
+For the simple example in Table \ref{masking-effects-exhaustive}, when we use this strategy, we will get the minimal schemas (1, 1, -, 1) and (1, 1, 1, -), which are both the parent schemas of the actual MFS (1,1,-,-), and we will observe that no schemas gotten by this strategy have any relationship with the actual MFS (-,1,1,1), which means it was ignored.
 
-It is noted that, motivation example in section 2 actually adopted this strategy, which made the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
+It is noted that the motivation example in section 2 actually adopted this strategy, so we see that the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
 
-\subsection{masking effects for FCI approaches}
+\subsection{Masking effects for FCI approaches}
 With masking effects, the scenario of traditional FCI approaches is a bit complicated than previous two exhaustive testing scenario, which can be depicted in the Figure \ref{fig:fci_mask}. In this figure,  area A, C and D is the same as Figure \ref{fig:fci_process},  area B is divided into three sub-areas, in which $B_{1}$ is still the observed failing test cases for the current analysed fault, area $B_{2}$ is the test cases triggered other fault which masked the current fault and area $B_{3}$ is the test cases triggered other fault which did not mask the current fault.
 
 \begin{figure}
@@ -778,7 +778,7 @@ With masking effects, the scenario of traditional FCI approaches is a bit compli
 \label{fig:fci_mask}
 \end{figure}
 
-With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. We next denote this result as \emph{knowing masking effects}. However, as we discussed before, to get this result is not possible without human involvement. Correspondingly, when taking \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$. Next, we will respectively discuss the influence of masking effects on the two strategies.
+With this model, if we have known which test cases mask the expect fault, i.e., figured out the B2 and B3, then the schemas that FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. We next denote this result as \emph{knowing masking effects}. However, as we discussed before, to get this result is not possible without human involvement. Correspondingly, when taking \emph{regard as one fault} strategy, the MFS traditional FCI identify are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for \emph{distinguish faults} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$. Next, we will respectively discuss the influence of masking effects on the two strategies.
 
 \subsubsection{Taking regard as one fault strategy}
 
