@@ -1104,7 +1104,7 @@ Suppose we have to test a system with eight parameters, each of which has three 
 
 From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2 1 1 1 0 0 0 0) (in this case, the fixed part of the test case is (- - - - 0 0 0 0), in which the last four factors are the same as the original test case $T_{0}$), we generate the related matrix at left. Each element in this matrix is computed as the $\frac{m(o)}{all(o) + 1}$; for example, for the $O7$ factor with value $0$, we can find two test cases that contain this element, i.e., $T_{0}$ and $T_{1}$, so the all(o) is 2. And only one test case triggers the fault $e2$, which means m(o) = 1. So the final related strength between this factor with $e2$ is $\frac{1}{2 + 1} = 0.33$. All the related strength with $e3$ is labeled with a short slash as there is no test case triggering this fault in this iteration.  After this matrix has been determined, we can obtain a optimal test case with the ILP solver, which is $T_{1}'$--(1 2 2 2 0 0 0 0), with its related strength 0.167, which is smaller than that of the others.
 
-This replacement process trigged each time a new test case that triggered another fault until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $T_{1}$ to $T_{1}'$.  When this happened, we needed to repeat searching the proper test case we desired.  For example, for $T_{4}$ which triggered $e3$, we tried three times-- $T_{4}', T_{4}'', T_{4}'''$ to finally get a satisfied one $T_{4}'''$ which passes the testing. It is noted that the matrix continues to change with the test case generated and executed so that we can adaptively find an optimal one in the current process.
+This replacement process trigged each time a new test case that triggered another fault until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $T_{1}$ to $T_{1}'$.  When this happened, we needed to repeat searching the proper test case we desired. For example, for $T_{4}$ which triggered $e3$, we tried three times-- $T_{4}', T_{4}'', T_{4}'''$ to finally get a satisfied one $T_{4}'''$ which passes the testing. Note that the matrix continues to change with the test case generated and executed so that we can adaptively find an optimal one in the current process.
 % as in this iteration we did not find the test case triggered .
 %
 %randomly generate three test cases as the candidate test cases, which are (2 1 0 0 0 0 0 0), (2 2 0 0 0 0 0 0), (1 2 0 0 0 0 0 0) respectively.  For one candidate test case in the set--(2 1 0 0 0 0 0 0), the \emph{strength} it is related to the $Err 2$ can be computed as
@@ -1167,9 +1167,9 @@ This replacement process trigged each time a new test case that triggered anothe
 
 
 \subsection{Complexity analysis}
-This complexity lay on two facts: the number of test cases triggered other faults which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effects test case. The complexity is the product of this two facts.
+This complexity relies on two facts: the number of test cases that triggered other faults which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effects test case. The complexity is the product of these two facts.
 
-The first fact is comparable to the extra test cases that needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} list the number of test cases that each algorithms that needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the number of factors of the MFS in the SUT. \emph{c} is an upper bond, satisfies, $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
+The first fact is comparable to the extra test cases that are needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} lists the number of test cases that each algorithm needed to get the MFS. In this table, \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the number of MFS factors in the SUT. \emph{c} is an upper bond, and satisfies $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values one parameter can take.
 
 \begin{table}
 \centering
@@ -1191,13 +1191,13 @@ TRT \cite{niu2013identifying}&  $O(d\times t \times log k + t^{d})$\\
   }
   \end{table}
 
-It must be noted that each algorithm may be limited to some restrictions to identify the result, details can be saw in \cite{zhang2011characterizing}.
+It must be noted that each algorithm may be limited to some restrictions to identify the result, details of which are shown in \cite{zhang2011characterizing}.
 
-To get the magnitude of the second fact, we need to figure out the possibility that a test case that could trigger other fault. The first thing we need to care is the \emph{fixed} part, as the additional generated test case should somehow contain this part. As we have mentioned before we can in fact generate $(v-1)^{k - p} $  (\emph{p} is the number of factors in the \emph{fixed} part)possible test cases that contain the \emph{fixed} part. Apart from the one that need to be replaced, there remain $(v-1)^{k - p}- 1$, which indicates the complexity is $O((v-1)^{k - p} - 1)$. However, to avoid the exponential computational complexity, we in this algorithm use a method $MeetEndCriteria()$ (line 1) function to end the algorithm when the trying times is over a prior given constant, say $N$, so the final complexity for the second part is $O( min (N, (v-1)^{k - p} - 1))$.
+To get the magnitude of the second fact, we need to figure out the possibility of a test case that could trigger other fault. The first thing we need to consider is the \emph{fixed} part, as the additional generated test case should somehow contain this part. As we have mentioned before, we can generate $(v-1)^{k - p} $  (\emph{p} is the number of factors in the \emph{fixed} part) possible test cases that contain the \emph{fixed} part. Apart from the one that needs to be replaced, there remain $(v-1)^{k - p}- 1$ candidate test cases, which indicates the complexity is $O((v-1)^{k - p} - 1)$. However, to avoid the exponential computational complexity, in this algorithm we use the method $MeetEndCriteria()$ (line 1) function to end the algorithm when the trying times is over a prior given constant, say $N$, so the final complexity for the second part is $O( min (N, (v-1)^{k - p} - 1))$.
 %
 %While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
 
-It is noted that exponential factor $k - p$ directly affects the complexity of the second factor, the more $p$ is, the less test cases could be generated. For different approach, $p$ is different. As for OFOT, $p$ is a fixed number, which is $k - 1$, it is the minimal number of the test cases we need to give. While for FIC\_BS, the $p$ varies in the test cases it generates, ranges from $k-1$ to $1$. While for non-adaptive, as the $fixed $ part is the coverage, we list them as $t$. We list them all in Table \ref{fixed-part-complexisty}. It is noted that the $Martinez without safe values$ have no such complexity, this is because this approach works when $v = 2$, and this will result in that we will not have other test cases to be replaced if we test a fixed part when trigger other faults.
+We note that exponential factor $k - p$ directly affects the complexity of the second factor. The greater $p$ is, the less test cases that can be generated. For a different approach, $p$ is different. For example, for the OFOT approach, $p$ is a fixed number, which is $k - 1$.  And for the FIC\_BS approach, the $p$ varies in the test cases it generates, ranging from $k-1$ to $1$. While for the non-adaptive approaches, as the $fixed $ part is the coverage degree, we list them as $t$. We have listed all of them in Table \ref{fixed-part-complexisty}. It is noted that the $Martinez without safe values$ has no such complexity, because this approach works when $v = 2$, and this results in not having other test cases to be replaced if we test a fixed part when triggering other faults.
 
 \begin{table}
 \centering
@@ -1225,7 +1225,7 @@ TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k 
 
 
 \section{empirical studies}
-To investigate the impact of masking effects for FCI approaches in real software testing scenario and to evaluate the performance that how well our approach handle this effect, we conduct several empirical studies in this section. Each one of the studies focus on addressing one particular problem, which are listed as following:
+To investigate the impact of masking effects for FCI approaches in real software testing scenarios and to evaluate the performance that how well our approach handles this effect, we conducted several empirical studies which we discuss in this section. Each of the studies focuses on addressing one particular issue, as follows:
 
 %, the first study survey several real opens-source software to figure out the existence and the characteristics of masking effects in practice, the second study aims to comparing the performance between our augment approach with traditional ones. The third study focus on evaluating the efficiency of the searching technique in our strategy, i.e., the method to find a test case that satisfied our requirement.  The last study aims at comparing the performance of our augment approach with existed masking effects handling approach -- FDA-CIT \cite{yilmaz2013reducing}.
 
@@ -1234,13 +1234,13 @@ To investigate the impact of masking effects for FCI approaches in real software
 % to figure out the test cases.
 
 %In this section, we conducted several empirical studies to address the following questions:
-\textbf{Q1}: Do masking effects exist in real software when it contain multiple faults?
+\textbf{Q1}: Do masking effects exist in real software that contains multiple faults?
 
-\textbf{Q2}: How much do our approach performs compared with traditional approaches?
+\textbf{Q2}: How well does our approach perform compared to traditional approaches?
 
-\textbf{Q3}: Is the ILP based test case searching technique efficient compared with randomly selecting?
+\textbf{Q3}: Is the ILP-based test case searching technique efficient compared to random selection?
 
-\textbf{Q4}: Comparing with existed masking effects handling work -- FDA-CIT \cite{yilmaz2013reducing}, do our new approach have any advantages ?
+\textbf{Q4}: Compared to another masking effects handling approach -- the FDA-CIT \cite{yilmaz2013reducing}, does our new approach have any advantages ?
 %et improvement in handling effects and limiting the costs(reducing extra test cases).
 
 %\textbf{Q5}: Does voting system that consists of different approaches can make improvements?
@@ -1248,8 +1248,8 @@ To investigate the impact of masking effects for FCI approaches in real software
 %Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
 \subsection{The existence and characteristics of masking effects}
-In the first study, we surveyed two open-source software to gain an insight on the existence of multiple faults and their effects. The software under study are: HSQLDB and JFlex, the first is a database management software written in pure java and the second is a lexical analyser generator. Each of them contain different versions. All the two subjects are highly configurable so that the options and their combination can influence their behaviour. Additionally, they all have developers' community so that we can easily get the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code, number of classes in the project and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
-http://sourceforge.net/p/jflex/bugs  }of each software we studied.
+In the first study, we surveyed two kinds of open-source software to gain an insight into the existence of multiple faults and their effects. The software under study were: HSQLDB and JFlex. The first is database management software written in pure Java and the second is a lexical analyser generator. Each contains different versions and are all highly configurable so that the options and their combinations can affect their behaviour. Additionally, they all have a developers' community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the number of versions we surveyed, number of lines of uncommented code, number of classes in the project, and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
+http://sourceforge.net/p/jflex/bugs  }for each of the software we studied.
 
 %\begin{table}\renewcommand{\arraystretch}{1.3}
 %\caption{Software under survey}
@@ -1290,11 +1290,11 @@ JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
 % \footnote{http://sourceforge.net/projects/hsqldb/files/hsqldb/ }
 
 \subsubsection{Study setup}
-We first looked through the bug tracker forum of each software and focus on the bugs which are caused by the options combination. For each such bug, we will derive its MFS by analysing the bug description report and its attached test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing combinations for this bug is: (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}), this three factors together form the condition on which the bug will be triggered. These analysed results will be regarded as the ``prior MFS" later.
+We first looked through the bug tracker forum of each software and focused on the bugs which are caused by the options combination. For each such bug, we will derive its MFS by analysing the bug description report and the attached test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing combination for this bug is: (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}). These three factors together form the condition that triggers the bug. The analysed results will be later regarded as the ``prior MFS".
 
-We further built the testing scenario for each version of the software listed in Table \ref{software description}.The testing scenario is properly constructed so that we can reproduce different faults through controlling the inputs to that test file. For each particular version of the software, the source code of the testing file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
+We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is properly constructed so that we can reproduce different faults by controlling the inputs to the test file. For each version of the software, the source code of the testing file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
 
-Next we built the input model which consist of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options as well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose data type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software, the input model is presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software have 9 parameters that can take 2 value, 2 parameters can take 3 values and only one factor can take 4 values.
+Next, we built the input model which consists of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Tables \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex, respectively. Each table is organised into four groups: (1)``common options", which lists the options as well as their values under which every version of this software can be tested; (2)``common Boolean options", which lists additional common options whose data type is Boolean; (3)``specific options", under which only the specific version of that software can be tested; and (4)``configure space", which depicts the input model for each version of the software, the input model is presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters can take 3 values, and only one factor that can take 4 values.
 
 \begin{table}[h]
 \tbl{Input model of HSQLDB\label{modelHSQLDB}}{
@@ -1308,7 +1308,7 @@ Next we built the input model which consist of the options related to the failur
   \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ hold, close} \\
   \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{statement, prepared}  \\
     \hline
-   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
     \hline
     \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
       \hline
@@ -1361,7 +1361,7 @@ Next we built the input model which consist of the options related to the failur
 }
 \end{table}
 
-We then generated the exhaustive test suite consist of all the possible combinations of these options and under each of them we executed the prepared testing file. We recorded the output of each test case to observe whether there are test cases contain prior MFS but do not produce the corresponding bug.
+We then generated the exhaustive test suite consisting of all possible combinations of these options, and under each of them, we executed the prepared testing file. We recorded the output of each test case to observe whether there were test cases containing prior MFS that did not produce the corresponding bug.
 
 %Then we collected the bugs that belong to one same version. It is naturally that the more bugs we collect for one version, the masking effects will more likely to be triggered in that software of the particluar version. Table \ref{statitstics_of_bugs} lists the result we collected. This table in turns provides the software name, the particular version and the number of bugs we have found in the bug tracker. The last column presents the number of pairs of bugs that can conflict with each other, i.e., these pairs of bugs cannot appear in one test case, such that they cannot mask each other.
 %
@@ -1387,9 +1387,9 @@ We then generated the exhaustive test suite consist of all the possible combinat
 %1.possible situation, the 1 version, and the faults that are found in this version, and the possible faults can be .
 %
 
-\subsubsection{Result and discussion}
+\subsubsection{Results and discussion}
 
-Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" give the total number of test cases we executed , Column ``failure" indicate the number of test cases that failed during testing and Column ``masking" indicate the number of test cases which trigger the masking effect.
+Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" give the total number of test cases we executed.  Column ``failure" indicate the number of test cases that failed during testing, and column ``masking" indicates the number of test cases which triggered the masking effect.
 
 
 %[!ht]
@@ -1406,9 +1406,9 @@ JFlex & 1.4.1 & 36864 & 24576 &6144\\ \hline
 }
 \end{table}
 
-We observed that for each version of the software under analysis we listed in the Table \ref{masking effect condition}, the test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In effect, there is about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\% respectively for the remaining software versions, which is not trivial.
+We observed that for each version of the software under analysis that we listed in the Table \ref{masking effect condition}, test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In effect, there are about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, and 16.7\%, respectively, for the remaining software versions, which is not trivial.
 
-So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults, the masking effects do exist widely in the test cases.
+So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults, masking effects do exist widely in the test cases.
 
 %All of these bug can be rebuilt by following the steps reported in the bug tracker. For example, Bug-\#29537 indicate that Grep incorrectly match unicode patterns with \textbackslash<\textbackslash>  and Bug-\#33080 claim that combination of --count (-c) and --only-matching (-o) will not work as expected. A simple test case liked the following command:
 %
@@ -1416,8 +1416,8 @@ So the answer to \textbf{Q1} is that in practice, when SUT have multiple faults,
 %
 %can make these two bugs existed in one test case and only one fault will be observed. Other faults listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
 
-\subsection{Compare our approach with traditional algorithms}
-In the second study, our aim is to compare the performance of identifying the MFS under the impact of masking effects between our approach with traditional ones. To conduct this study, we need to respectively apply the our approach and traditional algorithms on identifying MFS in a group of software and evaluate their identifying results. The five prepared versions of software in Table \ref{software description} as testing subjects is far from a general evaluation subjects, however, to construct such real testing scenarios is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report.  So in order to give a desirable result based on more testing subjects, we then synthesize a bunch of such testing scenarios of which the characterization such as the number of factors, the number of faults and the possible masking effects are similar to the real software. In detail, we set the number of parameters  \emph{k} of the SUT ranged from 8 ~ 30. We limit the scale of the SUT to a relatively small size because we need to exhaustive execute each possible test case of the SUT to select the failing test cases and then fed them to the FCI approach.  We then randomly choose 10 such SUTs and for each SUT we inject 2 ~ 5 different MFS into it, which can mask each other. The degree of the MFS we injected are ranged from 1 to 6.
+\subsection{Comparing our approach to traditional algorithms}
+In the second study, our aim was to compare the performance of our approach to traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we needed to apply the our approach and traditional algorithms to identify MFS in a group of software and evaluate their identifying results. The five prepared versions of software in Table \ref{software description} used as test objects are far from a general evaluation of such objects. However, to construct such real testing scenarios is time-consuming as we must carefully study the tutorial of that software as well as the bug tracker report.  So to give a desirable result based on more testing objects, we then synthesize a number of such testing scenarios of which the characterizations, such as the number of factors, the number of faults, and the possible masking effects, are similar to that of the real software. In detail, we set the number of parameters  \emph{k} of the SUT to a range from 8 ~ 30. We limited the scale of the SUT to a relatively small size because we needed to exhaustively execute each possible test case of the SUT to select the failing test cases  which we then fed  into the FCI approach.  We then randomly choose 10 such SUTs, and for each SUT we injected 2 to 5 different MFS that can mask each other. The degree of the MFS we injected ranged from 1 to 6.
 % Additionally, we randomly set the level of each fault in such a SUT, i.e., for any two faults, which one has a higher level(such that can mask another one)is also by random.
 
 %it is not enough.and compare them with the prior failure-inducing combinations.
@@ -1428,10 +1428,10 @@ In the second study, our aim is to compare the performance of identifying the MF
 
 %To construct such real testing scenario is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report.
 
-Above all, Table \ref{testing_models} lists the testing model of both the real and synthesizing testing scenario. In this table, the column `software' indicate the SUT under test, for the real SUT, we label it with the form ` \emph{name} + \emph{version}', while for the synthesizing ones, we label them as `\emph{synthez}+ \emph{id}'. The column `Model' presents the model of the input space for that software. Last column shows the MFS as well as their masking sequence for each testing subject. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}$, e.g.,  $(5_{1},6_{0},7_{0})$ actually means (- - - - - 1, 0, 0, -, -, -, - ) for HSQLDB of version '2cr8'. It is noted that we using '>' and '=' to desribe the masking sequence of each MFS, in which '>' means the left MFS in this operator can mask the right MFS of this operator, e.g., $(5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2})$ means if $(5_{1},6_{0},7_{0})$ appears in the test case, then $(5_{1},8_{2},9_{2})$ will not be triggered. Operator '=' means that this two MFS will not mask each other.
+Above all, Table \ref{testing_models} lists the testing model for both the real and synthesizing testing scenario. In this table, the column `software' indicates the SUT under test. For the real SUT, we label it with the form ` \emph{name} + \emph{version}', while for the synthesizing ones, we label them as `\emph{synthez}+ \emph{id}'. The column `Model' presents the model of the input space for that software. The last column shows the MFS as well as the masking sequence for each testing object. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}$, e.g.,  $(5_{1},6_{0},7_{0})$ actually means (- - - - - 1, 0, 0, -, -, -, - ) for HSQLDB of version '2cr8'. It is noted that we use '$\rightarrow$' and '=' to describe the masking sequence of each MFS, in which '$\rightarrow$' means the left MFS in this operator can mask the right MFS of this operator, e.g., $(5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2})$ means if $(5_{1},6_{0},7_{0})$ appears in the test case, then $(5_{1},8_{2},9_{2})$ will not be triggered. Operator '=' means that these two MFS will not mask each other.
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
-\tbl{The testing models of the case study\label{testing_models}}{
+\tbl{The testing models used in the case study\label{testing_models}}{
 \begin{tabular}{c|c|c} \hline
 software & Model & MFS\&  masking sequence \\ \hline
 HSQLDB 2cr8 & $2^{9} \times 3^{2} \times 4^{1}$ & $ (5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2}) = (5_{1},8_{2},9_{1}) \rightarrow (5_{1},8_{3},9_{2}) = (5_{1},8_{3},9_{1})$ \\ \hline
@@ -1479,7 +1479,7 @@ synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ (0_{1},3_{0},4_{1},7_{0}) \ri
 
 
 \subsubsection{Study setup}
-After preparing the subjects under testing, we then apply our approach (augment the FIC\_BS with replacing strategy) on identifying the MFS of each SUT listed in Table \ref{testing_models}. In specific, for each SUT we select each test case that failing during testing and feed them to our FCI approach as the input, then after the identifying process is over, we record the MFS it got (refer as \emph{identified MFS} for convenience) and the extra test cases it needed. For traditional FIC\_BS approach we design the same experiment as our approach, but as the subject under test has multiple faults for which the traditional FIC\_BS can not directly applied on, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one fault} and \emph{distinguishing faults} described in Section 3.2.  The purpose of recording the generated additional test cases is to later quantify the additive cost of our approach.
+After preparing the subjects under testing, we then apply our approach (augment the FIC\_BS with replacing strategy) to identify the MFS of each SUT listed in Table \ref{testing_models}. Specificcally, for each SUT we select each test case that failed during testing and feed these into our FCI approach as the input. Then, after the identifying process is over, we record the MFS each got (referred to as \emph{identified MFS}, for convenience) and the extra test cases it needed. For the traditional FIC\_BS approach, we designed the same experiment as hat used for our approach, but as the objects being tested have multiple faults for which the traditional FIC\_BS can not be applied directly, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one fault} and \emph{distinguishing faults} described in Section 3.2.  The purpose of recording the generated additional test cases is to later quantify the additive cost of our approach.
 
 %three traditional approaches: OFOT\cite{nie2011minimal}, FIC\_BS \cite{zhang2011characterizing} and CTA\cite{yilmaz2006covering} to identify the MFS in each failing test case we have detected after executing the possible test cases for that model. Among the three approaches, CTA is a integrated failure characterization part of FDA-CIT\cite{yilmaz2013reducing}. As CTA is a post-analysis technique applied on given test cases, different test cases will influence the result of characterization process. So to avoid randomness and to be fair, we fed the CTA with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. %, the configuration options for J48, is .
 
@@ -1493,7 +1493,7 @@ After preparing the subjects under testing, we then apply our approach (augment 
 %For CTA, our setup is as follows:
 %
 %We first utilize augment simulating algorithms(ASA) to generate 2-way covering arrays. And for each test case in the covering array, the executing result of them can be fetched from the exhaustive set we have got in the first study. Then we fed CTA approach with the covering array along with the corresponding executing results. We then collected the failure-inducing combinations after running CTA. As different covering array may affect the result of CTA approach, we repeated using ASA to generate 2-way covering array for 30 times and applied CTA for each of them. It is noted that ASA algorithm is a heuristic approach, which containing some random factors, so the 30 covering arrays are different from each other.
-We next compared the identified MFS of each approach with the prior MFS to quantify the degree that each suffers from masking effect, such that we can figure out how much our approaches performs better than traditional ones when the SUT contain potential masking effects. There are five metrics we need to care in this study, which are listed as follows:
+We next compared the identified MFS of each approach with the prior MFS to quantify the degree that each suffers from masking effects, such that we can figure out how much our approach performs better than traditional ones when the SUT contains potential masking effects. There are five metrics we need to calculate in this study, which are as follows:
  \begin{enumerate}
  \item The number of the common combinations appeared in both identified MFS and prior MFS. We denote it as \emph{accurate number} later.
  \item The number of the identified combinations which is the parent combinations of some prior failure-inducing combinations. We refer it to \emph{parent number}.
