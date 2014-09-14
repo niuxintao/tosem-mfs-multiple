@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  12 SEP 2014 14:06
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  15 SEP 2014 02:46
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -378,20 +378,22 @@ LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
-[3]
+Underfull \vbox (badness 1701) has occurred while \output is active []
+
+ [3]
 Requested font "cmtt10" at 10.0pt
  -> cmtt10
- [4] [5]
+
+[4] [5] [6]
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
- [6] [7]
+ [7] [8]
 File: testSuite1.eps Graphic file (type eps)
  <testSuite1.eps>
 File: testSuite2.eps Graphic file (type eps)
  <testSuite2.eps>
 File: testSuite3.eps Graphic file (type eps)
- <testSuite3.eps> [8]
-[9]
+ <testSuite3.eps> [9]
 Underfull \hbox (badness 2547) in paragraph at lines 512--513
 [] \OT1/pnc/m/it/10 For t-wo test cas-es set $\OML/cmm/m/it/10 T[]$\OT1/pnc/m/i
 t/10 ,$\OML/cmm/m/it/10 T[]$\OT1/pnc/m/it/10 , if $\OML/cmm/m/it/10 T[] [] T[] 
@@ -437,11 +439,11 @@ File: fci-mask-influence2.eps Graphic file (type eps)
 <fci-mask-influence2.eps> [16]
 File: fci-mask-influence.eps Graphic file (type eps)
  <fci-mask-influence.eps>
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [17]
 [18]
-Underfull \vbox (badness 1609) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [19]
 [20]
@@ -544,6 +546,6 @@ Here is how much of TeX's memory you used:
  6569 multiletter control sequences out of 15000+200000
  22552 words of font info for 68 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,18n,30p,2036b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,18n,30p,1950b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on v2-acmsmall-sample.pdf (39 pages).
