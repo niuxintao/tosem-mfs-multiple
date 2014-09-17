@@ -20,6 +20,7 @@
 \usepackage{subfigure}
 \usepackage[normalem]{ulem}
 \usepackage{longtable}
+%\usepackage{multirow}
 
 \renewcommand{\algorithmcfname}{ALGORITHM}
 \SetAlFnt{\small}
@@ -769,7 +770,7 @@ For the simple example in Table \ref{masking-effects-exhaustive}, when we use th
 It is noted that the motivation example in section 2 actually adopted this strategy, so we see that the schemas identified for Ex 2: (-,2,4,5), (-,3,4,5) are the parent-schemas of the correct MFS(-,-,4,5).
 
 \subsection{Masking effects for FCI approaches}
-With masking effects, the scenario of traditional FCI approaches is a bit more complicated than the previous two exhaustive testing scenarios, and is depicted in the Figure \ref{fig:fci_mask}. In this figure,  areas A, C and D are the same as in Figure \ref{fig:fci_process}, and area B is divided into three sub-areas in which $B_{1}$ still represents the observed failed test cases for the current analysed fault, area $B_{2}$ represents the test cases that triggered other faults which masked the current fault, and area $B_{3}$ represents the test cases that triggered other faults which did not mask the current fault.
+With masking effects, the scenario of traditional FCI approaches is a bit more complicated than the previous two exhaustive testing scenarios, and is depicted in the Figure \ref{fig:fci_mask}. In this figure,  areas A, C and D are the same as in Figure \ref{fig:fci_process}, and area B is divided into three sub-areas in which $B_{1}$ still represents the observed failed test cases for the current analysed fault, area $B_{2}$ represents the test cases that triggered other faults which masked the current fault, and area $B_{3}$ represents the test cases that triggered other faults which did not mask the current fault. It can be found that the actual MFS set for the SUT is $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
 
 \begin{figure}
 \centering
@@ -782,26 +783,56 @@ With this model, if we know which test cases mask the expected fault, i.e., if w
 
 \subsubsection{Using the regarded as one fault strategy}
 
-For the first strategy: \emph{regarded as one fault}, the impact of masking effects on FCI approaches can be described as shown in Figure \ref{fig:fci_mask_regard}. To understand the content of this figure, let us go back to the relationship between the minimal schemas of two different sets of test cases. For the \emph{knowing masking effects} condition, the result identified by the FCI approach, i.e., $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, is one case of the \emph{intersect} scenario. It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, and irrelevant to the actual MFS. And if we apply the \emph{regarded as one fault}, the minimal schemas we get are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, we have $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema gotten by this strategy is either the sub-schema or identical to some schemas from the ones gotten by \emph{known masking effects}, or exist some schemas irrelevant to all of them. Taking these two properties together, we will get what is shown in Figure \ref{fig:fci_mask_regard}.
+For the first strategy: \emph{regarded as one fault}, the impact of masking effects on FCI approaches can be described as shown in Table \ref{fci_mask_regard}. To understand the content of this table, let us go back to the relationship between the minimal schemas of two different sets of test cases. For the \emph{knowing masking effects} condition, the test cases that are used for identifying the MFS, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas get in this condition can be identical, parent-schema, sub-schema, and irrelevant to the actual MFS. And if we apply the \emph{regarded as one fault}, the minimal schemas we get are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, we have $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema gotten by this strategy is either the sub-schema or identical to some schemas from the ones gotten by \emph{known masking effects}, or alternatively, existing some schemas that are irrelevant to all of them. Taking these two properties together, we will get what is shown in Table \ref{fci_mask_regard}.
 
-\begin{figure}
-\centering
-\includegraphics[width=4.31in]{fci-mask-influence2.eps}
-\caption{Masking effects influence on FCI with regarded as one fault}
-\label{fig:fci_mask_regard}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=4.31in]{fci-mask-influence2.eps}
+%\caption{Masking effects influence on FCI with regarded as one fault}
+%\label{fig:fci_mask_regard}
+%\end{figure}
 
-The ellipses in the left column of this figure illustrate the relationship between the schemas identified under the \emph{knowing masking effects} condition with the actual MFS, which includes the four possibilities: identical, sub-schema, parent-schema and irrelevant. For each relationship in this part, without of loss of generality, we consider $c_{origin}$ and $c_{m}$. $c_{origin}$ is the minima schema gotten by \emph{knowing masking effects}, and $c_{m}$ is the actual MFS. Then, when we apply the \emph{regarded as one fault} strategy, we may get some schemas which are identical or sub-schema of $c_{origin}$, say $c_{new}$ s.t., $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$. In this figure, we use the directed line to represent these two transformations with different labels in each line. As for the schemas $c_{new}$ that are irrelevant to all the $c_{origin}$, we in the bottom of this figure use a rhombus labeled "Irrelevant" to represent them. Then, we must have some relationship between the $c_{new}$ and actual MFS, which also has four possibilities represented as rectangles in the right column.
+\begin{table}[h]
+\tbl{Masking effects influence on FCI with regarded as one fault strategy
+\label{fci_mask_regard}}{
+\begin{tabular}{|lll|}
+\hline
+1  & If  $ c_{m} = c_{origin}$ \  and\   $c_{new} = c_{origin}  $                                & Then, $ \exists c_{m}',s.t.,c_{new} = c_{m}'  $             \\
+2  &  If  $ c_{m} = c_{origin}$   and\   $c_{new} \prec c_{origin} $       & Then,  $\exists c_{m}',s.t.,c_{new} \prec c_{m}'  $              \\
+3  & If $c_{m} \prec c_{origin}$\ and\  $c_{new} = c_{origin}  $                 & Then, $\exists c_{m}',s.t.,c_{m}' \prec c_{new} $               \\
+4a & If $c_{m} \prec c_{origin}$\  and\ $c_{new} \prec c_{origin}$                 & Then either,$c_{m}',s.t.,c_{new} \prec c_{m}' $        \\
+4b &                                                                     & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
+5  & If $c_{origin} \prec c_{m}$\ and\ $c_{new} = c_{origin}  $          & Then, $\exists c_{m}',s.t.,c_{new} \prec c_{m}' $               \\
+6  & If $c_{origin} \prec c_{m}$\  and\ $c_{new} \prec c_{origin} $      & Then, $\exists  c_{m}',s.t.,c_{new} \prec c_{m}'  $              \\ %\hline
+7  & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} = c_{origin} $                  & Then, $ c_{new}\ irrelevant\ to\ all\ c_{m}'$ \\
+8a & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} \prec c_{origin}$     & Then either,$\exists c_{m}',s.t.,c_{new} \prec c_{m}'$         \\
+8b &                                                                                      & Or,$c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
+9a &            If $c_{new}\ irrelevant\ to\ all\ c_{origin}$ & Then either,$\exists c_{m}',s.t.,c_{new} \prec c_{m}' $        \\
+9b &                                                             & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}' $  \\ \hline
+\end{tabular}}
+\end{table}
 
-Note that there exist two types of directed line -- solid line and dashed line, in which the former indicates that this transformation is deterministic, e.g., if $c_{origin} \prec c_{m}$ and $c_{new} \prec c_{origin}$, then we must have $c_{new} \prec c_{m}$.  The latter type means the transformation is just one of all the possibilities in such condition, e.g., if $c_{origin}\ irrelevant\ c_{m}$ and $c_{new} \prec c_{origin}$, then we can have either $\exists c_{m'}\ is\ one\ actual\ MFS, s.t. c_{new} \prec c_{m}$ or $c_{new}\ irrelevant \ to\ all\ actual\ MFS$. (We will later give illustrative examples.)
+There are totally 9 rules for this strategy, which are labeled from 1 to 9 respectively. In these rules, $c_{m}$ and $c_{m}'$ are the actual MFSs, i.e., $c_{m}, c_{m}' \in C(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$. $c_{origin}$ is the minima schema that are gotten by \emph{knowing masking effects} strategy, i.e., $c_{origin} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. $c_{new}$ is the schema that are gotten by \emph{regarded as one fault} strategy, i.e., $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. $c_{new}$ satisfies that $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$.  Each rule in Table \ref{fci_mask_regard}  describes one possible relationship between the schemas gotten by strategy \emph{regarded as one fault} and the actual MFS. For example,
+rule 2, i.e., $If\ c_{m} = c_{origin}\ and\ c_{new} \prec c_{origin}, then\ \exists c_{m}', s.t., c_{new} \prec c_{m}'$, indicates that the schema $c_{new}$ that is gotten by \emph{regarded as one fault} strategy will be the subschema of some actual MFS, if it is the subschema of the schema $c_{origin}$ that is gotten by strategy \emph{knowing masking effects}, and $c_{origin}$ is identical to some actual MFS. Some rules may result in that there are more than one possible relationship between the $c_{new}$ and the actual MFS. For example, rule 4 can make $c_{new}$ either be the subschema of the actual MFS or be irrelevant to all the actual MFS. In this case, we divide the rule into several sub-rules. As for rule 4 we divide this rule into two sub-rules: 4a and 4b, each of which represents one possibility relationship between the $c_{new}$ and the actual MFS $c_{m}'$.
 
-In this figure, only two transformations can make $\exists c_{m'}\ is\ one\ actual\ MFS, s.t.$ $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{origin} $ or $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, according to proposition 3.11 and 3.12, it must have $\mathcal{T}(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we get $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in \mathcal{T}(c_{new})$, otherwise, there should be no changing to the $c_{origin}$, and it must have no new schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $\mathcal{T}(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if we have $c_{new} \prec c_{origin}$, to make e $c_{new} = c_{m'}$ or $c_{m'} \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$, correspondingly.
+In these rules, only two can make $\exists c_{m}', s.t.$ $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, which are rules 1 and 3 respectively. This can be easily understood, as to make  $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, according to proposition 3.11 and 3.12, it must have $\mathcal{T}(c_{new}) \subset (B_{1} \bigcup B_{2})$. Assume we get $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in \mathcal{T}(c_{new})$, otherwise, there should be no schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $\mathcal{T}(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if we have $c_{new} \prec c_{origin}$. So to make $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, the schema $c_{new}$ must be identical to $c_{origin}$, i.e., $c_{new} = c_{origin}$ and there must be $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$, correspondingly. Apart from these two rules, the remaining rules indicate that either $c_{new} \prec c_{m}'$ or $c_{new}\ is\ irrelevant\ to\ all\ the\ actual\ MFS$, which implies the schemas that are gotten by strategy \emph{regarded as one fault} tends to be more subschemas or irrelevant schemas of the actual MFS when compared to that of the \emph{knowing masking effects} strategy.
 
-As the identical transformation is simple, so we will ignore it and just take examples to illustrate the other transformations. Table \ref{example-of-fci-influence} presents all these possibilities except the identical transformation. This table consists of three parts, with the upper part giving the test cases for each area in the abstract FCI model. Note that we only list the union of areas $B_{1}$, $B_{2}$ and $C$. This is because the union is the common element for computing the MFS of three approaches -- \emph{actual MFS, knowing masking effects, regarded as one fault}. The middle part of this table shows the minimal schemas using this particular method. And last, the lower part depicts the sample of each possible result of the transformation in Figure \ref{fig:fci_mask_regard}. In this part, $c_{m} = c_{origin}  \rightarrow c_{new} \prec c_{m'}$ indicates the scenario that the schema $c_{origin}$ gotten by \emph{knowing masking effects} is identical to one actual MFS $c_{m}$. Then, taking \emph{regarded as one fault}, we get $c_{new} \prec c_{origin}$, so that we can have $\exists c_{m'}\ is\ one\ actual\ MFS, s.t., c_{new} \prec c_{m}$.  Other formulae in this column can be explained in this way, in which $c_{new}\ irrele$ and $c_{origin}\ irrele$  mean that the schema $c_{new}$ and $c_{origin}$ is irrelevant to all the actual MFS respectively. The mark $*$ in $c_{m}$ and $c_{m'}$ ,respectively, represent these two conditions. The formulae in the last two rows, $c_{new_{irrele}} \prec c_{m'}$ and $c_{new_{irrele} irrele}$, indicates the schemas $c_{new_{irrele}}$ obtained by \emph{regarded as one fault} are irrelevant to all the $c_{origin}$, in which the former is the subschema of some actual MFS $c_{m'}$ while the latter is irrelevant to all of the actual MFS. The $*$ in the $c_{origin}$ column means that the $c_{new}$ is irrelevant to all the $c_{origin}$.
+% and is identical to some actual MFS, and the schema gotten by \emph{regarded as one fault} is the subschema of the .  Some rules can be divided into two parts. For example,
+%
+%When the that, ie,
+
+%The ellipses in the left column of this figure illustrate the relationship between the schemas identified under the \emph{knowing masking effects} condition with the actual MFS, which includes the four possibilities: identical, sub-schema, parent-schema and irrelevant. For each relationship in this part, without of loss of generality, we consider $c_{origin}$ and $c_{m}$. $c_{origin}$ is the minima schema gotten by \emph{knowing masking effects}, and $c_{m}$ is the actual MFS. Then, when we apply the \emph{regarded as one fault} strategy, we may get some schemas which are identical or sub-schema of $c_{origin}$, say $c_{new}$ s.t., $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$. In this figure, we use the directed line to represent these two transformations with different labels in each line. As for the schemas $c_{new}$ that are irrelevant to all the $c_{origin}$, we in the bottom of this figure use a rhombus labeled "Irrelevant" to represent them. Then, we must have some relationship between the $c_{new}$ and actual MFS, which also has four possibilities represented as rectangles in the right column.
+
+%Note that there exist two types of directed line -- solid line and dashed line, in which the former indicates that this transformation is deterministic, e.g., if $c_{origin} \prec c_{m}$ and $c_{new} \prec c_{origin}$, then we must have $c_{new} \prec c_{m}$.  The latter type means the transformation is just one of all the possibilities in such condition, e.g., if $c_{origin}\ irrelevant\ c_{m}$ and $c_{new} \prec c_{origin}$, then we can have either $\exists c_{m}'\ is\ one\ actual\ MFS, s.t. c_{new} \prec c_{m}$ or $c_{new}\ irrelevant \ to\ all\ actual\ MFS$. (We will later give illustrative examples.)
+
+%In this figure, only two transformations can make $\exists c_{m}'\ is\ one\ actual\ MFS, s.t.$ $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, which are when $c_{origin} = c_{m}$, $c_{new} = c_{origin} $ or $c_{m} \prec c_{origin}$, $c_{new} = c_{origin}$ respectively. This can be easily understood, as to make  $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, according to proposition 3.11 and 3.12, it must have $\mathcal{T}(c_{new}) \subset (B_{1} \bigcup B_{2})$. If after transformation, we get $c_{new} \prec c_{origin}$, then we must have $\exists t \in B_{3}, s.t., t \in \mathcal{T}(c_{new})$, otherwise, there should be no changing to the $c_{origin}$, and it must have no new schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $\mathcal{T}(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if we have $c_{new} \prec c_{origin}$, to make e $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, the transformation can only be identical, i.e., $c_{new} = c_{origin}$ and must have $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$, correspondingly.
+
+Next we will give examples to depict these rules except these that have the condition `$c_{new} = c_{origin}$' (rule 1, 3, 5, 7). This is because these rules will simply result in that the relationship between $c_{new}$  and actual MFS will be the same as the relationship between $c_{origin}$ and the actual MFS. Table \ref{example-of-fci-influence} presents the examples of all the remaining rules. This table consists of three parts, with the upper part giving the test cases for each area in the abstract FCI model. Note that we only list the union of areas $B_{1}$, $B_{2}$ and $C$. This is because the union is the common element for computing the MFS of three approaches -- \emph{actual MFS, knowing masking effects, regarded as one fault}. The middle part of this table shows the minimal schemas using this particular method. And last, the lower part depicts the sample of each possible rule in Table \ref{fci_mask_regard}. In this part,  In this part, the left column indicates the specific rule id, i.e., 2,4a,4b,6,8a,8b,9a,9b. The column `$c_{m}$', `$c_{origin}$', `$c_{new}$', `$c_{m}'$', respectively, indicates the schema which satisfies the rule in the corresponding row. The mark $*$ in thee column means the rule is irrelevant to this schema. For example, for rule 8b, i.e., if $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} \prec c_{origin}$ then $c_{new}\ irrelevant\ to\ all\ c_{m}'$, we marked `*' in the column `$c_{m}$' and `$c_{m}'$'.
+%$c_{m}$ and $c_{m}'$ ,respectively, represents these two conditions. in which $c_{new}\ irrele$ and $c_{origin}\ irrele$  mean that the schema $c_{new}$ and $c_{origin}$ is irrelevant to all the actual MFS respectively. The mark $*$ in $c_{m}$ and $c_{m}'$ ,respectively, represent these two conditions. The formulae in the last two rows, $c_{new_{irrele}} \prec c_{m}'$ and $c_{new_{irrele} irrele}$, indicates the schemas $c_{new_{irrele}}$ obtained by \emph{regarded as one fault} are irrelevant to all the $c_{origin}$, in which the former is the subschema of some actual MFS $c_{m}'$ while the latter is irrelevant to all of the actual MFS. The $*$ in the $c_{origin}$ column means that the $c_{new}$ is irrelevant to all the $c_{origin}$.
 
 % The mark $*$ in the cell of this part means that other schema in this row is irrelevant to all the schema in this that cell, for
 
-%From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c_{origin}$ identified by \emph{knowing masking effects} are identical to some actual MFS $c_{m}$, and the with the \emph{regarded as one fault} strategy we identify some newly schema $c_{new}$ that is the sub-schema of one actual MFS $c_{m'}$, can be instanced when $c_{m}$ , $c_{origin}$  and $c_{m'}$ are all (1,-,1,1,-,0), while the $c_{new}$ is (1,-,1,-,-,0). For the parent-subsume transformation, we can find an instance that $c_{m}$ is (1,1,-,-,-,0), corresponding $c_{origin}$ is (1,1,1,-,-,0) and $c_{new}$ is (1,-,1,-,-,0), and the corresponding $c_{m'}$ which is the parent-schema of $c_{new}$ is  (1,-,1,1,-,0). In fact we can find each possible transformation and its corresponding result in this table, we will not in detail list them here.
+%From this table, we can observe that, the identical--subsume transformation, i.e., the schema $c_{origin}$ identified by \emph{knowing masking effects} are identical to some actual MFS $c_{m}$, and the with the \emph{regarded as one fault} strategy we identify some newly schema $c_{new}$ that is the sub-schema of one actual MFS $c_{m}'$, can be instanced when $c_{m}$ , $c_{origin}$  and $c_{m}'$ are all (1,-,1,1,-,0), while the $c_{new}$ is (1,-,1,-,-,0). For the parent-subsume transformation, we can find an instance that $c_{m}$ is (1,1,-,-,-,0), corresponding $c_{origin}$ is (1,1,1,-,-,0) and $c_{new}$ is (1,-,1,-,-,0), and the corresponding $c_{m}'$ which is the parent-schema of $c_{new}$ is  (1,-,1,1,-,0). In fact we can find each possible transformation and its corresponding result in this table, we will not in detail list them here.
 
 %the schema (1,1,1,-,-) got by \emph{knowing masking effects}, is the parent schema of the actual MFS (1,1,-,-). Correspondingly, the (1,-,1,-,-) got by \emph{regarded as one fault}, is the sub-schema of the (1,1,1,-,-), which is irrelevant to actual MFS (1,1,-,-). It should be noted that, the sub-schema of the originally is not for all the acual MFS, it just irrelevant to the corresponding actual MFS, as an example, it also appear that.
 
@@ -836,15 +867,15 @@ As the identical transformation is simple, so we will ignore it and just take ex
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
 \multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
 
-\multicolumn{4}{c}{\bfseries transformation} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m'}$}\\ \hline
-\multicolumn{4}{c}{$c_{m} = c_{origin}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
-\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
-\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{new}\ irrele $} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
-\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
-\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
+\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
+\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
+\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
 \end{tabular}}
 \end{table}
 %\begin{proposition}
@@ -863,19 +894,44 @@ As the identical transformation is simple, so we will ignore it and just take ex
 %\end{proof}
 \subsubsection{using distinguish strategy}
 %Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
-And for the second strategy, \emph{distinguishing faults}, the influence can be described as in Figure \ref{fig:fci_mask_distinguish}.
-\begin{figure}
-\centering
-\includegraphics[width=4.31in]{fci-mask-influence.eps}
-\caption{masking effects influence on FCI with distinguishing faults}
-\label{fig:fci_mask_distinguish}
-\end{figure}
+And for the second strategy, \emph{distinguishing faults}, the influence can be described as in Table \ref{fci_mask_distinguish}.
+%\begin{figure}
+%\centering
+%\includegraphics[width=4.31in]{fci-mask-influence.eps}
+%\caption{masking effects influence on FCI with distinguishing faults}
+%\label{fig:fci_mask_distinguish}
+%\end{figure}
 
-This figure is organised the same way as Figure \ref{fig:fci_mask_regard}. As with the distinguishing faults strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So under this transformation, the $c_{new}$ should be either the parent-schema or identical to the $c_{origin}$.
+\begin{table}[h]
+\tbl{Masking effects influence on FCI with distinguishing faults strategy
+\label{fci_mask_distinguish}}{
+\begin{tabular}{|lll|}
+\hline
+1  & If  $ c_{m} = c_{origin}$ \  and\   $c_{new} = c_{origin}  $                                & Then, $ \exists c_{m}',s.t.,c_{new} = c_{m}'  $             \\
+2  &  If  $ c_{m} = c_{origin}$   and\   $c_{origin} \prec  c_{new} $       & Then,  $\exists c_{m}',s.t., c_{m}' \prec c_{new} $              \\
+3  & If $c_{m} \prec c_{origin}$\ and\  $c_{new} = c_{origin}  $                 & Then, $\exists c_{m}',s.t.,c_{m}' \prec c_{new} $               \\
+4 & If $c_{m} \prec c_{origin}$\  and\ $c_{origin} \prec c_{new}$                 & Then, $c_{m}',s.t., c_{m}' \prec c_{new}$        \\
+5  & If $c_{origin} \prec c_{m}$\ and\ $c_{new} = c_{origin}  $          & Then, $\exists c_{m}',s.t.,c_{new} \prec c_{m}' $               \\
+6a  & If $c_{origin} \prec c_{m}$\  and\ $c_{origin} \prec c_{new} $      & Then either $\exists  c_{m}',s.t.,c_{new} = c_{m}'  $              \\
+6b &  & Or $\exists  c_{m}',s.t., c_{m}' \prec c_{new} $    \\ %\hline
+6c &  & Or $\exists  c_{m}',s.t.,c_{new} \prec c_{m}'  $    \\
+6d &  & Or $c_{new}\  irrelevant\ all\ c_{m}' $    \\
+7  & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} = c_{origin} $                  & Then, $ c_{new}\ irrelevant\ to\ all\ c_{m}'$ \\
+8a & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{origin} \prec c_{new}$     & Then either,$\exists c_{m}',s.t.,c_{m}' \prec c_{origin}$         \\
+8b &                                                                                      & Or,$c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
+9a &                         if $c_{new}\ irrelevant\ to\ all\ c_{origin}$ & Then either,$\exists c_{m}',s.t., c_{m}' \prec c_{new} $        \\
+9b &                                                             & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}'$  \\
 
-We take an example to illustrate this type of transformation, which is depicted in Table \ref{example-of-fci-influence-distiguish}. Similar to our previous strategy, we omit the samples that are belong to the identical transformation.
+10 & It may have $c_{origin}\ irrelevant\ to\ all\ c_{new}$  & \\\hline
+\end{tabular}}
+\end{table}
 
-We noted that in addition to the transformations corresponding each directed line that is depicted in Figure \ref{fig:fci_mask_distinguish}, there is one more transformation can appear in this strategy, which can make some $c_{origin}$ \emph{removed} from the newly minimal schemas, i.e., $\not\exists c_{new}, s.t., c_{new} = c_{origin}\ or\ c_{origin} \prec c_{new}$. For the Table \ref{example-of-fci-influence-distiguish} example, in the last row we used a formulae \emph{$c_{origin}\ ignored$} to represent this condition, with the mark $*$ in the $c_{new}$ indicating that the $c_{origin}$ is irrelevant to all the $c_{new}$. In this row, we can find the schema $c_{origin}--$(1,1,0,0,1,-), which is identical to the one in actual MFS, there exists no $c_{new}$ which is identical to or is the parent-schema of this schema. Consequently, in this condition, this strategy may ignore some actual MFS compared with \emph{knowing masking effects}.
+
+Similar to Table \ref{fci_mask_regard}, this table also lists the possible relationships among the schemas that are gotten by strategy \emph{distinguishing faults}, schemas that are gotten by \emph{knowing masking effects} strategy, and the actual MFS. As with the \emph{distinguishing faults} strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So with this strategy, $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup C)$ should be either the parent-schema or identical to $c_{origin} \in \mathcal{C}( A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  The main difference between the rules in Table \ref{fci_mask_distinguish} and rules in Table \ref{fci_mask_regard} is that most rules with strategy \emph{distinguishing faults} result in that $c_{m}' \prec c_{new}$. This is because with strategy \emph{distinguishing faults}, the test cases that are used for identifying the MFS is less than that of \emph{knowing masking effects}. So more likely it may have $\mathcal{T} (c_{new}) \subset \mathcal{T} (c_{m}') $, and hence $c_{m}' \prec c_{new}$.
+
+We take an example to illustrate these rules of strategy \emph{distinguishing faults}, which is depicted in Table \ref{example-of-fci-influence-distiguish}. Similar to our previous strategy, we omit the samples that have the condition `$c_{origin} = c_{new}$'.
+
+One rule that is needed to be noted is rule 10, which can make some $c_{origin}$ \emph{removed} from the newly minimal schemas, i.e., $\not\exists c_{new}, s.t., c_{new} = c_{origin}\ or\ c_{origin} \prec c_{new}$.  For the Table \ref{example-of-fci-influence-distiguish} example, in the last row for the rule 10, we can find the schema $c_{origin}--$(1,1,0,0,1,-), which is identical to the one in actual MFS, there exists no $c_{new}$ which is identical to or is the parent-schema of this schema. Consequently, in this condition, this strategy may ignore some actual MFS compared with \emph{knowing masking effects}.
 
 In fact, besides this special case that may result in the FCI approach ignoring some actual MFS, there exist some other cases that can also achieve the same effect. For example, when the $c_{new}$ is the only schema that is \emph{related} to $c_{origin}$, (\emph{related} means not irrelevant, and in this case it is either identical to or the parent-schema). And the corresponding parent-schema $c_{origin}$ is the only schema which is related to one actual MFS $c_{m}$. Then, if the $c_{new}$ is irrelevant to all the actual MFS, we will ignore the actual MFS $c_{m}$. This \emph{ignored} event is caused by the $c_{new}$ growing into the irrelevant schemas, which can also appear in the strategy \emph{regarded as one fault}. However, the aforementioned cause of \emph{ignored}--the $c_{origin}$ is \emph{removed} from the newly minimal schemas can only happen in the strategy \emph{distinguishing faults}.
 %This appears when $T(c_{origin}) \subset B_{2}$, as such that all the test cases hit $c_{origin}$ will be ignored with the strategy \emph{distinguish faults}. When this transformation happens, no more other relationship between $c_{new}$ and $c_{m}$ increased, but it make the newly minimal schemas \emph{ignore} some actual MFS as we discussed before.
@@ -940,18 +996,18 @@ In fact, besides this special case that may result in the FCI approach ignoring 
 \multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
 \multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
 
-\multicolumn{4}{c}{\bfseries transformation} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m'}$}\\ \hline
-\multicolumn{4}{c}{$c_{m} = c_{origin}  \rightarrow c_{m'} \prec c_{new} $} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
-\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{((1,0,-,-,1,1))} \\
+\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+\multicolumn{4}{c}{$c_{m} = c_{origin}  \rightarrow c_{m}' \prec c_{new} $} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
+\multicolumn{4}{c}{$c_{m} \prec c_{origin}  \rightarrow c_{m}' \prec c_{new}$} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{((1,0,-,-,1,1))} \\
 \multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new}\ irrele $} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
-\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new} \prec c_{m'}$} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m'}\prec c_{new} $} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
-\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m'} = c_{new} $} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
-\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{m'} \prec c_{new}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{new} \prec c_{m}'$} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m}'\prec c_{new} $} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
+\multicolumn{4}{c}{$c_{origin} \prec c_{m}  \rightarrow c_{m}' = c_{new} $} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
+\multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{m}' \prec c_{new}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
 \multicolumn{4}{c}{$c_{origin}\ irrele \rightarrow c_{new}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
 
 \multicolumn{4}{c}{$c_{origin}\ ignored $} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
-%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m'}$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m}'$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
 %\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
 
 \end{tabular}}
@@ -1197,23 +1253,23 @@ To get the magnitude of the second fact, we need to figure out the possibility o
 %
 %While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
 
-We note that exponential factor $k - p$ directly affects the complexity of the second factor. The greater $p$ is, the less test cases that can be generated. For a different approach, $p$ is different. For example, for the OFOT approach, $p$ is a fixed number, which is $k - 1$.  And for the FIC\_BS approach, the $p$ varies in the test cases it generates, ranging from $k-1$ to $1$. While for the non-adaptive approaches, as the $fixed $ part is the coverage degree, we list them as $t$. We have listed all of them in Table \ref{fixed-part-complexisty}. It is noted that the $Martinez without safe values$ has no such complexity, because this approach works when $v = 2$, and this results in not having other test cases to be replaced if we test a fixed part when triggering other faults.
+We note that exponential factor $k - p$ directly affects the complexity of the second factor. The greater $p$ is, the less test cases that can be generated. For a different approach, $p$ is different. For example, for the OFOT approach, $p$ is a fixed number, which is $k - 1$.  And for the FIC\_BS approach, the $p$ varies in the test cases it generates, ranging from $k-1$ to $1$. While for the non-adaptive approaches, as the $fixed $ part is commonly the schemas that are needed to be covered, so the $p$ for these approaches is at least equal to $t$. We have listed all of them in Table \ref{fixed-part-complexisty}. It is noted that the $Martinez without safe values$ has no such complexity, because this approach works when $v = 2$, and this results in not having other test cases to be replaced if we test a fixed part when triggering other faults.
 
 \begin{table}
 \centering
-\tbl{The complexity of second part\label{fixed-part-complexisty}}{
+\tbl{The complexity of the second part\label{fixed-part-complexisty}}{
   \begin{tabular}{c | c}
 \bfseries Method & \bfseries fixed part\\ \hline
-Charles ELA &   $O( min (N, (v - t)^{k - p} - 1))$\\
+Charles ELA &   $O( min (N, (v - 1)^{k - t} - 1))$\\
 Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
 Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$ - $  \\
-Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - t)^{k - p} - 1))$\\
+Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - 1)^{k - t} - 1))$\\
 Shi SOFOT \cite{shi2005software}& $O( min (N, (v-1) - 1))) $\\
 Nie OFOT \cite{nie2011minimal} & $O( min (N, (v-1) - 1)))$\\
-Ylimaz classification tree & $O( min (N, (v - t)^{k - p} - 1)$\\
+Ylimaz classification tree & $O( min (N, (v - 1)^{k - t} - 1)$\\
 FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
 FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
-Ghandehari's suspicious based  \cite{ghandehari2012identifying}&$ O( min (N, (v - t)^{k - p} - 1))$\\
+Ghandehari's suspicious based  \cite{ghandehari2012identifying}&$ O( min (N, (v - 1)^{k - t} - 1))$\\
 TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1)) $\\
   \end{tabular}
   }
