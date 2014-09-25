@@ -20,7 +20,7 @@
 \usepackage{subfigure}
 \usepackage[normalem]{ulem}
 \usepackage{longtable}
-\usepackage{rotating} 
+\usepackage{rotating}
 %\usepackage{multirow}
 
 \renewcommand{\algorithmcfname}{ALGORITHM}
@@ -1597,7 +1597,7 @@ So the \emph{related} function is the summation of similarity of all the parent 
 %Particularly, if the value of discrepancy number metric is 0 and the value of similarity metric is 1, it means that multiple faults as well as their masking effect have no impacts on the algorithms, which is usually not feasible in practice.
 
 \subsubsection{Results and discussion}
-\begin{sidewaystable}[h]\renewcommand{\arraystretch}{1.3}
+\begin{table}[h]\renewcommand{\arraystretch}{1.3}
 \tbl{Result of the evaluation of each appraoch\label{evaluation_all}}{
 \begin{tabular}{lllllllllllllllll}
 \hline
@@ -1638,7 +1638,7 @@ So the \emph{related} function is the summation of similarity of all the parent 
 \multicolumn{1}{l|}{}             & 0   & 2      & 1   & \multicolumn{1}{l|}{1}     & 0.5  & 0.47   & 0.58 & \multicolumn{1}{l|}{0.58} & 9.08  & 11     & 15.38 & \multicolumn{1}{l|}{15.53} &         &         &         &         \\ \cline{2-13}
 \end{tabular}
 }
-\end{sidewaystable}
+\end{table}
 
  Table \ref{evaluation_all} depicts the results of the second case study. There are eight main columns in this table, (we break it into two parts), which indicate: the object to which we apply the FCI approach, the number of accurate MFS each approach identified, the number of identified schemas which are the sub-schema \/ parent-schema of some prior MFS, the number of ignored prior MFS, the number of identified schemas which are irrelevant to all the prior MFS, the metric which gives the overall evaluation of each approach, and the extra test cases each algorithm needed. For each main column, there are four sub-columns which depict the results for the FCI with \emph{regarded as one fault} strategy, FCI with \emph{distinguishing faults} strategy, FCI with replacement strategy based on ILP test case searching and FCI with replacement strategy based on randomly searching. The last one is discussed in the next case study.
 
