@@ -202,17 +202,6 @@
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{Ghandehari, Lei, Kung, Kacker, and
-  Kuhn}{Ghandehari et~al\mbox{.}}{2013}]%
-        {ghandehari2013fault}
-{Laleh~Sh Ghandehari}, {Yu Lei}, {David Kung}, {Raghu Kacker}, {and} {Richard
-  Kuhn}. 2013.
-\newblock \showarticletitle{Fault localization based on failure-inducing
-  combinations}. In {\em Software Reliability Engineering (ISSRE), 2013 IEEE
-  24th International Symposium on}. IEEE, 168--177.
-\newblock
-
-
 \bibitem[\protect\citeauthoryear{Ghandehari, Lei, Xie, Kuhn, and
   Kacker}{Ghandehari et~al\mbox{.}}{2012}]%
         {ghandehari2012identifying}
