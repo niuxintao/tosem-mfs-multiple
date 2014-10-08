@@ -1613,37 +1613,37 @@ So the \emph{related} function is the summation of similarity of all the parent 
 \subfigure[Result of the number of accurately identified MFS]{
   %  \rule{4cm}{3cm}
     \label{fig:21}
-    \includegraphics[width=3.6in]{accurate.eps}
+    \includegraphics[width=2.64in]{accurate.eps}
 }
 \subfigure[Result of the number of identified sub-schemas of the MFS]{
   %  \rule{4cm}{3cm}
     \label{fig:22}
-    \includegraphics[width=3.6in]{sub.eps}
+    \includegraphics[width=2.64in]{sub.eps}
 }
 \subfigure[Result of the number of identified parent-schemas of the MFS]{
   %  \rule{4cm}{3cm}
     \label{fig:23}
-    \includegraphics[width=3.6in]{parent.eps}
+    \includegraphics[width=2.64in]{parent.eps}
 }
 \subfigure[Result of the number of ignored MFS]{
   %  \rule{4cm}{3cm}
     \label{fig:24}
-    \includegraphics[width=3.6in]{ignore.eps}
+    \includegraphics[width=2.64in]{ignore.eps}
 }
 \subfigure[Result of the number of identified irrelevant schemas of the MFS]{
   %  \rule{4cm}{3cm}
     \label{fig:25}
-    \includegraphics[width=3.6in]{irrelevant.eps}
+    \includegraphics[width=2.64in]{irrelevant.eps}
 }
 \subfigure[The aggregative result for the five metrics]{
   %  \rule{4cm}{3cm}
     \label{fig:26}
-    \includegraphics[width=3.6in]{overall.eps}
+    \includegraphics[width=2.64in]{overall.eps}
 }
 \subfigure[Needed test cases]{
   %  \rule{4cm}{3cm}
     \label{fig:27}
-    \includegraphics[width=3.6in]{testCases.eps}
+    \includegraphics[width=2.64in]{testCases.eps}
 }
 \caption[Optional caption for list of figures]{Result of the evaluation of each appraoch}
 \label{fig:comparetotraditional}
@@ -1689,29 +1689,27 @@ When we composite these five metrics using the formula aforementioned and to com
 We can expect that ILP can peforms better than the distin because the ILP is acutally based on the distin, and do some refinement by getting higher quality test cases. As for distin better than regarded as one failure. We have not get it in the formal analysis, but however, we have a strong belief in that this is because this divde and conquer at least make the FCI approaches be more sensitive for the failures than the regarded as one failure.
 
 \textbf{test cases: }
-The above analysis, in a word, gives the comparable of the quality that each appraoch can result. This metric gives us the comparable ways about the cost, i.e., the extra test cases that each approach will generated. When we look at the Fig. \ref{fig:27}, we can find that 
-
-
-
-
-We first observed that, the results of two traditional strategies, \emph{regarded as one failure} and \emph{distinguishing failures}, coincide with the formal analysis in section 4. Specifically, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more parent-schemas of MFS than the former. For the `ignored MFS' metric, as we have executed all the failed test cases, we get 0 ignored MFS for all the approaches. So to evaluate this metric for these approaches, we record it for each test case at a time and take the average value as the result, which is listed in parentheses. We also found in most cases (except synthez 5 and synthez 6) that the approach with \emph{distinguish} strategy get more ignored MFS than the other, which also coincides with the formal analysis. And for the `irrelevant MFS', we found \emph{regarded as one failure} strategy in most cases got more `irrelevant MFS' than the other, which was also as expected.
-
-We then observed that our approach can perform better than the two traditional strategies. The advantages are shown in the more accurate MFS and less irrelevant schemas. Our approach also identified the least number of sub-schemas. As for the `parent-schema' metric, our approach performed better than `distinguishing failures' but not as well as `regarded as one failure'. This is because our strategy is based on the `distinguishing failures' strategy (the main difference is that our strategy filters the unsatisfied test cases). However, our approach is poor at the `ignored MFS' metric. The possible reason for this may be that the unsatisfied test cases we discard may contain some useful information about the MFS. Above all, our approach achieves the best performance compared with the other two strategies, which can be shown in the `overall' metric. The overall metric indicates that our approach performs better than `distinguishing failures' strategy, which is better than the `regarded as one failure' strategy.
-
-%has each test case    approaches do suffer from the masking effect to some extent. Specifically, in the Fig \ref{fig:subfig1}, FIC\_BS approach only correctly identified 12 and 10 accurate combinations for the two traditional strategies respectively, while wrongly identified 14 and 69 combinations, among which \emph{parent number}, \emph{sub number}, \emph{irrelevant number} are 9,3,2 and 0,8,61 respectively. Similar results can be observed in Fig \ref{fig:subfig2} and \ref{fig:subfig3} for approach OFOT and CTA .
-
-%Another interesting observations is that for the \emph{regarded as one failure} and \emph{distinguish failures} strategy, the former get more \emph{sub combinations} than latter, while \emph{distinguish failures} strategy get more \emph{parent combinations} than \emph{regard as one} strategy. This result accorded with our formal analysis in section 3.2. With respect to the metrics \emph{irrelevant combinations}, however, we didn't get as expected as the formal analysis. In fact, both the case that \emph{regarded as one failure} has more \emph{irrelevant combinations} ( see Fig \ref{fig:subfig1}) and the case that \emph{distinguish failures} obtained more \emph{irrelevant combinations} (see Fig \ref{fig:subfig2} and \ref{fig:subfig3}) exist. With checking the executing process and the combinations they got, we believed one possible main reason for this result is that the algorithm encountered the problem of importing newly failures which bias their identifying process.
-
-%\emph{regarded as one failure} would get more \emph{} except the following case,  An exception is for the FIC\_BS, which we think when consider the regard as one failure failures strategy, it increase the possibility that import newly bugs so that bais the result. it always that . fahter and parent. which are accordant with the analysis in the formal model.
-
-We further observed that, the extra cost (of generating test cases) for our approach is acceptable. In fact, when compared to the \emph{`distinguishing failures'} strategy, our approach needed an average of just 3 or 4 more test cases, and when compared to the \emph{`regarded as one failure'} strategy, our approach needed less test cases in some instances (JFlex 1.4.1, JFlex 1.4.2, synthez 3 and synthez 6). This is because the extra test cases the FCI needed lies in what the MFS is, the difference at the identified MFS for FCI approaches will make their needed test cases  differs greatly, so that the cost for replacing test cases in our approach may have little influence on the number of final test cases needed.
-
- %for different algorithms, the extent to what they suffered from masking effects varied. For instance, for FIC\_BS approach, under the masking effects, they  identified the 61 and 2 irrelevant combinations for two strategies, while for OFOT and CTA, this value is 0 and 4, 5 and 19 respectively. There are two factors caused this difference: the chosen test cases and the analysis method. For FIC\_BS and OFOT, the test cases they chosen for isolating failure-inducing combinations is different, which consequently changed the masking effects they may encountered. For OFOT an CTA, while the test cases they chose are the same, the difference lies at the way they characterizing the failure-inducing combinations in the test cases: OFOT directly identify the parameter according to the passed test cases while CTA used classified tree analysis.
+The above analysis, in a word, gives the comparable of the quality that each appraoch can result. This metric gives us the comparable ways about the cost, i.e., the extra test cases that each approach will generated. When we look at the Fig. \ref{fig:27}, we can obviously find that the ILP will cost more test cases than distin and regard one. In specific, the gap between the ILP and distin and regard is ranged from about 2 to 5(except for the 6 subject, which exceeds 20), this is acceptable when comparing to the all the test cases that each test cases needed. This gap is expected as our ILP approaches needed to generate addtional test cases when some test cases are not satified the requirement.  When we looked back at the distin and regard one, there is no clear trend of which is better than another.
 
 %
-%From this figure, we can easily find that Traditional MFS identifying approaches do suffer from the multiple failures and their masking effect. For example, for the Grep, version 3.14, all these three algorithm will lost some information. Additionally, the extent to which the impact has affected vary from algorithms. We can find that for HSQLDB with version 3.14, the similarity of CTA was just at 4 while FIC is 3. We list these points in figure 3. From this figure, we can learn that.
+%We first observed that, the results of two traditional strategies, \emph{regarded as one failure} and \emph{distinguishing failures}, coincide with the formal analysis in section 4. Specifically, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more parent-schemas of MFS than the former. For the `ignored MFS' metric, as we have executed all the failed test cases, we get 0 ignored MFS for all the approaches. So to evaluate this metric for these approaches, we record it for each test case at a time and take the average value as the result, which is listed in parentheses. We also found in most cases (except synthez 5 and synthez 6) that the approach with \emph{distinguish} strategy get more ignored MFS than the other, which also coincides with the formal analysis. And for the `irrelevant MFS', we found \emph{regarded as one failure} strategy in most cases got more `irrelevant MFS' than the other, which was also as expected.
+%
+%We then observed that our approach can perform better than the two traditional strategies. The advantages are shown in the more accurate MFS and less irrelevant schemas. Our approach also identified the least number of sub-schemas. As for the `parent-schema' metric, our approach performed better than `distinguishing failures' but not as well as `regarded as one failure'. This is because our strategy is based on the `distinguishing failures' strategy (the main difference is that our strategy filters the unsatisfied test cases). However, our approach is poor at the `ignored MFS' metric. The possible reason for this may be that the unsatisfied test cases we discard may contain some useful information about the MFS. Above all, our approach achieves the best performance compared with the other two strategies, which can be shown in the `overall' metric. The overall metric indicates that our approach performs better than `distinguishing failures' strategy, which is better than the `regarded as one failure' strategy.
+%
+%
+%We further observed that, the extra cost (of generating test cases) for our approach is acceptable. In fact, when compared to the \emph{`distinguishing failures'} strategy, our approach needed an average of just 3 or 4 more test cases, and when compared to the \emph{`regarded as one failure'} strategy, our approach needed less test cases in some instances (JFlex 1.4.1, JFlex 1.4.2, synthez 3 and synthez 6). This is because the extra test cases the FCI needed lies in what the MFS is, the difference at the identified MFS for FCI approaches will make their needed test cases  differs greatly, so that the cost for replacing test cases in our approach may have little influence on the number of final test cases needed.
 
-Therefore, the answer we got for \textbf{Q2} is that: our approach achieves better performance than two traditional strategies when handling masking effects at an acceptable extra cost.
+
+
+Above all, we can conclude about three points in this experiment, and which can be an answer for the \textbf{Q2}:
+
+1)the results of distin and regard one are consistent with the formal analysis.
+
+2)Considering the quality of the MFS each appraoch identified, we can find our approach can get the best, and then the distin.
+
+3)Our approach need more test cases than ILP and distin, but which is acceptable.
+
+ %the answer we got for \textbf{Q2} is that: our approach achieves better performance than two traditional strategies when handling masking effects at an acceptable % extra cost.
 
 \subsection{Evaluating the ILP-based test case searching method}
 The third empirical study aims to evaluate the efficiency of the ILP-based test case searching component in our approach. To conduct this study, we implemented an FCI approach which is also augmented by the \emph{replacing test cases} strategy, but the test case replacing process is by random.
@@ -1720,13 +1718,17 @@ The third empirical study aims to evaluate the efficiency of the ILP-based test 
 %, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
 
 \subsubsection{Study setup}
-The setup of this case study is based on the second case study, and uses the same SUT model as in Table\ref{testing_models}. Then, we apply the new random searching based FCI approach to identify the MFS in these prepared SUTs. To avoid the bias that comes from the randomness, we repeat the new approach 30 times to identify the MFS in each failed test case. We will compute the average additional test cases as well as other metrics listed in the precise section of the random-based approach.
+The setup of this case study is based on the second case study, and uses the same SUT model as in Table \ref{testing_models}. Then, we apply the new random searching based FCI approach to identify the MFS in these prepared SUTs. To avoid the bias that comes from the randomness, we repeat the new approach 30 times to identify the MFS in each failed test case. We will compute the average additional test cases as well as other metrics listed in the previous section of the random-based approach.
 
 % We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
 
 \subsubsection{Results and discussion}
-The evaluation of this random-based approach is also shown in Table \ref{evaluation_all}. Compared to our ILP-based approach, we observed that there is little distinction between them in terms of the metrics: accurate schemas, parent-schemas, sub-schemas, ignored schemas, irrelevant schemas (the ILP-based approach performs slightly better, e.g., for subject HSQL2cr8, the ILP-based approach identified less sub, parent and irrelevant schemas than the random-based procedure).  This is because the two approaches both use the \emph{test case replacement} strategy, so when examining a schema, both of these two approaches may obtain the same result, although the test cases generated will be different. However, when considering the cost of each approach, we find the ILP-based approach performs better, which can reduce in the average to 1 or 2 test cases less than random-based procedure.
+The evaluation of this random-based approach is also shown in Fig. \ref{fig:comparetotraditional}, in which the polygonal line marked with  '$\times$' points in each sub-figure indicates this type of results. The raw data can be also found in the column 'R' of Table \ref{evaluation_all} in the appendix section.
+ 
+Compared to our ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics: accurate schemas, parent-schemas, sub-schemas, ignored schemas, irrelevant schemas ( for some particular cases the ILP-based approach performs slightly better, e.g., in Fig. \ref{fig:22} for the first subject, the ILP-based approach identified less sub schemas than that of the Random-based approach and in Fig. \ref{fig:23} still for the first object the ILP -based approach identified less parent schemas than that of the random-based approach). The similarity quality of the identified MFS between this two approaches is conceivable as the two approaches both use the \emph{test case replacement} strategy, so when examining a schema, both of these two approaches may obtain the same result, although the test cases generated will be different. 
+
+Secondly, when considering the cost of each approach, we find the ILP-based approach performs better, which can reduce in the average to 1 or 2 test cases less compared to the random-based procedure. It is an evidence of our integer programming based searching technique can find a satisfied test case more rapidly than the random based one.
 
 % there is significant improvement for augmented approaches in reducing the wrongly identified combinations. For instance, CTA approach in Fig \ref{fig:subfig6} only got 2 irrelevant combinations with replacing strategy, while the traditional two strategy got 5 and 19 irrelevant combinations respectively. And for FIC\_BS in Fig \ref{fig:subfig4} this comparison is 2 for replacing strategy, and 2 , 61 for two traditional strategies.
 
@@ -1795,14 +1797,14 @@ In summary, the answer for \textbf{Q3} is that: searching for a satisfied test c
 The FDA-CIT \cite{yilmaz2013reducing} approach can handle masking effects so that the covering array it generates can cover all the t-way schemas without being masked by the MFS. There is an integrated FCI approach in the FDA-CIT, of which this FCI approach has two versions, i.e., ternary-class and multiple-class. In this paper, we use the multiple-class version for our comparative approach, as Yilmaz claims that the multiple-class version performs better than the former \cite{yilmaz2013reducing}.   %, the configuration options for J48, is .
 
 \subsubsection{Study setup}
-As the FCI approach of FDA-CIT use a post-analysis(classified tree) technique on given test cases, in this paper we fed the FDA-CIT the covering array as the input just as was done in the Yilmaz study \cite{yilmaz2013reducing}. The covering arrays we generated ranged from 2 to 4 ways. The covering array generating method we used is that contained in \cite{cohen2003augmenting}, as it can be easily extended with constraint dealing and seed injecting \cite{cohen2007interaction}, which is needed in the FDA-CIT process. As different test cases will influence the results of the characterization process, we generating 30 different 2-4 way covering arrays and fed them into the FDA-CIT. Then, we recorded the results of this approach, which consists of the metrics mentioned in the second case study.
+As the FCI approach of FDA-CIT use a post-analysis(classified tree) technique on given test cases, in this paper we fed the FDA-CIT the covering array as the input just as was done in the Yilmaz study \cite{yilmaz2013reducing}. The covering arrays we generated ranged from 2 to 4 ways. The covering array generating method we used is that contained in \cite{cohen2003augmenting}, as it can be easily extended with constraint dealing and seed injecting \cite{cohen2007interaction}, which is needed in the FDA-CIT process. As different test cases will influence the results of the characterization process, we generating 30 different 2 to 4 way covering arrays and fed them into the FDA-CIT. Then, we recorded the results of this approach, which consists of the metrics mentioned in the second case study.
 
 Besides the FDA-CIT, we also applied our ILP-based approach to the generated covering array. Specifically, for each failed test case in the covering array, we separately applied our approach to identify the MFS in that case. In fact, we can reduce the number of extra test cases if we utilize the other test cases in the covering array \cite{li2012improved}), but we didn't utilize the information to simplify the experiment. We then merged all the test cases that our approach needed for each failed test case in the covering array, and we also merged other metrics listed in the second case study for each failed test case.
 
 As our approach generated different test cases from the FDA-CIT, we also used the multiple-class FCI approach of FDA-CIT to characterize the MFS using the test cases generated by our approach, so that we could obtain a fair result with which to evaluate the FCI approach.
 %with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple failures in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FCI) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering},
 \subsubsection{Result and discussion}
- The experiment repeated 30 times for different covering arrays, we then listed the average data for the FDA-CIT, ILP-based approach, and FDA-CIT using our test cases (FDAs), respectively, in Table \ref{comparewithfda}. The result is organised as in Table \ref{evaluation_all}, except that we added a column \emph{t}  which indicates the strength of the covering array we generated for this experiment.
+For each strength \emph{t}(ranged from 2 to 4), we conducted the experiment repeated 30 times for different covering arrays, we then recorded the average data(included accurate, sub, parent, irrelevant, ignored, overall and needed test cases) for the FDA-CIT, ILP-based approach, and FDA-CIT using our test cases (FDAs), respectively, for each subject. To conveniently and clearly visualize the result, we merged all the results of all the subjects for each approach and list them in the figure \ref{fig:comparefda}. The raw data which can show the result for each subject can be found in Table \ref{comparewithfda} in the appendix section. The result is organised the same as in Table \ref{evaluation_all}, except that we added a column \emph{t}  which indicates the strength of the covering array we generated for this experiment.
 
  \begin{figure*}[htbp]
 \centering
@@ -1824,6 +1826,35 @@ As our approach generated different test cases from the FDA-CIT, we also used th
 \caption[Optional caption for list of figures]{Three approaches augmented with the replacing strategy}
 \label{fig:comparefda}
 \end{figure*}
+
+As a first view of this figure, we can immediately get a conclusion that the trend that different approach  performs is never changed  with the change of the covering array strength. For example, focusing the metric \emph{ignored schemas}, we can find that for any of the t, there is always FDA $>$ FDA-s $>$ ILP. Next we will discuss these metrics separately.
+
+
+\textbf{accurate number: }
+
+
+\textbf{sub number: }
+
+\textbf{parent number: }
+
+\textbf{ignore number: }
+
+\textbf{irrelevant number: }
+
+\textbf{aggregative for the five metrics: }
+
+
+\textbf{test cases: }
+
+
+Above all, we can conclude about three points in this experiment, and which can be an answer for the \textbf{Q4}:
+
+1)the general trend of the performance that each approach is never changed with the changing of the t.
+
+2)Considering the quality of the MFS each approach identified, we can find our approach can get the best, and then the distin.
+
+3)Our approach need more test cases than ILP and distin, but which is accepta
+
 
 From this result, we can first observe that in all the cases our ILP-based approach can more accurately identify the MFS and ignored less MFS than the FDA-CIT approach. For the metric `parent-schema', `sub-schema', and `irrelevant schemas', there are ups and downs on both sides. With respect to the `overall metric', we find our approach has a significant advantage over the FDA-CIT, but it also requires many more test cases than FDA-CIT.
 
@@ -1860,7 +1891,7 @@ Delta debugging proposed by Zeller \cite{zeller2002simplifying} is an adaptive d
 
 Colbourn and McClary proposed a non-adaptive method \cite{colbourn2008locating}. Their approach extends a covering array to the locating array to detect and locate interaction failures. C. Martinez proposed two adaptive algorithms. The first one requires safe value as the assumption and the second one removes the assumption when the number of values of each parameter is equal to 2\cite{martinez2008algorithms,martinez2009locating}. Their algorithms focus on identifying faulty tuples that have no more than 2 parameters.
 
-Ghandehari et al. defined the suspiciousness of tuple and suspiciousness of the environment of a tuple\cite{ghandehari2012identifying}. Based on this, they rank the possible tuples and generate the test configurations. They further utilized the test cases generated from the inducing combination to locate the failures inside the source code\cite{ghandehari2013failure}.
+Ghandehari et al. defined the suspiciousness of tuple and suspiciousness of the environment of a tuple\cite{ghandehari2012identifying}. Based on this, they rank the possible tuples and generate the test configurations. They further utilized the test cases generated from the inducing combination to locate the failures inside the source code\cite{ghandehari2013fault}.
 
 Yilmaz proposed a machine learning method to identify inducing combinations from a combinatorial testing set \cite{yilmaz2006covering}. They constructed a classification tree to analyze the covering arrays and detect potential faulty combinations. Beside this, Fouch{\'e} \cite{fouche2009incremental} and Shakya \cite{shakya2012isolating} made some improvements in identifying failure-inducing combinations based on Yilmaz's work.
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  7 OCT 2014 23:22
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 OCT 2014 23:07
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -554,34 +554,28 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-File: overall.eps Graphic file (type eps)
+Underfull \hbox (badness 1259) in paragraph at lines 1637--1637
+[]\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
+ []
 
+File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps>
-
-LaTeX Warning: Float too large for page by 20.31836pt on input line 1650.
-
-[30] [31]
+ <testCases.eps> [30] [31]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33]
-[34]
+[33]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps> [35]
-
-LaTeX Warning: Citation `ghandehari2013failure' on page 36 undefined on input l
-ine 1863.
-
-
+ <4-way.eps> [34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35]
+Underfull \vbox (badness 2245) has occurred while \output is active []
 
  [36]
 [37] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
@@ -589,17 +583,20 @@ Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38])
-[39]
+ [38]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39])
+[40]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1950--1983
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1981--2014
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1987--2049
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2018--2080
 [] 
  []
 
@@ -608,11 +605,11 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 1987--2049
 ] [2] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
  3903 strings out of 430478
- 45881 string characters out of 3191502
- 187690 words of memory out of 3000000
+ 45879 string characters out of 3191502
+ 187770 words of memory out of 3000000
  6974 multiletter control sequences out of 15000+200000
  24285 words of font info for 75 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,30p,1555b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (41 pages).
+Output written on v2-acmsmall-sample.pdf (42 pages).
