@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 OCT 2014 23:07
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  14 OCT 2014 00:24
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -571,32 +571,41 @@ File: 2-way.eps Graphic file (type eps)
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps> [34]
+ <4-way.eps> [34] [35]
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1889 replaced by U+FFFD.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35]
+ [36]
 Underfull \vbox (badness 2245) has occurred while \output is active []
 
- [36]
-[37] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
-Missing character: There is no ’ in font pncr7t!
-
+ [37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+Missing character: There is no ’ in font pncr7t!
+ [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39])
-[40]
+ [40])
+[41]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1981--2014
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2019--2052
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2018--2080
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2056--2118
 [] 
  []
 
@@ -612,4 +621,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  33i,18n,30p,1555b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (42 pages).
+Output written on v2-acmsmall-sample.pdf (43 pages).
