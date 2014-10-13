@@ -1873,17 +1873,14 @@ For this metric, we can find that the FDA and FDA-s have a better performance th
 \textbf{Aggregative for the five metrics: }
 The aggregative metric for this overview is that ILP $>$ FDA-s $>$ FDA. When with the increasing of the t, all the approaches increases.
 
-For first it is an evidence that the ILP is good than the FDA and FDA-s in the quolatiy of the schemas that is identified.
+As we know, the aggregative gives the composite metirc for the previous five metric, and comprehensively indicates the quoilty of the schemas that identified. Then for the result we can find that it is an evidence that the ILP performed better than the FDA and FDA-s at the quolatiy of the schemas that is identified, i.e., our approach can support a better debugging aids for these schemas is more related to the real MFS.
 
-And for the second, we can find that it is expected that the more test cases, the better.
+It is to be expected that the more test cases, the more good qolity the schemas that we can get. However, it is tradeoff for you to select a proper covering strength when considering the quolity and the cost that need to be executed.
 
 \textbf{Test cases: }
 The overall test cases for the overview is that ILP $>$ FDA. (Noted, ILP is equal to FDA-s so we do not list them). When with the increasing of the t, all the approaches increases.
 
-For the first, this is beacuse of the difference of the approaches that we discussed.
-
-For the second, this is also identified, as the more strength t, the more test cases the covering array needed.
-
+For the first, this is beacuse of the difference of the approaches that we discussed. As the ILP approach is based on the FCI approach FCI\_BS (and of course, ILP can applied on other FCI appraoches). Then from Table \ref{extra-testcases-complexisty}, we can learn that the FCI\_BS need to almost, it must be noted that this for one failing test case, the overall test cases for this approach is the covering array part add the part that the additional test cases for each failing test cases for this covering array. However, for FDA, it just need to generate several t-way covering array. So the difference between the appraoches ILP and FDA in our experiment if mainly atrributed to the machinary of the FCI appraoch each approach adopts.
 
 Above all, we can conclude about three points in this experiment, and which can be an answer for the \textbf{Q4}:
 

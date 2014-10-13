@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  14 OCT 2014 02:20
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  14 OCT 2014 02:41
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -575,24 +575,23 @@ File: 4-way.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [36]
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1890 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1887 replaced by U+FFFD.
 
-[37]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38]
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
-
-Underfull \vbox (badness 2556) has occurred while \output is active []
-
  [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -601,12 +600,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2020--2053
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2017--2050
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2057--2119
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2054--2116
 [] 
  []
 
