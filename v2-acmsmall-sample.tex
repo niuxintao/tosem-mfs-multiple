@@ -145,7 +145,7 @@ The key to our approach is to search for a test case that does not trigger unexp
 
 %The key to the strategy is to prune test cases that may trigger a masking effect and then select or generate other test cases to test the interactions which were supposed to be tested in these pruned ones. We will keep these pruned test cases for the next iteration to isolate the failure-inducing interactions in these test cases. The process repeated until we characterize all the interactions for each failure. A point need to be noted is that these interactions supposed to be tested in the pruned test cases for one interaction vary in different algorithms we adopted. For example, for the classified tree method, we will generate more test cases that keep the same coverage, and for the one fact one time, we will generate test cases to keep the same.
 
-To evaluate the performance of our approach, we applied our strategy on the FCI approach FIC\_BS \cite{zhang2011characterizing}. The subjects we used were several open-source software found in the developers' forum in the Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manuals, we built a testing model which can reproduce the reported bugs with specific test cases. We then compared the FCI approach augmented with our strategy to the traditional FCI approach with these subjects. We further empirically studied the performance of the important component of our strategy -- searching satisfied test cases. To conduct this study, we compare our approach with the augmented FCI approach by randomly searching satisfied test cases. We finally compare our approach with the existing masking handling technique -- FDA-CIT\cite{yilmaz2013reducing}. All of these empirical studies showed that our replacing strategy as well as the searching test case component achieved a better performance than these traditional approaches when the subject suffered multiple failures, especially when these failures can import masking effects.
+To evaluate the performance of our approach, we applied our strategy on the FCI approach FIC\_BS \cite{zhang2011characterizing}. The subjects we used were several open-source software found in the developers' forum in the Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manuals, we built a testing model which can reproduce the reported bugs with specific test cases. We then compared the FCI approach augmented with our strategy to the traditional FCI approach with these subjects. We further empirically studied the performance of the important component of our strategy -- searching satisfied test cases. To conduct this study, we comparde our approach with the augmented FCI approach by randomly searching satisfied test cases. We finally compared our approach with the existing masking handling technique -- FDA-CIT\cite{yilmaz2013reducing}. All of these empirical studies showed that our replacing strategy as well as the searching test case component achieved a better performance than these traditional approaches when the subject suffered multiple failures, especially when these failures can import masking effects.
 
 %applied the traditional FCI approaches and their augmented versions to identify the failure-inducing combinations in the subjects respectively. The results of our empirical studies shows that the masking effects do impact on the FCI approaches, although to what the extent varies, and the approaches augmented with our strategy can identify failure-inducing combinations more accurately than traditional ones when facing masking effects, and moreover, this performance can get further improvement with using voting system.
 
@@ -320,10 +320,10 @@ Some notions used later are listed below for convenient reference:
 %\newtheorem{proposition}{Proposition}
 
 
-\emph{first important proposition :  every is the subset!}
+%\emph{first important proposition :  every is the subset!}
 
 
-\begin{proposition}
+\begin{proposition}[{more test cases contain the sub schemas}]
 For $l$-value schema $c_{l}$ and $m$-value schema $c_{m}$, if $c_{l} \prec c_{m}$, then we can have all the test cases that contain $c_{m}$ must also contain $c_{l}$, i.e., $\mathcal{T}(c_{m}) \subset \mathcal{T}(c_{l})$.
 \end{proposition}
 
@@ -365,8 +365,8 @@ $c$ \\ \hline
 %\newdef{proposition}{Proposition}
 
 
-\emph{first important proposition :  every is the subset!}
-\begin{proposition}
+%\emph{first important proposition :  every is the subset!}
+\begin{proposition}[Any set of test cases have its minimal schemas]
 
 For any set $T$ of test cases of a SUT, we can always get a set of minimal schemas $\mathcal{C}(T)$ = $\{ c | \not\exists c'  \in \mathcal{C}(T), s.t. c' \prec  c \}$,  such that,
 
@@ -1856,8 +1856,8 @@ This is the just reverse scenario of the metric \emph{sub schemas}, and the resu
 The ignore metric in the overview is that FDA $>$ FDA-s $>$ ILP. When with the increasing of the t, all the approaches decreases.
 
 From this metirc, we can find that both the FDA and FDA-s miss more schemas than our ILP. We can further observe that the FDA miss more than FDA-s. It is a signal that our ILP can keep more useful information than FDA series.
- 
-Going to the formal model section, we can find the ignored schemas have too reasons: first, do not observe and predict some failing test cases, and schemas for these test cases do not have any relationship with these observed test cases, i.e., do not have any information of the original MFS; Second, the schemas that either not the parent or sub schemas of some MFS, i.e., the schemas may have part information of the MFS and have some irrelevant information of the MFS, e.g. (1 1 - 1) vs (1 1 1 -) , it less the third and more the fourth.  Then it can be explained that FDA have the most ignored schemas than FDA-s and ILP, beacuse it uses the least test cases, which can have a significantly impact on reducing the failing test cases that both can be observed and predicted.  This is also the reason the increasing t, the better that all these approaches identified less schemas. 
+
+Going to the formal model section, we can find the ignored schemas have too reasons: first, do not observe and predict some failing test cases, and schemas for these test cases do not have any relationship with these observed test cases, i.e., do not have any information of the original MFS; Second, the schemas that either not the parent or sub schemas of some MFS, i.e., the schemas may have part information of the MFS and have some irrelevant information of the MFS, e.g. (1 1 - 1) vs (1 1 1 -) , it less the third and more the fourth.  Then it can be explained that FDA have the most ignored schemas than FDA-s and ILP, beacuse it uses the least test cases, which can have a significantly impact on reducing the failing test cases that both can be observed and predicted.  This is also the reason the increasing t, the better that all these approaches identified less schemas.
 
 As for the FDA-s and ILP, we can find our approach have a better performance, though their observed failing test cases are the same. This is mainly attributed to the difference of predicted failing test cases, which means that our ILP approach can have a better prediction than the FDA-s.
 
@@ -1867,20 +1867,22 @@ As for the FDA-s and ILP, we can find our approach have a better performance, th
 \textbf{Irrelevant number: }
 The irrelevant metric in the overview is that ILP $>$ FDA $>$ FDA-s. When with the increasing of the t, ILP increases, and FDA and FDA-s decreases.
 
-For this metric, we can find that the FDA and FDA-s have a better performance than our ILP. This metric is mainly beacuse of the area that incorrectly predicate test cases. 
+For this metric, we can find that the FDA and FDA-s have a better performance than our ILP, which suggests that our appraoch may introduce more schemas that is no useful for determining the real MFS. This is somehow expected, as in a intuitive point, as our approach ignore less schemas, which may needs to try to get more schemas, and some of them may be irrelevant. In a deeper analysis, we can find the marchinary for the classification tree, though may have a tend to be parent schemas, can make the identified schemas be related to the real MFS.
+
+%This metric is mainly because of the area that incorrectly predicate test cases.
 
 
 \textbf{Aggregative for the five metrics: }
 The aggregative metric for this overview is that ILP $>$ FDA-s $>$ FDA. When with the increasing of the t, all the approaches increases.
 
-As we know, the aggregative gives the composite metirc for the previous five metric, and comprehensively indicates the quoilty of the schemas that identified. Then for the result we can find that it is an evidence that the ILP performed better than the FDA and FDA-s at the quolatiy of the schemas that is identified, i.e., our approach can support a better debugging aids for these schemas is more related to the real MFS.
+As we know, the aggregative gives the composite metric for the previous five metric, and comprehensively indicates the quality of the schemas that identified. Then for the result we can find that it is an evidence that the ILP performed better than the FDA and FDA-s at the quality of the schemas that is identified, i.e., our approach can support a better debugging aids for these schemas is more related to the real MFS.
 
-It is to be expected that the more test cases, the more good qolity the schemas that we can get. However, it is tradeoff for you to select a proper covering strength when considering the quolity and the cost that need to be executed.
+It is to be expected that the more test cases, the more good quality the schemas that we can get. However, it is tradeoff for you to select a proper covering strength when considering the quality and the cost that need to be executed.
 
 \textbf{Test cases: }
 The overall test cases for the overview is that ILP $>$ FDA. (Noted, ILP is equal to FDA-s so we do not list them). When with the increasing of the t, all the approaches increases.
 
-For the first, this is beacuse of the difference of the approaches that we discussed. As the ILP approach is based on the FCI approach FCI\_BS (and of course, ILP can applied on other FCI appraoches). Then from Table \ref{extra-testcases-complexisty}, we can learn that the FCI\_BS need to almost, it must be noted that this for one failing test case, the overall test cases for this approach is the covering array part add the part that the additional test cases for each failing test cases for this covering array. However, for FDA, it just need to generate several t-way covering array. So the difference between the appraoches ILP and FDA in our experiment if mainly atrributed to the machinary of the FCI appraoch each approach adopts.
+For the first, this is because of the difference of the approaches that we discussed. As the ILP approach is based on the FCI approach FCI\_BS (and of course, ILP can applied on other FCI approaches). Then from Table \ref{extra-testcases-complexisty}, we can learn that the FCI\_BS need to almost, it must be noted that this for one failing test case, the overall test cases for this approach is the covering array part add the part that the additional test cases for each failing test cases for this covering array. However, for FDA, it just need to generate several t-way covering array. So the difference between the appraoches ILP and FDA in our experiment if mainly attributed to the machinary of the FCI appraoch each approach adopts.
 
 Above all, we can conclude about three points in this experiment, and which can be an answer for the \textbf{Q4}:
 
@@ -1891,7 +1893,7 @@ Above all, we can conclude about three points in this experiment, and which can 
 
 2)Considering the quality of the MFS each approach identified, we can find our approach can get better than FDA and FDA-s, however, also using more test caes.
 
-3)The increasing t a overall improveemtn for the quolity but also increaing the test cases.
+3)The increasing t a overall improvement for the quality but also increasing the test cases.
 
 %
 %From this result, we can first observe that in all the cases our ILP-based approach can more accurately identify the MFS and ignored less MFS than the FDA-CIT approach. For the metric `parent-schema', `sub-schema', and `irrelevant schemas', there are ups and downs on both sides. With respect to the `overall metric', we find our approach has a significant advantage over the FDA-CIT, but it also requires many more test cases than FDA-CIT.
