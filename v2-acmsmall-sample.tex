@@ -269,20 +269,19 @@ In practice, these parameters in the test case can represent many factors, such 
 \begin{definition}
 A \emph{failure} is the abnormal execution of a test case.
 \end{definition}
-In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact on the multiple \emph{failures} on the CT fault diagnosis process, and to make this point more clearly and , we introduce the following assumptions that can narrow down the filed:
+In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact on the multiple \emph{failures} on the CT fault diagnosis process, and to make our discussion more critical and clear, we introduce the following assumptions to can narrow down the filed:
 
 \begin{assumption}
 The execution result of a given test case is deterministic.
 \end{assumption}
-This assumption is the most common assumption of CT fault diagnosis. It indicates that outcome of executing a test case is reproducible and will not be affected by some random effects.
+This assumption is the most common assumption of CT fault diagnosis. It indicates that outcome of executing a test case is reproducible and will not be affected by some random effects, e.g., the cpu running , memory or just a unexpected scheduling.
 
 \begin{assumption}
-Different failures in a SUT can be distinguished by their specific behaviours such as exception traces, state , or the like.
+Different failures in the SUT can be distinguished by various information such as exception traces, state conditions, or the like.
 \end{assumption}
+This assumption indicates that the testers can detect different failures in the testing, which is common in practice
 
-This assumption
-
-
+In particle, these two assumptions will not always be satisfied, and we will discuss how to weak them in the threats to validate section.
 
 
 With concentrating , then when failures are triggered by some test cases, we need to determine the cause of these failures; hence, some subsets of the test case must be analysed.
@@ -656,7 +655,6 @@ $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
   \end{table}
 
  It is noted that these three conditions can simultaneously appears when two sets of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
-
 %\begin{table}
 %\centering
 %\tbl{Example of Intersect by all examples \label{example_intersect_all}}{
@@ -748,7 +746,7 @@ However, even though each FCI approach tries its best to identify the MFS as acc
 %\subsubsection{Suspicious}
 %SP, CTA. The first one will, while the latter not.
 
-
+\subsection{Discussion of the formal model}
 
 \section{Masking effect}
 \begin{definition}
@@ -1931,6 +1929,10 @@ Above all, we can conclude about three points in this experiment, and which can 
 %% if you want to get a more precise result and more helpful test cases generating supply, you should choose our approach, however if you are limited to the test cases execution, you can choose the feedback driven.
 %% but if
 \subsection{Threats to validity}
+
+\subsubsection{internal threats}
+
+\subsubsection{external threats}
 There are several threats to the validity for these empirical studies. First, we have only surveyed two types of open-source software with five different versions, of which the program scale is medium-sized. This may impact the generality of our observations. Although we believe it is quite possibly a common phenomenon in most software that contains multiple failures which can mask each other, we need to investigate more software to support our belief.
 
 The second threat comes from the input model we built. As we focused on the options related to the perfect combinations and only augmented it with some noise options, there is a chance we will get different results if we choose other noise options. More options needed to be tested to see whether our result is common or just appears in some particular input models.

@@ -40,6 +40,8 @@
 \acmYear{2010}
 \acmMonth{3}
 
+\newtheorem{assumption}{Assumption}
+
 % Document starts
 \begin{document}
 
@@ -264,12 +266,22 @@ A \emph{test case} of the SUT is an array of \emph{k} values, one for each param
 
 In practice, these parameters in the test case can represent many factors, such as input variables, run-time options, building options, or various combinations of them. We need to execute the SUT with these test cases to ensure the correctness of the software behaviour.
 
-%\begin{definition}
-We consider the abnormal execution of a test case to be a \emph{failure}. It can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact on the multiple \emph{failures} on the CT fault diagnosis process, and to make this point more clearly and , we introduce the following assumptions that can narrow down the filed:
+\begin{definition}
+A \emph{failure} is the abnormal execution of a test case.
+\end{definition}
+In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact on the multiple \emph{failures} on the CT fault diagnosis process, and to make this point more clearly and , we introduce the following assumptions that can narrow down the filed:
 
 \begin{assumption}
-
+The execution result of a given test case is deterministic.
 \end{assumption}
+This assumption is the most common assumption of CT fault diagnosis. It indicates that outcome of executing a test case is reproducible and will not be affected by some random effects.
+
+\begin{assumption}
+Different failures in a SUT can be distinguished by their specific behaviours such as exception traces, state conditions, or the like.
+\end{assumption}
+
+This assumption
+
 
 
 
@@ -676,7 +688,7 @@ We refer to the observed failed test case as  $T_{fail_{observed}}$, and refer t
 
 MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
 
-For each FCI approach, the way it predicts the $T_{fail_{predicted}}$ according to observed failed test cases varies; furthermore, as the test cases it generates are different, the failed test cases observed by different test cases, i.e., $T_{fail_{observed}}$ also varies.  We offer an example using the OFOT approach to illustrate this formula.
+For each FCI approach, the way it predicts the $T_{fail_{predicted}}$ according to observed failed test cases varies; furthermore, as the test cases it generates are different, the failed test cases observed by different FCI approaches, i.e., $T_{fail_{observed}}$ also varies.  We offer an example using the OFOT approach to illustrate this formula.
 
 Suppose that the SUT has 3 parameters, each of which can take 2 values. And assume the test case (1, 1, 1) failed. Then, we can describe the FCI process as shown in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one factor of the test case \emph{t} at a time to generate new test cases: $t_{1}; t_{2}; t_{3}$, It found the $t_{1}$ passed, which indicates that this test case breaks the MFS in the original test case \emph{t}. So, the (1,-,-) should be one failure-causing factor, and as the other mutating processes all failed, this means no other failure-inducing factors were broken; therefore, the MFS in \emph{t} is (1,-,-).
 

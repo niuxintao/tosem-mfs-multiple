@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  15 OCT 2014 22:10
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  16 OCT 2014 01:36
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -444,29 +444,28 @@ Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
+Underfull \hbox (badness 10000) in paragraph at lines 345--347
 [] \OT1/pnc/m/it/10 For $\OML/cmm/m/it/10 l$\OT1/pnc/m/it/10 -value
  []
 
-[7]
-Underfull \vbox (badness 2799) has occurred while \output is active []
-
- [8]
+[7] [8]
 File: testSuite1.eps Graphic file (type eps)
-
-<testSuite1.eps>
+ <testSuite1.eps>
 File: testSuite2.eps Graphic file (type eps)
  <testSuite2.eps>
 File: testSuite3.eps Graphic file (type eps)
  <testSuite3.eps> [9]
-Underfull \hbox (badness 1910) in paragraph at lines 544--545
+Underfull \hbox (badness 1910) in paragraph at lines 543--544
 [] \OT1/pnc/m/it/10 For t-wo test cas-es set $\OML/cmm/m/it/10 T[]$\OT1/pnc/m/i
 t/10 ,$\OML/cmm/m/it/10 T[]$\OT1/pnc/m/it/10 , if $\OML/cmm/m/it/10 T[] [] T[] 
 \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ;$\OT1/pnc/m/it/10 , we have,
  []
 
 
-Underfull \hbox (badness 3989) in paragraph at lines 577--578
+Underfull \vbox (badness 1939) has occurred while \output is active []
+
+ [10]
+Underfull \hbox (badness 3989) in paragraph at lines 576--577
 [] \OT1/pnc/m/n/10 First, we can learn that $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 
 (\OML/cmm/m/it/10 T[]\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$ \
 OT1/pnc/m/n/10 are ir-rel-e-van-t to $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/c
@@ -474,41 +473,38 @@ mm/m/it/10 T[]\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$\OT1/pnc/
 m/n/10 , as
  []
 
-[10]
-Underfull \hbox (badness 3954) in paragraph at lines 596--596
+
+Underfull \hbox (badness 3954) in paragraph at lines 595--595
 \OT1/phv/m/n/8 In-ter-sec-tion by ir-rel-e-
  []
 
-[11]
-Underfull \vbox (badness 1454) has occurred while \output is active []
-
- [12]
+[11] [12]
 File: FCI.eps Graphic file (type eps)
-
-<FCI.eps> [13]
+ <FCI.eps> [13]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 768.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 766.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
  [14]
 File: FCI-mask.eps Graphic file (type eps)
- <FCI-mask.eps>
-Underfull \vbox (badness 6859) has occurred while \output is active []
+ <FCI-mask.eps> [15]
 
- [15]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [16]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [17]
-[18]
-Underfull \vbox (badness 1609) has occurred while \output is active []
+[17] [18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [19]
-[20] [21]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncr7t" at 5.0pt
@@ -518,7 +514,7 @@ Requested font "pncri7t" at 5.0pt
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1145.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1143.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -536,28 +532,29 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1165.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1163.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1165.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1163.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1165.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1163.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1168.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1166.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
- [22] [23]
+
+[22] [23]
 File: table.eps Graphic file (type eps)
  <table.eps>
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6204) has occurred while \output is active []
 
  [24]
 [25] [26]
@@ -582,7 +579,7 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1657--1657
+Underfull \hbox (badness 1259) in paragraph at lines 1655--1655
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -593,13 +590,12 @@ File: testCases.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [32]
-[33]
-Underfull \vbox (badness 7379) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34]
+ [33]
+[34]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
@@ -607,21 +603,19 @@ File: 4-way.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [36]
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1909 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1907 replaced by U+FFFD.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [38]
+[38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39]
@@ -638,12 +632,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2039--2072
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2041--2074
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2076--2138
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2078--2140
 [] 
  []
 
@@ -653,7 +647,7 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 2076--2138
 Here is how much of TeX's memory you used:
  3909 strings out of 430478
  45952 string characters out of 3191502
- 187825 words of memory out of 3000000
+ 187810 words of memory out of 3000000
  6980 multiletter control sequences out of 15000+200000
  24285 words of font info for 75 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
