@@ -1403,7 +1403,7 @@ We first looked through the bug tracker forum of each software and focused on th
 
 We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is properly constructed so that we can reproduce different failures by controlling the inputs to the test file. For each version of the software, the source code of the testing file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
 
-Next, we built the input model which consists of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Tables \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex, respectively. Each table is organised into four groups: (1)\emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2)\emph{common Boolean options}, which lists additional common options whose data type is Boolean; (3)\emph{specific options}, under which only the specific version of that software can be tested; and (4)\emph{configure space}, which depicts the input model for each version of the software, the input model is presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters can take 3 values, and only one parameter that can take 4 values.
+Next, we built the input model which consists of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Tables \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex, respectively. Each table is organised into three groups: (1)\emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2)\emph{specific options}, under which only the specific version of that software can be tested; and (3)\emph{configure space}, which depicts the input model for each version of the software, the input model is presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters can take 3 values, and only one parameter that can take 4 values.
 
 \begin{table}[h]
 \tbl{Input model of HSQLDB\label{modelHSQLDB}}{
@@ -1416,11 +1416,14 @@ Next, we built the input model which consists of the options related to the fail
    \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{read\_only, updatable}  \\
   \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ hold, close} \\
   \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{statement, prepared}  \\
+  \multicolumn{3}{c}{ sql.enforce\_strict\_size}  & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  sql.enforce\_names}  &\multicolumn{3}{c}{ true, false} \\
+  \multicolumn{3}{c}{ sql.enforce\_refs }  &\multicolumn{3}{c}{true, false}  \\
     \hline
-   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
-    \hline
-    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
-      \hline
+%   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
+%    \hline
+%    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
+%      \hline
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
     2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{ true, false}\\
       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{ true, false }\\
@@ -1446,18 +1449,28 @@ Next, we built the input model which consists of the options related to the fail
   \hline
 
  \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{switch, table, pack}  \\
-  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{defailure, 7bit, 8bit, 16bit}  \\
+  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{default, 7bit, 8bit, 16bit}  \\
+  
+   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{true, false}  \\
+      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{true, false}  \\
+     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{true, false}  \\
 
     \hline
-   \multicolumn{6}{c}{  \bfseries common boolean options }\\
-    \hline
-    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
-      \hline
+%   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+%    \hline
+%    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
+%      \hline
 
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ has, non, defailure}\\
+    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ has, non, default}\\
       & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{ true, false }\\
-    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, defailure}\\
+    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, default}\\
        & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{ true, false}\\
      & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{true, false}\\
 
@@ -1528,7 +1541,8 @@ It is notable that in yilmaz's \cite{yilmaz2013reducing} paper, a similar work a
 %can make these two bugs existed in one test case and only one failure will be observed. Other failures listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
 
 \subsection{Comparing our approach with traditional algorithms}
-In the second study, our aim was to compare the performance of our approach to traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we needed to apply our approach and traditional algorithms to identify MFS in a group of software and evaluate their identifying results. The five prepared versions of software in Table \ref{software description} used as test objects are far from a general evaluation of such objects. However, to construct such real testing scenarios is time-consuming as we must carefully study the tutorial of that software as well as the bug tracker report.  So to give a desirable result based on more testing objects, we then synthesize a number of such testing scenarios of which the characterizations, such as the number of parameters, the number of failures, and the possible masking effects, are similar to that of the real software. In detail, we set the number of parameters  \emph{k} of the SUT to a range from 8 to 30. We limited the scale of the SUT to a relatively small size because we needed to exhaustively execute each possible test case of the SUT to select the failing test cases  which we then fed  into the FCI approach.  We then randomly choose 10 such SUTs, and for each SUT we injected 2 to 5 different MFS that can mask each other. The degree of the MFS we injected ranged from 1 to 6.
+In the second study, our aim was to compare the performance of our approach to traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we needed to apply our approach and traditional algorithms to identify MFS in a group of software and evaluate their identifying results. The five prepared versions of software in Table \ref{software description} used as test objects are far from a general evaluation of such objects. However, to construct such real testing scenarios is time-consuming as we must carefully study the tutorial of that software as well as the bug tracker report.  So to give a desirable result based on more testing objects, we then synthesize a number of such testing scenarios of which the characterizations, such as the number of parameters, the number of failures, and the possible masking effects, are similar to that of the real software. The synthesize process works as follows: 
+In detail, we set the number of parameters  \emph{k} of the SUT to a range from 8 to 30. We limited the scale of the SUT to a relatively small size because we needed to exhaustively execute each possible test case of the SUT to select the failing test cases  which we then fed  into the FCI approach.  We then randomly choose 10 such SUTs, and for each SUT we injected 2 to 5 different MFS that can mask each other. The degree of the MFS we injected ranged from 1 to 6.
 % Additionally, we randomly set the level of each failure in such a SUT, i.e., for any two failures, which one has a higher level(such that can mask another one)is also by random.
 
 %it is not enough.and compare them with the prior failure-inducing combinations.
