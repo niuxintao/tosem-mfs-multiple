@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  23 OCT 2014 01:51
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  24 OCT 2014 02:32
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -560,7 +560,10 @@ Requested font "pncb7t" at 10.0pt
 
 [23] [24]
 File: table.eps Graphic file (type eps)
- <table.eps> [25]
+ <table.eps>
+Underfull \vbox (badness 4316) has occurred while \output is active []
+
+ [25]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [26]
@@ -569,9 +572,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [28] [29]
-Underfull \vbox (badness 1248) has occurred while \output is active []
+Underfull \vbox (badness 5036) has occurred while \output is active []
 
  [30]
+Underfull \vbox (badness 7595) has occurred while \output is active []
+
+ [31]
 File: accurate.eps Graphic file (type eps)
 
 <accurate.eps>
@@ -590,24 +596,30 @@ Underfull \hbox (badness 1259) in paragraph at lines 1681--1681
 File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps> [31] [32]
+ <testCases.eps>
+Underfull \vbox (badness 1337) has occurred while \output is active []
+
+ [32]
+[33]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]
-[34]
-Underfull \vbox (badness 7379) has occurred while \output is active []
-
- [35]
+ [34]
+[35]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps> [36]
+ <4-way.eps>
+Underfull \vbox (badness 2418) has occurred while \output is active []
+
+ [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38]
 Invalid UTF-8 byte or sequence at line 1933 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1933 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1933 replaced by U+FFFD.
@@ -617,14 +629,22 @@ Invalid UTF-8 byte or sequence at line 1933 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1933 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1933 replaced by U+FFFD.
 
-[38] [39] [40]
+Underfull \vbox (badness 2189) has occurred while \output is active []
+
+ [39]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [40]
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
+Underfull \vbox (badness 2556) has occurred while \output is active []
+
+ [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41])
-[42]
+ [42])
+[43]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
@@ -643,10 +663,10 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 2104--2166
 Here is how much of TeX's memory you used:
  3918 strings out of 430478
  46030 string characters out of 3191502
- 187911 words of memory out of 3000000
+ 187915 words of memory out of 3000000
  6989 multiletter control sequences out of 15000+200000
  24285 words of font info for 75 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,30p,2053b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (44 pages).
+Output written on v2-acmsmall-sample.pdf (45 pages).
