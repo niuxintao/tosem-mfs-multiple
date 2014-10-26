@@ -1403,11 +1403,12 @@ We first looked through the bug tracker forum of each software and focused on th
 
 We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is properly constructed so that we can reproduce different failures by controlling the inputs to the test file. For each version of the software, the source code of the testing file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
 
-Next, we built the input model which consists of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Tables \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex, respectively. Each table is organised into four groups: (1)\emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2)\emph{common Boolean options}, which lists additional common options whose data type is Boolean; (3)\emph{specific options}, under which only the specific version of that software can be tested; and (4)\emph{configure space}, which depicts the input model for each version of the software, the input model is presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters can take 3 values, and only one parameter that can take 4 values.
+Next, we built the input model which consists of the options related to the failure-inducing combinations and additional noise options. The detailed model information is in Tables \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex, respectively. Each table is organised into three groups: (1)\emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2)\emph{specific options}, under which only the specific version of that software can be tested; and (3)\emph{configure space}, which depicts the input model for each version of the software, the input model is presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters can take 3 values, and only one parameter that can take 4 values.
 
 \begin{table}[h]
 \tbl{Input model of HSQLDB\label{modelHSQLDB}}{
 \begin{tabular}{llllll}
+  \hline
 \multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
  \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{server, webserver, inprocess}  \\
@@ -1425,6 +1426,7 @@ Next, we built the input model which consists of the options related to the fail
 %    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
 %      \hline
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+     \hline
     2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{ true, false}\\
       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{ true, false }\\
       & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{ next,previous,first,last}\\
@@ -1445,22 +1447,34 @@ Next, we built the input model which consists of the options related to the fail
 \begin{table}[h]
 \tbl{Input model of JFlex\label{modelJFlex}}{
 \begin{tabular}{llllll}
+  \hline
 \multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
 
  \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{switch, table, pack}  \\
-  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{defailure, 7bit, 8bit, 16bit}  \\
+  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{default, 7bit, 8bit, 16bit}  \\
+
+   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{true, false}  \\
+      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{true, false}  \\
+     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{true, false}  \\
 
     \hline
-   \multicolumn{6}{c}{  \bfseries common boolean options }\\
-    \hline
-    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
-      \hline
+%   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+%    \hline
+%    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
+%      \hline
 
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ has, non, defailure}\\
+     \hline
+    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ has, non, default}\\
       & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{ true, false }\\
-    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, defailure}\\
+    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, default}\\
        & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{ true, false}\\
      & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{true, false}\\
 
@@ -1531,7 +1545,8 @@ It is notable that in yilmaz's \cite{yilmaz2013reducing} paper, a similar work a
 %can make these two bugs existed in one test case and only one failure will be observed. Other failures listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
 
 \subsection{Comparing our approach with traditional algorithms}
-In the second study, our aim was to compare the performance of our approach to traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we needed to apply our approach and traditional algorithms to identify MFS in a group of software and evaluate their identifying results. The five prepared versions of software in Table \ref{software description} used as test objects are far from a general evaluation of such objects. However, to construct such real testing scenarios is time-consuming as we must carefully study the tutorial of that software as well as the bug tracker report.  So to give a desirable result based on more testing objects, we then synthesize a number of such testing scenarios of which the characterizations, such as the number of parameters, the number of failures, and the possible masking effects, are similar to that of the real software. In detail, we set the number of parameters  \emph{k} of the SUT to a range from 8 to 30. We limited the scale of the SUT to a relatively small size because we needed to exhaustively execute each possible test case of the SUT to select the failing test cases  which we then fed  into the FCI approach.  We then randomly choose 10 such SUTs, and for each SUT we injected 2 to 5 different MFS that can mask each other. The degree of the MFS we injected ranged from 1 to 6.
+In the second study, our aim was to compare the performance of our approach with traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we needed to apply our approach and traditional algorithms to identify MFS in a group of software and evaluate their identifying results. The five prepared versions of software in Table \ref{software description} used as test objects are far from the requirement for a general evaluation. However, to construct such real testing objects is time-consuming as we must carefully study the tutorial of that software as well as the bug tracker report.  So to give a desirable result based on more testing objects, we then synthesize 10 more such testing objects. The testing objects we synthesized are ten toy programs which can directly return outputs when executed with given inputs.  To make the synthetic objects as similar as possible to the real software, we firstly analysed the characterizations, such as the number of parameters, the number of failures, and the possible masking effects, of the real software. As a result, we got that the number of parameters of the SUT ranged from 8 to 30, the number of different failures in the SUT ranged from 2 to 4, and the number of MFS for a failure ranged from 1 to 2, in which the degree of the MFS ranged from 1 to 6. Then for each characterization, we randomly select one value in the corresponding range and assign it to the input model by adjusting the relationships between the inputs and outputs of these toy programs. After that, the testing objects that share the similar characterizations of the real software are prepared.
+%In detail, we set the number of parameters  \emph{k} of the SUT to a range from 8 to 30. We limited the scale of the SUT to a relatively small size because we needed to exhaustively execute each possible test case of the SUT to select the failing test cases  which we then fed  into the FCI approach.  We then randomly choose 10 such SUTs, and for each SUT we injected 2 to 5 different MFS that can mask each other. The degree of the MFS we injected ranged from 1 to 6.
 % Additionally, we randomly set the level of each failure in such a SUT, i.e., for any two failures, which one has a higher level(such that can mask another one)is also by random.
 
 %it is not enough.and compare them with the prior failure-inducing combinations.
@@ -1542,30 +1557,57 @@ In the second study, our aim was to compare the performance of our approach to t
 
 %To construct such real testing scenario is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report.
 
-Above all, Table \ref{testing_models} lists the testing model for both the real and synthesizing testing scenario. In this table, the column `software' indicates the SUT under test. For the real SUT, we label it with the form ` \emph{name} + \emph{version}', while for the synthesizing ones, we label them as `\emph{synthez}+ \emph{id}'. The column `Model' presents the model of the input space for that software. The last column shows the MFS as well as the masking sequence for each testing object. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}$, e.g.,  $(5_{1},6_{0},7_{0})$ actually means (-, -, -, -, -, 1, 0, 0, -, -, -, - ) for HSQLDB of version '2cr8'. It is noted that we use '$\rightarrow$' and '=' to describe the masking sequence of each MFS, in which '$\rightarrow$' means the left MFS in this operator can mask the right MFS of this operator, e.g., $(5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2})$ means if $(5_{1},6_{0},7_{0})$ appears in the test case, then $(5_{1},8_{2},9_{2})$ will not be triggered. Operator '=' means that these two MFS will not mask each other.
+Table \ref{testing_models} lists the testing model for both the real and synthesizing testing objects. In this table, the column `software' indicates the SUT under test. For the real SUT listed in Table \ref{software description}, we label the five software as $H2cr8$, $H2.2.5$, $H2.2.9$, $J1.4.1$, $J1.4.2$, respectively. While for the synthesizing ones, we label them as the form `\emph{syn}+ \emph{id}'. Column `Model' presents the model of the input space for that software. Column 'Failures' shows the different failures in the software and their masking relationships. In this column, `$>$' means the left failure will mask the right failure, i.e., if the left failure triggered, then the right failure will not have chance to be triggered. Further more, For example, for the $H2cr8$ object, we can find three failures : $e_{1}$, $e_{2}$, and $e_{3}$. By using the formula $e_{1} > e_{2} > e_{3}$, we means the failure $e_{2}$ will mask $e_{3}$ and $e_{1}$ will mask both $e_{2}, e_{3}$.
+ The last column shows the MFS as well as the masking sequence for each testing object. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}$, e.g.,  $(5_{1},6_{0},7_{0})$ actually means (-, -, -, -, -, 1, 0, 0, -, -, -, - ) for HSQLDB of version '2cr8'. It is noted that we use '$\rightarrow$' and '=' to describe the masking sequence of each MFS, in which '$\rightarrow$' means the left MFS in this operator can mask the right MFS of this operator, e.g., $(5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2})$ means if $(5_{1},6_{0},7_{0})$ appears in the test case, then $(5_{1},8_{2},9_{2})$ will not be triggered. Operator '=' means that these two MFS will not mask each other.
+%
+%\begin{table}\renewcommand{\arraystretch}{1.3}
+%\tbl{The testing models used in the case study\label{testing_models}}{
+%\begin{tabular}{c|c|c} \hline
+%software & Model & MFS\&  masking sequence \\ \hline
+%HSQLDB 2cr8 & $2^{9} \times 3^{2} \times 4^{1}$ & $ (5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2}) = (5_{1},8_{2},9_{1}) \rightarrow (5_{1},8_{3},9_{2}) = (5_{1},8_{3},9_{1})$ \\ \hline
+%HSQLDB  2.2.5 & $2^{8} \times 3^{3}$ & $ (6_{1},7_{0}) \rightarrow (5_{2})$ \\ \hline
+%HSQLDB  2.2.9 & $2^{8} \times 3^{3}$& $ (6_{0}) \rightarrow (0_{1},5_{1},7_{0}) = (0_{0},5_{1},7_{0}) \rightarrow (5_{1},7_{0}) $ \\ \hline
+%JFlex 1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ (0_{0}) \rightarrow (1_{0}) $ \\ \hline
+%JFlex  1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $ (1_{0},2_{1}) \rightarrow (0_{1})  $\\ \hline
+%synthez  1 & $2^{5}\times 3^{3}\times 4^{1}$& $ (2_{1},3_{0}) \rightarrow (1_{1},2_{1}) = (1_{0},3_{0})$ \\ \hline
+%synthez  2 & $2^{6}\times 3^{2}\times 4^{1}$ & $ (4_{1},6_{0},7_{1},8_{0}) \rightarrow (1_{1},3_{1},5_{1}) \rightarrow (2_{0},3_{1},6_{0}) $\\ \hline
+%synthez  3 & $2^{5}\times 3^{3}$ & $ (2_{1},3_{0}) \rightarrow (1_{0}) = (4_{1}) \rightarrow (6_{0},7_{0}) $\\ \hline
+%synthez  4 & $2^{7}\times 3^{2}\times 4^{1}$ & $ (0_{1},2_{1},5_{0},6_{1}) \rightarrow (2_{1},4_{0}) = (6_{1},7_{0}) \rightarrow (3_{0},4_{0},5_{0}) $\\ \hline
+%synthez  5 & $2^{4}\times 3^{3} \times 4^{2}$ & $ (0_{0},1_{1},3_{0},6_{1},8_{0}) \rightarrow (2_{0},3_{0},4_{1})$\\ \hline
+%synthez  6 & $2^{9}\times 3^{2}$ & $ (2_{0},7_{1},8_{1}) \rightarrow (3_{1},5_{1}) = (4_{0}) \rightarrow(3_{1},6_{0},7_{1}) \rightarrow(3_{1},7_{1},8_{0})$ \\ \hline
+%synthez  7 & $2^{10}\times 3^{1}\times 4^{1}$& $ (3_{1},4_{0},5_{0}) \rightarrow (2_{0}, 4_{0}, 7_{1},9_{0}) \rightarrow (6_{1},10_{0},11_{1}) $ \\ \hline
+%synthez  8 & $2^{11}\times 3^{1}\times 4^{1}$& $ (1_{0},3_{1},4_{0},7_{1},9_{0},12_{1}) \rightarrow (0_{0},2_{1},3_{1},7_{1},10_{0},11_{1}) $\\ \hline
+%synthez  9 & $2^{4}\times 4^{3}$ & $ (3_{1},5_{0}) \rightarrow (5_{0},6_{1}) $ \\ \hline
+%synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ (0_{1},3_{0},4_{1},7_{0}) \rightarrow (2_{0},3_{0},5_{1}) = (2_{0},3_{0},5_{0}) $\\ \hline
+%\hline\end{tabular}
+%}
+%\end{table}
+
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{The testing models used in the case study\label{testing_models}}{
-\begin{tabular}{c|c|c} \hline
-software & Model & MFS\&  masking sequence \\ \hline
-HSQLDB 2cr8 & $2^{9} \times 3^{2} \times 4^{1}$ & $ (5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2}) = (5_{1},8_{2},9_{1}) \rightarrow (5_{1},8_{3},9_{2}) = (5_{1},8_{3},9_{1})$ \\ \hline
-HSQLDB  2.2.5 & $2^{8} \times 3^{3}$ & $ (6_{1},7_{0}) \rightarrow (5_{2})$ \\ \hline
-HSQLDB  2.2.9 & $2^{8} \times 3^{3}$& $ (6_{0}) \rightarrow (0_{1},5_{1},7_{0}) = (0_{0},5_{1},7_{0}) \rightarrow (5_{1},7_{0}) $ \\ \hline
-JFlex 1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ (0_{0}) \rightarrow (1_{0}) $ \\ \hline
-JFlex  1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $ (1_{0},2_{1}) \rightarrow (0_{1})  $\\ \hline
-synthez  1 & $2^{5}\times 3^{3}\times 4^{1}$& $ (2_{1},3_{0}) \rightarrow (1_{1},2_{1}) = (1_{0},3_{0})$ \\ \hline
-synthez  2 & $2^{6}\times 3^{2}\times 4^{1}$ & $ (4_{1},6_{0},7_{1},8_{0}) \rightarrow (1_{1},3_{1},5_{1}) \rightarrow (2_{0},3_{1},6_{0}) $\\ \hline
-synthez  3 & $2^{5}\times 3^{3}$ & $ (2_{1},3_{0}) \rightarrow (1_{0}) = (4_{1}) \rightarrow (6_{0},7_{0}) $\\ \hline
-synthez  4 & $2^{7}\times 3^{2}\times 4^{1}$ & $ (0_{1},2_{1},5_{0},6_{1}) \rightarrow (2_{1},4_{0}) = (6_{1},7_{0}) \rightarrow (3_{0},4_{0},5_{0}) $\\ \hline
-synthez  5 & $2^{4}\times 3^{3} \times 4^{2}$ & $ (0_{0},1_{1},3_{0},6_{1},8_{0}) \rightarrow (2_{0},3_{0},4_{1})$\\ \hline
-synthez  6 & $2^{9}\times 3^{2}$ & $ (2_{0},7_{1},8_{1}) \rightarrow (3_{1},5_{1}) = (4_{0}) \rightarrow(3_{1},6_{0},7_{1}) \rightarrow(3_{1},7_{1},8_{0})$ \\ \hline
-synthez  7 & $2^{10}\times 3^{1}\times 4^{1}$& $ (3_{1},4_{0},5_{0}) \rightarrow (2_{0}, 4_{0}, 7_{1},9_{0}) \rightarrow (6_{1},10_{0},11_{1}) $ \\ \hline
-synthez  8 & $2^{11}\times 3^{1}\times 4^{1}$& $ (1_{0},3_{1},4_{0},7_{1},9_{0},12_{1}) \rightarrow (0_{0},2_{1},3_{1},7_{1},10_{0},11_{1}) $\\ \hline
-synthez  9 & $2^{4}\times 4^{3}$ & $ (3_{1},5_{0}) \rightarrow (5_{0},6_{1}) $ \\ \hline
-synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ (0_{1},3_{0},4_{1},7_{0}) \rightarrow (2_{0},3_{0},5_{1}) = (2_{0},3_{0},5_{0}) $\\ \hline
-\hline\end{tabular}
+\setlength\tabcolsep{1pt}
+\begin{tabular}{c|c|c|c} \hline
+Object & Model & Failures & MFS for each failure\\ \hline
+H2cr8 & $2^{9} \times 3^{2} \times 4^{1}$ & $e_{1} > e_{2} > e_{3} $ & $ (5_{1},6_{0},7_{0})_{e_{1}}, (5_{1},8_{2},9_{2})_{e_{2}} , (5_{1},8_{2},9_{1})_{e_{2}}, (5_{1},8_{3},9_{2})_{e_{3}}, (5_{1},8_{3},9_{1})_{e_{3}}$ \\ \hline
+H2.2.5 & $2^{8} \times 3^{3}$ & $ e_{1} > e_{2}$ & $ (6_{1},7_{0})_{e_{1}}, (5_{2})_{e_{2}}$ \\ \hline
+H2.2.9 & $2^{8} \times 3^{3}$& $e_{1} > e_{2} > e_{3}$ & $ (6_{0})_{e_{1}}, (0_{1},5_{1},7_{0})_{e_{2}} , (0_{0},5_{1},7_{0})_{e_{2}} , (5_{1},7_{0})_{e_{3}} $ \\ \hline
+J1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ e_{1} > e_{2} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
+J1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $e_{1} > e_{2}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
+syn1 & $2^{5}\times 3^{3}\times 4^{1}$& $e_{1} > e_{2}$ &$ (2_{1},3_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}} , (1_{0},3_{0})_{e_{2}}$ \\ \hline
+syn2 & $2^{6}\times 3^{2}\times 4^{1}$ & $e_{1} > e_{2} > e_{3} $ &$ (4_{1},6_{0},7_{1},8_{0})_{e_{1}}, (1_{1},3_{1},5_{1})_{e_{2}}, (2_{0},3_{1},6_{0})_{e_{3}} $\\ \hline
+syn3 & $2^{5}\times 3^{3}$ & $e_{1} > e_{2} > e_{3}$ &$ (2_{1},3_{0})_{e_{1}},  (1_{0})_{e_{2}}, (4_{1})_{e_{2}}, (6_{0},7_{0})_{e_{3}} $\\ \hline
+syn4 & $2^{7}\times 3^{2}\times 4^{1}$ & $e_{1} > e_{2} > e_{3}$ &$ (0_{1},2_{1},5_{0},6_{1})_{e_{1}}, (2_{1},4_{0})_{e_{2}}, (6_{1},7_{0})_{e_{2}}, (3_{0},4_{0},5_{0})_{e_{3}} $\\ \hline
+syn5 & $2^{4}\times 3^{3} \times 4^{2}$ & $e_{1} > e_{2}$ &$ (0_{0},1_{1},3_{0},6_{1},8_{0})_{e_{1}}, (2_{0},3_{0},4_{1})_{e_{2}}$\\ \hline
+syn6 & $2^{9}\times 3^{2}$ & $e_{1} > e_{2} > e_{3} > e_{4}$ &$  (2_{0},7_{1},8_{1})_{e_{1}}, (3_{1},5_{1})_{e_{2}} , (4_{0})_{e_{2}}, (3_{1},6_{0},7_{1})_{e_{3}}, (3_{1},7_{1},8_{0})_{e_{4}}$ \\ \hline
+syn7 & $2^{10}\times 3^{1}\times 4^{1}$&$e_{1} > e_{2} > e_{3}$ &$ (3_{1},4_{0},5_{0})_{e_{1}}, (2_{0}, 4_{0}, 7_{1},9_{0})_{e_{2}}, (6_{1},10_{0},11_{1})_{e_{3}} $ \\ \hline
+syn8 & $2^{11}\times 3^{1}\times 4^{1}$& $e_{1} > e_{2} $ &$ (1_{0},3_{1},4_{0},7_{1},9_{0},12_{1})_{e_{1}}, (0_{0},2_{1},3_{1},7_{1},10_{0},11_{1})_{e_{2}} $\\ \hline
+syn9 & $2^{4}\times 4^{3}$ & $e_{1} > e_{2}$ & $(3_{1},5_{0})_{e_{1}}, (5_{0},6_{1})_{e_{2}} $ \\ \hline
+syn10 & $2^{7}\times 3^{3} \times 4^{1}$ & $e_{1} > e_{2}$ &$ (0_{1},3_{0},4_{1},7_{0})_{e_{1}},   (2_{0},3_{0},5_{1})_{e_{2}}, (2_{0},3_{0},5_{0})_{e_{2}} $\\ \hline
+\end{tabular}
 }
 \end{table}
+
 
 %
 %we This work is time assuming, so to get a more general result, we further synthesized 30 more such scenarios and each of them is. The detailed model and the is listed in table.
@@ -1593,7 +1635,7 @@ synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ (0_{1},3_{0},4_{1},7_{0}) \ri
 
 
 \subsubsection{Study setup}
-After preparing the subjects under testing, we then apply our approach (augment the FIC\_BS with replacing strategy) to identify the MFS of each SUT listed in Table \ref{testing_models}. Specifically, for each SUT we select each test case that failed during testing and feed these into our FCI approach as the input. Then, after the identifying process is over, we record the MFS each got (referred to as \emph{identified MFS}, for convenience) and the extra test cases it needed. For the traditional FIC\_BS approach, we designed the same experiment as what are used for our approach. But as the objects being tested have multiple failures for which the traditional FIC\_BS can not be applied directly, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one failure} and \emph{distinguishing failures} described in Section 3.2.  The purpose of recording the generated additional test cases is to later quantify the additive cost of our approach.
+After preparing the objects under testing, we then apply our approach (augment the FIC\_BS with replacing strategy) to identify the MFS of each SUT listed in Table \ref{testing_models}. Specifically, for each SUT we select each test case that failed during testing and feed these into our FCI approach as the input. Then, after the identifying process is over, we record the MFS each got (referred to as \emph{identified MFS}, for convenience) and the extra test cases it needed. For the traditional FIC\_BS approach, we designed the same experiment as what are used for our approach. But as the objects being tested have multiple failures for which the traditional FIC\_BS can not be applied directly, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one failure} and \emph{distinguishing failures} described in Section 3.2.  The purpose of recording the generated additional test cases is to later quantify the additive cost of our approach.
 
 %three traditional approaches: OFOT\cite{nie2011minimal}, FIC\_BS \cite{zhang2011characterizing} and CTA\cite{yilmaz2006covering} to identify the MFS in each failing test case we have detected after executing the possible test cases for that model. Among the three approaches, CTA is a integrated failure characterization part of FDA-CIT\cite{yilmaz2013reducing}. As CTA is a post-analysis technique applied on given test cases, different test cases will influence the result of characterization process. So to avoid randomness and to be fair, we fed the CTA with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. %, the configuration options for J48, is .
 
@@ -1609,11 +1651,11 @@ After preparing the subjects under testing, we then apply our approach (augment 
 %We first utilize augment simulating algorithms(ASA) to generate 2-way covering arrays. And for each test case in the covering array, the executing result of them can be fetched from the exhaustive set we have got in the first study. Then we fed CTA approach with the covering array along with the corresponding executing results. We then collected the failure-inducing combinations after running CTA. As different covering array may affect the result of CTA approach, we repeated using ASA to generate 2-way covering array for 30 times and applied CTA for each of them. It is noted that ASA algorithm is a heuristic approach, which containing some random factors, so the 30 covering arrays are different from each other.
 We next compared the identified MFS of each approach with the prior MFS to quantify the degree that each suffers from masking effects, such that we can figure out how much our approach performs better than traditional ones when the SUT contains potential masking effects. There are five metrics we need to calculate in this study, which are as follows:
  \begin{enumerate}
- \item The number of the common combinations that appear in both identified MFS and prior MFS. We denote this metric as \emph{accurate number} later.
- \item The number of the identified combinations which are the parent combinations of some prior failure-inducing combinations. We refer to this metric as the \emph{parent number}.
- \item The number of the identified combinations that are the sub combinations of some prior failure-inducing combinations, which are referred to as the \emph{sub number}.
- \item The number of ignored failure-inducing combinations. This metric counts these combinations in prior failure-inducing combinations, which are irrelevant to the identified combinations. We label the metric as \emph{ignored number}.
- \item The number of irrelevant combinations. This metric counts the combinations in these identified combinations that are irrelevant to the prior failure-inducing combinations. It is referred to as the \emph{irrelevant number}.
+ \item The number of the identified MFS which are actual prior MFS. We denote this metric as \emph{accurate number} later.
+ \item The number of the identified MFS are the parent schemas of some prior MFS. We refer to this metric as the \emph{parent number}.
+ \item The number of the identified MFS that are the sub schemas of some prior MFS, which are referred to as the \emph{sub number}.
+ \item The number of ignored prior MFS. This metric counts these schemas in prior MFS, which are irrelevant to the identified MFS. We label the metric as \emph{ignored number}.
+ \item The number of irrelevant identified MFS. This metric counts the schemas in these identified MFS that are irrelevant to the prior MFS. It is referred to as the \emph{irrelevant number}.
 \end{enumerate}
 
 Among these five metrics, the high \emph{accurate number} value indicates FCI approaches that  perform effectively, while the \emph{ignored number} and \emph{irrelevant number} indicate the extent of deviation for the FCI approaches. The \emph{parent number} and \emph{sub number} indicate the FCI approaches that can determine part parameter values for the failure-inducing combinations, although with additional noisy information.
@@ -1959,12 +2001,14 @@ Above all, we can conclude about three points in this experiment, and which can 
 %% but if
 \subsection{Threats to validity}
 
-\subsubsection{internal threats}
+As we previous metioned, the masking effects can be having a complicated relationship, not the directly linear about multiple failures. I.e., failure a can mask the failure b, failure b can mask a . and failure c can mask failure c. Even worse, two failures can mask each other. When such scenorias happened, we need to recoonsruct the formal model of the schemas that when can be either be.  as the condition will significantly completed the relationships between the failures and schemas.
 
-\subsubsection{external threats}
+\subsubsection{internal threats}
 There are several threats to the validity for these empirical studies. First, we have only surveyed two types of open-source software with five different versions, of which the program scale is medium-sized. This may impact the generality of our observations. Although we believe it is quite possibly a common phenomenon in most software that contains multiple failures which can mask each other, we need to investigate more software to support our belief.
 
 The second threat comes from the input model we built. As we focused on the options related to the perfect combinations and only augmented it with some noise options, there is a chance we will get different results if we choose other noise options. More options needed to be tested to see whether our result is common or just appears in some particular input models.
+\subsubsection{external threats}
+
 
 The third threat is that we just evaluated one FCI approach -- FIC\_BS \cite{zhang2011characterizing}, so further works needed to examine more algorithms in this field to obtain a more general result.
 
