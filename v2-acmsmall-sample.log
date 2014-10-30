@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  31 OCT 2014 05:50
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  31 OCT 2014 06:05
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -633,29 +633,23 @@ Invalid UTF-8 byte or sequence at line 2005 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2005 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2005 replaced by U+FFFD.
 
-[40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [41]
-[42] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+[40] [41] [42]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2418) has occurred while \output is active []
 
- [43]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [44])
-[45]
+ [43])
+[44]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2153--2186
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2156--2189
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2190--2252
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2193--2255
 [] 
  []
 
@@ -671,4 +665,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  33i,18n,30p,2048b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (47 pages).
+Output written on v2-acmsmall-sample.pdf (46 pages).
