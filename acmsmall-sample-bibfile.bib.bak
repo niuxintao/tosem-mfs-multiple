@@ -326,30 +326,11 @@
   year = 2004
 }
 
-
-@inproceedings{zheng2006statistical,
-  title={Statistical debugging: simultaneous identification of multiple bugs},
-  author={Zheng, Alice X and Jordan, Michael I and Liblit, Ben and Naik, Mayur and Aiken, Alex},
-  booktitle={Proceedings of the 23rd international conference on Machine learning},
-  pages={1105--1112},
-  year={2006},
+@inproceedings{digiuseppe2011influence,
+  title={On the influence of multiple faults on coverage-based fault localization},
+  author={DiGiuseppe, Nicholas and Jones, James A},
+  booktitle={Proceedings of the 2011 international symposium on software testing and analysis},
+  pages={210--220},
+  year={2011},
   organization={ACM}
-}
-
-@inproceedings{jones2007debugging,
-  title={Debugging in parallel},
-  author={Jones, James A and Bowring, James F and Harrold, Mary Jean},
-  booktitle={Proceedings of the 2007 international symposium on Software testing and analysis},
-  pages={16--26},
-  year={2007},
-  organization={ACM}
-}
-
-@inproceedings{podgurski2003automated,
-  title={Automated support for classifying software failure reports},
-  author={Podgurski, Andy and Leon, David and Francis, Patrick and Masri, Wes and Minch, Melinda and Sun, Jiayang and Wang, Bin},
-  booktitle={Software Engineering, 2003. Proceedings. 25th International Conference on},
-  pages={465--475},
-  year={2003},
-  organization={IEEE}
 }
