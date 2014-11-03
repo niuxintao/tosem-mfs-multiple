@@ -235,6 +235,15 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Jones, Bowring, and Harrold}{Jones
+  et~al\mbox{.}}{2007}]%
+        {jones2007debugging}
+{James~A Jones}, {James~F Bowring}, {and} {Mary~Jean Harrold}. 2007.
+\newblock \showarticletitle{Debugging in parallel}. In {\em Proceedings of the
+  2007 international symposium on Software testing and analysis}. ACM, 16--26.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Li, Nie, and Lei}{Li et~al\mbox{.}}{2012}]%
         {li2012improved}
 {Jie Li}, {Changhai Nie}, {and} {Yu Lei}. 2012.
@@ -303,6 +312,17 @@
   higher strength combinatorial interaction testing}. In {\em Proceedings of
   the 2013 9th Joint Meeting on Foundations of Software Engineering}. ACM,
   26--36.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Podgurski, Leon, Francis, Masri, Minch, Sun,
+  and Wang}{Podgurski et~al\mbox{.}}{2003}]%
+        {podgurski2003automated}
+{Andy Podgurski}, {David Leon}, {Patrick Francis}, {Wes Masri}, {Melinda
+  Minch}, {Jiayang Sun}, {and} {Bin Wang}. 2003.
+\newblock \showarticletitle{Automated support for classifying software failure
+  reports}. In {\em Software Engineering, 2003. Proceedings. 25th International
+  Conference on}. IEEE, 465--475.
 \newblock
 
 
@@ -393,6 +413,17 @@
 \newblock \showarticletitle{Characterizing failure-causing parameter
   interactions by adaptive testing}. In {\em Proceedings of the 2011
   International Symposium on Software Testing and Analysis}. ACM, 331--341.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zheng, Jordan, Liblit, Naik, and Aiken}{Zheng
+  et~al\mbox{.}}{2006}]%
+        {zheng2006statistical}
+{Alice~X Zheng}, {Michael~I Jordan}, {Ben Liblit}, {Mayur Naik}, {and} {Alex
+  Aiken}. 2006.
+\newblock \showarticletitle{Statistical debugging: simultaneous identification
+  of multiple bugs}. In {\em Proceedings of the 23rd international conference
+  on Machine learning}. ACM, 1105--1112.
 \newblock
 
 
