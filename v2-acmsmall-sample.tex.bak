@@ -1800,13 +1800,12 @@ The second observation is that our approach \emph{ILP} did a good job at reducin
 %We can find that ILP and distin perfoms better than the \emph{regarded as one failure}, i.e., the schemas they identified to be irrelevant ones are less than that of the strategy \emph{regarded as one failure}.
 
 \textbf{Aggregative for the five metrics: }
-The composite results for these five metrics are listed in Figure \ref{fig:26}. This metric is an overall evaluation for quality of the identified schemas. From this figure, we can find our approach \emph{ILP} performed the best, then the \emph{distinguishing failures}, the last is the \emph{regarded as one failure} (This can be obviously at testing object ... ). In specific, for every subject except for the very similar ones such as 6, 8, 9, 11, the data shows this trend.
+The composite results for these five metrics are listed in Figure \ref{fig:26}. This metric is an overall evaluation for quality of the identified schemas. From this figure, we can find our approach \emph{ILP} performed the best, then the \emph{distinguishing failures}, the last is the \emph{regarded as one failure} (See the testing object 1, 3, 4 in Figure \ref{fig:26}).
 
-We can expect that ILP can perform better than the distin as the ILP is actually the refinement version of . the ILP is actually based on the distin, and do some refinement by getting higher quality test cases. As for distin better than regarded as one failure. We have not get it in the formal analysis, but however, we have a strong belief in that this is because this divde and conquer at least make the FCI approaches be more sensitive for the failures than the regarded as one failure.
+It is as expected  that \emph{ILP} performed better than \emph{distinguishing failures} as the the former strategy is actually the refinement version of latter. It is a bit of surprise to us, however, that strategy \emph{distinguishing failures} performed better than \emph{regarded as one failure} at almost all the testing objects. This result cannot be derived from the formal analysis. A possible explanation is that in these testing objects we constructed, the possibility of triggering a masking effect is relatively small in a test case. Consequently if we take the strategy \emph{regarded as one failure}, we are more likely to misjudge a test case which triggered other failures to be the failing test case for the failure we currently focus on.
 
 \textbf{Test cases: }
- Previous metrics showed the quality of the schemas that identified with the three strategies. Despite this, the cost .
- the comparable of the quality that each approach can result. This metric gives us the comparable ways about the cost, i.e., the extra test cases that each approach will generated. When we look at the Figure \ref{fig:27}, we can obviously find that the ILP will cost more test cases than distin and regard one. In specific, the gap between the ILP and distin and regard is ranged from about 2 to 5(except for the 6 subject, which exceeds 20), this is acceptable when comparing to the all the test cases that each test cases needed. This gap is expected as our ILP approaches needed to generate additional test cases when some test cases are not satified the requirement.  When we looked back at the distin and regard one, there is no clear trend of which is better than another.
+ The number of test cases generated for identifying the MFS indicates the cost for each FCI approach. The result for this metric is listed in Figure \ref{fig:27}.  We can obviously find that the strategy \emph{ILP} generated more test cases than the other two strategies. In specific, the gap between the \emph{ILP} and other two strategies is ranged from about 2 to 5 (except for the 6th testing object, which exceeds 20), this is acceptable when comparing to the all the test cases that each approach needed. The increase in test cases for our approach is necessary, as additional test cases must be generated when some test cases are not satisfied for identifying the MFS of the currently analysed failure.  As for strategies \emph{distinguishing failures} and \emph{regarded as one failure}, there is no significant difference between their results for the number of test cases generated.
 
 %
 %We first observed that, the results of two traditional strategies, \emph{regarded as one failure} and \emph{distinguishing failures}, is consistent with the formal analysis in section 4. Specifically, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more parent-schemas of MFS than the former. For the `ignored MFS' metric, as we have executed all the failing test cases, we get 0 ignored MFS for all the approaches. So to evaluate this metric for these approaches, we record it for each test case at a time and take the average value as the result, which is listed in parentheses. We also found in most cases (except synthez 5 and synthez 6) that the approach with \emph{distinguish} strategy get more ignored MFS than the other, which also coincides with the formal analysis. And for the `irrelevant MFS', we found \emph{regarded as one failure} strategy in most cases got more `irrelevant MFS' than the other, which was also as expected.
@@ -1965,62 +1964,81 @@ It noted that in Figure \ref{fig:comparefda}, the results for each metric is the
 \label{fig:comparefda}
 \end{figure*}
 
-At the first view of this figure, we can immediately get a conclusion that the trend that different approach  performs is never changed  with the change of the covering array strength. For example, focusing the metric \emph{ignored schemas}, we can find that for any of the t, there is always FDA $>$ FDA-s $>$ ILP. This observation tells us that different strength of the covering array doesn't have a affect on the performance rank of each approach, however, we can further observed that for a particular metric, the extent to which that the covering array has affect on the performance varies with the approach. Next we will detail these what these metrics have on the approaches and with the strength separately.
+
+With respect to the relationships between the results and the degree \emph{t} of the covering arrays, we can get the following observations:
+
+First, for every metric in our study, the order of the performance of each approach is stable against the change of degree \emph{t}. Take for example the metric \emph{accurate number}. No matter \emph{t} is 2 , 3 or 4,  our approach \emph{ILP} always obtained the most schemas that are identical to the actual MFS, and then is the approach \emph{FDA-CITs}, and the last is approach \emph{FDA-CIT}. This observation indicates that the difference between the performance of these approaches is not dependent on the characteristics of the covering array.
+
+Second, with the increasing of \emph{t},  the overall performance of each approach is improved. For example, the score of the aggregative metric of our approach \emph{ILP} is 0.55, 0.66 and 0.69, respectively, for \emph{t} is 2, 3 and 4. The improvement is mainly because with the increasing of \emph{t}, the number of test cases also increased, based on which, the approach will observed more failing test cases (See the area B in Figure \ref{fig:fci_process}), so that we can get the schemas more close to the actual MFS.
+
+Third, for different approaches in our study, the affect of the change of \emph{t} on the scores of other metrics varies. Specifically, for our approach \emph{ILP}, with the increasing of the \emph{t}, metrics \emph{accurate number, sub number, parent number, irrelevant number} also increase, while metric \emph{ignore number} decreases. This is mainly because that our approach \emph{ILP} is based on the FCI approach -- \emph{FIC\_BS} \cite{zhang2011characterizing}, which works on single failing test case. As a result, when \emph{t} increases, the number of test cases increase, in which, the failing test cases may also increase. Then when applied our approach, different schemas may be identified from these failing test cases, so the number of accurate MFS, sub-schemas of the actual MFS, parent-schemas of the actual MFS, schemas that irrelevant to the actual MFS will increase. The score of \emph{ignored number} metric decreases because this metric indicates how much the information of the actual MFS will miss, and in this case as more schemas that are related to the actual MFS increase (accurate schemas, sub schemas, parent schemas), so this score decrease. For the approach \emph{FDA-CIT} and \emph{FDA-CITs}, however, we find that \emph{accurate number, sub number, irrelevant number} decrease with the increasing of \emph{t}.  We believe this result is due to the classification tree techniques in them. A typical classification tree works as follows:
+
+When we fix the \emph{t}, we can learn the following with respect to 
+
+We firstly
 
 
-\textbf{Accurate number: }
-From a over view, we can find that ILP $>$ FDA-s $>$ FDA. FDA-s $>$ FDA-s result is obvious, as it needs more test cases than the FDA, and more test cases means that the FCI approach can have a more rich observation and more precise predicts, i.e., the area B and C in Figure \ref{fig:fci_process} is larger. It is noted that the difference between these test cases is mainly because of the different FCI machinenory and , which will not be discussed here. Another view of this figure, we can find that ILP $>$ FDA-s, as this test cases is equal to each other, we can find that when using the test cases generated by the FIC\_BS, that the FIC\_BS will identified better than the classification-based approach. This is not a point to prove that the FIC\_BS is better than FDA, as when you cannot generate additional test cases, the classification tree is the most reasonable choice, and in that case FIC\_BS is not working.
-
-Although the covering strength t doesn't affect the overal ranking performance of each approach, but how ever, it do affect the performance of each approach itself. As for the accurate metric, we can find that with $t$ increasing, the ILP becomes better and better, in specific, when $t$ is 2, the accurate is 1.64. And the metric is 2.00 and 2.26 when t is 3 and 4, respectively. The more test cases, the richer and accurate is proved in this scenario. However, this is not the case of FDA. In fact, the trend that two FDA approaches is conversely with the increasing of the covering strength, i.e., the more test cases, the less number of accurate schemas it identified. This is strange, and as a potential reason, we believe that the classification tree approach may encounter the `overfit' problem, i.e., .
+Then we .
 
 
-\textbf{Sub number: }
-The sub metric in the overview is that ILP $>$ FDA $>$ FDA-s. When with increasing of the t, we can find the ILP sub increases, while FDA and FDA-s decrease.
 
-For the overview rank, we can find, FDA and the FDA-s really have a better performance than ILP on limiting the number of schemas that are identified. This is mainly because the configuration we limit on the classification, i.e., the C4.5. A classification tree works as follows: it first choose a node as the most depart node, and next the follows.  A similar node tree is as Figure .  As the figure says.   With this in mind, we can the schemas used the classification tree are more tend to be parent schemas as it needs to using the leaf to index a schema, which may includes some unrelated parent nodes, e.g., the root nodes. Therefore, the parent schemas will be more than our ILP.
-
-As for the FDA and FDA-s, we can find the FDA-s identify less sub schemas than FDA, this because the FDA-s use more test cases than FDA, and this lead a more detail partition for one node, and therefore, the sub schemas is less and less. This scene can also be observed as the increasing of the covering array strength, the test cases becomes more, so the sub schemas becomes less.
-
-And for the ILP, we find that the increasing t, the increasing the sub schemas. This is consists with the formal model as the more test cases, the less the schemas.
-%And for the increasing t, .
+%Fristly, we will discuss the impact of the \emph{t}.
+%At the first view of this figure, we can immediately get a conclusion that the trend that different approach  performs is never changed  with the change of the covering array strength. For example, focusing the metric \emph{ignored schemas}, we can find that for any of the t, there is always FDA $>$ FDA-s $>$ ILP. This observation tells us that different strength of the covering array doesn't have a affect on the performance rank of each approach, however, we can further observed that for a particular metric, the extent to which that the covering array has affect on the performance varies with the approach. Next we will detail these what these metrics have on the approaches and with the strength separately.
 
 
-\textbf{Parent number: }
-The parent metric in the overview is that FDA-s $>$ FDA $>$ ILP. When with the increasing of the t, all the approaches, ILP, FDA and FDA-s increases.
-
-This is the just reverse scenario of the metric \emph{sub schemas}, and the result is just according to the analysis of the last result, so we will not discuss them for clear and simple.
-
-\textbf{Ignore number: }
-The ignore metric in the overview is that FDA $>$ FDA-s $>$ ILP. When with the increasing of the t, all the approaches decreases.
-
-From this metirc, we can find that both the FDA and FDA-s miss more schemas than our ILP. We can further observe that the FDA miss more than FDA-s. It is a signal that our ILP can keep more useful information than FDA series.
-
-Going to the formal model section, we can find the ignored schemas have too reasons: first, do not observe and predict some failing test cases, and schemas for these test cases do not have any relationship with these observed test cases, i.e., do not have any information of the original MFS; Second, the schemas that either not the parent or sub schemas of some MFS, i.e., the schemas may have part information of the MFS and have some irrelevant information of the MFS, e.g. (1 1 - 1) vs (1 1 1 -) , it less the third and more the fourth.  Then it can be explained that FDA have the most ignored schemas than FDA-s and ILP, beacuse it uses the least test cases, which can have a significantly impact on reducing the failing test cases that both can be observed and predicted.  This is also the reason the increasing t, the better that all these approaches identified less schemas.
-
-As for the FDA-s and ILP, we can find our approach have a better performance, though their observed failing test cases are the same. This is mainly attributed to the difference of predicted failing test cases, which means that our ILP approach can have a better prediction than the FDA-s.
-
-%For the second, i.e., all the approaches decrease the ignored schemas, is obvious, as the less the area we can ignore. Which have been discussed in the formal analysis.
-
-
-\textbf{Irrelevant number: }
-The irrelevant metric in the overview is that ILP $>$ FDA $>$ FDA-s. When with the increasing of the t, ILP increases, and FDA and FDA-s decreases.
-
-For this metric, we can find that the FDA and FDA-s have a better performance than our ILP, which suggests that our appraoch may introduce more schemas that is no useful for determining the real MFS. This is somehow expected, as in a intuitive point, as our approach ignore less schemas, which may needs to try to get more schemas, and some of them may be irrelevant. In a deeper analysis, we can find the marchinary for the classification tree, though may have a tend to be parent schemas, can make the identified schemas be related to the real MFS.
-
-%This metric is mainly because of the area that incorrectly predicate test cases.
-
-
-\textbf{Aggregative for the five metrics: }
-The aggregative metric for this overview is that ILP $>$ FDA-s $>$ FDA. When with the increasing of the t, all the approaches increases.
-
-As we know, the aggregative gives the composite metric for the previous five metric, and comprehensively indicates the quality of the schemas that identified. Then for the result we can find that it is an evidence that the ILP performed better than the FDA and FDA-s at the quality of the schemas that is identified, i.e., our approach can support a better debugging aids for these schemas is more related to the real MFS.
-
-It is to be expected that the more test cases, the more good quality the schemas that we can get. However, it is tradeoff for you to select a proper covering strength when considering the quality and the cost that need to be executed.
-
-\textbf{Test cases: }
-The overall test cases for the overview is that ILP $>$ FDA. (Noted, ILP is equal to FDA-s so we do not list them). When with the increasing of the t, all the approaches increases.
-
-For the first, this is because of the difference of the approaches that we discussed. As the ILP approach is based on the FCI approach FCI\_BS (and of course, ILP can applied on other FCI approaches). Then from Table \ref{extra-testcases-complexisty}, we can learn that the FCI\_BS need to almost, it must be noted that this for one failing test case, the overall test cases for this approach is the covering array part add the part that the additional test cases for each failing test cases for this covering array. However, for FDA, it just need to generate several t-way covering array. So the difference between the appraoches ILP and FDA in our experiment if mainly attributed to the machinary of the FCI appraoch each approach adopts.
+%\textbf{Accurate number: }
+%From a over view, we can find that ILP $>$ FDA-s $>$ FDA. FDA-s $>$ FDA-s result is obvious, as it needs more test cases than the FDA, and more test cases means that the FCI approach can have a more rich observation and more precise predicts, i.e., the area B and C in Figure \ref{fig:fci_process} is larger. It is noted that the difference between these test cases is mainly because of the different FCI machinenory and , which will not be discussed here. Another view of this figure, we can find that ILP $>$ FDA-s, as this test cases is equal to each other, we can find that when using the test cases generated by the FIC\_BS, that the FIC\_BS will identified better than the classification-based approach. This is not a point to prove that the FIC\_BS is better than FDA, as when you cannot generate additional test cases, the classification tree is the most reasonable choice, and in that case FIC\_BS is not working.
+%
+%Although the covering strength t doesn't affect the overal ranking performance of each approach, but how ever, it do affect the performance of each approach itself. As for the accurate metric, we can find that with $t$ increasing, the ILP becomes better and better, in specific, when $t$ is 2, the accurate is 1.64. And the metric is 2.00 and 2.26 when t is 3 and 4, respectively. The more test cases, the richer and accurate is proved in this scenario. However, this is not the case of FDA. In fact, the trend that two FDA approaches is conversely with the increasing of the covering strength, i.e., the more test cases, the less number of accurate schemas it identified. This is strange, and as a potential reason, we believe that the classification tree approach may encounter the `overfit' problem, i.e., .
+%
+%
+%\textbf{Sub number: }
+%The sub metric in the overview is that ILP $>$ FDA $>$ FDA-s. When with increasing of the t, we can find the ILP sub increases, while FDA and FDA-s decrease.
+%
+%For the overview rank, we can find, FDA and the FDA-s really have a better performance than ILP on limiting the number of schemas that are identified. This is mainly because the configuration we limit on the classification, i.e., the C4.5. A classification tree works as follows: it first choose a node as the most depart node, and next the follows.  A similar node tree is as Figure .  As the figure says.   With this in mind, we can the schemas used the classification tree are more tend to be parent schemas as it needs to using the leaf to index a schema, which may includes some unrelated parent nodes, e.g., the root nodes. Therefore, the parent schemas will be more than our ILP.
+%
+%As for the FDA and FDA-s, we can find the FDA-s identify less sub schemas than FDA, this because the FDA-s use more test cases than FDA, and this lead a more detail partition for one node, and therefore, the sub schemas is less and less. This scene can also be observed as the increasing of the covering array strength, the test cases becomes more, so the sub schemas becomes less.
+%
+%And for the ILP, we find that the increasing t, the increasing the sub schemas. This is consists with the formal model as the more test cases, the less the schemas.
+%%And for the increasing t, .
+%
+%
+%\textbf{Parent number: }
+%The parent metric in the overview is that FDA-s $>$ FDA $>$ ILP. When with the increasing of the t, all the approaches, ILP, FDA and FDA-s increases.
+%
+%This is the just reverse scenario of the metric \emph{sub schemas}, and the result is just according to the analysis of the last result, so we will not discuss them for clear and simple.
+%
+%\textbf{Ignore number: }
+%The ignore metric in the overview is that FDA $>$ FDA-s $>$ ILP. When with the increasing of the t, all the approaches decreases.
+%
+%From this metirc, we can find that both the FDA and FDA-s miss more schemas than our ILP. We can further observe that the FDA miss more than FDA-s. It is a signal that our ILP can keep more useful information than FDA series.
+%
+%Going to the formal model section, we can find the ignored schemas have too reasons: first, do not observe and predict some failing test cases, and schemas for these test cases do not have any relationship with these observed test cases, i.e., do not have any information of the original MFS; Second, the schemas that either not the parent or sub schemas of some MFS, i.e., the schemas may have part information of the MFS and have some irrelevant information of the MFS, e.g. (1 1 - 1) vs (1 1 1 -) , it less the third and more the fourth.  Then it can be explained that FDA have the most ignored schemas than FDA-s and ILP, beacuse it uses the least test cases, which can have a significantly impact on reducing the failing test cases that both can be observed and predicted.  This is also the reason the increasing t, the better that all these approaches identified less schemas.
+%
+%As for the FDA-s and ILP, we can find our approach have a better performance, though their observed failing test cases are the same. This is mainly attributed to the difference of predicted failing test cases, which means that our ILP approach can have a better prediction than the FDA-s.
+%
+%%For the second, i.e., all the approaches decrease the ignored schemas, is obvious, as the less the area we can ignore. Which have been discussed in the formal analysis.
+%
+%
+%\textbf{Irrelevant number: }
+%The irrelevant metric in the overview is that ILP $>$ FDA $>$ FDA-s. When with the increasing of the t, ILP increases, and FDA and FDA-s decreases.
+%
+%For this metric, we can find that the FDA and FDA-s have a better performance than our ILP, which suggests that our appraoch may introduce more schemas that is no useful for determining the real MFS. This is somehow expected, as in a intuitive point, as our approach ignore less schemas, which may needs to try to get more schemas, and some of them may be irrelevant. In a deeper analysis, we can find the marchinary for the classification tree, though may have a tend to be parent schemas, can make the identified schemas be related to the real MFS.
+%
+%%This metric is mainly because of the area that incorrectly predicate test cases.
+%
+%
+%\textbf{Aggregative for the five metrics: }
+%The aggregative metric for this overview is that ILP $>$ FDA-s $>$ FDA. When with the increasing of the t, all the approaches increases.
+%
+%As we know, the aggregative gives the composite metric for the previous five metric, and comprehensively indicates the quality of the schemas that identified. Then for the result we can find that it is an evidence that the ILP performed better than the FDA and FDA-s at the quality of the schemas that is identified, i.e., our approach can support a better debugging aids for these schemas is more related to the real MFS.
+%
+%It is to be expected that the more test cases, the more good quality the schemas that we can get. However, it is tradeoff for you to select a proper covering strength when considering the quality and the cost that need to be executed.
+%
+%\textbf{Test cases: }
+%The overall test cases for the overview is that ILP $>$ FDA. (Noted, ILP is equal to FDA-s so we do not list them). When with the increasing of the t, all the approaches increases.
+%
+%For the first, this is because of the difference of the approaches that we discussed. As the ILP approach is based on the FCI approach FCI\_BS (and of course, ILP can applied on other FCI approaches). Then from Table \ref{extra-testcases-complexisty}, we can learn that the FCI\_BS need to almost, it must be noted that this for one failing test case, the overall test cases for this approach is the covering array part add the part that the additional test cases for each failing test cases for this covering array. However, for FDA, it just need to generate several t-way covering array. So the difference between the appraoches ILP and FDA in our experiment if mainly attributed to the machinary of the FCI appraoch each approach adopts.
 
 Above all, we can conclude about three points in this experiment, and which can be an answer for the \textbf{Q4}:
 
