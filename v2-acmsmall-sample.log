@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 NOV 2014 05:50
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 NOV 2014 06:50
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -627,16 +627,17 @@ Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
- [39] [40]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41]
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [39]
+Underfull \vbox (badness 7379) has occurred while \output is active []
+
+ [40]
+[41] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+[42]
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 3260) has occurred while \output is active []
-
- [42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [43])
@@ -644,12 +645,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2155--2188
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2156--2189
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2192--2254
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2193--2255
 [] 
  []
 
@@ -659,7 +660,7 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 2192--2254
 Here is how much of TeX's memory you used:
  3921 strings out of 430478
  46096 string characters out of 3191502
- 188133 words of memory out of 3000000
+ 188112 words of memory out of 3000000
  6992 multiletter control sequences out of 15000+200000
  24285 words of font info for 75 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
