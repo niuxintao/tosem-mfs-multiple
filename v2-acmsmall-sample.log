@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  13 NOV 2014 21:32
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  15 NOV 2014 22:43
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -461,6 +461,11 @@ Overfull \hbox (12.79248pt too wide) in paragraph at lines 499--508
 []
  []
 
+
+Underfull \hbox (badness 1117) in paragraph at lines 578--578
+[]\OT1/phv/m/n/8 Table VI-I. Dis-join-t ex-
+ []
+
 [10]
 Underfull \hbox (badness 3989) in paragraph at lines 592--593
 [] \OT1/pnc/m/n/10 First, we can learn that $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 
@@ -475,15 +480,28 @@ Underfull \hbox (badness 3954) in paragraph at lines 611--611
 \OT1/phv/m/n/8 In-ter-sec-tion by ir-rel-e-
  []
 
-[11] [12]
+
+Underfull \vbox (badness 1178) has occurred while \output is active []
+
+ [11]
+[12]
 File: FCI.eps Graphic file (type eps)
- <FCI.eps> [13] [14]
+ <FCI.eps> [13]
+Underfull \hbox (badness 2521) in paragraph at lines 783--784
+[]\OT1/pnc/m/n/10 As an ex-am-ple, in the mo-ti-va-tion ex-am-ple in sec-tion 2
+, $\OML/cmm/m/it/10 F[]$ \OT1/pnc/m/n/10 is \OMS/cmsy/m/n/10 f
+ []
+
+
+Underfull \vbox (badness 4303) has occurred while \output is active []
+
+ [14]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 791.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
 
-Underfull \vbox (badness 3646) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
 File: FCI-mask.eps Graphic file (type eps)
@@ -564,9 +582,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28] [29] [30] [31]
+[28] [29] [30]
+Underfull \vbox (badness 2181) has occurred while \output is active []
+
+ [31]
 File: accurate.eps Graphic file (type eps)
- <accurate.eps>
+
+<accurate.eps>
 File: sub.eps Graphic file (type eps)
  <sub.eps>
 File: parent.eps Graphic file (type eps)
@@ -574,9 +596,8 @@ File: parent.eps Graphic file (type eps)
 File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
-
-<irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1733--1733
+ <irrelevant.eps>
+Underfull \hbox (badness 1259) in paragraph at lines 1732--1732
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -587,40 +608,40 @@ File: testCases.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [34]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
-[36]
+[35] [36]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
-Underfull \vbox (badness 2245) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37]
 [38]
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2000 replaced by U+FFFD.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39]
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2001 replaced by U+FFFD.
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
-[40] [41] [42]
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [40]
+[41] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+[42]
 Missing character: There is no ’ in font pncr7t!
- [43]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [44])
-[45]
+ [43])
+[44]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
@@ -639,10 +660,10 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 2193--2255
 Here is how much of TeX's memory you used:
  3921 strings out of 430478
  46096 string characters out of 3191502
- 188141 words of memory out of 3000000
+ 188145 words of memory out of 3000000
  6992 multiletter control sequences out of 15000+200000
  24285 words of font info for 75 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,18n,30p,2254b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,18n,30p,2247b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (47 pages).
+Output written on v2-acmsmall-sample.pdf (46 pages).
