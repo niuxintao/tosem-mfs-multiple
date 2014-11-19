@@ -235,6 +235,17 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Hall, Frank, Holmes, Pfahringer, Reutemann,
+  and Witten}{Hall et~al\mbox{.}}{2009}]%
+        {hall2009weka}
+{Mark Hall}, {Eibe Frank}, {Geoffrey Holmes}, {Bernhard Pfahringer}, {Peter
+  Reutemann}, {and} {Ian~H Witten}. 2009.
+\newblock \showarticletitle{The WEKA Data Mining Software: An Update; SIGKDD
+  Explorations, Volume 11, Issue 1}.
+\newblock  (2009).
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Jones, Bowring, and Harrold}{Jones
   et~al\mbox{.}}{2007}]%
         {jones2007debugging}

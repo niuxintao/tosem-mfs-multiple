@@ -27,6 +27,9 @@ Warning--empty address in ghandehari2012identifying
 Warning--no journal in grindal2006handling
 Warning--no number and no volume in grindal2006handling
 Warning--page numbers missing in both pages and numpages fields in grindal2006handling
+Warning--no journal in hall2009weka
+Warning--no number and no volume in hall2009weka
+Warning--page numbers missing in both pages and numpages fields in hall2009weka
 Warning--empty publisher in jones2007debugging
 Warning--empty address in jones2007debugging
 Warning--empty publisher in li2012improved
@@ -52,4 +55,4 @@ Warning--empty publisher in zhang2011characterizing
 Warning--empty address in zhang2011characterizing
 Warning--empty publisher in zheng2006statistical
 Warning--empty address in zheng2006statistical
-(There were 51 warnings)
+(There were 54 warnings)
