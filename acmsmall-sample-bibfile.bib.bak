@@ -75,10 +75,16 @@
   organization={IEEE}
 }
 @article{yilmaz2013reducing,
-  title={Reducing Masking Effects in Combinatorial Interaction Testing: A Feedback Driven Adaptive Approach},
-  author={Yilmaz, Cemal and Dumlu, Emine and Cohen, M and Porter, Adam},
-  year={2013},
-  publisher={IEEE}
+author={Yilmaz, C. and Dumlu, E. and Cohen, M.B. and Porter, A.},
+journal={Software Engineering, IEEE Transactions on},
+title={Reducing Masking Effects in CombinatorialInteraction Testing: A Feedback DrivenAdaptive Approach},
+year={2014},
+month={Jan},
+volume={40},
+number={1},
+pages={43-66},
+keywords={program testing;public domain software;software fault tolerance;CIT approach;FDA-CIT process;combinatorial interaction testing;configuration spaces;covering arrays;error locating arrays;fault characterization approaches;fault detection;fault location;feedback driven adaptive approach;interaction testing criterion;masking effects reduction;open source software systems;perfect test scenarios;potential masking effects detection;software systems;system execution;t-way combinations;test case failures;Adaptive arrays;Educational institutions;Electronic mail;Scalability;Servers;Software systems;Testing;Combinatorial testing;adaptive testing;covering arrays;software quality assurance},
+ISSN={0098-5589}
 }
 @article{martinez2009locating,
   title={Locating errors using ELAs, covering arrays, and adaptive testing algorithms},
@@ -326,11 +332,30 @@
   year = 2004
 }
 
-@inproceedings{digiuseppe2011influence,
-  title={On the influence of multiple faults on coverage-based fault localization},
-  author={DiGiuseppe, Nicholas and Jones, James A},
-  booktitle={Proceedings of the 2011 international symposium on software testing and analysis},
-  pages={210--220},
-  year={2011},
+
+@inproceedings{zheng2006statistical,
+  title={Statistical debugging: simultaneous identification of multiple bugs},
+  author={Zheng, Alice X and Jordan, Michael I and Liblit, Ben and Naik, Mayur and Aiken, Alex},
+  booktitle={Proceedings of the 23rd international conference on Machine learning},
+  pages={1105--1112},
+  year={2006},
   organization={ACM}
+}
+
+@inproceedings{jones2007debugging,
+  title={Debugging in parallel},
+  author={Jones, James A and Bowring, James F and Harrold, Mary Jean},
+  booktitle={Proceedings of the 2007 international symposium on Software testing and analysis},
+  pages={16--26},
+  year={2007},
+  organization={ACM}
+}
+
+@inproceedings{podgurski2003automated,
+  title={Automated support for classifying software failure reports},
+  author={Podgurski, Andy and Leon, David and Francis, Patrick and Masri, Wes and Minch, Melinda and Sun, Jiayang and Wang, Bin},
+  booktitle={Software Engineering, 2003. Proceedings. 25th International Conference on},
+  pages={465--475},
+  year={2003},
+  organization={IEEE}
 }

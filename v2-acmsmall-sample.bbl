@@ -255,6 +255,18 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Lei, Kacker, Kuhn, Okun, and Lawrence}{Lei
+  et~al\mbox{.}}{2008}]%
+        {lei2008ipog}
+{Yu Lei}, {Raghu Kacker}, {D~Richard Kuhn}, {Vadim Okun}, {and} {James
+  Lawrence}. 2008.
+\newblock \showarticletitle{IPOG/IPOG-D: efficient test generation for
+  multi-way combinatorial testing}.
+\newblock {\em Software Testing, Verification and Reliability\/} {18}, 3
+  (2008), 125--148.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Li, Nie, and Lei}{Li et~al\mbox{.}}{2012}]%
         {li2012improved}
 {Jie Li}, {Changhai Nie}, {and} {Yu Lei}. 2012.
@@ -399,13 +411,15 @@
 
 
 \bibitem[\protect\citeauthoryear{Yilmaz, Dumlu, Cohen, and Porter}{Yilmaz
-  et~al\mbox{.}}{2013}]%
+  et~al\mbox{.}}{2014}]%
         {yilmaz2013reducing}
-{Cemal Yilmaz}, {Emine Dumlu}, {M Cohen}, {and} {Adam Porter}. 2013.
-\newblock \showarticletitle{Reducing Masking Effects in Combinatorial
-  Interaction Testing: A Feedback Driven Adaptive Approach}.
-\newblock  (2013).
+{C. Yilmaz}, {E. Dumlu}, {M.B. Cohen}, {and} {A. Porter}. 2014.
+\newblock \showarticletitle{Reducing Masking Effects in
+  CombinatorialInteraction Testing: A Feedback DrivenAdaptive Approach}.
+\newblock {\em Software Engineering, IEEE Transactions on\/} {40}, 1 (Jan
+  2014), 43--66.
 \newblock
+\showISSN{0098-5589}
 
 
 \bibitem[\protect\citeauthoryear{Zeller and Hildebrandt}{Zeller and
