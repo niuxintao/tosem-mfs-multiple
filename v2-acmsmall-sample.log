@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  25 DEC 2014 19:47
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  25 DEC 2014 20:05
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -573,16 +573,19 @@ File: table.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [24]
-[25] [26] [27] [28] [29] [30]
+[25] [26] [27] [28] [29]
+Underfull \vbox (badness 2181) has occurred while \output is active []
+
+ [30]
 File: accurate.eps Graphic file (type eps)
- <accurate.eps>
+
+<accurate.eps>
 File: sub.eps Graphic file (type eps)
  <sub.eps>
 File: parent.eps Graphic file (type eps)
  <parent.eps>
 File: ignore.eps Graphic file (type eps)
-
-<ignore.eps>
+ <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
 Underfull \hbox (badness 1259) in paragraph at lines 1747--1747
@@ -602,13 +605,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
 
-[35]
-Underfull \vbox (badness 2245) has occurred while \output is active []
-
- [36]
+[35] [36]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
@@ -625,15 +624,15 @@ Invalid UTF-8 byte or sequence at line 2019 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2019 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 2019 replaced by U+FFFD.
 
-[39]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [40]
+[39] [40]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [41]
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
+
+Underfull \vbox (badness 7379) has occurred while \output is active []
+
  [42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
