@@ -458,8 +458,6 @@ Then, we have the following proposition.
 %\begin{proposition}
 
 % is that for any combination c in $t(T) - t(T^{*} - T) $, we can have $T(c) \subset T$, as if not so, there is must be any test case $t \in T(c)$, such that $t \not\in T$, then it must be $t \in T^{*} - T$, this is not according with  $c \in t(T) - t(T^{*} - T)$.
-into account the
-higher strength combination, e.
 %Further observation,
 %
 %From this two observation, we can have the following lemma:
@@ -490,7 +488,7 @@ For two different sets of test cases, there exist some relationships between the
 
 It is the first relationship corresponding to Figure \ref{fig:inclusion}. We have the following proposition for two test sets that have an inclusion relationship.
 %\newtheorem{lemma}{Lemma}
-\begin{proposition}[{schemas from the smaller set tend to be super schemas}]\label{pro:ssp}
+\begin{proposition}[{schemas for test subset tend to be super schemas}]\label{pro:ssp}
 For two sets of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then $\forall c_{l} \in \mathcal{C}(T_{l})$, $\ either\ c_{l} \in \mathcal{C}(T_{k})\ or\ \exists c_{k} \in \mathcal{C}(T_{k}), s.t., c_{k} \prec c_{l}.$
 \end{proposition}
 
@@ -500,7 +498,7 @@ Obviously $\forall c_{l} \in \mathcal{C}(T_{l})$,  $\mathcal{T}(c_{l}) \subset T
 
 Likewise, we can get the properties of the schemas identified for the larger set of test cases.
 
-\begin{proposition}[{schemas from the larger set tend to be subschemas}]\label{pro:sls}
+\begin{proposition}[{schemas for test superset tend to be subschemas}]\label{pro:sls}
 For two sets of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then $\forall c_{k} \in \mathcal{C}(T_{k})\ $, it could be $\ (1)\ c_{k} \in \mathcal{C}(T_{l})\ $ , $(2)\ \exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ $ ,or $(3)\ \not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}.$
 % \begin{displaymath}
 %  \begin{split}
@@ -743,9 +741,9 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\
 
 Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In fact, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
 
-In Figure \ref{fig:fci_process} area A denotes the test cases that should have passed testing but were predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that were not observed but were predicted to be failing test cases, and area D shows the failing test cases that are neither observed nor predicted.  This figure actually represents the condition in which two sets of test cases intersect with each other; specifically, comparing to the Figure \ref{fig:intersect}, we can learn that $A \bigcup B \bigcup C $= $T_{1}$, indicates the test cases we think they are failing test cases. 
- $D \bigcup B \bigcup C $= $T_{2}$  
-and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$.
+In Figure \ref{fig:fci_process} area A denotes the test cases that should have passed testing but were predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that were not observed but were predicted to be failing test cases, and area D shows the failing test cases that are neither observed nor predicted.  This figure actually represents the condition in which two sets of test cases intersect with each other; specifically, comparing to the Figure \ref{fig:intersect}, we can learn that $A \bigcup B \bigcup C $= $T_{1}$, which indicates the test cases we think they are failing test cases.
+ $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test cases,
+and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ are their Intersections.
 
 As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$. According to Proposition \ref{pro:mi}, some schemas in $\mathcal{C}(T_{1})$ and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}. To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
 
@@ -842,8 +840,113 @@ With masking effects, the scenario of traditional FCI approaches is a bit more c
 With this model, if we know which test cases mask the expected failure, i.e., if we have figured out $B_{2}$ and $B_{3}$, then the schemas that the FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  We next denote the condition that we have known the masking effects in prior as \emph{knowing masking effects}. However, as discussed before, to get this result is not possible without human involvement. Correspondingly, when using the \emph{regarded as one failure} strategy, the set of MFS traditional FCI identify is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for the \emph{distinguishing failures} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$. Next, we will discuss the influence of masking effects on the two strategies.
 
 \subsubsection{Using the regarded as one failure strategy}
+For the strategy \emph{regarded as one failure}, the impacts of masking effects on FCI approaches can be analysed  by comparing the MFS identified by this strategy to those by strategy \emph{knowing masking effects}. Formally, it is to compare  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ (for \emph{regarded as one failure}) with  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ (for \emph{knowing masking effects}).  Intuitively, $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ is more close to the actual MFS, i.e.,  $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$. In other word, when using \emph{regarded as one failure} strategy,  the deviation between the identified MFS  and the actual MFS is larger than that of strategy \emph{knowing masking effects}.
 
-For the strategy \emph{regarded as one failure}, the impact of masking effects on FCI approaches can be described as shown in Table \ref{fci_mask_regard}. To understand the content of this table, consider the relationship between the minimal schemas of two different sets of test cases. For the \emph{knowing masking effects} condition, the test cases that are used for identifying the MFS, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained in this condition can be identical, super-schema, sub-schema, and irrelevant to the actual MFS. And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}.
+The gap between the two strategies can be further analysed by studying the relationships between these two MFS set. As $A \bigcup B_{1} \bigcup B_{2} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ , according to Proposition  \ref{pro:sls}, schemas in  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ (for \emph{regarded as one failure}) can be identical to some schemas in $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ (for \emph{knowing masking effects}), or be sub schemas of some of them, or irrelevant to all of them. Formally, $\forall c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C),\  \exists c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{ro} \prec c_{km},\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, three possibilities in total.
+
+Now let us get back to the relationship between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.  
+
+Combining the previous three possibilities, there are 9 possible conditions for the regard as one failure. which are as Table \ref{conditions-for-ro}, respectively.
+
+\begin{table}
+\centering
+\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
+  \begin{tabular}{ccc}
+
+& & \\ \hline
+1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
+2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
+3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
+4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
+5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
+6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
+7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
+8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
+9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&             \\ \hline
+  \end{tabular}
+  }
+ \begin{tablenotes}
+        \footnotesize
+\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$
+\item[1]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$
+\item[1]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$
+      \end{tablenotes}
+  \end{table}
+
+
+To specifically discuss all these 9 conditions is redundant in this paper. Hence, we just select two particular conditions, and others can be analysed in a similar way. First, consider the condition that $\exists c_{ro} \in C() and () \prec c_{km}, \prec c_{km} \prec c_{as}$.
+
+We can get the following propositions
+
+\begin{proposition}
+$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} \prec c_{km}, c_{as} \prec c_{km}$, then $ either\ \exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), s.t. c_{ro} \prec c_{as}', or c_{ro} irrelevant\ to\ all\ the\  \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
+\end{proposition}
+
+\begin{proof}
+
+By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
+
+Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
+\end{proof}
+
+This proposition tells us .
+
+
+\begin{proposition}
+$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} irrelevant to  all \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{km} \prec c_{as}$, then $c_{ro} \prec c_{km}$.
+
+\end{proposition}
+
+\begin{proof}
+
+By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
+
+
+So to irrelevant them is two scenarios, i.e.,
+
+All these
+
+Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
+\end{proof}
+
+In a simpler way, we can label this proposition as a rule $exists c_{as}' \in C(), s.t., $.
+
+
+Table gives an example of this condition and the result.
+
+
+In this table.
+
+Other 10 conditinons and their results are list. We will not detail discuss them, as their proofs are in a similar way as proposition.
+
+From this 12 rules, we can learn that, when applying \emph{regarded as one failure}, the results can be possible to child. parent. (). In these rules, child and irrelevant are more apprarently than the parent.
+
+
+
+, And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}
+
+
+
+For the strategy \emph{regarded as one failure}, the impact of masking effects on FCI approaches can be described as shown in Table \ref{fci_mask_regard}. We will select one specific, other rules can be . For the rule 4 (which is separated in 4a and 4b). The meaning is that.
+
+%A simple proof is that.
+%
+%Others rules can be in a similar way, and will not discussed more.
+%
+%A example of rule 3 is in table .
+%
+%In this table.
+%
+%Besides, we have listed a overall example in the Appendix.
+%
+%
+%In fact, considering the fact there are three possiblities, and the possiblisties of the , the total rules can be .  Which can be described in .
+%
+%
+%
+%One observation in this rules is that , the schemas are tend to be . (rules 1, 2, 5 tells that).
+
+%To understand the content of this table, consider the relationship between the minimal schemas of two different sets of test cases. For the \emph{knowing masking effects} condition, the test cases that are used for identifying the MFS, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained in this condition can be identical, super-schema, sub-schema, and irrelevant to the actual MFS. And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}.
 
 %\begin{figure}
 %\centering
