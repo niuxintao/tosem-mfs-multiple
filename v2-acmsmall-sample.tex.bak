@@ -846,7 +846,7 @@ The gap between the two strategies can be further analysed by studying the relat
 
 Now let us get back to the relationship between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
 
-Combining the previous three possibilities, there are 9 possible conditions for the regard as one failure. which are as Table \ref{conditions-for-ro}, respectively.
+Combining the relation between  three possibilities, there are 9 possible conditions for the regard as one failure. which are as Table \ref{conditions-for-ro}, respectively.
 
 \begin{table}
 \centering
@@ -1056,58 +1056,7 @@ In fact, besides rule 9, there is another condition under which the FCI approach
 %
 %Another point need to be noted is that this transformation also mean some ignored ones(As MFS irrelevant to the set).
 
-\begin{table}
-\tbl{Example the influence of distinguishing failures for FCI approach\label{example-of-fci-influence-distiguish}}{
-\begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
 
-\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(0,1,1,0,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(0,0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}&\multicolumn{3}{c}{(0,1,1,0,1,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,1,0,0)} & \multicolumn{3}{c}{(1,0,1,1,0,1)}&\multicolumn{3}{c}{(0,1,1,1,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
-\multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
-\multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
- \hline
-\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguishing failures$} \\
-\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
-\multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
-\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
-\multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
-\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
-\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
-\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
-\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
-\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
-\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
-\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-
-\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
-\multicolumn{4}{c}{2} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
-\multicolumn{4}{c}{4} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{(1,0,-,-,1,1)} \\
-\multicolumn{4}{c}{6d} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
-\multicolumn{4}{c}{6c} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{6b} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
-\multicolumn{4}{c}{6a} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
-\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
-\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
-
-\multicolumn{4}{c}{9} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
-%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m}'$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-%\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
-
-\end{tabular}}
-\end{table}
 %So what this two mutation than is , we first learn that
 %
 %So actually, when encountering masking effects, both this two strategies is not good.
@@ -2247,6 +2196,103 @@ Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual 
 
 \subsection{For Distinguishing failures}
 
+
+\section{Example of rules}
+\begin{table}
+\tbl{Example of the influence of the regarded as one failure for FCI approach\label{example-of-fci-influence}}{
+\begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
+\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
+\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
+\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
+\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
+\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
+
+\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
+\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
+\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
+\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+\end{tabular}}
+\end{table}
+
+\begin{table}
+\tbl{Example the influence of distinguishing failures for FCI approach\label{example-of-fci-influence-distiguish}}{
+\begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(0,1,1,0,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(0,0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}&\multicolumn{3}{c}{(0,1,1,0,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,1,0,0)} & \multicolumn{3}{c}{(1,0,1,1,0,1)}&\multicolumn{3}{c}{(0,1,1,1,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
+\multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguishing failures$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
+\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
+\multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
+\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
+\multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
+\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
+\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
+\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
+\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
+\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
+\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
+\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+
+\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+\multicolumn{4}{c}{2} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
+\multicolumn{4}{c}{4} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{(1,0,-,-,1,1)} \\
+\multicolumn{4}{c}{6d} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
+\multicolumn{4}{c}{6c} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{6b} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
+\multicolumn{4}{c}{6a} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
+\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
+\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
+
+\multicolumn{4}{c}{9} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
+%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m}'$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+%\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+
+\end{tabular}}
+\end{table}
 
 \section{The detail of the experiments}
 
