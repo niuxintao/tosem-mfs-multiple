@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  10 FEB 2015 04:11
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  10 FEB 2015 21:49
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -503,64 +503,32 @@ File: FCI-mask.eps Graphic file (type eps)
 Underfull \vbox (badness 1325) has occurred while \output is active []
 
  [16]
-Underfull \hbox (badness 10000) in paragraph at lines 882--883
-[] $\OML/cmm/m/it/10 If\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 
-2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] B[] [] C\OT1/cmr/m/n/10
- )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2
- []
+[17]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 882--883
-\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] C\OT1/cm
-r/m/n/10 )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/
-m/it/10 B[] [] B[] [] C [] D\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  and c[] \OMS/c
-msy/m/n/10 ^^^
- []
+Underfull \vbox (badness 2418) has occurred while \output is active []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 882--883
-\OML/cmm/m/it/10 c[]; c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm/m/it/10 c[]$\OT1/pnc/m/
-it/10 , then $\OML/cmm/m/it/10 either \OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \O
-MS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 B[] [] B[] [] C [] D\OT1/cm
-r/m/n/10 )\OML/cmm/m/it/10 ; s:t:c[] \OMS/cmsy/m/n/10 ^^^
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 896--897
-[] $\OML/cmm/m/it/10 If\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 
-2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] B[] [] C\OT1/cmr/m/n/10
- )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2
- []
-
-
-Overfull \hbox (34.00859pt too wide) in paragraph at lines 896--897
-\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] C\OT1/cm
-r/m/n/10 )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/
-m/it/10 B[] [] B[] [] C [] D\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  and c[]irrelev
-anttoall\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] 
-C\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 ^^^
- []
-
-[17] [18]
+ [18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [19]
-[20]
-Underfull \vbox (badness 1609) has occurred while \output is active []
+Underfull \vbox (badness 1152) has occurred while \output is active []
 
- [21]
-[22]
+ [20]
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncr7t" at 5.0pt
  -> pncr7t
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
- [23]
+
+[21]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1280.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1159.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -578,42 +546,41 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1300.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1179.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1300.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1179.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1300.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1179.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1303.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1182.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
- [24] [25]
+ [22] [23]
 File: table.eps Graphic file (type eps)
- <table.eps> [26]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ <table.eps>
+Underfull \vbox (badness 1412) has occurred while \output is active []
 
- [27]
-[28]
+ [24]
+[25]
+Underfull \vbox (badness 8189) has occurred while \output is active []
+
+ [26]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29]
-Underfull \vbox (badness 1590) has occurred while \output is active []
-
- [30]
-[31] [32]
+[27] [28] [29] [30]
 File: accurate.eps Graphic file (type eps)
  <accurate.eps>
 File: sub.eps Graphic file (type eps)
@@ -623,84 +590,127 @@ File: parent.eps Graphic file (type eps)
 File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
- <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1853--1853
+
+<irrelevant.eps>
+Underfull \hbox (badness 1259) in paragraph at lines 1732--1732
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
 File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps> [33] [34]
+ <testCases.eps> [31] [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35]
-[36]
+ [33]
+[34]
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
-
-Underfull \vbox (badness 7379) has occurred while \output is active []
-
- [37]
+ [35]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
 Underfull \vbox (badness 2418) has occurred while \output is active []
 
+ [36]
+[37]
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2004 replaced by U+FFFD.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [38]
 [39]
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2125 replaced by U+FFFD.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [40]
-[41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42]
-[43] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [41]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [44]
+ [42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45])
-[46]
+ [43])
+[44]
+Underfull \hbox (badness 10000) in paragraph at lines 2166--2167
+[] $\OML/cmm/m/it/10 If\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 
+2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] B[] [] C\OT1/cmr/m/n/10
+ )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2166--2167
+\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] C\OT1/cm
+r/m/n/10 )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/
+m/it/10 B[] [] B[] [] C [] D\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  and c[] \OMS/c
+msy/m/n/10 ^^^
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2166--2167
+\OML/cmm/m/it/10 c[]; c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm/m/it/10 c[]$\OT1/pnc/m/
+it/10 , then $\OML/cmm/m/it/10 either \OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \O
+MS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 B[] [] B[] [] C [] D\OT1/cm
+r/m/n/10 )\OML/cmm/m/it/10 ; s:t:c[] \OMS/cmsy/m/n/10 ^^^
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2180--2181
+[] $\OML/cmm/m/it/10 If\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 
+2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] B[] [] C\OT1/cmr/m/n/10
+ )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2
+ []
+
+
+Overfull \hbox (34.00859pt too wide) in paragraph at lines 2180--2181
+\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] C\OT1/cm
+r/m/n/10 )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/
+m/it/10 B[] [] B[] [] C [] D\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  and c[]irrelev
+anttoall\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A [] B[] [] B[] [] 
+C\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; c[] \OMS/cmsy/m/n/10 ^^^
+ []
+
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2288--2321
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2302--2335
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2325--2387
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2339--2401
 [] 
  []
 
 [1
 
-] [2] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+] [2] [3] [4] [5]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  3930 strings out of 430478
  46198 string characters out of 3191502
- 188520 words of memory out of 3000000
+ 219981 words of memory out of 3000000
  7001 multiletter control sequences out of 15000+200000
  24285 words of font info for 75 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,30p,2034b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (48 pages).
+Output written on v2-acmsmall-sample.pdf (49 pages).
