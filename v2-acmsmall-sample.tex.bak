@@ -453,6 +453,7 @@ Then, we have the following proposition.
   So as $c \in \mathcal{S}(\mathcal{T}(c))$, hence $c \in \mathcal{S}(T)$.
 \end{proof}
 
+Based on this proposition, we can find that if two schemas that have their test cases subsuming each other, then they are the relationships of super-schema and sub-schema.
 %\newdef{proposition}{Proposition}
 
 %\begin{proposition}
@@ -583,35 +584,61 @@ $T_{l}$&$T_{k}$ \\ \hline
 
 \subsection{Intersection}
 This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, we have the following properties:
+
+
+Let us see that $C(T_{1})$ is sub schema or identical or irrelevant to $C(T_{3})$. $C_{T_{2}}$ is also the same. Then we have the following conditions, if $c_{1}$ sub to $c_{3}$, $c_{2}$ sub to, $c_{1}$ identical to, $c_{2}$ identical. $c_{1}$ irrelevant, $c_{2}$ irrelevant.
+
+\begin{table}
+\centering
+\tbl{Disjoint example \label{possible-relation-of-intersection}}{
+  \begin{tabular}{cc}
+$c_{1} c_{3}$&$c_{2}, c_{3}$ \\ \hline
+sub &  sub\\
+sub &  identical\\ \hline
+identical & sub \\
+identical & identical \\
+- & irrelevant \\ \hline
+irrelevant & - \\
+  \end{tabular}
+  }
+  \end{table}
+
+\begin{proposition}[two sub to ]\label{pro:ci}
+ For two intersecting sets of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$ which are identical, then  $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
+\end{proposition}
+\begin{proof}
+As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
+\end{proof}
+
 %For two different set of test cases, one obvious properties is listed as follows:
 %Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
 
 %Let me discuss the combination of them.
-\begin{proposition}[Must have schemas that are irrelevant]\label{pro:mi}
- For two intersecting sets of test cases $T_{1}$ and $T_{2}$ (these two sets are neither identical nor include each other),  $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
-\end{proposition}
-\begin{proof}
-First, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
-
-Given the schemas in $\mathcal{C}(T_{1} \backslash T_{3})$ are either identical to some schemas in $\mathcal{C}(T_{1})$ or super schemas of them. Now, if some of them are identical, i.e., $\exists c', s.t., c' \in \mathcal{C}(T_{1} \backslash T_{3})\ and\  c' \in \mathcal{C}(T_{1})$, then schemas ${c'}$ must be irrelevant to these schemas in $ \mathcal{C}(T_{2})$ as $(T_{1} \backslash T_{3}) \bigcap T_{2} = \emptyset$. This also holds if $\mathcal{C}(T_{2} \backslash T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
-
-Next, if both $\mathcal{C}(T_{1} \backslash T_{3})$  and $\mathcal{C}(T_{2} \backslash T_{3})$ are super schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, respectively. Without loss of generality, let $c_{1} \prec c_{1-3}$, ($c_{1-3}\in\mathcal{C}(T_{1} \backslash T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2}\prec c_{2-3}$, ($c_{2-3}\in\mathcal{C}(T_{2} \backslash T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then, these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $,  so $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other. This also implies that $c_{1}$ and $c_{2}$ are irrelevant to each other.
-\end{proof}
-
-For example, Table \ref{example_intersect_irrelevant} shows two test sets that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
-
-\begin{table}
-\centering
-\tbl{Example of Intersection by irrelevant examples \label{example_intersect_irrelevant}}{
-  \begin{tabular}{cc}
-$T_{1}$&$T_{2}$ \\ \hline
-(1, 0, 0) &  (1, 0, 0)\\
-(1, 0, 1) &  (1, 1, 0)\\  \hline
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
-(1, 0, -)&(1, -, 0)\\
-  \end{tabular}
-  }
-  \end{table}
+%\begin{proposition}[Must have schemas that are irrelevant]\label{pro:mi}
+% For two intersecting sets of test cases $T_{1}$ and $T_{2}$ (these two sets are neither identical nor include each other),  $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
+%\end{proposition}
+%\begin{proof}
+%First, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
+%
+%Given the schemas in $\mathcal{C}(T_{1} \backslash T_{3})$ are either identical to some schemas in $\mathcal{C}(T_{1})$ or super schemas of them. Now, if some of them are identical, i.e., $\exists c', s.t., c' \in \mathcal{C}(T_{1} \backslash T_{3})\ and\  c' \in \mathcal{C}(T_{1})$, then schemas ${c'}$ must be irrelevant to these schemas in $ \mathcal{C}(T_{2})$ as $(T_{1} \backslash T_{3}) \bigcap T_{2} = \emptyset$. This also holds if $\mathcal{C}(T_{2} \backslash T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
+%
+%Next, if both $\mathcal{C}(T_{1} \backslash T_{3})$  and $\mathcal{C}(T_{2} \backslash T_{3})$ are super schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, respectively. Without loss of generality, let $c_{1} \prec c_{1-3}$, ($c_{1-3}\in\mathcal{C}(T_{1} \backslash T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2}\prec c_{2-3}$, ($c_{2-3}\in\mathcal{C}(T_{2} \backslash T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then, these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $,  so $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other. This also implies that $c_{1}$ and $c_{2}$ are irrelevant to each other.
+%\end{proof}
+%
+%For example, Table \ref{example_intersect_irrelevant} shows two test sets that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
+%
+%\begin{table}
+%\centering
+%\tbl{Example of Intersection by irrelevant examples \label{example_intersect_irrelevant}}{
+%  \begin{tabular}{cc}
+%$T_{1}$&$T_{2}$ \\ \hline
+%(1, 0, 0) &  (1, 0, 0)\\
+%(1, 0, 1) &  (1, 1, 0)\\  \hline
+% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
+%(1, 0, -)&(1, -, 0)\\
+%  \end{tabular}
+%  }
+%  \end{table}
 
 \begin{proposition}[Can be identical]\label{pro:ci}
  For two intersecting sets of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$ which are identical, then  $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
@@ -671,6 +698,39 @@ $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
   \end{tabular}
   }
   \end{table}
+
+ %It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
+Besides these two conditions, there can be that the schemas that are irrelevant to the other set. Formally.
+
+
+\begin{proposition}[Can be irrelevant to each other]\label{pro:cirr}
+ For two intersecting sets of test cases $T_{1}$ and $T_{2}$, let $T_{3} = T_{1} \bigcap T_{2}$, if  $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, and if $c_{1}$ is the super-schema of $c_{2}$, then  $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
+\end{proposition}
+\begin{proof}
+We have proved previously if two schemas have a subsuming relationship, then their test cases must also have an inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $ T_{3} \subset  T_{1}  $  and $T_{3}\subset  T_{2}$, the super schemas must be in $\mathcal{C}(T_{3})$.
+\end{proof}
+
+It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
+
+%Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0) are also the schemas in $\mathcal{C}(T_{3})$, and are the super schema of the minimal schema of $T_{2}$: (1,-,-).
+
+
+For example, Table \ref{example_intersect_irrelevant} shows two test sets that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
+
+\begin{table}
+\centering
+\tbl{Example of Intersection by irrelevant examples \label{example_intersect_irrelevant}}{
+  \begin{tabular}{cc}
+$T_{1}$&$T_{2}$ \\ \hline
+(1, 0, 0) &  (1, 0, 0)\\
+(1, 0, 1) &  (1, 1, 0)\\  \hline
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
+(1, 0, -)&(1, -, 0)\\
+  \end{tabular}
+  }
+  \end{table}
+
+
 
  It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
 %\begin{table}
@@ -844,7 +904,23 @@ For the strategy \emph{regarded as one failure}, the impacts of masking effects 
 
 The gap between the two strategies can be further analysed by studying the relationships between these two MFS set. As $A \bigcup B_{1} \bigcup B_{2} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ , according to Proposition  \ref{pro:sls}, schemas in  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ (for \emph{regarded as one failure}) can be identical to some schemas in $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ (for \emph{knowing masking effects}), or be sub schemas of some of them, or irrelevant to all of them. Formally, $\forall c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C),\  \exists c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{ro} \prec c_{km},\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, three possibilities in total.
 
-Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.  Combining the previous three possibilities, there are 9 different conditions for the relationships between schemas obtained by strategy \emph{regarded as one failure}, \emph{knowing masking effects} and the actual MFS. We list them in Table \ref{conditions-for-ro}. Note that the special case, the relationship makes nonsense, which are labeled as `---'.
+Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.  Combining the previous three possibilities, there are 9 different conditions for the relationships between schemas obtained by strategy \emph{regarded as one failure}, and the composite condition of  \emph{knowing masking effects} and the actual MFS. We list them in Table \ref{conditions-for-ro}.
+
+In Table \ref{conditions-for-ro}, each condition is explained as following:   A special case is the 9th condition in this table, as under this condition schema $c_{ro}$ is irrelevant to all the schemas that are obtained by strategy \emph{knowing masking effects}, so special case, the relationship makes nonsense. which are labeled as `---'.
+
+Under each condition, what we cared is what the relationship bet $c_{ro}$ with the actual MFS. As this can give us a clear sight of the $c_{ro}$ when compared with corresponding $c_{km}$.  We list the result in Table \ref{conditions-for-ro-s}. Each row tells us a .   All of these results can be proved by previous given propositions, which will be ignored in this paper. We just give an example of these conditions and their result.
+
+
+%Most of them are very straightly. For example, For .  Next, we just give proofs for two complicated conditions and their results, which are condition .
+%
+%\begin{proposition}
+%\end{proposition}
+%
+%
+%And example of this proposition is listed as . In this table.
+
+
+
 
 %Combining the relation between schemas between , and the relation .  We can have between  three possibilities, there are 9 possible conditions for the regard as one failure. which are as Table \ref{conditions-for-ro}, respectively.
 
@@ -859,10 +935,10 @@ ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tn
 2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
 3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
 4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
-5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
-6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
-7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
-8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
+5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
+6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
+7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
+8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
 9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---          \\ \hline
   \end{tabular}
   }
@@ -882,7 +958,7 @@ We can get the following propositions
 \begin{table}
 \begin{threeparttable}
 \centering
-\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
+\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro-s}}{
   \begin{tabular}{ccc}
 ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tnote{3} \\ \hline
 %& & \\ \hline
@@ -916,15 +992,13 @@ In this table.
 
 Other 10 conditions and their results are list. We will not detail discuss them, as their proofs are in a similar way as proposition.
 
-From this 12 rules, we can learn that, when applying \emph{regarded as one failure}, the results can be possible to child. parent. (). In these rules, child and irrelevant are more apparently than the parent.
-
+From this 12 rules, we can learn that, when applying \emph{regarded as one failure}, the results can be possible to sub schemas. parent. (). In these rules, sub schemas and irrelevant are more apparently than the super-schemas.
+One observation in this rules is that , the schemas are tend to be . (rules 1, 2, 5 tells that).
 
 
 , And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}
 
 
-
-%For the strategy \emph{regarded as one failure}, the impact of masking effects on FCI approaches can be described as shown in Table \ref{fci_mask_regard}. We will select one specific, other rules can be . For the rule 4 (which is separated in 4a and 4b). The meaning is that.
 
 %A simple proof is that.
 %
@@ -937,20 +1011,9 @@ From this 12 rules, we can learn that, when applying \emph{regarded as one failu
 %Besides, we have listed a overall example in the Appendix.
 %
 %
-%In fact, considering the fact there are three possiblities, and the possiblisties of the , the total rules can be .  Which can be described in .
 %
-%
-%
-%One observation in this rules is that , the schemas are tend to be . (rules 1, 2, 5 tells that).
 
 %To understand the content of this table, consider the relationship between the minimal schemas of two different sets of test cases. For the \emph{knowing masking effects} condition, the test cases that are used for identifying the MFS, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained in this condition can be identical, super-schema, sub-schema, and irrelevant to the actual MFS. And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}.
-
-%\begin{figure}
-%\centering
-%\includegraphics[width=4.31in]{fci-mask-influence2.eps}
-%\caption{Masking effects influence on FCI with regarded as one failure}
-%\label{fig:fci_mask_regard}
-%\end{figure}
 
 \begin{table}[h]
 \tbl{Masking effects influence on FCI with regarded as one failure strategy
@@ -2169,140 +2232,140 @@ As for the future work, we need to do more empirical studies to make our conclus
 
 \medskip
 
-\section{Proofs of the rules in Section 4.2 and 4.3}
+%\section{Proofs of the rules in Section 4.2 and 4.3}
+%
+%\subsection{For Regarded as one failure}
+%\begin{proposition}
+%$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} \prec c_{km}, c_{as} \prec c_{km}$, then $ either\ \exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), s.t. c_{ro} \prec c_{as}', or c_{ro} irrelevant\ to\ all\ the\  \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
+%\end{proposition}
+%
+%\begin{proof}
+%
+%By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
+%
+%Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
+%\end{proof}
+%
+%This proposition tells us .
+%
+%
+%\begin{proposition}
+%$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} irrelevant to  all \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{km} \prec c_{as}$, then $c_{ro} \prec c_{km}$.
+%
+%\end{proposition}
+%
+%\begin{proof}
+%
+%By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
+%
+%
+%So to irrelevant them is two scenarios, i.e.,
+%
+%All these
+%
+%Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
+%\end{proof}
+%
+%
+%\subsection{For Distinguishing failures}
 
-\subsection{For Regarded as one failure}
-\begin{proposition}
-$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} \prec c_{km}, c_{as} \prec c_{km}$, then $ either\ \exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), s.t. c_{ro} \prec c_{as}', or c_{ro} irrelevant\ to\ all\ the\  \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
-\end{proposition}
 
-\begin{proof}
-
-By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
-
-Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
-\end{proof}
-
-This proposition tells us .
-
-
-\begin{proposition}
-$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} irrelevant to  all \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{km} \prec c_{as}$, then $c_{ro} \prec c_{km}$.
-
-\end{proposition}
-
-\begin{proof}
-
-By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
-
-
-So to irrelevant them is two scenarios, i.e.,
-
-All these
-
-Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
-\end{proof}
-
-
-\subsection{For Distinguishing failures}
-
-
-\section{Example of rules}
-\begin{table}
-\tbl{Example of the influence of the regarded as one failure for FCI approach\label{example-of-fci-influence}}{
-\begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
-\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
- \hline
-\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
-\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
-\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
-\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
-\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
-
-\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
-\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
-\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
-\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
-\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
-\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
-\end{tabular}}
-\end{table}
-
-\begin{table}
-\tbl{Example the influence of distinguishing failures for FCI approach\label{example-of-fci-influence-distiguish}}{
-\begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(0,1,1,0,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(0,0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}&\multicolumn{3}{c}{(0,1,1,0,1,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,1,0,0)} & \multicolumn{3}{c}{(1,0,1,1,0,1)}&\multicolumn{3}{c}{(0,1,1,1,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
-\multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
-\multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
- \hline
-\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguishing failures$} \\
-\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
-\multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
-\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
-\multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
-\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
-\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
-\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
-\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
-\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
-\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
-\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-
-\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
-\multicolumn{4}{c}{2} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
-\multicolumn{4}{c}{4} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{(1,0,-,-,1,1)} \\
-\multicolumn{4}{c}{6d} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
-\multicolumn{4}{c}{6c} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{6b} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
-\multicolumn{4}{c}{6a} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
-\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
-\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
-
-\multicolumn{4}{c}{9} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
-%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m}'$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-%\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
-
-\end{tabular}}
-\end{table}
+%\section{Example of rules}
+%\begin{table}
+%\tbl{Example of the influence of the regarded as one failure for FCI approach\label{example-of-fci-influence}}{
+%\begin{tabular}{llllllllllll}
+%%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+%
+%\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
+%\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
+%\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
+%\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
+%\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
+%\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
+%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
+% \hline
+%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
+%\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
+%\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
+%\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
+%\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
+%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
+%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
+%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
+%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
+%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
+%
+%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+%\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+%\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
+%\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
+%\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+%\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+%\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
+%\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+%\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+%\end{tabular}}
+%\end{table}
+%
+%\begin{table}
+%\tbl{Example the influence of distinguishing failures for FCI approach\label{example-of-fci-influence-distiguish}}{
+%\begin{tabular}{llllllllllll}
+%%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+%
+%\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(0,1,1,0,0,0)}\\
+%\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(0,0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}&\multicolumn{3}{c}{(0,1,1,0,1,0)}\\
+%\multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,1,0,0)} & \multicolumn{3}{c}{(1,0,1,1,0,1)}&\multicolumn{3}{c}{(0,1,1,1,0,0)}\\
+%\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
+%\multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
+%\multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+% \hline
+%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguishing failures$} \\
+%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
+%\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
+%\multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
+%\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
+%\multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
+%\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
+%\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
+%\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
+%\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
+%\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
+%\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
+%\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+%\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+%\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+%\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
+%
+%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+%\multicolumn{4}{c}{2} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
+%\multicolumn{4}{c}{4} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{(1,0,-,-,1,1)} \\
+%\multicolumn{4}{c}{6d} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
+%\multicolumn{4}{c}{6c} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+%\multicolumn{4}{c}{6b} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
+%\multicolumn{4}{c}{6a} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
+%\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
+%\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
+%
+%\multicolumn{4}{c}{9} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
+%%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m}'$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+%%\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+%
+%\end{tabular}}
+%\end{table}
 
 \section{The detail of the experiments}
 
