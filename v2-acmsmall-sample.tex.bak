@@ -583,7 +583,8 @@ $T_{l}$&$T_{k}$ \\ \hline
 %Sometimes they can be merged.
 
 \subsection{Intersection}
-This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, we have the following properties:
+This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between 
+we have the following properties:
 
 
 Let us see that $C(T_{1})$ is sub schema or identical or irrelevant to $C(T_{3})$. $C_{T_{2}}$ is also the same. Then we have the following conditions, if $c_{1}$ sub to $c_{3}$, $c_{2}$ sub to, $c_{1}$ identical to, $c_{2}$ identical. $c_{1}$ irrelevant, $c_{2}$ irrelevant.
@@ -603,12 +604,31 @@ irrelevant & - \\
   }
   \end{table}
 
-\begin{proposition}[two sub to ]\label{pro:ci}
- For two intersecting sets of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$ which are identical, then  $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
+\begin{proposition}[two sub]\label{pro:twosub}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} \prec c_{3}$. Then it must have $c_{1}$ irrelevant to $C(T_{2})$ and $c_{2}$ irrelevant to $C(T_{1})$.
 \end{proposition}
 \begin{proof}
 As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
+
+\begin{proposition}[one sub, one identical]\label{pro:onesuboneidenticial}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+\end{proposition}
+
+\begin{proposition}[one identical, one sub]\label{pro:oneidenticalonesub}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+\end{proposition}
+
+\begin{proposition}[two identical]\label{pro:twoidentical}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+\end{proposition}
+
+
+\begin{proposition}[one irrelevant]\label{pro:oneirrelevant}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+\end{proposition}
+
+
 
 %For two different set of test cases, one obvious properties is listed as follows:
 %Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
@@ -940,6 +960,7 @@ ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tn
 7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
 8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
 9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---          \\ \hline
+10&    	&   $\exists c_{as},\ s.t.,\ c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$          \\ \hline
   \end{tabular}
   }
  \begin{tablenotes}
@@ -971,6 +992,7 @@ ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tn
 7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
 8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
 9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---          \\ \hline
+10& --- & $c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ \\ \hline
   \end{tabular}
   }
  \begin{tablenotes}
