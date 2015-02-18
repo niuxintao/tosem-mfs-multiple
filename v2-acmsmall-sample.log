@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  18 FEB 2015 02:00
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  19 FEB 2015 01:45
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -471,66 +471,67 @@ Underfull \hbox (badness 1117) in paragraph at lines 581--581
 []\OT1/phv/m/n/8 Table VI-I. Dis-join-t ex-
  []
 
-[10] [11] [12] [13]
+[10] [11] [12]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: FCI.eps Graphic file (type eps)
- <FCI.eps>
+<FCI.eps>
+Underfull \vbox (badness 1762) has occurred while \output is active []
+
+ [13]
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 833.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 832.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
 
 
-LaTeX Warning: Reference `pro:mi' on page 14 undefined on input line 833.
+LaTeX Warning: Reference `pro:mi' on page 14 undefined on input line 832.
 
 [14]
-Underfull \hbox (badness 2521) in paragraph at lines 873--874
+Underfull \hbox (badness 2521) in paragraph at lines 872--873
 []\OT1/pnc/m/n/10 As an ex-am-ple, in the mo-ti-va-tion ex-am-ple in sec-tion 2
 , $\OML/cmm/m/it/10 F[]$ \OT1/pnc/m/n/10 is \OMS/cmsy/m/n/10 f
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 882.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 881.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
-
-Underfull \vbox (badness 3623) has occurred while \output is active []
-
- [15]
+[15]
 File: FCI-mask.eps Graphic file (type eps)
-
-<FCI-mask.eps> [16] [17]
+ <FCI-mask.eps> [16]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 7759) has occurred while \output is active []
-
- [18]
+[18]
 
 LaTeX Warning: Reference `example-of-fci-influence' on page 19 undefined on inp
-ut line 1070.
+ut line 1069.
 
-[19]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
 
 LaTeX Warning: Reference `example-of-fci-influence-distiguish' on page 20 undef
-ined on input line 1125.
+ined on input line 1124.
 
 
 LaTeX Warning: Reference `example-of-fci-influence' on page 20 undefined on inp
-ut line 1125.
+ut line 1124.
 
 
 LaTeX Warning: Reference `example-of-fci-influence-distiguish' on page 20 undef
-ined on input line 1127.
+ined on input line 1126.
 
-[20]
-Underfull \vbox (badness 1248) has occurred while \output is active []
-
- [21]
-[22]
+[20] [21] [22]
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncr7t" at 5.0pt
@@ -540,7 +541,7 @@ Requested font "pncri7t" at 5.0pt
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1259.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1258.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -558,35 +559,28 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1279.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1278.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1279.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1278.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1279.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1278.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
- [23]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [24]
+ [23] [24]
 File: table.eps Graphic file (type eps)
-
-<table.eps>
-Underfull \vbox (badness 6204) has occurred while \output is active []
+ <table.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
-[27] [28] [29] [30]
-Underfull \vbox (badness 2237) has occurred while \output is active []
+[26] [27] [28] [29] [30]
+Underfull \vbox (badness 2181) has occurred while \output is active []
 
  [31]
 File: accurate.eps Graphic file (type eps)
@@ -600,7 +594,7 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1832--1832
+Underfull \hbox (badness 1259) in paragraph at lines 1831--1831
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -627,38 +621,35 @@ File: 4-way.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39]
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2104 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2103 replaced by U+FFFD.
 
-[40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [41]
+[40] [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [42]
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
  [43]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44])
 [45]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2402--2435
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2401--2434
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2439--2501
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2438--2500
 [] 
  []
 

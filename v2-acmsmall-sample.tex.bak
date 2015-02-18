@@ -583,7 +583,10 @@ $T_{l}$&$T_{k}$ \\ \hline
 %Sometimes they can be merged.
 
 \subsection{Intersection}
-This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between 
+This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between the schemas of $C(T_{1})$ and $C(T_{2})$, we need to use the aid-schema $C(T_{3})$.
+
+As $T_{3} \subset T_{1}$, then $\forall c \in C(T_{1})$, we can find $c \in C(T_{3})$, s.t. $c = c $ or, $c \prec c$, or $c$ irrelevant to $C(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then $\forall c \in C_{3} $, s.t. $c = c$ or $c \prec c$. Combining these two scenorios, we can find the following possiblities in Table \ref{possible-relation-of-intersection}.
+
 we have the following properties:
 
 
@@ -603,6 +606,8 @@ irrelevant & - \\
   \end{tabular}
   }
   \end{table}
+
+For each of them we will give a proposition to describe the relationship between the schema of $c_{1}$ and $c_{2}$.
 
 \begin{proposition}[two sub]\label{pro:twosub}
 For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} \prec c_{3}$. Then it must have $c_{1}$ irrelevant to $C(T_{2})$ and $c_{2}$ irrelevant to $C(T_{1})$.
