@@ -585,7 +585,7 @@ $T_{l}$&$T_{k}$ \\ \hline
 \subsection{Intersection}
 This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between the schemas of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, we need to use the aid-schema $\mathcal{C}(T_{3})$.
 
-As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then $\forall c_{3} \in C_{3} $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two scenarios, we can find the following possibilities between $c_{1},c_{2}$ and $c_{3}$ , as shown Table \ref{possible-relation-of-intersection}.  It is noted that for the 5th condition that $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, it is to all the schemas in . Corresponding, it is no helps to lists the single condition $c_{3}$ with $c_{2}$.
+As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then $\forall c_{3} \in C_{3} $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two scenarios, we can find the following possibilities between $c_{1},c_{2}$ and $c_{3}$ , as shown Table \ref{possible-relation-of-intersection}.  It is noted that for the 5th condition that $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means in this condition there is no mid-schema $t_{3}$ (In fact, this is the relationship between the schema $c_{1}$ and all the schemas in $\mathcal{C}(T_{3})$). Corresponding, it is no helps to lists the single condition $c_{3}$ with $c_{2}$, which is listed as `---'.
 
 
 \begin{table}
@@ -597,87 +597,21 @@ id&$c_{1}\ \&\ c_{3}$&$c_{2}\ \&\ c_{3}$ \\ \hline
 2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ \\ \hline
 3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ \\
 4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ \\ \hline
-5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- \\ 
+5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- \\
   \end{tabular}
   }
   \end{table}
 For each of them we will give a proposition to describe the relationship between the schema of $c_{1}$ and $c_{2}$.
 
 \begin{proposition}[two identical]\label{pro:twoidentical}
-For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} = c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1} = c_{2}$.
 \end{proposition}
 
-
-
-
-\begin{proposition}[two sub]\label{pro:twosub}
-For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} \prec c_{3}$. Then it must have $c_{1}$ irrelevant to $C(T_{2})$ and $c_{2}$ irrelevant to $C(T_{1})$.
-\end{proposition}
-\begin{proof}
-As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
-\end{proof}
-
-\begin{proposition}[one sub, one identical]\label{pro:onesuboneidenticial}
-For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
-\end{proposition}
-
-\begin{proposition}[one identical, one sub]\label{pro:oneidenticalonesub}
-For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
-\end{proposition}
-
-
-
-
-\begin{proposition}[one irrelevant]\label{pro:oneirrelevant}
-For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
-\end{proposition}
-
-
-
-%For two different set of test cases, one obvious properties is listed as follows:
-%Without loss of generality, For $T_{1}$, their has three possibilities: $for c \in \mathcal{C}(T_{1})$, 1) $c \in  \mathcal{C}(T_{3})$, 2) $c \prec  \mathcal{C}(T_{3})$ 3) $c$ irrelevant to $\mathcal{C}(T_{3})$. This is also for $T_{2}$.
-
-%Let me discuss the combination of them.
-%\begin{proposition}[Must have schemas that are irrelevant]\label{pro:mi}
-% For two intersecting sets of test cases $T_{1}$ and $T_{2}$ (these two sets are neither identical nor include each other),  $ \exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$. s.t. $c_{1}\ and\ c_{2}$ are irrelevant.
-%\end{proposition}
-%\begin{proof}
-%First, we can learn that $\mathcal{C}(T_{1}\backslash T_{3})$ are irrelevant to $\mathcal{C}(T_{2} \backslash T_{3})$, as $(T_{1} \backslash T_{3}) \bigcap (T_{2} \backslash T_{3}) = \emptyset$.
-%
-%Given the schemas in $\mathcal{C}(T_{1} \backslash T_{3})$ are either identical to some schemas in $\mathcal{C}(T_{1})$ or super schemas of them. Now, if some of them are identical, i.e., $\exists c', s.t., c' \in \mathcal{C}(T_{1} \backslash T_{3})\ and\  c' \in \mathcal{C}(T_{1})$, then schemas ${c'}$ must be irrelevant to these schemas in $ \mathcal{C}(T_{2})$ as $(T_{1} \backslash T_{3}) \bigcap T_{2} = \emptyset$. This also holds if $\mathcal{C}(T_{2} \backslash T_{3})$ is identical to some schemas in $\mathcal{C}(T_{2})$.
-%
-%Next, if both $\mathcal{C}(T_{1} \backslash T_{3})$  and $\mathcal{C}(T_{2} \backslash T_{3})$ are super schemas of some of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, respectively. Without loss of generality, let $c_{1} \prec c_{1-3}$, ($c_{1-3}\in\mathcal{C}(T_{1} \backslash T_{3})\ and\ c_{1} \in \mathcal{C}(T_{1})$) and $c_{2}\prec c_{2-3}$, ($c_{2-3}\in\mathcal{C}(T_{2} \backslash T_{3})\ and\ c_{2} \in \mathcal{C}(T_{2})$). Then, these corresponding sub-schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, i.e., $c_{1}$ and $c_{2}$ respectively, must also be irrelevant to each other. This is because $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{1-3})$ and  $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1-3})$. And as $ \mathcal{T}(c_{1-3}) \bigcap  \mathcal{T}(c_{2-3}) = \emptyset $,  so $\mathcal{T}(c_{1})$ and $\mathcal{T}(c_{2})$ are neither identical nor subsuming each other. This also implies that $c_{1}$ and $c_{2}$ are irrelevant to each other.
-%\end{proof}
-%
-%For example, Table \ref{example_intersect_irrelevant} shows two test sets that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
-%
-%\begin{table}
-%\centering
-%\tbl{Example of Intersection by irrelevant examples \label{example_intersect_irrelevant}}{
-%  \begin{tabular}{cc}
-%$T_{1}$&$T_{2}$ \\ \hline
-%(1, 0, 0) &  (1, 0, 0)\\
-%(1, 0, 1) &  (1, 1, 0)\\  \hline
-% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
-%(1, 0, -)&(1, -, 0)\\
-%  \end{tabular}
-%  }
-%  \end{table}
-
-\begin{proposition}[Can be identical]\label{pro:ci}
- For two intersecting sets of test cases $T_{1}$ and $T_{2}$, and let $T_{3} = T_{1} \bigcap T_{2}$, if $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$ which are identical, then  $c_{1} = c_{2} \in \mathcal{C}(T_{3})$
-\end{proposition}
-\begin{proof}
-As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
-\end{proof}
-
-Note that this proposition holds when some schemas in $\mathcal{C}(T_{1} \bigcap T_{2})$ are identical to some schemas in $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
-
-For example, Table \ref{example_intersect_identical} shows two test cases that interact with each other at test cases (1,1,0) and (1,1,1), and they have identical minimal schema, i.e., (1,1,-), which is also the minimal schema in $\mathcal{C}(T_{3})$.
+This proposition is obvious, and note that it state that two schemas of the intersect set can be identical.  For example, Table \ref{example_intersect_identical} shows two test cases that interact with each other at test cases (1,1,0) and (1,1,1), and the identical schema is (1,1,-) for ($c_{1}, c_{2}$ and $c_{3}$).
 
 \begin{table}
 \centering
-\tbl{Example of Intersection by identical examples \label{example_intersect_identical}}{
+\tbl{Example for case 1 \label{example_intersect_identical}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
  (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
@@ -692,16 +626,9 @@ $T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
   }
   \end{table}
 
-%It must also be that this $c$ must in $T_{3}$, which means that it should not all be children tuples like table.
-
-\begin{proposition}[Can be subsuming each other]\label{pro:cs}
- For two intersecting sets of test cases $T_{1}$ and $T_{2}$, let $T_{3} = T_{1} \bigcap T_{2}$, if  $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, and if $c_{1}$ is the super-schema of $c_{2}$, then  $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
+\begin{proposition}[one identical, one sub]\label{pro:onesuboneidenticial}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} = c_{3}, and c_{2} \prec c_{3}$. Then it must have $c_{2} \prec c_{3}$.
 \end{proposition}
-\begin{proof}
-We have proved previously if two schemas have a subsuming relationship, then their test cases must also have an inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $ T_{3} \subset  T_{1}  $  and $T_{3}\subset  T_{2}$, the super schemas must be in $\mathcal{C}(T_{3})$.
-\end{proof}
-
-It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
 Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0) are also the schemas in $\mathcal{C}(T_{3})$, and are the super schema of the minimal schema of $T_{2}$: (1,-,-).
 
@@ -723,20 +650,28 @@ $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
   }
   \end{table}
 
- %It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
-Besides these two conditions, there can be that the schemas that are irrelevant to the other set. Formally.
 
 
-\begin{proposition}[Can be irrelevant to each other]\label{pro:cirr}
- For two intersecting sets of test cases $T_{1}$ and $T_{2}$, let $T_{3} = T_{1} \bigcap T_{2}$, if  $\exists c_{1} \in \mathcal{C}(T_{1})\ and\ c_{2} \in \mathcal{C}(T_{2})$, and if $c_{1}$ is the super-schema of $c_{2}$, then  $c_{1} \in \mathcal{C}(T_{3})$. (and vice versa).
+\begin{proposition}[one sub, one identical]\label{pro:oneidenticalonesub}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+\end{proposition}
+
+This proposition is just the opposite of Proposition \ref{pro:onesuboneidenticial}. We will no more reduntance.
+
+
+\begin{proposition}[two sub]\label{pro:twosub}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} \prec c_{3}$. Then it must have $c_{1}$ irrelevant to $C(T_{2})$ and $c_{2}$ irrelevant to $C(T_{1})$.
 \end{proposition}
 \begin{proof}
-We have proved previously if two schemas have a subsuming relationship, then their test cases must also have an inclusion relationship. And as the only inclusion relationship between  $T_{1}$ and $T_{2}$ is that $ T_{3} \subset  T_{1}  $  and $T_{3}\subset  T_{2}$, the super schemas must be in $\mathcal{C}(T_{3})$.
+As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
+This proposition is a bit complicated than Proposition \ref{pro:twoidentical}, \ref{pro:oneidenticalonesub}, \ref{pro:onesuboneidenticial}. Table gives an example.
 
-%Table \ref{example_intersect_subsume} illustrates this scenario, in which, the minimal schemas of $T_{1}$: (1,0,-),(1,-,0) are also the schemas in $\mathcal{C}(T_{3})$, and are the super schema of the minimal schema of $T_{2}$: (1,-,-).
+
+\begin{proposition}[one irrelevant]\label{pro:oneirrelevant}
+For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
+\end{proposition}
 
 
 For example, Table \ref{example_intersect_irrelevant} shows two test sets that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
@@ -755,26 +690,14 @@ $T_{1}$&$T_{2}$ \\ \hline
   \end{table}
 
 
+%It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
- It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.%, like Table \ref{example_intersect_all}.
-%\begin{table}
-%\centering
-%\tbl{Example of Intersect by all examples \label{example_intersect_all}}{
-%  \begin{tabular}{ccc}
-%$T_{1}$&$T_{2}$ &$T_{3}$\\ \hline
-%(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
-%(1, 0, 0)   & (0, 0, 1) & (1, 0, 1)\\
-%(1, 0, 1)	& (1, 0, 0) & (1, 1, 0)\\
-%(1, 1, 0)	& (1, 0, 1) &         \\
-%        	& (1, 1, 0)\\
-%		    & (1, 1, 1)\\ \hline
-% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-%(0, 1, 0)&  (0, 0, -) & (1, 0, -)\\
-%(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
-% (1, -, 0) & & \\ \hline
-%  \end{tabular}
-%  }
-%  \end{table}
+
+
+
+
+
+ It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
 
 %\subsection{Summary of the formal model}
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
