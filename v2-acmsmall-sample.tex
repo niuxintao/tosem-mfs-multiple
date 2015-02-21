@@ -590,7 +590,7 @@ As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall 
 
 \begin{table}
 \centering
-\tbl{Disjoint example \label{possible-relation-of-intersection}}{
+\tbl{Possible relationships  \label{possible-relation-of-intersection}}{
   \begin{tabular}{ccc}
 id&$c_{1}\ \&\ c_{3}$&$c_{2}\ \&\ c_{3}$ \\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$ \\
@@ -607,7 +607,7 @@ For each of them we will give a proposition to describe the relationship between
 For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} = c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1} = c_{2}$.
 \end{proposition}
 
-This proposition is obvious, and note that it state that two schemas of the intersect set can be identical.  For example, Table \ref{example_intersect_identical} shows two test cases that interact with each other at test cases (1,1,0) and (1,1,1), and the identical schema is (1,1,-) for ($c_{1}, c_{2}$ and $c_{3}$).
+This proposition is obvious, and note that it state that two schemas of the intersect set can be identical.  For example, Table \ref{example_intersect_identical} shows two test cases that interact with each other at test cases (1,1,0) and (1,1,1), and the identical schema is (1,1,-) for ($c_{1}, c_{2}$ and $c_{3}$). For the following proportions that are very obvious to prove, we will omit the proof like this and just give an example.
 
 \begin{table}
 \centering
@@ -634,7 +634,7 @@ Table \ref{example_intersect_subsume} illustrates this scenario, in which, the m
 
 \begin{table}
 \centering
-\tbl{Example of Intersect by subsuming examples \label{example_intersect_subsume}}{
+\tbl{Example for case 2 \label{example_intersect_subsume}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
@@ -666,8 +666,26 @@ For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there
 As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
 \end{proof}
 
-This proposition is a bit complicated than Proposition \ref{pro:twoidentical}, \ref{pro:oneidenticalonesub}, \ref{pro:onesuboneidenticial}. Table gives an example.
+This proposition is a bit complicated than Proposition \ref{pro:twoidentical}, \ref{pro:oneidenticalonesub}, \ref{pro:onesuboneidenticial}. Table \ref{example_intersect_subsub} gives an example.
 
+
+\begin{table}
+\centering
+\tbl{Example for case 4 \label{example_intersect_subsub}}{
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
+(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
+(1, 0, 0)   & (1, 0, 0) & (1, 0, 1)\\
+(1, 0, 1)	& (1, 0, 1) & (1, 1, 0)\\
+(1, 1, 0)	& (1, 1, 0) &         \\
+        	& (1, 1, 1) & \\ \hline
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+(-, 1, 0)&  (-, 0, 0) & (1, 0, -)\\
+(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
+(1, -, 0)&     & \\ \hline
+  \end{tabular}
+  }
+  \end{table}
 
 \begin{proposition}[one irrelevant]\label{pro:oneirrelevant}
 For $c_{1} \in \mathcal{C}(T_{1}),\ and\ c_{2} \in \mathcal{C}(T_{2})$, if there exist a schema $c_{3} \in \mathcal{C}(T_{3}), s.t. c_{1} \prec c_{3}, and c_{2} = c_{3}$. Then it must have $c_{1}$ is sub of the schema of $C(T_{2})$, which is $c_{2}$. And $c_{2}$ is the super schema of some schemas of $C(T_{1})$, which is $c_{1}$.
@@ -678,7 +696,7 @@ For example, Table \ref{example_intersect_irrelevant} shows two test sets that i
 
 \begin{table}
 \centering
-\tbl{Example of Intersection by irrelevant examples \label{example_intersect_irrelevant}}{
+\tbl{Example for case 5 \label{example_intersect_irrelevant}}{
   \begin{tabular}{cc}
 $T_{1}$&$T_{2}$ \\ \hline
 (1, 0, 0) &  (1, 0, 0)\\
@@ -698,6 +716,22 @@ $T_{1}$&$T_{2}$ \\ \hline
 
 
  It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
+
+Above all, the possible results can be listed in Table \ref{possible-result-of-intersection}.
+
+\begin{table}
+\centering
+\tbl{Possible results  \label{possible-result-of-intersection}}{
+  \begin{tabular}{ccc}
+id&$c_{1}\ \&\ c_{3}$&$c_{2}\ \&\ c_{3}$ \\ \hline
+1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$ \\
+2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ \\ \hline
+3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ \\
+4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ \\ \hline
+5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- \\
+  \end{tabular}
+  }
+  \end{table}
 
 %\subsection{Summary of the formal model}
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
@@ -851,7 +885,13 @@ For the strategy \emph{regarded as one failure}, the impacts of masking effects 
 
 The gap between the two strategies can be further analysed by studying the relationships between these two MFS set. As $A \bigcup B_{1} \bigcup B_{2} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ , according to Proposition  \ref{pro:sls}, schemas in  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ (for \emph{regarded as one failure}) can be identical to some schemas in $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ (for \emph{knowing masking effects}), or be sub schemas of some of them, or irrelevant to all of them. Formally, $\forall c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C),\  \exists c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{ro} \prec c_{km},\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, three possibilities in total.
 
-Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.  Combining the previous three possibilities, there are 9 different conditions for the relationships between schemas obtained by strategy \emph{regarded as one failure}, and the composite condition of  \emph{knowing masking effects} and the actual MFS. We list them in Table \ref{conditions-for-ro}.
+Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.  
+
+Then, we will take the same discussion as the discussion for the relationships between the schemas between intersection relationship in Section. Specifically, we take the schemas $c_{km}$ as the mid-schema to help ensure the relationship between $c_{ro}$ and $c_{as}$. We do this for. as $c_{km}$ both has relationships between these two schemas as discussed before, second, we can clearly enure the difference between $c_{ro}$ and $c_{km}$, which can help to understand the impacts of masking effects for this strategy.
+
+Similar as table \ref{possible-relation-of-intersection}, we list the possible relationship between  between schemas obtained by strategy \emph{regarded as one failure}, and the composite condition of  \emph{knowing masking effects} and the actual MFS,  as shown in Table \ref{conditions-for-ro}.
+%Combining the previous three possibilities, there are 9 different conditions for the relationships
+
 
 In Table \ref{conditions-for-ro}, each condition is explained as following:   A special case is the 9th condition in this table, as under this condition schema $c_{ro}$ is irrelevant to all the schemas that are obtained by strategy \emph{knowing masking effects}, so special case, the relationship makes nonsense. which are labeled as `---'.
 
@@ -899,6 +939,8 @@ ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tn
   \end{threeparttable}
 \end{table}
 
+For these conditions, the relationship between these can be descirbed in Table \ref{conditions-for-ro-s}, the same form as Sectin.
+
 To specifically discuss all these 9 conditions is redundant in this paper. Hence, we just select two particular conditions, and others can be analysed in a similar way. First, consider the condition that $\exists c_{ro} \in C() and () \prec c_{km}, \prec c_{km} \prec c_{as}$.
 
 We can get the following propositions
@@ -906,7 +948,7 @@ We can get the following propositions
 \begin{table}
 \begin{threeparttable}
 \centering
-\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro-s}}{
+\tbl{Possible results for Regard as one failure strategy \label{conditions-for-ro-s}}{
   \begin{tabular}{ccc}
 ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tnote{3} \\ \hline
 %& & \\ \hline
@@ -964,25 +1006,25 @@ One observation in this rules is that , the schemas are tend to be . (rules 1, 2
 
 %To understand the content of this table, consider the relationship between the minimal schemas of two different sets of test cases. For the \emph{knowing masking effects} condition, the test cases that are used for identifying the MFS, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained in this condition can be identical, super-schema, sub-schema, and irrelevant to the actual MFS. And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}.
 
-\begin{table}[h]
-\tbl{Masking effects influence on FCI with regarded as one failure strategy
-\label{fci_mask_regard}}{
-\begin{tabular}{|lll|}
-\hline
-1  & If  $ c_{m} = c_{origin}$ \  and\   $c_{new} = c_{origin}  $                                & Then, $ \exists c_{m}',s.t.,c_{new} = c_{m}'  $             \\
-2  &  If  $ c_{m} = c_{origin}$   and\   $c_{new} \prec c_{origin} $       & Then,  $\exists c_{m}',s.t.,c_{new} \prec c_{m}'  $              \\
-3  & If $c_{m} \prec c_{origin}$\ and\  $c_{new} = c_{origin}  $                 & Then, $\exists c_{m}',s.t.,c_{m}' \prec c_{new} $               \\
-4a & If $c_{m} \prec c_{origin}$\  and\ $c_{new} \prec c_{origin}$                 & Then either,$c_{m}',s.t.,c_{new} \prec c_{m}' $        \\
-4b &                                                                     & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
-5  & If $c_{origin} \prec c_{m}$\ and\ $c_{new} = c_{origin}  $          & Then, $\exists c_{m}',s.t.,c_{new} \prec c_{m}' $               \\
-6  & If $c_{origin} \prec c_{m}$\  and\ $c_{new} \prec c_{origin} $      & Then, $\exists  c_{m}',s.t.,c_{new} \prec c_{m}'  $              \\ %\hline
-7  & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} = c_{origin} $                  & Then, $ c_{new}\ irrelevant\ to\ all\ c_{m}'$ \\
-8a & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} \prec c_{origin}$     & Then either,$\exists c_{m}',s.t.,c_{new} \prec c_{m}'$         \\
-8b &                                                                                      & Or,$c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
-9a &            If $c_{new}\ irrelevant\ to\ all\ c_{origin}$ & Then either,$\exists c_{m}',s.t.,c_{new} \prec c_{m}' $        \\
-9b &                                                             & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}' $  \\ \hline
-\end{tabular}}
-\end{table}
+%\begin{table}[h]
+%\tbl{Masking effects influence on FCI with regarded as one failure strategy
+%\label{fci_mask_regard}}{
+%\begin{tabular}{|lll|}
+%\hline
+%1  & If  $ c_{m} = c_{origin}$ \  and\   $c_{new} = c_{origin}  $                                & Then, $ \exists c_{m}',s.t.,c_{new} = c_{m}'  $             \\
+%2  &  If  $ c_{m} = c_{origin}$   and\   $c_{new} \prec c_{origin} $       & Then,  $\exists c_{m}',s.t.,c_{new} \prec c_{m}'  $              \\
+%3  & If $c_{m} \prec c_{origin}$\ and\  $c_{new} = c_{origin}  $                 & Then, $\exists c_{m}',s.t.,c_{m}' \prec c_{new} $               \\
+%4a & If $c_{m} \prec c_{origin}$\  and\ $c_{new} \prec c_{origin}$                 & Then either,$c_{m}',s.t.,c_{new} \prec c_{m}' $        \\
+%4b &                                                                     & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
+%5  & If $c_{origin} \prec c_{m}$\ and\ $c_{new} = c_{origin}  $          & Then, $\exists c_{m}',s.t.,c_{new} \prec c_{m}' $               \\
+%6  & If $c_{origin} \prec c_{m}$\  and\ $c_{new} \prec c_{origin} $      & Then, $\exists  c_{m}',s.t.,c_{new} \prec c_{m}'  $              \\ %\hline
+%7  & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} = c_{origin} $                  & Then, $ c_{new}\ irrelevant\ to\ all\ c_{m}'$ \\
+%8a & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} \prec c_{origin}$     & Then either,$\exists c_{m}',s.t.,c_{new} \prec c_{m}'$         \\
+%8b &                                                                                      & Or,$c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
+%9a &            If $c_{new}\ irrelevant\ to\ all\ c_{origin}$ & Then either,$\exists c_{m}',s.t.,c_{new} \prec c_{m}' $        \\
+%9b &                                                             & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}' $  \\ \hline
+%\end{tabular}}
+%\end{table}
 
 There are totally 9 rules for this strategy, which are labeled from 1 to 9 respectively. In these rules, $c_{m}$ and $c_{m}'$ are the actual MFS, i.e., $c_{m}, c_{m}' \in C(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$. $c_{origin}$ is the minimal schema that are obtained by \emph{knowing masking effects} strategy, i.e., $c_{origin} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. $c_{new}$ is the schema that are obtained by \emph{regarded as one failure} strategy, i.e., $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. $c_{new}$ satisfies $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$.  Each rule in Table \ref{fci_mask_regard}  describes one possible relationship between the schemas obtained by strategy \emph{regarded as one failure} and the actual MFS. For example,
 rule 2, i.e., $If\ c_{m} = c_{origin}\ and\ c_{new} \prec c_{origin}, then\ \exists c_{m}', s.t., c_{new} \prec c_{m}'$, indicates that the schema $c_{new}$ by \emph{regarded as one failure} strategy will be the sub schema of some actual MFS, if it is also the sub schema of the schema $c_{origin}$ by strategy \emph{knowing masking effects}, and $c_{origin}$ is identical to some actual MFS. Some rules may offer more than one possible relationship between $c_{new}$ and the actual MFS. For example, rule 4 states that $c_{new}$ either be the sub schema of the actual MFS or be irrelevant to all the actual MFS. In this case, we divide the rule into several sub-rules. For rule 4, there are two sub-rules: 4a and 4b, each of which represents one possible relationship between $c_{new}$ and the actual MFS $c_{m}'$.
@@ -1016,30 +1058,30 @@ For strategy \emph{distinguishing failures}, the influence can be described as s
 %\caption{masking effects influence on FCI with distinguishing failures}
 %\label{fig:fci_mask_distinguish}
 %\end{figure}
-
-\begin{table}[h]
-\tbl{Masking effects influence on FCI with distinguishing failures strategy
-\label{fci_mask_distinguish}}{
-\begin{tabular}{|lll|}
-\hline
-1  & If  $ c_{m} = c_{origin}$ \  and\   $c_{new} = c_{origin}  $                                & Then, $ \exists c_{m}',s.t.,c_{new} = c_{m}'  $             \\
-2  &  If  $ c_{m} = c_{origin}$   and\   $c_{origin} \prec  c_{new} $       & Then,  $\exists c_{m}',s.t., c_{m}' \prec c_{new} $              \\
-3  & If $c_{m} \prec c_{origin}$\ and\  $c_{new} = c_{origin}  $                 & Then, $\exists c_{m}',s.t.,c_{m}' \prec c_{new} $               \\
-4 & If $c_{m} \prec c_{origin}$\  and\ $c_{origin} \prec c_{new}$                 & Then, $c_{m}',s.t., c_{m}' \prec c_{new}$        \\
-5  & If $c_{origin} \prec c_{m}$\ and\ $c_{new} = c_{origin}  $          & Then, $\exists c_{m}',s.t.,c_{new} \prec c_{m}' $               \\
-6a  & If $c_{origin} \prec c_{m}$\  and\ $c_{origin} \prec c_{new} $      & Then either $\exists  c_{m}',s.t.,c_{new} = c_{m}'  $              \\
-6b &  & Or $\exists  c_{m}',s.t., c_{m}' \prec c_{new} $    \\ %\hline
-6c &  & Or $\exists  c_{m}',s.t.,c_{new} \prec c_{m}'  $    \\
-6d &  & Or $c_{new}\  irrelevant\ all\ c_{m}' $    \\
-7  & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} = c_{origin} $                  & Then, $ c_{new}\ irrelevant\ to\ all\ c_{m}'$ \\
-8a & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{origin} \prec c_{new}$     & Then either,$\exists c_{m}',s.t.,c_{m}' \prec c_{new}$         \\
-8b &                                                                                      & Or,$c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
-%9a &                         if $c_{new}\ irrelevant\ to\ all\ c_{origin}$ & Then either,$\exists c_{m}',s.t., c_{m}' \prec c_{new} $        \\
-%9b &                                                             & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}'$  \\
-
-9 & It may have $c_{origin}\ irrelevant\ to\ all\ c_{new}$  & \\\hline
-\end{tabular}}
-\end{table}
+%
+%\begin{table}[h]
+%\tbl{Masking effects influence on FCI with distinguishing failures strategy
+%\label{fci_mask_distinguish}}{
+%\begin{tabular}{|lll|}
+%\hline
+%1  & If  $ c_{m} = c_{origin}$ \  and\   $c_{new} = c_{origin}  $                                & Then, $ \exists c_{m}',s.t.,c_{new} = c_{m}'  $             \\
+%2  &  If  $ c_{m} = c_{origin}$   and\   $c_{origin} \prec  c_{new} $       & Then,  $\exists c_{m}',s.t., c_{m}' \prec c_{new} $              \\
+%3  & If $c_{m} \prec c_{origin}$\ and\  $c_{new} = c_{origin}  $                 & Then, $\exists c_{m}',s.t.,c_{m}' \prec c_{new} $               \\
+%4 & If $c_{m} \prec c_{origin}$\  and\ $c_{origin} \prec c_{new}$                 & Then, $c_{m}',s.t., c_{m}' \prec c_{new}$        \\
+%5  & If $c_{origin} \prec c_{m}$\ and\ $c_{new} = c_{origin}  $          & Then, $\exists c_{m}',s.t.,c_{new} \prec c_{m}' $               \\
+%6a  & If $c_{origin} \prec c_{m}$\  and\ $c_{origin} \prec c_{new} $      & Then either $\exists  c_{m}',s.t.,c_{new} = c_{m}'  $              \\
+%6b &  & Or $\exists  c_{m}',s.t., c_{m}' \prec c_{new} $    \\ %\hline
+%6c &  & Or $\exists  c_{m}',s.t.,c_{new} \prec c_{m}'  $    \\
+%6d &  & Or $c_{new}\  irrelevant\ all\ c_{m}' $    \\
+%7  & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} = c_{origin} $                  & Then, $ c_{new}\ irrelevant\ to\ all\ c_{m}'$ \\
+%8a & If $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{origin} \prec c_{new}$     & Then either,$\exists c_{m}',s.t.,c_{m}' \prec c_{new}$         \\
+%8b &                                                                                      & Or,$c_{new}\ irrelevant\ to\ all\ c_{m}'  $ \\ %\hline
+%%9a &                         if $c_{new}\ irrelevant\ to\ all\ c_{origin}$ & Then either,$\exists c_{m}',s.t., c_{m}' \prec c_{new} $        \\
+%%9b &                                                             & Or,$ c_{new}\ irrelevant\ to\ all\ c_{m}'$  \\
+%
+%9 & It may have $c_{origin}\ irrelevant\ to\ all\ c_{new}$  & \\\hline
+%\end{tabular}}
+%\end{table}
 
 
 Similar to Table \ref{fci_mask_regard}, this table also lists the possible relationships among the schemas obtained by strategy \emph{distinguishing failures}, schemas obtained by \emph{knowing masking effects} strategy, and the actual MFS. As with the \emph{distinguishing failures} strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So with this strategy, $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup C)$ should be either the super-schema or identical to $c_{origin} \in \mathcal{C}( A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  The main difference between the rules in Table \ref{fci_mask_distinguish} and those in Table \ref{fci_mask_regard} is that most rules with strategy \emph{distinguishing failures} result in $c_{m}' \prec c_{new}$. This is because with strategy \emph{distinguishing failures}, the test cases that are used for identifying the MFS is less than that of \emph{knowing masking effects}. So it is more likely to have $\mathcal{T} (c_{new}) \subset \mathcal{T} (c_{m}') $, and hence $c_{m}' \prec c_{new}$.
