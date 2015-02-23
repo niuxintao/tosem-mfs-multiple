@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  24 FEB 2015 04:40
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  24 FEB 2015 04:59
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -487,45 +487,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 664--666
 
 [11] [12] [13]
 File: FCI.eps Graphic file (type eps)
- <FCI.eps> [14]
+ <FCI.eps>
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 849.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 863.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
 
 
-LaTeX Warning: Reference `pro:mi' on page 15 undefined on input line 849.
+LaTeX Warning: Reference `pro:mi' on page 14 undefined on input line 863.
 
 
-LaTeX Warning: Reference `pro:ci' on page 15 undefined on input line 849.
+LaTeX Warning: Reference `pro:ci' on page 14 undefined on input line 863.
 
 
-LaTeX Warning: Reference `pro:cs' on page 15 undefined on input line 849.
+LaTeX Warning: Reference `pro:cs' on page 14 undefined on input line 863.
 
-
-Underfull \hbox (badness 2521) in paragraph at lines 889--890
+[14]
+Underfull \hbox (badness 2521) in paragraph at lines 903--904
 []\OT1/pnc/m/n/10 As an ex-am-ple, in the mo-ti-va-tion ex-am-ple in sec-tion 2
 , $\OML/cmm/m/it/10 F[]$ \OT1/pnc/m/n/10 is \OMS/cmsy/m/n/10 f
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 898.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 912.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
-
-Underfull \vbox (badness 3942) has occurred while \output is active []
-
- [15]
+[15]
 File: FCI-mask.eps Graphic file (type eps)
-
-<FCI-mask.eps> [16]
+ <FCI-mask.eps> [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 
-Overfull \hbox (113.17215pt too wide) in paragraph at lines 1010--1034
+Overfull \hbox (113.17215pt too wide) in paragraph at lines 1024--1048
 [] 
  []
 
@@ -535,17 +531,17 @@ Underfull \vbox (badness 8151) has occurred while \output is active []
  [18]
 
 LaTeX Warning: Reference `fci_mask_regard' on page 19 undefined on input line 1
-050.
+064.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 19 undefined on input line 1
-089.
+103.
 
 
-LaTeX Warning: Reference `pro:ci' on page 19 undefined on input line 1092.
+LaTeX Warning: Reference `pro:ci' on page 19 undefined on input line 1106.
 
 
-LaTeX Warning: Reference `pro:cs' on page 19 undefined on input line 1092.
+LaTeX Warning: Reference `pro:cs' on page 19 undefined on input line 1106.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -553,39 +549,39 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [19]
 
 LaTeX Warning: Reference `example-of-fci-influence' on page 20 undefined on inp
-ut line 1094.
+ut line 1108.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 20 undefined on input line 1
-094.
+108.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 20 undefined on input l
-ine 1114.
+ine 1128.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 20 undefined on input line 1
-147.
+161.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 20 undefined on input l
-ine 1147.
+ine 1161.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 20 undefined on input line 1
-147.
+161.
 
 
 LaTeX Warning: Reference `example-of-fci-influence-distiguish' on page 20 undef
-ined on input line 1149.
+ined on input line 1163.
 
 
 LaTeX Warning: Reference `example-of-fci-influence' on page 20 undefined on inp
-ut line 1149.
+ut line 1163.
 
 
 LaTeX Warning: Reference `example-of-fci-influence-distiguish' on page 20 undef
-ined on input line 1151.
+ined on input line 1165.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -604,7 +600,7 @@ Requested font "pncri7t" at 5.0pt
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1283.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1297.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -622,17 +618,17 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1303.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1317.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1303.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1317.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1303.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1317.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
@@ -664,7 +660,7 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1856--1856
+Underfull \hbox (badness 1259) in paragraph at lines 1870--1870
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -674,14 +670,6 @@ File: testCases.eps Graphic file (type eps)
  <testCases.eps> [32] [33]
 
 LaTeX Warning: Reference `fci_mask_regard' on page 34 undefined on input line 1
-878.
-
-
-LaTeX Warning: Reference `fci_mask_distinguish' on page 34 undefined on input l
-ine 1878.
-
-
-LaTeX Warning: Reference `fci_mask_regard' on page 34 undefined on input line 1
 892.
 
 
@@ -690,11 +678,19 @@ ine 1892.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 34 undefined on input line 1
-892.
+906.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 34 undefined on input l
-ine 1892.
+ine 1906.
+
+
+LaTeX Warning: Reference `fci_mask_regard' on page 34 undefined on input line 1
+906.
+
+
+LaTeX Warning: Reference `fci_mask_distinguish' on page 34 undefined on input l
+ine 1906.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -702,15 +698,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [34]
 
 LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-907.
+921.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1907.
+ine 1921.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1907.
+ine 1921.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -729,14 +725,14 @@ File: 4-way.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39]
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 2128 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 2142 replaced by U+FFFD.
 
 [40]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -755,12 +751,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44])
 [45]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2426--2459
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2440--2473
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2463--2525
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2477--2539
 [] 
  []
 
@@ -769,6 +765,9 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 2463--2525
 ] [2] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
