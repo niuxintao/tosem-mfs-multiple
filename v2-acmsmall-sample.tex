@@ -595,9 +595,9 @@ As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall 
   \begin{tabular}{c|c|c} \hline
 id&$c_{1}$  and $c_{3}$  & $c_{3}$  and $c_{2}$  \\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$ \\
-2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ \\  
+2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ \\
 3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ \\
-4&$c_{1} \prec c_{3}$ & $c_{2} \prec c_{3}$ \\  
+4&$c_{1} \prec c_{3}$ & $c_{2} \prec c_{3}$ \\
 5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- \\ \hline
   \end{tabular}
   }
@@ -669,32 +669,42 @@ This proposition is exactly the antithesis of Proposition \ref{pro:onesuboneiden
 
 
 \begin{proposition}[two sub]\label{pro:twosub}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$.Then it must have $c_{1}$ is irrelevant to $\mathcal{C}(T_{2})$ and $c_{2}$ is irrelevant to $\mathcal{C}(T_{1})$.
+$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$.Then it must have $c_{1}$ is irrelevant to $c_{2}$.  
 \end{proposition}
 \begin{proof}
-We just need to prove that $c_{1}$ is irrelevant to $\mathcal{C}(T_{2})$.
+%We just need to prove that $c_{1}$ is irrelevant to $\mathcal{C}(T_{2})$.
 
-Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $c_{1}$ is identical to some schemas in $\mathcal{C}(T_{2})$ or be subschema or super schema of some of them. Without loss of generality, we assume the corresponding schema is $c_{2}$.
+First we have $\mathcal{T}(c_{1}) \not\subset  T_{3}$. This is because if not so, according to Proposition \ref{pro:ssp} it has $\exists c_{3}' \in \mathcal{C}(T_{3}),\ s.t.,\ c_{3}' \prec c_{1},\ or\ c_{3}' = c_{1}$. Then as $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, based on which it has $c_{3}' \prec c_{3}$. This is not possible as both $c_{3}', c_{3} \in \mathcal{C}(T_{3})$, which means that they are both minimal schemas. So $\mathcal{T}(c_{1}) \not\subset  T_{3}$ holds.
 
-For the first condition, i.e., $c_{1} = c_{2}$,  it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$.
- 
-the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
+Based on this, there must exist at least one test case $t \in \mathcal{T}(c_{1})$, such that $t \not\in T_{3}$. As $\mathcal{T}(c_{1}) \subset T_{1}$, then the corresponding test case $t$ must belong to $T_{1} \backslash T_{3}$. Formally, $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$.
 
+Similarly, it also has $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$.
 
-it must have $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{2})$. It is noted that $\mathcal{T}(c_{1}) \subset T_{1}$, and $\mathcal{T}(c_{2}) \subset T_{2}$. So it have $\mathcal{T}(c_{2}) \subset T_{3}$. Becasue if not so.
+Then $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2})$ and $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$, and they can not identical. Hence, $c_{2} \not\prec c_{1}$, $c_{1} \not\prec c_{2}$ and $c_{1} \neq c_{2}$, which indicates that $c_{1}$ is irrelevant to $c_{2}$.
 
-Then as $\mathcal{T}(c_{2}) \subset T_{3}$, then it must have $c_{2}$ is identical to some schema in $\mathcal{C}(T_{3})$, say, $c_{3}$, becasue if not so, they it must have some schema that is parent schema of the $c_{3}$, which is contraidtion to Proposition \ref{pro:sls}.
-
-For this $c_{1}$ must also the subsechmea of $c_{3}$ which is contradition.
-
-For the second condition, it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$, the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
-
-This is also contradition. For all these two possiblities are contradition, then the asssumption is false.
-
-So $c_{1}$ must irrelevant to $\mathcal{C}(T_{2})$.
+%As $c_{1} \prec c_{3}$, then it have $\mathcal{T}(c_{1}) T$
+%
+%Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $c_{1}$ is identical to some schemas in $\mathcal{C}(T_{2})$ or be subschema or super schema of some of them. Without loss of generality, we assume the corresponding schema is $c_{2}$.
+%
+%For the first condition, i.e., $c_{1} = c_{2}$,  it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$.
+%
+%the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
+%
+%
+%it must have $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{2})$. It is noted that $\mathcal{T}(c_{1}) \subset T_{1}$, and $\mathcal{T}(c_{2}) \subset T_{2}$. So it have $\mathcal{T}(c_{2}) \subset T_{3}$. Becasue if not so.
+%
+%Then as $\mathcal{T}(c_{2}) \subset T_{3}$, then it must have $c_{2}$ is identical to some schema in $\mathcal{C}(T_{3})$, say, $c_{3}$, becasue if not so, they it must have some schema that is parent schema of the $c_{3}$, which is contraidtion to Proposition \ref{pro:sls}.
+%
+%For this $c_{1}$ must also the subsechmea of $c_{3}$ which is contradition.
+%
+%For the second condition, it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$, the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
+%
+%This is also contradition. For all these two possiblities are contradition, then the asssumption is false.
+%
+%So $c_{1}$ must irrelevant to $\mathcal{C}(T_{2})$.
 \end{proof}
 
-This proposition is a bit complicated than Proposition \ref{pro:twoidentical}, \ref{pro:oneidenticalonesub}, \ref{pro:onesuboneidenticial}. Table \ref{example_intersect_subsub} gives an example. In this example, $(-,-,0)$ and $(1,-,-)$ are both the sub schema of $(1,-,0)$, but they are irrelevant to $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, respectively.
+This proposition is a bit complicated than Proposition \ref{pro:twoidentical}, \ref{pro:oneidenticalonesub}, \ref{pro:onesuboneidenticial}. Table \ref{example_intersect_subsub} gives an example. In this example, $(-,-,0)$ and $(1,-,-)$ are both the sub schema of $(1,-,0)$, but they are irrelevant to each other.
 
 \begin{table}
 \centering
@@ -718,6 +728,7 @@ For $c_{1} \in \mathcal{C}(T_{1})$, if $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3}
 \end{proposition}
 
 \begin{proof}
+
 Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $c_{1}$ is identical or sub of some schemas in $\mathcal{C}(T_{2})$, without loss of generality, we assume it is $c_{2}$.
 For the first condition, it must have $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{2})$. It is noted that $\mathcal{T}(c_{1}) \subset T_{1}$, and $\mathcal{T}(c_{2}) \subset T_{2}$. So it have $\mathcal{T}(c_{2}) \subset T_{3}$. Becasue if not so.
 
@@ -775,10 +786,10 @@ Above all, the possible results can be listed in Table \ref{possible-result-of-i
   \begin{tabular}{c|c|c|c} \hline
 id&$c_{1}\ \&\ c_{3}$&$c_{2}\ \&\ c_{3}$  & $c_{1}\ \&\ c_{2}$\\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
-2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\  
+2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
 3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
-4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant  \\  
-5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant  \\ \hline
+4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant to $c_{2}$  \\
+5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$  \\ \hline
   \end{tabular}
   }
   \end{table}
@@ -1101,7 +1112,7 @@ Next we will give examples to depict the rules except those with the condition `
 %\end{proof}
 \subsubsection{Using distinguish strategy}
 %Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
-For strategy \emph{distinguishing failures}, the influence can be described as shown in Table \ref{fci_mask_distinguish}. As they can be easily obtianed as strategy \emph{regarded as one failure}, we will omit the content to explain each of them. 
+For strategy \emph{distinguishing failures}, the influence can be described as shown in Table \ref{fci_mask_distinguish}. As they can be easily obtianed as strategy \emph{regarded as one failure}, we will omit the content to explain each of them.
 %\begin{figure}
 %\centering
 %\includegraphics[width=4.31in]{fci-mask-influence.eps}
