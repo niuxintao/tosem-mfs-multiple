@@ -585,13 +585,14 @@ $T_{l}$&$T_{k}$ \\ \hline
 \subsection{Intersection}
 This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between the schemas of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, we need to use the aid-schemas in $\mathcal{C}(T_{3})$.
 
-As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then $\forall c_{3} \in \mathcal{C}(T_{3}) $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two scenarios, we can find the following possible relationships among $c_{1},c_{3}$ and $c_{2}$ , as shown in Table \ref{possible-relation-of-intersection}. In this table, Column `$c_{1}\ and\ c_{3}$' shows the relationship between $c_{1}$ and $c_{3}$, Column `$c_{3}\ and\ c_{2}$' indicates the relationship between $c_{3}$ and $c_{2}$. It is noted that for the 5th condition, $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means under this condition there is no single mid-schema $c_{3}$. Correspondingly, it is not necessary to list the relationship between $c_{3}$ and $c_{2}$, which is marked as `---'.
+As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:ssp}, $\forall c_{3} \in \mathcal{C}(T_{3}) $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two properties, we can find the following possible scenarios for $c_{1},c_{3}$ and $c_{2}$ , as shown in Table \ref{possible-relation-of-intersection}. In this table, Column `$c_{1}\ and\ c_{3}$' shows the relationship between $c_{1}$ and $c_{3}$, Column `$c_{3}\ and\ c_{2}$' indicates the relationship between $c_{3}$ and $c_{2}$. 
+each row indicates a scenario in the form of $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ ...$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ ...$. For example, the first scenario means that $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ c_{1} = c_{3}$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ c_{3} = c_{2}$. It is noted that for the 5th scenario, $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means under this condition there is no single mid-schema $c_{3}$. Hence, it is not necessary to list the relationship between $c_{3}$ and $c_{2}$, which is marked as `---'.
 
 
 \begin{table}
 \centering
   \begin{threeparttable}
-\tbl{Possible relationships among $c_{1}$, $c_{3}$ and $c_{2}$ \label{possible-relation-of-intersection}}{
+\tbl{Possible scenarios for $c_{1}$, $c_{3}$ and $c_{2}$ \label{possible-relation-of-intersection}}{
   \begin{tabular}{c|c|c} \hline
 id&$c_{1}$  and $c_{3}$  & $c_{3}$  and $c_{2}$  \\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$ \\
@@ -610,7 +611,7 @@ id&$c_{1}$  and $c_{3}$  & $c_{3}$  and $c_{2}$  \\ \hline
   \end{threeparttable}
 \end{table}
 
-For each condition in Table \ref{possible-relation-of-intersection}, a proposition will be given to describe the relationship between the corresponding schema $c_{1}$ and $c_{2}$.
+For each scenario in Table \ref{possible-relation-of-intersection}, a proposition will be given to describe the relationship between the corresponding schema $c_{1}$ and $c_{2}$.
 
 \begin{proposition}[two identical]\label{pro:twoidentical}
 $\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{3} = c_{1}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} = c_{3}$. Then it must have $c_{1} = c_{2}$.
@@ -672,43 +673,20 @@ This proposition is exactly the antithesis of Proposition \ref{pro:onesuboneiden
 $\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$.Then it must have $c_{1}$ is irrelevant to $c_{2}$.
 \end{proposition}
 \begin{proof}
-%We just need to prove that $c_{1}$ is irrelevant to $\mathcal{C}(T_{2})$.
-
 First we have $\mathcal{T}(c_{1}) \not\subset  T_{3}$. This is because if not so, according to Proposition \ref{pro:ssp} it has $\exists c_{3}' \in \mathcal{C}(T_{3}),\ s.t.,\ c_{3}' \prec c_{1},\ or\ c_{3}' = c_{1}$. Then as $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, based on which it has $c_{3}' \prec c_{3}$. This is not possible as both $c_{3}', c_{3} \in \mathcal{C}(T_{3})$, which means that they are both minimal schemas. So $\mathcal{T}(c_{1}) \not\subset  T_{3}$ holds.
 
 Based on this, there must exist at least one test case $t \in \mathcal{T}(c_{1})$, such that $t \not\in T_{3}$. As $\mathcal{T}(c_{1}) \subset T_{1}$, then the corresponding test case $t$ must belong to $T_{1} \backslash T_{3}$. Formally, $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$.
 
 Similarly, it also has $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$.
 
-Then $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2})$ and $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$, and they can not identical. Hence, $c_{2} \not\prec c_{1}$, $c_{1} \not\prec c_{2}$ and $c_{1} \neq c_{2}$, which indicates that $c_{1}$ is irrelevant to $c_{2}$.
-
-%As $c_{1} \prec c_{3}$, then it have $\mathcal{T}(c_{1}) T$
-%
-%Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $c_{1}$ is identical to some schemas in $\mathcal{C}(T_{2})$ or be subschema or super schema of some of them. Without loss of generality, we assume the corresponding schema is $c_{2}$.
-%
-%For the first condition, i.e., $c_{1} = c_{2}$,  it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$.
-%
-%the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
-%
-%
-%it must have $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{2})$. It is noted that $\mathcal{T}(c_{1}) \subset T_{1}$, and $\mathcal{T}(c_{2}) \subset T_{2}$. So it have $\mathcal{T}(c_{2}) \subset T_{3}$. Becasue if not so.
-%
-%Then as $\mathcal{T}(c_{2}) \subset T_{3}$, then it must have $c_{2}$ is identical to some schema in $\mathcal{C}(T_{3})$, say, $c_{3}$, becasue if not so, they it must have some schema that is parent schema of the $c_{3}$, which is contraidtion to Proposition \ref{pro:sls}.
-%
-%For this $c_{1}$ must also the subsechmea of $c_{3}$ which is contradition.
-%
-%For the second condition, it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$, the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
-%
-%This is also contradition. For all these two possiblities are contradition, then the asssumption is false.
-%
-%So $c_{1}$ must irrelevant to $\mathcal{C}(T_{2})$.
+As $T_{2} \backslash T_{3} \bigcap T_{1} \backslash T_{3} = \varnothing$, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$ and $\exists t \in \mathcal{T}(c_{3}),\ s.t.,\ t \not\in \mathcal{T}(c_{1})$. Consequently, we have $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2})$, $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$, and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2})$. Hence, $c_{2} \not\prec c_{1}$, $c_{1} \not\prec c_{2}$ and $c_{1} \neq c_{2}$, which indicates that $c_{1}$ is irrelevant to $c_{2}$.
 \end{proof}
 
-This proposition is a bit complicated than Proposition \ref{pro:twoidentical}, \ref{pro:oneidenticalonesub}, \ref{pro:onesuboneidenticial}. Table \ref{example_intersect_subsub} gives an example. In this example, $(-,-,0)$ and $(1,-,-)$ are both the sub schema of $(1,-,0)$, but they are irrelevant to each other.
+Table \ref{example_intersect_subsub} gives an example. In this example, $(-,-,0)$ ($c_{1}$)and $(1,-,-)$ ($c_{2}$) are both the sub schema of $(1,-,0)$ ($c_{3}$), and they are irrelevant to each other. Note that under this condition we can only determine that schema $c_{1}$ and $c_{2}$ are irrelevant, it may happen that $c_{1}$ is related to other schema in $\mathcal{C}(T_{2})$.
 
 \begin{table}
 \centering
-\tbl{Example for case 4 \label{example_intersect_subsub}}{
+\tbl{Example for case 4 \& 5 \label{example_intersect_subsub}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
@@ -728,76 +706,57 @@ For $c_{1} \in \mathcal{C}(T_{1})$, if $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3}
 \end{proposition}
 
 \begin{proof}
-
 Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2},\ or\ c_{2} \prec c_{1},\ or\ c_{1} = c_{2}$.
 
-For the first case, i.e., $c_{1} \prec c_{2}$. Then it must have $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{2})$.  Further it must have $\mathcal{T}(c_{2}) \subset T_{3}$, becase if not so, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$, then $\mathcal{T}(c_{1}) \not\supset \mathcal{T}(c_{2})$, which contradition. Then then exists $c_{3}$. s.t. $c_{3} \prec c_{2}$ or $c_{3} = c_{2}$. It is noted that $c_{2}$ is either sub, identical, or irrelevant to all the $c_{3}$. So it can only $c_{2} = c_{3}$, which means $c_{1} \prec  c_{3}$. Contradition irrelevant. So the first case is impossible, which indicates that $c_{1} \not\prec c_{2}$.
+For the first case, i.e., if $c_{1} \prec c_{2}$, it then must have $\mathcal{T}(c_{2}) \subset \mathcal{T}(c_{1})$ according to Proposition \ref{pro:shl}.  Further it have $\mathcal{T}(c_{2}) \subset T_{3}$, because if not so, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$. As $T_{2} \backslash T_{3} \bigcap T_{1} = \varnothing $, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in T_{1}$. As $\mathcal{T}(c_{1}) \subset T_{1}$, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in \mathcal{T}(c_{1})$, which means that $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$.  It is contradiction, so $\mathcal{T}(c_{2}) \subset T_{3}$.
+
+Then according to Proposition \ref{pro:ssp},  $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{2}\ or\ c_{3} = c_{2}$. Note that $c_{2} \in \mathcal{C}(T_{2})$ and $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:sls},  $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} \prec c_{3},\ or\ c_{2} = c_{3},\ or\ c_{2}\ is\ irrelevant\ to\ \mathcal{C}(T_{3})$. Combining these two properties, it can only happen $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} = c_{3}$.
+As $c_{1} \prec c_{2}$, then we can have $\exists c_{3} \in \mathcal{C}(T_{3}), s.t., c_{1} \prec  c_{3}$. It is contradiction as $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the first case is impossible, which indicates that $c_{1} \not\prec c_{2}$.
 
 
-For the second case, i.e., $c_{2} \prec c_{1}$. Then it must have $\mathcal{T}(c_{2}) \supset \mathcal{T}(c_{1})$. Then it must have $\mathcal{T}(c_{1}) \subset T_{3}$, becase if not so, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$, then $\mathcal{T}(c_{2}) \not\supset \mathcal{T}(c_{1})$, which contradition.  Then as $\mathcal{T}(c_{1}) \subset T_{3}$, then exists $c_{3}$. s.t. $c_{3} \prec c_{1}$ or $c_{3} = c_{1}$, which contradition the fact that $c_{1}$ irrelevant to all $c_{3}$.  So case 2 is not possible.
+For the second case, i.e., if $c_{2} \prec c_{1}$. Then it must have $\mathcal{T}(c_{1}) \subset \mathcal{T}(c_{2})$. Similarly as the first case, we further have $\mathcal{T}(c_{1}) \subset T_{3}$. Then according to Proposition \ref{pro:ssp}, $\exists c_{3} \in  \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{1}\ or\ c_{3} = c_{1}$. It is also contradiction to the fact that $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the second case is not possible, which indicates that  $c_{2} \not\prec c_{1}$.
 
 
-For the third case, i.e., $c_{1} = c_{2}$ , Then it must have $\mathcal{T}(c_{2}) = \mathcal{T}(c_{1})$. Then it must have $\mathcal{T}(c_{1}) \subset T_{3}$, and $\mathcal{T}(c_{2}) \subset T_{3}$ becase if not so, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$, then $\mathcal{T}(c_{2}) \neq \mathcal{T}(c_{1})$, which contradition.  Then as $\mathcal{T}(c_{1}) \subset T_{3}$, then exists $c_{3}$. s.t. $c_{3} \prec c_{1}$ or $c_{3} = c_{1}$, which contradition the fact that $c_{1}$ irrelevant to all $c_{3}$.  So case 3 is not possible.
-%
-%then must have  So the first case is impossible, which indicates that $c_{1} \not\prec c_{2}$.
-%
-%
-%is identical or sub of some schemas in $\mathcal{C}(T_{2})$, without loss of generality, we assume it is $c_{2}$.
-%For the first condition, it must have $\mathcal{T}(c_{1}) \supset \mathcal{T}(c_{2})$. It is noted that $\mathcal{T}(c_{1}) \subset T_{1}$, and $\mathcal{T}(c_{2}) \subset T_{2}$. So it have $\mathcal{T}(c_{2}) \subset T_{3}$. Becasue if not so.
-%
-%Then as $\mathcal{T}(c_{2}) \subset T_{3}$, then it must have $c_{2}$ is identical to some schema in $\mathcal{C}(T_{3})$, say, $c_{3}$, becasue if not so, they it must have some schema that is parent schema of the $c_{3}$, which is contraidtion to Proposition \ref{pro:sls}.
-%
-%For this $c_{1}$ must also the subsechmea of $c_{3}$ which is contradition.
-%
-%For the second condition, it must have $\mathcal{T}(c_{1})  = \mathcal{T}(c_{2})$, the only possible is $T_{3}$. So $\mathcal{T}(c_{1}) \subset T_{3}$, which means the schema must also be identical to some schema in  $\mathcal{C}(T_{3})$, say, $c_{3}$.  note that it can not be the parent schema of $c_{3}$ as said before.
-%
-%This is also contradition. For all these two possiblities are contradition, then the asssumption is false.
-
-So $c_{1}$ must irrelevant to $\mathcal{C}(T_{2})$.
+For the last case, i.e., if $c_{1} = c_{2}$. Then it must have $\mathcal{T}(c_{2}) = \mathcal{T}(c_{1})$. Further we have $\mathcal{T}(c_{1}) \subset T_{3}$. Because if not so, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$. As $T_{1} \backslash T_{3} \bigcap T_{2} = \varnothing $, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in T_{2}$. As $\mathcal{T}(c_{2}) \subset T_{2}$, so  $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$, indicating that $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2})$. It is contradiction, so $\mathcal{T}(c_{1}) \subset T_{3}$.
+ 
+Then as $\mathcal{T}(c_{1}) \subset T_{3}$, according to Proposition \ref{pro:ssp}, $\exists c_{3} \in  \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{1}\ or\ c_{3} = c_{1}$. It is still contradiction to the fact that $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the last case is not possible, which indicates that $c_{1} \neq c_{2}$.
+ 
+As all these three cases are impossible, so $c_{1}$ is must irrelevant to $\mathcal{C}(T_{2})$.
 \end{proof}
 
+For example, in Table \ref{example_intersect_subsub}, schema $(0,1,-)$ ($c_{1}$) is irrelevant to $\mathcal{C}(T_{3})$, i.e., \{ $(1,-,0)$ \}. It can be found that $(0,1,-)$ ($c_{1}$) is also irrelevant to $\mathcal{C}(T_{2})$, i.e., \{ $(1,-,-)$ , $(-,0,1)$ \}.
+
+
 %
-%As we see that identical schemas must have the same set of test cases that contain them, then the only same set of test cases between $T_{1}$ and $T_{2}$ is $T_{1} \bigcap T_{2} = T_{3}$. So the only possible identical schema between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ is in $\mathcal{C}(T_{3})$.
-
-
-For example, Table \ref{example_intersect_irrelevant} shows two test sets that interact with each other at test case (1,0,0), but their minimal schemas, (1,0,-) and (1,-,0), respectively, are irrelevant to each other.
-
-
-
-\begin{table}
-\centering
-\tbl{Example for case 5 \label{example_intersect_irrelevant}}{
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
-(0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
-(0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
-(1, 0, 0)	& (1, 1, 0) &  \\
-(1, 1, 0)	& (1, 1, 1) &         \\
-(0, 1, 1)   & (0 ,0,1)  &  \\
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(-, -, 0)&  (1, -, -) & (1, -, 0)\\
-(0,1, -) &  (-, 0, 1) &  \\  \hline
-  \end{tabular}
-  }
-  \end{table}
+%\begin{table}
+%\centering
+%\tbl{Example for case 5 \label{example_intersect_irrelevant}}{
+%  \begin{tabular}{ccc}
+%$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
+%(0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
+%(0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
+%(1, 0, 0)	& (1, 1, 0) &  \\
+%(1, 1, 0)	& (1, 1, 1) &         \\
+%(0, 1, 1)   & (0 ,0,1)  &  \\
+% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+%(-, -, 0)&  (1, -, -) & (1, -, 0)\\
+%(0,1, -) &  (-, 0, 1) &  \\  \hline
+%  \end{tabular}
+%  }
+%  \end{table}
 
 
 %It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
+%It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
 
-
-
-
-
- It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
-
-Above all, the possible results can be listed in Table \ref{possible-result-of-intersection}. It showed that all these possible relationship between $c_{1}$ and $c_{2}$ can happen.
+Table \ref{possible-result-of-intersection} concludes the possible relationships among $c_{1}$, $c_{2}$ under the previous five scenarios. We list the relationship between $c_{1}$ and $c_{2}$ in the Column ` $c_{1}$ and $c_{2}$'. We can learn that for two the can be identical (case 1), can be subming each other (case 2 and 3) and can be irrelevant to other (case 4) and can be
 
 \begin{table}
 \centering
-\tbl{Possible results  \label{possible-result-of-intersection}}{
+\tbl{Possible relationships between $c_{1}$ and $c_{2}$  \label{possible-result-of-intersection}}{
   \begin{tabular}{c|c|c|c} \hline
-id&$c_{1}\ \&\ c_{3}$&$c_{2}\ \&\ c_{3}$  & $c_{1}\ \&\ c_{2}$\\ \hline
+id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $c_{2}$\\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
 2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
 3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
