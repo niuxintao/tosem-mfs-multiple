@@ -750,7 +750,15 @@ For example, in Table \ref{example_intersect_subsub}, schema $(0,1,-)$ ($c_{1}$)
 
 %It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
 
-Table \ref{possible-result-of-intersection} concludes the possible relationships among $c_{1}$, $c_{2}$ under the previous five scenarios. We list the relationship between $c_{1}$ and $c_{2}$ in the Column ` $c_{1}$ and $c_{2}$'. We can learn that for two the can be identical (case 1), can be subming each other (case 2 and 3) and can be irrelevant to other (case 4) and can be
+Table \ref{possible-result-of-intersection} concludes the possible relationships among $c_{1}$, $c_{2}$ under the previous five scenarios. The three columns in the left are the same as Table \ref{possible-relation-of-intersection}. The last column ` $c_{1}$ and $c_{2}$' indicates the relationship between $c_{1}$ and $c_{2}$. From this table, we can learn that for two intersect sets of test cases, i.e., $T_{1}$ and $T_{2}$, there are four possible relationships between a schema $c_{1} \in  \mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$. Formally, we have the following proposition.
+
+\begin{proposition}[conclusion for intersection]\label{pro:concludeforintersection}
+$\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{2} \in  \mathcal{C}(T_{1}),\ s.t.,\ (1)\ c_{1} = c_{2}\ (scenario 1), \ or\ (2)\ c_{2} \prec c_{1}\ (scenario 2),\ or\ (3)\ c_{1} \prec c_{2}\ (scenario 3),\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ (scenario 5).$
+\end{proposition} 
+
+Note that the 4th scenario (marked $\star$) only shows that two corresponding schema $c_{1}$ and $c_{2}$ are irrelevant. It may happen that $c_{1}$ is related to other schemas in $\mathcal{C}(T_{2})$, which may be transformed to scenario 3; or $c_{1}$ will be irrelevant to all the other schemas in $\mathcal{C}(T_{2})$, which will be transformed to scenario 5.
+
+%their minimal schemas can be identical (scenario 1),  can be subsuming each other (scenarios 2 and 3), can be irrelevant to each other (scenario 4),  and can be irrelevant to all the minimal schemas of the other set of test cases (scenario 5).
 
 \begin{table}
 \centering
@@ -760,7 +768,7 @@ id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $c_{2}$\\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
 2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
 3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
-4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant to $c_{2}$  \\
+4$\star$&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant to $c_{2}$  \\
 5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$  \\ \hline
   \end{tabular}
   }
@@ -819,7 +827,7 @@ In Figure \ref{fig:fci_process} area A denotes the test cases that should have p
  $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test cases,
 and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ are their Intersections.
 
-As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$. According to Proposition \ref{pro:mi}, some schemas in $\mathcal{C}(T_{1})$ and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}. To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
+As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$. According to the Proposition \ref{pro:concludeforintersection}, some schemas in $\mathcal{C}(T_{1})$ and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}. To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
 
 However, even though each FCI approach tries to identify the MFS as accurately as possible, masking effects arising from different test cases will reduce its effectiveness. We next discuss the masking problem and how it affects the FCI approaches.
 
