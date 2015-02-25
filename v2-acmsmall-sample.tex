@@ -585,7 +585,7 @@ $T_{l}$&$T_{k}$ \\ \hline
 \subsection{Intersection}
 This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between the schemas of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, we need to use the aid-schemas in $\mathcal{C}(T_{3})$.
 
-As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:ssp}, $\forall c_{3} \in \mathcal{C}(T_{3}) $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two properties, we can find the following possible scenarios for $c_{1},c_{3}$ and $c_{2}$ , as shown in Table \ref{possible-relation-of-intersection}. In this table, Column `$c_{1}\ and\ c_{3}$' shows the relationship between $c_{1}$ and $c_{3}$, Column `$c_{3}\ and\ c_{2}$' indicates the relationship between $c_{3}$ and $c_{2}$. 
+As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:ssp}, $\forall c_{3} \in \mathcal{C}(T_{3}) $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two properties, we can find the following possible scenarios for $c_{1},c_{3}$ and $c_{2}$ , as shown in Table \ref{possible-relation-of-intersection}. In this table, Column `$c_{1}\ and\ c_{3}$' shows the relationship between $c_{1}$ and $c_{3}$, Column `$c_{3}\ and\ c_{2}$' indicates the relationship between $c_{3}$ and $c_{2}$.
 each row indicates a scenario in the form of $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ ...$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ ...$. For example, the first scenario means that $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ c_{1} = c_{3}$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ c_{3} = c_{2}$. It is noted that for the 5th scenario, $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means under this condition there is no single mid-schema $c_{3}$. Hence, it is not necessary to list the relationship between $c_{3}$ and $c_{2}$, which is marked as `---'.
 
 
@@ -621,7 +621,7 @@ This proposition is obvious, and it indicates the minimal schemas for two inters
 
 \begin{table}
 \centering
-\tbl{Example for case 1 \label{example_intersect_identical}}{
+\tbl{Example for scenario 1 \label{example_intersect_identical}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
  (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
@@ -644,7 +644,7 @@ Table \ref{example_intersect_subsume} illustrates this scenario. We can find tha
 
 \begin{table}
 \centering
-\tbl{Example for case 2 \label{example_intersect_subsume}}{
+\tbl{Example for scenario 2 \label{example_intersect_subsume}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
@@ -682,21 +682,40 @@ Similarly, it also has $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \b
 As $T_{2} \backslash T_{3} \bigcap T_{1} \backslash T_{3} = \varnothing$, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$ and $\exists t \in \mathcal{T}(c_{3}),\ s.t.,\ t \not\in \mathcal{T}(c_{1})$. Consequently, we have $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2})$, $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$, and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2})$. Hence, $c_{2} \not\prec c_{1}$, $c_{1} \not\prec c_{2}$ and $c_{1} \neq c_{2}$, which indicates that $c_{1}$ is irrelevant to $c_{2}$.
 \end{proof}
 
-Table \ref{example_intersect_subsub} gives an example. In this example, $(-,-,0)$ ($c_{1}$)and $(1,-,-)$ ($c_{2}$) are both the sub schema of $(1,-,0)$ ($c_{3}$), and they are irrelevant to each other. Note that under this condition we can only determine that schema $c_{1}$ and $c_{2}$ are irrelevant, it may happen that $c_{1}$ is related to other schema in $\mathcal{C}(T_{2})$.
+
+Note that under this condition we can only determine that schema $c_{1}$ and $c_{2}$ are irrelevant, it may happen that $c_{1}$ is related to other schema in $\mathcal{C}(T_{2})$.  Under this condition, assume $c_{2}' \in \mathcal{C}(T_{2})$ is related to $c_{1}$. In fact, the only relationship between $c_{1}$ and $c_{2}'$ is $c_{1} \prec c_{2}'$.  This is because we have proved that $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$, which means that $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2}')$ and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2}')$. Hence $\forall c_{2}' \in \mathcal{C}(T_{2}),  c_{1} \neq c_{2}' \ and\ c_{2}' \not\prec c_{1}$. So the only possible relationships between $c_{1}$ and other schemas in $\mathcal{C}(T_{2})$ are either irrelevant or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$. Formally, we can describe the relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ in Lemma \ref{lemma:twosub}. 
+%\newtheorem{lemma}{Lemma}
+%\begin{lemma}
+\begin{lemma}[two sub]\label{lemma:twosub}
+$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$. Then it must have either $c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2}),\ or\ \exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$.
+\end{lemma}
+
+
+Table \ref{example_intersect_subsub} gives an example for the two possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$. In the left main column, we can find that $c_{1}$ $(-,-,0)$ and $c_{2}$ $(1,-,-)$ are both the sub schema of $c_{3}$ $(1,-,0)$, and they are irrelevant to each other.  Further, as there is no extra minimal schemas in $\mathcal{C}(T_{2})$, so $c_{1}$ is irrelevant to $\mathcal{C}(T_{2})$.  In the right column,  $c_{1}$ $(-,-,1)$ and $c_{2}$ $(1,1,-)$ are both the sub schema of $c_{3}$ $(1,-,0)$ , and they are still irrelevant to each other. But $c_{1}$ is the sub schema of $c_{2}'$ (0,0,1), which is also the minimal schema in $\mathcal{C}(T_{2})$.
 
 \begin{table}
 \centering
-\tbl{Example for case 4 \& 5 \label{example_intersect_subsub}}{
+\tbl{Example for scenario 4  \label{example_intersect_subsub}}{
   \begin{tabular}{ccc}
 $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
 (0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
 (0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
 (1, 0, 0)	& (1, 1, 0) &  \\
 (1, 1, 0)	& (1, 1, 1) &         \\
-(0, 1, 1)   & (0 ,0,1)  &  \\
  $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(-, -, 0)&  (1, -, -) & (1, -, 0)\\
-(0,1, -) &  (-, 0, 1) &  \\  \hline
+(-, -, 0)&  (1, -, -) & (1, -, 0)\\ \hline
+%         &  (-, 0, 1) &  \\
+  \end{tabular}
+  \hspace{1em}
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
+(0, 0, 1)   & (0, 0, 1)       & (0, 0, 1) \\
+(0, 1, 1)   & (1, 1, 1)       & (1, 1, 1)\\
+(1, 0, 1)	& (1, 1, 0)       &           \\
+(1, 1, 1)	&   &         \\
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+ (- ,-, 1)  &  (0, 0, 1) & (0, 0, 1)\\
+            &  (1, 1, -) & (1, 1, 1) \\  \hline
   \end{tabular}
   }
   \end{table}
@@ -718,61 +737,74 @@ For the second case, i.e., if $c_{2} \prec c_{1}$. Then it must have $\mathcal{T
 
 
 For the last case, i.e., if $c_{1} = c_{2}$. Then it must have $\mathcal{T}(c_{2}) = \mathcal{T}(c_{1})$. Further we have $\mathcal{T}(c_{1}) \subset T_{3}$. Because if not so, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$. As $T_{1} \backslash T_{3} \bigcap T_{2} = \varnothing $, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in T_{2}$. As $\mathcal{T}(c_{2}) \subset T_{2}$, so  $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$, indicating that $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2})$. It is contradiction, so $\mathcal{T}(c_{1}) \subset T_{3}$.
- 
+
 Then as $\mathcal{T}(c_{1}) \subset T_{3}$, according to Proposition \ref{pro:ssp}, $\exists c_{3} \in  \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{1}\ or\ c_{3} = c_{1}$. It is still contradiction to the fact that $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the last case is not possible, which indicates that $c_{1} \neq c_{2}$.
- 
+
 As all these three cases are impossible, so $c_{1}$ is must irrelevant to $\mathcal{C}(T_{2})$.
 \end{proof}
 
-For example, in Table \ref{example_intersect_subsub}, schema $(0,1,-)$ ($c_{1}$) is irrelevant to $\mathcal{C}(T_{3})$, i.e., \{ $(1,-,0)$ \}. It can be found that $(0,1,-)$ ($c_{1}$) is also irrelevant to $\mathcal{C}(T_{2})$, i.e., \{ $(1,-,-)$ , $(-,0,1)$ \}.
+For example, in Table \ref{example_intersect_irrelevant}, schema $c_{1}$ $(0,1,-)$  is irrelevant to $\mathcal{C}(T_{3})$, i.e., \{ $(1,-,0)$ \}. It can be found that $c_{1}$ $(0,1,-)$ is also irrelevant to $\mathcal{C}(T_{2})$, i.e., \{ $(1,-,-)$ , $(-,0,1)$ \}.
 
-
-%
-%\begin{table}
-%\centering
-%\tbl{Example for case 5 \label{example_intersect_irrelevant}}{
-%  \begin{tabular}{ccc}
-%$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
-%(0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
-%(0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
-%(1, 0, 0)	& (1, 1, 0) &  \\
-%(1, 1, 0)	& (1, 1, 1) &         \\
-%(0, 1, 1)   & (0 ,0,1)  &  \\
-% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-%(-, -, 0)&  (1, -, -) & (1, -, 0)\\
-%(0,1, -) &  (-, 0, 1) &  \\  \hline
-%  \end{tabular}
-%  }
-%  \end{table}
+\begin{table}
+\centering
+\tbl{Example for scenario 5 \label{example_intersect_irrelevant}}{
+  \begin{tabular}{ccc}
+$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
+(0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
+(0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
+(1, 0, 0)	& (1, 1, 0) &  \\
+(1, 1, 0)	& (1, 1, 1) &         \\
+(0, 1, 1)   & (0 ,0,1)  &  \\
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
+(-, -, 0)&  (1, -, -) & (1, -, 0)\\
+(0,1 , -) &  (-, 0, 1) &  \\  \hline
+  \end{tabular}
+  }
+  \end{table}
 
 
 %It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
 
 %It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
 
-Table \ref{possible-result-of-intersection} concludes the possible relationships among $c_{1}$, $c_{2}$ under the previous five scenarios. The three columns in the left are the same as Table \ref{possible-relation-of-intersection}. The last column ` $c_{1}$ and $c_{2}$' indicates the relationship between $c_{1}$ and $c_{2}$. From this table, we can learn that for two intersect sets of test cases, i.e., $T_{1}$ and $T_{2}$, there are four possible relationships between a schema $c_{1} \in  \mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$. Formally, we have the following proposition.
+Table \ref{possible-result-of-intersection} concludes the possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ under the previous five scenarios. The three columns in the left are the same as Table \ref{possible-relation-of-intersection}. The last column ` $c_{1}$ and $\mathcal{C}(T_{2})$' indicates the relationship between schema $c_{1}$ and $\mathcal{C}(T_{2})$. From this table, we can learn that for two intersect sets of test cases, i.e., $T_{1}$ and $T_{2}$, there are four possible relationships between a schema $c_{1} \in  \mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$. Formally, we have the following proposition.
 
 \begin{proposition}[conclusion for intersection]\label{pro:concludeforintersection}
-$\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{2} \in  \mathcal{C}(T_{1}),\ s.t.,\ (1)\ c_{1} = c_{2}\ (scenario 1), \ or\ (2)\ c_{2} \prec c_{1}\ (scenario 2),\ or\ (3)\ c_{1} \prec c_{2}\ (scenario 3),\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ (scenario 5).$
-\end{proposition} 
+$\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{2} \in  \mathcal{C}(T_{1}),\ s.t.,\ (1)\ c_{1} = c_{2}\ (scenario 1), \ or\ (2)\ c_{2} \prec c_{1}\ (scenario 2),\ or\ (3)\ c_{1} \prec c_{2}\ (scenario 3, scenario 4),\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ (scenario 5, scenario 4).$
+\end{proposition}
 
-Note that the 4th scenario (marked $\star$) only shows that two corresponding schema $c_{1}$ and $c_{2}$ are irrelevant. It may happen that $c_{1}$ is related to other schemas in $\mathcal{C}(T_{2})$, which may be transformed to scenario 3; or $c_{1}$ will be irrelevant to all the other schemas in $\mathcal{C}(T_{2})$, which will be transformed to scenario 5.
+%Note that the 4th scenario (marked $\star$) only shows that two corresponding schema $c_{1}$ and $c_{2}$ are irrelevant. It may happen that $c_{1}$ is related to other schemas in $\mathcal{C}(T_{2})$.  Under this condition, assume $c_{2}' \in \mathcal{C}(T_{2})$ is related to $c_{1}$. In fact, the only relationship between $c_{1}$ and $c_{2}'$ is that $c_{1} \prec c_{2}$ because
+%which may be transformed to scenario 3; or $c_{1}$ will be irrelevant to all the other schemas in $\mathcal{C}(T_{2})$, which will be transformed to scenario 5.
 
 %their minimal schemas can be identical (scenario 1),  can be subsuming each other (scenarios 2 and 3), can be irrelevant to each other (scenario 4),  and can be irrelevant to all the minimal schemas of the other set of test cases (scenario 5).
 
 \begin{table}
 \centering
-\tbl{Possible relationships between $c_{1}$ and $c_{2}$  \label{possible-result-of-intersection}}{
-  \begin{tabular}{c|c|c|c} \hline
-id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $c_{2}$\\ \hline
+\tbl{Possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$  \label{possible-result-of-intersection}}{
+  \begin{tabular}{c|c|c||c} \hline
+id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $\mathcal{C}(T_{2})$\\ \hline
 1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
 2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
 3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
-4$\star$&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant to $c_{2}$  \\
+4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ &  $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$, or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$ \\
 5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$  \\ \hline
   \end{tabular}
   }
   \end{table}
+
+%\begin{table}
+%\centering
+%\tbl{Possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$  \label{possible-result-of-intersection}}{
+%  \begin{tabular}{c|c|c||c} \hline
+%id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $\mathcal{C}(T_{2})$\\ \hline
+%1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
+%2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
+%3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
+%4$\star$&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant to $c_{2}$ ($ c_{1}$ irrelevant to $\mathcal{C}(T_{2})$, or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$) \\
+%5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$  \\ \hline
+%  \end{tabular}
+%  }
+%  \end{table}
 
 %\subsection{Summary of the formal model}
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
@@ -817,7 +849,7 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\ \hline
 \begin{figure}
 \centering
 \includegraphics[width=4.31in]{FCI.eps}
-\caption{A general model of FCI}
+\caption{A general model of FCI approach}
 \label{fig:fci_process}
 \end{figure}
 
@@ -827,7 +859,13 @@ In Figure \ref{fig:fci_process} area A denotes the test cases that should have p
  $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test cases,
 and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ are their Intersections.
 
-As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$. According to the Proposition \ref{pro:concludeforintersection}, some schemas in $\mathcal{C}(T_{1})$ and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}. To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
+%As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$.
+ 
+According to the Proposition \ref{pro:concludeforintersection}, $\forall c_{1} \in \mathcal{C}(A \bigcup B \bigcup C),\ \exists c_{2} \in \mathcal{C}(D \bigcup B \bigcup C),\ s.t., \ (1)\ c_{1} = c_{2}\ , \ or\ (2)\ c_{2} \prec c_{1}\ ,\ or\ (3)\ c_{1} \prec c_{2}\ ,\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ .$ This indicates that the identified minimal schema can be identical to some actual MFS, or be super-schema, or be sub schema, or be irrelevant to all the actual MFS.  Similarly, we can get the actual MFS can be identical to some identified schema, or be super-schema, or be sub schema, or be irrelevant to all the identified schemas. We refer to the case that the actual MFS is irrelevant to all the identified schemas as \emph{ignore} the actual MFS.
+
+%and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}.
+ 
+To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
 
 However, even though each FCI approach tries to identify the MFS as accurately as possible, masking effects arising from different test cases will reduce its effectiveness. We next discuss the masking problem and how it affects the FCI approaches.
 
@@ -2506,8 +2544,13 @@ synthez10        & 2         & 0           & 0.63        & 0          & 0.6     
 \end{table}
 %
 %
-%\section{Appendix section head}
-%
+\section{Detail Propositions for Table }
+\begin{proposition}[one sub, one identical]\label{pro:appendixOnesuboneidentical}
+$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} = c_{3}$. Then it must have $c_{1} \prec c_{2}$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
 %The primary consumer of energy in WSNs is idle listening. The key to
 %reduce idle listening is executing low duty-cycle on nodes. Two
 %primary approaches are considered in controlling duty-cycles in the
