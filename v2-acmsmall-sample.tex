@@ -683,7 +683,7 @@ As $T_{2} \backslash T_{3} \bigcap T_{1} \backslash T_{3} = \varnothing$, then $
 \end{proof}
 
 
-Note that under this condition we can only determine that schema $c_{1}$ and $c_{2}$ are irrelevant, it may happen that $c_{1}$ is related to other schema in $\mathcal{C}(T_{2})$.  Under this condition, assume $c_{2}' \in \mathcal{C}(T_{2})$ is related to $c_{1}$. In fact, the only relationship between $c_{1}$ and $c_{2}'$ is $c_{1} \prec c_{2}'$.  This is because we have proved that $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$, which means that $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2}')$ and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2}')$. Hence $\forall c_{2}' \in \mathcal{C}(T_{2}),  c_{1} \neq c_{2}' \ and\ c_{2}' \not\prec c_{1}$. So the only possible relationships between $c_{1}$ and other schemas in $\mathcal{C}(T_{2})$ are either irrelevant or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$. Formally, we can describe the relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ in Lemma \ref{lemma:twosub}. 
+Note that under this condition we can only determine that schema $c_{1}$ and $c_{2}$ are irrelevant, it may happen that $c_{1}$ is related to other schema in $\mathcal{C}(T_{2})$.  Under this condition, assume $c_{2}' \in \mathcal{C}(T_{2})$ is related to $c_{1}$. In fact, the only relationship between $c_{1}$ and $c_{2}'$ is $c_{1} \prec c_{2}'$.  This is because we have proved that $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$, which means that $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2}')$ and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2}')$. Hence $\forall c_{2}' \in \mathcal{C}(T_{2}),  c_{1} \neq c_{2}' \ and\ c_{2}' \not\prec c_{1}$. So the only possible relationships between $c_{1}$ and other schemas in $\mathcal{C}(T_{2})$ are either irrelevant or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$. Formally, we can describe the relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ in Lemma \ref{lemma:twosub}.
 %\newtheorem{lemma}{Lemma}
 %\begin{lemma}
 \begin{lemma}[two sub]\label{lemma:twosub}
@@ -860,11 +860,11 @@ In Figure \ref{fig:fci_process} area A denotes the test cases that should have p
 and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ are their Intersections.
 
 %As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$.
- 
-According to the Proposition \ref{pro:concludeforintersection}, $\forall c_{1} \in \mathcal{C}(A \bigcup B \bigcup C),\ \exists c_{2} \in \mathcal{C}(D \bigcup B \bigcup C),\ s.t., \ (1)\ c_{1} = c_{2}\ , \ or\ (2)\ c_{2} \prec c_{1}\ ,\ or\ (3)\ c_{1} \prec c_{2}\ ,\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ .$ This indicates that the identified minimal schema can be identical to some actual MFS, or be super-schema, or be sub schema, or be irrelevant to all the actual MFS.  Similarly, we can get the actual MFS can be identical to some identified schema, or be super-schema, or be sub schema, or be irrelevant to all the identified schemas. We refer to the case that the actual MFS is irrelevant to all the identified schemas as \emph{ignore} the actual MFS.
+
+According to the Proposition \ref{pro:concludeforintersection}, $\forall c_{1} \in \mathcal{C}(A \bigcup B \bigcup C),\ \exists c_{2} \in \mathcal{C}(D \bigcup B \bigcup C),\ s.t., \ (1)\ c_{1} = c_{2}\ , \ or\ (2)\ c_{2} \prec c_{1}\ ,\ or\ (3)\ c_{1} \prec c_{2}\ ,\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ .$ This indicates that the identified minimal schema can be identical to some actual MFS, or be super-schema, or be sub schema, or be irrelevant to all the actual MFS.  Similarly, we can get the actual MFS can be identical to some identified schema, or be super-schema, or be sub schema, or be irrelevant to all the identified schemas. We refer to the case that the actual MFS is irrelevant to all the identified schemas as \emph{ignoring} the actual MFS.
 
 %and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}.
- 
+
 To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
 
 However, even though each FCI approach tries to identify the MFS as accurately as possible, masking effects arising from different test cases will reduce its effectiveness. We next discuss the masking problem and how it affects the FCI approaches.
@@ -957,14 +957,16 @@ With masking effects, the scenario of traditional FCI approaches is a bit more c
 \label{fig:fci_mask}
 \end{figure}
 
-With this model, if we know which test cases mask the expected failure, i.e., if we have figured out $B_{2}$ and $B_{3}$, then the schemas that the FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  We next denote the condition that we have known the masking effects in prior as \emph{knowing masking effects}. However, as discussed before, to get this result is not possible without human involvement. Correspondingly, when using the \emph{regarded as one failure} strategy, the set of MFS traditional FCI identify is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for the \emph{distinguishing failures} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$. Next, we will discuss the influence of masking effects on the two strategies.
+With this model, if we know which test cases mask the expected failure, i.e., if we have figured out $B_{2}$ and $B_{3}$, then the schemas that the FCI approach will identify can be described as $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  We next denote the condition that we have known the masking effects in prior as \emph{knowing masking effects}. However, as discussed before, to get this result is not possible without human involvement. Correspondingly, when using the \emph{regarded as one failure} strategy, the set of MFS traditional FCI identify is $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$.  And for the \emph{distinguishing failures} strategy, the MFS is $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.
+
+To be convenient, let  $T_{as} = B_{1} \bigcup B_{2} \bigcup C \bigcup D$ indicate all the actual failing test cases, $T_{km} = A \bigcup B_{1} \bigcup B_{2} \bigcup C$ indicate the test cases for strategy \emph{knowing masking effects}, $T_{ro} = A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ indicate the test cases for strategy \emph{regarded as one failure}, and $T_{df} = A \bigcup B_{1} \bigcup C$ indicate the test cases for strategy \emph{distinguishing failures}. Next, we will discuss the influence of masking effects on the two strategies.
 
 \subsubsection{Using the regarded as one failure strategy}
-For the strategy \emph{regarded as one failure}, the impacts of masking effects on FCI approaches can be analysed  by comparing the MFS identified by this strategy to those by strategy \emph{knowing masking effects}. Formally, it is to compare  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ (for \emph{regarded as one failure}) with  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ (for \emph{knowing masking effects}).  Intuitively, $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ is more close to the actual MFS, i.e.,  $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$. In other word, when using \emph{regarded as one failure} strategy,  the deviation between the identified MFS  and the actual MFS is larger than that of strategy \emph{knowing masking effects}.
+For the strategy \emph{regarded as one failure}, the impacts of masking effects on FCI approaches can be analysed  by comparing the MFS identified by this strategy to those by strategy \emph{knowing masking effects}. Formally, it is to compare  $\mathcal{C}(T_{ro})$  with  $\mathcal{C}(T_{km})$.  Intuitively, $\mathcal{C}(T_{km})$ is more close to $\mathcal{C}(T_{as})$ than $\mathcal{C}(T_{ro})$. In other word, when using \emph{regarded as one failure} strategy,  the deviation between the identified MFS  and the actual MFS is larger than that of strategy \emph{knowing masking effects}.
 
-The gap between the two strategies can be further analysed by studying the relationships between these two MFS set. As $A \bigcup B_{1} \bigcup B_{2} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ , according to Proposition  \ref{pro:sls}, schemas in  $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$ (for \emph{regarded as one failure}) can be identical to some schemas in $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$ (for \emph{knowing masking effects}), or be sub schemas of some of them, or irrelevant to all of them. Formally, $\forall c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C),\  \exists c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{ro} \prec c_{km},\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, three possibilities in total.
+The gap between the two strategies can be further analysed by studying the relationships between these two MFS set. As $T_{km} \subset T_{ro}$ , according to Proposition  \ref{pro:sls}, schemas in  $\mathcal{C}(T_{ro})$ can be identical to some schemas in $\mathcal{C}(T_{km})$, or be sub schemas of some of them, or irrelevant to all of them. Formally, $\forall c_{ro} \in \mathcal{C}(T_{ro}),\  \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{ro} \prec c_{km},\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{km})$, three possibilities in total.
 
-Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $A \bigcup B_{1} \bigcup B_{2} \bigcup C $, \emph{intersect} the test cases that are used to compute the actual MFS( $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ ). It means that the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C),\ \exists c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
+Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $T_{km} $, \emph{intersect} the test cases that are used to compute the actual MFS( $ T_{as}$ ). According to Proposition \ref{pro:concludeforintersection}, the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(T_{km}),\ \exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 
 Then, we will take the same discussion as the discussion for the relationships between the schemas between intersection relationship in Section. Specifically, we take the schemas $c_{km}$ as the mid-schema to help ensure the relationship between $c_{ro}$ and $c_{as}$. We do this for. as $c_{km}$ both has relationships between these two schemas as discussed before, second, we can clearly enure the difference between $c_{ro}$ and $c_{km}$, which can help to understand the impacts of masking effects for this strategy.
 
@@ -977,6 +979,34 @@ In Table \ref{conditions-for-ro}, each condition is explained as following:   A 
 Under each condition, what we cared is what the relationship bet $c_{ro}$ with the actual MFS. As this can give us a clear sight of the $c_{ro}$ when compared with corresponding $c_{km}$.  We list the result in Table \ref{conditions-for-ro-s}. Each row tells us a .   All of these results can be proved by previous given propositions, which will be ignored in this paper. We just give an example of these conditions and their result.
 
 
+
+\begin{table}
+%\begin{threeparttable}
+\centering
+\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
+  \begin{tabular}{c|c|c||c} \hline
+ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal{C}(T_{as})$ \\ \hline
+%& & \\ \hline
+1&$ c_{ro} = c_{km}  $    	&   $ c_{as} = c_{km}$    &    $c_{ro} = c_{as}$   \\
+2&$  c_{ro} = c_{km}  $    	&   $ c_{as} \prec c_{km}$  &    $c_{as} \prec c_{ro}$      \\
+3&$ c_{ro} = c_{km}  $    	&   $ c_{km} \prec c_{as}$  &    $c_{ro} \prec c_{as}$    \\
+4&$ c_{ro} = c_{km}  $    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$  &  $c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$ \\
+5&$ c_{ro} \prec c_{km} $    	&   $ c_{as} = c_{km}$   &   $c_{ro} \prec c_{as}$      \\
+6&$ c_{ro} \prec c_{km} $    	&   $ c_{as} \prec c_{km}$  &  $\exists c_{as}', c_{ro} \prec c_{as}',\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$        \\
+7&$ c_{ro} \prec c_{km} $    	&   $c_{km} \prec c_{as}$   &  $c_{ro} \prec c_{as}$     \\
+8&$ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
+9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
+10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\ \hline
+  \end{tabular}
+  }
+% \begin{tablenotes}
+%        \footnotesize
+%\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
+%\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
+%\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
+%      \end{tablenotes}
+%  \end{threeparttable}
+\end{table}
 %Most of them are very straightly. For example, For .  Next, we just give proofs for two complicated conditions and their results, which are condition .
 %
 %\begin{proposition}
@@ -989,34 +1019,34 @@ Under each condition, what we cared is what the relationship bet $c_{ro}$ with t
 
 
 %Combining the relation between schemas between , and the relation .  We can have between  three possibilities, there are 9 possible conditions for the regard as one failure. which are as Table \ref{conditions-for-ro}, respectively.
-
-\begin{table}
-\begin{threeparttable}
-\centering
-\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
-  \begin{tabular}{ccc}
-ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tnote{3} \\ \hline
-%& & \\ \hline
-1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
-2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
-3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
-4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
-5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
-6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
-7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
-8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
-9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---          \\ \hline
-10&    	&   $\exists c_{as},\ s.t.,\ c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$          \\ \hline
-  \end{tabular}
-  }
- \begin{tablenotes}
-        \footnotesize
-\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
-\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
-\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
-      \end{tablenotes}
-  \end{threeparttable}
-\end{table}
+%
+%\begin{table}
+%\begin{threeparttable}
+%\centering
+%\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
+%  \begin{tabular}{ccc}
+%ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tnote{3} \\ \hline
+%%& & \\ \hline
+%1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
+%2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
+%3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
+%4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
+%5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
+%6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
+%7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
+%8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
+%9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---          \\ \hline
+%10&    	&   $\exists c_{as},\ s.t.,\ c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$          \\ \hline
+%  \end{tabular}
+%  }
+% \begin{tablenotes}
+%        \footnotesize
+%\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
+%\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
+%\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
+%      \end{tablenotes}
+%  \end{threeparttable}
+%\end{table}
 
 For these conditions, the relationship between these can be descirbed in Table \ref{conditions-for-ro-s}, the same form as Sectin.
 
@@ -1024,33 +1054,33 @@ To specifically discuss all these 9 conditions is redundant in this paper. Hence
 
 We can get the following propositions
 
-\begin{table}
-\begin{threeparttable}
-\centering
-\tbl{Possible results for Regard as one failure strategy \label{conditions-for-ro-s}}{
-  \begin{tabular}{cccc}
-ID & $c_{ro}$\tnote{1} \& $c_{as}$ \tnote{2}  \\ \hline
-%& & \\ \hline
-1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$       &  $c_{ro} = c_{as}$   \\
-2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$    &    $c_{as} \prec c_{ro}$     \\
-3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$     &   $c_{ro} \prec c_{as}$    \\
-4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$  & $c_{ro}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$  \\ \hline
-5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$       &  $c_{ro} \prec c_{as}$  \\
-6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$   &  $\exists c_{as}', c_{ro} \prec c_{as}',\ or\ c_{ro}\ irrelevant\ \ all\ c_{as}$     \\
-7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$    &  $c_{ro} \prec c_{as}$    \\
-8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ &  $\exists c_{as}, c_{ro} \prec c_{as}$ or $c_{ro}$ irrelevant  \\ \hline
-9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---      &  $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\ \ all\ c_{as}$    \\ \hline
-10& ---ignore --- & $c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$  & $c_{as}\ irrelevant\ to\ all\ c_{ro} $\\ \hline
-  \end{tabular}
-  }
- \begin{tablenotes}
-        \footnotesize
-\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
-\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
-\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
-      \end{tablenotes}
-  \end{threeparttable}
-\end{table}
+%\begin{table}
+%\begin{threeparttable}
+%\centering
+%\tbl{Possible results for Regard as one failure strategy \label{conditions-for-ro-s}}{
+%  \begin{tabular}{cccc}
+%ID & $c_{ro}$\tnote{1} \& $c_{as}$ \tnote{2}  \\ \hline
+%%& & \\ \hline
+%1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$       &  $c_{ro} = c_{as}$   \\
+%2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$    &    $c_{as} \prec c_{ro}$     \\
+%3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$     &   $c_{ro} \prec c_{as}$    \\
+%4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$  & $c_{ro}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$  \\ \hline
+%5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$       &  $c_{ro} \prec c_{as}$  \\
+%6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$   &  $\exists c_{as}', c_{ro} \prec c_{as}',\ or\ c_{ro}\ irrelevant\ \ all\ c_{as}$     \\
+%7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$    &  $c_{ro} \prec c_{as}$    \\
+%8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ &  $\exists c_{as}, c_{ro} \prec c_{as}$ or $c_{ro}$ irrelevant  \\ \hline
+%9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---      &  $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\ \ all\ c_{as}$    \\ \hline
+%10& ---ignore --- & $c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$  & $c_{as}\ irrelevant\ to\ all\ c_{ro} $\\ \hline
+%  \end{tabular}
+%  }
+% \begin{tablenotes}
+%        \footnotesize
+%\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
+%\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
+%\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
+%      \end{tablenotes}
+%  \end{threeparttable}
+%\end{table}
 
 In a simpler way, we can label this proposition as a rule $exists c_{as}' \in C(), s.t., $.
 
@@ -1130,7 +1160,37 @@ Next we will give examples to depict the rules except those with the condition `
 %\end{proof}
 \subsubsection{Using distinguish strategy}
 %Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
-For strategy \emph{distinguishing failures}, the influence can be described as shown in Table \ref{fci_mask_distinguish}. As they can be easily obtianed as strategy \emph{regarded as one failure}, we will omit the content to explain each of them.
+ In this condition, we have that the test cases to identify the minimal shcemas is subset of the, i.e., $T_{df} \subset T_{km}$. According to Proposition  \ref{pro:ssp}, schemas in  $\mathcal{C}(T_{ro})$ can be identical to some schemas in $\mathcal{C}(T_{km})$, or be super schemas of some of them. Formally, $\forall c_{df} \in \mathcal{C}(T_{df}),\  \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{km} \prec c_{df}$, two possibilities in total. Combining the relationships between $c_{km}$ and $c_{as}$.
+For strategy \emph{distinguishing failures}, the influence can be described as shown in Table \ref{conditions-for-df}. As they can be easily obtained as strategy \emph{regarded as one failure}, we will omit the content to explain each of them.
+
+\begin{table}
+\centering
+\tbl{Possible conditions for Distinguishing failures strategy \label{conditions-for-df}}{
+  \begin{tabular}{c|c|c||c} \hline
+ID & $c_{df}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{df}$  and $\mathcal{C}(T_{as})$ \\ \hline
+%& & \\ \hline
+1&$ c_{df} = c_{km}  $    	&   $ c_{as} = c_{km}$    &    $c_{df} = c_{as}$   \\
+2&$  c_{df} = c_{km}  $    	&   $ c_{as} \prec c_{km}$  &    $c_{as} \prec c_{df}$      \\
+3&$ c_{df} = c_{km}  $    	&   $ c_{km} \prec c_{as}$  &    $c_{df} \prec c_{as}$    \\
+4&$ c_{df} = c_{km}  $    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$  &  $c_{df}\ irrelevant\  \mathcal{C}(T_{as})$ \\
+5&$ c_{km} \prec c_{df} $    	&   $ c_{as} = c_{km}$   &   $c_{as} \prec c_{df}$      \\
+6&$ c_{km} \prec c_{df} $    	&   $ c_{as} \prec c_{km}$  &  $c_{as} \prec c_{df}$        \\
+7&$ c_{km} \prec c_{df} $    	&   $c_{km} \prec c_{as}$   &  $\exists c_{as}',\ s.t.,\ c_{df} = c_{as}',\ or\ c_{as}' \prec c_{df}$     \\
+ &                           	&                           &  $ \ or\ c_{df} \prec c_{as}',\ or\ c_{df}\ irrelevant\  \mathcal{C}(T_{as})$     \\
+8&$ c_{km} \prec c_{df} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{as} \prec c_{df} ,\ or\ c_{df}\ irrelevant\  \mathcal{C}(T_{as})$  \\
+
+9&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   --- & \textbf{may} $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$    \\ 
+
+10&   --- 	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$  \\  \hline
+
+%10a&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   $ c_{as} = c_{km}$  &  ---     \\
+%10b&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	& $ c_{as} \prec c_{km}$    & ---     \\
+%10c&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	& $ c_{km} \prec c_{as}$   & ---     \\
+%10d&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$ & ---    \\ \hline
+  \end{tabular}
+  }
+\end{table}
+
 %\begin{figure}
 %\centering
 %\includegraphics[width=4.31in]{fci-mask-influence.eps}
@@ -2436,6 +2496,102 @@ As for the future work, we need to do more empirical studies to make our conclus
 %
 %\end{tabular}}
 %\end{table}
+\section{Detail Propositions for masking effects}
+\begin{itemize}
+\item $T_{as} = B_{1} \bigcup B_{2} \bigcup C \bigcup D$ indicates all the actual failing test cases.
+\item $T_{km} = A \bigcup B_{1} \bigcup B_{2} \bigcup C$  indicates the test cases for strategy \emph{knowing masking effects}.
+\item $T_{ro} = A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ indicates the test cases for strategy \emph{regarded as one failure}
+\item $T_{df} = A \bigcup B_{1} \bigcup C$  indicates the test cases for strategy \emph{distinguishing failures}
+\end{itemize}
+
+\subsection{For \emph{regarded as one failure} in Table \ref{conditions-for-ro}}
+
+\begin{proposition}[rule 1]\label{pro:appendix1rule1}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} = c_{as}$.
+\end{proposition}
+%\begin{proof}
+%\end{proof}
+\begin{proposition}[rule 2]\label{pro:appendix1rule2}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{ro}$.
+\end{proposition}
+
+\begin{proposition}[rule 3]\label{pro:appendix1rule3}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 4]\label{pro:appendix1rule4}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{as})$.
+\end{proposition}
+
+\begin{proposition}[rule 5]\label{pro:appendix1rule5}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 6]\label{pro:appendix1rule6}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}'\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+\end{proposition}
+\begin{proof}
+
+
+\end{proof}
+
+
+\begin{proposition}[rule 7]\label{pro:appendix1rule7}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 8]\label{pro:appendix1rule8}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+\end{proposition}
+\begin{proof}
+
+
+\end{proof}
+
+
+\subsection{For \emph{distinguishing failures} in Table \ref{conditions-for-df}}
+
+\begin{proposition}[rule 1]\label{pro:appendix2rule1}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} = c_{as}$.
+\end{proposition}
+%\begin{proof}
+%\end{proof}
+\begin{proposition}[rule 2]\label{pro:appendix2rule2}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{ro}$.
+\end{proposition}
+
+\begin{proposition}[rule 3]\label{pro:appendix2rule3}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 4]\label{pro:appendix2rule4}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{as})$.
+\end{proposition}
+
+\begin{proposition}[rule 5]\label{pro:appendix2rule5}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 6]\label{pro:appendix2rule6}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}'\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+\end{proposition}
+\begin{proof}
+
+
+\end{proof}
+
+
+\begin{proposition}[rule 7]\label{pro:appendix2rule7}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 8]\label{pro:appendix2rule8}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+\end{proposition}
+\begin{proof}
+
+
+\end{proof}
 
 \section{The detail of the experiments}
 
@@ -2544,12 +2700,6 @@ synthez10        & 2         & 0           & 0.63        & 0          & 0.6     
 \end{table}
 %
 %
-\section{Detail Propositions for Table }
-\begin{proposition}[one sub, one identical]\label{pro:appendixOnesuboneidentical}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} = c_{3}$. Then it must have $c_{1} \prec c_{2}$.
-\end{proposition}
-\begin{proof}
-\end{proof}
 
 %The primary consumer of energy in WSNs is idle listening. The key to
 %reduce idle listening is executing low duty-cycle on nodes. Two
