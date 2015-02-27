@@ -1012,19 +1012,19 @@ ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal
 \begin{table}
 %\begin{threeparttable}
 \centering
-\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro-ignore}}{
+\tbl{Possible conditions for Regard as one failure strategy --ignoring \label{conditions-for-ro-ignore}}{
   \begin{tabular}{c|c|c||c} \hline
 ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{ro}$  & $c_{as}$  and $\mathcal{C}(T_{ro})$ \\ \hline
 %& & \\ \hline
-1&$ c_{ro} = c_{km}  $    	&   $ c_{as} = c_{km}$    &    $c_{ro} = c_{as}$   \\
-2&$  c_{ro} = c_{km}  $    	&   $ c_{as} \prec c_{km}$  &    $c_{as} \prec c_{ro}$      \\
-3&$ c_{ro} = c_{km}  $    	&   $ c_{km} \prec c_{as}$  &    $c_{ro} \prec c_{as}$    \\
-4&$ c_{ro} = c_{km}  $    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$  &  $c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$ \\
-5&$ c_{ro} \prec c_{km} $    	&   $ c_{as} = c_{km}$   &   $c_{ro} \prec c_{as}$      \\
-6&$ c_{ro} \prec c_{km} $    	&   $ c_{as} \prec c_{km}$  &  $\exists c_{as}', c_{ro} \prec c_{as}',\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$        \\
-7&$ c_{ro} \prec c_{km} $    	&   $c_{km} \prec c_{as}$   &  $c_{ro} \prec c_{as}$     \\
-8&$ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
-9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
+1&  $ c_{as} = c_{km}$   	    &   $ c_{ro} = c_{km}  $    &     $c_{ro} = c_{as}$   \\
+2&  $ c_{as} = c_{km}  $       	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$      \\
+3&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} = c_{km}$      &     $c_{as} \prec c_{ro}$    \\
+4&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} \prec c_{km} $ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$ or $c_{as} \prec c_{ro}'$ \\
+5&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} = c_{km}$      &     $c_{ro} \prec c_{as}$      \\
+6&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$        \\
+7&  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{ro})$   \\
+%8&  $ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
+%9&  $c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
 %10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\
  \hline \end{tabular}
   }
@@ -1072,7 +1072,7 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{ro}$  & $c_{as}$  and $\mathcal
 %  \end{threeparttable}
 %\end{table}
 
-For these conditions, the relationship between these can be descirbed in Table \ref{conditions-for-ro-s}, the same form as Sectin.
+For these conditions, the relationship between these can be described in Table \ref{conditions-for-ro-s}, the same form as Sectin.
 
 To specifically discuss all these 9 conditions is redundant in this paper. Hence, we just select two particular conditions, and others can be analysed in a similar way. First, consider the condition that $\exists c_{ro} \in C() and () \prec c_{km}, \prec c_{km} \prec c_{as}$.
 
@@ -1110,6 +1110,50 @@ In a simpler way, we can label this proposition as a rule $exists c_{as}' \in C(
 
 
 Table gives an example of this condition and the result.
+
+
+\begin{table}
+\tbl{Example of the influence of the regarded as one failure for FCI approach\label{example-rule11}}{
+\begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
+\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
+\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
+\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
+\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
+\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
+\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
+\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
+\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
+
+\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
+\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
+\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
+\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
+\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
+\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
+\end{tabular}}
+\end{table}
 
 
 In this table.
@@ -1203,15 +1247,39 @@ ID & $c_{df}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{df}$  and $\mathcal
  &                           	&                           &  $ \ or\ c_{df} \prec c_{as}',\ or\ c_{df}\ irrelevant\  \mathcal{C}(T_{as})$     \\
 8&$ c_{km} \prec c_{df} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{as} \prec c_{df} ,\ or\ c_{df}\ irrelevant\  \mathcal{C}(T_{as})$  \\
 
-9&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   --- & \textbf{may} $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$    \\
-
-10&   --- 	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$  \\  \hline
+%9&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   --- & \textbf{may} $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$    \\
+%
+%10&   --- 	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$  \\  \hline
 
 %10a&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   $ c_{as} = c_{km}$  &  ---     \\
 %10b&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	& $ c_{as} \prec c_{km}$    & ---     \\
 %10c&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	& $ c_{km} \prec c_{as}$   & ---     \\
-%10d&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$ & ---    \\ \hline
-  \end{tabular}
+%10d&  $c_{km}\ irrelevant \ to \ \mathcal{C}(T_{df})$    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$ & ---    \\
+ \hline \end{tabular}
+  }
+\end{table}
+
+\begin{table}
+\centering
+\tbl{Possible conditions for Distinguishing failures strategy --ignoring \label{conditions-for-df-ignore}}{
+  \begin{tabular}{c|c|c||c} \hline
+ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{df}$  & $c_{as}$  and $\mathcal{C}(T_{df})$ \\ \hline
+%& & \\ \hline
+1&  $ c_{as} = c_{km}$   	    &   $ c_{df} = c_{km}  $    &     $c_{df} = c_{as}$   \\
+2&  $ c_{as} = c_{km}  $       	&   $ c_{km} \prec c_{df}$  &     $c_{as} \prec c_{df}$      \\
+3&  $ c_{as} = c_{km}  $       	&   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$  &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{df})$        \\
+4&  $ c_{as} \prec c_{km}  $    &   $ c_{df} = c_{km}$      &     $c_{as} \prec c_{df}$    \\
+5&  $ c_{as} \prec c_{km}  $    &   $ c_{km} \prec c_{df} $ &     $c_{as} \prec c_{df}$ \\
+6&  $ c_{as} \prec c_{km}  $    &   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df} \prec c_{as}$ \\
+7&  $ c_{km} \prec c_{as} $    	&   $ c_{df} = c_{km}$      &     $c_{df} \prec c_{as}$      \\
+8&  $ c_{km} \prec c_{as} $    	&   $ c_{km} \prec c_{df}$  &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df}' \prec c_{as}$        \\
+ &                            	&                           &     $c_{as} \prec c_{df}' $ or $c_{df}'  =  c_{as}$        \\
+9&  $ c_{km} \prec c_{as} $    	&   $ c_{km} irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df} \prec c_{as}$     \\
+10&  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{ro})$   \\
+%8&  $ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
+%9&  $c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
+%10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\
+ \hline \end{tabular}
   }
 \end{table}
 
@@ -2572,50 +2640,152 @@ $\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 
 \end{proof}
 
+\begin{proposition}[rule 9]\label{pro:appendix1rule9}
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ is\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+\end{proposition}
+\begin{proof}
+
+
+\end{proof}
+
+\subsection{For \emph{regarded as one failure} in Table \ref{conditions-for-ro-ignore}}
+
+
+\begin{proposition}[rule 1]\label{pro:appendix1rule1i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{km} = c_{ro}$. Then it must have $c_{ro} = c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 2]\label{pro:appendix1rule2i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 3]\label{pro:appendix1rule3i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{km} = c_{ro}$. Then it must have $c_{as} \prec c_{ro}$.
+\end{proposition}
+
+\begin{proposition}[rule 4]\label{pro:appendix1rule4i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})\ or\  \exists c_{ro}' \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{as} \prec c_{ro}'$.
+\end{proposition}
+\begin{proof}
+
+
+\end{proof}
+
+\begin{proposition}[rule 5]\label{pro:appendix1rule5i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{km} = c_{ro}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 6]\label{pro:appendix1rule6i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{ro} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 7]\label{pro:appendix1rule7i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})$.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
 
 \subsection{For \emph{distinguishing failures} in Table \ref{conditions-for-df}}
 
 \begin{proposition}[rule 1]\label{pro:appendix2rule1}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} = c_{as}$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{df} = c_{as}$.
 \end{proposition}
 %\begin{proof}
 %\end{proof}
 \begin{proposition}[rule 2]\label{pro:appendix2rule2}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{ro}$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{df}$.
 \end{proposition}
 
 \begin{proposition}[rule 3]\label{pro:appendix2rule3}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{df} \prec c_{as}$.
 \end{proposition}
 
 \begin{proposition}[rule 4]\label{pro:appendix2rule4}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{as})$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $c_{df} \ is\ irrelevant\ to\  \mathcal{C}(T_{as})$.
 \end{proposition}
 
 \begin{proposition}[rule 5]\label{pro:appendix2rule5}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{as} \prec c_{df}$.
 \end{proposition}
 
 \begin{proposition}[rule 6]\label{pro:appendix2rule6}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}'\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{df}$.
 \end{proposition}
-\begin{proof}
-
-
-\end{proof}
-
 
 \begin{proposition}[rule 7]\label{pro:appendix2rule7}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{df} = c_{as}'\ or\ c_{as}' \prec c_{df}\ or\ c_{df} \prec c_{as}'\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
 
+\begin{proof}
+
+
+\end{proof}
+
 \begin{proposition}[rule 8]\label{pro:appendix2rule8}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
 \begin{proof}
 
 
 \end{proof}
+
+\subsection{For \emph{distinguishing failures} in Table \ref{conditions-for-df-ignore}}
+\begin{proposition}[rule 1]\label{pro:appendix2rule1i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} = c_{df}$. Then it must have $c_{df} = c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 2]\label{pro:appendix2rule2i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $c_{as} \prec c_{df}$.
+\end{proposition}
+
+\begin{proposition}[rule 3]\label{pro:appendix2rule3i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $c_{km} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
+\end{proposition}
+
+\begin{proposition}[rule 4]\label{pro:appendix2rule4i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{df} = c_{km}$. Then it must have $c_{as} \prec c_{df}$.
+\end{proposition}
+
+\begin{proposition}[rule 5]\label{pro:appendix2rule5i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $c_{as} \prec c_{df}$.
+\end{proposition}
+
+
+\begin{proposition}[rule 6]\label{pro:appendix2rule6i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $c_{km} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in s.t.,\ c_{as} \prec c_{df}$.
+\end{proposition}
+\begin{proof}
+two contradtion
+
+\end{proof}
+
+\begin{proposition}[rule 7]\label{pro:appendix2rule7i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} = c_{df}$. Then it must have $c_{df} \prec c_{as}$.
+\end{proposition}
+
+\begin{proposition}[rule 8]\label{pro:appendix2rule8i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $\exists c_{df}' \in \mathcal{C}(T_{df}),\ s.t.,\ c_{as} = c_{df}'\ or\ c_{df}' \prec c_{as}\ or\ c_{as} \prec c_{df}'\ or\ c_{as}\ irrelevant\ to\ \mathcal{C}(T_{df})$.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{proposition}[rule 9]\label{pro:appendix2rule9i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{df})$. Then it must have $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$.
+\end{proposition}
+\begin{proof}
+Assume $\exists c_{df} = c_{as}$, then $c_{km} \prec c_{df}$, contradiction. Assume $\exists c_{as} \prec c_{df}$, then $c_{km} \prec c_{df}$. Contradiction.
+
+So it is only possible $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$. (One for example, One for example).
+\end{proof}
+
+\begin{proposition}[rule 10]\label{pro:appendix2rule10i}
+$\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
+\end{proposition}
+
 
 \section{The detail of the experiments}
 
