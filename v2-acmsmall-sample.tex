@@ -976,8 +976,9 @@ Similar as table \ref{possible-relation-of-intersection}, we list the possible r
 
 In Table \ref{conditions-for-ro}, each condition is explained as following:   A special case is the 9th condition in this table, as under this condition schema $c_{ro}$ is irrelevant to all the schemas that are obtained by strategy \emph{knowing masking effects}, so special case, the relationship makes nonsense. which are labeled as `---'.
 
-Under each condition, what we cared is what the relationship bet $c_{ro}$ with the actual MFS. As this can give us a clear sight of the $c_{ro}$ when compared with corresponding $c_{km}$.  We list the result in Table \ref{conditions-for-ro-s}. Each row tells us a .   All of these results can be proved by previous given propositions, which will be ignored in this paper. We just give an example of these conditions and their result.
+Under each condition, what we cared is what the relationship bet $c_{ro}$ with the actual MFS. As this can give us a clear sight of the $c_{ro}$ when compared with corresponding $c_{km}$.  We list the result in column `$c_{ro}\ and\ \mathcal{C}(T_{as})$' in Table \ref{conditions-for-ro}. Each row tells us a .   All of these results can be proved by previous given propositions, which will be ignored in this paper. We just give an example of these conditions and their result.
 
+The detailed proposition and proof(only for those complex ones) are given in the appendix.
 
 
 \begin{table}
@@ -1044,117 +1045,108 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{ro}$  & $c_{as}$  and $\mathcal
 
 %Combining the relation between schemas between , and the relation .  We can have between  three possibilities, there are 9 possible conditions for the regard as one failure. which are as Table \ref{conditions-for-ro}, respectively.
 %
-%\begin{table}
-%\begin{threeparttable}
-%\centering
-%\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
-%  \begin{tabular}{ccc}
-%ID & $c_{ro}$\tnote{1} \& $c_{km}$ \tnote{2} &  $c_{km}$\tnote{2} \& $c_{as}$\tnote{3} \\ \hline
-%%& & \\ \hline
-%1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
-%2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
-%3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
-%4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
-%5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$           \\
-%6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$           \\
-%7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$           \\
-%8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ \\ \hline
-%9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---          \\ \hline
-%10&    	&   $\exists c_{as},\ s.t.,\ c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$          \\ \hline
-%  \end{tabular}
-%  }
-% \begin{tablenotes}
-%        \footnotesize
-%\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
-%\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
-%\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
-%      \end{tablenotes}
-%  \end{threeparttable}
-%\end{table}
 
-For these conditions, the relationship between these can be described in Table \ref{conditions-for-ro-s}, the same form as Sectin.
 
-To specifically discuss all these 9 conditions is redundant in this paper. Hence, we just select two particular conditions, and others can be analysed in a similar way. First, consider the condition that $\exists c_{ro} \in C() and () \prec c_{km}, \prec c_{km} \prec c_{as}$.
-
-We can get the following propositions
-
-%\begin{table}
-%\begin{threeparttable}
-%\centering
-%\tbl{Possible results for Regard as one failure strategy \label{conditions-for-ro-s}}{
-%  \begin{tabular}{cccc}
-%ID & $c_{ro}$\tnote{1} \& $c_{as}$ \tnote{2}  \\ \hline
-%%& & \\ \hline
-%1&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$       &  $c_{ro} = c_{as}$   \\
-%2&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$    &    $c_{as} \prec c_{ro}$     \\
-%3&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$     &   $c_{ro} \prec c_{as}$    \\
-%4&$ \exists c_{km},\ s.t.,\ c_{km} = c_{ro}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$  & $c_{ro}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$  \\ \hline
-%5&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} = c_{km}$       &  $c_{ro} \prec c_{as}$  \\
-%6&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{as} \prec c_{km}$   &  $\exists c_{as}', c_{ro} \prec c_{as}',\ or\ c_{ro}\ irrelevant\ \ all\ c_{as}$     \\
-%7&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $\exists c_{as},\ s.t.,\ c_{km} \prec c_{as}$    &  $c_{ro} \prec c_{as}$    \\
-%8&$ \exists c_{km},\ s.t.,\ c_{ro} \prec c_{km}  $    	&   $c_{km}\ irrelevant \ to \ \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$ &  $\exists c_{as}, c_{ro} \prec c_{as}$ or $c_{ro}$ irrelevant  \\ \hline
-%9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C) $    	&   ---      &  $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\ \ all\ c_{as}$    \\ \hline
-%10& ---ignore --- & $c_{as}\ irrelevant\ to\ \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$  & $c_{as}\ irrelevant\ to\ all\ c_{ro} $\\ \hline
-%  \end{tabular}
-%  }
-% \begin{tablenotes}
-%        \footnotesize
-%\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
-%\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
-%\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
-%      \end{tablenotes}
-%  \end{threeparttable}
-%\end{table}
-
+To specifically discuss all these 9 conditions is redundant in this paper. Hence, we just select one particular conditions, and others can be analysed in a similar way. Consider the condition that $\exists c_{ro} \in C() and () \prec c_{km}, \prec c_{km} \prec c_{as}$.
 In a simpler way, we can label this proposition as a rule $exists c_{as}' \in C(), s.t., $.
 
-
-Table gives an example of this condition and the result.
-
+Table \ref{example-rule16} gives an example for the 6th condition.
 
 \begin{table}
-\tbl{Example of the influence of the regarded as one failure for FCI approach\label{example-rule11}}{
+\tbl{Example of rule 6 in Table \ref{conditions-for-ro} \label{example-rule16}}{
 \begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{((1,1,0))}&\multicolumn{3}{c}{(0,1,1)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{1,1,1}&\multicolumn{3}{c}{()}&\multicolumn{3}{c}{(0,0,1)}\\
+%\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,0,0)} & \multicolumn{3}{c}{(0,1,0)}&\multicolumn{3}{c}{(1,0,0)}\\
+%\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,0)} & \multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{(1,1,0)}\\
 
-\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
-\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
-\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
-\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
-\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
  \hline
-\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
-\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
-\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
-\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
-\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
-\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
-\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
+%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{ro})$} \\ \hline
+\multicolumn{4}{c}{-,-,1}             &\multicolumn{4}{c}{(1,0,-)} &           \multicolumn{4}{c}{(1,-,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(1,-,1)} &           \multicolumn{4}{c}{}\\
+  \hline
 
-\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
-\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
-\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
-\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
-\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
-\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
-\end{tabular}}
+%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+%\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+
+\end{tabular}
+  \hspace{1em}
+
+\begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{(0,1,1)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,1)}&\multicolumn{3}{c}{(0,0,1)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{()} & \multicolumn{3}{c}{}&\multicolumn{3}{c}{(0,1,0)}\\
+%\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,0)} & \multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{(1,1,0)}\\
+
+ \hline
+%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{ro})$} \\ \hline
+\multicolumn{4}{c}{(-,0,1)}             &\multicolumn{4}{c}{(1,0,-)} &           \multicolumn{4}{c}{(1,-,-)}\\
+\multicolumn{4}{c}{(0,-,1)}             &\multicolumn{4}{c}{()} &           \multicolumn{4}{c}{}\\
+  \hline
+
+%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+%\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+
+\end{tabular}
+
+
+
+}
 \end{table}
 
+When consider the ingoring state, i.e., to see if the actual MFS is irrelevant to all the identified scheam. This time, we make the shema $c_{as}$ as the subject, and also through mid-schema $c_{km}$ to find the $c_{as}$ related to $c_{ro}$. As we discussed before, for any schema $c_{as}$, $c_{as}$ can find $c_{km}$. And for $c_{km}$, we can find $c_{as}$. Combining them together we will get Table \ref{conditions-for-ro-ignore}, of which in a simular form as Table \ref{conditions-for-ro}. The detailed of each proposition and corresponding proofs are given in Appendix. In this table, the noted is rule 2,3, 5 (in Bold) which can make ignoring happen.
+
+An example of the ignoring this is in Table  (for rule 3).
+
+\begin{table}
+\tbl{Example of rule 6 in Table \ref{conditions-for-ro-ignore} \label{example-rule16i}}{
+\begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{((1,1,0))}&\multicolumn{3}{c}{(0,1,1)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{1,1,1}&\multicolumn{3}{c}{()}&\multicolumn{3}{c}{(0,0,1)}\\
+%\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,0,0)} & \multicolumn{3}{c}{(0,1,0)}&\multicolumn{3}{c}{(1,0,0)}\\
+%\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,0)} & \multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{(1,1,0)}\\
+
+ \hline
+%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{ro})$} \\ \hline
+\multicolumn{4}{c}{-,-,1}             &\multicolumn{4}{c}{(1,0,-)} &           \multicolumn{4}{c}{(1,-,-)}\\
+\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(1,-,1)} &           \multicolumn{4}{c}{}\\
+  \hline
+
+%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+%\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+
+\end{tabular}
+  \hspace{1em}
+
+\begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{(0,1,1)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,1)}&\multicolumn{3}{c}{(0,0,1)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{()} & \multicolumn{3}{c}{}&\multicolumn{3}{c}{(0,1,0)}\\
+%\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,0)} & \multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{(1,1,0)}\\
+
+ \hline
+%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
+\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{ro})$} \\ \hline
+\multicolumn{4}{c}{(-,0,1)}             &\multicolumn{4}{c}{(1,0,-)} &           \multicolumn{4}{c}{(1,-,-)}\\
+\multicolumn{4}{c}{(0,-,1)}             &\multicolumn{4}{c}{()} &           \multicolumn{4}{c}{}\\
+  \hline
+
+%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
+%\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
+
+\end{tabular}
+
+
+
+}
+\end{table}
 
 In this table.
 
@@ -1164,7 +1156,7 @@ From this 12 rules, we can learn that, when applying \emph{regarded as one failu
 One observation in this rules is that , the schemas are tend to be . (rules 1, 2, 5 tells that).
 
 
-, And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}
+%, And if we apply the \emph{regarded as one failure} strategy, the minimal schemas are $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. Obviously, $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C$ $\supset$ $A \bigcup B_{1} \bigcup B_{2} \bigcup C$. So the minimal schema obtained by this strategy is either the sub-schema or identical to some schemas from the ones obtained by \emph{knowing masking effects} strategy, or alternatively, there exist some schemas that are irrelevant to all of them. Taking these two properties together, we derive Table \ref{fci_mask_regard}
 
 
 
@@ -1203,12 +1195,12 @@ One observation in this rules is that , the schemas are tend to be . (rules 1, 2
 %\end{tabular}}
 %\end{table}
 
-There are totally 9 rules for this strategy, which are labeled from 1 to 9 respectively. In these rules, $c_{m}$ and $c_{m}'$ are the actual MFS, i.e., $c_{m}, c_{m}' \in C(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$. $c_{origin}$ is the minimal schema that are obtained by \emph{knowing masking effects} strategy, i.e., $c_{origin} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. $c_{new}$ is the schema that are obtained by \emph{regarded as one failure} strategy, i.e., $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. $c_{new}$ satisfies $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$.  Each rule in Table \ref{fci_mask_regard}  describes one possible relationship between the schemas obtained by strategy \emph{regarded as one failure} and the actual MFS. For example,
-rule 2, i.e., $If\ c_{m} = c_{origin}\ and\ c_{new} \prec c_{origin}, then\ \exists c_{m}', s.t., c_{new} \prec c_{m}'$, indicates that the schema $c_{new}$ by \emph{regarded as one failure} strategy will be the sub schema of some actual MFS, if it is also the sub schema of the schema $c_{origin}$ by strategy \emph{knowing masking effects}, and $c_{origin}$ is identical to some actual MFS. Some rules may offer more than one possible relationship between $c_{new}$ and the actual MFS. For example, rule 4 states that $c_{new}$ either be the sub schema of the actual MFS or be irrelevant to all the actual MFS. In this case, we divide the rule into several sub-rules. For rule 4, there are two sub-rules: 4a and 4b, each of which represents one possible relationship between $c_{new}$ and the actual MFS $c_{m}'$.
-
-Among these rules, only rule 1 and 3 state $\exists c_{m}', s.t.$ $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$. This can be easily understood, as to make  $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, according to Proposition \ref{pro:ci} and \ref{pro:cs}, it must have $\mathcal{T}(c_{new}) \subset (B_{1} \bigcup B_{2})$.  This condition does not hold if $c_{new} \prec c_{origin}$. As if so, then $\exists t \in B_{3}, s.t., t \in \mathcal{T}(c_{new})$, otherwise, there should be no schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $\mathcal{T}(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if $c_{new} \prec c_{origin}$. So to make $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, the schema $c_{new}$ must be identical to $c_{origin}$, i.e., $c_{new} = c_{origin}$ and there must be $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$, correspondingly. Apart from these two rules, the remaining rules indicate  $c_{new} \prec c_{m}'$ or $c_{new}\ is\ irrelevant\ to\ all\ the\ actual\ MFS$, which implies the schemas that are obtained by strategy \emph{regarded as one failure} are more likely to be subschemas or irrelevant schemas of the actual MFS when compared to that of the \emph{knowing masking effects} strategy.
-
-Next we will give examples to depict the rules except those with the condition `$c_{new} = c_{origin}$' (rule 1, 3, 5, 7). This is because these rules simply result in the relationship between $c_{new}$  and actual MFS be the same as the relationship between $c_{origin}$ and the actual MFS. Table \ref{example-of-fci-influence} presents the examples of all the remaining rules. This table consists of three parts, with the upper part giving the test cases for each area in the abstract FCI model. Note that we only list the union of areas $B_{1}$, $B_{2}$ and $C$. This is because the union is the common element for computing the MFS of three strategies -- \emph{actual MFS, knowing masking effects, regarded as one failure}. The middle part of this table shows the minimal schemas using a particular method. The lower part depicts the sample of each possible rule in Table \ref{fci_mask_regard}. In this part, the left column indicates the specific rule id. Column `$c_{m}$', `$c_{origin}$', `$c_{new}$', `$c_{m}'$', respectively, indicates the schema which satisfies the rule in the corresponding row. The mark $*$  means the rule is irrelevant to this schema. For example, for rule 8b, i.e., if $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} \prec c_{origin}$ then $c_{new}\ irrelevant\ to\ all\ c_{m}'$, we marked `*' in the column `$c_{m}$' and `$c_{m}'$'.
+%There are totally 9 rules for this strategy, which are labeled from 1 to 9 respectively. In these rules, $c_{m}$ and $c_{m}'$ are the actual MFS, i.e., $c_{m}, c_{m}' \in C(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$. $c_{origin}$ is the minimal schema that are obtained by \emph{knowing masking effects} strategy, i.e., $c_{origin} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$. $c_{new}$ is the schema that are obtained by \emph{regarded as one failure} strategy, i.e., $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$. $c_{new}$ satisfies $c_{new} = c_{origin}$ or $c_{new} \prec c_{origin}$.  Each rule in Table \ref{fci_mask_regard}  describes one possible relationship between the schemas obtained by strategy \emph{regarded as one failure} and the actual MFS. For example,
+%rule 2, i.e., $If\ c_{m} = c_{origin}\ and\ c_{new} \prec c_{origin}, then\ \exists c_{m}', s.t., c_{new} \prec c_{m}'$, indicates that the schema $c_{new}$ by \emph{regarded as one failure} strategy will be the sub schema of some actual MFS, if it is also the sub schema of the schema $c_{origin}$ by strategy \emph{knowing masking effects}, and $c_{origin}$ is identical to some actual MFS. Some rules may offer more than one possible relationship between $c_{new}$ and the actual MFS. For example, rule 4 states that $c_{new}$ either be the sub schema of the actual MFS or be irrelevant to all the actual MFS. In this case, we divide the rule into several sub-rules. For rule 4, there are two sub-rules: 4a and 4b, each of which represents one possible relationship between $c_{new}$ and the actual MFS $c_{m}'$.
+%
+%Among these rules, only rule 1 and 3 state $\exists c_{m}', s.t.$ $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$. This can be easily understood, as to make  $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, according to Proposition \ref{pro:ci} and \ref{pro:cs}, it must have $\mathcal{T}(c_{new}) \subset (B_{1} \bigcup B_{2})$.  This condition does not hold if $c_{new} \prec c_{origin}$. As if so, then $\exists t \in B_{3}, s.t., t \in \mathcal{T}(c_{new})$, otherwise, there should be no schema $c_{new}$ that is the sub-schema of $c_{origin}$. Consequently, $\mathcal{T}(c_{new}) \not\subset (B_{1} \bigcup B_{2})$ if $c_{new} \prec c_{origin}$. So to make $c_{new} = c_{m}'$ or $c_{m}' \prec c_{new}$, the schema $c_{new}$ must be identical to $c_{origin}$, i.e., $c_{new} = c_{origin}$ and there must be $c_{origin} = c_{m}$ or $c_{m} \prec c_{origin}$, correspondingly. Apart from these two rules, the remaining rules indicate  $c_{new} \prec c_{m}'$ or $c_{new}\ is\ irrelevant\ to\ all\ the\ actual\ MFS$, which implies the schemas that are obtained by strategy \emph{regarded as one failure} are more likely to be subschemas or irrelevant schemas of the actual MFS when compared to that of the \emph{knowing masking effects} strategy.
+%
+%Next we will give examples to depict the rules except those with the condition `$c_{new} = c_{origin}$' (rule 1, 3, 5, 7). This is because these rules simply result in the relationship between $c_{new}$  and actual MFS be the same as the relationship between $c_{origin}$ and the actual MFS. Table \ref{example-of-fci-influence} presents the examples of all the remaining rules. This table consists of three parts, with the upper part giving the test cases for each area in the abstract FCI model. Note that we only list the union of areas $B_{1}$, $B_{2}$ and $C$. This is because the union is the common element for computing the MFS of three strategies -- \emph{actual MFS, knowing masking effects, regarded as one failure}. The middle part of this table shows the minimal schemas using a particular method. The lower part depicts the sample of each possible rule in Table \ref{fci_mask_regard}. In this part, the left column indicates the specific rule id. Column `$c_{m}$', `$c_{origin}$', `$c_{new}$', `$c_{m}'$', respectively, indicates the schema which satisfies the rule in the corresponding row. The mark $*$  means the rule is irrelevant to this schema. For example, for rule 8b, i.e., if $c_{origin}\ irrelevant\ all\ c_{m}$\ and\ $c_{new} \prec c_{origin}$ then $c_{new}\ irrelevant\ to\ all\ c_{m}'$, we marked `*' in the column `$c_{m}$' and `$c_{m}'$'.
 
 
 
