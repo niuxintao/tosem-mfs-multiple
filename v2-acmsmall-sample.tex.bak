@@ -920,13 +920,13 @@ The gap between the two strategies can be further analysed by studying the relat
 
 Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $T_{km} $, \emph{intersect} the test cases that are used to compute the actual MFS( $ T_{as}$ ). According to Proposition \ref{pro:concludeforintersection}, the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(T_{km}),\ \exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 
-Take schema $c_{km}$ as intermediate schema, then for any schema $c_{ro}$ in $\mathcal{C}(T_{ro})$, the possible relationships between $c_{ro}$ and $c_{km}$, $c_{as}$ can be described in Table \ref{conditions-for-ro}. The same as Table \ref{possible-result-of-intersection}, one row can be described in the form of $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ ...$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ ...$, then it has $c_{ro} ... c_{as}$.  For example, the first scenario (ID 1) means that $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ c_{km} = c_{as}$, then we have $c_{ro} = c_{as}$. The details of each row are described as propositions in Table A.1 in the Appendix.
- 
+Take schema $c_{km}$ as intermediate schema, then for any schema $c_{ro}$ in $\mathcal{C}(T_{ro})$, the possible relationships between $c_{ro}$ and $c_{km}$, $c_{as}$ can be described in Table \ref{conditions-for-ro}. The same as Table \ref{possible-result-of-intersection}, one row can be described in the form of $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ ...$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ ...$, then it has $c_{ro} ... c_{as}$.  For example, the first scenario (ID 1) means that $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ c_{km} = c_{as}$, then we have $c_{ro} = c_{as}$. The details of each row are described as propositions in Table A.1 in the Appendix. Some necessary proofs are also attached.
+
 %We take $c_{km}$ as intermediate schema both has relationships between these two schemas as discussed before, second, we can clearly enure the difference between $c_{ro}$ and $c_{km}$, which can help to understand the impacts of masking effects for this strategy.
 
 \begin{table}[h]
 \centering
-\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
+\tbl{Possible scenarios for Regard as one failure strategy \label{conditions-for-ro}}{
   \begin{tabular}{c|c|c||c} \hline
 ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal{C}(T_{as})$ \\ \hline
 %& & \\ \hline
@@ -944,6 +944,8 @@ ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal
 \end{table}
 
 Table \ref{example-rule16} gives an example. In this table, Column `$A$', `$B_{3}$', `$D$' indicate the test cases of areas $A$, $B_{3}$, $D$, respectively, in Fig \ref{fig:fci_mask}. Column `$B_{1}\bigcup B_{2}\bigcup C$' indicates the union of test cases of areas $B_{1}$, $B_{2}$ and $C$. We did not distinguish them because this union is a common part of $\mathcal{C}(T_{as})$, $\mathcal{C}(T_{km})$ and $\mathcal{C}(T_{ro})$.  In the below part of this table, Column `$C(T_{as})$', `$C(T_{km})$' and `$C(T_{ro})$' show the actual MFS, schemas obtained by strategy \emph{knowing masking effects} and by \emph{regarded as one failure}, respectively.
+
+From Table \ref{conditions-for-ro}, it is found that for any shema idenified by strategy \emph{regarded as one failure}, it can be identical to ()
 
 \begin{table}[h]
 \tbl{Example of relationships between three strategies \label{example-rule16}}{
@@ -966,7 +968,7 @@ Table \ref{example-rule16} gives an example. In this table, Column `$A$', `$B_{3
 }
 \end{table}
 
-Let $c_{ro}$ = (1,-,0,-), then we can find $c_{km} $ = (1,1,0,-) so that $c_{ro} \prec c_{km}$. Further, it is found that $c_{as}$ = (1,1,1,0), which is equal to $c_{km}$. At last we can learn $c_{ro} \prec c_{as}$. This corresponds the rule 5 in Table \ref{conditions-for-ro}. Additionally, if let $c_{ro}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{ro}$. Then we can find that $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, so $c_{ro}$ is also irrelevant to $\mathcal{C}(T_{as})$. This corresponds rule 4 in Table \ref{conditions-for-ro}.  We do not include all the rules in this example,  but other rules (rules 1,2,3,6,7,8) can be easily constructed in a similar way.
+Let $c_{ro}$ = (1,-,0,-), then we have $c_{km} $ = (1,1,0,-) so that $c_{ro} \prec c_{km}$. Further, it is found that $c_{as}$ = (1,1,1,0), which is equal to $c_{km}$. At last we have $c_{ro} \prec c_{as}$. This corresponds scenario 5 in Table \ref{conditions-for-ro}. Additionally, if let $c_{ro}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{ro}$. Then we can find that $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, and so is $c_{ro}$. This corresponds scenario 4 in Table \ref{conditions-for-ro}.  We do not include all the scenarios in this example,  but others (scenarios 1,2,3,6,7,8) can be easily constructed in a similar way.
 
 When consider the ignoring state, i.e., to see if the actual MFS is irrelevant to all the identified schema. This time, we make the schema $c_{as}$ as the subject, and also through intermediate schema $c_{km}$ to find the $c_{as}$ related to $c_{ro}$. As we discussed before, for any schema $c_{as}$, $c_{as}$ can find $c_{km}$. And for $c_{km}$, we can find $c_{as}$. Combining them together we will get Table \ref{conditions-for-ro-ignore}, of which in a similar form as Table \ref{conditions-for-ro}. The detailed of each proposition and corresponding proofs are given in Appendix. In this table, the noted is rule 2,3, 5 (in Bold) which can make ignoring happen.
 \begin{table}[h]
