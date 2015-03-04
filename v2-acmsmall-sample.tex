@@ -56,8 +56,8 @@ JEFF Y. LEI
 \affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
 Hareton Leung and ALVIN CHAN
 \affil{Department of computing, Hong Kong Polytechnic University}
-Charlie Colbourn
-\affil{School of Computing, Informatics and Decision Systems Engineering, Arizona State University}
+%Charlie Colbourn
+%\affil{School of Computing, Informatics and Decision Systems Engineering, Arizona State University}
 }
 % NOTE! Affiliations placed here should be for the institution where the
 %       BULK of the research was done. If the author has gone to a new
@@ -82,7 +82,7 @@ Combinatorial testing (CT) has been proven effective in revealing the failures c
 \keywords{Software Testing, Combinatorial Testing, Failure-causing schemas, Masking effects}
 
 \acmformat{Xintao Niu,
-Changhai Nie,  Jeff Y. Lei,  Hareton Leung, Alvin Chan and Charlie Colbourn, 2015.Identifying minimal failure-causing schemas in the presence of multiple failures.}
+Changhai Nie,  Jeff Y. Lei,  Hareton Leung, and Alvin Chan, 2015.Identifying minimal failure-causing schemas in the presence of multiple failures.}
 % At a minimum you need to supply the author names, year and a title.
 % IMPORTANT:
 % Full first names whenever they are known, surname last, followed by a period.
@@ -503,19 +503,9 @@ Likewise, we can get the properties of the schemas identified for the larger set
 
 \begin{proposition}[{schemas for test superset tend to be subschemas}]\label{pro:sls}
 For two sets of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then $\forall c_{k} \in \mathcal{C}(T_{k})\ $, it could be $\ (1)\ c_{k} \in \mathcal{C}(T_{l})\ $ , $(2)\ \exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ $ ,or $(3)\ \not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}.$
-% \begin{displaymath}
-%  \begin{split}
-%   either\ (1)\ c_{k} \in \mathcal{C}(T_{l})\\
-%   or\ (2)\ \exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\\
-%   or\ (3)\ \not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}.
-%  \end{split}
-% \end{displaymath}
 \end{proposition}
 
 This proposition is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third condition, i.e., $\ \not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}.$ We refer to this condition as $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
-
-%
-%in fact, the schema $c_{k} \in \mathcal{C}(T_{k})$ remains with the following three possible relationships with $\mathcal{C}(T_{l})$ : (1) $c_{k} \in \mathcal{C}(T_{l})$, or (2) $\exists c_{l} \in \mathcal{C}(T_{l}), s.t.,\ c_{k} \prec c_{l}$, or (3) $\not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}$. For the third case, $c_{k}$ is called to be \emph{irrelevant} to $\mathcal{C}(T_{l})$.
 
 We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, with each part showing two sets of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. In the left part, we can see that in the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{k})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
 
@@ -588,7 +578,7 @@ $T_{l}$&$T_{k}$ \\ \hline
 This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between the schemas of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, we need to use the intermediate schemas in $\mathcal{C}(T_{3})$.
 
 As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:ssp}, $\forall c_{3} \in \mathcal{C}(T_{3}) $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two properties, we can find the following possible scenarios for $c_{1},c_{3}$ and $c_{2}$ , as shown in Table \ref{possible-relation-of-intersection}. In this table, Column `$c_{1}\ and\ c_{3}$' shows the relationship between $c_{1}$ and $c_{3}$, Column `$c_{3}\ and\ c_{2}$' indicates the relationship between $c_{3}$ and $c_{2}$.
-each row indicates a scenario in the form of $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ ...$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ ...$. For example, the first scenario means that $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ c_{1} = c_{3}$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ c_{3} = c_{2}$. It is noted that for the 5th scenario, $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means under this condition there is no single intermediate schema $c_{3}$. Hence, it is not necessary to list the relationship between $c_{3}$ and $c_{2}$, which is marked as `---'.
+each row indicates a scenario in the form of $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3},\ s.t.,\ ...$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ ...$. For example, the first scenario means that $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} = c_{3}$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ c_{3} = c_{2}$. It is noted that for the 5th scenario, $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means under this condition there is no single intermediate schema $c_{3}$. Hence, it is not necessary to list the relationship between $c_{3}$ and $c_{2}$, which is marked as `---'.
 
 
 \begin{table}
@@ -794,20 +784,6 @@ id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $\mathcal{C}(T_{2})$
   }
   \end{table}
 
-%\begin{table}
-%\centering
-%\tbl{Possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$  \label{possible-result-of-intersection}}{
-%  \begin{tabular}{c|c|c||c} \hline
-%id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $\mathcal{C}(T_{2})$\\ \hline
-%1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
-%2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
-%3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
-%4$\star$&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ & $ c_{1}$ irrelevant to $c_{2}$ ($ c_{1}$ irrelevant to $\mathcal{C}(T_{2})$, or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$) \\
-%5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$  \\ \hline
-%  \end{tabular}
-%  }
-%  \end{table}
-
 %\subsection{Summary of the formal model}
 %From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
 
@@ -848,14 +824,16 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\ \hline
 %In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
 
 
-\begin{figure}
+
+Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In fact, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
+
+\begin{figure}[h]
 \centering
 \includegraphics[width=4.31in]{FCI.eps}
 \caption{A general model of FCI approach}
 \label{fig:fci_process}
 \end{figure}
 
-Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In fact, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
 
 In Figure \ref{fig:fci_process} area A denotes the test cases that should have passed testing but were predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that were not observed but were predicted to be failing test cases, and area D shows the failing test cases that are neither observed nor predicted.  This figure actually represents the condition in which two sets of test cases intersect with each other; specifically, comparing to the Figure \ref{fig:intersect}, we can learn that $A \bigcup B \bigcup C $= $T_{1}$, which indicates the test cases we think they are failing test cases.
  $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test cases,
@@ -871,34 +849,6 @@ To identify the schemas as accurately as possible, the FCI approach needs to mak
 
 However, even though each FCI approach tries to identify the MFS as accurately as possible, masking effects arising from different test cases will reduce its effectiveness. We next discuss the masking problem and how it affects the FCI approaches.
 
-%Thus, besides the case that FCI make a perfect prediction, $T_{fail_{observed}} \bigcup T_{fail_{predicted}}$ can either contain $T_{fail}$ or be contained by $T_{fail}$ , or neither of the two circumstances. For the third circumstance, we have the following proposition:
-%
-%\begin{proposition}
-% If neither $T_{m} \subset T_{n}$ nor $T_{n} \subset T_{m}$, then it must be that $c \in $ $\mathcal{C}(T_{n}) $ is irrelevant to $\mathcal{C}(T_{m})$ and must be some $c' \in $ $\mathcal{C}(T_{m}) $ is irrelevant to $\mathcal{C}(T_{n})$  .
-%\end{proposition}
-%
-%\begin{proof}
-%We just need to prove the first one, as the latter is equivalent to the first one. The first one can be proven by contradiction.
-%
-%Assume that $\forall c \in \mathcal{C}(T_{m})$, have $c either \in \mathcal{C}(T_{n}) $.
-%\end{proof}
-%
-%So either of this three circumstance can make FCI identifying inaccurately as we discussed earlier, and each FCI should avoid these circumstances as much as possible.
-
-%\subsubsection{Proposition of MFS identifying process}
-
-%\subsubsection{Suspicious}
-%SP, CTA. The first one will, while the latter not.
-
-%\subsection{Discussion of the formal model}
-%This section gives a formal analysis of the CT testing and diagnosis model. In specific, we gave the definitions of the SUT model and proposed the possible relationships between the schemas and the set of test cases that contained them. Based on this we defined a general MFS identifying model.
-%
-%It is noted that, at the beginning of this section, we have mentioned two assumptions. Now we will discuss some probable impacts of them on the MFS identifying process and give some to .
-%
-%The first one assumes that the outcome of the execution of a test case is deterministic. When the software is indeterministic, i.e., tests that sometimes pass and sometimes fail, we may totally get wrong results if we just identify the MFS one time without any more actions. then
-% multiple runs, and get these
-%
-%The second,  different failures cannot be distinguished.
 
 \section{Masking effect}
 \begin{definition}
@@ -970,23 +920,13 @@ The gap between the two strategies can be further analysed by studying the relat
 
 Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $T_{km} $, \emph{intersect} the test cases that are used to compute the actual MFS( $ T_{as}$ ). According to Proposition \ref{pro:concludeforintersection}, the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(T_{km}),\ \exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 
-Take schema $c_{km}$ as intermediate schema, so that   As  we can to help ensure the relationship between $c_{ro}$ and $c_{as}$. We do this for. as $c_{km}$ both has relationships between these two schemas as discussed before, second, we can clearly enure the difference between $c_{ro}$ and $c_{km}$, which can help to understand the impacts of masking effects for this strategy.
-
-Similar as table \ref{possible-relation-of-intersection}, we list the possible relationship between  between schemas obtained by strategy \emph{regarded as one failure}, and the composite condition of  \emph{knowing masking effects} and the actual MFS,  as shown in Table \ref{conditions-for-ro}.
-%Combining the previous three possibilities, there are 9 different conditions for the relationships
-
-
-In Table \ref{conditions-for-ro}, each condition is explained as following:   A special case is the 9th condition in this table, as under this condition schema $c_{ro}$ is irrelevant to all the schemas that are obtained by strategy \emph{knowing masking effects}, so special case, the relationship makes nonsense. which are labeled as `---'.
-
-Under each condition, what we cared is what the relationship bet $c_{ro}$ with the actual MFS. As this can give us a clear sight of the $c_{ro}$ when compared with corresponding $c_{km}$.  We list the result in column `$c_{ro}\ and\ \mathcal{C}(T_{as})$' of Table \ref{conditions-for-ro}. Each row tells us a .   All of these results can be proved by previous given propositions, which will be ignored in this paper. We just give an example of these conditions and their result.
-
-The detailed proposition and proof(only for those complex ones) are given in the appendix.
-
+Take schema $c_{km}$ as intermediate schema, then for any schema $c_{ro}$ in $\mathcal{C}(T_{ro})$, the possible relationships between $c_{ro}$ and $c_{km}$, $c_{as}$ can be described in Table \ref{conditions-for-ro}. The same as Table \ref{possible-result-of-intersection}, one row can be described in the form of $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ ...$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ ...$, then it has $c_{ro} ... c_{as}$.  For example, the first scenario (ID 1) means that $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ c_{km} = c_{as}$, then we have $c_{ro} = c_{as}$. The details of each row are described as propositions in Table A.1 in the Appendix. Some necessary proofs are also attached.
+ 
+%We take $c_{km}$ as intermediate schema both has relationships between these two schemas as discussed before, second, we can clearly enure the difference between $c_{ro}$ and $c_{km}$, which can help to understand the impacts of masking effects for this strategy.
 
 \begin{table}[h]
-%\begin{threeparttable}
 \centering
-\tbl{Possible conditions for Regard as one failure strategy \label{conditions-for-ro}}{
+\tbl{Possible scenarios for Regard as one failure strategy \label{conditions-for-ro}}{
   \begin{tabular}{c|c|c||c} \hline
 ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal{C}(T_{as})$ \\ \hline
 %& & \\ \hline
@@ -999,31 +939,20 @@ ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal
 7&$ c_{ro} \prec c_{km} $    	&   $c_{km} \prec c_{as}$   &  $c_{ro} \prec c_{as}$     \\
 8&$ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
 9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
-%10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\
  \hline \end{tabular}
   }
-% \begin{tablenotes}
-%        \footnotesize
-%\item[1]$c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$, obtained by strategy \emph{regarded as one failure}
-%\item[2]$c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$, obtained by strategy \emph{knowing masking effects}
-%\item[3]$c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, actual MFS
-%      \end{tablenotes}
-%  \end{threeparttable}
 \end{table}
 
-Table gives an example. In this table, Column `A', `$B_{1}$' means the union of test cases. We did not distingush them because is a common part to compute the minimal schemas for actual MFS, strategy \emph{regarded as one failure}, and \emph{knowing masking effects}. Column `C' shows.  In the below part of this table, Column `$C(T_{as})$', i.e.,  shows the minimal schemas for, i.e.,  C(A B C).
+Table \ref{example-rule16} gives an example. In this table, Column `$A$', `$B_{3}$', `$D$' indicate the test cases of areas $A$, $B_{3}$, $D$, respectively, in Fig \ref{fig:fci_mask}. Column `$B_{1}\bigcup B_{2}\bigcup C$' indicates the union of test cases of areas $B_{1}$, $B_{2}$ and $C$. We did not distinguish them because this union is a common part of $\mathcal{C}(T_{as})$, $\mathcal{C}(T_{km})$ and $\mathcal{C}(T_{ro})$.  In the below part of this table, Column `$C(T_{as})$', `$C(T_{km})$' and `$C(T_{ro})$' show the actual MFS, schemas obtained by strategy \emph{knowing masking effects} and by \emph{regarded as one failure}, respectively.
 
 \begin{table}[h]
 \tbl{Example of relationships between three strategies \label{example-rule16}}{
 \begin{tabular}{llllllllllll}
 \multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
 \multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{(1,0,0,1)}&\multicolumn{3}{c}{(0,1,0,0)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,1)}&\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{0,1,0,1}\\
-%\multicolumn{3}{c}{}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{()}\\
-%\multicolumn{3}{c}{}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{()}&\multicolumn{3}{c}{()}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,1)}&\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(0,1,0,1)}\\
 
  \hline
-%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
 \multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{ro})$} \\ \hline
 \multicolumn{5}{c}{(1,1,0,-)}             &\multicolumn{4}{c}{(1,1,0,-)} &           \multicolumn{3}{c}{(1,-,0,-)}\\
 \multicolumn{5}{c}{(-,1,0,-)}             &\multicolumn{4}{c}{(1,1,-,0)} &           \multicolumn{3}{c}{(1,1,-,0)}\\
@@ -1037,7 +966,7 @@ Table gives an example. In this table, Column `A', `$B_{1}$' means the union of 
 }
 \end{table}
 
-Let $c_{ro}$ = (1,-,0,-), then we can find $c_{km} $ = (1,1,0,-) so that $c_{ro} \prec c_{km}$. Further, it is found that $c_{as}$ = (1,1,1,0), which is equal to $c_{km}$. At last we can learn $c_{ro} \prec c_{as}$. This corresponds the rule 5 in Table \ref{conditions-for-ro}. Additionally, if let $c_{ro}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{ro}$. Then we can find that $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, so $c_{ro}$ is also irrelevant to $\mathcal{C}(T_{as})$. This corresponds rule 4 in Table \ref{conditions-for-ro}.  We do not include all the rules in this example,  but other rules (rules 1,2,3,6,7,8) can be easily constructed in a similar way.
+Let $c_{ro}$ = (1,-,0,-), then we have $c_{km} $ = (1,1,0,-) so that $c_{ro} \prec c_{km}$. Further, it is found that $c_{as}$ = (1,1,1,0), which is equal to $c_{km}$. At last we have $c_{ro} \prec c_{as}$. This corresponds scenario 5 in Table \ref{conditions-for-ro}. Additionally, if let $c_{ro}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{ro}$. Then we can find that $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, and so is $c_{ro}$. This corresponds scenario 4 in Table \ref{conditions-for-ro}.  We do not include all the scenarios in this example,  but others (scenarios 1,2,3,6,7,8) can be easily constructed in a similar way.
 
 When consider the ignoring state, i.e., to see if the actual MFS is irrelevant to all the identified schema. This time, we make the schema $c_{as}$ as the subject, and also through intermediate schema $c_{km}$ to find the $c_{as}$ related to $c_{ro}$. As we discussed before, for any schema $c_{as}$, $c_{as}$ can find $c_{km}$. And for $c_{km}$, we can find $c_{as}$. Combining them together we will get Table \ref{conditions-for-ro-ignore}, of which in a similar form as Table \ref{conditions-for-ro}. The detailed of each proposition and corresponding proofs are given in Appendix. In this table, the noted is rule 2,3, 5 (in Bold) which can make ignoring happen.
 \begin{table}[h]
@@ -1053,7 +982,7 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{ro}$  & $c_{as}$  and $\mathcal
 4$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} \prec c_{km} $ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$ or $c_{as} \prec c_{ro}'$ \\
 5&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} = c_{km}$      &     $c_{ro} \prec c_{as}$      \\
 6&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$        \\
-7$\star$ &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{ro})$   \\
+7$\star$ &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{ro})$   \\
 %8&  $ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
 %9&  $c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
 %10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\
@@ -1101,6 +1030,26 @@ ID & $c_{df}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{df}$  and $\mathcal
 \end{table}
 
 \begin{table}[h]
+\tbl{Example of rule 6 in Table \ref{conditions-for-df} \label{example-rule26}}{
+\begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{(1,0,0,1)}&\multicolumn{3}{c}{(0,1,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,1)}&\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(0,1,0,1)}\\
+ \hline
+
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,-,0,-)}             &\multicolumn{4}{c}{(1,-,0,-)} &           \multicolumn{3}{c}{(1,1,0,-)}\\
+\multicolumn{5}{c}{(-,1,0,-)}             &\multicolumn{4}{c}{(1,1,-,0)} &           \multicolumn{3}{c}{(1,1,-,0)}\\
+
+%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
+
+\end{tabular}}
+\end{table}
+
+
+\begin{table}[h]
 \centering
 \tbl{Possible conditions for Distinguishing failures strategy --ignoring \label{conditions-for-df-ignore}}{
   \begin{tabular}{c|c|c||c} \hline
@@ -1116,7 +1065,7 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{df}$  & $c_{as}$  and $\mathcal
 8$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} \prec c_{df}$  &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df}' \prec c_{as}$        \\
  &                            	&                           &    or $\ c_{as} \prec c_{df}' $ or $c_{df}'  =  c_{as}$        \\
 9$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df} \prec c_{as}$     \\
-10$\star$&  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{ro})$   \\
+10$\star$&  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{ro})$   \\
 %8&  $ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
 %9&  $c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
 %10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\
@@ -1128,28 +1077,6 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{df}$  & $c_{as}$  and $\mathcal
 Similar to Table \ref{fci_mask_regard}, this table also lists the possible relationships among the schemas obtained by strategy \emph{distinguishing failures}, schemas obtained by \emph{knowing masking effects} strategy, and the actual MFS. As with the \emph{distinguishing failures} strategy, the minimal schemas identified are actually $\mathcal{C}(A \bigcup B_{1} \bigcup C)$.  Obviously $A \bigcup B_{1} \bigcup C \subset A \bigcup B_{1} \bigcup B_{2} \bigcup C $. So with this strategy, $c_{new} \in \mathcal{C}(A \bigcup B_{1} \bigcup C)$ should be either the super-schema or identical to $c_{origin} \in \mathcal{C}( A \bigcup B_{1} \bigcup B_{2} \bigcup C)$.  The main difference between the rules in Table \ref{fci_mask_distinguish} and those in Table \ref{fci_mask_regard} is that most rules with strategy \emph{distinguishing failures} result in $c_{m}' \prec c_{new}$. This is because with strategy \emph{distinguishing failures}, the test cases that are used for identifying the MFS is less than that of \emph{knowing masking effects}. So it is more likely to have $\mathcal{T} (c_{new}) \subset \mathcal{T} (c_{m}') $, and hence $c_{m}' \prec c_{new}$.
 
 We give an example to illustrate these rules of strategy \emph{distinguishing failures}, as depicted in Table \ref{example-of-fci-influence-distiguish}. Similar to Table \ref{example-of-fci-influence}, we omit the samples that have the condition `$c_{origin} = c_{new}$'.
-
-\begin{table}[h]
-\tbl{Example of rule 6 in Table \ref{conditions-for-df} \label{example-rule26}}{
-\begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{((1,1,0))}&\multicolumn{3}{c}{(0,1,1)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{1,1,1}&\multicolumn{3}{c}{()}&\multicolumn{3}{c}{(0,0,1)}\\
- \hline
-
-\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
-\multicolumn{5}{c}{(1,1,0,-)}             &\multicolumn{4}{c}{(1,1,0,-)} &           \multicolumn{3}{c}{(1,-,0,-)}\\
-\multicolumn{5}{c}{(-,1,0,-)}             &\multicolumn{4}{c}{(1,1,-,0)} &           \multicolumn{3}{c}{(1,1,-,0)}\\
-
-
-%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguishing failures$} \\
-%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-
-\end{tabular}}
-\end{table}
-
 
 
 One rule to note is rule 9, which can make some $c_{origin}$ \emph{removed} from the newly minimal schemas, i.e., $\not\exists c_{new}, s.t., c_{new} = c_{origin}\ or\ c_{origin} \prec c_{new}$.  For the Table \ref{example-of-fci-influence-distiguish} example, in the last row for rule 9, we find that for the schema $c_{origin}--$(1,1,0,0,1,-), which is identical to the one in actual MFS, there exists no $c_{new}$ which is identical to or the super-schema of this schema. Consequently, in this case, this strategy may ignore some actual MFS compared with \emph{knowing masking effects}.
@@ -1665,55 +1592,10 @@ So the answer to \textbf{Q1} is that in practice, when SUT have multiple failure
 
 It is notable that in Yilmaz's \cite{yilmaz2013reducing} paper, a similar study about the existence of the masking effects has been conducted. The main difference between that work and ours is that Yilmaz's work quantify impact of the masking effects as the number of $t$-degree schemas that only appear in the test cases that triggered other failures. Here, the $t$-degree schemas can be either MFS or not. Our work, however, quantify the masking effects as the number of test cases that are masked by unexpected failures. These test cases should contain some MFS, i.e., they should have triggered the expected failure if they did not trigger any other failure.  The reason that we quantify the masking effects in such way is because our work seeks to handle the masking effects in the MFS identifying process. As the test cases which contain the MFS but do not produce the corresponding failure will significantly affect the MFS identifying results, their number can better reflect the impact of the masking effects on the FCI approach.
 
-%it focus on the masking about the schemas. Insteadly, our subject is the test case, i.e., which instead of the test cases. In a general way, there is no goods or bads that. There is two points that we focus on the test cases: however, we believe, is more important that, as the test cases is more reflective. For example. The masking can more reflect because the test cases. 2. our approach is based on test case replacemenet, to count the  can showing a probality how quickly we can get a satisfied test case.
-%All of these bug can be rebuilt by following the steps reported in the bug tracker. For example, Bug-\#29537 indicate that Grep incorrectly match unicode patterns with \textbackslash<\textbackslash>  and Bug-\#33080 claim that combination of --count (-c) and --only-matching (-o) will not work as expected. A simple test case liked the following command:
-%
-%\emph{grep --only-matching --count '\textbackslash<chai\textbackslash>' test.txt}
-%
-%can make these two bugs existed in one test case and only one failure will be observed. Other failures listed in table \ref{masking effect detail} as well as their masking effect can also be easily reappeared in well-designed test cases.
-
 \subsection{Comparing our approach with traditional algorithms}
 The second study aims to compare the performance of our approach with traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we need to apply our approach and traditional algorithms to identify MFS in a  variety of software and evaluate their results. The five versions of software in Table \ref{software description} used as test objects are far from the requirement for a general evaluation. However, to construct many real testing objects is time-consuming as we must carefully study the detail of that software as well as the bug tracker report.  To compromise, we synthesized 10 more testing objects. These synthesized objects are ten small programs which can directly return outputs when executed with given inputs.  To make the synthetic objects as similar as possible to the real software, we firstly analysed the characterizations, such as the number of parameters, the number of failures, and the possible masking effects, of the real software. We observed that the number of parameters of the SUT ranged from 8 to 30, the number of different failures in the SUT ranged from 2 to 4, and the number of MFS for a failure ranged from 1 to 2, in which the degree of the MFS ranged from 1 to 6. Then for each characterization, we randomly selected one value in the corresponding range and assigned it to the input model by adjusting the relationships between the inputs and outputs of these programs.
-%After that, the testing objects that share the similar characterizations of the real software are prepared.
-
-%In detail, we set the number of parameters  \emph{k} of the SUT to a range from 8 to 30. We limited the scale of the SUT to a relatively small size because we needed to exhaustively execute each possible test case of the SUT to select the failing test cases  which we then fed  into the FCI approach.  We then randomly choose 10 such SUTs, and for each SUT we injected 2 to 5 different MFS that can mask each other. The degree of the MFS we injected ranged from 1 to 6.
-% Additionally, we randomly set the level of each failure in such a SUT, i.e., for any two failures, which one has a higher level(such that can mask another one)is also by random.
-
-%it is not enough.and compare them with the prior failure-inducing combinations.
-
-%we first need to construct the testing scenario that can produce the masking effects. To achieve this goal, we selected pairs of bugs belong to the same version of the particular software and merged their test file, so that we can reproduce different failures through controlling the inputs to that merged test file. This merging manipulation varies with the pair of bugs we selected, and for each pair of bugs, the source code of the merging file as well as other detailed experiment information is available at-- https://code.google.com/p/merging-bug-file.
-
-%Next we built the input model which consists of the options related to the MFS and additional noise options. Here we lists the two newly model in Table \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex respectively. Each table is organised into four groups: 1)``common options", which lists the options well as their values under which every version of this software can be tested. 2)``common boolean options", which lists additional common options whose values type is boolean. 3)``specific options", under which only the specific version of that software can be tested. 4)``configure space", which depicts the input model for each version of the software.
-
-%To construct such real testing scenario is time-consuming as we need to carefully study the tutorial of that software as well as the bug tracker report.
 
 Table \ref{testing_models} lists the testing model for both the real and synthesizing testing objects. In this table, column `Object' indicates the SUT under test. For the real SUT listed in Table \ref{software description}, we label the five software as $H2cr8$, $H2.2.5$, $H2.2.9$, $J1.4.1$, $J1.4.2$, respectively. While for the synthesized ones, we label them in the form of `\emph{syn}+ \emph{id}'. Column `Model' presents the input space for each testing object. Column 'Failures' shows the different failures in the software and their masking relationships. In this column, `$>$' means the left failure will mask the right failure, i.e., if the left failure is triggered, then the right failure will not be triggered. Furthermore, '$>$' is transitive so that the left failure can mask all the failures in the right.  For example, for the $H2cr8$ object, we can find three failures : $e_{1}$, $e_{2}$, and $e_{3}$. By using the formula $e_{1} > e_{2} > e_{3}$, we indicate that the failure $e_{2}$ will mask $e_{3}$ and $e_{1}$ will mask both $e_{2}$ and $e_{3}$. Here for the simplicity of the experiment, we did not build more complex testing scenarios such as the masking effects can happened in the form $e_{1} > e_{2},\ e_{2} > e_{3},\ e_{3} > e_{1}$ or even $e_{1} > e_{2},\ e_{2} > e_{1}$. The last column shows the MFS for each failure. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}_{failure}$, e.g., for the object $H2cr8$, $(5_{1},6_{0},7_{0})_{e_{1}}$ actually means (-, -, -, -, -, 1, 0, 0, -, -, -, - ) is the MFS for the failure $e_{1}$.
-
-%It is noted that we use '$\rightarrow$' and '=' to describe the masking sequence of each MFS, in which '$\rightarrow$' means the left MFS in this operator can mask the right MFS of this operator, e.g., $(5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2})$ means if $(5_{1},6_{0},7_{0})$ appears in the test case, then $(5_{1},8_{2},9_{2})$ will not be triggered. Operator '=' means that these two MFS will not mask each other.
-%
-%\begin{table}\renewcommand{\arraystretch}{1.3}
-%\tbl{The testing models used in the case study\label{testing_models}}{
-%\begin{tabular}{c|c|c} \hline
-%software & Model & MFS\&  masking sequence \\ \hline
-%HSQLDB 2cr8 & $2^{9} \times 3^{2} \times 4^{1}$ & $ (5_{1},6_{0},7_{0}) \rightarrow (5_{1},8_{2},9_{2}) = (5_{1},8_{2},9_{1}) \rightarrow (5_{1},8_{3},9_{2}) = (5_{1},8_{3},9_{1})$ \\ \hline
-%HSQLDB  2.2.5 & $2^{8} \times 3^{3}$ & $ (6_{1},7_{0}) \rightarrow (5_{2})$ \\ \hline
-%HSQLDB  2.2.9 & $2^{8} \times 3^{3}$& $ (6_{0}) \rightarrow (0_{1},5_{1},7_{0}) = (0_{0},5_{1},7_{0}) \rightarrow (5_{1},7_{0}) $ \\ \hline
-%JFlex 1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ (0_{0}) \rightarrow (1_{0}) $ \\ \hline
-%JFlex  1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $ (1_{0},2_{1}) \rightarrow (0_{1})  $\\ \hline
-%synthez  1 & $2^{5}\times 3^{3}\times 4^{1}$& $ (2_{1},3_{0}) \rightarrow (1_{1},2_{1}) = (1_{0},3_{0})$ \\ \hline
-%synthez  2 & $2^{6}\times 3^{2}\times 4^{1}$ & $ (4_{1},6_{0},7_{1},8_{0}) \rightarrow (1_{1},3_{1},5_{1}) \rightarrow (2_{0},3_{1},6_{0}) $\\ \hline
-%synthez  3 & $2^{5}\times 3^{3}$ & $ (2_{1},3_{0}) \rightarrow (1_{0}) = (4_{1}) \rightarrow (6_{0},7_{0}) $\\ \hline
-%synthez  4 & $2^{7}\times 3^{2}\times 4^{1}$ & $ (0_{1},2_{1},5_{0},6_{1}) \rightarrow (2_{1},4_{0}) = (6_{1},7_{0}) \rightarrow (3_{0},4_{0},5_{0}) $\\ \hline
-%synthez  5 & $2^{4}\times 3^{3} \times 4^{2}$ & $ (0_{0},1_{1},3_{0},6_{1},8_{0}) \rightarrow (2_{0},3_{0},4_{1})$\\ \hline
-%synthez  6 & $2^{9}\times 3^{2}$ & $ (2_{0},7_{1},8_{1}) \rightarrow (3_{1},5_{1}) = (4_{0}) \rightarrow(3_{1},6_{0},7_{1}) \rightarrow(3_{1},7_{1},8_{0})$ \\ \hline
-%synthez  7 & $2^{10}\times 3^{1}\times 4^{1}$& $ (3_{1},4_{0},5_{0}) \rightarrow (2_{0}, 4_{0}, 7_{1},9_{0}) \rightarrow (6_{1},10_{0},11_{1}) $ \\ \hline
-%synthez  8 & $2^{11}\times 3^{1}\times 4^{1}$& $ (1_{0},3_{1},4_{0},7_{1},9_{0},12_{1}) \rightarrow (0_{0},2_{1},3_{1},7_{1},10_{0},11_{1}) $\\ \hline
-%synthez  9 & $2^{4}\times 4^{3}$ & $ (3_{1},5_{0}) \rightarrow (5_{0},6_{1}) $ \\ \hline
-%synthez  10 & $2^{7}\times 3^{3} \times 4^{1}$ & $ (0_{1},3_{0},4_{1},7_{0}) \rightarrow (2_{0},3_{0},5_{1}) = (2_{0},3_{0},5_{0}) $\\ \hline
-%\hline\end{tabular}
-%}
-%\end{table}
-
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{The testing models used in the case study\label{testing_models}}{
@@ -1740,46 +1622,9 @@ syn10 & $2^{7}\times 3^{3} \times 4^{1}$ & $e_{1} > e_{2}$ &$ (0_{1},3_{0},4_{1}
 \end{table}
 
 
-%
-%we This work is time assuming, so to get a more general result, we further synthesized 30 more such scenarios and each of them is. The detailed model and the is listed in table.
-
-%We then generated the exhaustive test suite consist of all the possible combinations of these options and under each of them we executed the merged test file. We recorded the output of each test case to observe whether there are test cases contain prior failure-inducing combination but do not produce the corresponding bug.
-
-
-%
-% need to apply the traditional algorithms to identify the failure-inducing combinations for the prepared software in Table \ref{software description} and compare them with the prior failure-inducing combinations.
-
-%The detailed model is listed as table \ref{subject_model}. And the HSQLDB can be modeled as table \ref{modelHSQLDB}.
-%
-%\begin{table}\renewcommand{\arraystretch}{1.3}
-%\caption{subjects model}
-%\label{subject_model}
-%\begin{tabular}{c|c} \hline
-%software & Model  \\ \hline
-%Grep & $2^{1}3^{3}4^{3}5^{1}6^{1}8^{1}$ \\ \hline
-%Sed &  3*4*5 \\ \hline
-%Make & 3*4*5 \\ \hline
-%Gzip & 3*4*5 \\ \hline
-%HSQLDB & 3*4*5 \\
-%\hline\end{tabular}
-%\end{table}
-
-
 \subsubsection{Study setup}
 After preparing the objects under testing, we then applied our approach (FIC\_BS with replacement strategy) to identify the MFS. Specifically, for each SUT we selected each test case that failed during testing and fed it into our FCI approach as the input. Then, after the identifying process was completed, we recorded the identified MFS and the extra test cases needed. For the traditional FIC\_BS approach, we designed the same experiment. But as the objects being tested have multiple failures for which the traditional FIC\_BS can not be applied directly, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one failure} and \emph{distinguishing failures} as described in Section 3.2.  The purpose of recording the generated additional test cases is to quantify the additive cost of our approach.
 
-%three traditional approaches: OFOT\cite{nie2011minimal}, FIC\_BS \cite{zhang2011characterizing} and CTA\cite{yilmaz2006covering} to identify the MFS in each failing test case we have detected after executing the possible test cases for that model. Among the three approaches, CTA is a integrated failure characterization part of FDA-CIT\cite{yilmaz2013reducing}. As CTA is a post-analysis technique applied on given test cases, different test cases will influence the result of characterization process. So to avoid randomness and to be fair, we fed the CTA with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. %, the configuration options for J48, is .
-
-% To make the first two approaches (OFOT and FIC) work, we need to feed them with a failing test case. And for CTA, however, it need to work with a covering array and the executing result for each test case in the covering array. As the input for the traditional approaches are different, we designed two different setups, one for OFOT and FIC, while the other for CTA.
-
-%For OFOT and FIC, our set up is as follows:
-
-%For each test case in the exhaustive set for a particular software, we applied OFOT, FIC\_BS and CTA respectively to isolate the failure-inducing combinations in this test case.
-
-%
-%For CTA, our setup is as follows:
-%
-%We first utilize augment simulating algorithms(ASA) to generate 2-way covering arrays. And for each test case in the covering array, the executing result of them can be fetched from the exhaustive set we have got in the first study. Then we fed CTA approach with the covering array along with the corresponding executing results. We then collected the failure-inducing combinations after running CTA. As different covering array may affect the result of CTA approach, we repeated using ASA to generate 2-way covering array for 30 times and applied CTA for each of them. It is noted that ASA algorithm is a heuristic approach, which containing some random factors, so the 30 covering arrays are different from each other.
 We next compared the identified MFS of each approach with the prior MFS to quantify the degree that each suffers from masking effects. There are five metrics used in this study, listed as follows:
  \begin{enumerate}
  \item \emph{Accurate number} : the number of identified MFS which are actual prior MFS.
@@ -1790,8 +1635,6 @@ We next compared the identified MFS of each approach with the prior MFS to quant
 \end{enumerate}
 
 Among these five metrics, the \emph{accurate number} directly indicates how effectively the FCI approaches performed, since to identify as many actual MFS as possible is the target for every FCI approach.  Metrics \emph{ignored number} and \emph{irrelevant number} indicate the extent of deviation for the FCI approaches, specifically, the former indicates how much information about the MFS will miss, while the latter indicates how serious the distraction would be due to the useless schemas identified by the FCI approach.  \emph{Super number} and \emph{sub number} are the metrics in between, i.e., to identify some schemas that is \emph{super} or \emph{sub} schemas of the actual MFS is better than identifying \emph{irrelevant} ones or ignoring some MFS, but it is worse than identifying the schema that is identical to some actual MFS. This is intuitive, as given the \emph{super} / \emph{sub} schemas, we just need to \emph{remove} / \emph{add} some elements of the original schemas to get the actual MFS.  While for the \emph{irrelevant} or \emph{ignore} ones, however, more efforts will be needed (e.g., both \emph{adding} and \emph{removing} operations will be needed to revise the irrelevant schemas to the actual MFS).
-%
-%the FCI approaches that can determine part parameter values for the failure-inducing combinations, although with additional noisy information.
 
 Besides these specific metrics, we also give a composite metric to measure the overall performance of each approach. The composite metric \emph{aggregate} is defined as follows:
 
@@ -1804,30 +1647,6 @@ In this formula, \emph{accurate, super, sub, irrelevant, } and \emph{ignored} re
 For example, the similarity of  (- 1\ 2 - 3) and  (- 2\ 2 - 3) is $\frac{2}{3}$. This is because $S_{A}$ and $S_{B}$ have the same third and last elements, and both of them are three-degree.
 
 So the \emph{related} function is the summation of similarity of all the super or sub schemas with their corresponding MFS.
-%Besides, as we discussed in the formal model, \emph{regards as one failure} will, while \emph{distingush} will. So the four metric will to some extent validate this formal analysis.
-
-%This case study was conducted on the five subjects: HSQLDB with version 2rc8, 2.2.5 and 2.2.9, JFlex with versions 1.4.1 and 1.4.2. We summed up these metrics for each subject and illustrated them together in Fig \ref{fig:normalexperiment} for analysis.
-
-%, which indicate the less impact do on the FCI approaches.
-
-%
-%To make this comparison, we first introduce the following notation:
-%
-%Assume we get two schema $S_{A}$,$S_{B}$, the notation$S_{A} \bigcap S_{B}$ indicate the same elements between $S_{A}$ and $S_{B}$. For example $(- 1\ 2 - 3) \bigcap  (- 2\ 2 - 3) = \{ (- - 2 - -) , (- - - - 3)\}$.
-%
-%Then the similarity between schemas is defined as the followed notation:
-%\begin{displaymath} Similarity(S_{A},S_{B})= \frac{|S_{A} \bigcap S_{B}|}{\max (Degree(S_{A}),Degree(S_{B})) } \end{displaymath}.
-%
-%In this formula, the numerator indicate the number of same elements in  $S_{A}$ and $S_{B}$. It is obviously, the bigger the value is the more similar two schemas are.  The denominator give us this information: if the the number of same elements is fixed, the bigger the degree of the schema, the more noise we will encounter to find the failure source. In a word, the bigger the formula can get the better the similarity is between the two schema.
-%
-%For the set of schemas$ Set_{A}$ and $Set_{B}$, the similarity definition is :
-%\begin{displaymath} Similar(Set_{A},Set_{B})= \frac{\sum _{s_{i}\in Set_{A}}\max _{s_{j}\in Set_{B}}S\left( s_{i},s_{j}\right)}{|Set_{A}|} \end{displaymath}.
-%
-%It is obviously the more similarity between the set of failure-inducing combinations identified by the algorithms with these perfect combinations the less impacts do these algorithms suffered from multiple failures as well as their masking effects.
-%
-%Besides the similarity metric, another metric also need to be considered: the discrepancy between the number of identified failure-inducing combinations with these perfect combinations. If this discrepancy is too big, even though we get a good similarity metric value, we also get too many noise which make our result inaccuracy.
-%
-%Particularly, if the value of discrepancy number metric is 0 and the value of similarity metric is 1, it means that multiple failures as well as their masking effect have no impacts on the algorithms, which is usually not feasible in practice.
 
 \subsubsection{Results and discussion}
 
@@ -1881,13 +1700,6 @@ So the \emph{related} function is the summation of similarity of all the super o
 \textbf{Accurate number: }
 Figure \ref{fig:21} shows the number of accurate schemas that each approach achieved.  It appears that there is no outstanding strategy, i.e., there does not exist a strategy that can always perform better or worse than others. For example, for the testing object 1, \emph{ILP} performed the best in obtaining the accurate MFS, while for the testing object 2, \emph{distinguishing failures} identified the most accurate MFS and for testing object 3, \emph{regarded as one failure} did the best. However, upon closer inspection, we can find that strategy \emph{distinguishing failures} performed a little better than strategy \emph{regarded as one failure}. This can be reflected in that there are four testing objects (1, 3, 11, and 15) on which strategy \emph{distinguishing failures} performed better, while for strategy \emph{regarded as one failure} there are only three superior testing objects (6, 8, and 14). This subtle difference can be explained by our formal analysis in Section 4. Specifically, for the strategy \emph{regarded as one failure}, only rule 1 in Table \ref{fci_mask_regard} can result in the FCI approaches identifying the schemas that are identical to some actual MFS, while for \emph{distinguishing failures}, there are two rules (rule 1 and 6a in Table \ref{fci_mask_distinguish}). As a result, \emph{distinguishing failures} strategy has a slighter larger chance than \emph{regard as one failure} to identify the schemas that are identical to the actual MFS.
 
-%This is becasue the identify rules can only. and this is a small numnber for all the rules, as a result, Dis has both good and bad F, and  Dis is a little better than the one.
-%
-%Figure \ref{fig:21} shows the number of the accurate schemas that each approach achieved.  We can firstly find that the strategy \emph{distinguishing failures} performed a little better than strategy \emph{regarded as one failure}, as there are four testing objects (1, 3, 11 and 15) that the strategy , while This is becasue the identify rules can only. and this is a small numnber for all the rules, as a result, Dis has both good and bad F, and  Dis is a little better than the one.
-
-%Another observation for this figure is that When see the , we can find really find they are similar, in fact, especiffly. This can be easily understood. And our replacement really do things better, in a average, our appraoch can. our approach can perform a little better than the dis.
-%
-%The reason for this is that the accurate schemas is depending on the failing test cases the FCI approach can figure out (see Figure \ref{fig:fci_process} and Proposition \ref{pro:ci} in Section 3), and no one of them can always guarantee that the test cases it observed or predicted is more precisely than the other two. In fact, the \emph{regarded as one failure} can , and \emph{}Based on this, the two strategies \emph{regarded as one failure} and \emph{distinguishing failures} will both, in specific, \emph{regarded as one failure} will and \emph{distinguishing failures} will. As a result, i.e., neither of them can guarretenn their perdict and observed failing test cases are more perice than the other .
 
 We can further find that strategies \emph{replacement strategy based on ILP searching} (short for \emph{ILP}
 later) and \emph{distinguishing failures} have similar results. This can be easily understood, as strategy \emph{ILP} is actually a refinement version of the strategy \emph{distinguishing failures}, which also make the failures distinguished with each other. The main difference between \emph{ILP} and \emph{distinguishing failures} is that the former has to replace the test cases that triggered any failure other than the currently analysed one while the latter will not change the generated test cases. As a result, the comparison of other metrics ( sub, super, ignore, irrelevant numbers) also showed the similarity between strategy \emph{ILP} and \emph{distinguishing failures}.
@@ -1897,14 +1709,6 @@ Figure \ref{fig:22} and \ref{fig:23} depicts the results for \emph{sub number} a
 
 Although offering similar result as \emph{distinguishing failures} strategy, our strategy \emph{ILP} tend to identify fewer sub schemas and super schemas of actual MFS than strategy \emph{distinguishing failures} (testing objects 1, 9 in Figure \ref{fig:22} and testing objects 3, 4,7,9,10 13 in Figure \ref{fig:23}). We believe this is an improvement, as too many sub schemas and super schemas will make it harder to identify the actual MFS. One issue is the redundancy problem, as many sub or super schemas in fact point to the same actual MFS.
 
-%a more moderate result when compared to the other two strategies.
-%Furthermore we can find that our strategy \emph{ILP} performed a little better than that of strategy \emph{distinguishing failures} (at testing object 1 and 9). We believe the little improvement is based on the replacement strategy in our approach, as which will , and the better test cases will get a good chance that the FCI will make better prediction of the failure test cases. So at last we can find that our approach can get less sub schemas.
-
-%\textbf{super number: }
-%The result in Figure \ref{fig:23} shows that the \emph{regarded as one fault} performed better than the other two approaches. This is consistent with the formal analysis as this strategy the approach does not discard these test cases that may have masking effects, which make it less chances than \emph{distin} that will not make the MFS in the intersection area not be super. Alougth we have predicted it can perform better than the other two approaches, we didn't expect it does not have even a super schema than. In fact all these subjects is 0. It is interesting which drive us to deep insght what happened. And finally we get that .
-%
-%Another observation about this metric is that similar to the sub number, when comparing ILP with distin, we can find that our approach can also perform a little better than distin. It is a evidence that the replacement process really improving the generated test cases quoality and make the predicetion better.
-
 \textbf{Ignore number \& irrelevant number: }
 The results of the two negative performance metrics are given in Figure \ref{fig:24} and \ref{fig:25}, respectively.
 
@@ -1912,19 +1716,6 @@ There are two main observations: first, for strategies \emph{regarded as one fai
 
 The second observation is that \emph{ILP} did a good job at reducing the scores for these two negative metrics. Specifically, for \emph{ignored number}, our approach performed better than strategy \emph{distinguishing failures} at testing object 3 and 15 in Figure \ref{fig:24}, but is not as good as strategy \emph{regarded as one failure}. In fact, strategy \emph{regarded as one failure} has a significant advantage at reducing the number of ignored MFS as it tends to associate the failures with all the failing test cases. However, when we consider the \emph{irrelevant number}, we can find that our approach is the best among all three strategies ( better than \emph{distinguishing failures} at testing object 1 in Figure \ref{fig:25}, and better than strategy \emph{regarded as one failure} for  most testing objects) . We believe this improvement is caused by our test cases replacing strategy, as it can increase the test cases that are useful for identifying the MFS and decrease those useless test cases.
 
-%we can so that we can believe the test case replacing strategy in our approach plays a positive
-
- %ignored more MFS than the strategy \emph{regarded as one failure} and . It is a signal that our approach,
-%
-% we can get in Figure \ref{fig:24} for this metric: first, strategy \emph{regarded as one failure} performs better than the other two approaches, this is also consistent with the formal analysis in section, because for the distin strategy, it will discard some important test cases which can directly make the MFS ignored; second, ILP performs better than the distin.
-
-%\textbf{irrelevant number: }
-%Figure \ref{fig:25} shows the results for this metric. We can firstly observed that except the point 1, 6, 9,11,14,15 that \emph{regarded as one failure} are have a similar result as ILP and distin, the remaining have a significance gap comparing to distin and ILP( \emph{regarded as one failure} normally identified have 10 to 20 more schemas that are irrelevant to the real MFS). This tell us \emph{regarded as one failure} have a poorer performance than the other two approaches at this metric. This result is also as expected as we in the formal anaysis section got that \emph{regarded as one failure} has more rules that can lead the schemas to be irrelevant ones.
-%
-%As for the ILP and distin, we can still find ILP a little better than the distin. This can not be easily observed at this figure, but when we look at the raw data at Table \ref{evaluation_all}, we can find that ILP has on average identified 0.XXXX less irrelevant test cases.
-
-
-%We can find that ILP and distin perfoms better than the \emph{regarded as one failure}, i.e., the schemas they identified to be irrelevant ones are less than that of the strategy \emph{regarded as one failure}.
 
 \textbf{Aggregative for the five metrics: }
 The composite results are given in Figure \ref{fig:26}. This metric gives an overall evaluation of the quality of the identified schemas. From this figure, we can find that \emph{ILP} performed the best, next the \emph{distinguishing failures}, the last is the \emph{regarded as one failure} (See the testing object 1, 3 and 4 in Figure \ref{fig:26}).
@@ -1933,15 +1724,6 @@ It is as expected  that \emph{ILP} performed better than \emph{distinguishing fa
 
 \textbf{Test cases: }
  The number of test cases generated for identifying the MFS indicates the cost of FCI approach. The result is listed in Figure \ref{fig:27}.  We can obviously find that strategy \emph{ILP} generated more test cases than the other strategies. In specific, the gap between the \emph{ILP} and other two strategies ranged from about 2 to 5 (except for the 6th testing object, which exceeds 20), this is acceptable when comparing to all the test cases that each approach needed. The increase in test cases for our approach is necessary, as additional test cases must be generated when some test cases are not satisfied for identifying the MFS of the currently analysed failure.  As for strategies \emph{distinguishing failures} and \emph{regarded as one failure}, there is no significant difference between  the number of test cases generated.
-
-%
-%We first observed that, the results of two traditional strategies, \emph{regarded as one failure} and \emph{distinguishing failures}, is consistent with the formal analysis in section 4. Specifically, the former has more sub-schemas of MFS than the latter for all the 15 subjects, and the latter has more super-schemas of MFS than the former. For the `ignored MFS' metric, as we have executed all the failing test cases, we get 0 ignored MFS for all the approaches. So to evaluate this metric for these approaches, we record it for each test case at a time and take the average value as the result, which is listed in superheses. We also found in most cases (except synthez 5 and synthez 6) that the approach with \emph{distinguish} strategy get more ignored MFS than the other, which also coincides with the formal analysis. And for the `irrelevant MFS', we found \emph{regarded as one failure} strategy in most cases got more `irrelevant MFS' than the other, which was also as expected.
-%
-%We then observed that our approach can perform better than the two traditional strategies. The advantages are shown in the more accurate MFS and less irrelevant schemas. Our approach also identified the least number of sub-schemas. As for the `super-schema' metric, our approach performed better than `distinguishing failures' but not as well as `regarded as one failure'. This is because our strategy is based on the `distinguishing failures' strategy (the main difference is that our strategy filters the unsatisfied test cases). However, our approach is poor at the `ignored MFS' metric. The possible reason for this may be that the unsatisfied test cases we discard may contain some useful information about the MFS. Above all, our approach achieves the best performance compared with the other two strategies, which can be shown in the `overall' metric. The overall metric indicates that our approach performs better than `distinguishing failures' strategy, which is better than the `regarded as one failure' strategy.
-%
-%
-%We further observed that, the extra cost (of generating test cases) for our approach is acceptable. In fact, when compared to the \emph{`distinguishing failures'} strategy, our approach needed an average of just 3 or 4 more test cases, and when compared to the \emph{`regarded as one failure'} strategy, our approach needed less test cases in some instances (JFlex 1.4.1, JFlex 1.4.2, synthez 3 and synthez 6). This is because the extra test cases the FCI needed lies in what the MFS is, the difference at the identified MFS for FCI approaches will make their needed test cases  differs greatly, so that the cost for replacing test cases in our approach may have little influence on the number of final test cases needed.
-
 
 
 Above all, we draw three conclusions, which help to answer \textbf{Q2}:
@@ -1973,58 +1755,7 @@ Compared to the ILP-based approach, we can firstly observe that there is little 
 
 Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. It shows that our integer programming based searching technique can find a satisfied test case more rapidly than the random approach.
 
-% there is significant improvement for augmented approaches in reducing the wrongly identified combinations. For instance, CTA approach in Fig \ref{fig:subfig6} only got 2 irrelevant combinations with replacing strategy, while the traditional two strategy got 5 and 19 irrelevant combinations respectively. And for FIC\_BS in Fig \ref{fig:subfig4} this comparison is 2 for replacing strategy, and 2 , 61 for two traditional strategies.
-
-%Fig \ref{fig:subfigureExample2} presents the result of the last case study. The organization of this figure is similar to the second study. The bar in each column depicts the results of the augmented approaches, which is labelled as ``replacing strategy". We marked two additional points in each column which represent the result of \emph{regarded as one failure} and \emph{distinguish failures} strategy to get a comparison with the augmented approaches.
-
-% We just added some information in the parentheses attached the value in each cell. This information display the  discrepancy between traditional ones. Notation '+' means promotions against traditional ones, while '-' indicates decrease. The value in parentheses has been normalized.
-
-%\begin{figure*}[ht]
-%\centering
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:subfig4}
-%    \includegraphics[width=2.21in]{FIC_BS_our.eps}
-%}
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:subfig5}
-%    \includegraphics[width=2.21in]{OFOT_our.eps}
-%}
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:subfig6}
-%    \includegraphics[width=2.21in]{CTA_our.eps}
-%}
-%\caption[Optional caption for list of figures]{Three approaches augmented with the replacing strategy}
-%\label{fig:subfigureExample2}
-%\end{figure*}
-
-
-
-
-%Besides, the augmented approaches also get a good performance at limiting the number of sub combinations and parent combination. In effect, compared with \emph{distinguish failures} which is good at limiting sub combinations while producing more super combinations and \emph{regard as one failure} which is the other way around, the augmented ones get a more balanced result. Specifically, for instance, in Fig \ref{fig:subfig4} for approach FIC\_BS, \emph{distinguish failures} strategy obtained 9 super combinations while got 3 sub combinations. And for \emph{regard as one failure} strategy, it got none super combination but attained 8 sub combinations. For the replacing strategy, it only identified 4 super combinations, which smaller than \emph{distinguish failures} strategy, and obtained 3 sub combinations which is smaller than \emph{regard as one failure} strategy and equal to \emph{distinguish failures} strategy.
-%
-%Apart from these improvement, there is some slight decline for the augmented approaches in some specific situation. For example, we noted that for replacing strategy, it nearly got 2 less accurate combinations on average than traditional strategies, and ignored 1 more failure-inducing combinations on average than traditional ones.
-% Further more it also that number of correctly identified combinations with replacing strategy slightly declines than traditional ones(about 2 less in average).
-
-%As a compensation, however, We noted that the augment approaches got slightly . But promotions against traditional ones. In fact, there are 10 out of 14 cases that augment ones outperform traditional ones at the metric of "similarity", and 9 out of 14 cases that augment ones are better than traditional ones at the metric of "num diff". Additional, this promotion is distinct. As we can see, the best promotion for similarity is 0.9 and the best promotion for num diff is 0.7. Furthermore, the average performance promotion for similarity reached '+ 0.6' and this value reached '+ 0.5' for the num diff metric.
-
 In summary, the answer for \textbf{Q3} is that searching for a satisfied test case affects the performance of our approach, especially regarding the number of extra test cases, and the ILP-based test cases can handle the masking effects at a relatively smaller cost than the random-based approach.
-
-%our approach do make the FCI approaches, to some extent, get better better performance at identifying failure-inducing combinations when facing masking effect between multiple failures.
-
-%\subsection{Comparing with our previous work}
-%The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
-%%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
-%
-%\subsubsection{Study setup}
-%The setup of this case study is almost the same as the second case study. The difference is that the algorithms we choose are three augmented ones.
-%
-%%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
-%
-%\subsubsection{Result and discussion}
-
 
 %\subsection{Voting System}
 %The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FCI approaches with replacing test cases strategy described in Section 4.
@@ -2057,13 +1788,6 @@ Besides the FDA-CIT, we also applied our ILP-based approach to the generated cov
 
 As mentioned before, the FCI approach in FDA-CIT, i.e., classification tree algorithm, is a post-analysis technique. Given different set of test cases, the results identified by the classification tree algorithm are also different. Then a nature question is, what the schemas identified by FDA-CIT will be if the classification tree method is applied on the test cases generated by our approach ILP? To figure this question out is of importance as first, we can learn that whether the test cases generated by ILP can help FDA-CIT approach to improve its quality of the identified schemas; second, the comparison between ILP and FDA-CIT will be more fair as they share the same test cases. For this, a new approach that based on FDA-CIT is introduced, which is augmented by replacing the original test cases in FDA-CIT with those generated by ILP approach. Then the schemas identified by the classification tree algorithm in FDA-CIT are recorded and evaluated. This new approach is referred to as \emph{FDA-CITs} later.
 
-
-
-%As our approach generated different test cases from the FDA-CIT, wha natural question is that if their test cases are the same, what difference will be between the MFS identified by approaches  ILP and FDA-CIT? In fact, we can get a more fair comparison if these two MFS identifying approaches sharing the same test cases. For this, we fed the classification tree (C 4.5) with the same test cases generated by ILP approach, and then recorded the MFS that the classification tree method identified and evaluated them.
-
-% is a nature idea that .
-%we also used the multiple-class FCI approach of FDA-CIT to characterize the MFS using the test cases generated by our approach, so that we could obtain a fair result with which to evaluate the FCI approach.
-%with the same test cases generated by OFOT to get deterministic results. Additionally, the classified tree algorithms for CTA we chose is J48 implemented in Weka \cite{hall2009weka}. While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple failures in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FCI) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering},
 \subsubsection{Result and discussion}
 
 The result is listed in Figure \ref{fig:comparefda}. We conducted three groups of experiments. The first one generated 30 different 2-way cover arrays for each testing object, and then for each covering array we applied the three approaches to identify the MFS. The average evaluation results for the experiments based on 30 covering arrays are listed in the Sub-figure \ref{fig:31}. The other two groups of experiments starts with 3-way covering arrays and 4-way covering arrays, of which their results are depicted in Sub-figure \ref{fig:32} and \ref{fig:33} respectively.
@@ -2072,7 +1796,6 @@ In each sub-figure, there are 7 columns, showing the outcomes for the previous m
 
 Note that in Figure \ref{fig:comparefda}, the results for each metric is the average evaluation for all the results of the experiments on the 15 testing objects in Table \ref{testing_models}. The raw results for each testing object are listed in Table \ref{comparewithfda} in the appendix . The raw data is organised the same way as Table \ref{evaluation_all}, except that we added a column \emph{t}  which indicates the strength of the covering array generated for this experiment.
 
-%For each strength \emph{t}(ranged from 2 to 4), we conducted the experiment repeated 30 times for different covering arrays, we then recorded the average data(included accurate, sub, super, irrelevant, ignored, overall and needed test cases) for the FDA-CIT, ILP-based approach, and FDA-CIT using our test cases (FDA-CITs), respectively, for each testing object. To conveniently and clearly visualize the result, we only depicts the average evaluation result for all the testing objects and list them in Figure \ref{fig:comparefda}. The raw data which can show the result for each testing object can be found in Table \ref{comparewithfda} in the appendix section. The raw data is organised the same as in Table \ref{evaluation_all}, except that we added a column \emph{t}  which indicates the strength of the covering array we generated for this experiment.
 
  \begin{figure*}[htbp]
 \centering
@@ -2287,140 +2010,6 @@ As for the future work, we need to do more empirical studies to make our conclus
 
 \medskip
 
-%\section{Proofs of the rules in Section 4.2 and 4.3}
-%
-%\subsection{For Regarded as one failure}
-%\begin{proposition}
-%$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} \prec c_{km}, c_{as} \prec c_{km}$, then $ either\ \exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), s.t. c_{ro} \prec c_{as}', or c_{ro} irrelevant\ to\ all\ the\  \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$.
-%\end{proposition}
-%
-%\begin{proof}
-%
-%By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
-%
-%Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
-%\end{proof}
-%
-%This proposition tells us .
-%
-%
-%\begin{proposition}
-%$If \exists c_{ro} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C), c_{km} \in \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{as} \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D), \ and\ c_{ro} irrelevant to  all \mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C), c_{km} \prec c_{as}$, then $c_{ro} \prec c_{km}$.
-%
-%\end{proposition}
-%
-%\begin{proof}
-%
-%By Proposition \ref{pro:cs}, we learn that as $c_{as} \prec c_{km}$, the only possible test cases set is $\mathcal{T}(c_{km}) \in B_{1} \bigcup B_{2} \bigcup C)$. And $c_{ro} \prec c_{km}$, then $\mathcal{T}(c_{ro}) \supset  \mathcal{T}(c_{km})$. In another word, $\mathcal{T}(c_{ro}) = \mathcal{T}(c_{km}) \bigcup \mathcal{T}' $, and $\mathcal{T}' \in B_{3}$.
-%
-%
-%So to irrelevant them is two scenarios, i.e.,
-%
-%All these
-%
-%Then we can learn that $\mathcal{T}(c_{ro})$ interset the test cases for actual MFS.  And as $\mathcal{T}(c_{ro})$ has test cases in $ B_{1} \bigcup B_{2} \bigcup C)$ and has test cases in $B_{3}$. Then we can learn that either $\exists c_{as}' \in \mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D)$, s.t. $c_{as}' \prec c_{ro}$, or $c_{ro}$ irrelevant to all the schemas. (By definitions \ref{pro:mi} and \ref{pro:cs})
-%\end{proof}
-%
-%
-%\subsection{For Distinguishing failures}
-
-
-%\section{Example of rules}
-%\begin{table}
-%\tbl{Example of the influence of the regarded as one failure for FCI approach\label{example-of-fci-influence}}{
-%\begin{tabular}{llllllllllll}
-%%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-%
-%\multicolumn{3}{c}{(0,0,0,1,0,0)}&\multicolumn{3}{c}{(1,1,1,0,0,0)}&\multicolumn{3}{c}{(1,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,0,0,0,0)}\\
-%\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(1,1,1,0,1,0)}&\multicolumn{3}{c}{(1,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,0,1,0)}\\
-%\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}\\
-%\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,1,1,0)}\\
-%\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,0,0)} & \multicolumn{3}{c}{(0,1,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,0,1)}\\
-%\multicolumn{3}{c}{}   & \multicolumn{3}{c}{(1,0,1,1,1,0)} & \multicolumn{3}{c}{(0,1,0,1,0,0)}  & \multicolumn{3}{c}{(0,1,1,1,0,1)}\\
-%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,1,0)} & \multicolumn{3}{c}{(0,1,1,0,0,0)}  & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,0,0,0,0)} & \multicolumn{3}{c}{(0,1,1,1,0,0)}  & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,0,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,0,0)}   & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} & \multicolumn{3}{c}{(0,1,1,1,1,1)} & \multicolumn{3}{c}{(1,0,0,0,1,0)} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,1,1,1,1,1)} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{}\\
-% \hline
-%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $one\ failure$} \\
-%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C)$} \\ \hline
-%\multicolumn{4}{c}{(1,1,-,-,-,0) } &\multicolumn{4}{c}{(1,1,1,-,-,0)} & \multicolumn{4}{c}{(1,-,1,-,-,0)} \\
-%\multicolumn{4}{c}{(1,-,1,1,-,0) } &\multicolumn{4}{c}{(1,-,1,1,-,0 )} & \multicolumn{4}{c}{(0,0,-,-,-,0)}\\
-%\multicolumn{4}{c}{(0,0,0,0,-,0) } &\multicolumn{4}{c}{(0,0,0,-,-,0)} & \multicolumn{4}{c}{(0,-,-,-,0,0)}\\
-%\multicolumn{4}{c}{(0,-,1,1,-,1)}             &\multicolumn{4}{c}{(0,0,-,-,0,0)} & \multicolumn{4}{c}{(-,0,1,-,-,0)} \\
-%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(-,0,1,1,0,0)} &           \multicolumn{4}{c}{(-,-,1,-,0,0)} \\
-%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{(0,-,1,1,1,1)} &           \multicolumn{4}{c}{(-,0,-,0,-,0)}\\
-%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,-,1,1,1,1)}\\
-%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(1,-,1,1,1,-)}\\
-%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{ } &           \multicolumn{4}{c}{(-,0,1,1,1,-)}\\  \hline
-%
-%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
-%\multicolumn{4}{c}{ 2} &\multicolumn{2}{c}{(1,-,1,1,-,0)}  & \multicolumn{2}{c}{(1,-,1,1,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,1,-,0)}\\
-%\multicolumn{4}{c}{ 4a} &\multicolumn{2}{c}{(1,1,-,-,-,0)}  & \multicolumn{2}{c}{(1,1,1,-,-,0)} & \multicolumn{2}{c}{(1,-,1,-,-,0)} &\multicolumn{2}{c}{(1,-,1,1,-,0)} \\
-%\multicolumn{4}{c}{4b} &\multicolumn{2}{c}{(0,-,1,1,-,1) }  & \multicolumn{2}{c}{(0,-,1,1,1,1)} & \multicolumn{2}{c}{(-,-,1,1,1,1)} & \multicolumn{2}{c}{*} \\
-%\multicolumn{4}{c}{ 6} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,0,-,-,0) } & \multicolumn{2}{c}{(0,0,-,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-%\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,-,-,0,0)} & \multicolumn{2}{c}{(0,0,-,-,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-%\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,0,0) } & \multicolumn{2}{c}{(-,0,1,-,-,0)} & \multicolumn{2}{c}{*}\\
-%\multicolumn{4}{c}{9a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-%\multicolumn{4}{c}{9b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
-%\end{tabular}}
-%\end{table}
-%
-%\begin{table}
-%\tbl{Example the influence of distinguishing failures for FCI approach\label{example-of-fci-influence-distiguish}}{
-%\begin{tabular}{llllllllllll}
-%%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-%
-%\multicolumn{3}{c}{(0,0,0,1,1,0)}&\multicolumn{3}{c}{(0,0,0,0,0,0)}&\multicolumn{3}{c}{(0,0,1,1,1,0)}&\multicolumn{3}{c}{(0,1,1,0,0,0)}\\
-%\multicolumn{3}{c}{(0,0,1,1,0,0)}&\multicolumn{3}{c}{(0,0,0,0,1,0)}&\multicolumn{3}{c}{(1,1,0,1,0,0)}&\multicolumn{3}{c}{(0,1,1,0,1,0)}\\
-%\multicolumn{3}{c}{(0,0,1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,1,0,0)} & \multicolumn{3}{c}{(1,0,1,1,0,1)}&\multicolumn{3}{c}{(0,1,1,1,0,0)}\\
-%\multicolumn{3}{c}{(0,0,1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,1,1,0)} & \multicolumn{3}{c}{(0,0,1,1,1,1)}&\multicolumn{3}{c}{(0,1,1,1,1,0)}\\
-%\multicolumn{3}{c}{(1,1,0,0,0,0)} &\multicolumn{3}{c}{(1,1,0,0,1,0)} & \multicolumn{3}{c}{(1,1,0,0,1,1)}&\multicolumn{3}{c}{(1,1,1,1,1,1)}\\
-%\multicolumn{3}{c}{(0,0,1,1,0,1)} &\multicolumn{3}{c}{(1,1,0,1,1,0)} & \multicolumn{3}{c}{(0,1,0,0,1,1)} & \multicolumn{3}{c}{(0,1,1,1,1,1)}\\
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,0,0)} & \multicolumn{3}{c}{(1,0,1,0,1,1)} & \multicolumn{3}{c}{(1,1,1,1,0,1)}\\
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,1,0,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{(1,0,0,1,1,1)}\\
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,1,1,0,1,0)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,1,1,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(0,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{(1,0,0,0,1,1)} & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-% \hline
-%\multicolumn{4}{c}{\bfseries $actual\ MFS$} &\multicolumn{4}{c}{\bfseries $knowing\ masking\ effects$} & \multicolumn{4}{c}{\bfseries $distinguishing failures$} \\
-%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-%\multicolumn{4}{c}{(0,-,1,1,1,-) } &\multicolumn{4}{c}{(1,1,-,-,-,0)} & \multicolumn{4}{c}{(0,0,0,-,-,0)} \\
-%\multicolumn{4}{c}{(1,1,-,1,-,0) } &\multicolumn{4}{c}{(0,0,-,-,-,0)} & \multicolumn{4}{c}{(0,0,-,-,0,0)}\\
-%\multicolumn{4}{c}{(-,-,0,0,1,1) } &\multicolumn{4}{c}{(-,0,1,1,-,1)} & \multicolumn{4}{c}{(0,0,-,0,-,0)}\\
-%\multicolumn{4}{c}{(0,0,0,-,0,0)}  &\multicolumn{4}{c}{(0,0,1,1,-,-)} & \multicolumn{4}{c}{(1,1,1,-,-,0)} \\
-%\multicolumn{4}{c}{(0,0,0,0,-,0)}  &\multicolumn{4}{c}{(0,0,0,0,1,-)} &  \multicolumn{4}{c}{(1,1,-,-,1,0)} \\
-%\multicolumn{4}{c}{(1,0,-,-,1,1)}  &\multicolumn{4}{c}{(1,1,0,0,1,-)} & \multicolumn{4}{c}{(1,1,-,0,-,0)}\\
-%\multicolumn{4}{c}{(1,1,0,0,1,-)}  &\multicolumn{4}{c}{(1,0,1,-,1,1)} & \multicolumn{4}{c}{(0,0,1,1,0,-)}\\
-%\multicolumn{4}{c}{(-,1,1,-,-,0)}  &\multicolumn{4}{c}{(1,0,-,0,1,1)} & \multicolumn{4}{c}{(1,0,1,1,1,1)}\\
-%\multicolumn{4}{c}{(-,-,1,1,1,1)}  &\multicolumn{4}{c}{(-,-,0,0,1,1)} & \multicolumn{4}{c}{(-,0,0,0,1,1)}\\
-%\multicolumn{4}{c}{(1,1,-,-,1,0)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{(0,0,0,0,1,-)}\\
-%\multicolumn{4}{c}{(-,1,1,1,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-%\multicolumn{4}{c}{(1,1,1,1,-,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-%\multicolumn{4}{c}{(1,-,1,1,-,1)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-%\multicolumn{4}{c}{(0,0,0,0,1,-)}  &\multicolumn{4}{c}{} & \multicolumn{4}{c}{}\\
-%
-%\multicolumn{4}{c}{\bfseries rules} &\multicolumn{2}{c}{\bfseries $c_{m}$}  & \multicolumn{2}{c}{\bfseries $c_{origin}$} & \multicolumn{2}{c}{\bfseries $c_{new}$} & \multicolumn{2}{c}{\bfseries $c_{m}'$}\\ \hline
-%\multicolumn{4}{c}{2} &\multicolumn{2}{c}{(-,-,0,0,1,1)}  & \multicolumn{2}{c}{(-,-,0,0,1,1)} & \multicolumn{2}{c}{(-,0,0,0,1,1)} & \multicolumn{2}{c}{(-,-,0,0,1,1)}\\
-%\multicolumn{4}{c}{4} &\multicolumn{2}{c}{(1,0,-,-,1,1)}  & \multicolumn{2}{c}{(1,0,1,-,1,1)} & \multicolumn{2}{c}{((1,0,1,1,1,1))} &\multicolumn{2}{c}{(1,0,-,-,1,1)} \\
-%\multicolumn{4}{c}{6d} &\multicolumn{2}{c}{(1,1,-,1,-,0) }  & \multicolumn{2}{c}{(1,1,-,-,-,0)} & \multicolumn{2}{c}{(1,1,-,0,-,0)} & \multicolumn{2}{c}{*} \\
-%\multicolumn{4}{c}{6c} &\multicolumn{2}{c}{(0,0,0,0,-,0)}  & \multicolumn{2}{c}{(0,0,-,-,-,0) } & \multicolumn{2}{c}{(0,0,0,-,-,0)} &  \multicolumn{2}{c}{(0,0,0,0,-,0)}\\
-%\multicolumn{4}{c}{6b} &\multicolumn{2}{c}{(1,1,-,1,-,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,1,-,-,0)} &  \multicolumn{2}{c}{(-,1,1,-,-,0)}\\
-%\multicolumn{4}{c}{6a} &\multicolumn{2}{c}{(1,1,-,-,1,0)}  & \multicolumn{2}{c}{(1,1,-,-,-,0) } & \multicolumn{2}{c}{(1,1,-,-,1,0)} &  \multicolumn{2}{c}{(1,1,-,-,1,0)}\\
-%\multicolumn{4}{c}{8a} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(-,0,1,1,-,1)} & \multicolumn{2}{c}{(1,0,1,1,1,1)} & \multicolumn{2}{c}{(1,-,1,1,-,1)}\\
-%\multicolumn{4}{c}{8b} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{(0,0,1,1,-,-) } & \multicolumn{2}{c}{(0,0,1,1,0,-)} & \multicolumn{2}{c}{*}\\
-%
-%\multicolumn{4}{c}{9} &\multicolumn{2}{c}{(1,1,0,0,1,-)}  & \multicolumn{2}{c}{(1,1,0,0,1,-)} & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{*}\\
-%%\multicolumn{4}{c}{$c_{new_{irrele}} \prec c_{m}'$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(-,0,-,0,-,0)} & \multicolumn{2}{c}{(0,0,0,0,-,0)} \\
-%%\multicolumn{4}{c}{$c_{new_{irrele}}\ irrele$} &\multicolumn{2}{c}{*}  & \multicolumn{2}{c}{*} & \multicolumn{2}{c}{(1,-,1,1,1,-)}& \multicolumn{2}{c}{*}\\
-%
-%\end{tabular}}
-%\end{table}
 \section{Detail Propositions for masking effects}
 \begin{itemize}
 \item $T_{as} = B_{1} \bigcup B_{2} \bigcup C \bigcup D$ indicates all the actual failing test cases.
