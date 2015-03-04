@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 MAR 2015 04:23
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 MAR 2015 04:46
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -578,37 +578,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [18]
 [19]
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1076.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1078.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 20 undefined on input line 1
-076.
+078.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 20 undefined on input l
-ine 1076.
+ine 1078.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 20 undefined on input line 1
-076.
+078.
 
 [20]
 
 LaTeX Warning: Reference `example-of-fci-influence-distiguish' on page 21 undef
-ined on input line 1078.
+ined on input line 1080.
 
 
 LaTeX Warning: Reference `example-of-fci-influence' on page 21 undefined on inp
-ut line 1078.
+ut line 1080.
 
 
 LaTeX Warning: Reference `example-of-fci-influence-distiguish' on page 21 undef
-ined on input line 1081.
+ined on input line 1083.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2189) has occurred while \output is active []
 
  [21]
 [22]
@@ -618,7 +618,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1213.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1215.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -636,17 +636,17 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1233.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1235.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1233.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1235.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1233.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1235.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
@@ -679,7 +679,7 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1678--1678
+Underfull \hbox (badness 1259) in paragraph at lines 1680--1680
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -689,40 +689,40 @@ File: testCases.eps Graphic file (type eps)
  <testCases.eps>
 
 LaTeX Warning: Reference `fci_mask_regard' on page 33 undefined on input line 1
-700.
+702.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 33 undefined on input l
-ine 1700.
+ine 1702.
 
 [33] [34]
 
 LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-707.
+709.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1707.
+ine 1709.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-707.
+709.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1707.
+ine 1709.
 
 
 LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-714.
+716.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1714.
+ine 1716.
 
 
 LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1714.
+ine 1716.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -746,14 +746,14 @@ Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [38]
 [39]
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1854 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1856 replaced by U+FFFD.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -773,17 +773,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [45])
 [46]
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <9> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 2020.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 2022.
 
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <9> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 2020.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 2022.
 
 Requested font "phvbo7t" at 9.0pt
  -> phvbo7t
  [1
 
 ]
-Underfull \hbox (badness 1062) in paragraph at lines 2087--2089
+Underfull \hbox (badness 1062) in paragraph at lines 2089--2091
 [] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/
 10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$ \OT1/pnc/m/it/10 if $\OMS/cmsy/m/n/1
 0 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T
@@ -791,7 +791,7 @@ Underfull \hbox (badness 1062) in paragraph at lines 2087--2089
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 2087--2089
+Underfull \hbox (badness 1097) in paragraph at lines 2089--2091
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OMS/cmsy/m/n
 /10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
  T[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/m/n/10 ^^^ \OML/c
@@ -799,7 +799,7 @@ mm/m/it/10 c[]$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [2]
-Underfull \hbox (badness 1062) in paragraph at lines 2177--2179
+Underfull \hbox (badness 1062) in paragraph at lines 2179--2181
 [] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/
 10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$ \OT1/pnc/m/it/10 if $\OMS/cmsy/m/n/1
 0 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T
@@ -807,26 +807,26 @@ Underfull \hbox (badness 1062) in paragraph at lines 2177--2179
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2177--2179
+Underfull \hbox (badness 5548) in paragraph at lines 2179--2181
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2197--2199
+Underfull \hbox (badness 5548) in paragraph at lines 2199--2201
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [3]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2216--2249
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2218--2251
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2253--2315
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2255--2317
 [] 
  []
 
