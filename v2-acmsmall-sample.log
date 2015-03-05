@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 MAR 2015 00:32
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 MAR 2015 03:37
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -575,24 +575,19 @@ Underfull \vbox (badness 1158) has occurred while \output is active []
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[18]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[19]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
- [18]
-[19] [20] [21]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [23]
+[20] [21] [22] [23]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1169.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1188.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -610,43 +605,38 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1189.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1208.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1189.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1208.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1189.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1208.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1192.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1211.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
-
-[24] [25]
+ [24] [25]
 File: table.eps Graphic file (type eps)
- <table.eps> [26]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ <table.eps>
+Underfull \vbox (badness 1412) has occurred while \output is active []
 
- [27]
-[28]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+ [26]
+[27] [28]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29]
-Underfull \vbox (badness 2111) has occurred while \output is active []
 
- [30]
-[31] [32]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[29] [30] [31] [32]
 File: accurate.eps Graphic file (type eps)
  <accurate.eps>
 File: sub.eps Graphic file (type eps)
@@ -656,112 +646,67 @@ File: parent.eps Graphic file (type eps)
 File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
- <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1634--1634
+
+<irrelevant.eps>
+Underfull \hbox (badness 1259) in paragraph at lines 1653--1653
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
 File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps>
-
-LaTeX Warning: Reference `fci_mask_regard' on page 33 undefined on input line 1
-656.
-
-
-LaTeX Warning: Reference `fci_mask_distinguish' on page 33 undefined on input l
-ine 1656.
-
-[33] [34]
-
-LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-663.
-
-
-LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1663.
-
-
-LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-663.
-
-
-LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1663.
-
-
-LaTeX Warning: Reference `fci_mask_regard' on page 35 undefined on input line 1
-670.
-
-
-LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1670.
-
-
-LaTeX Warning: Reference `fci_mask_distinguish' on page 35 undefined on input l
-ine 1670.
-
-
+ <testCases.eps> [33] [34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35]
-[36]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
 
-Underfull \vbox (badness 7379) has occurred while \output is active []
-
- [37]
+[37]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [38]
-[39]
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1810 replaced by U+FFFD.
-
+ <4-way.eps> [38] [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [40]
-[41]
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1829 replaced by U+FFFD.
+
+[41] [42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42]
-[43] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [43]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [44]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45])
 [46]
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <9> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 1976.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 1995.
 
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <9> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 1976.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 1995.
 
 Requested font "phvbo7t" at 9.0pt
  -> phvbo7t
  [1
 
 ]
-Underfull \hbox (badness 1062) in paragraph at lines 2043--2045
+Underfull \hbox (badness 1062) in paragraph at lines 2062--2064
 [] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/
 10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$ \OT1/pnc/m/it/10 if $\OMS/cmsy/m/n/1
 0 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T
@@ -769,7 +714,7 @@ Underfull \hbox (badness 1062) in paragraph at lines 2043--2045
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 2043--2045
+Underfull \hbox (badness 1097) in paragraph at lines 2062--2064
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OMS/cmsy/m/n
 /10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
  T[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/m/n/10 ^^^ \OML/c
@@ -777,7 +722,7 @@ mm/m/it/10 c[]$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [2]
-Underfull \hbox (badness 1062) in paragraph at lines 2133--2135
+Underfull \hbox (badness 1062) in paragraph at lines 2152--2154
 [] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/
 10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$ \OT1/pnc/m/it/10 if $\OMS/cmsy/m/n/1
 0 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T
@@ -785,39 +730,35 @@ Underfull \hbox (badness 1062) in paragraph at lines 2133--2135
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2133--2135
+Underfull \hbox (badness 5548) in paragraph at lines 2152--2154
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2153--2155
+Underfull \hbox (badness 5548) in paragraph at lines 2172--2174
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [3]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2172--2205
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2191--2224
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2209--2271
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2228--2290
 [] 
  []
 
-[4] [5] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[4] [5] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3977 strings out of 430478
- 47183 string characters out of 3191502
- 189105 words of memory out of 3000000
- 7047 multiletter control sequences out of 15000+200000
+ 3975 strings out of 430478
+ 47144 string characters out of 3191502
+ 189065 words of memory out of 3000000
+ 7045 multiletter control sequences out of 15000+200000
  24884 words of font info for 76 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,30p,2034b,500s stack positions out of 5000i,500n,10000p,200000b,50000s

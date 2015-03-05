@@ -1049,7 +1049,7 @@ Table \ref{example-rule26} gives an example of this strategy. In this table, Col
 
 Let $c_{df}$ = (1,1,0,-), then we have $c_{km} $ = (1,-,0,-) so that $c_{km} \prec c_{df}$. Further, it is found that $c_{as}$ = (1,-,1,-), which is equal to $c_{km}$, so $c_{as} \prec c_{df}$. This corresponds scenario 5 in Table \ref{conditions-for-df}.  If let $c_{df}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{df}$. As  $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, then $c_{ro}$ is also irrelevant to $\mathcal{C}(T_{as})$. This corresponds scenario 4 in Table \ref{conditions-for-df}. The same as Section 4.2.1, other scenarios are omitted in this example, which can be constructed in a similar way.
 
-Next, Considering the ignoring . Also as before,
+Next, we need to study the . The same as Section 4.2.1 for strategy \emph{regarded as one failure}, we take schema $c_{as} \in $
 
 \begin{table}[h]
 \centering
