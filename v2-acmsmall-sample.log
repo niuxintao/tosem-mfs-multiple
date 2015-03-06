@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 MAR 2015 03:59
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 MAR 2015 21:41
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -712,7 +712,7 @@ Underfull \hbox (badness 5417) in paragraph at lines 1998--2000
 [1
 
 ]
-Underfull \hbox (badness 1097) in paragraph at lines 2050--2052
+Underfull \hbox (badness 1097) in paragraph at lines 2049--2051
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OMS/cmsy/m/n
 /10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
  T[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/m/n/10 ^^^ \OML/c
@@ -720,52 +720,56 @@ mm/m/it/10 c[]$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 5417) in paragraph at lines 2089--2091
-\OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
-/10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
-]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
+Underfull \hbox (badness 1038) in paragraph at lines 2072--2074
+\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )\OML/cm
+m/m/it/10 ;  s:t: c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm/m/it/10 c[] or c[] \OT1/cmr
+/m/n/10 = \OML/cmm/m/it/10 c[]$\OT1/pnc/m/n/10 . Note that $\OML/cmm/m/it/10 T[
+] \OMS/cmsy/m/n/10 ^^Z \OML/cmm/m/it/10 T[]$\OT1/pnc/m/n/10 , then ac-cord-ing
  []
 
 [2]
-Underfull \hbox (badness 5548) in paragraph at lines 2127--2129
+Underfull \hbox (badness 5417) in paragraph at lines 2101--2103
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2140--2142
-\OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
-/10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
-]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
- []
-
-
-Underfull \hbox (badness 5548) in paragraph at lines 2160--2162
+Underfull \hbox (badness 5548) in paragraph at lines 2139--2141
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [3]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2179--2212
+Underfull \hbox (badness 5548) in paragraph at lines 2152--2154
+\OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
+/10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
+]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
+ []
+
+
+Underfull \hbox (badness 5548) in paragraph at lines 2171--2173
+\OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
+/10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
+]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
+ []
+
+
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2190--2223
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2216--2278
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2227--2289
 [] 
  []
 
-[4] [5] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[4] [5] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
  3975 strings out of 430478
  47144 string characters out of 3191502
- 189158 words of memory out of 3000000
+ 196030 words of memory out of 3000000
  7045 multiletter control sequences out of 15000+200000
  24884 words of font info for 76 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191

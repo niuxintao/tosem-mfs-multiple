@@ -721,7 +721,7 @@ Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $\exists c_{2} \in \mat
 
 For the first case, i.e., if $c_{1} \prec c_{2}$, it then must have $\mathcal{T}(c_{2}) \subset \mathcal{T}(c_{1})$ according to Proposition \ref{pro:shl}.  Further it have $\mathcal{T}(c_{2}) \subset T_{3}$, because if not so, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$. As $T_{2} \backslash T_{3} \bigcap T_{1} = \varnothing $, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in T_{1}$. As $\mathcal{T}(c_{1}) \subset T_{1}$, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in \mathcal{T}(c_{1})$, which means that $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$.  It is contradiction, so $\mathcal{T}(c_{2}) \subset T_{3}$.
 
-Then according to Proposition \ref{pro:ssp},  $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{2}\ or\ c_{3} = c_{2}$. Note that $c_{2} \in \mathcal{C}(T_{2})$ and $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:sls},  $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} \prec c_{3},\ or\ c_{2} = c_{3},\ or\ c_{2}\ is\ irrelevant\ to\ \mathcal{C}(T_{3})$. Combining these two properties, it can only happen $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} = c_{3}$.
+Then according to Proposition \ref{pro:ssp},  $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{2}\ or\ c_{3} = c_{2}$. Note that $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:sls},  $\forall c_{2} \in \mathcal{C}(T_{2}), \exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} \prec c_{3},\ or\ c_{2} = c_{3},\ or\ c_{2}\ is\ irrelevant\ to\ \mathcal{C}(T_{3})$. Combining these two properties, it can only happen $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} = c_{3}$.
 As $c_{1} \prec c_{2}$, then we can have $\exists c_{3} \in \mathcal{C}(T_{3}), s.t., c_{1} \prec  c_{3}$. It is contradiction as $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the first case is impossible, which indicates that $c_{1} \not\prec c_{2}$.
 
 
@@ -986,7 +986,7 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{ro}$  & $c_{as}$  and $\mathcal
 1&  $ c_{as} = c_{km}$   	    &   $ c_{ro} = c_{km}  $    &     $c_{ro} = c_{as}$   \\
 2&  $ c_{as} = c_{km}  $       	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$      \\
 3&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} = c_{km}$      &     $c_{as} \prec c_{ro}$    \\
-4$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} \prec c_{km} $ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$ or $c_{as} \prec c_{ro}'$ \\
+4$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} \prec c_{km} $ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$ or $\exists c_{ro}', c_{as} \prec c_{ro}'$ \\
 5&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} = c_{km}$      &     $c_{ro} \prec c_{as}$      \\
 6&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$        \\
 7$\star$ &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{ro})$   \\
@@ -1068,11 +1068,11 @@ ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{df}$  & $c_{as}$  and $\mathcal
 3$\star$&  $ c_{as} = c_{km}  $       	&   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$  &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{df})$        \\
 4&  $ c_{as} \prec c_{km}  $    &   $ c_{df} = c_{km}$      &     $c_{as} \prec c_{df}$    \\
 5&  $ c_{as} \prec c_{km}  $    &   $ c_{km} \prec c_{df} $ &     $c_{as} \prec c_{df}$ \\
-6$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df} \prec c_{as}$ \\
+6$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $\exists c_{df}, c_{df} \prec c_{as}$ \\
 7&  $ c_{km} \prec c_{as} $    	&   $ c_{df} = c_{km}$      &     $c_{df} \prec c_{as}$      \\
-8$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} \prec c_{df}$  &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df}' \prec c_{as}$        \\
+8$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} \prec c_{df}$  &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $\exists c_{df}' ,$ $c_{df}' \prec c_{as}$        \\
  &                            	&                           &    or $\ c_{as} \prec c_{df}' $ or $c_{df}'  =  c_{as}$        \\
-9$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $c_{df} \prec c_{as}$     \\
+9$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $\exists c_{df}, c_{df} \prec c_{as}$     \\
 10$\star$&  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{ro})$   \\
 %8&  $ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
 %9&  $c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
@@ -2007,8 +2007,9 @@ $\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 $\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}'\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
 \begin{proof}
+First, we have $c_{ro}$ is irrelevant to $c_{as}$. This is because as $c_{ro} \prec c_{km}$, then it must have $\exists t \in \mathcal{T}(c_{ro}), s.t.,\ t \in B_{3}$ (or $\mathcal{T}(c_{ro}) \subseteqq T_{km}$, which will not result in $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$).  Similarly, we have $\exists t \in \mathcal{T}(c_{as}), s.t.,\ t \in D$. Then $\mathcal{T}(c_{as})$ and $\mathcal{T}(c_{ro})$ are neither subsuming each other nor identical, which indicates that $c_{ro}$ is irrelevant to $c_{as}$.
 
-
+Then as $\exists t \in \mathcal{T}(c_{ro}), s.t. t \in B_{3}$, which indicates that it cannot have $\exists c_{as}' \in \mathcal{C}(T_{as}), s.t., \mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as}'),\ or\ \mathcal{T}(c_{ro}) = \mathcal{T}(c_{as}')$. So $c_{ro}$ cannot be identical to $c_{as}'$ or $c_{as}' \prec c_{ro}$, which indicates that the only possible scenarios is that $\exists c_{as}' \in \mathcal{C}(T_{as}), s.t., c_{ro} \prec c_{as}'$, or $c_{ro}$ is irrelevant to $\mathcal{C}(T_{as})$.
 \end{proof}
 
 
@@ -2017,19 +2018,17 @@ $\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \end{proposition}
 
 \begin{proposition}[scenario 8]\label{pro:appendix1rule8}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
+$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
 \begin{proof}
-
-
+As $c_{ro} \prec c_{km}$, then $\exists t \in \mathcal{T}(c_{ro}), s.t.,\ t \in B_{3}$ as proved before. Then it cannot have $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., \mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as}),\ or\ \mathcal{T}(c_{ro}) = \mathcal{T}(c_{as})$. So $c_{ro}$ cannot be identical to $c_{as}$ or $c_{as} \prec c_{ro}$, which indicates that the only possible scenarios is that $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{ro} \prec c_{as}$, or $c_{ro}$ is irrelevant to $\mathcal{C}(T_{as})$.
 \end{proof}
 
 \begin{proposition}[scenario 9]\label{pro:appendix1rule9}
 $\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ is\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
 \begin{proof}
-
-
+As $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$, so $\exists t \in \mathcal{T}(c_{ro}), s.t.,\ t \in B_{3}$ (or $\mathcal{T}(c_{ro}) \subseteqq T_{km}$, which will not result in $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$). Then the same as Proposition \ref{pro:appendix1rule8},  the only possible scenarios is that $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{ro} \prec c_{as}$, or $c_{ro}$ is irrelevant to $\mathcal{C}(T_{as})$.
 \end{proof}
 
 \subsection{For \emph{regarded as one failure} in Table \ref{conditions-for-ro-ignore}}
@@ -2051,8 +2050,7 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})\ or\  \exists c_{ro}' \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{as} \prec c_{ro}'$.
 \end{proposition}
 \begin{proof}
-
-
+Refer to the proof of Proposition \ref{pro:appendix1rule6}.
 \end{proof}
 
 \begin{proposition}[scenario 5]\label{pro:appendix1rule5i}
@@ -2067,7 +2065,22 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})$.
 \end{proposition}
 \begin{proof}
+Assume $c_{as}$ is related to $\mathcal{C}(T_{ro})$, i.e., $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{as} \prec c_{ro},\ or\ c_{ro} \prec c_{as},\ or\ c_{as} = c_{ro}$.
 
+For the first case, i.e., if $c_{as} \prec c_{ro}$, it then must have $\mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as})$ according to Proposition \ref{pro:shl}.  Further it have $\mathcal{T}(c_{ro}) \subset (B_{1} \bigcup B_{2})$, because if not so, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \in T_{ro} \backslash (B_{1} \bigcup B_{2})$. As $T_{ro} \backslash (B_{1} \bigcup B_{2}) = (B_{3} \bigcup A) $ and $(B_{3} \bigcup A) \bigcap T_{as} = \varnothing$, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \not\in T_{as}$. As $\mathcal{T}(c_{as}) \subset T_{as}$, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \not\in \mathcal{T}(c_{as})$, which means that $\mathcal{T}(c_{ro}) \not\subset \mathcal{T}(c_{as})$.  It is contradiction, so $\mathcal{T}(c_{ro}) \subset (B_{1} \bigcup B_{2})$.
+
+As $(B_{1} \bigcup B_{2}) \subset T_{km}$, so $\mathcal{T}(c_{ro}) \subset T_{km}$. According to Proposition \ref{pro:ssp},  $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{ro}\ or\ c_{km} = c_{ro}$. Note that $T_{km} \subset T_{ro}$, then according to Proposition \ref{pro:sls},  $\forall c_{ro} \in \mathcal{C}(T_{ro}), \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km},\ or\ c_{ro} = c_{km},\ or\ c_{ro}\ is\ irrelevant\ to\ \mathcal{C}(T_{km})$. Combining these two properties, it can only happen $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$.
+As $c_{as} \prec c_{ro}$, then we can have $\exists c_{km} \in \mathcal{C}(T_{km}), s.t., c_{as} \prec  c_{km}$. It is contradiction as $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the first case is impossible, which indicates that $c_{as} \not\prec c_{ro}$.
+
+
+For the second case, i.e., if $c_{ro} \prec c_{as}$. Then it must have $\mathcal{T}(c_{as}) \subset \mathcal{T}(c_{ro})$. Similarly as the first case, we further have $\mathcal{T}(c_{as}) \subset (B_{1} \bigcup B_{2})$. As $(B_{1} \bigcup B_{2}) \subset T_{km}$, then $\mathcal{T}(c_{as}) \subset T_{km}$. According to Proposition \ref{pro:ssp}, $\exists c_{km} \in  \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{as}\ or\ c_{km} = c_{as}$. It is also contradiction to the fact that $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the second case is not possible, which indicates that  $c_{as} \not\prec c_{ro}$.
+
+
+For the last case, i.e., if $c_{as} = c_{ro}$. Then it must have $\mathcal{T}(c_{as}) = \mathcal{T}(c_{ro})$. Further we have $\mathcal{T}(c_{as}) \subset T_{km}$. Because if not so, then $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \in T_{as} \backslash T_{km}$. As $T_{as} \backslash T_{km} = D$ and $D \bigcap T_{ro} = \varnothing $, then $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \not\in T_{ro}$. As $\mathcal{T}(c_{ro}) \subset T_{ro}$, so  $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \not\in \mathcal{T}(c_{ro})$, indicating that $\mathcal{T}(c_{as}) \neq \mathcal{T}(c_{ro})$. It is contradiction, so $\mathcal{T}(c_{as}) \subset T_{km}$.
+
+Then as $\mathcal{T}(c_{as}) \subset T_{km}$, according to Proposition \ref{pro:ssp}, $\exists c_{km} \in  \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{as}\ or\ c_{km} = c_{as}$. It is still contradiction to the fact that $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the last case is not possible, which indicates that $c_{as} \neq c_{ro}$.
+
+As all these three cases are impossible, so $c_{as}$ is must irrelevant to $\mathcal{C}(T_{ro})$.
 \end{proof}
 
 
@@ -2076,8 +2089,7 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathca
 \begin{proposition}[scenario 1]\label{pro:appendix2rule1}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{df} = c_{as}$.
 \end{proposition}
-%\begin{proof}
-%\end{proof}
+
 \begin{proposition}[scenario 2]\label{pro:appendix2rule2}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{df}$.
 \end{proposition}
@@ -2101,18 +2113,18 @@ $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \begin{proposition}[scenario 7]\label{pro:appendix2rule7}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{df} = c_{as}'\ or\ c_{as}' \prec c_{df}\ or\ c_{df} \prec c_{as}'\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
-
-\begin{proof}
-
-
-\end{proof}
+%\begin{proof}
+%As $c_{km} \prec c_{as}$
+%
+%\end{proof}
 
 \begin{proposition}[scenario 8]\label{pro:appendix2rule8}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
 \begin{proof}
+Assume  $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{df} = c_{as}$, then $c_{km} \prec c_{as}$, which contradicts that $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$, so $\not\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{df} = c_{as}$. Then assume $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{df} \prec c_{as}$, then $c_{km} \prec c_{as}$, which is also contradiction.
 
-
+So it can only have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proof}
 
 \subsection{For \emph{distinguishing failures} in Table \ref{conditions-for-df-ignore}}
@@ -2137,12 +2149,11 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \end{proposition}
 
 
-\begin{proposition}[rscenarioule 6]\label{pro:appendix2rule6i}
+\begin{proposition}[scenario 6]\label{pro:appendix2rule6i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $c_{km} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in s.t.,\ c_{as} \prec c_{df}$.
 \end{proposition}
 \begin{proof}
-two contradtion
-
+Refer the proof of Proposition \ref{pro:appendix2rule8}.
 \end{proof}
 
 \begin{proposition}[scenario 7]\label{pro:appendix2rule7i}
@@ -2153,23 +2164,23 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $\exists c_{df}' \in \mathcal{C}(T_{df}),\ s.t.,\ c_{as} = c_{df}'\ or\ c_{df}' \prec c_{as}\ or\ c_{as} \prec c_{df}'\ or\ c_{as}\ irrelevant\ to\ \mathcal{C}(T_{df})$.
 \end{proposition}
 
-\begin{proof}
-
-\end{proof}
+%\begin{proof}
+%
+%\end{proof}
 
 \begin{proposition}[scenario 9]\label{pro:appendix2rule9i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{df})$. Then it must have $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$.
 \end{proposition}
 \begin{proof}
-Assume $\exists c_{df} = c_{as}$, then $c_{km} \prec c_{df}$, contradiction. Assume $\exists c_{as} \prec c_{df}$, then $c_{km} \prec c_{df}$. Contradiction.
-
-So it is only possible $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$. (One for example, One for example).
+Refer the proof of Proposition \ref{pro:appendix2rule8}.
 \end{proof}
 
 \begin{proposition}[rule 10]\label{pro:appendix2rule10i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
 \end{proposition}
-
+\begin{proof}
+Refer the proof of Proposition \ref{pro:appendix1rule7i}.
+\end{proof}
 
 \section{The detail of the experiments}
 
