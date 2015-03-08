@@ -1025,7 +1025,7 @@ One observation of this table is that when comparing with strategy \emph{knowing
 Table \ref{example-rule26} gives an example of this strategy. The table is almost the same as Table \ref{example-rule16}, except Column  `$T_{df}$' is for strategy \emph{distinguishing failures} to compute the minimal schemas ($T_{df} = A \bigcup B_{1} \bigcup C$ ), and  `$\mathcal{C}(T_{df})$' is the schemas obtained by this strategy.
 
 \begin{table}[h]
-\tbl{Example of some scenarios of strategy regarded as one failure  \label{example-rule26}}{
+\tbl{Example of some scenarios of strategy distinguishing failures strategy  \label{example-rule26}}{
 \begin{tabular}{llllllllllll}
 %\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
@@ -2050,7 +2050,7 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})\ or\  \exists c_{ro}' \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{as} \prec c_{ro}'$.
 \end{proposition}
 \begin{proof}
-Refer to the proofs of Proposition \ref{pro:appendix1rule6}.
+Refer to the proof of Proposition \ref{pro:appendix1rule6}.
 \end{proof}
 
 \begin{proposition}[scenario 5]\label{pro:appendix1rule5i}
@@ -2089,8 +2089,7 @@ As all these three cases are impossible, so $c_{as}$ is must irrelevant to $\mat
 \begin{proposition}[scenario 1]\label{pro:appendix2rule1}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{df} = c_{as}$.
 \end{proposition}
-%\begin{proof}
-%\end{proof}
+
 \begin{proposition}[scenario 2]\label{pro:appendix2rule2}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{df}$.
 \end{proposition}
@@ -2114,11 +2113,81 @@ $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \begin{proposition}[scenario 7]\label{pro:appendix2rule7}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{df} = c_{as}'\ or\ c_{as}' \prec c_{df}\ or\ c_{df} \prec c_{as}'\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
-%
-%\begin{proof}
-%
-%
-%\end{proof}
+\begin{proof}
+This proposition states that under this condition, all the four possible relationships between $c_{df}$ and $\mathcal{C}(T_{as})$ can exist. To prove this, we just need to give the corresponding examples, which are shown in Table \ref{example-scenario-7}. Specifically, in Table \ref{example-scenario-7} (a), let $$ 
+
+\end{proof}
+
+\begin{table*}[htbp]
+\tbl{Example of scenario 7  \label{example-scenario-7}}{
+\setlength\tabcolsep{2pt}
+%\centering
+\subtable[$c_{df} = c_{as}$, $c_{df}\ irrelevant$]{
+  %  \rule{4cm}{3cm}
+  \begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,1)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{(0,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,1,1)}\\
+\multicolumn{5}{c}{(1,1,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{(1,0,1)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{(1,0,0)}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
+
+\hline
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,1,-)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,1,-)}\\
+\multicolumn{5}{c}{(1,-,1)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{(1,-,0)}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{}\\
+\hline \end{tabular}
+}
+\subtable[$c_{df} \prec c_{as}$]{
+  %  \rule{4cm}{3cm}
+ \begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,1,1)}\\
+\multicolumn{5}{c}{(1,0,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,0,1)}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{}                    &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
+\hline
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,-,1)}\\
+\multicolumn{5}{c}{(-,0,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{(1,1,-)}\\
+\hline \end{tabular}
+}
+\subtable[$c_{as} \prec c_{df}$]{
+  %  \rule{4cm}{3cm}
+ \begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,0,1)}\\
+\multicolumn{5}{c}{(1,0,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{(1,1,0)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
+\hline
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,1,-)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,0,1)}\\
+\multicolumn{5}{c}{(1,-,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{(-,0,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{}\\
+\hline \end{tabular}
+}
+%}
+%\tbl{}{
+%\vspace{40pt}
+}
+\end{table*}
 
 \begin{proposition}[scenario 8]\label{pro:appendix2rule8}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
@@ -2155,9 +2224,7 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $c_{km} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in s.t.,\ c_{as} \prec c_{df}$.
 \end{proposition}
 \begin{proof}
-Assume  $\exists c_{df} \in \mathcal{C}(T_{df}), s.t., c_{df} = c_{as}$, then $c_{df} \prec c_{km}$, which contradicts that $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{df})$, so $\not\exists c_{df} \in \mathcal{C}(T_{df}), s.t., c_{df} = c_{as}$. Then assume $\exists c_{df} \in \mathcal{C}(T_{df}), s.t., c_{df} \prec c_{as}$, then $c_{df} \prec c_{km}$, which is also contradiction.
-
-So it can only have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in s.t.,\ c_{as} \prec c_{df}$.
+Refer the proof of Proposition \ref{pro:appendix2rule8}.
 \end{proof}
 
 \begin{proposition}[scenario 7]\label{pro:appendix2rule7i}
@@ -2167,40 +2234,22 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \begin{proposition}[scenario 8]\label{pro:appendix2rule8i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $\exists c_{df}' \in \mathcal{C}(T_{df}),\ s.t.,\ c_{as} = c_{df}'\ or\ c_{df}' \prec c_{as}\ or\ c_{as} \prec c_{df}'\ or\ c_{as}\ irrelevant\ to\ \mathcal{C}(T_{df})$.
 \end{proposition}
-
-%\begin{proof}
-%
-%\end{proof}
+\begin{proof}
+Refer the proof of Proposition \ref{pro:appendix2rule7}.
+\end{proof}
 
 \begin{proposition}[scenario 9]\label{pro:appendix2rule9i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{df})$. Then it must have $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$.
 \end{proposition}
 \begin{proof}
-Assume $\exists c_{df} = c_{as}$, then $c_{km} \prec c_{df}$, contradiction. Assume $\exists c_{as} \prec c_{df}$, then $c_{km} \prec c_{df}$. Contradiction.
-
-So it is only possible $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$. (One for example, One for example).
+Refer the proof of Proposition \ref{pro:appendix2rule8}.
 \end{proof}
 
-\begin{proposition}[rule 10]\label{pro:appendix2rule10i}
+\begin{proposition}[scenario 10]\label{pro:appendix2rule10i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
 \end{proposition}
 \begin{proof}
-Assume $c_{as}$ is related to $\mathcal{C}(T_{df})$, i.e., $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{as} \prec c_{df},\ or\ c_{df} \prec c_{as},\ or\ c_{as} = c_{df}$.
-
-For the first case, i.e., if $c_{as} \prec c_{df}$, it then must have $\mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as})$ according to Proposition \ref{pro:shl}.  Further it have $\mathcal{T}(c_{ro}) \subset (B_{1} \bigcup B_{2})$, because if not so, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \in T_{ro} \backslash (B_{1} \bigcup B_{2})$. As $T_{ro} \backslash (B_{1} \bigcup B_{2}) = (B_{3} \bigcup A) $ and $(B_{3} \bigcup A) \bigcap T_{as} = \varnothing$, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \not\in T_{as}$. As $\mathcal{T}(c_{as}) \subset T_{as}$, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \not\in \mathcal{T}(c_{as})$, which means that $\mathcal{T}(c_{ro}) \not\subset \mathcal{T}(c_{as})$.  It is contradiction, so $\mathcal{T}(c_{ro}) \subset (B_{1} \bigcup B_{2})$.
-
-As $(B_{1} \bigcup B_{2}) \subset T_{km}$, so $\mathcal{T}(c_{ro}) \subset T_{km}$. According to Proposition \ref{pro:ssp},  $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{ro}\ or\ c_{km} = c_{ro}$. Note that $T_{km} \subset T_{ro}$, then according to Proposition \ref{pro:sls},  $\forall c_{ro} \in \mathcal{C}(T_{ro}), \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km},\ or\ c_{ro} = c_{km},\ or\ c_{ro}\ is\ irrelevant\ to\ \mathcal{C}(T_{km})$. Combining these two properties, it can only happen $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$.
-As $c_{as} \prec c_{ro}$, then we can have $\exists c_{km} \in \mathcal{C}(T_{km}), s.t., c_{as} \prec  c_{km}$. It is contradiction as $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the first case is impossible, which indicates that $c_{as} \not\prec c_{ro}$.
-
-
-For the second case, i.e., if $c_{ro} \prec c_{as}$. Then it must have $\mathcal{T}(c_{as}) \subset \mathcal{T}(c_{ro})$. Similarly as the first case, we further have $\mathcal{T}(c_{as}) \subset (B_{1} \bigcup B_{2})$. As $(B_{1} \bigcup B_{2}) \subset T_{km}$, then $\mathcal{T}(c_{as}) \subset T_{km}$. According to Proposition \ref{pro:ssp}, $\exists c_{km} \in  \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{as}\ or\ c_{km} = c_{as}$. It is also contradiction to the fact that $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the second case is not possible, which indicates that  $c_{as} \not\prec c_{ro}$.
-
-
-For the last case, i.e., if $c_{as} = c_{ro}$. Then it must have $\mathcal{T}(c_{as}) = \mathcal{T}(c_{ro})$. Further we have $\mathcal{T}(c_{as}) \subset T_{km}$. Because if not so, then $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \in T_{as} \backslash T_{km}$. As $T_{as} \backslash T_{km} = D$ and $D \bigcap T_{ro} = \varnothing $, then $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \not\in T_{ro}$. As $\mathcal{T}(c_{ro}) \subset T_{ro}$, so  $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \not\in \mathcal{T}(c_{ro})$, indicating that $\mathcal{T}(c_{as}) \neq \mathcal{T}(c_{ro})$. It is contradiction, so $\mathcal{T}(c_{as}) \subset T_{km}$.
-
-Then as $\mathcal{T}(c_{as}) \subset T_{km}$, according to Proposition \ref{pro:ssp}, $\exists c_{km} \in  \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{as}\ or\ c_{km} = c_{as}$. It is still contradiction to the fact that $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the last case is not possible, which indicates that $c_{as} \neq c_{ro}$.
-
-As all these three cases are impossible, so $c_{as}$ is must irrelevant to $\mathcal{C}(T_{ro})$.
+Refer the proof of Proposition \ref{pro:appendix1rule7i}.
 \end{proof}
 
 \section{The detail of the experiments}

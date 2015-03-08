@@ -755,10 +755,6 @@ $T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
   \end{table}
 
 
-%It is noted that this proposition holds when some schemas in $\mathcal{C}(T_{3})$ are also in $\mathcal{C}(T_{1})$ (or $\mathcal{C}(T_{2})$), and simultaneously the same schemas in $\mathcal{C}(T_{3})$ must be the super-schema of the minimal schemas of another set of test cases, i.e., $\mathcal{C}(T_{2})$ (or $\mathcal{C}(T_{1})$).
-
-%It is noted that these three conditions can simultaneously appear when two sets of test cases intersect with each other.
-
 Table \ref{possible-result-of-intersection} concludes the possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ under the previous five scenarios. The three columns in the left are the same as Table \ref{possible-relation-of-intersection}. The last column ` $c_{1}$ and $\mathcal{C}(T_{2})$' indicates the relationship between schema $c_{1}$ and $\mathcal{C}(T_{2})$. From this table, we can learn that for two intersect sets of test cases, i.e., $T_{1}$ and $T_{2}$, there are four possible relationships between a schema $c_{1} \in  \mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$. Formally, we have the following proposition.
 
 \begin{proposition}[conclusion for intersection]\label{pro:concludeforintersection}
@@ -842,8 +838,6 @@ and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ are their Intersections.
 %As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$.
 
 According to the Proposition \ref{pro:concludeforintersection}, $\forall c_{1} \in \mathcal{C}(A \bigcup B \bigcup C),\ \exists c_{2} \in \mathcal{C}(D \bigcup B \bigcup C),\ s.t., \ (1)\ c_{1} = c_{2}\ , \ or\ (2)\ c_{2} \prec c_{1}\ ,\ or\ (3)\ c_{1} \prec c_{2}\ ,\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ .$ This indicates that the identified minimal schema can be identical to some actual MFS, or be super-schema, or be sub schema, or be irrelevant to all the actual MFS.  Similarly, we can get the actual MFS can be identical to some identified schema, or be super-schema, or be sub schema, or be irrelevant to all the identified schemas. We refer to the case that the actual MFS is irrelevant to all the identified schemas as \emph{ignoring} the actual MFS.
-
-%and in $\mathcal{C}(T_{2})$ must be irrelevant to each other. Mapping to Figure \ref{fig:fci_process}, we can get that some schemas in $\mathcal{C}(A \bigcup B \bigcup C)$ and in $\mathcal{C}(D \bigcup B \bigcup C)$ must be irrelevant to each other, which means that the FCI approach will identify some minimal schemas that are irrelevant to the actual MFS, and must ignore some actual MFS. Moreover, under the appropriate conditions listed in Propositions \ref{pro:ci} and \ref{pro:cs}, FCI may identify the identical schemas or super-schema or sub-schema of the actual MFS. In this case, the schemas (identical ones, super-schemas, or sub-schemas) are all depended on the area $B \bigcup C$, namely $T_{1} \bigcap T_{2}$ in Figure \ref{fig:intersect}.
 
 To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$.
 
@@ -1025,7 +1019,7 @@ One observation of this table is that when comparing with strategy \emph{knowing
 Table \ref{example-rule26} gives an example of this strategy. The table is almost the same as Table \ref{example-rule16}, except Column  `$T_{df}$' is for strategy \emph{distinguishing failures} to compute the minimal schemas ($T_{df} = A \bigcup B_{1} \bigcup C$ ), and  `$\mathcal{C}(T_{df})$' is the schemas obtained by this strategy.
 
 \begin{table}[h]
-\tbl{Example of some scenarios of strategy regarded as one failure  \label{example-rule26}}{
+\tbl{Example of some scenarios of strategy distinguishing failures strategy  \label{example-rule26}}{
 \begin{tabular}{llllllllllll}
 %\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
 \multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
@@ -1157,18 +1151,6 @@ We then take $o_{m_{ij}}$ to be the related \emph{strength} between the \emph{j}
 In \ref{eqn - 3p}, constraints (1) and (2) indicate that the variable $x_{ij}$ is a 0-1 integer. Constraint (3) indicates that a parameter in one test case can only take on one value. Constraint (4) indicates that the test case should not change values of the fixed part. Constraint (5) indicates that the related strength between the test case and failure $F_{m}$ is higher than that of the other failures. Constraint (6) indicates that the test cases generated should not be the same as the test cases in $T_{existed}$.
 
 As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize an ILP solver to solve this formula. In this paper, we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver that can handle satisfaction and optimization problems.
-%this actually an integer programming problem, as the test case $f$ is the vector of component $o$, which is concrete variable. However, it dose not belongs to the integer linear programming (ILP) problem, because the objective function  $S(f, F_{k})$, i.e., $\frac{1}{|f|}\sum_{o \in f} S(o, F_{m})$, is not linear to the component $o$.
-%s.t.
-%
-%S(f, F_{k}) > S(f, F_{1})
-%S(f, F_{k}) > S(f, F_{2})
-%...
-%S(f, F_{k}) > S(f, F_{n-1})
-%S(f, F_{k}) > S(f, F_{n+1})
-%...
-%S(f, F_{k}) > S(f, F_{L})
-% So to make it as less as possible is actually make the test case $f$ less related to other failures.
-
 
 
 \begin{algorithm}[t]
@@ -1206,8 +1188,6 @@ The inputs to this algorithm consist of the failure $F_{m}$, the fixed part of w
 The outer loop of this algorithm (lines 1 - 19) contains two parts:
 
 The first part (lines 2 - 9) generates a new test case which is supposed to be least likely to trigger failures different from $F_{m}$. The basic idea for this part is to search each failure different from $F_{m}$ (line 3) and find the best test case that has the least related strength with other failures. In detail, for each failure we set up an ILP solver (line 4) and use it to get an optimal test case for that failure according to \ref{eqn - 3p} (line 5). We compare the optimal value for each failure, and choose the one with less strength related to other failures (lines 6 - 9).
-%Different from the original algorithm, we generate a set of candidate test cases (line 3 - 11) instead of only one, and then choose the one that has the least possibility that is related to other failures(line 12) according to our previous formula. Our candidate set of test cases is initialed as size \emph{N}, the specific number it is assigned is a tradeoff between how quickly this algorithm ended in getting a candidate test case and how many times you'd like to try to find a really satisfied test case. It is noted that when \emph{N} = 1, it grows into our previous algorithm. Each test cases in the candidate set is generated by random(line 4 - 11), they must be different from existed test cases(we don't show in this pseudo code) and each one of them should keep the fixed part (line 9), and just mutate the factors which are not in that part(line 2). The mutation for each factor works by selecting one legal value which is different from the original one(line 5 - 8).
-%The generated newly test case must be different from each iteration(we implemented it by hashing method).
 
 The second part is to check whether the newly generated test case is as expected (lines 10 - 16). We first execute the SUT under the newly generated test case (line 10) and update the related strength matrix ($o_{1} ... o_{L}$) for each parameter value that is involved in this newly generated test case (line 11). We then check the execution result. If the test case passes or triggers the same failure -- $F_{m}$, a satisfied test case is obtained (line 12) and returned (line 13). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 14 - 15).
 
@@ -1226,58 +1206,6 @@ The completed MFS identifying process listed in Figure \ref{fig:fci_case_study} 
 From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2, 1, 1, 1, 0, 0, 0, 0) (in this case, the fixed part of the test case is (-, -, -, -, 0, 0, 0, 0), in which the last four parameter values are the same as the original test case $T_{0}$), we generate the related matrix at left. Each element in this matrix is computed as $\frac{m(o)}{all(o) + 1}$; for example, for the $P7$ parameter with value $0$, we can find two test cases that contain this element, i.e., $T_{0}$ and $T_{1}$, so $all(o)$ is 2. And only one test case triggers the failure $e2$, which means m(o) = 1. So the final related strength between this parameter value with $e2$ is $\frac{1}{2 + 1} = 0.33$. All the related strength with $e3$ is labeled with a short slash as there is no test case triggering this failure in this iteration.  After this matrix has been determined, we can obtain the optimal test case with the ILP solver, which is $T_{1}'$--(1, 2, 2, 2, 0, 0, 0, 0), with its related strength 0.167, which is smaller than that all.
 
 This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $T_{1}$ to $T_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $T_{4}$ which triggered $e3$, we tried three times-- $T_{4}', T_{4}'', T_{4}'''$ to finally get a satisfied $T_{4}'''$ which passes the testing. Note that the \emph{related strength} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
-% as in this iteration we did not find the test case triggered .
-%
-%randomly generate three test cases as the candidate test cases, which are (2 1 0 0 0 0 0 0), (2 2 0 0 0 0 0 0), (1 2 0 0 0 0 0 0) respectively.  For one candidate test case in the set--(2 1 0 0 0 0 0 0), the \emph{strength} it is related to the $Err 2$ can be computed as
-%
-%$$\frac{1}{8} (\frac{0}{1 + 1} + \frac{1}{1 + 1} + \frac{1}{2 + 1}  + \frac{1}{2 + 1} + \frac{1}{2 + 1} + \frac{1}{3 + 1} + \frac{1}{3 + 1}  + \frac{1}{3 + 1} ) = 0.27083$$
-%
-%In this formula, each sub item in the right superheses shows the \emph{strength} for each factor that is related to \emph{Err 2}. For example, for the first factor which has value 2, we can only find one test case $T_{1}$ -- (2 2 1 2 0 0 0 0) contain this factor. This test case passed during testing and no other test case contain this factor. So the M(o) and ALl(o) for this factor is 0 and 1 respectively, and the \emph{strength} it is related to the $Err 2$ is is $\frac{0}{1 + 1}$. For the second factor of candidate test case (2 1 0 0 0 0 0 0), we can only find the test case (1 1 0 0 0 0 0 0 ) contain it and trigger the failure -- $Err 2$. So M(o) and ALl(o) for this factor are both 1, and the corresponding \emph{strength} is $\frac{1}{1 + 1}$. The \emph{strength} of remaining factors in this test case is computed in the same way and finally the average \emph{strength} of all these factors is regard as the \emph{strength} of the candidate test case (2 1 0 0 0 0 0 0) that is related to the failure $Err 2$. We also follow the same way to compute the \emph{strength} that these test cases that is related to $Err 3$, as this type failure is never triggered currently, so these \emph{strength} are all 0.
-%
-%After computed the \emph{strength} for all these candidate test cases, we then choose the one that is least likely to be related to other failures. In this case, we choose the candidate test case (2 2 0 0 0 0 0 0) , its maximal \emph{strength} related to the other failure is against Err 2, which is  0.2083. It is smaller that other two candidate test cases, which both 0.27083. So we choose it as the replaced the test case in the next iteration, i.e., $T_{2}'$.
-
-
-%
-%There is a point need to be noted here, i.e., this approach is actually an augmented random approach, to be exactly choose the one that has the smallest \emph{strength}, we in theory need to rank the $(\prod_{i \in \neg fixed}|v_{i} - 1| - 1)$ (every combination of the value options except the ones in the fixed part) possible candidate test cases. For example, when we find (0 0 1 2 1 2 2 1 ) triggered other failure, we need to select one candidate test case from the set \{(0 0 1 1 1 1 1 1),(0 0 1 1 1 1 1 2),(0 0 1 1 1 1 2 1),(0 0 1 1 1 1 2 2)...(0 0 2 2 2 2 2 2)\}, of which the size is $2^{6} - 1$ (the 1 that is subtracted is the originally test case (0 0 1 2 1 2 2 1 ) triggered other failure). We should note that in the algorithm when we replace the factor value, we do not assign it with the value that appears in the original failing test case, e.g., for  (0 0 1 2 1 2 2 1 ), we will not replace them with test case such as (0 0 0 2 1 0 0 1), this is because we do not want the fixed part we try to test may be interfered with other factors in the original failing test case. So the possible number of test cases we can generate is $(\prod_{i \in \neg fixed}|v_{i} - 1| - 1)$ instead of $(\prod_{i \in \neg fixed}|v_{i}| - 1)$.
-%
-%It could cause an exponential explosion in the searching space when k is large and fixed part is small. So in this paper we just give this augmented random approach just choose the one "best" test case in a prior given number of randomly generated candidate test cases set. Nevertheless, we believe there may exists other better approaches, e.g., the heuristic approach or greedy approach, may do better at searching a test case with less \emph{strength} related to other failures, which however, will not be discussed in this paper.
-
-%we can find the algorithm mutates one factor to take the different value from the original test case one time. Originally if the test case encounter the result different from the expected error, OFOT will derive the fact that the MFS was broken, in another word, if we change one factor and it does not trigger the expect error, we will label it as one failure-inducing factor, after we changed all the elements, we will get the MFS. For this case, if we take the \emph{regarded as one failure} strategy, then the MFS we got is (- - - 0) because the last case passing test case while the remaining test cases triggered either $Err 1$ or $Err 2$(regarded as one failure).  Additionally when we take the \emph{distinguishing failures} strategy, the MFS obtained is (- 0 0 0) as when we changed the second factor, third factor and the fourth factor, it didn't trigger the $Err 1$ ( for second factor, it triggered $Err 2$ and for the third and fourth, it passed).
-
-% So if we do not regenerate the test configuration (0 2 0 0), we will get the MFS -- ( - 0 0 0) for the err 1(which are also labeled with a delete line).
-
-%However, if we replace the test case $t_{2}$--(0 1 0 0) with $t_{2}'$--(0 2 0 0) which triggered err 1 (in this case, the fixed part of the test case is (0, - - -)), and replace the test case $t_{3}$--(0 0 1 0) with $t_{3}'$--(0 0 2 0) which passed, we will find that only when we change the third and fourth factor will we broke the MFS for err 1, therefore,  the failure-inducing combination for err 1 should be (- - 0 0).
-
-
-%\begin{table}[h]
-%\tbl{OFOT with our strategy\label{ofot-aug}}{
-%\begin{tabular}{lllllll}
-%\multicolumn{5}{c}{\bfseries original test case} & \multicolumn{2}{c}{\bfseries failure info} \\
-% $t$ & \multicolumn{4}{l}{0 \ \ \ \ 0 \ \ \ \  0 \ \ \ \  0 } & \multicolumn{2}{c}{Err 1 }\\
-% \hline
-%$t_{1}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0  \ \ \ \  0 }&\multicolumn{2}{c}{ Err 1} \\
-%$t_{2}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  1 \ \ \ \  0  \ \ \ \  0 }} &\multicolumn{2}{c}{ \sout{Err 2}} \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  4 \ \ \ \  0  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  5 \ \ \ \  0  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
-%$t_{2}'$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  2 \ \ \ \  0  \ \ \ \  0}} & \multicolumn{2}{c}{\uwave{Err 1} }\\
-%$t_{3}$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  1  \ \ \ \  0 }} & \multicolumn{2}{c}{\sout{Err 3} }\\
-%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  3  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  5  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  7  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
-%$t_{3}'$ &\multicolumn{4}{l}{\sout{0  \ \ \ \  0 \ \ \ \  3  \ \ \ \  0}} & \multicolumn{2}{c}{\sout{Err 3}} \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  4  \ \ \ \  0 }& Err 2 :  & Err 3 : \\
-%         &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  7  \ \ \ \  0 }&Err 2 :   & Err 3 :  \\
-%$t_{3}''$ &\multicolumn{4}{l}{\uwave{0  \ \ \ \  0 \ \ \ \  2  \ \ \ \  0}} & \multicolumn{2}{c}{\uwave{Pass}} \\
-%$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0  \ \ \ \  1} & \multicolumn{2}{c}{Pass} \\
-%\hline
-%\multicolumn{3}{l}{\bfseries regard as one failure} &  \multicolumn{4}{l}{\bfseries replacing strategy} \\
-%\multicolumn{3}{l}{ ( -  \ \ \  - \ \ \  -  \ \ \ 0) } &\multicolumn{4}{l}{ ( -  \ \ \  - \ \ \  0  \ \ \ 0) } \\
-%\multicolumn{3}{l}{\bfseries distinguishing failures} &\multicolumn{4}{l}{} \\
-%\multicolumn{3}{l}{(  -  \ \ \  0 \ \ \  0  \ \ \ 0 )} &\multicolumn{4}{l}{} \\
-%\end{tabular}}
-%\end{table}
 
 \begin{figure}
 \centering
@@ -2113,10 +2041,82 @@ $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \begin{proposition}[scenario 7]\label{pro:appendix2rule7}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{df} = c_{as}'\ or\ c_{as}' \prec c_{df}\ or\ c_{df} \prec c_{as}'\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
 \end{proposition}
-%\begin{proof}
-%As $c_{km} \prec c_{as}$
-%
-%\end{proof}
+\begin{proof}
+This proposition states that under this condition, all the four possible relationships between $c_{df}$ and $\mathcal{C}(T_{as})$ can exist. To prove this, we just need to give the corresponding examples, which are shown in Table \ref{example-scenario-7}. 
+
+Specifically, in Table \ref{example-scenario-7}(a), let $c_{df}$ = (1,1,-),  $c_{km} $ = (1,-,-) and $c_{as}$ = (1,1,-). Then it satisfies that $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{df} = c_{as}$. If let $c_{df}$ = (1,-,0),  $c_{km} $ = (1,-,-)  and $c_{as}$ = (1,1,-), then it  satisfies $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{df}\ is\ irrelevant\ to\ \mathcal{C}(T_{as})$.  In Table \ref{example-scenario-7}(b), let $c_{df}$ = (1,1,-),  $c_{km} $ = (1,-,-) and $c_{as}$ = (1,1,1). Then it satisfies that $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{df} \prec c_{as}$. At last, in Table \ref{example-scenario-7}(c), let $c_{df}$ = (1,1,0),  $c_{km} $ = (1,-,-) and $c_{as}$ = (1,1,-). Then it satisfies that $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{as} \prec c_{}$.
+\end{proof}
+
+\begin{table*}[htbp]
+\tbl{Example of scenario 7  \label{example-scenario-7}}{
+\setlength\tabcolsep{2pt}
+%\centering
+\subtable[$c_{df} = c_{as}$, $c_{df}\ irrelevant$]{
+  %  \rule{4cm}{3cm}
+  \begin{tabular}{llllllllllll}
+%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,1)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{(0,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,1,1)}\\
+\multicolumn{5}{c}{(1,1,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{(1,0,1)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{(1,0,0)}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
+
+\hline
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,1,-)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,1,-)}\\
+\multicolumn{5}{c}{(1,-,1)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{(1,-,0)}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{}\\
+\hline \end{tabular}
+}
+\subtable[$c_{df} \prec c_{as}$]{
+  %  \rule{4cm}{3cm}
+ \begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,1,1)}\\
+\multicolumn{5}{c}{(1,0,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,0,1)}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{}                    &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
+\hline
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,-,1)}\\
+\multicolumn{5}{c}{(-,0,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{(1,1,-)}\\
+\hline \end{tabular}
+}
+\subtable[$c_{as} \prec c_{df}$]{
+  %  \rule{4cm}{3cm}
+ \begin{tabular}{llllllllllll}
+\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
+
+\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,0)}\\
+\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
+ \hline
+\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
+\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,0,1)}\\
+\multicolumn{5}{c}{(1,0,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{(1,1,0)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{}\\
+\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
+\hline
+\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
+\multicolumn{5}{c}{(1,1,-)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,0,1)}\\
+\multicolumn{5}{c}{(1,-,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{(1,1,0)}\\
+\multicolumn{5}{c}{(-,0,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{}\\
+\hline \end{tabular}
+}
+%}
+%\tbl{}{
+%\vspace{40pt}
+}
+\end{table*}
 
 \begin{proposition}[scenario 8]\label{pro:appendix2rule8}
 $\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
@@ -2163,10 +2163,9 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 \begin{proposition}[scenario 8]\label{pro:appendix2rule8i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $\exists c_{df}' \in \mathcal{C}(T_{df}),\ s.t.,\ c_{as} = c_{df}'\ or\ c_{df}' \prec c_{as}\ or\ c_{as} \prec c_{df}'\ or\ c_{as}\ irrelevant\ to\ \mathcal{C}(T_{df})$.
 \end{proposition}
-
-%\begin{proof}
-%
-%\end{proof}
+\begin{proof}
+Refer the proof of Proposition \ref{pro:appendix2rule7}.
+\end{proof}
 
 \begin{proposition}[scenario 9]\label{pro:appendix2rule9i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{df})$. Then it must have $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$.
@@ -2175,7 +2174,7 @@ $\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{k
 Refer the proof of Proposition \ref{pro:appendix2rule8}.
 \end{proof}
 
-\begin{proposition}[rule 10]\label{pro:appendix2rule10i}
+\begin{proposition}[scenario 10]\label{pro:appendix2rule10i}
 $\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
 \end{proposition}
 \begin{proof}
