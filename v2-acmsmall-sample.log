@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  12 MAR 2015 05:23
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  13 MAR 2015 04:19
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -450,84 +450,87 @@ File: testSuite2.eps Graphic file (type eps)
  <testSuite2.eps>
 File: testSuite3.eps Graphic file (type eps)
  <testSuite3.eps> [8]
-Underfull \hbox (badness 1117) in paragraph at lines 569--569
-[]\OT1/phv/m/n/8 Table VI-I. Dis-join-t ex-
+Underfull \hbox (badness 2134) in paragraph at lines 549--551
+[] [] \OT1/pnc/m/it/10 For $\OML/cmm/m/it/10 T[]$
  []
 
-[9] [10]
-Underfull \hbox (badness 3058) in paragraph at lines 677--679
-[] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/
-10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$ \OT1/pnc/m/it/10 if $\OMS/cmsy/m/n/1
-0 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T
-[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm
-/m/it/10 c[]$\OT1/pnc/m/it/10 ,
- []
-
-
-Underfull \hbox (badness 1931) in paragraph at lines 677--679
-\OT1/pnc/m/it/10 and cor-re-spond-ing-ly, $\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c
-[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )\O
-ML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm/m/it/10 c[]$\OT1/pnc
-/m/it/10 . Then it must have ei-ther
- []
-
-[11]
+[9]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[10]
+Underfull \hbox (badness 1163) in paragraph at lines 675--677
+\OT1/pnc/m/it/10 cor-re-spond-ing-ly for $\OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10
+ , $\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 
+(\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/
+m/n/10 ^^^ \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 . Then it must have ei-ther
+ []
 
-Underfull \hbox (badness 5161) in paragraph at lines 756--758
+[11]
+Underfull \hbox (badness 5161) in paragraph at lines 743--745
 [] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/
 10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 9\
 OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2
  []
 
-[12] [13]
+[12]
 File: FCI.eps Graphic file (type eps)
- <FCI.eps> [14]
-Underfull \hbox (badness 2469) in paragraph at lines 847--848
+ <FCI.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 1917) in paragraph at lines 808--809
+[]\OT1/pnc/m/n/10 According to the Propo-si-tion 3.19[], the schemas ob-tained 
+by F-CI ap-proach-
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 808--809
+\OT1/pnc/m/n/10 ing each oth-er, or ir-rel-e-van-t to each oth-er. We re-fer to
+ the case that $\OML/cmm/m/it/10 c \OMS/cmsy/m/n/10 2
+ []
+
+[13]
+Underfull \hbox (badness 2469) in paragraph at lines 819--820
 []\OT1/pnc/m/n/10 As an ex-am-ple, in the mo-ti-vat-ing ex-am-ple in sec-tion 2
 , $\OML/cmm/m/it/10 F[]$ \OT1/pnc/m/n/10 is \OMS/cmsy/m/n/10 f
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 856.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 828.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
+[14]
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
-[15]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 Requested font "pncr7t" at 5.0pt
  -> pncr7t
 File: FCI-mask.eps Graphic file (type eps)
- <FCI-mask.eps> [16]
-Underfull \vbox (badness 1325) has occurred while \output is active []
+ <FCI-mask.eps> [15] [16] [17]
 
- [17]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [18]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [19]
+Underfull \vbox (badness 2626) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[20]
-Underfull \vbox (badness 3623) has occurred while \output is active []
+ [20]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21]
-[22] [23]
+[22]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1151.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1123.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -545,42 +548,51 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1171.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1143.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1171.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1143.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1171.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1143.
 
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1174.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1146.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
+ [23]
+Underfull \vbox (badness 1412) has occurred while \output is active []
+
  [24]
 File: table.eps Graphic file (type eps)
- <table.eps>
+
+<table.eps>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25]
-Underfull \vbox (badness 1314) has occurred while \output is active []
-
- [26]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[27] [28] [29] [30]
+[26]
+Underfull \vbox (badness 2772) has occurred while \output is active []
+
+ [27]
+[28]
+Underfull \vbox (badness 2181) has occurred while \output is active []
+
+ [29]
 File: accurate.eps Graphic file (type eps)
- <accurate.eps>
+
+<accurate.eps>
 File: sub.eps Graphic file (type eps)
  <sub.eps>
 File: parent.eps Graphic file (type eps)
@@ -588,26 +600,26 @@ File: parent.eps Graphic file (type eps)
 File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
-
-<irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1562--1562
+ <irrelevant.eps>
+Underfull \hbox (badness 1259) in paragraph at lines 1534--1534
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
 File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps> [31] [32]
+ <testCases.eps> [30] [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [33]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34]
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
 
-Underfull \vbox (badness 7379) has occurred while \output is active []
+[34]
+Underfull \vbox (badness 2245) has occurred while \output is active []
 
  [35]
 File: 2-way.eps Graphic file (type eps)
@@ -616,44 +628,40 @@ File: 2-way.eps Graphic file (type eps)
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps>
+ <4-way.eps> [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36]
-[37]
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1738 replaced by U+FFFD.
+ [37]
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1710 replaced by U+FFFD.
 
+[38] [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38]
-[39] [40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [41]
+ [40]
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
- [42]
+ [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43])
-[44]
+ [42])
+[43]
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <9> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 1907.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 1879.
 
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <9> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 1907.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 1879.
 
 Requested font "phvbo7t" at 9.0pt
  -> phvbo7t
 
-Underfull \hbox (badness 5417) in paragraph at lines 1922--1924
+Underfull \hbox (badness 5417) in paragraph at lines 1894--1896
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
@@ -662,7 +670,7 @@ Underfull \hbox (badness 5417) in paragraph at lines 1922--1924
 [1
 
 ]
-Underfull \hbox (badness 1097) in paragraph at lines 1973--1975
+Underfull \hbox (badness 1097) in paragraph at lines 1945--1947
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OMS/cmsy/m/n
 /10 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
  T[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  s:t:;  c[] \OMS/cmsy/m/n/10 ^^^ \OML/c
@@ -670,7 +678,7 @@ mm/m/it/10 c[]$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 1996--1998
+Underfull \hbox (badness 1038) in paragraph at lines 1968--1970
 \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )\OML/cm
 m/m/it/10 ;  s:t: c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm/m/it/10 c[] or c[] \OT1/cmr
 /m/n/10 = \OML/cmm/m/it/10 c[]$\OT1/pnc/m/n/10 . Note that $\OML/cmm/m/it/10 T[
@@ -678,40 +686,40 @@ m/m/it/10 ;  s:t: c[] \OMS/cmsy/m/n/10 ^^^ \OML/cmm/m/it/10 c[] or c[] \OT1/cmr
  []
 
 [2]
-Underfull \hbox (badness 5417) in paragraph at lines 2025--2027
+Underfull \hbox (badness 5417) in paragraph at lines 1997--1999
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [3]
-Underfull \hbox (badness 5548) in paragraph at lines 2135--2137
+Underfull \hbox (badness 5548) in paragraph at lines 2107--2109
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2148--2150
+Underfull \hbox (badness 5548) in paragraph at lines 2120--2122
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 2166--2168
+Underfull \hbox (badness 5548) in paragraph at lines 2138--2140
 \OML/cmm/m/it/10 c[]$\OT1/pnc/m/it/10 , and cor-re-spond-ing-ly, $\OML/cmm/m/it
 /10 c[] is irrelevant to \OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[
 ]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 . Then it must have
  []
 
 [4]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 2185--2218
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 2157--2190
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 2222--2284
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 2194--2256
 [] 
  []
 
@@ -725,4 +733,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  33i,18n,30p,2034b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (50 pages).
+Output written on v2-acmsmall-sample.pdf (49 pages).
