@@ -339,7 +339,7 @@ Some notations used later are listed below for convenient reference:
 %\item $T_{mask(F_{m})}$ :  All the test cases that contain the
 %\item $T_{mask(F_{m})}$ :
 %\item $T_{mask(F_{m})}$ :
-
+\item $\mathcal{I}^*$ : All the schemas in the SUT.
 \item $\mathcal{I}(t)$ :  All the schemas that are contained in the test case $t$, e.g., $\mathcal{I}(\ (1 1 1)\ )= \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
 \item $\mathcal{I}(T)$ :  All the schemas that are contained in test set $T$, i.e., $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$.
 \item  $\mathcal{S}(T)$:  All the schemas that are only contained in test set $T$, $\mathcal{S}(T) =  \mathcal{I}(T) \backslash \mathcal{I}(\bar{T}) $.
@@ -455,12 +455,16 @@ According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C
 % Another obvious observation is that
 %Then, we have the following proposition.
 \begin{proposition} \label{pro:sbS}
- For any test set $T$ and schema $c$ of the SUT, if $\mathcal{T}(c) \subseteq T$,  $c \in \mathcal{S}(T)$.
+ For any test set $T$, $\mathcal{S}(T)$ = $\{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \}$.
 \end{proposition}
 \begin{proof}
- Assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$, then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t\ contains\ c$, hence $t \in \mathcal{T}(c)$, which is contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$.
+By Proposition \ref{pro:stct},  $\forall c \in \mathcal{S}(T), \mathcal{T}(c) \subseteq T$. Hence, $\mathcal{S}(T) \subseteq \{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \}$.
+
+$\forall c, \mathcal{T}(c) \subseteq T $, assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$. Then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t\ contains\ c$, hence $t \in \mathcal{T}(c)$, which is contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$ and  $\{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \} \subseteq \mathcal{S}(T)$.
 \end{proof}
 
+
+%For any test set $T$ of the SUT, $\forall c \in \mathcal{S}(T), \mathcal{T}(c) \subseteq T$  by Proposition \ref{pro:stct}. Combining Proposition \ref{pro:sbS}, we have $\mathcal{S}(T)$ = $\{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \}$.
 %Based on this,  we have the following Lemma:
 %
 %\begin{proposition} \label{pro:lemasbS}
@@ -468,126 +472,13 @@ According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C
 %\end{proposition}
 
 %Based on this we have $\forall c \in \mathcal{S}(T), \mathcal{T}(c) \in T$.
-\subsection{relationship between }\label{subsec:Formal:multipleset}
+\subsection{Special schemas and minimal schemas of the union of test sets }\label{subsec:Formal:multipleset}
 
 
 For two disjoint test sets, it is  $T_{1}$, $T_{2}$,  $T_{1} \bigcup T_{2} = \varnothing$,  
 
-Then $\mathcal{S}(T_{1} \bigcup T_{2})$ = $\{c | T(c) \subseteq (T_{1} \bigcup T_{2}) \}$.  This set can be divided into three subsets.
-That are $\{c | T(c) \subseteq T_{1} \}$, $\{c | T(c) \subseteq T_{2} \}$ and $\{c | T(c) \subseteq (T_{1} \bigcup T_{2}), and\ T(c) \not\subseteq T_{1}\  T(c) \not\subseteq T_{2} \}$. 
-%Based on this proposition, we can find that if two schemas that have their test cases subsuming each other, then they are the relationships of super-schema and sub-schema.
-%\newdef{proposition}{Proposition}
-
-
-%\begin{proposition}
-
-% is that for any combination c in $t(T) - t(T^{*} - T) $, we can have $T(c) \subset T$, as if not so, there is must be any test case $t \in T(c)$, such that $t \not\in T$, then it must be $t \in T^{*} - T$, this is not according with  $c \in t(T) - t(T^{*} - T)$.
-%Further observation,
-%
-%From this two observation, we can have the following lemma:
-% there exist some relationships between their minimal schemas $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ . The relationship varies with the associations of the two test sets. In fact, there are three possible associations between $T_{1}$, $T_{2}$: \emph{inclusion}, \emph{disjointness}, and \emph{intersection}, as shown in Figure \ref{fig:testSuite}. The relationship between $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ is key for FCI approaches to identify the MFS.  More details will be discussed in following sections.
-%
-%\begin{figure*}[htbp]
-%\centering
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:inclusion}
-%    \includegraphics[width=1.31in]{testSuite1.eps}
-%}
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:disjoint}
-%    \includegraphics[width=2.01in]{testSuite2.eps}
-%}
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:intersect}
-%    \includegraphics[width=1.81in]{testSuite3.eps}
-%}
-%\caption[]{Relationships between two test sets}
-%\label{fig:testSuite}
-%\end{figure*}
-
-%\subsection{Inclusion}
-%%We have the following propositions for two test sets that have an inclusion relationship.
-%\begin{proposition}[{minimal schemas in the smaller test set}]\label{pro:ssp}
-%For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subset T_{1}$, it has $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1} = c_{2} \ or\  c_{1} \prec c_{2}.$
-%\end{proposition}
-%
-%\begin{proof}
-%$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subset T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. According to the definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
-%\end{proof}
-%
-%% So this proposition holds as the schema in $\mathcal{S}(T_{2})$ either is in $\mathcal{C}(T_{1})$, or must be the super-schemas of some schemas in $\mathcal{C}(T_{1})$
-%
-%%Likewise, we can get the properties of the schemas identified for the larger test set.
-%
-%\begin{proposition}[{minimal schemas in the larger test set}]\label{pro:sls}
-%For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subset T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $ , $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
-%\end{proposition}
-%
-%This proposition is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
-%
-%We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subset T_{1}$. In the left part, we can see that in the schema in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
-%
-%\begin{table}[h]
-%\centering
-%\tbl{Inclusion examples\label{example_three_condition}}{
-%  \begin{tabular}{cc}
-%$T_{2}$&$T_{1}$ \\ \hline
-%(0, 0, 0)&(0, 0, 0)\\
-%(0, 0, 1)&(0, 0, 1) \\
-%(0, 1, 0)&(0, 1, 0)\\
-%         &(0, 1, 1) \\ \hline
-% $\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
-%(0, 0, -)&(0, -, -)\\
-%(0, -, 0)&		   \\ \hline
-%  \end{tabular}
-%  \hspace{1em}
-%  \begin{tabular}{cc}
-%$T_{2}$&$T_{1}$\\ \hline
-%(0, 0, 0) & (0, 0, 0)\\
-%(0, 0, 1) & (0, 0, 1)\\
-%(0, 1, 0) & (0, 1, 0)\\
-%		  & (1, 1, 0)\\
-%		  & (1, 1, 1)\\ \hline
-%$\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
-%(0, 0, -)&  (0, 0, -)\\
-%(0, -, 0)&  (0, -, 0)\\
-%		 &  (1, 1, -)\\  \hline
-%  \end{tabular}
-%  }
-%  \end{table}
-%
-%%It is noted that as the
-%
-%\subsection{Disjointness}
-%%This relationship corresponds to Figure \ref{fig:disjoint}. For two different test sets, one obvious property is listed as follows:
-%\begin{proposition}[Schema relations of two disjoint test sets]\label{pro:nrs}
-% For $T_{1}$ and $T_{2}$ of the SUT with $T_{1} \bigcap T_{2} = \emptyset $, then $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) = \emptyset$.
-%\end{proposition}
-%\begin{proof}
-% Assume that $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) \ne \emptyset$, $\exists c \in \mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) $,  i.e.,  $c \in \mathcal{S}(T_{1})$ and $c \in \mathcal{S}(T_{2})$. By Proposition \ref{pro:stct}, $\mathcal{T}(c) \subseteq T_{1}$ and $\mathcal{T}(c) \subseteq T_{2}$. It contradicts that $T_{1} \bigcap T_{2} = \emptyset$.
-%\end{proof}
-%
-%This property points out that the minimal schemas of two disjoint test cases should be irrelevant to each other. Table \ref{example_disjoint} shows an example of this scenario for SUT($2^{3}$). We can learn from this table that for two disjoint test sets $T_{1}$ and $T_{2}$, their minimal schemas, i.e., $\mathcal{C}(T_{1}) = \{(0, - , 0)\}$ and $\mathcal{C}(T_{1}) = \{ (1, 0, -),(1, -, 0) \}$, respectively, are irrelevant to each other.
-%\begin{table}[htbp]
-%\centering
-%\tbl{Disjoint example \label{example_disjoint}}{
-%  \begin{tabular}{cc}
-%$T_{1}$&$T_{2}$ \\ \hline
-%(0, 0, 0)\ \ \ \ \ \ &  (1, 0, 0)\\
-%(0, 1, 0)\ \ \ \ \ \ &  (1, 0, 1)\\
-%		 &  (1, 1, 0)\\  \hline
-% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
-%(0, -, 0)\ \ \ \ \ \ &(1, 0, -)\\
-%         &(1, -, 0)	\\ \hline
-%  \end{tabular}
-%  }
-%  \end{table}
-%Sometimes they can be merged.
-
-
+Then $\mathcal{S}(T_{1} \bigcup T_{2})$ = $\{c | \mathcal{T}(c) \subseteq (T_{1} \bigcup T_{2}) \}$.  This set can be divided into three subsets, which are
+ $\mathcal{S}(T_{1}) = \{c | \mathcal{T}(c) \subseteq T_{1} \}$, $\mathcal{S}(T_{2}) = \{c | \mathcal{T}(c) \subseteq T_{2} \}$ and $\{c | \mathcal{T}(c) \subseteq (T_{1} \bigcup T_{2}), and\ \mathcal{T}(c) \not\subseteq T_{1}\  \mathcal{T}(c) \not\subseteq T_{2} \}$.
 
 
 \subsection{Identify the MFS}\label{subsec:Formal:identi}
