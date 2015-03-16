@@ -397,7 +397,7 @@ $c_{1}$ \\ \hline
 
 
 %\emph{first important proposition :  every is the subset!}
-\begin{proposition}\label{pro:stct}
+\begin{proposition}[Special schema set of test Set T]\label{pro:stct}
 For any test set $T$ of the SUT,  $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$.
 \end{proposition}
 \begin{proof}
@@ -410,55 +410,61 @@ On the other hand, $\forall t \in T$,  $\exists c' \in \mathcal{I}(t)$ , such th
 
 
 
-\begin{proposition}[Each test set has a minimal schema set]\label{pro:ash}
+\begin{proposition}[Minimal schema set of test Set T]\label{pro:ash}
 For any test set $T$ of the SUT, $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) = T$.
 \end{proposition}
 
 \begin{proof}
-As $\mathcal{C}(T) = \{c | c \in \mathcal{S}(T)\ and\ \not\exists c' \prec c, s.t., c' \in \mathcal{S}(T)\}$, indicating that $\mathcal{C}(T) \subseteq \mathcal{S}(T)$.  Then obviously $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c)$. Then we just need to prove that $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
+As $\mathcal{C}(T) = \{c | c \in \mathcal{S}(T)\ and\ \not\exists c' \prec c, s.t., c' \in \mathcal{S}(T)\}$, indicating that $\mathcal{C}(T) \subseteq \mathcal{S}(T)$.  It is then obviously $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c)$. Hence, we just need to prove that $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
 
-$\forall t \in \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) $, $\exists c \in \mathcal{S}(T),\ s.t., t \in \mathcal{T}(c)$. Then $\exists c' \in \mathcal{T}(c), s.t.,\ c' = c \ or\ c' \prec c$. Correspondingly $\mathcal{T}(c') = \mathcal{T}(c),\ or\ \mathcal{T}(c) \subset \mathcal{T}(c')$ by Proposition \ref{pro:shl}. Hence, $t \in \mathcal{T}(c') \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
+$\forall t \in \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) $, $\exists c \in \mathcal{S}(T),\ s.t., t \in \mathcal{T}(c)$. According to the definition of $\mathcal{C}(T)$, $\exists c' \in \mathcal{C}(T), s.t.,\ c' = c \ or\ c' \prec c$. Correspondingly $\mathcal{T}(c') = \mathcal{T}(c),\ or\ \mathcal{T}(c) \subset \mathcal{T}(c')$ by Proposition \ref{pro:shl}. Hence, $t \in \mathcal{T}(c') \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
 
 %In fact by definition of $\mathcal{C}(T)$, $\forall c'\in \mathcal{S}(T) \backslash \mathcal{C}(T)$,  we can have some $c \in \mathcal{C}(T)$, such that $c \prec c'$. According to Proposition \ref{pro:shl}, $\mathcal{T}(c') \subset \mathcal{T}(c)$.   Both cases can deduce $t \in \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$. So, $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
 
 Therefore , $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) = \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) = T$.
 \end{proof}
 
-Table \ref{example_minimal_schemas} lists the $\mathcal{S}(T)$ and minimal schemas $\mathcal{C}(T)$ for the test set $T$ in SUT($2^4$). We can see that for any other schema not in $\mathcal{C}(T)$, either we can find a test case not in $T$ that contains the schema, e.g.,(0,0,-,-) with the test case (0,0,1,1) not in $T$, or that is the super schema of one of the two minimal schemas, e.g.,(0,0,0,0) is the super schema of both (0,0,0,-) and (0,0,-,0).
+Table \ref{example_minimal_schemas} gives an example of $T^{*}$, $T$, $\bar{T}$, $\mathcal{S}(T)$ and $\mathcal{C}(T)$ in SUT($2^3$). We can find that all the schemas in $\mathcal{S}(T)$ and $\mathcal{C}(T)$ are only contained in test set $T$, and for any $t \in T$, it contains at least one schema in $\mathcal{S}(T)$ and $\mathcal{C}(T)$. Additionally, $\mathcal{C}(T)$ is a minimal schema set which filters those super schemas in $\mathcal{S}(T)$.
+
+%Further, the schemas in $\mathcal{S}(T)$ are either the super schemas of schemas in $\mathcal{C}(T)$, e.g. ((0,0,0) \prec (0,0,-)), or
+% see that for any other schema not in $\mathcal{C}(T)$, either we can find a test case not in $T$ that contains the schema, e.g.,(0,0,-) with the test case (0,0,1,1) not in $T$, or that is the super schema of one of the two minimal schemas, e.g.,(0,0,0,0) is the super schema of both (0,0,0,-) and (0,0,-,0).
 \begin{table}[ht]
 \centering
 \tbl{Example of the minimal schemas\label{example_minimal_schemas}}{
-  \begin{tabular}{c c  c  c  c }
-$T^{*}$ & $T$ & $\mathcal{S}(T)$ & $\mathcal{C}(T)$\\ \hline
-(0, 0, 0 ,0) & (0, 0, 0, 0) & (0, 0, 0, -)\\
-(0, 0, 0 ,1) & (0, 0, 0, 1) & (0, 0, -, 0)\\
-(0, 0, 1 ,0) & (0, 0, 1, 0) & \\
-             & (0, 0, 0, -) & \\
-             & (0, 0, -, 0) & \\ \hline
-  \end{tabular}
+  \begin{tabular}{c c c  c  c }
+$T^{*}$ & $T$ &$\bar{T}$ & $\mathcal{S}(T)$ & $\mathcal{C}(T)$\\ \hline
+(0, 0, 0) & (0, 0, 0) &           & (0, 0, -) & (0, 0, -)\\
+(0, 0, 1) & (0, 0, 1) &           & (0, -, 0) & (0, - ,0)\\
+(0, 1, 0) & (0, 1, 0) &           & (0, 0, 0) & \\
+(0, 1, 1) &           & (0, 1, 1) & (0, 0, 1) &\\
+(1, 0, 0) &           & (1, 0, 0) & (0, 1, 0) &\\
+(1, 0, 1) &           & (1, 0, 1) &           &\\
+(1, 1, 0) &           & (1, 1, 0) &           &\\
+(1, 1, 1) &           & (1, 1, 1) &           &\\
+\hline  \end{tabular}
   }
   \end{table}
 
-Let $T_{F_{m}}$ denotes the set of all the test cases triggering failure $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the set of MFS of $F_{m}$ by definition of MFS.
+Let $T_{F_{m}}$ denotes the set of all the test cases triggering failure $F_{m}$ , then $\mathcal{C}(T_{F_{m}})$ actually is the MFS set of $F_{m}$.
 
 %And obviously $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
 
-From the construction process of $\mathcal{C}(T)$, one observation is that the minimal schema set $\mathcal{C}(T)$ is the subset of the schema set $\mathcal{S}(T)$, i.e., $\mathcal{C}(T) \subseteq \mathcal{S}(T)$, and for any schema in $\mathcal{S}(T)$, it either belongs to $\mathcal{C}(T)$, or is the super schema of one element of $\mathcal{C}(T)$.
+According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C}(T) \subseteq \mathcal{S}(T)$, and for any schema in $\mathcal{S}(T)$, it either belongs to $\mathcal{C}(T)$, or is the super schema of one element of $\mathcal{C}(T)$, i.e., $\forall c \in \mathcal{S}(T), \exists c' \in \mathcal{C}(T), s.t., c' = c,\ or\ c' \prec c$.
 % Another obvious observation is that
-Then, we have the following proposition.
-\begin{proposition} [schemas will belong to $\mathcal{S}(T)$ if test cases are in $T$]\label{pro:sbS}
- For any test set $T$ and schema $c$, if every test case contains $c$ is in the set $T$, i.e., $\mathcal{T}(c) \subseteq T$, then it must be that $c \in \mathcal{S}(T) $.
+%Then, we have the following proposition.
+\begin{proposition} \label{pro:sbS}
+ For any test set $T$ and schema $c$ of the  SUT, if $\mathcal{T}(c) \subseteq T$,  $c \in \mathcal{S}(T) $.
 \end{proposition}
 \begin{proof}
- First $ c \in \mathcal{C}(\mathcal{T}(c))$ is obvious and in fact the minimal schemas for the set of test cases $\mathcal{T}(c)$ only contain one schema, which is exactly $c$ itself.  As discussed previously $ \mathcal{C}(\mathcal{T}(c)) \subseteq \mathcal{S}(\mathcal{T}(c)) $, so it must be $c \in \mathcal{S}(\mathcal{T}(c))$.
-
-As $\mathcal{S}(\mathcal{T}(c)) = \mathcal{I}(\mathcal{T}(c)) \backslash \mathcal{I}(\bar{\mathcal{T}(c)})$, and  $\mathcal{T}(c) \subseteq T$, then it follows that $\mathcal{S}(\mathcal{T}(c)) \subseteq  \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$.  In fact $\mathcal{I}(T) \backslash \mathcal{I}(\bar{T}) = \mathcal{S}(T)$, so $\mathcal{S}(\mathcal{T}(c)) \subseteq \mathcal{S}(T)$
-
-Then as $c \in \mathcal{S}(\mathcal{T}(c))$, hence $c \in \mathcal{S}(T)$.
+ Assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$, then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t\ contains\ c$, hence $t \in \mathcal{T}(c)$, which is contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$.
 \end{proof}
+
+
+For two disjoint test sets, it is  $T_{1}$, $T_{2}$,  $T_{1} \bigcup T_{2} = \varnothing$, let $\mathcal{S}_{T_{1}T_{2}}$ be the schemas that are contained and only contained both in test cases $T_{1}$ and $T_{2}$. Formally,   $\mathcal{S}_{T_{1}T_{2}} = {c | c \in I(T_{1})}\ and\ c \in I(T_{2})} $
 
 %Based on this proposition, we can find that if two schemas that have their test cases subsuming each other, then they are the relationships of super-schema and sub-schema.
 %\newdef{proposition}{Proposition}
+
 
 %\begin{proposition}
 
@@ -466,9 +472,9 @@ Then as $c \in \mathcal{S}(\mathcal{T}(c))$, hence $c \in \mathcal{S}(T)$.
 %Further observation,
 %
 %From this two observation, we can have the following lemma:
-For two different sets of test cases, there exist some relationships between the minimal schemas of them. The relationship varies with the associations of the two test sets. In fact, there are three possible associations between two different sets of test cases: \emph{inclusion}, \emph{disjointness}, and \emph{intersection}, as shown in Figure \ref{fig:testSuite}. We did not show the case when the two sets are identical, because for this case the minimal schemas must also be identical. The relationship of the minimal schemas between two different sets of test cases is important as we will learn later the masking effects between multiple failures will make the MFS identifying process work incorrectly, i.e., the FCI approaches may isolate the minimal schemas for the set of test cases which are different from the expected failing set of test cases. And these properties can help to figure out the impact of masking effects on the FCI approaches. Next, we will discuss the relationship between minimal schemas of two sets of test cases with the three associations.
+ there exist some relationships between their minimal schemas $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ . The relationship varies with the associations of the two test sets. In fact, there are three possible associations between $T_{1}$, $T_{2}$: \emph{inclusion}, \emph{disjointness}, and \emph{intersection}, as shown in Figure \ref{fig:testSuite}. The relationship between $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ is key for FCI approaches to identify the MFS.  More details will be discussed in following sections.
 
-\begin{figure*}[ht]
+\begin{figure*}[htbp]
 \centering
 \subfigure[]{
   %  \rule{4cm}{3cm}
@@ -490,57 +496,49 @@ For two different sets of test cases, there exist some relationships between the
 \end{figure*}
 
 \subsection{Inclusion}
-
-The first relationship corresponds to Figure \ref{fig:inclusion}. We have the following proposition for two test sets that have an inclusion relationship.
-%\newtheorem{lemma}{Lemma}
-\begin{proposition}[{schemas for test subset tend to be super schemas}]\label{pro:ssp}
-For two sets of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then $\forall c_{l} \in \mathcal{C}(T_{l})$, $\ either\ c_{l} \in \mathcal{C}(T_{k})\ or\ \exists c_{k} \in \mathcal{C}(T_{k}), s.t., c_{k} \prec c_{l}.$
+%We have the following propositions for two test sets that have an inclusion relationship.
+\begin{proposition}[{minimal schemas in the smaller test set}]\label{pro:ssp}
+For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subset T_{1}$, it has $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1} = c_{2} \ or\  c_{1} \prec c_{2}.$
 \end{proposition}
 
 \begin{proof}
-Obviously $\forall c_{l} \in \mathcal{C}(T_{l})$,  $\mathcal{T}(c_{l}) \subset T_{l} \subset T_{k}$. According to Proposition \ref{pro:sbS}, $c_{l} \in \mathcal{S}(T_{k})$. So this proposition holds as the schema in $\mathcal{S}(T_{k})$ either is in $\mathcal{C}(T_{k})$, or must be the super-schemas of some schemas in $\mathcal{C}(T_{k})$.
+$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subset T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. According to the definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
 \end{proof}
 
-Likewise, we can get the properties of the schemas identified for the larger set of test cases.
+% So this proposition holds as the schema in $\mathcal{S}(T_{2})$ either is in $\mathcal{C}(T_{1})$, or must be the super-schemas of some schemas in $\mathcal{C}(T_{1})$
 
-\begin{proposition}[{schemas for test superset tend to be subschemas}]\label{pro:sls}
-For two sets of test cases $T_{l}$ and $T_{k}$, assume that $T_{l} \subset T_{k}$. Then $\forall c_{k} \in \mathcal{C}(T_{k})\ $, it could be $\ (1)\ c_{k} \in \mathcal{C}(T_{l})\ $ , $(2)\ \exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ $ ,or $(3)\ \not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}.$
+%Likewise, we can get the properties of the schemas identified for the larger test set.
+
+\begin{proposition}[{minimal schemas in the larger test set}]\label{pro:sls}
+For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subset T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $ , $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
 \end{proposition}
 
-This proposition is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third condition, i.e., $\ \not\exists c_{l} \in \mathcal{C}(T_{l}), s.t., c_{k} \prec c_{l}\ or\ c_{k} = c_{l},\ or\ c_{l} \prec c_{k}.$ We refer to this condition as $c_{k}$ is \emph{irrelevant} to $\mathcal{C}(T_{l})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
+This proposition is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
 
-We illustrate these scenarios in Table \ref{example_three_condition}. There are two parts in this table, with each part showing two sets of test cases: $T_{l}$ and $T_{k}$, which have $T_{l} \subset T_{k}$. In the left part, we can see that in the schema in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{k})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{l})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{k})$. Furthermore, one schema in $\mathcal{C}(T_{k})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{l})$.
+We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subset T_{1}$. In the left part, we can see that in the schema in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
 
-%in which the left part shows the case that the failure-inducing combinations satisfy the first properties( both (0,0,-) and (0,1,0) subsume (0,-,-)). While the right part give an example to the second properties, as (1,-,-) is irrelevant to any one of (0,0,-) and (0,1,0).
-
-%\begin{proof}
-%We proof this by two sides:
-%
-%for there is one failure-inducing combination is this set, then this condition is similar to proposition 1, and For there is multiple failure-inducing combinations. We can easily find it must exist one failure-inducing combination.
-%\end{proof}
-
-\begin{table}
+\begin{table}[h]
 \centering
-\tbl{Inclusion example\label{example_three_condition}}{
+\tbl{Inclusion examples\label{example_three_condition}}{
   \begin{tabular}{cc}
-$T_{l}$&$T_{k}$ \\ \hline
+$T_{2}$&$T_{1}$ \\ \hline
 (0, 0, 0)&(0, 0, 0)\\
 (0, 0, 1)&(0, 0, 1) \\
 (0, 1, 0)&(0, 1, 0)\\
          &(0, 1, 1) \\ \hline
- $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
+ $\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
 (0, 0, -)&(0, -, -)\\
 (0, -, 0)&		   \\ \hline
   \end{tabular}
   \hspace{1em}
   \begin{tabular}{cc}
-$T_{l}$&$T_{k}$\\ \hline
+$T_{2}$&$T_{1}$\\ \hline
 (0, 0, 0) & (0, 0, 0)\\
 (0, 0, 1) & (0, 0, 1)\\
 (0, 1, 0) & (0, 1, 0)\\
 		  & (1, 1, 0)\\
 		  & (1, 1, 1)\\ \hline
-$\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
+$\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
 (0, 0, -)&  (0, 0, -)\\
 (0, -, 0)&  (0, -, 0)\\
 		 &  (1, 1, -)\\  \hline
@@ -551,254 +549,43 @@ $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
 %It is noted that as the
 
 \subsection{Disjointness}
-This relationship corresponds to Figure \ref{fig:disjoint}. For two different test sets, one obvious property is listed as follows:
-\begin{proposition}[No relationships between the schemas]\label{pro:nrs}
- For two test sets $T_{1}$ and $T_{2}$, if $T_{1} \bigcap T_{2} = \emptyset $, we have, $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) = \emptyset$.
+%This relationship corresponds to Figure \ref{fig:disjoint}. For two different test sets, one obvious property is listed as follows:
+\begin{proposition}[Schema relations of two disjoint test sets]\label{pro:nrs}
+ For $T_{1}$ and $T_{2}$ of the SUT with $T_{1} \bigcap T_{2} = \emptyset $, then $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) = \emptyset$.
 \end{proposition}
 \begin{proof}
- Assume that $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) \ne \emptyset$. Without loss of generality, let $c \in \mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) $,  then $T_{1}$ and $T_{2}$ must both contain the test cases in $\mathcal{T}(c)$, which is contradiction.
+ Assume that $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) \ne \emptyset$, $\exists c \in \mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) $,  i.e.,  $c \in \mathcal{S}(T_{1})$ and $c \in \mathcal{S}(T_{2})$. By Proposition \ref{pro:stct}, $\mathcal{T}(c) \subseteq T_{1}$ and $\mathcal{T}(c) \subseteq T_{2}$. It contradicts that $T_{1} \bigcap T_{2} = \emptyset$.
 \end{proof}
 
-This property points out that the minimal schemas of two disjoint test cases should be irrelevant to each other. Table \ref{example_disjoint} shows an example of this scenario. We can learn from this table that for two different test sets $T_{l}$ and $T_{k}$, their minimal schemas, i.e., (0, - , 0) and (1, 0, -),(1, -, 0), respectively, are irrelevant to each other.
-\begin{table}
+This property points out that the minimal schemas of two disjoint test cases should be irrelevant to each other. Table \ref{example_disjoint} shows an example of this scenario for SUT($2^{3}$). We can learn from this table that for two disjoint test sets $T_{1}$ and $T_{2}$, their minimal schemas, i.e., $\mathcal{C}(T_{1}) = \{(0, - , 0)\}$ and $\mathcal{C}(T_{1}) = \{ (1, 0, -),(1, -, 0) \}$, respectively, are irrelevant to each other.
+\begin{table}[htbp]
 \centering
 \tbl{Disjoint example \label{example_disjoint}}{
   \begin{tabular}{cc}
-$T_{l}$&$T_{k}$ \\ \hline
-(0, 0, 0)&  (1, 0, 0)\\
-(0, 1, 0)&  (1, 0, 1)\\
+$T_{1}$&$T_{2}$ \\ \hline
+(0, 0, 0)\ \ \ \ \ \ &  (1, 0, 0)\\
+(0, 1, 0)\ \ \ \ \ \ &  (1, 0, 1)\\
 		 &  (1, 1, 0)\\  \hline
- $\mathcal{C}(T_{l})$& $\mathcal{C}(T_{k})$ \\ \hline
-(0, -, 0)&(1, 0, -)\\
+ $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
+(0, -, 0)\ \ \ \ \ \ &(1, 0, -)\\
          &(1, -, 0)	\\ \hline
   \end{tabular}
   }
   \end{table}
 %Sometimes they can be merged.
 
-\subsection{Intersection}
-This relationship corresponds to Figure \ref{fig:intersect}, which is the most common scenario for two given sets of test cases, but is also the most complicated scenario for analysis. To conveniently illustrate the properties of the minimal schemas for this scenario, let $T_{1} \bigcap T_{2} = T_{3}$ as depicted in Figure \ref{fig:intersect}. Then, to get the relationship between the schemas of $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$, we need to use the intermediate schemas in $\mathcal{C}(T_{3})$.
-
-As $T_{3} \subset T_{1}$, then according to Proposition \ref{pro:sls}, $\forall c_{1} \in \mathcal{C}(T_{1})$, we have $\exists c_{3} \in \mathcal{C}(T_{3})$, s.t. $c_{1} = c_{3} $ or, $c_{1} \prec c_{3}$, or $c_{1}$ irrelevant to $\mathcal{C}(T_{3})$.  Further, as $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:ssp}, $\forall c_{3} \in \mathcal{C}(T_{3}) $, we have $\exists c_{2} \in \mathcal{C}(T_{2})$, s.t. $c_{2} = c_{3}$ or $c_{2} \prec c_{3}$. Combining these two properties, we can find the following possible scenarios for $c_{1},c_{3}$ and $c_{2}$ , as shown in Table \ref{possible-relation-of-intersection}. In this table, Column `$c_{1}\ and\ c_{3}$' shows the relationship between $c_{1}$ and $c_{3}$, Column `$c_{3}\ and\ c_{2}$' indicates the relationship between $c_{3}$ and $c_{2}$.
-each row indicates a scenario in the form of $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ ...$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ ...$. For example, the first scenario means that $\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} = c_{3}$ and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t,\ c_{3} = c_{2}$. It is noted that for the 5th scenario, $c_{1}$ is irrelevant to $\mathcal{C}(T_{3})$, which means under this condition there is no single intermediate schema $c_{3}$. Hence, it is not necessary to list the relationship between $c_{3}$ and $c_{2}$, which is marked as `---'.
-
-\begin{table}
-\centering
-  \begin{threeparttable}
-\tbl{Possible scenarios for $c_{1}$, $c_{3}$ and $c_{2}$ \label{possible-relation-of-intersection}}{
-  \begin{tabular}{c|c|c} \hline
-id&$c_{1}$  and $c_{3}$  & $c_{3}$  and $c_{2}$  \\ \hline
-1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$ \\
-2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ \\
-3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ \\
-4&$c_{1} \prec c_{3}$ & $c_{2} \prec c_{3}$ \\
-5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- \\ \hline
-  \end{tabular}
-  }
-% \begin{tablenotes}
-%        \footnotesize
-%\item[\dag]$c_{1} \in \mathcal{C}(T_{1})$.
-%\item[$\star$]$c_{2} \in \mathcal{C}(T_{2})$.
-%\item[\S]$c_{3} \in \mathcal{C}(T_{3})$, $T_{3} = T_{1} \bigcap T_{2}$
-%      \end{tablenotes}
-  \end{threeparttable}
-\end{table}
-
-For each scenario in Table \ref{possible-relation-of-intersection}, a proposition will be given to describe the relationship between the corresponding schema $c_{1}$ and $c_{2}$.
-
-\begin{proposition}[Both identical]\label{pro:twoidentical}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{3} = c_{1}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} = c_{3}$. Then it must have $c_{1} = c_{2}$.
-\end{proposition}
-
-This proposition is obvious, and it indicates the minimal schemas for two intersect test sets can be identical.  For example, Table \ref{example_intersect_identical} shows two sets of test cases that interact with each other at test cases (1,1,0) and (1,1,1). It is easily found that the identical schema is (1,1,-) for $c_{1}$, $c_{2}$ and $c_{3}$. For the following proportions that are very obvious like Proposition \ref{pro:twoidentical}, we will omit the proof and just give an example to illustrate the corresponding proposition.
-
-\begin{table}
-\centering
-\tbl{Example for scenario 1 \label{example_intersect_identical}}{
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3} = T_{1} \bigcap T_{2}$\\ \hline
- (0, 1, 0) & (0, 0, 0) & (1, 1, 0) \\
- (1, 1, 0) & (0, 0, 1) & (1, 1, 1)\\
- (1, 1, 1) & (1, 1, 0) & \\
-	       & (1, 1, 1) & \\\hline
-
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(-, 1, 0)&  (0, 0, -) & (1, 1, -)\\
-(1, 1, -)&  (1, 1, -) &\\ \hline
-  \end{tabular}
-  }
-  \end{table}
-
-\begin{proposition}[One identical, one sub]\label{pro:onesuboneidenticial}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),$ $\ s.t.,\ c_{3} = c_{1}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$. Then it must have $c_{2} \prec c_{1}$.
-\end{proposition}
-
-Table \ref{example_intersect_subsume} illustrates this scenario. We can find that the minimal schemas for $T_{1}$: (1,0,-),(1,-,0) are identical to the schemas in $\mathcal{C}(T_{3})$, which are the super schemas of the minimal schema for $T_{2}$: (1,-,-).
-
-\begin{table}
-\centering
-\tbl{Example for scenario 2 \label{example_intersect_subsume}}{
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
-(0, 1, 0)   & (0, 0, 0) & (1, 0, 0) \\
-(1, 0, 0)   & (1, 0, 0) & (1, 0, 1)\\
-(1, 0, 1)	& (1, 0, 1) & (1, 1, 0)\\
-(1, 1, 0)	& (1, 1, 0) &         \\
-        	& (1, 1, 1) & \\ \hline
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(-, 1, 0)&  (-, 0, 0) & (1, 0, -)\\
-(1, 0, -)&  (1, -, -) & (1, -, 0)   \\
-(1, -, 0)&     & \\ \hline
-  \end{tabular}
-  }
-  \end{table}
 
 
-
-\begin{proposition}[One sub, one identical]\label{pro:oneidenticalonesub}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),$ $\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} = c_{3}$. Then it must have $c_{1} \prec c_{2}$.
-\end{proposition}
-
-This proposition is exactly the antithesis of Proposition \ref{pro:onesuboneidenticial}. An example of this scenario can be easily obtained by transforming the label $T_{1}$ to $T_{2}$, and $T_{2}$ to $T_{1}$ in Table \ref{example_intersect_subsume}.
-
-
-\begin{proposition}[Both sub]\label{pro:twosub}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$.Then it must have $c_{1}$ is irrelevant to $c_{2}$.
-\end{proposition}
-\begin{proof}
-First we have $\mathcal{T}(c_{1}) \not\subset  T_{3}$. This is because if not so, according to Proposition \ref{pro:ssp} it has $\exists c_{3}' \in \mathcal{C}(T_{3}),\ s.t.,\ c_{3}' \prec c_{1},\ or\ c_{3}' = c_{1}$. Then as $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, based on which it has $c_{3}' \prec c_{3}$. This is not possible as both $c_{3}', c_{3} \in \mathcal{C}(T_{3})$, which means that they are both minimal schemas. So $\mathcal{T}(c_{1}) \not\subset  T_{3}$ holds.
-
-Based on this, there must exist at least one test case $t \in \mathcal{T}(c_{1})$, such that $t \not\in T_{3}$. As $\mathcal{T}(c_{1}) \subset T_{1}$, then the corresponding test case $t$ must belong to $T_{1} \backslash T_{3}$. Formally, $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$.
-
-Similarly, it also has $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$.
-
-As $T_{2} \backslash T_{3} \bigcap T_{1} \backslash T_{3} = \varnothing$, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in T_{2}$ and $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in T_{1}$. Then as $\mathcal{T}(c_{1}) \subset T_{1}$ and $\mathcal{T}(c_{2}) \subset T_{2}$, so $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$ and $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in \mathcal{T}(c_{1})$. Consequently, we have $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2})$, $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$, and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2})$. Hence, $c_{2} \not\prec c_{1}$, $c_{1} \not\prec c_{2}$ and $c_{1} \neq c_{2}$, which indicates that $c_{1}$ is irrelevant to $c_{2}$.
-\end{proof}
-
-
-Note that under this condition we can only determine that schema $c_{1}$ and $c_{2}$ are irrelevant, it may happen that $c_{1}$ is related to other schema in $\mathcal{C}(T_{2})$.  Under this condition, assume $c_{2}' \in \mathcal{C}(T_{2})$ is related to $c_{1}$. In fact, the only relationship between $c_{1}$ and $c_{2}'$ is $c_{1} \prec c_{2}'$.  This is because we have proved that $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in T_{2}$, which means that $\forall c_{2}' \in \mathcal{C}(T_{2})$, it has $\mathcal{T}(c_{1}) \not\subset \mathcal{T}(c_{2}')$ and  $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2}')$. Hence $\forall c_{2}' \in \mathcal{C}(T_{2}),  c_{1} \neq c_{2}' \ and\ c_{2}' \not\prec c_{1}$. So the only possible relationships between $c_{1}$ and other schemas in $\mathcal{C}(T_{2})$ are either irrelevant or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$. Formally, we can describe the relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ in Lemma \ref{lemma:twosub}.
-%\newtheorem{lemma}{Lemma}
-%\begin{lemma}
-\begin{lemma}[Both sub]\label{lemma:twosub}
-$\forall c_{1} \in \mathcal{C}(T_{1})$ if $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{1} \prec c_{3}$, and correspondingly, $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{2} \prec c_{3}$. Then it must have either $c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2}),\ or\ \exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$.
-\end{lemma}
-
-
-Table \ref{example_intersect_subsub} gives an example for the two possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$. In the left main column, we can find that $c_{1}$ $(-,-,0)$ and $c_{2}$ $(1,-,-)$ are both the sub schema of $c_{3}$ $(1,-,0)$, and they are irrelevant to each other.  Further, as there is no extra minimal schemas in $\mathcal{C}(T_{2})$, so $c_{1}$ is irrelevant to $\mathcal{C}(T_{2})$.  In the right column,  $c_{1}$ $(-,-,1)$ and $c_{2}$ $(1,1,-)$ are both the sub schema of $c_{3}$ $(1,-,0)$ , and they are still irrelevant to each other. But $c_{1}$ is the sub schema of $c_{2}'$ (0,0,1), which is also the minimal schema in $\mathcal{C}(T_{2})$.
-
-\begin{table}
-\centering
-\tbl{Example for scenario 4  \label{example_intersect_subsub}}{
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
-(0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
-(0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
-(1, 0, 0)	& (1, 1, 0) &  \\
-(1, 1, 0)	& (1, 1, 1) &         \\ \hline
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(-, -, 0)&  (1, -, -) & (1, -, 0)\\ \hline
-%         &  (-, 0, 1) &  \\
-  \end{tabular}
-  \hspace{1em}
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
-(0, 0, 1)   & (0, 0, 1)       & (0, 0, 1) \\
-(0, 1, 1)   & (1, 1, 1)       & (1, 1, 1)\\
-(1, 0, 1)	& (1, 1, 0)       &           \\
-(1, 1, 1)	&   &         \\ \hline
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
- (- ,-, 1)  &  (0, 0, 1) & (0, 0, 1)\\
-            &  (1, 1, -) & (1, 1, 1) \\  \hline
-  \end{tabular}
-  }
-  \end{table}
-
-\begin{proposition}[One irrelevant]\label{pro:oneirrelevant}
-For $c_{1} \in \mathcal{C}(T_{1})$, if $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. Then it must have $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{2})$
-\end{proposition}
-
-\begin{proof}
-Assume $c_{1}$ is related to $\mathcal{C}(T_{2})$, i.e., $\exists c_{2} \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2},\ or\ c_{2} \prec c_{1},\ or\ c_{1} = c_{2}$.
-
-For the first case, i.e., if $c_{1} \prec c_{2}$, it then must have $\mathcal{T}(c_{2}) \subset \mathcal{T}(c_{1})$ according to Proposition \ref{pro:shl}.  Further it have $\mathcal{T}(c_{2}) \subset T_{3}$, because if not so, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \in T_{2} \backslash T_{3}$. As $T_{2} \backslash T_{3} \bigcap T_{1} = \varnothing $, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in T_{1}$. As $\mathcal{T}(c_{1}) \subset T_{1}$, then $\exists t \in \mathcal{T}(c_{2}),\ s.t.,\ t \not\in \mathcal{T}(c_{1})$, which means that $\mathcal{T}(c_{2}) \not\subset \mathcal{T}(c_{1})$.  It is contradiction, so $\mathcal{T}(c_{2}) \subset T_{3}$.
-
-Then according to Proposition \ref{pro:ssp},  $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{2}\ or\ c_{3} = c_{2}$. Note that $T_{3} \subset T_{2}$, then according to Proposition \ref{pro:sls},  $\forall c_{2} \in \mathcal{C}(T_{2}), \exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} \prec c_{3},\ or\ c_{2} = c_{3},\ or\ c_{2}\ is\ irrelevant\ to\ \mathcal{C}(T_{3})$. Combining these two properties, it can only happen $\exists c_{3} \in \mathcal{C}(T_{3}),\ s.t.,\ c_{2} = c_{3}$.
-As $c_{1} \prec c_{2}$, then we can have $\exists c_{3} \in \mathcal{C}(T_{3}), s.t., c_{1} \prec  c_{3}$. It is contradiction as $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the first case is impossible, which indicates that $c_{1} \not\prec c_{2}$.
-
-
-For the second case, i.e., if $c_{2} \prec c_{1}$. Then it must have $\mathcal{T}(c_{1}) \subset \mathcal{T}(c_{2})$. Similarly as the first case, we further have $\mathcal{T}(c_{1}) \subset T_{3}$. Then according to Proposition \ref{pro:ssp}, $\exists c_{3} \in  \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{1}\ or\ c_{3} = c_{1}$. It is also contradiction to the fact that $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the second case is not possible, which indicates that  $c_{2} \not\prec c_{1}$.
-
-
-For the last case, i.e., if $c_{1} = c_{2}$. Then it must have $\mathcal{T}(c_{2}) = \mathcal{T}(c_{1})$. Further we have $\mathcal{T}(c_{1}) \subset T_{3}$. Because if not so, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \in T_{1} \backslash T_{3}$. As $T_{1} \backslash T_{3} \bigcap T_{2} = \varnothing $, then $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in T_{2}$. As $\mathcal{T}(c_{2}) \subset T_{2}$, so  $\exists t \in \mathcal{T}(c_{1}),\ s.t.,\ t \not\in \mathcal{T}(c_{2})$, indicating that $\mathcal{T}(c_{1}) \neq \mathcal{T}(c_{2})$. It is contradiction, so $\mathcal{T}(c_{1}) \subset T_{3}$.
-
-Then as $\mathcal{T}(c_{1}) \subset T_{3}$, according to Proposition \ref{pro:ssp}, $\exists c_{3} \in  \mathcal{C}(T_{3}),\ s.t.\ c_{3} \prec c_{1}\ or\ c_{3} = c_{1}$. It is still contradiction to the fact that $c_{1}\ irrelevant\ to\ \mathcal{C}(T_{3})$. So the last case is not possible, which indicates that $c_{1} \neq c_{2}$.
-
-As all these three cases are impossible, so $c_{1}$ is must irrelevant to $\mathcal{C}(T_{2})$.
-\end{proof}
-
-For example, in Table \ref{example_intersect_irrelevant}, schema $c_{1}$ $(0,1,-)$  is irrelevant to $\mathcal{C}(T_{3})$, i.e., \{ $(1,-,0)$ \}. It can be found that $c_{1}$ $(0,1,-)$ is also irrelevant to $\mathcal{C}(T_{2})$, i.e., \{ $(1,-,-)$ , $(-,0,1)$ \}.
-
-\begin{table}
-\centering
-\tbl{Example for scenario 5 \label{example_intersect_irrelevant}}{
-  \begin{tabular}{ccc}
-$T_{1}$&$T_{2}$ &$T_{3}  = T_{1} \bigcap T_{2} $\\ \hline
-(0, 0, 0)   & (1, 0, 0) & (1, 0, 0) \\
-(0, 1, 0)   & (1, 0, 1) & (1, 1, 0)\\
-(1, 0, 0)	& (1, 1, 0) &  \\
-(1, 1, 0)	& (1, 1, 1) &         \\
-(0, 1, 1)   & (0 ,0,1)  &  \\ \hline
- $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ & $\mathcal{C}(T_{3})$  \\ \hline
-(-, -, 0)&  (1, -, -) & (1, -, 0)\\
-(0,1 , -) &  (-, 0, 1) &  \\  \hline
-  \end{tabular}
-  }
-  \end{table}
-
-
-Table \ref{possible-result-of-intersection} concludes the possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$ under the previous five scenarios. The three columns in the left are the same as Table \ref{possible-relation-of-intersection}. The last column ` $c_{1}$ and $\mathcal{C}(T_{2})$' indicates the relationship between schema $c_{1}$ and $\mathcal{C}(T_{2})$. From this table, we can learn that for two intersect sets of test cases, i.e., $T_{1}$ and $T_{2}$, there are four possible relationships between a schema $c_{1} \in  \mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$. Formally, we have the following proposition.
-
-\begin{proposition}[conclusion for intersection]\label{pro:concludeforintersection}
-$\forall c_{1} \in \mathcal{C}(T_{1}), \exists c_{2} \in  \mathcal{C}(T_{2}),\ s.t.,\ (1)\ c_{1} = c_{2}\ (scenario 1), \ or\ (2)\ c_{2} \prec c_{1}\ (scenario 2),\ or\ (3)\ c_{1} \prec c_{2}\ (scenario 3, scenario 4),\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ (scenario 5, scenario 4).$
-\end{proposition}
-
-%Note that the 4th scenario (marked $\star$) only shows that two corresponding schema $c_{1} $ and $c_{2}$ are irrelevant. It may happen that $c_{1}$ is related to other schemas in $\mathcal{C}(T_{2})$.  Under this condition, assume $c_{2}' \in \mathcal{C}(T_{2})$ is related to $c_{1}$. In fact, the only relationship between $c_{1}$ and $c_{2}'$ is that $c_{1} \prec c_{2}$ because
-%which may be transformed to scenario 3; or $c_{1}$ will be irrelevant to all the other schemas in $\mathcal{C}(T_{2})$, which will be transformed to scenario 5.
-
-%their minimal schemas can be identical (scenario 1),  can be subsuming each other (scenarios 2 and 3), can be irrelevant to each other (scenario 4),  and can be irrelevant to all the minimal schemas of the other set of test cases (scenario 5).
-
-\begin{table}
-\centering
-\tbl{Possible relationships between $c_{1}$ and $\mathcal{C}(T_{2})$  \label{possible-result-of-intersection}}{
-  \begin{tabular}{c|c|c||c} \hline
-id&$c_{1}$ and $c_{3}$ & $c_{2}$ and $c_{3}$  & $c_{1}$ and $\mathcal{C}(T_{2})$\\ \hline
-1&$c_{1} = c_{3}$ & $c_{3} = c_{2}$  & $c_{1} =  c_{2}$\\
-2&$c_{1} = c_{3}$  & $c_{2} \prec c_{3}$ &  $c_{2} \prec c_{1}$ \\
-3&$c_{1} \prec c_{3}$ & $c_{3} = c_{2}$ & $c_{1} \prec c_{2}$ \\
-4&$c_{1} \prec c_{3}$ & $c_{3} \prec c_{2}$ &  $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$, or $\exists c_{2}' \in \mathcal{C}(T_{2}),\ s.t.,\ c_{1} \prec c_{2}'$ \\
-5&$c_{1}\ irrelevant\ \mathcal{C}(T_{3})$ & --- & $c_{1}$ irrelevant to $\mathcal{C}(T_{2})$  \\ \hline
-  \end{tabular}
-  }
-  \end{table}
-
-%\subsection{Summary of the formal model}
-%From the previous analysis, we can learn that for the general intersect test cases-schema model, this is a partial relationship.
 
 \subsection{Identify the MFS}
-According to Definition \ref{de:mfs} and Proposition \ref{pro:ash}, we can determine that $\mathcal{C}(T_{F_{m}})$ actually is the set of failure-causing schemas of $F_{m}$. Then in theory, if we want to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F_{m}}$. This is impossible in practice, especially when the testing space is very large.
+In this section, we focus on the SUT with single fault. Let $T_{f}$ indicates all the failing test cases and $T_{p}$ all the passing test cases. In fact, $T_{f} \bigcap T_{p} = \varnothing$ and $T_{f} \bigcup T_{p} = T^{*}$. Then the MFS for the SUT is $\mathcal{C}(T_{f})$. Theoretically,  to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{f}$. This is impossible in practice, especially when the testing space is very large.
 
-Traditional FCI approaches select a subset of the exhaustive test cases to execute. In this case, in order to identify the MFS, each of the remaining test cases must be predicted to be failing or not. Or alternatively, a set of schemas is given as the candidate of the MFS \cite{ghandehari2012identifying}. For this case, these schemas should be ranked according to their likelihood to be the MFS. As giving a ranking of these candidate schemas can also be regard as a special case of making a prediction (with computing the probability), so we next only formally describe the mechanism of FCI approaches for the first case.
+Traditional FCI approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. Formally,  let $T_{f-obs}$ denote the observed failing test cases, and $T_{p-obs}$ the observed passing test cases. To obtain the MFS, the outcomes of the remaining test cases should be inferred by the FCI approaches. Correspondingly, let $T_{f-inf}$ refer to the inferred failing test cases and $T_{p-inf}$ the inferred passing test cases. Obviously, $T_{f-obs} \bigcup T_{p-obs} \bigcup T_{f-inf} \bigcup T_{p-inf} = T^{*}$, and they are mutually disjoint.   Then the MFS identified by FCI approaches can be depicted as: MFS = $\mathcal{C}(T_{f-obs} \bigcup T_{f-infer})$.
 
-%This prediction is based on some assumptions and not always correct. Formally, we can describe the two ways as following:
-We refer to the observed failing test case as  $T_{fail_{observed}}$, and the remaining failing test cases based on prediction as $T_{fail_{predicted}}$. We also denote the actual entire failing test cases as $T_{fail}$. Then the MFS identified by FCI approaches can be depicted as:
+We offer an FCI example using the OFOT method \cite{nie2011minimal}.  For SUT($2^{3}$), assume the test case (1, 1, 1) failed, then the OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate new test cases: $t_{1}; t_{2}; t_{3}$. The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
 
-MFS = $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$.
+In this example, only 4 test cases are observed
 
-Each FCI approach applies different way to predict $T_{fail_{predicted}}$ according to observed failing test cases; furthermore, as test cases generated are different, the failing test cases observed by different FCI approaches, i.e., $T_{fail_{observed}}$ also vary.
-
-We offer an example using the OFOT approach \cite{nie2011minimal} to identify the MFS. Suppose that the SUT has 3 parameters, each of which can take on 2 values, and assume the test case (1, 1, 1) failed. Then, the FCI process using OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate new test cases: $t_{1}; t_{2}; t_{3}$. The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken; therefore, the MFS in \emph{t} is (1,-,-).
-
-Now let us explain this process with our formal model. Obviously $T_{fail_{observed}}$ is \{(1,1,1),(1,0,1),(1,1,0)\}. And as (0,-,-) broke the MFS, by theory \cite{nie2011minimal}, all the test cases that contain (0,-,-) should pass the testing (This conclusion is built on the assumption that the SUT just contains one failure-causing schema).  As a result, {(0,1,1),(0,0,1),(0,1,0),(0,0,0)} should pass the testing. Further, as obviously the test case either passes or fails (the condition that a test case skips testing, i.e., does not produce an output, is labeled as a special case of failing), so the remaining test case (1,0,0), will be predicted to be failing, i.e., $T_{fail_{predicted}}$ is \{(1,0,0)\}. Finally, the MFS from the OFOT strategy can be described as: $\mathcal{C}(T_{fail_{observed}} \bigcup T_{fail_{predicted}})$ = $\mathcal{C}(\{(1,1,1),(1,0,1),(1,1,0),(1,0,0)\})$ = (1,-,-), which is identical to the one obtained previously.
 
 \begin{table}[h]
 \tbl{OFOT with our strategy\label{ofot-identify}}{
@@ -818,29 +605,22 @@ $t_{6}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0 } & Fail \\
 $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\ \hline
 \end{tabular}}
 \end{table}
-%In this formula, the approach can derive the $T_{fail_{assumed}}$ from the $T_{fail_{observed}}$. For example,  for OFOT, one factor, pass, it can learn all the factor. For colbourn, it can learn from the covering array to be all according the number and t.
 
-
-
-Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In fact, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
+Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In the SUT, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=4.31in]{FCI.eps}
-\caption{A general model of FCI approach}
+\caption{A general model of FCI approach for the SUT}
 \label{fig:fci_process}
 \end{figure}
 
 
-In Figure \ref{fig:fci_process} area A denotes the test cases that should have passed testing but were predicted to be failing, area B depicts the test cases that the approach observed to be failing test cases, area C refers to the failing test cases that were not observed and were predicted to be failing test cases, and area D shows the failing test cases that are neither observed nor predicted.  This figure actually represents the condition in which two sets of test cases intersect with each other; specifically, comparing to the Figure \ref{fig:intersect}, we can learn that $A \bigcup B \bigcup C $= $T_{1}$, which indicates the test cases we think they are failing test cases.
- $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test cases,
-and $ B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ are their Intersections.
+In Figure \ref{fig:fci_process} area A denotes the test cases that should pass but are incorrectly inferred to be failing, area B depicts the failing test cases that are observed, area C refers to the unexecuted test cases  that is correctly inferred to be failing, and area D shows all the unexecuted failing test cases cannot be inferred.  This figure actually represents the condition in which two test sets intersect with each other; specifically, comparing to Figure \ref{fig:intersect}, $A \bigcup B \bigcup C $= $T_{1}$,  indicating the test set that are considered to be failing. $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test set.  $B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ is their intersection.
 
-%As we have known, in the case of Figure \ref{fig:intersect}, there are various relationships between the schemas identified in $T_{1}$ and the schemas identified in $T_{2}$.
+According to the Proposition \ref{pro:concludeforintersection}, the schemas obtained by FCI approaches $\mathcal{C}(A \bigcup B \bigcup C)$ and the actual MFS $\mathcal{C}(B \bigcup C \bigcup D)$ can be identical, or subsuming each other, or irrelevant to each other.  We refer to the case that $c \in \mathcal{C}(B \bigcup C \bigcup D), s.t., c \ irrelevant\ to\ \mathcal{C}(A \bigcup B \bigcup C)$ as the FCI approach \emph{ignoring} this actual MFS.
 
-According to the Proposition \ref{pro:concludeforintersection}, $\forall c_{1} \in \mathcal{C}(A \bigcup B \bigcup C),\ \exists c_{2} \in \mathcal{C}(D \bigcup B \bigcup C),\ $ $s.t., \ (1)\ c_{1} = c_{2}\ , \ or\ (2)\ c_{2} \prec c_{1}\ ,\ or\ (3)\ c_{1} \prec c_{2}\ ,\ or\ (4)\ c_{1}\ is\ irrelevant\ to\ \mathcal{C}(T_{2})\ .$ This indicates that the schemas obtained by FCI approaches and the actual MFS can be identical, or subsuming each other, or irrelevant to each other.  We refer to the case that an actual MFS is irrelevant to all the schemas obtained by FCI approaches as the FCI approach \emph{ignoring} this actual MFS.
-
-To identify the schemas as accurately as possible, the FCI approach needs to make $A \bigcup B \bigcup C$ as similar as possible to $D \bigcup B \bigcup C$. Even though each FCI approach tries to identify the MFS as accurately as possible, however, masking effects arising from different test cases will reduce its effectiveness. We next discuss the masking problem and how it affects the FCI approaches.
+To identify the schemas as accurately as possible, the FCI approach needs to make $A$ (incorrectly inferred) and $D$ (cannot be inferred) as small as as possible. Even though each FCI approach tries to identify the MFS as accurately as possible, however, masking effects will affect the observed outcomes and the inferred results. We next discuss the masking problem.
 
 \section{Masking effect}
 \begin{definition}
@@ -858,11 +638,11 @@ For traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  tw
 
 \subsubsection{Regarded as one failure strategy}
 %, as it does not distinguish the failures, i.e., it treats all types of failures as one failure--\emph{failure}, and others as \emph{pass}.
-This is the most common strategy. With this strategy, the minimal schemas are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the failures in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ . So in this case, by Proposition \ref{pro:sls}, some schemas obtained may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
+This is the most common strategy. With this strategy, the minimal schemas are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the failures in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ .  By Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
 
 As an example, consider the test cases in Table \ref{masking-effects-exhaustive}. Assume we need to characterize the MFS of \emph{failure 1}. All the test cases that triggered \emph{failure 1} are listed in column \emph{$T_{F_{1}}$}; similarly, we list the test cases that triggered other failures in column \emph{$T_{mask(F_{1})}$} and \emph{$T_{non\_mask}$}, respectively, in which the former masked \emph{failure 1}, while the latter did not. Actually the MFS of \emph{failure 1}  should be (1,1,-,-) and (-,1,1,1) as we listed them in the column `actual MFS of \emph{failure 1}'. However, when we use the \emph{regarded as one failure} strategy, the minimal schemas obtained will be (-,-,0,0), (1,1,-,-), (-,-,1,1), in which (-,-,0,0) is irrelevant to the actual MFS of \emph{failure 1} , and (-,-,1,1) is a sub-schema of the actual MFS (-,1,1,1).
 
-\begin{table}
+\begin{table}[h]
 \centering
 \tbl{masking effects for exhaustive testing \label{masking-effects-exhaustive}}{
   \begin{tabular}{ccc}
@@ -905,175 +685,6 @@ With this model, if we know which test cases mask the expected failure, i.e., if
 
 To be convenient, let  $T_{as} = B_{1} \bigcup B_{2} \bigcup C \bigcup D$ indicate all the actual failing test cases, $T_{km} = A \bigcup B_{1} \bigcup B_{2} \bigcup C$ indicate the test cases for strategy \emph{knowing masking effects}, $T_{ro} = A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ indicate the test cases for strategy \emph{regarded as one failure}, and $T_{df} = A \bigcup B_{1} \bigcup C$ indicate the test cases for strategy \emph{distinguishing failures}. Next, we will discuss the influence of masking effects on the two strategies.
 
-\subsubsection{Using the regarded as one failure strategy}
-For the strategy \emph{regarded as one failure}, the impacts of masking effects on FCI approaches can be analysed  by comparing the MFS identified by this strategy to those by strategy \emph{knowing masking effects}. Formally, it is to compare  $\mathcal{C}(T_{ro})$  with  $\mathcal{C}(T_{km})$.  Intuitively, $\mathcal{C}(T_{km})$ is more close to $\mathcal{C}(T_{as})$ than $\mathcal{C}(T_{ro})$. In other word, when using \emph{regarded as one failure} strategy,  the deviation between the identified MFS  and the actual MFS is larger than that of strategy \emph{knowing masking effects}.
-
-The gap between the two strategies can be further analysed by studying the relationships between these two MFS set. As $T_{km} \subset T_{ro}$ , according to Proposition  \ref{pro:sls}, schemas in  $\mathcal{C}(T_{ro})$ can be identical to some schemas in $\mathcal{C}(T_{km})$, or be sub schemas of some of them, or irrelevant to all of them. Formally, $\forall c_{ro} \in \mathcal{C}(T_{ro}),\  \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{ro} \prec c_{km},\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{km})$, three possibilities in total.
-
-Now let us get back to the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS.  It can be found that test cases that are used for identifying the MFS using this strategy, i.e., $T_{km} $, \emph{intersect} the test cases that are used to compute the actual MFS( $ T_{as}$ ). According to Proposition \ref{pro:concludeforintersection}, the minimal schemas obtained by this strategy can be identical, super-schema, sub-schema, and irrelevant to the actual MFS, four possibilities in total. Formally, $\forall c_{km} \in \mathcal{C}(T_{km}),\ \exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} = c_{km},\ or\ c_{km} \prec c_{as},\ or\ c_{as} \prec c_{km} \ or\ c_{km}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-
-Take schema $c_{km}$ as intermediate schema, then for any schema $c_{ro}$ in $\mathcal{C}(T_{ro})$, the possible relationships between $c_{ro}$ and $c_{km}$, $c_{as}$ can be described in Table \ref{conditions-for-ro}. The same as Table \ref{possible-result-of-intersection}, one row can be described in the form of $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ ...$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ ...$, then it has $c_{ro} ... c_{as}$.  For example, the first scenario (ID 1) means that $\forall c_{ro} \in \mathcal{C}(T_{ro}),\ if\ \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$ and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t,\ c_{km} = c_{as}$, then we have $c_{ro} = c_{as}$. The details of each row are described as propositions in Section A.1 in the Appendix. Some necessary proofs are also attached.
-
-%We take $c_{km}$ as intermediate schema both has relationships between these two schemas as discussed before, second, we can clearly enure the difference between $c_{ro}$ and $c_{km}$, which can help to understand the impacts of masking effects for this strategy.
-
-\begin{table}[h]
-\centering
-\tbl{Possible scenarios for Regard as one failure strategy \label{conditions-for-ro}}{
-  \begin{tabular}{c|c|c||c} \hline
-ID & $c_{ro}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{ro}$  and $\mathcal{C}(T_{as})$ \\ \hline
-%& & \\ \hline
-1&$ c_{ro} = c_{km}  $    	&   $ c_{as} = c_{km}$    &    $c_{ro} = c_{as}$   \\
-2&$  c_{ro} = c_{km}  $    	&   $ c_{as} \prec c_{km}$  &    $c_{as} \prec c_{ro}$      \\
-3&$ c_{ro} = c_{km}  $    	&   $ c_{km} \prec c_{as}$  &    $c_{ro} \prec c_{as}$    \\
-4&$ c_{ro} = c_{km}  $    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$  &  $c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$ \\
-5&$ c_{ro} \prec c_{km} $    	&   $ c_{as} = c_{km}$   &   $c_{ro} \prec c_{as}$      \\
-6&$ c_{ro} \prec c_{km} $    	&   $ c_{as} \prec c_{km}$  &  $\exists c_{as}', c_{ro} \prec c_{as}',\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$        \\
-7&$ c_{ro} \prec c_{km} $    	&   $c_{km} \prec c_{as}$   &  $c_{ro} \prec c_{as}$     \\
-8&$ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
-9&$c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
- \hline \end{tabular}
-  }
-\end{table}
-
-Table \ref{example-rule16} gives an example, there are three main parts in this table. In the upper part, Column `$A$', `$B_{3}$', `$D$' indicate the test cases of areas $A$, $B_{3}$, $D$, respectively, in Fig \ref{fig:fci_mask}. Column `$B_{1}\bigcup B_{2}\bigcup C$' indicates the union of test cases of areas $B_{1}$, $B_{2}$ and $C$. We did not distinguish them because this union is a common part of $T_{as}$, $T_{km}$ and $T_{ro}$. In the middle part, Column `$T_{as}$', `$T_{km}$' and `$T_{ro}$ ' indicates the test cases for each strategy to compute the minimal schemas, in which $T_{as}$ = $ B_{1} \bigcup B_{2} \bigcup C \bigcup D$ is for the actual MFS, $T_{km}$  = $A \bigcup B_{1} \bigcup B_{2} \bigcup C $ is for \emph{knowing masking effects}, and $T_{ro}$ = $A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ is for the \emph{regarded as one failure}, respectively.  In the bottom part of this table, Column `$\mathcal{C}(T_{as})$', `$\mathcal{C}(T_{km})$' and `$\mathcal{C}(T_{ro})$' show the actual MFS, schemas obtained by strategy \emph{knowing masking effects} and by \emph{regarded as one failure}, respectively.
-
-\begin{table}[h]
-\tbl{Example of some scenarios of strategy regarded as one failure \label{example-rule16}}{
-\begin{tabular}{llllllllllll}
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup B_{2}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{3}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{(1,0,0,1)}&\multicolumn{3}{c}{(0,1,0,0)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,1)}&\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{}\\ \hline
-\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{ro}$} \\ \hline
-\multicolumn{5}{c}{(1,1,0,0)}             &\multicolumn{4}{c}{(1,1,1,0)} &           \multicolumn{3}{c}{(1,1,1,0)}\\
-\multicolumn{5}{c}{(1,1,0,1)}             &\multicolumn{4}{c}{(1,1,0,0)} &           \multicolumn{3}{c}{(1,1,0,0)}\\
-\multicolumn{5}{c}{(0,1,0,0)}             &\multicolumn{4}{c}{(1,1,0,1)} &           \multicolumn{3}{c}{(1,1,0,1)}\\
-\multicolumn{5}{c}{}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{(1,0,0,1)}\\
-\multicolumn{5}{c}{}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{(1,0,0,0)}\\
-
-
-
-\hline
-\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{ro})$} \\ \hline
-\multicolumn{5}{c}{(1,1,0,-)}             &\multicolumn{4}{c}{(1,1,0,-)} &           \multicolumn{3}{c}{(1,-,0,-)}\\
-\multicolumn{5}{c}{(-,1,0,0)}             &\multicolumn{4}{c}{(1,1,-,0)} &           \multicolumn{3}{c}{(1,1,-,0)}\\
-%\multicolumn{4}{c}{}             &\multicolumn{4}{c}{} &           \multicolumn{4}{c}{}\\
-  \hline
-
-\end{tabular}
-}
-\end{table}
-
-Let $c_{ro}$ = (1,-,0,-), then we have $c_{km} $ = (1,1,0,-) so that $c_{ro} \prec c_{km}$. Further, it is found that $c_{as}$ = (1,1,1,0), which is equal to $c_{km}$. At last we have $c_{ro} \prec c_{as}$. This corresponds scenario 5 in Table \ref{conditions-for-ro}. Additionally, if let $c_{ro}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{ro}$. Then we can find that $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, and so is $c_{ro}$. This corresponds scenario 4 in Table \ref{conditions-for-ro}.  We do not include all the scenarios in this example,  but others (scenarios 1,2,3,6,7,8) can be easily constructed in a similar way.
-
-From Table \ref{conditions-for-ro}, it can be found that for any schema identified by strategy \emph{regarded as one failure}, it can be identical to the actual MFS (scenario 1), or be subschema (scenarios 3, 5, 6 7, 8, 9), or super schema (scenario 2), or irrelevant to all the actual MFS (scenarios 4, 6,8,9). Among those possibilities, the schemas obtained by strategy \emph{regarded as one failure} are more likely to be subschemas and irrelevant ones when comparing with strategy \emph{knowing masking effects}.
-
-Apart from these four possible relationships between schema $c_{ro}$ and $\mathcal{C}(T_{as})$, it is also desired to learn the extent to which the actual MFS is irrelevant to the schemas identified by strategy \emph{regarded as one failure}, i.e., to learn how much the actual MFS is \emph{ignored}. To figure this out, we need to take schema $c_{as}$ as the subject, and then find the relationships  between it and schemas $c_{km}$, $c_{ro}$. Similar as Table \ref{conditions-for-ro}, we take schema $c_{km}$ as intermediate schema. Then for any schema $c_{as}$, the possible relationships between it and the other two kinds schemas can be described in Table \ref{conditions-for-ro-ignore}. The same as before, we list the detail explanation of each row in section A.2 in the Appendix. It is noted that scenarios 4 and 7 (marked star) in Table \ref{conditions-for-ro-ignore} will make the corresponding actual MFS ignored, which indicates that strategy \emph{regarded as one failure} is a bit higher than \emph{knowing masking effects} at ignoring the actual MFS.
-
-\begin{table}[h]
-\centering
-\tbl{Possible scenarios for MFS ignoring of strategy regarded as one failure \label{conditions-for-ro-ignore}}{
-  \begin{tabular}{c|c|c||c} \hline
-ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{ro}$  & $c_{as}$  and $\mathcal{C}(T_{ro})$ \\ \hline
-%& & \\ \hline
-1&  $ c_{as} = c_{km}$   	    &   $ c_{ro} = c_{km}  $    &     $c_{ro} = c_{as}$   \\
-2&  $ c_{as} = c_{km}  $       	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$      \\
-3&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} = c_{km}$      &     $c_{as} \prec c_{ro}$    \\
-4$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{ro} \prec c_{km} $ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$ or $\exists c_{ro}', c_{as} \prec c_{ro}'$ \\
-5&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} = c_{km}$      &     $c_{ro} \prec c_{as}$      \\
-6&  $ c_{km} \prec c_{as} $    	&   $ c_{ro} \prec c_{km}$  &     $c_{ro} \prec c_{as}$        \\
-7$\star$ &  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{ro})$   \\
- \hline \end{tabular}
-  }
-\end{table}
-
-An example of the ignoring scenario is also in Table \ref{example-rule16}. Let $c_{as}$ = (-,1,0,0), it is irrelevant to all the schemas in  $\mathcal{C}(T_{km})$. As it is also irrelevant to $\mathcal{C}(T_{ro})$, so it corresponds scenario 7 in Table \ref{conditions-for-ro-ignore}. Other scenarios can also be easily constructed, which will not be omitted in this paper.
-
-\subsubsection{Using distinguishing strategy}
-%Another point need to be noted is that this also mean some ignored ones(As MFS irrelevant to the set). That with this strategy, will get more ignored ones.
-For this strategy, the set of test cases that are used to compute the minimal schemas is subset of that of strategy \emph{knowing masking effects}, i.e., $T_{df} \subset T_{km}$. According to Proposition  \ref{pro:ssp}, schemas in  $\mathcal{C}(T_{ro})$ can be identical to some schemas in $\mathcal{C}(T_{km})$, or be super schemas of some of them. Formally, $\forall c_{df} \in \mathcal{C}(T_{df}),\  \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} = c_{ro},\ or\ c_{km} \prec c_{df}$, two possibilities in total. Combining the relationships between the schemas obtained by \emph{knowing masking effects} strategy and the actual MFS, then for any schema $c_{df}$ in $\mathcal{C}(T_{df})$, there are 8 possible scenarios between $c_{df}$ and other two kinds of schemas $c_{km}, c_{as}$, which are shown as in Table \ref{conditions-for-df}. Similar as Table \ref{conditions-for-ro}, the detail explanation of each row is shown in Section A.3 in the Appendix.
-
-
-\begin{table}[h]
-\centering
-\tbl{Possible scenarios for distinguishing failures strategy \label{conditions-for-df}}{
-  \begin{tabular}{c|c|c||c} \hline
-ID & $c_{df}$ and $c_{km}$  &  $c_{km}$  and $c_{as}$  & $c_{df}$  and $\mathcal{C}(T_{as})$ \\ \hline
-%& & \\ \hline
-1&$ c_{df} = c_{km}  $    	&   $ c_{as} = c_{km}$    &    $c_{df} = c_{as}$   \\
-2&$  c_{df} = c_{km}  $    	&   $ c_{as} \prec c_{km}$  &    $c_{as} \prec c_{df}$      \\
-3&$ c_{df} = c_{km}  $    	&   $ c_{km} \prec c_{as}$  &    $c_{df} \prec c_{as}$    \\
-4&$ c_{df} = c_{km}  $    	&   $c_{km}\ irrelevant \ \mathcal{C}(T_{as})$  &  $c_{df}\ irrelevant\  \mathcal{C}(T_{as})$ \\
-5&$ c_{km} \prec c_{df} $    	&   $ c_{as} = c_{km}$   &   $c_{as} \prec c_{df}$      \\
-6&$ c_{km} \prec c_{df} $    	&   $ c_{as} \prec c_{km}$  &  $c_{as} \prec c_{df}$        \\
-7&$ c_{km} \prec c_{df} $    	&   $c_{km} \prec c_{as}$   &  $\exists c_{as}',\ s.t.,\ c_{df} = c_{as}',\ or\ c_{as}' \prec c_{df}$     \\
- &                           	&                           &  $ \ or\ c_{df} \prec c_{as}',\ or\ c_{df}\ irrelevant\  \mathcal{C}(T_{as})$     \\
-8&$ c_{km} \prec c_{df} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{as} \prec c_{df} ,\ or\ c_{df}\ irrelevant\  \mathcal{C}(T_{as})$  \\
- \hline \end{tabular}
-  }
-\end{table}
-
-One observation of this table is that when comparing with strategy \emph{knowing masking effects}, the schemas identified by strategy \emph{distinguishing failures} are more likely to be super schemas of the actual MFS (scenarios 2, 5,6,7,8) and irrelevant ones (scenarios 4,7,8).  Comparing with strategy \emph{regarded as one failure}, however, the schemas that identified by this strategy are less likely to be irrelevant to all the actual MFS. This is because strategy \emph{regarded as one failure} has four scenarios (scenarios  4, 6,8,9 in Table \ref{conditions-for-ro}) which can make the schemas to be irrelevant ones.
-
-Table \ref{example-rule26} gives an example of this strategy. The table is almost the same as Table \ref{example-rule16}, except Column  `$T_{df}$' is for strategy \emph{distinguishing failures} to compute the minimal schemas ($T_{df} = A \bigcup B_{1} \bigcup C$ ), and  `$\mathcal{C}(T_{df})$' is the schemas obtained by this strategy.
-
-\begin{table}[h]
-\tbl{Example of some scenarios of strategy distinguishing failures strategy  \label{example-rule26}}{
-\begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{(1,0,0,1)}&\multicolumn{3}{c}{(0,1,0,0)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,1)}&\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(0,1,0,1)}\\
- \hline
-\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
-\multicolumn{5}{c}{(1,1,0,0)}             &\multicolumn{4}{c}{(1,1,1,0)} &           \multicolumn{3}{c}{(1,1,1,0)}\\
-\multicolumn{5}{c}{(1,1,0,1)}             &\multicolumn{4}{c}{(1,1,0,0)} &           \multicolumn{3}{c}{(1,1,0,0)}\\
-\multicolumn{5}{c}{(1,0,0,1)}             &\multicolumn{4}{c}{(1,1,0,1)} &           \multicolumn{3}{c}{(1,1,0,1)}\\
-\multicolumn{5}{c}{(1,0,0,0)}             &\multicolumn{4}{c}{(1,0,0,1)} &           \multicolumn{3}{c}{}\\
-\multicolumn{5}{c}{(0,1,0,0)}             &\multicolumn{4}{c}{(1,0,0,0)} &           \multicolumn{3}{c}{}\\
-\multicolumn{5}{c}{(0,1,0,1)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{}\\
-
-\hline
-\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
-\multicolumn{5}{c}{(1,-,0,-)}             &\multicolumn{4}{c}{(1,-,0,-)} &           \multicolumn{3}{c}{(1,1,0,-)}\\
-\multicolumn{5}{c}{(-,1,0,-)}             &\multicolumn{4}{c}{(1,1,-,0)} &           \multicolumn{3}{c}{(1,1,-,0)}\\
-
-%\multicolumn{4}{c}{\bfseries $\mathcal{C}(B_{1} \bigcup B_{2} \bigcup C \bigcup D )$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup B_{2} \bigcup C)$} & \multicolumn{4}{c}{\bfseries $\mathcal{C}(A \bigcup B_{1} \bigcup C)$} \\ \hline
-
-\hline \end{tabular}}
-\end{table}
-
-Let $c_{df}$ = (1,1,0,-), then we have $c_{km} $ = (1,-,0,-) so that $c_{km} \prec c_{df}$. Further, it is found that $c_{as}$ = (1,-,1,-), which is equal to $c_{km}$, so $c_{as} \prec c_{df}$. This corresponds scenario 5 in Table \ref{conditions-for-df}.  If let $c_{df}$ = (1,1,-,0), and obviously $c_{km}$ = (1,1,-,0) is equal to $c_{df}$. As  $c_{km}$ is irrelevant to all the schemas in  $\mathcal{C}(T_{as})$, then $c_{ro}$ is also irrelevant to $\mathcal{C}(T_{as})$. This corresponds scenario 4 in Table \ref{conditions-for-df}. The same as Section 4.2.1, other scenarios are omitted in this example, which can be constructed in a similar way.
-
-Next, we need to study how well the actual MFS are \emph{ignored} by this strategy. The same as Section 4.2.1 for strategy \emph{regarded as one failure}, we take schema $c_{as}$ as subject. Then for any $c_{as} \in \mathcal{C}(T_{as})$, the possible relationships between it and the other two types of schemas can be described in Table \ref{conditions-for-df-ignore}. The details of each row are listed in Section A.4 in the Appendix.
-
-From this table, we can learn that there are five scenarios (scenarios 3,6,8,9,10) that can make the actual MFS ignored by strategy \emph{distinguishing failures}, which means that it is more likely that strategy \emph{distinguishing failures} will ignore some actual MFS than strategy \emph{knowing masking effects}. Additionally, this strategy has 3 more scenarios than strategy \emph{regarded as one failure} (scenarios 4, 7 in Table \ref{conditions-for-ro-ignore}) which can make the actual MFS ignored. It means that this strategy are more likely to ignore some actual MFS than strategy \emph{regarded as one failure failures}.
-
-\begin{table}[h]
-\centering
-\tbl{Possible scenarios for MFS ignoring of strategy distinguishing failures \label{conditions-for-df-ignore}}{
-  \begin{tabular}{c|c|c||c} \hline
-ID & $c_{as}$ and $c_{km}$  &  $c_{km}$  and $c_{df}$  & $c_{as}$  and $\mathcal{C}(T_{df})$ \\ \hline
-%& & \\ \hline
-1&  $ c_{as} = c_{km}$   	    &   $ c_{df} = c_{km}  $    &     $c_{df} = c_{as}$   \\
-2&  $ c_{as} = c_{km}  $       	&   $ c_{km} \prec c_{df}$  &     $c_{as} \prec c_{df}$      \\
-3$\star$&  $ c_{as} = c_{km}  $       	&   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$  &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{df})$        \\
-4&  $ c_{as} \prec c_{km}  $    &   $ c_{df} = c_{km}$      &     $c_{as} \prec c_{df}$    \\
-5&  $ c_{as} \prec c_{km}  $    &   $ c_{km} \prec c_{df} $ &     $c_{as} \prec c_{df}$ \\
-6$\star$&  $ c_{as} \prec c_{km}  $    &   $ c_{km}\ irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $\exists c_{df}, c_{df} \prec c_{as}$ \\
-7&  $ c_{km} \prec c_{as} $    	&   $ c_{df} = c_{km}$      &     $c_{df} \prec c_{as}$      \\
-8$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} \prec c_{df}$  &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $\exists c_{df}' ,$ $c_{df}' \prec c_{as}$        \\
- &                            	&                           &    or $\ c_{as} \prec c_{df}' $ or $c_{df}'  =  c_{as}$        \\
-9$\star$&  $ c_{km} \prec c_{as} $    	&   $ c_{km} irrelevant\ \mathcal{C}(T_{df})$ &     $c_{as}\ irrelevant\  \mathcal{C}(T_{df})$ or $\exists c_{df}, c_{df} \prec c_{as}$     \\
-10$\star$&  $ c_{as}\ irrelevant \ to \ \mathcal{C}(T_{km})$    	&   ---   &  $ c_{as}\ irrelevant\ \mathcal{C}(T_{ro})$   \\
-%8&  $ c_{ro} \prec c_{km} $    	&   $c_{km}\ irrelevant  \ \mathcal{C}(as)$ & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$  \\
-%9&  $c_{ro}\ irrelevant \ to \ \mathcal{C}(T_{km}) $    	&   ---    & $\exists c_{as}, c_{ro} \prec c_{as},\ or\ c_{ro}\ irrelevant\  \mathcal{C}(T_{as})$      \\
-%10&  ---  	&   $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$     &   $c_{as}\ irrelevant\  \mathcal{C}(T_{ro})$  \\
- \hline \end{tabular}
-  }
-\end{table}
-
-An example of the MFS ignoring scenario is also shown in Table \ref{example-rule26}. Let $c_{as}$ = (-,1,0,-), it is irrelevant to all the schemas in  $\mathcal{C}(T_{km})$, and it is also irrelevant to $\mathcal{C}(T_{ro})$, which corresponds scenario 10 in Table \ref{conditions-for-df-ignore}.
 
 \subsection{Summary of the masking effects on the FCI approach}
 From the analysis of the formal model, we can learn that masking effect does influence the FCI approaches, and even worse, both the \emph{regarded as one failure} and \emph{distinguishing failures} strategies have their own problems in handling this effect. Specifically when compared with the \emph{knowing masking effects} condition, the strategy \emph{regarded as one failure} has a larger possibility of getting more sub-schemas of the actual MFS and getting more schemas which are irrelevant to the MFS, while strategy \emph{distinguishing failures}  may get more super schemas of the MFS and can also get more irrelevant MFS. Note that strategy \emph{regarded as one failure} has a larger chance than \emph{distinguishing failures} at identifying irrelevant schemas. Further, both strategies may ignore the actual MFS with the \emph{distinguishing failures} strategy more likely to ignore the MFS than the \emph{regarded as one failure} strategy.
@@ -1133,7 +744,7 @@ According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{
 \begin{displaymath}
 x_{ij} = \begin{cases}1 & the\ \emph{i}th\ parameter\ of\ the\ test\ case\ take\ the\ \emph{j}th\ value\ for\ that\ parameter\\0 & otherwise\end{cases}
 \end{displaymath}
-We then take $o_{m_{ij}}$ to be the related \emph{strength} between the \emph{j}th value of the \emph{i}th parameter of the SUT and the failure $F_{m}$. And we use a set $R$ of parameter values to define the fixed part in the test case we should not change, i.e., $R = \{(i, j) |i\ is\ the\ fixed\ parameter\ in\ the\ test\ case, j\ is\ the\ corresponding\ value\}$. As we can generate redundant test cases, so we keep a set of test cases $T_{executed}$ to guide the generation of different test cases. Then \ref{eqn - lp} can be transformed into following ILP formula:
+We then take $o_{m_{ij}}$ to be the related \emph{strength} between the \emph{j}th value of the \emph{i}th parameter of the SUT and the failure $F_{m}$. And we use a set $R$ of parameter values to define the fixed part in the test case we should not change, i.e., $R = \{(i, j) |i\ is\ the\ fixed\ parameter\ in\ the\ test\ case, j\ is\ the\ corresponding\ value\}$. As we can generate redundant test cases, so we keep a test set $T_{executed}$ to guide the generation of different test cases. Then \ref{eqn - lp} can be transformed into following ILP formula:
 
 \begin{alignat}{2}
 \min\quad & \frac{1}{|K|}\sum_{i = 0}^{K}\sum_{j = 0}^{V_{i}}  o_{m_{ij}} \times x_{ij} &{}& \tag{EQ5} \label{eqn - 3p}\\
@@ -1213,60 +824,60 @@ This replacement process is started each time a new test case that triggered ano
 \end{figure}
 
 
-\subsection{Complexity analysis}
-The complexity of our approach relies on two variables: the number of test cases that triggered other failures which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effect test case. The complexity is the product of these two variables.
-
-The first variable is dependent on the extra test cases that are needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} lists the number of test cases that each algorithm needed to get the MFS, where \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the degree of MFS in the SUT. \emph{c} is an upper bound, and satisfies $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values that a parameter can take.
-
-\begin{table}
-\centering
-\tbl{The number of test cases each FCI approach needed to identify MFS\label{extra-testcases-complexisty}}{
-  \begin{tabular}{c | c} \hline
-\bfseries Method & \bfseries number of test cases to identify MFS\\ \hline
-Charles ELA & depends on the  covering array \\
-Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} & $O(\hat{d}log k + \hat{d}^{2})$ \\
-Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} & $O(d^{2} + dlog k + log^{c} k)$  \\
-Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} &  $O(ds^{v}log k)$\\
-Shi SOFOT \cite{shi2005software}& $O(k)$ \\
-Nie OFOT \cite{nie2011minimal} & $O(k \times d)$\\
-Ylimaz classification tree & depends on the  covering array\\
-FIC \cite{zhang2011characterizing} &  $O(k)$ \\
-FIC\_BS \cite{zhang2011characterizing}& $O(t(log k + 1) + 1)$\\
-Ghandehari's suspicious based  \cite{ghandehari2012identifying}& depends on the number and size of MFS\\
-TRT \cite{niu2013identifying}&  $O(d\times t \times log k + t^{d})$\\ \hline
-  \end{tabular}
-  }
-  \end{table}
-
-Note that each algorithm may have some restrictions, details of which are shown in \cite{zhang2011characterizing}.
-
-To get the magnitude of the second variable, we need to figure out the probability of a test case that could trigger other failure. The first consideration is the \emph{fixed} part, as the additional generated test case should somehow contain this part. As mentioned before, we can generate $(v-1)^{k - p} $  (\emph{p} is the number of parameter values in the \emph{fixed} part) possible test cases that contain the \emph{fixed} part. Apart from the one that needs to be replaced, there remain $(v-1)^{k - p}- 1$ candidate test cases, which indicates the complexity is $O((v-1)^{k - p} - 1)$. However, to avoid the exponential computation, we use the $MeetEndCriteria()$ function to end Algorithm 1 when the attempts to find a proper test case is over a prior given constant, say $N$, so the complexity for the second part is $O( min (N, (v-1)^{k - p} - 1))$.
+%\subsection{Complexity analysis}
+%The complexity of our approach relies on two variables: the number of test cases that triggered other failures which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effect test case. The complexity is the product of these two variables.
 %
-%While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
-
-We note that exponent $k - p$ has a significant effect on the complexity of the second value. The greater $p$ is, the less test cases that can be generated. Different approach has different $p$. For example, for the OFOT approach, $p$ is equal to $k - 1$.  And for the FIC\_BS approach, $p$ varies ranging from $k-1$ to $1$. While for the non-adaptive approaches, as the $fixed $ part is commonly the schemas that are needed to be covered, so the $p$ for these approaches is at least equal to $t$. We have listed all of them in Table \ref{fixed-part-complexisty}. It is noted that the approach $Martinez\ without\ safe values$ has no such complexity, because it works when $v = 2$, and this results in not having other test cases to be replaced if we test a fixed part when triggering other failures.
-
-\begin{table}
-\centering
-\tbl{The complexity of the second part\label{fixed-part-complexisty}}{
-  \begin{tabular}{c | c} \hline
-\bfseries Method & \bfseries fixed part\\ \hline
-Charles ELA &   $O( min (N, (v - 1)^{k - t} - 1))$\\
-Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
-Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$ - $  \\
-Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - 1)^{k - t} - 1))$\\
-Shi SOFOT \cite{shi2005software}& $O( min (N, (v-1) - 1))) $\\
-Nie OFOT \cite{nie2011minimal} & $O( min (N, (v-1) - 1)))$\\
-Ylimaz classification tree & $O( min (N, (v - 1)^{k - t} - 1)$\\
-FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
-FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
-Ghandehari's suspicious based  \cite{ghandehari2012identifying}&$ O( min (N, (v - 1)^{k - t} - 1))$\\
-TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1)) $\\ \hline
-  \end{tabular}
-  }
-  \end{table}
-
-Above all, the cost of replacement strategy varies in different FCI approaches. Note that this cost is computed for the worst case, and in practice much less test cases are needed to identify the MFS. This is because first, not every test case generated by the FCI approach needs to be replaced; and second, a satisfied test case can usually be found before the whole searching space is explored. From complexity analysis, in fact, we cannot determine which approach is better than others, as the cost of each approach is dependent on different factors. For example in Table \ref{extra-testcases-complexisty}, the extra test cases needed for OFOT\cite{nie2011minimal} and FIC\_BS\cite{zhang2011characterizing} are $O(k \times d)$ and $O(t(log k + 1) + 1)$ , respectively. Values $t$, $k$ and $d$ determine which one is better in practice. So for different SUT with different MFS, which FCI approach is better can be completely changed. Besides, the less cost in practice is not always good for identifying MFS.  A potential problem is, with less candidate test cases, the replacement strategy may not find a satisfied test case, which will result in a low quality of the identified schemas.
+%The first variable is dependent on the extra test cases that are needed to identify the MFS, and this number varies in different FCI approaches. Table \ref{extra-testcases-complexisty} lists the number of test cases that each algorithm needed to get the MFS, where \emph{d} indicates the number of MFS in the SUT. \emph{k} means the number of the parameters of the SUT. \emph{t} is the degree of MFS in the SUT. \emph{c} is an upper bound, and satisfies $d \leq \frac{c}{2} loglog k$. \emph{v} is the number of values that a parameter can take.
+%
+%\begin{table}
+%\centering
+%\tbl{The number of test cases each FCI approach needed to identify MFS\label{extra-testcases-complexisty}}{
+%  \begin{tabular}{c | c} \hline
+%\bfseries Method & \bfseries number of test cases to identify MFS\\ \hline
+%Charles ELA & depends on the  covering array \\
+%Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} & $O(\hat{d}log k + \hat{d}^{2})$ \\
+%Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} & $O(d^{2} + dlog k + log^{c} k)$  \\
+%Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} &  $O(ds^{v}log k)$\\
+%Shi SOFOT \cite{shi2005software}& $O(k)$ \\
+%Nie OFOT \cite{nie2011minimal} & $O(k \times d)$\\
+%Ylimaz classification tree & depends on the  covering array\\
+%FIC \cite{zhang2011characterizing} &  $O(k)$ \\
+%FIC\_BS \cite{zhang2011characterizing}& $O(t(log k + 1) + 1)$\\
+%Ghandehari's suspicious based  \cite{ghandehari2012identifying}& depends on the number and size of MFS\\
+%TRT \cite{niu2013identifying}&  $O(d\times t \times log k + t^{d})$\\ \hline
+%  \end{tabular}
+%  }
+%  \end{table}
+%
+%Note that each algorithm may have some restrictions, details of which are shown in \cite{zhang2011characterizing}.
+%
+%To get the magnitude of the second variable, we need to figure out the probability of a test case that could trigger other failure. The first consideration is the \emph{fixed} part, as the additional generated test case should somehow contain this part. As mentioned before, we can generate $(v-1)^{k - p} $  (\emph{p} is the number of parameter values in the \emph{fixed} part) possible test cases that contain the \emph{fixed} part. Apart from the one that needs to be replaced, there remain $(v-1)^{k - p}- 1$ candidate test cases, which indicates the complexity is $O((v-1)^{k - p} - 1)$. However, to avoid the exponential computation, we use the $MeetEndCriteria()$ function to end Algorithm 1 when the attempts to find a proper test case is over a prior given constant, say $N$, so the complexity for the second part is $O( min (N, (v-1)^{k - p} - 1))$.
+%%
+%%While for adaptive approach, as the $\emph{fixed}$ part is derived from the existed failing test case, which in fact make the test cases to be selected one more less (the existed one), so the complexity is  $O(v^{k - p} - 2)$.
+%
+%We note that exponent $k - p$ has a significant effect on the complexity of the second value. The greater $p$ is, the less test cases that can be generated. Different approach has different $p$. For example, for the OFOT approach, $p$ is equal to $k - 1$.  And for the FIC\_BS approach, $p$ varies ranging from $k-1$ to $1$. While for the non-adaptive approaches, as the $fixed $ part is commonly the schemas that are needed to be covered, so the $p$ for these approaches is at least equal to $t$. We have listed all of them in Table \ref{fixed-part-complexisty}. It is noted that the approach $Martinez\ without\ safe values$ has no such complexity, because it works when $v = 2$, and this results in not having other test cases to be replaced if we test a fixed part when triggering other failures.
+%
+%\begin{table}
+%\centering
+%\tbl{The complexity of the second part\label{fixed-part-complexisty}}{
+%  \begin{tabular}{c | c} \hline
+%\bfseries Method & \bfseries fixed part\\ \hline
+%Charles ELA &   $O( min (N, (v - 1)^{k - t} - 1))$\\
+%Martinez with safe value \cite{martinez2008algorithms,martinez2009locating} &$O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
+%Martinez without safe values \cite{martinez2008algorithms,martinez2009locating} &$ - $  \\
+%Martinez' ELA \cite{martinez2008algorithms,martinez2009locating} & $O( min (N, (v - 1)^{k - t} - 1))$\\
+%Shi SOFOT \cite{shi2005software}& $O( min (N, (v-1) - 1))) $\\
+%Nie OFOT \cite{nie2011minimal} & $O( min (N, (v-1) - 1)))$\\
+%Ylimaz classification tree & $O( min (N, (v - 1)^{k - t} - 1)$\\
+%FIC \cite{zhang2011characterizing} &  $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
+%FIC\_BS \cite{zhang2011characterizing}& $O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1))$\\
+%Ghandehari's suspicious based  \cite{ghandehari2012identifying}&$ O( min (N, (v - 1)^{k - t} - 1))$\\
+%TRT \cite{niu2013identifying}&$ O( min (N, (v-1) - 1)) \sim O( min (N, (v-1)^{k - 1} - 1)) $\\ \hline
+%  \end{tabular}
+%  }
+%  \end{table}
+%
+%Above all, the cost of replacement strategy varies in different FCI approaches. Note that this cost is computed for the worst case, and in practice much less test cases are needed to identify the MFS. This is because first, not every test case generated by the FCI approach needs to be replaced; and second, a satisfied test case can usually be found before the whole searching space is explored. From complexity analysis, in fact, we cannot determine which approach is better than others, as the cost of each approach is dependent on different factors. For example in Table \ref{extra-testcases-complexisty}, the extra test cases needed for OFOT\cite{nie2011minimal} and FIC\_BS\cite{zhang2011characterizing} are $O(k \times d)$ and $O(t(log k + 1) + 1)$ , respectively. Values $t$, $k$ and $d$ determine which one is better in practice. So for different SUT with different MFS, which FCI approach is better can be completely changed. Besides, the less cost in practice is not always good for identifying MFS.  A potential problem is, with less candidate test cases, the replacement strategy may not find a satisfied test case, which will result in a low quality of the identified schemas.
 
 
 %we can find that  the worst is . However, this is not means that it , because the less candidate cases also can give a less chance to get the satisfied test case.  In this paper, we choose the FCI BS as the candidate, because it can probably, and its test cases are less, but, it is not necessary the best, because these approaches has its own restrictions. And in some partucal, For example, if there are overlapped, a better choice is TRT \cite{niu2013identifying}.
@@ -1430,7 +1041,7 @@ Next, we built the input model which consists of the options related to the fail
 }
 \end{table}
 
-We then generated the exhaustive set of test cases consisting of all possible interactions of these options. For each of them, we executed the prepared testing file. We recorded the output of each test case to observe whether there were test cases containing prior MFS that did not produce the corresponding bug. Later we refer to those test cases that contain the MFS but did not trigger the expected failure as the \emph{masked} test cases.
+We then generated the exhaustive test set consisting of all possible interactions of these options. For each of them, we executed the prepared testing file. We recorded the output of each test case to observe whether there were test cases containing prior MFS that did not produce the corresponding bug. Later we refer to those test cases that contain the MFS but did not trigger the expected failure as the \emph{masked} test cases.
 
 %Then we collected the bugs that belong to one same version. It is naturally that the more bugs we collect for one version, the masking effects will more likely to be triggered in that software of the particluar version. Table \ref{statitstics_of_bugs} lists the result we collected. This table in turns provides the software name, the particular version and the number of bugs we have found in the bug tracker. The last column presents the number of pairs of bugs that can conflict with each other, i.e., these pairs of bugs cannot appear in one test case, such that they cannot mask each other.
 %
@@ -1674,7 +1285,7 @@ Besides the FDA-CIT, we also applied our ILP-based approach to the generated cov
 %
 % We then merged all the test cases that our approach needed for each failing test case in the covering array, and we also merged other metrics listed in the second case study for each failing test case.
 
-As mentioned before, the FCI approach in FDA-CIT, i.e., classification tree algorithm, is a post-analysis technique. Given different set of test cases, the results identified by the classification tree algorithm are also different. Then a nature question is, what the schemas identified by FDA-CIT will be if the classification tree method is applied on the test cases generated by our approach ILP? To figure this question out is of importance as first, we can learn that whether the test cases generated by ILP can help FDA-CIT approach to improve its quality of the identified schemas; second, the comparison between ILP and FDA-CIT will be more fair as they share the same test cases. For this, a new approach that based on FDA-CIT is introduced, which is augmented by replacing the original test cases in FDA-CIT with those generated by ILP approach. Then the schemas identified by the classification tree algorithm in FDA-CIT are recorded and evaluated. This new approach is referred to as \emph{FDA-CITs} later.
+As mentioned before, the FCI approach in FDA-CIT, i.e., classification tree algorithm, is a post-analysis technique. Given different test sets, the results identified by the classification tree algorithm are also different. Then a nature question is, what the schemas identified by FDA-CIT will be if the classification tree method is applied on the test cases generated by our approach ILP? To figure this question out is of importance as first, we can learn that whether the test cases generated by ILP can help FDA-CIT approach to improve its quality of the identified schemas; second, the comparison between ILP and FDA-CIT will be more fair as they share the same test cases. For this, a new approach that based on FDA-CIT is introduced, which is augmented by replacing the original test cases in FDA-CIT with those generated by ILP approach. Then the schemas identified by the classification tree algorithm in FDA-CIT are recorded and evaluated. This new approach is referred to as \emph{FDA-CITs} later.
 
 \subsubsection{Result and discussion}
 
@@ -1781,7 +1392,7 @@ There are two threats to internal validity. First, the characteristics of the ac
 %
 %The second threat comes from the input model we built. As we focused on the options related to the perfect combinations and only augmented it with some noise options, there is a chance we will get different results if we choose other noise options. More options needed to be tested to see whether our result is common or just appears in some particular input models.
 
-The second threat is that we just applied our test case replacing strategy on one FCI approach -- FIC\_BS \cite{zhang2011characterizing}. Although we believe the test case replacing strategy can also improve the quality of the identified MFS for other FCI approaches when the testing object is suffering from masking effects, the extent to which their results can be refined may vary for different FCI approaches. For example, for FIC\_BS \cite{zhang2011characterizing} used in this paper, there are about $(v - 1)$ to $(v - 1)^{k - 1}$ candidate test cases that can be replaced (See Table \ref{fixed-part-complexisty}) when one test case triggered other failures, while for OFOT \cite{nie2011minimal}, we only have $(v - 1)$ candidates. As a result, FIC\_BS can have a higher chance than OFOT to find a satisfied test case.  So to learn the difference between the improvement of different FCI approaches when applying our test case replacing strategy, we need to try more FCI approaches in the future.
+The second threat is that we just applied our test case replacing strategy on one FCI approach -- FIC\_BS \cite{zhang2011characterizing}. Although we believe the test case replacing strategy can also improve the quality of the identified MFS for other FCI approaches when the testing object is suffering from masking effects, the extent to which their results can be refined may vary for different FCI approaches. For example, for FIC\_BS \cite{zhang2011characterizing} used in this paper, there are about $(v - 1)$ to $(v - 1)^{k - 1}$ candidate test cases that can be replaced when one test case triggered other failures, while for OFOT \cite{nie2011minimal}, we only have $(v - 1)$ candidates. As a result, FIC\_BS can have a higher chance than OFOT to find a satisfied test case.  So to learn the difference between the improvement of different FCI approaches when applying our test case replacing strategy, we need to try more FCI approaches in the future.
 
 % And  so further works needed to examine more algorithms in this field to obtain a more general result.
 
@@ -1899,288 +1510,6 @@ As for the future work, we need to do more empirical studies to make our conclus
 \medskip
 %\section{Proof of $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$}
 
-
-
-\section{Detail Propositions for masking effects}
-\begin{itemize}
-\item $T_{as} = B_{1} \bigcup B_{2} \bigcup C \bigcup D$ indicates all the actual failing test cases.
-\item $T_{km} = A \bigcup B_{1} \bigcup B_{2} \bigcup C$  indicates the test cases for strategy \emph{knowing masking effects}.
-\item $T_{ro} = A \bigcup B_{1} \bigcup B_{2} \bigcup B_{3} \bigcup C $ indicates the test cases for strategy \emph{regarded as one failure}
-\item $T_{df} = A \bigcup B_{1} \bigcup C$  indicates the test cases for strategy \emph{distinguishing failures}
-\end{itemize}
-
-\subsection{For \emph{regarded as one failure} in Table \ref{conditions-for-ro}}
-
-\begin{proposition}[scenario 1]\label{pro:appendix1rule1}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} = c_{as}$.
-\end{proposition}
-%\begin{proof}
-%\end{proof}
-\begin{proposition}[scenario 2]\label{pro:appendix1rule2}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{ro}$.
-\end{proposition}
-
-\begin{proposition}[scenario 3]\label{pro:appendix1rule3}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 4]\label{pro:appendix1rule4}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{as})$.
-\end{proposition}
-
-\begin{proposition}[scenario 5]\label{pro:appendix1rule5}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 6]\label{pro:appendix1rule6}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}'\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-\end{proposition}
-\begin{proof}
-First, we have $c_{ro}$ is irrelevant to $c_{as}$. This is because as $c_{ro} \prec c_{km}$, then it must have $\exists t \in \mathcal{T}(c_{ro}), s.t.,\ t \in B_{3}$ (or $\mathcal{T}(c_{ro}) \subseteqq T_{km}$, which will not result in $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$).  Similarly, we have $\exists t \in \mathcal{T}(c_{as}), s.t.,\ t \in D$. Then $\mathcal{T}(c_{as})$ and $\mathcal{T}(c_{ro})$ are neither subsuming each other nor identical, which indicates that $c_{ro}$ is irrelevant to $c_{as}$.
-
-Then as $\exists t \in \mathcal{T}(c_{ro}), s.t. t \in B_{3}$, which indicates that it cannot have $\exists c_{as}' \in \mathcal{C}(T_{as}), s.t., \mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as}'),\ or\ \mathcal{T}(c_{ro}) = \mathcal{T}(c_{as}')$. So $c_{ro}$ cannot be identical to $c_{as}'$ or $c_{as}' \prec c_{ro}$, which indicates that the only possible scenarios is that $\exists c_{as}' \in \mathcal{C}(T_{as}), s.t., c_{ro} \prec c_{as}'$, or $c_{ro}$ is irrelevant to $\mathcal{C}(T_{as})$.
-\end{proof}
-
-
-\begin{proposition}[scenario 7]\label{pro:appendix1rule7}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{ro} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 8]\label{pro:appendix1rule8}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-\end{proposition}
-\begin{proof}
-As $c_{ro} \prec c_{km}$, then $\exists t \in \mathcal{T}(c_{ro}), s.t.,\ t \in B_{3}$ as proved before. Then it cannot have $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., \mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as}),\ or\ \mathcal{T}(c_{ro}) = \mathcal{T}(c_{as})$. So $c_{ro}$ cannot be identical to $c_{as}$ or $c_{as} \prec c_{ro}$, which indicates that the only possible scenarios is that $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{ro} \prec c_{as}$, or $c_{ro}$ is irrelevant to $\mathcal{C}(T_{as})$.
-\end{proof}
-
-\begin{proposition}[scenario 9]\label{pro:appendix1rule9}
-$\forall c_{ro} \in \mathcal{C}(T_{ro})$ if $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{ro} \prec c_{as}\ or\ c_{ro}\ is\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-\end{proposition}
-\begin{proof}
-As $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$, so $\exists t \in \mathcal{T}(c_{ro}), s.t.,\ t \in B_{3}$ (or $\mathcal{T}(c_{ro}) \subseteqq T_{km}$, which will not result in $c_{ro} \ is\ irrelevant\ to\  \mathcal{C}(T_{km})$). Then the same as Proposition \ref{pro:appendix1rule8},  the only possible scenarios is that $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{ro} \prec c_{as}$, or $c_{ro}$ is irrelevant to $\mathcal{C}(T_{as})$.
-\end{proof}
-
-\subsection{For \emph{regarded as one failure} in Table \ref{conditions-for-ro-ignore}}
-
-
-\begin{proposition}[scenario 1]\label{pro:appendix1rule1i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{km} = c_{ro}$. Then it must have $c_{ro} = c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 2]\label{pro:appendix1rule2i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{ro} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 3]\label{pro:appendix1rule3i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{km} = c_{ro}$. Then it must have $c_{as} \prec c_{ro}$.
-\end{proposition}
-
-\begin{proposition}[scenario 4]\label{pro:appendix1rule4i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})\ or\  \exists c_{ro}' \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{as} \prec c_{ro}'$.
-\end{proposition}
-\begin{proof}
-Refer to the proof of Proposition \ref{pro:appendix1rule6}.
-\end{proof}
-
-\begin{proposition}[scenario 5]\label{pro:appendix1rule5i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{km} = c_{ro}$. Then it must have $c_{ro} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 6]\label{pro:appendix1rule6i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{ro} \prec c_{km}$. Then it must have $c_{ro} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 7]\label{pro:appendix1rule7i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{ro})$.
-\end{proposition}
-\begin{proof}
-Assume $c_{as}$ is related to $\mathcal{C}(T_{ro})$, i.e., $\exists c_{ro} \in \mathcal{C}(T_{ro}),\ s.t.,\ c_{as} \prec c_{ro},\ or\ c_{ro} \prec c_{as},\ or\ c_{as} = c_{ro}$.
-
-For the first case, i.e., if $c_{as} \prec c_{ro}$, it then must have $\mathcal{T}(c_{ro}) \subset \mathcal{T}(c_{as})$ according to Proposition \ref{pro:shl}.  Further it have $\mathcal{T}(c_{ro}) \subset (B_{1} \bigcup B_{2})$, because if not so, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \in T_{ro} \backslash (B_{1} \bigcup B_{2})$. As $T_{ro} \backslash (B_{1} \bigcup B_{2}) = (B_{3} \bigcup A) $ and $(B_{3} \bigcup A) \bigcap T_{as} = \varnothing$, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \not\in T_{as}$. As $\mathcal{T}(c_{as}) \subset T_{as}$, then $\exists t \in \mathcal{T}(c_{ro}),\ s.t.,\ t \not\in \mathcal{T}(c_{as})$, which means that $\mathcal{T}(c_{ro}) \not\subset \mathcal{T}(c_{as})$.  It is contradiction, so $\mathcal{T}(c_{ro}) \subset (B_{1} \bigcup B_{2})$.
-
-As $(B_{1} \bigcup B_{2}) \subset T_{km}$, so $\mathcal{T}(c_{ro}) \subset T_{km}$. According to Proposition \ref{pro:ssp},  $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{ro}\ or\ c_{km} = c_{ro}$. Note that $T_{km} \subset T_{ro}$, then according to Proposition \ref{pro:sls},  $\forall c_{ro} \in \mathcal{C}(T_{ro}), \exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} \prec c_{km},\ or\ c_{ro} = c_{km},\ or\ c_{ro}\ is\ irrelevant\ to\ \mathcal{C}(T_{km})$. Combining these two properties, it can only happen $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{ro} = c_{km}$.
-As $c_{as} \prec c_{ro}$, then we can have $\exists c_{km} \in \mathcal{C}(T_{km}), s.t., c_{as} \prec  c_{km}$. It is contradiction as $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the first case is impossible, which indicates that $c_{as} \not\prec c_{ro}$.
-
-
-For the second case, i.e., if $c_{ro} \prec c_{as}$. Then it must have $\mathcal{T}(c_{as}) \subset \mathcal{T}(c_{ro})$. Similarly as the first case, we further have $\mathcal{T}(c_{as}) \subset (B_{1} \bigcup B_{2})$. As $(B_{1} \bigcup B_{2}) \subset T_{km}$, then $\mathcal{T}(c_{as}) \subset T_{km}$. According to Proposition \ref{pro:ssp}, $\exists c_{km} \in  \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{as}\ or\ c_{km} = c_{as}$. It is also contradiction to the fact that $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the second case is not possible, which indicates that  $c_{as} \not\prec c_{ro}$.
-
-
-For the last case, i.e., if $c_{as} = c_{ro}$. Then it must have $\mathcal{T}(c_{as}) = \mathcal{T}(c_{ro})$. Further we have $\mathcal{T}(c_{as}) \subset T_{km}$. Because if not so, then $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \in T_{as} \backslash T_{km}$. As $T_{as} \backslash T_{km} = D$ and $D \bigcap T_{ro} = \varnothing $, then $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \not\in T_{ro}$. As $\mathcal{T}(c_{ro}) \subset T_{ro}$, so  $\exists t \in \mathcal{T}(c_{as}),\ s.t.,\ t \not\in \mathcal{T}(c_{ro})$, indicating that $\mathcal{T}(c_{as}) \neq \mathcal{T}(c_{ro})$. It is contradiction, so $\mathcal{T}(c_{as}) \subset T_{km}$.
-
-Then as $\mathcal{T}(c_{as}) \subset T_{km}$, according to Proposition \ref{pro:ssp}, $\exists c_{km} \in  \mathcal{C}(T_{km}),\ s.t.\ c_{km} \prec c_{as}\ or\ c_{km} = c_{as}$. It is still contradiction to the fact that $c_{as}\ irrelevant\ to\ \mathcal{C}(T_{km})$. So the last case is not possible, which indicates that $c_{as} \neq c_{ro}$.
-
-As all these three cases are impossible, so $c_{as}$ is must irrelevant to $\mathcal{C}(T_{ro})$.
-\end{proof}
-
-
-\subsection{For \emph{distinguishing failures} in Table \ref{conditions-for-df}}
-
-\begin{proposition}[scenario 1]\label{pro:appendix2rule1}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{df} = c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 2]\label{pro:appendix2rule2}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{df}$.
-\end{proposition}
-
-\begin{proposition}[scenario 3]\label{pro:appendix2rule3}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $c_{df} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 4]\label{pro:appendix2rule4}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{df} = c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $c_{df} \ is\ irrelevant\ to\  \mathcal{C}(T_{as})$.
-\end{proposition}
-
-\begin{proposition}[scenario 5]\label{pro:appendix2rule5}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} = c_{as}$. Then it must have $c_{as} \prec c_{df}$.
-\end{proposition}
-
-\begin{proposition}[scenario 6]\label{pro:appendix2rule6}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{km}$. Then it must have $c_{as} \prec c_{df}$.
-\end{proposition}
-
-\begin{proposition}[scenario 7]\label{pro:appendix2rule7}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $\exists c_{as} \in \mathcal{C}(T_{as}),\ s.t.,\ c_{km} \prec c_{as}$. Then it must have $\exists c_{as}' \in \mathcal{C}(T_{as}),\ s.t.,\ c_{df} = c_{as}'\ or\ c_{as}' \prec c_{df}\ or\ c_{df} \prec c_{as}'\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-\end{proposition}
-\begin{proof}
-This proposition states that under this condition, all the four possible relationships between $c_{df}$ and $\mathcal{C}(T_{as})$ can exist. To prove this, we just need to give the corresponding examples, which are shown in Table \ref{example-scenario-7}.
-
-Specifically, in Table \ref{example-scenario-7}(a), let $c_{df}$ = (1,1,-),  $c_{km} $ = (1,-,-) and $c_{as}$ = (1,1,-). Then it satisfies that $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{df} = c_{as}$. If let $c_{df}$ = (1,-,0),  $c_{km} $ = (1,-,-)  and $c_{as}$ = (1,1,-), then it  satisfies $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{df}\ is\ irrelevant\ to\ \mathcal{C}(T_{as})$.  In Table \ref{example-scenario-7}(b), let $c_{df}$ = (1,1,-),  $c_{km} $ = (1,-,-) and $c_{as}$ = (1,1,1). Then it satisfies that $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{df} \prec c_{as}$. At last, in Table \ref{example-scenario-7}(c), let $c_{df}$ = (1,1,0),  $c_{km} $ = (1,-,-) and $c_{as}$ = (1,1,-). Then it satisfies that $c_{km} \prec c_{as}, c_{km} \prec c_{df}$ and $c_{as} \prec c_{}$.
-\end{proof}
-
-\begin{table*}[htbp]
-\tbl{Example of scenario 7  \label{example-scenario-7}}{
-\setlength\tabcolsep{2pt}
-%\centering
-\subtable[$c_{df} = c_{as}$, $c_{df}\ irrelevant$]{
-  %  \rule{4cm}{3cm}
-  \begin{tabular}{llllllllllll}
-%\multicolumn{3}{c}{} &\multicolumn{3}{c}{}  & \multicolumn{3}{c}{} & \multicolumn{3}{c}{}\\
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(1,0,0)}&\multicolumn{3}{c}{(1,1,1)}&\multicolumn{3}{c}{(1,0,1)}&\multicolumn{3}{c}{(0,0,0)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
- \hline
-\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
-\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,1,1)}\\
-\multicolumn{5}{c}{(1,1,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
-\multicolumn{5}{c}{(1,0,1)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{(1,0,0)}\\
-\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
-
-\hline
-\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
-\multicolumn{5}{c}{(1,1,-)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,1,-)}\\
-\multicolumn{5}{c}{(1,-,1)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{(1,-,0)}\\
-\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{} &           \multicolumn{3}{c}{}\\
-\hline \end{tabular}
-}
-\subtable[$c_{df} \prec c_{as}$]{
-  %  \rule{4cm}{3cm}
- \begin{tabular}{llllllllllll}
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,0)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
- \hline
-\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
-\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,1,1)}\\
-\multicolumn{5}{c}{(1,0,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,0,1)}\\
-\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
-\multicolumn{5}{c}{}                    &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
-\hline
-\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
-\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,-,1)}\\
-\multicolumn{5}{c}{(-,0,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{(1,1,-)}\\
-\hline \end{tabular}
-}
-\subtable[$c_{as} \prec c_{df}$]{
-  %  \rule{4cm}{3cm}
- \begin{tabular}{llllllllllll}
-\multicolumn{3}{c}{\bfseries $A$} &\multicolumn{3}{c}{\bfseries $B_{1}\bigcup C$}  & \multicolumn{3}{c}{\bfseries $B_{2}$} & \multicolumn{3}{c}{\bfseries $D$}\\ \hline
-
-\multicolumn{3}{c}{(1,0,0,0)}&\multicolumn{3}{c}{(1,1,1,0)}&\multicolumn{3}{c}{(1,0,1,0)}&\multicolumn{3}{c}{(0,0,0,0)}\\
-\multicolumn{3}{c}{}&\multicolumn{3}{c}{(1,1,0,0)}&\multicolumn{3}{c}{}&\multicolumn{3}{c}{}\\
- \hline
-\multicolumn{5}{c}{\bfseries $T_{as}$} &\multicolumn{4}{c}{\bfseries $T_{km}$} & \multicolumn{3}{c}{\bfseries $T_{df}$} \\ \hline
-\multicolumn{5}{c}{(1,1,1)}             &\multicolumn{4}{c}{(1,1,1)} &           \multicolumn{3}{c}{(1,0,1)}\\
-\multicolumn{5}{c}{(1,0,0)}             &\multicolumn{4}{c}{(1,1,0)} &           \multicolumn{3}{c}{(1,1,0)}\\
-\multicolumn{5}{c}{(1,1,0)}             &\multicolumn{4}{c}{(1,0,0)} &           \multicolumn{3}{c}{}\\
-\multicolumn{5}{c}{(0,0,0)}             &\multicolumn{4}{c}{(1,0,1)} &           \multicolumn{3}{c}{}\\
-\hline
-\multicolumn{5}{c}{\bfseries $\mathcal{C}(T_{as})$} &\multicolumn{4}{c}{\bfseries $\mathcal{C}(T_{km})$} & \multicolumn{3}{c}{\bfseries $\mathcal{C}(T_{df})$} \\ \hline
-\multicolumn{5}{c}{(1,1,-)}             &\multicolumn{4}{c}{(1,-,-)} &           \multicolumn{3}{c}{(1,0,1)}\\
-\multicolumn{5}{c}{(1,-,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{(1,1,0)}\\
-\multicolumn{5}{c}{(-,0,0)}             &\multicolumn{4}{c}{} &                    \multicolumn{3}{c}{}\\
-\hline \end{tabular}
-}
-%}
-%\tbl{}{
-%\vspace{40pt}
-}
-\end{table*}
-
-\begin{proposition}[scenario 8]\label{pro:appendix2rule8}
-$\forall c_{df} \in \mathcal{C}(T_{df})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{df}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$. Then it must have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-\end{proposition}
-\begin{proof}
-Assume  $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{df} = c_{as}$, then $c_{km} \prec c_{as}$, which contradicts that $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{as})$, so $\not\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{df} = c_{as}$. Then assume $\exists c_{as} \in \mathcal{C}(T_{as}), s.t., c_{df} \prec c_{as}$, then $c_{km} \prec c_{as}$, which is also contradiction.
-
-So it can only have $\exists c_{as}  \in \mathcal{C}(T_{as}),\ s.t.,\ c_{as} \prec c_{df}\ or\ c_{df}\ irrelevant\ to\ \mathcal{C}(T_{as})$.
-\end{proof}
-
-\subsection{For \emph{distinguishing failures} in Table \ref{conditions-for-df-ignore}}
-\begin{proposition}[scenario 1]\label{pro:appendix2rule1i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} = c_{df}$. Then it must have $c_{df} = c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 2]\label{pro:appendix2rule2i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $c_{as} \prec c_{df}$.
-\end{proposition}
-
-\begin{proposition}[scenario 3]\label{pro:appendix2rule3i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} = c_{km}$, and correspondingly, $c_{km} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
-\end{proposition}
-
-\begin{proposition}[scenario 4]\label{pro:appendix2rule4i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{df} = c_{km}$. Then it must have $c_{as} \prec c_{df}$.
-\end{proposition}
-
-\begin{proposition}[scenario 5]\label{pro:appendix2rule5i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $c_{as} \prec c_{df}$.
-\end{proposition}
-
-
-\begin{proposition}[scenario 6]\label{pro:appendix2rule6i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{as} \prec c_{km}$, and correspondingly, $c_{km} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in s.t.,\ c_{as} \prec c_{df}$.
-\end{proposition}
-\begin{proof}
-Refer to the proof of Proposition \ref{pro:appendix2rule8}.
-\end{proof}
-
-\begin{proposition}[scenario 7]\label{pro:appendix2rule7i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} = c_{df}$. Then it must have $c_{df} \prec c_{as}$.
-\end{proposition}
-
-\begin{proposition}[scenario 8]\label{pro:appendix2rule8i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{as}$, and correspondingly, $\exists c_{df} \in \mathcal{C}(T_{df}),\ s.t.,\ c_{km} \prec c_{df}$. Then it must have $\exists c_{df}' \in \mathcal{C}(T_{df}),\ s.t.,\ c_{as} = c_{df}'\ or\ c_{df}' \prec c_{as}\ or\ c_{as} \prec c_{df}'\ or\ c_{as}\ irrelevant\ to\ \mathcal{C}(T_{df})$.
-\end{proposition}
-\begin{proof}
-Refer to the proof of Proposition \ref{pro:appendix2rule7}.
-\end{proof}
-
-\begin{proposition}[scenario 9]\label{pro:appendix2rule9i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $\exists c_{km} \in \mathcal{C}(T_{km}),\ s.t.,\ c_{km} \prec c_{km}$, and correspondingly, $c_{km}\ is\ irrelevant\ to\  \mathcal{C}(T_{df})$. Then it must have $c_{as}\ irrelevant\ \mathcal{C}(T_{df})\ or\ \exists c_{df} \in \mathcal{C}(T_{df})\ s.t.,\ c_{df} \prec c_{as}$.
-\end{proposition}
-\begin{proof}
-Refer to the proof of Proposition \ref{pro:appendix2rule8}.
-\end{proof}
-
-\begin{proposition}[scenario 10]\label{pro:appendix2rule10i}
-$\forall c_{as} \in \mathcal{C}(T_{as})$ if $c_{as}\ is\ irrelevant\ to\ \mathcal{C}(T_{km}) $. Then it must have $c_{as} \ is\ irrelevant\ to\ \mathcal{C}(T_{df})$.
-\end{proposition}
-\begin{proof}
-Refer to the proof of Proposition \ref{pro:appendix1rule7i}.
-\end{proof}
 
 \section{The detail of the experiments}
 
