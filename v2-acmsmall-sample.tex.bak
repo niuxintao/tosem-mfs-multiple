@@ -339,7 +339,7 @@ Some notations used later are listed below for convenient reference:
 %\item $T_{mask(F_{m})}$ :  All the test cases that contain the
 %\item $T_{mask(F_{m})}$ :
 %\item $T_{mask(F_{m})}$ :
-
+\item $\mathcal{I}^*$ : All the schemas in the SUT.
 \item $\mathcal{I}(t)$ :  All the schemas that are contained in the test case $t$, e.g., $\mathcal{I}(\ (1 1 1)\ )= \{(1 - -)(- 1 -)(- - 1)(1 1 -)(1 - 1)(- 1 1) (1 1 1)\} $.
 \item $\mathcal{I}(T)$ :  All the schemas that are contained in test set $T$, i.e., $\mathcal{I}(T) = \bigcup_{t\in T} \mathcal{I}(t)$.
 \item  $\mathcal{S}(T)$:  All the schemas that are only contained in test set $T$, $\mathcal{S}(T) =  \mathcal{I}(T) \backslash \mathcal{I}(\bar{T}) $.
@@ -455,12 +455,16 @@ According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C
 % Another obvious observation is that
 %Then, we have the following proposition.
 \begin{proposition} \label{pro:sbS}
- For any test set $T$ and schema $c$ of the SUT, if $\mathcal{T}(c) \subseteq T$,  $c \in \mathcal{S}(T)$.
+ For any test set $T$, $\mathcal{S}(T)$ = $\{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \}$.
 \end{proposition}
 \begin{proof}
- Assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$, then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t\ contains\ c$, hence $t \in \mathcal{T}(c)$, which is contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$.
+By Proposition \ref{pro:stct},  $\forall c \in \mathcal{S}(T), \mathcal{T}(c) \subseteq T$. Hence, $\mathcal{S}(T) \subseteq \{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \}$.
+
+$\forall c, \mathcal{T}(c) \subseteq T $, assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$. Then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t\ contains\ c$, hence $t \in \mathcal{T}(c)$, which is contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$ and  $\{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \} \subseteq \mathcal{S}(T)$.
 \end{proof}
 
+
+%For any test set $T$ of the SUT, $\forall c \in \mathcal{S}(T), \mathcal{T}(c) \subseteq T$  by Proposition \ref{pro:stct}. Combining Proposition \ref{pro:sbS}, we have $\mathcal{S}(T)$ = $\{\ c\ |\ c \in \mathcal{I}^{*},  \mathcal{T}(c) \subseteq T \}$.
 %Based on this,  we have the following Lemma:
 %
 %\begin{proposition} \label{pro:lemasbS}
@@ -468,132 +472,44 @@ According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C
 %\end{proposition}
 
 %Based on this we have $\forall c \in \mathcal{S}(T), \mathcal{T}(c) \in T$.
-\subsection{relationship between }\label{subsec:Formal:multipleset}
+\subsection{Special schemas and minimal schemas of the union of test sets }\label{subsec:Formal:multipleset}
+For two disjoint test sets, it is  $T_{1}$, $T_{2}$,  $T_{1} \bigcap T_{2} = \varnothing$,  then $\mathcal{S}(T_{1} \bigcup T_{2})$ = $\{c | \mathcal{T}(c) \subseteq (T_{1} \bigcup T_{2}) \}$.  For any schema $c \in \mathcal{S}(T_{1} \bigcup T_{2})$, $\mathcal{T}(c)$ either belongs to $T_{1}$,  belongs to $T_{2}$, or falls into both $T_{1}$ and $T_{2}$. Hence, $\mathcal{S}(T_{1} \bigcup T_{2})$  can be divided into three subsets, i.e., $\mathcal{S}(T_{1}) = \{c\ |\ \mathcal{T}(c) \subseteq T_{1} \}$, $\mathcal{S}(T_{2}) = \{c\ |\ \mathcal{T}(c) \subseteq T_{2} \}$ and $\{c\  |\  \mathcal{T}(c) \subseteq (T_{1} \bigcup T_{2}), and\ \mathcal{T}(c) \bigcap T_{1} \neq \varnothing , \mathcal{T}(c) \bigcap T_{2} \neq \varnothing  \}$. Let $\mathcal{S}_{T_{1}T_{2}}$ denotes that third subsets, then $\mathcal{S}(T_{1} \bigcup T_{2}) = \mathcal{S}(T_{1}) \bigcup \mathcal{S}(T_{2}) \bigcup \mathcal{S}_{T_{1}T_{2}}$.
+
+For the schemas in $\mathcal{S}_{T_{1}T_{2}}$, we have the following proposition.
+
+\begin{proposition} \label{pro:specialsab}
+ For any test sets $T_{1}$, $T_{2}$ in the SUT,  $T_{1} \bigcap T_{2} = \varnothing$,  it has $\forall c \in \mathcal{S}_{T_{1}T_{2}},  \exists c' \in  \mathcal{C}(T_{1}), s.t., c \prec c', or\ \forall c' \in \mathcal{C}(T_{1}), c \between c'$
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+The minimal schema set for two union test sets $T_{1}, T_{2}$,$T_{1} \bigcap T_{2} = \varnothing$  is $\mathcal{C}(T_{1} \bigcup T_{2}) = \{c \ |\ c \in \mathcal{S}(T_{1} \bigcup T_{2}),\ and\ \not\exists c' \in \mathcal{S}(T_{1} \bigcup T_{2}), s.t.,\ c' \prec c \}$. Further we have $\mathcal{C}(T_{1} \bigcup T_{2}) = \{c \ |\ c \in \mathcal{S}(T_{1}) \bigcup \mathcal{S}(T_{2}) \bigcup \mathcal{S}_{T_{1}T_{2}},\ and\ \not\exists c' \in \mathcal{S}(T_{1} \bigcup T_{2}), s.t.,\ c' \prec c \}$.  It can also be divided into three subsets:
+\begin{itemize}
+  \item $ \{c \ |\ c \in \mathcal{S}_{T_{1}T_{2}},\ and\ \not\exists c' \in \mathcal{S}(T_{1} \bigcup T_{2}), s.t.,\ c' \prec c \}$.
+  \item $ \{c \ |\ c \in \mathcal{S}(T_{1}),\ and\ \not\exists c' \in \mathcal{S}(T_{1} \bigcup T_{2}), s.t.,\ c' \prec c \}$ .
+  \item $ \{c \ |\ c \in \mathcal{S}(T_{2}),\ and\ \not\exists c' \in \mathcal{S}(T_{1} \bigcup T_{2}), s.t.,\ c' \prec c \}$.
+
+\end{itemize}
+For the first type, as $\not\exists c' \in \mathcal{S}(T_{1}), or\ \mathcal{S}(T_{2}), s.t., c' \prec c$. So it can be transformed as $ \{c \ |\ c \in \mathcal{S}_{T_{1}T_{2}},\ and\ \not\exists c' \in \mathcal{S}_{T_{1}T_{2}}, s.t.,\ c' \prec c \}$. We denote it as $\mathcal{C}_{T_{1}T_{2}}$.
 
 
-For two disjoint test sets, it is  $T_{1}$, $T_{2}$,  $T_{1} \bigcup T_{2} = \varnothing$,  
+For the second type, as $T_{1} \bigcap T_{2} = \varnothing$,  $\forall c \in \mathcal{S}(T_{1}), c' \in \mathcal{S}(T_{2}), c \between c'$.  So it can only has $\exists c' \in \mathcal{S}(T_{1}), or\ c' \in \mathcal{S}_{T_{1}T_{2}}, s.t., c' \prec c.$  Hence, $\mathcal{C}_{1} = \mathcal{C}_{1}\backslash {c \in \mathcal{C}_{1}, s.t., c \prec \mathcal{C}_{T_{1}T_{2}}}$
 
-Then $\mathcal{S}(T_{1} \bigcup T_{2})$ = $\{c | T(c) \subseteq (T_{1} \bigcup T_{2}) \}$.  This set can be divided into three subsets.
-That are $\{c | T(c) \subseteq T_{1} \}$, $\{c | T(c) \subseteq T_{2} \}$ and $\{c | T(c) \subseteq (T_{1} \bigcup T_{2}), and\ T(c) \not\subseteq T_{1}\  T(c) \not\subseteq T_{2} \}$. 
-%Based on this proposition, we can find that if two schemas that have their test cases subsuming each other, then they are the relationships of super-schema and sub-schema.
-%\newdef{proposition}{Proposition}
+We denote 
 
-
-%\begin{proposition}
-
-% is that for any combination c in $t(T) - t(T^{*} - T) $, we can have $T(c) \subset T$, as if not so, there is must be any test case $t \in T(c)$, such that $t \not\in T$, then it must be $t \in T^{*} - T$, this is not according with  $c \in t(T) - t(T^{*} - T)$.
-%Further observation,
-%
-%From this two observation, we can have the following lemma:
-% there exist some relationships between their minimal schemas $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ . The relationship varies with the associations of the two test sets. In fact, there are three possible associations between $T_{1}$, $T_{2}$: \emph{inclusion}, \emph{disjointness}, and \emph{intersection}, as shown in Figure \ref{fig:testSuite}. The relationship between $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ is key for FCI approaches to identify the MFS.  More details will be discussed in following sections.
-%
-%\begin{figure*}[htbp]
-%\centering
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:inclusion}
-%    \includegraphics[width=1.31in]{testSuite1.eps}
-%}
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:disjoint}
-%    \includegraphics[width=2.01in]{testSuite2.eps}
-%}
-%\subfigure[]{
-%  %  \rule{4cm}{3cm}
-%    \label{fig:intersect}
-%    \includegraphics[width=1.81in]{testSuite3.eps}
-%}
-%\caption[]{Relationships between two test sets}
-%\label{fig:testSuite}
-%\end{figure*}
-
-%\subsection{Inclusion}
-%%We have the following propositions for two test sets that have an inclusion relationship.
-%\begin{proposition}[{minimal schemas in the smaller test set}]\label{pro:ssp}
-%For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subset T_{1}$, it has $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1} = c_{2} \ or\  c_{1} \prec c_{2}.$
-%\end{proposition}
-%
-%\begin{proof}
-%$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subset T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. According to the definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
-%\end{proof}
-%
-%% So this proposition holds as the schema in $\mathcal{S}(T_{2})$ either is in $\mathcal{C}(T_{1})$, or must be the super-schemas of some schemas in $\mathcal{C}(T_{1})$
-%
-%%Likewise, we can get the properties of the schemas identified for the larger test set.
-%
-%\begin{proposition}[{minimal schemas in the larger test set}]\label{pro:sls}
-%For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subset T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $ , $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
-%\end{proposition}
-%
-%This proposition is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
-%
-%We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subset T_{1}$. In the left part, we can see that in the schema in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
-%
-%\begin{table}[h]
-%\centering
-%\tbl{Inclusion examples\label{example_three_condition}}{
-%  \begin{tabular}{cc}
-%$T_{2}$&$T_{1}$ \\ \hline
-%(0, 0, 0)&(0, 0, 0)\\
-%(0, 0, 1)&(0, 0, 1) \\
-%(0, 1, 0)&(0, 1, 0)\\
-%         &(0, 1, 1) \\ \hline
-% $\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
-%(0, 0, -)&(0, -, -)\\
-%(0, -, 0)&		   \\ \hline
-%  \end{tabular}
-%  \hspace{1em}
-%  \begin{tabular}{cc}
-%$T_{2}$&$T_{1}$\\ \hline
-%(0, 0, 0) & (0, 0, 0)\\
-%(0, 0, 1) & (0, 0, 1)\\
-%(0, 1, 0) & (0, 1, 0)\\
-%		  & (1, 1, 0)\\
-%		  & (1, 1, 1)\\ \hline
-%$\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
-%(0, 0, -)&  (0, 0, -)\\
-%(0, -, 0)&  (0, -, 0)\\
-%		 &  (1, 1, -)\\  \hline
-%  \end{tabular}
-%  }
-%  \end{table}
-%
-%%It is noted that as the
-%
-%\subsection{Disjointness}
-%%This relationship corresponds to Figure \ref{fig:disjoint}. For two different test sets, one obvious property is listed as follows:
-%\begin{proposition}[Schema relations of two disjoint test sets]\label{pro:nrs}
-% For $T_{1}$ and $T_{2}$ of the SUT with $T_{1} \bigcap T_{2} = \emptyset $, then $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) = \emptyset$.
-%\end{proposition}
-%\begin{proof}
-% Assume that $\mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) \ne \emptyset$, $\exists c \in \mathcal{S}(T_{1}) \bigcap \mathcal{S}(T_{2}) $,  i.e.,  $c \in \mathcal{S}(T_{1})$ and $c \in \mathcal{S}(T_{2})$. By Proposition \ref{pro:stct}, $\mathcal{T}(c) \subseteq T_{1}$ and $\mathcal{T}(c) \subseteq T_{2}$. It contradicts that $T_{1} \bigcap T_{2} = \emptyset$.
-%\end{proof}
-%
-%This property points out that the minimal schemas of two disjoint test cases should be irrelevant to each other. Table \ref{example_disjoint} shows an example of this scenario for SUT($2^{3}$). We can learn from this table that for two disjoint test sets $T_{1}$ and $T_{2}$, their minimal schemas, i.e., $\mathcal{C}(T_{1}) = \{(0, - , 0)\}$ and $\mathcal{C}(T_{1}) = \{ (1, 0, -),(1, -, 0) \}$, respectively, are irrelevant to each other.
-%\begin{table}[htbp]
-%\centering
-%\tbl{Disjoint example \label{example_disjoint}}{
-%  \begin{tabular}{cc}
-%$T_{1}$&$T_{2}$ \\ \hline
-%(0, 0, 0)\ \ \ \ \ \ &  (1, 0, 0)\\
-%(0, 1, 0)\ \ \ \ \ \ &  (1, 0, 1)\\
-%		 &  (1, 1, 0)\\  \hline
-% $\mathcal{C}(T_{1})$& $\mathcal{C}(T_{2})$ \\ \hline
-%(0, -, 0)\ \ \ \ \ \ &(1, 0, -)\\
-%         &(1, -, 0)	\\ \hline
-%  \end{tabular}
-%  }
-%  \end{table}
-%Sometimes they can be merged.
+The third type is the same as the first type.
 
 
 
 
-\subsection{Identify the MFS}\label{subsec:Formal:identi}
+
+\section{Identify the MFS}\label{sec:identi}
+
+\subsection{Single failure} \label{subsec:identi:single}
 In this section, we focus on the SUT with single fault. Let $T_{f}$ indicates all the failing test cases and $T_{p}$ all the passing test cases. In fact, $T_{f} \bigcap T_{p} = \varnothing$ and $T_{f} \bigcup T_{p} = T^{*}$. Then the MFS for the SUT is $\mathcal{C}(T_{f})$. Theoretically,  to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{f}$. This is impossible in practice, especially when the testing space is very large.
 
 Traditional FCI approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. Formally,  let $T_{f-obs}$ denote the observed failing test cases, and $T_{p-obs}$ the observed passing test cases. To obtain the MFS, the outcomes of the remaining test cases should be inferred by the FCI approaches. Correspondingly, let $T_{f-inf}$ refer to the inferred failing test cases and $T_{p-inf}$ the inferred passing test cases. Obviously, $T_{f-obs} \bigcup T_{p-obs} \bigcup T_{f-inf} \bigcup T_{p-inf} = T^{*}$, and they are mutually disjoint.   Then the MFS identified by FCI approaches can be depicted as: MFS = $\mathcal{C}(T_{f-obs} \bigcup T_{f-infer})$.
+
 
 We offer an FCI example using the OFOT method \cite{nie2011minimal}.  For SUT($2^{3}$), assume the test case (1, 1, 1) failed, then the OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate new test cases: $t_{1}; t_{2}; t_{3}$. The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
 
@@ -619,7 +535,7 @@ $t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\ \hline
 \end{tabular}}
 \end{table}
 
-Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI predicts to be failing are not always identical to the actually failing test cases. In the SUT, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
+Similarly, other FCI approaches can also be modeled using this formal description. It is noted that the test cases FCI infers to be failing are not always identical to the actually failing test cases, i.e., $T_{f-obs} \bigcup T_{f-infer}) \neq T_{f}$. In the SUT, a more general scenario for FCI approaches can be depicted as shown in Figure \ref{fig:fci_process}.
 
 \begin{figure}[h]
 \centering
@@ -629,13 +545,13 @@ Similarly, other FCI approaches can also be modeled using this formal descriptio
 \end{figure}
 
 
-In Figure \ref{fig:fci_process} area A denotes the test cases that should pass but are incorrectly inferred to be failing, area B depicts the failing test cases that are observed, area C refers to the unexecuted test cases  that is correctly inferred to be failing, and area D shows all the unexecuted failing test cases cannot be inferred.  This figure actually represents the condition in which two test sets intersect with each other; specifically, comparing to Figure \ref{fig:intersect}, $A \bigcup B \bigcup C $= $T_{1}$,  indicating the test set that are considered to be failing. $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test set.  $B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ is their intersection.
+In Figure \ref{fig:fci_process}, the infered test cass are divdied into three subsets$T_{inf}$. area A denotes the test cases that should pass but are incorrectly inferred to be failing, area B depicts the failing test cases that are observed, area C refers to the unexecuted test cases  that is correctly inferred to be failing, and area D shows all the unexecuted failing test cases cannot be inferred.  This figure actually represents the condition in which two test sets intersect with each other; specifically, comparing to Figure \ref{fig:intersect}, $A \bigcup B \bigcup C $= $T_{1}$,  indicating the test set that are considered to be failing. $D \bigcup B \bigcup C $= $T_{2}$  are the actual failing test set.  $B \bigcup C$ = $ T_{1} \bigcap T_{2} = T_{3}$ is their intersection.
 
 According to the Proposition \ref{pro:concludeforintersection}, the schemas obtained by FCI approaches $\mathcal{C}(A \bigcup B \bigcup C)$ and the actual MFS $\mathcal{C}(B \bigcup C \bigcup D)$ can be identical, or subsuming each other, or irrelevant to each other.  We refer to the case that $c \in \mathcal{C}(B \bigcup C \bigcup D), s.t., c \ irrelevant\ to\ \mathcal{C}(A \bigcup B \bigcup C)$ as the FCI approach \emph{ignoring} this actual MFS.
 
 To identify the schemas as accurately as possible, the FCI approach needs to make $A$ (incorrectly inferred) and $D$ (cannot be inferred) as small as as possible. Even though each FCI approach tries to identify the MFS as accurately as possible, however, masking effects will affect the observed outcomes and the inferred results. We next discuss the masking problem.
 
-\section{Masking effect}\label{sec:Mask}
+\subsection{Multiple failures}\label{subsec:identi:multiple}
 \begin{definition}
 A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular failure, but it does not trigger the expected failure because another failure was triggered ahead of it that prevents $t$ from being normally checked.
 \end{definition}
