@@ -475,15 +475,6 @@ $c$       & $\mathcal{T}(c)$ &$T$         & $\mathcal{S}(T)$ \\ \hline
 Based on Proposition \ref{pro:sbS}, as long as $\mathcal{T}(c) \subseteq T$ for any schema $c$ and any test set $T$ in the SUT, $c$ either belongs to $C(T)$ or is the super-schema of some schema in $C(T)$.  Considering a more general scenario, i.e., two test sets $T_{1}$,  $T_{2}$  with $T_{2} \subset T_{1}$, it must exist some relationships between their minimal schemas $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
 
 
-%Figuring these relationships can help to analyse the impact of masking effects later.
-%
-%More generally, for two test sets.
-%
-%For two different test sets $T_{1}$, $T_{2}$, there exist some relationships between their minimal schemas $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ . The relationship varies with the associations of the two test sets. The relationship between $\mathcal{C}(T_{2})$ and $\mathcal{C}(T_{2})$ is key for FCI approaches to identify the MFS.  More details will be discussed in following sections.
-
-
-%\subsection{Schemas between Inclusion test sets}
-%We have the following propositions for two test sets that have an inclusion relationship.
 \begin{proposition}[{minimal schemas in the smaller test set}]\label{pro:ssp}
 For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subset T_{1}$, it has $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1} = c_{2} \ or\  c_{1} \prec c_{2}.$
 \end{proposition}
@@ -502,7 +493,7 @@ For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subset T_{1}$. Then $\forall c_{1} \
 
 Proposition \ref{pro:sls} is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
 
-We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subset T_{1}$. In the left part, we can see that in the schema in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
+We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subset T_{1}$. In the left part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
 
 \begin{table}[h]
 \centering
@@ -542,7 +533,8 @@ A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a pa
 
 Taking the masking effects into account, when identifying the MFS of a specific failure $F_{m}$, we should not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of failure $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
 
-As an example, in section 2, test cases  $F_{mask(F_{Ex\ 2})}$  is \{ (7,4,4,5),(11,4,4,5)\}, So the MFS of $Ex 2$ is $\mathcal{C}(T_{F_{Ex\ 2}} \bigcup T_{mask(F_{Ex\ 2})})$, which is (-,-,4,5).
+
+Going back to the motivating example, as \emph{test case 6} and \emph{test case 18} should trigger Ex 2 in case they did not trigger Ex 1, then $F_{mask(F_{2})}$ is \{ (7,4,4,5),(11,4,4,5)\}. Hence, the MFS of $Ex 2$ is $\mathcal{C}(T_{F_{2}} \bigcup T_{mask(F_{2})})$, which is (-,-,4,5) instead of the incorrect schema set $\{(-,2,4,5), (-,5,4,5)\}$. 
 
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
