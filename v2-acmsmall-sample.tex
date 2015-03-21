@@ -356,14 +356,14 @@ Some notations used later are listed below for convenient reference:
 \subsection{Relations between schemas and test sets}
 
 \begin{proposition}[{smaller schema $c$ has a larger $\mathcal{T}(c)$}] \label{pro:shl}
-For schemas $c_{1}$, $c_{2}$, if $c_{1} \prec c_{2}$, then all the test cases that contain $c_{2}$ must also contain $c_{1}$, i.e., $\mathcal{T}(c_{2}) \subset \mathcal{T}(c_{1})$.
+For schemas $c_{1}$, $c_{2}$, if $c_{1} \prec c_{2}$, then all the test cases that contain $c_{2}$ must also contain $c_{1}$, i.e., $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 \end{proposition}
 
 \begin{proof}
-  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subset \mathcal{T}(c_{1})$.
+  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 \end{proof}
 
-Suppose a SUT with four binary parameters, which can be denoted as SUT($2^4$). Table \ref{example_subsume} illustrates an example of the Proposition \ref{pro:shl}. The left column lists the schema $c_{2}$ = (0,0,-,-) as well as all the test cases in $\mathcal{T}(c_{2})$, while the right column lists the schema $c_{1}$ = (0,-,-,-) and $\mathcal{T}(c_{1})$. We can see that when $c_{1} \prec c_{2}$, $\mathcal{T}(c_{2}) \subset \mathcal{T}(c_{1})$.
+Suppose a SUT with four binary parameters, which can be denoted as SUT($2^4$). Table \ref{example_subsume} illustrates an example of the Proposition \ref{pro:shl}. The left column lists the schema $c_{2}$ = (0,0,-,-) as well as all the test cases in $\mathcal{T}(c_{2})$, while the right column lists the schema $c_{1}$ = (0,-,-,-) and $\mathcal{T}(c_{1})$. We can see that when $c_{1} \prec c_{2}$, $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 
 \begin{table}[ht]
 \centering
@@ -412,7 +412,7 @@ For any test set $T$ of the SUT, $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) 
 \begin{proof}
 As $\mathcal{C}(T) = \{c | c \in \mathcal{S}(T)\ and\ \not\exists c' \prec c, s.t., c' \in \mathcal{S}(T)\}$, indicating that $\mathcal{C}(T) \subseteq \mathcal{S}(T)$.  It is then obviously $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c)$. Hence, we just need to prove that $\bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
 
-$\forall t \in \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) $, $\exists c \in \mathcal{S}(T),\ s.t., t \in \mathcal{T}(c)$. According to the definition of $\mathcal{C}(T)$, $\exists c' \in \mathcal{C}(T), s.t.,\ c' = c \ or\ c' \prec c$. Correspondingly $\mathcal{T}(c') = \mathcal{T}(c),\ or\ \mathcal{T}(c) \subset \mathcal{T}(c')$ by Proposition \ref{pro:shl}. Hence, $t \in \mathcal{T}(c') \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
+$\forall t \in \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) $, $\exists c \in \mathcal{S}(T),\ s.t., t \in \mathcal{T}(c)$. According to the definition of $\mathcal{C}(T)$, $\exists c' \in \mathcal{C}(T), s.t.,\ c' = c \ or\ c' \prec c$. Correspondingly $\mathcal{T}(c') = \mathcal{T}(c),\ or\ \mathcal{T}(c) \subseteq \mathcal{T}(c')$ by Proposition \ref{pro:shl}. Hence, $t \in \mathcal{T}(c') \subseteq \bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c)$.
 
 Therefore , $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) = \bigcup_{c \in \mathcal{S}(T)} \mathcal{T}(c) = T$.
 \end{proof}
@@ -472,15 +472,15 @@ $c$       & $\mathcal{T}(c)$ &$T$         & $\mathcal{S}(T)$ \\ \hline
   }
   \end{table}
 
-Based on Proposition \ref{pro:sbS}, as long as $\mathcal{T}(c) \subseteq T$ for any schema $c$ and any test set $T$ in the SUT, $c$ either belongs to $C(T)$ or is the super-schema of some schema in $C(T)$.  Considering a more general scenario, i.e., two test sets $T_{1}$,  $T_{2}$  with $T_{2} \subset T_{1}$, it must exist some relationships between their minimal schemas $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$.
+Based on Proposition \ref{pro:sbS}, as long as $\mathcal{T}(c) \subseteq T$ for any schema $c$ and any test set $T$ in the SUT, $c$ either belongs to $C(T)$ or is the super-schema of some schema in $C(T)$.  Considering a more general scenario, i.e., two test sets $T_{1}$,  $T_{2}$  with $T_{2} \subseteq T_{1}$, we then can easily obtain the relationships between $\mathcal{C}(T_{1})$ and $\mathcal{C}(T_{2})$ according to Proposition \ref{pro:sbS}.
 
 
 \begin{proposition}[{minimal schemas in the smaller test set}]\label{pro:ssp}
-For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subset T_{1}$, it has $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1} = c_{2} \ or\  c_{1} \prec c_{2}.$
+For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subseteq T_{1}$, it has $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1} = c_{2} \ or\  c_{1} \prec c_{2}.$
 \end{proposition}
 
 \begin{proof}
-$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subset T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. According to the definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
+$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subseteq T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. According to the definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
 \end{proof}
 
 % So this proposition holds as the schema in $\mathcal{S}(T_{2})$ either is in $\mathcal{C}(T_{1})$, or must be the super-schemas of some schemas in $\mathcal{C}(T_{1})$
@@ -488,12 +488,12 @@ $\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \su
 %Likewise, we can get the properties of the schemas identified for the larger test set.
 
 \begin{proposition}[{minimal schemas in the larger test set}]\label{pro:sls}
-For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subset T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $ , $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
+For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subseteq T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $ , $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
 \end{proposition}
 
 Proposition \ref{pro:sls} is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
 
-We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subset T_{1}$. In the left part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
+We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subseteq T_{1}$. In the left part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
 
 \begin{table}[h]
 \centering
@@ -534,16 +534,17 @@ A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a pa
 Taking the masking effects into account, when identifying the MFS of a specific failure $F_{m}$, we should not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of failure $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
 
 
-Going back to the motivating example, as \emph{test case 6} and \emph{test case 18} should trigger Ex 2 in case they did not trigger Ex 1, then $F_{mask(F_{2})}$ is \{ (7,4,4,5),(11,4,4,5)\}. Hence, the MFS of $Ex 2$ is $\mathcal{C}(T_{F_{2}} \bigcup T_{mask(F_{2})})$, which is (-,-,4,5) instead of the incorrect schema set $\{(-,2,4,5), (-,5,4,5)\}$. 
+Going back to the motivating example in Section 2, as \emph{test case 6} and \emph{test case 18} should trigger Ex 2 in case they did not trigger Ex 1, then $F_{mask(F_{2})}$ is \{ (7,4,4,5),(11,4,4,5)\}. Hence, the MFS of $Ex 2$ is $\mathcal{C}(T_{F_{2}} \bigcup T_{mask(F_{2})})$, which is (-,-,4,5) instead of the incorrect schema set $\{(-,2,4,5), (-,5,4,5)\}$.
 
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
-For traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  two common strategies can be adopted when facing the multiple failures problem, i.e., \emph{regarded as one failure}  and \emph{distinguishing failures}.  The former strategy treats all types of failures as one failure--\emph{failure}, and others as \emph{pass}, while the latter distinguishes the failures but with no special consideration of the masking effects, i.e., if a test case fails with a particular type of fault, this strategy presumes it does not contain other type of faults. We will separately discuss the two strategies under exhaustive testing condition and normal FCI testing condition.
+For traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  two common strategies can be adopted when facing the multiple failures problem, i.e., \emph{regarded as one failure}  and \emph{distinguishing failures}.  The former strategy treats all types of failures as one failure--\emph{failure}, and others as \emph{pass}, while the latter distinguishes the failures but with no special consideration of the masking effects, i.e., if a test case fails with a particular type of fault, this strategy presumes it does not contain other type of faults.
+%We will separately discuss the two strategies under exhaustive testing condition and normal FCI testing condition.
 %\subsection{Masking effects under exhaustive testing}
 
 \subsection{Regarded as one failure strategy}
 %, as it does not distinguish the failures, i.e., it treats all types of failures as one failure--\emph{failure}, and others as \emph{pass}.
-This is the most common strategy. With this strategy, the minimal schemas are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the failures in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subset \bigcup_{i = 1}^{L}T_{F_{i}}$ .  By Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
+This is the most common strategy. With this strategy, the minimal schemas are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$ , $L$ is the number of all the failures in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subseteq \bigcup_{i = 1}^{L}T_{F_{i}}$ .  By Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
 
 As an example, consider the test cases in Table \ref{masking-effects-exhaustive}. Assume we need to characterize the MFS of \emph{failure 1}. All the test cases that triggered \emph{failure 1} are listed in column \emph{$T_{F_{1}}$}; similarly, we list the test cases that triggered other failures in column \emph{$T_{mask(F_{1})}$} and \emph{$T_{non\_mask}$}, respectively, in which the former masked \emph{failure 1}, while the latter did not. Actually the MFS of \emph{failure 1}  should be (1,1,-,-) and (-,1,1,1) as we listed them in the column `actual MFS of \emph{failure 1}'. However, when we use the \emph{regarded as one failure} strategy, the minimal schemas obtained will be (-,-,0,0), (1,1,-,-), (-,-,1,1), in which (-,-,0,0) is irrelevant to the actual MFS of \emph{failure 1} , and (-,-,1,1) is a sub-schema of the actual MFS (-,1,1,1).
 
@@ -570,7 +571,7 @@ $\mathcal{C}(T_{F_{1}} \bigcup T_{mask(F_{1})})$& $\mathcal{C}( T_{F_{1}} \bigcu
 Distinguishing the failures by the exception traces or error code can help identify the MFS related to particular failure. Yilmaz \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of the \emph{ternary-class} approach to make the characterizing process more accurate. Besides, other approaches can also be easily extended with this strategy for testing SUT with multiple failures.
 %We call this strategy \emph{distinguishing failures}.
 
-This strategy focuses on identifying the set of $\mathcal{C}(T_{F_{m}})$. As $T_{F_{m}} \bigcup T_{mask(F_{m})} \supset T_{F_{m}} $, some schemas obtained by this strategy may be the super-schema of some actual MFS. Moreover, some MFS may be irrelevant to the schemas obtained by this strategy, which means this strategy will \emph{ignore} these actual MFS.
+This strategy focuses on identifying the set of $\mathcal{C}(T_{F_{m}})$. As $T_{F_{m}} \bigcup T_{mask(F_{m})} \supseteq T_{F_{m}} $, some schemas obtained by this strategy may be the super-schema of some actual MFS. Moreover, some MFS may be irrelevant to the schemas obtained by this strategy, which means this strategy will \emph{ignore} these actual MFS.
 
 For the simple example shown in Table \ref{masking-effects-exhaustive}, when using this strategy, we will get the minimal schemas (1, 1, -, 1) and (1, 1, 1, -), which are both super schemas of the actual MFS (1,1,-,-). Furthermore, no schemas obtained by this strategy have any relationship with the actual MFS (-,1,1,1), which means it was ignored.
 
@@ -578,8 +579,20 @@ It is noted that the motivating example in section 2 actually adopted this strat
 
 
 \subsection{Masking effects for FCI approaches}
+Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FCI approaches, masking effects can make problems worse. 
 
-The masking effects may be worse. This is because, for most approaches, it may not get all the test cases, and so the masking effects between a test case may be more harmful than discussed before.
+This is because due to the time and computing rescouses limitation, FCI approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ being ignored as discussed before, but also significantly impact on the inference process.
+
+Take the One Factor One Time approach (\emph{OFOT}) \cite{nie2011minimal} for example. OFOT is an important FCI approach. Table gives an example to illustrate this appraoch. So the MFS is . (This inference is based on the assumption that). Note that for the MFS,  $\mathcal{T}()$ is exactly . Indicating that . So the $T_{inferee}$ is , as the right side shows. 
+
+Then assume there are multiple, and can triggered other. For example, it then . If we think that , then we can find that the MFS is not correct. Based on this incorrectly MFS, the is . Indicating that the $T_{in}$ which is different from before. Above all, the masking effects.
+N ote that it not only makes us ingored the $T_{mask}$, but th.
+
+As masking effects significatnly impact on . A is desired.
+
+
+%For masking effects.
+%The masking effects may be worse. This is because, for most approaches, it may not get all the test cases, and so the masking effects between a test case may be more harmful than discussed before.
 
 For example, for OFOT approach, it
 
@@ -620,8 +633,8 @@ To solve it is meaningful.
 
 \section{Test case replacing strategy}
 %Previous section formally studied the case that under the masking effects, neither regarding as one failure approach nor distinguishing failures approach is not accurate .
-The main reason that the FCI approach fails to work properly is that it cannot determine $B_{2}$ and $B_{3}$, i.e., if the test case triggers other failures which are different from the currently analysed one, it cannot figure out whether this test case will trigger the current expected failure because of the masking effects. So to limit the impact of this effect on the FCI approach, it is important to reduce the number of test cases that trigger other different failures, as it can reduce the probability that expected failure may be masked by other failures.
-% strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subset \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other failures as much as possible.
+The main reason that the FCI approach fails to work properly is that it cannot determine $\mathcal{T}(mask_{F_{m}})$. In other word, if the test case triggers other failures which are different from the currently analysed one, it cannot figure out whether this test case will trigger the current expected failure because of the masking effects. So to limit the impact of this effect on the FCI approach, it is important to reduce the number of test cases that trigger other different failures, as it can reduce the probability that expected failure may be masked by other failures.
+% strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subseteq \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other failures as much as possible.
 
 In the exhaustive testing, as all the test cases will be used to identify the MFS, there is no room left to improve the performance unless we fix other failures and re-execute all the test cases. However, if only a subset of all test cases is used to identify the MFS (which is how the traditional FCI approach works), it is important to make the right selection to limit the size of $\mathcal{T}(mask_{F_{m}})$ to be as small as possible.
 
