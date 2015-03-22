@@ -241,7 +241,7 @@ We first generate every possible test case listed in the column ``test case" of 
 \begin{table}[ht]
 \centering
  \tbl{Identified failure-inducing interactions and their corresponding Exception\label{identify-example}}{
-\begin{tabular}{|c|c|} \hline
+\begin{tabular}{c c}
 Failure-inducing interaction & Exception\\ \hline
 (-, 4, 4, -) &  Ex 1\\ \hline
 (-, 2, 4, 5) &  Ex 2\\ \hline
@@ -449,7 +449,7 @@ According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C
  For any test set $T$ and schema $c$ of the  SUT, if $\mathcal{T}(c) \subseteq T$,  $c \in \mathcal{S}(T) $.
 \end{proposition}
 \begin{proof}
- Assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$, then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t\ contains\ c$, hence $t \in \mathcal{T}(c)$, which is contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$.
+ Assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$, then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t \in \mathcal{T}(c)$, which contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$.
 \end{proof}
 
 Table \ref{example_subset_minimal_schemas} shows an example of this proposition for SUT($2^3$).  In this table, the test set $\mathcal{T}(c)$ of schema $c$ is the subset of test set $T$. As a result, the special schema set $\mathcal{S}(T)$ of $T$ contains this schema $c$ = (0, 0, -).
@@ -480,7 +480,7 @@ For $T_{1}$ and $T_{2}$ of the SUT with $T_{2} \subseteq T_{1}$, it has $\forall
 \end{proposition}
 
 \begin{proof}
-$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subseteq T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. According to the definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
+$\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subseteq T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. By definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
 \end{proof}
 
 % So this proposition holds as the schema in $\mathcal{S}(T_{2})$ either is in $\mathcal{C}(T_{1})$, or must be the super-schemas of some schemas in $\mathcal{C}(T_{1})$
@@ -538,7 +538,7 @@ Going back to the motivating example in Section 2, as \emph{test case 6} and \em
 
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
-For traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  two common strategies can be adopted when facing the multiple failures problem, i.e., \emph{regarded as one failure}  and \emph{distinguishing failures}.  The former strategy treats all types of failures as one failure--\emph{failure}, and others as \emph{pass}, while the latter distinguishes the failures but with no special consideration of the masking effects, i.e., if a test case fails with a particular type of fault, this strategy presumes it does not contain other type of faults.
+For traditional FCI approaches, without the knowledge of  $T_{mask(F_{m})}$,  two common strategies can be adopted when facing the multiple failures problem, i.e., \emph{regarded as one failure}  and \emph{distinguishing failures}.  The former strategy treats all types of failures as one failure--\emph{fail}, and others as \emph{pass}, while the latter distinguishes the failures but with no special consideration of the masking effects, i.e., if a test case fails with a particular type of fault, this strategy presumes it does not contain other type of faults.
 %We will separately discuss the two strategies under exhaustive testing condition and normal FCI testing condition.
 %\subsection{Masking effects under exhaustive testing}
 
@@ -571,7 +571,7 @@ $\mathcal{C}(T_{F_{1}} \bigcup T_{mask(F_{1})})$& $\mathcal{C}( T_{F_{1}} \bigcu
 Distinguishing the failures by the exception traces or error code can help identify the MFS related to particular failure. Yilmaz \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of the \emph{ternary-class} approach to make the characterizing process more accurate. Besides, other approaches can also be easily extended with this strategy for testing SUT with multiple failures.
 %We call this strategy \emph{distinguishing failures}.
 
-This strategy focuses on identifying the set of $\mathcal{C}(T_{F_{m}})$. As $T_{F_{m}} \bigcup T_{mask(F_{m})} \supseteq T_{F_{m}} $, some schemas obtained by this strategy may be the super-schema of some actual MFS. Moreover, some MFS may be irrelevant to the schemas obtained by this strategy, which means this strategy will \emph{ignore} these actual MFS.
+This strategy focuses on identifying the set of $\mathcal{C}(T_{F_{m}})$. As $T_{F_{m}} \bigcup T_{mask(F_{m})} \supseteq T_{F_{m}} $, by Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the super-schema of some actual MFS. Moreover, some MFS may be irrelevant to the schemas obtained by this strategy, which means this strategy will \emph{ignore} these actual MFS.
 
 For the simple example shown in Table \ref{masking-effects-exhaustive}, when using this strategy, we will get the minimal schemas (1, 1, -, 1) and (1, 1, 1, -), which are both super schemas of the actual MFS (1,1,-,-). Furthermore, no schemas obtained by this strategy have any relationship with the actual MFS (-,1,1,1), which means it was ignored.
 
@@ -579,49 +579,96 @@ It is noted that the motivating example in section 2 actually adopted this strat
 
 
 \subsection{Masking effects for FCI approaches}
-Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FCI approaches, masking effects can make problems worse. 
+Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FCI approaches, masking effects can make problems worse.
 
 This is because due to the time and computing rescouses limitation, FCI approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ being ignored as discussed before, but also significantly impact on the inference process.
 
-Take the One Factor One Time approach (\emph{OFOT}) \cite{nie2011minimal} for example. OFOT is an important FCI approach. Table gives an example . 
-
-Then assume, it will.
-
-
-%For masking effects.
-%The masking effects may be worse. This is because, for most approaches, it may not get all the test cases, and so the masking effects between a test case may be more harmful than discussed before.
-
-For example, for OFOT approach, it
-
-In this section, we focus on the SUT with single fault. Let $T_{f}$ indicates all the failing test cases and $T_{p}$ all the passing test cases. In fact, $T_{f} \bigcap T_{p} = \varnothing$ and $T_{f} \bigcup T_{p} = T^{*}$. Then the MFS for the SUT is $\mathcal{C}(T_{f})$. Theoretically,  to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{f}$. This is impossible in practice, especially when the testing space is very large.
-
-Traditional FCI approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. Formally,  let $T_{f-obs}$ denote the observed failing test cases, and $T_{p-obs}$ the observed passing test cases. To obtain the MFS, the outcomes of the remaining test cases should be inferred by the FCI approaches. Correspondingly, let $T_{f-inf}$ refer to the inferred failing test cases and $T_{p-inf}$ the inferred passing test cases. Obviously, $T_{f-obs} \bigcup T_{p-obs} \bigcup T_{f-inf} \bigcup T_{p-inf} = T^{*}$, and they are mutually disjoint.   Then the MFS identified by FCI approaches can be depicted as: MFS = $\mathcal{C}(T_{f-obs} \bigcup T_{f-infer})$.
-
-We offer an FCI example using the OFOT method \cite{nie2011minimal}.  For SUT($2^{3}$), assume the test case (1, 1, 1) failed, then the OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate new test cases: $t_{1}; t_{2}; t_{3}$. The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
-
-In this example, only 4 test cases are observed
-
+We offer an FCI example using the OFOT method \cite{nie2011minimal}.  Table \ref{ofot-identify} gives an example to illustrate this approach. For SUT($2^{3}$), assume the failing test case (1, 1, 1) is under analysing, then OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate additional test cases: $t_{1}; t_{2}; t_{3}$. The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
 
 \begin{table}[h]
-\tbl{OFOT with our strategy\label{ofot-identify}}{
+\tbl{OFOT example\label{ofot-identify}}{
 \begin{tabular}{llllll}
-\multicolumn{5}{c}{\bfseries original test case} & \bfseries Outcome \\ \hline
+\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
  $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1 } & Fail \\
  \hline
-\multicolumn{5}{c}{\bfseries observed} &  \\ \hline
-$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1 }& Pass \\
+\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
+$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1 } & Pass \\
 $t_{2}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  1 } & Fail \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0 } & Fail \\
 \hline
-\multicolumn{5}{c}{\bfseries predicted} & \\ \hline
-$t_{4}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  1 } & Pass \\
-$t_{5}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  0 } & Pass \\
-$t_{6}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  0 } & Fail \\
-$t_{7}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  0 } & Pass \\ \hline
-\end{tabular}}
+\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
+\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  -) }  \\
+\hline \end{tabular}}
 \end{table}
 
-To solve it is meaningful.
+According to the MFS dedition, all the test cases contain (1, -, -) should fail.  That is, test cases of $\mathcal{T}((1, -, -))$ as listed in Table \ref{ofot-infer} should fail. Combing the observed failing test cases in Table \ref{ofot-identify}, the failing test case inferred by OFOT in this case is (1, 0, 0) as in Column `inferred $T_{f}$' of Table \ref{ofot-infer}.
+
+\begin{table}[h]
+\centering
+\tbl{Inferred test cases by OFOT\label{ofot-infer}}{
+  \begin{tabular}{ccc}
+$\mathcal{T}((1, -, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
+(1, 0, 0)&           & (1, 0, 0) \\
+(1, 0, 1)& (1, 0, 1) & \\
+(1, 1, 0)& (1, 1, 0)   \\
+(1, 1, 1)& (1, 1, 1) & \\
+\hline
+  \end{tabular}
+  }
+  \end{table}
+
+For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as in Table \ref{ofot-identify-mask}. Without additional information,  previous \emph{regarded as one strategy} or \emph{distinguishing failures strategy} is needed to make the OFOT works.
+
+\begin{table}[h]
+\tbl{OFOT masking example\label{ofot-identify-mask}}{
+\begin{tabular}{llllll}
+\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
+ $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1 } & Fail \\
+ \hline
+\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} } & \textbf{Other Failure} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} } & \textbf{Other Failure} \\
+$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0 } & Fail \\
+%\hline
+%\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
+%\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  -) }  \\
+\hline \end{tabular}}
+\end{table}
+
+
+
+\begin{table}[h]
+\tbl{OFOT with two strategies\label{ofot-identify-mask}}{
+\begin{tabular}{llllll}
+\multicolumn{5}{c}{\bfseries  regarded as one failure} & \bfseries Outcome \\ \hline
+ $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1 } & Fail \\
+ \hline
+\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} } & \textbf{Fail} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} } & \textbf{Fail} \\
+$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0 } & Fail \\
+%\hline
+%\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
+%\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  -) }  \\
+\hline \end{tabular}
+
+\begin{tabular}{llllll}
+\multicolumn{5}{c}{\bfseries  distinguishing failures} & \bfseries Outcome \\ \hline
+ $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1 } & Fail \\
+ \hline
+\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} } & \textbf{Pass} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} } & \textbf{Pass} \\
+$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0 } & Fail \\
+\hline
+\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
+\multicolumn{6}{c}{(1  \ \ \ \  1 \ \ \ \  1) }  \\
+\hline \end{tabular}
+
+}
+\end{table}
+
+As masking effects significantly impact on . To alleviate it is desired such that we will get a good result for MFS.
 
 %\subsection{Summary of the masking effects on the FCI approach}
 %From the analysis of the formal model, we can learn that masking effect does influence the FCI approaches, and even worse, both the \emph{regarded as one failure} and \emph{distinguishing failures} strategies have their own problems in handling this effect. Specifically when compared with the \emph{knowing masking effects} condition, the strategy \emph{regarded as one failure} has a larger possibility of getting more sub-schemas of the actual MFS and getting more schemas which are irrelevant to the MFS, while strategy \emph{distinguishing failures}  may get more super schemas of the MFS and can also get more irrelevant MFS. Note that strategy \emph{regarded as one failure} has a larger chance than \emph{distinguishing failures} at identifying irrelevant schemas. Further, both strategies may ignore the actual MFS with the \emph{distinguishing failures} strategy more likely to ignore the MFS than the \emph{regarded as one failure} strategy.
