@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  23 MAR 2015 19:49
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  23 MAR 2015 21:24
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -505,11 +505,11 @@ LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
 (Font)              Font shape `OT1/pnc/b/n' tried instead on input line 802.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
- [15] [16]
+ [15]
 File: table.eps Graphic file (type eps)
- <table.eps> [17]
+ <table.eps> [16] [17]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 962.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 961.
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
  [18]
@@ -517,7 +517,7 @@ Requested font "phvro7t" at 9.0pt
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [19] [20]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
  [21]
 [22]
@@ -531,7 +531,7 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1184--1184
+Underfull \hbox (badness 1259) in paragraph at lines 1183--1183
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -541,11 +541,11 @@ File: testCases.eps Graphic file (type eps)
  <testCases.eps>
 
 LaTeX Warning: Reference `conditions-for-ro' on page 23 undefined on input line
- 1208.
+ 1207.
 
 
 LaTeX Warning: Reference `conditions-for-df' on page 23 undefined on input line
- 1208.
+ 1207.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -554,35 +554,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [24]
 
 LaTeX Warning: Reference `conditions-for-ro' on page 25 undefined on input line
- 1215.
+ 1214.
 
 
 LaTeX Warning: Reference `conditions-for-df' on page 25 undefined on input line
- 1215.
+ 1214.
 
 
 LaTeX Warning: Reference `conditions-for-ro' on page 25 undefined on input line
- 1215.
+ 1214.
 
 
 LaTeX Warning: Reference `conditions-for-df' on page 25 undefined on input line
- 1215.
+ 1214.
 
 
 LaTeX Warning: Reference `conditions-for-ro' on page 25 undefined on input line
- 1222.
+ 1221.
 
 
 LaTeX Warning: Reference `conditions-for-df' on page 25 undefined on input line
- 1222.
+ 1221.
 
 
 LaTeX Warning: Reference `conditions-for-df-ignore' on page 25 undefined on inp
-ut line 1222.
+ut line 1221.
 
 
 LaTeX Warning: Reference `conditions-for-ro-ignore' on page 25 undefined on inp
-ut line 1222.
+ut line 1221.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -602,18 +602,18 @@ Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [28]
 [29]
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1364 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1363 replaced by U+FFFD.
 
 
 LaTeX Warning: Reference `fig:fci_process' on page 30 undefined on input line 1
-398.
+397.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -635,12 +635,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35])
 [36]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1528--1561
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1527--1560
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1565--1627
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1564--1626
 [] 
  []
 

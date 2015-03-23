@@ -581,7 +581,7 @@ It is noted that the motivating example in section \ref{sec:motiv} actually adop
 \subsection{Masking effects for FCI approaches} \label{sec:mask:fci}
 Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FCI approaches, masking effects can make problems worse.
 
-This is because due to the time and computing rescouses limitation, FCI approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ being ignored as discussed before, but also significantly impact on the inference process.
+This is because due to the time and computing rescouses limitation, FCI approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ be ignored as discussed before, but also significantly impact on the inference process.
 
 We offer an FCI example using the OFOT method \cite{nie2011minimal}.  Table \ref{ofot-identify} gives an example to illustrate this approach. For SUT($2^{3}$), assume the failing test case (1, 1, 1) is under analysing, then OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate additional test cases: $t_{1}; t_{2}; t_{3};t_{4}$. The pass of $t_{1}$ and $t_{3}$ indicates that these two test cases break the MFS in the original test case \emph{t}. So, (1,-,-,-) and (-,-,1,-) should be the failure-causing factors, and as the other test cases ($t_{2}, t_{3}$) all failed , indicating that no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS). Therefore, the MFS in \emph{t} is (1,-,1,-).
 
@@ -618,7 +618,7 @@ $\mathcal{T}((1, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
   }
   \end{table}
 
-For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as in Table \ref{ofot-identify-mask}. To make the OFOT approach works properly in this case,  without additional information,  we need to apply the previous \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other word, $t_{1}$ and $t_{3}$ should either be determined as \emph{Fail} or \emph{Pass}.
+For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as in Table \ref{ofot-identify-mask}. To make the OFOT approach work properly in this case,  without additional information,  we need to apply the previous \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other word, $t_{1}$ and $t_{3}$ should either be determined as \emph{Fail} or \emph{Pass}.
 
 \begin{table}[h]
 \tbl{OFOT masking example\label{ofot-identify-mask}}{
@@ -627,8 +627,8 @@ For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2
  $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\
  \hline
 \multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Other Failure} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Other Failure} \\
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \  \textbf{1}} & \textbf{Other Failure} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Other Failure} \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
 $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 %\hline
@@ -645,8 +645,8 @@ The details of process for OFOT using this two straggles are listed in Table \re
 \multicolumn{6}{c}{\bfseries  regarded as one failure} \\ \hline
 %\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
 $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Fail} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Fail} \\
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Fail} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Fail} \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
 $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 \hline
@@ -657,8 +657,8 @@ $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 \begin{tabular}{llllll}
 \multicolumn{6}{c}{\bfseries  distinguishing failures} \\ \hline
  $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Pass} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Pass} \\
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Pass} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Pass} \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
 $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 \hline
@@ -669,7 +669,7 @@ $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 }
 \end{table}
 
-Such deviations for these two strategies are casus by the reduction of the observed test cases. Here, as $t_{1}$ and $t_{2}$ are both triggered other failures, these two test cases cannot contribute to the MFS identification for the currently analysed fault. Besides this, the inference of OFOT are also impacted. We list the inference test cases for these strategies in Table \ref{ofot-infer-two}. It can be found that both these two strategies cannot obtain the correct inference test cases as in Table \ref{ofot-infer}. Specifically, 4 test cases, i.e., (0,0,1,0), (0,0,1,1), (0,1,1,0) and (0,1,1,1),  inferred by strategy \emph{regarded as one failure} actually cannot trigger the current failure; while for strategy \emph{distinguishing failures}, it does not infer additional test cases (marked as `---').
+Such deviations for these two strategies are casus by the reduction of the observed test cases. Here, as $t_{1}$ and $t_{2}$ are both triggered other failures, these two test cases cannot contribute to the MFS identification for the currently analysed fault. Besides this, the inference of OFOT are also affected. We list the inference test cases for these strategies in Table \ref{ofot-infer-two}. It can be found that both these two strategies cannot obtain the correct inference test cases as in Table \ref{ofot-infer}. Specifically, 4 test cases, i.e., (0,0,1,0), (0,0,1,1), (0,1,1,0) and (0,1,1,1),  inferred by strategy \emph{regarded as one failure} actually cannot trigger the current failure; while for strategy \emph{distinguishing failures}, it does not infer additional test cases (marked as `---').
 
 \begin{table}[h]
 \centering
@@ -821,19 +821,18 @@ In this paper, we just set 3 as the greatest number of iterations for this funct
 
 Suppose we have to test a system with eight parameters, each of which has three options. And when we execute the test case $T_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing; and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, and each executed test case corresponds to a specific label, $T_{1}$ -- $T_{8}$, at the left. The right main column lists the related strength matrix when a test case triggers $e2$ or $e3$. In detail, the matrix records the related strength between each parameter (Columns $P1$ -- $P8$) for each value it can take (Column v) with the unexpected failure (Column F). The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
 %the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
-
-The completed MFS identifying process listed in Figure \ref{fig:fci_case_study} works as follows: firstly the original FCI approach determines which $fixed$ part needed to be test in each iteration. Then the extra test case will be generated to fill in the remaining part. After executing the extra test case, if the result of the execution is normal, i.e., did not trigger unexpected failure ($e_{2}, e_{3}$), then the original FCI process will continue until the MFS is identified. Otherwise,  the replacement strategy starts when an unexpected failure is triggered. The replacement process will mutate the parameter values that is not in the $fixed$ part according to Algorithm 1. After the replacement process, the control for the MFS identifying process will be passed back to the original FCI approach.  Next we will specifically explain how the replacement works with an example in this figure.
-
-From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2, 1, 1, 1, 0, 0, 0, 0) (in this case, the fixed part of the test case is (-, -, -, -, 0, 0, 0, 0), in which the last four parameter values are the same as the original test case $T_{0}$), we generate the related matrix at left. Each element in this matrix is computed as $\frac{m(o)}{all(o) + 1}$; for example, for the $P7$ parameter with value $0$, we can find two test cases that contain this element, i.e., $T_{0}$ and $T_{1}$, so $all(o)$ is 2. And only one test case triggers the failure $e2$, which means m(o) = 1. So the final related strength between this parameter value with $e2$ is $\frac{1}{2 + 1} = 0.33$. All the related strength with $e3$ is labeled with a short slash as there is no test case triggering this failure in this iteration.  After this matrix has been determined, we can obtain the optimal test case with the ILP solver, which is $T_{1}'$--(1, 2, 2, 2, 0, 0, 0, 0), with its related strength 0.167, which is smaller than that all.
-
-This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $T_{1}$ to $T_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $T_{4}$ which triggered $e3$, we tried three times-- $T_{4}', T_{4}'', T_{4}'''$ to finally get a satisfied $T_{4}'''$ which passes the testing. Note that the \emph{related strength} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=4.31in]{table.eps}
 \caption{A case study using our approach}
 \label{fig:fci_case_study}
 \end{figure}
+
+The completed MFS identifying process listed in Figure \ref{fig:fci_case_study} works as follows: firstly the original FCI approach determines which $fixed$ part needed to be test in each iteration. Then the extra test case will be generated to fill in the remaining part. After executing the extra test case, if the result of the execution is normal, i.e., did not trigger unexpected failure ($e_{2}, e_{3}$), then the original FCI process will continue until the MFS is identified. Otherwise,  the replacement strategy starts when an unexpected failure is triggered. The replacement process will mutate the parameter values that is not in the $fixed$ part according to Algorithm 1. After the replacement process, the control for the MFS identifying process will be passed back to the original FCI approach.  Next we will specifically explain how the replacement works with an example in this figure.
+
+From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2, 1, 1, 1, 0, 0, 0, 0) (in this case, the fixed part of the test case is (-, -, -, -, 0, 0, 0, 0), in which the last four parameter values are the same as the original test case $T_{0}$), we generate the related matrix at left. Each element in this matrix is computed as $\frac{m(o)}{all(o) + 1}$; for example, for the $P7$ parameter with value $0$, we can find two test cases that contain this element, i.e., $T_{0}$ and $T_{1}$, so $all(o)$ is 2. And only one test case triggers the failure $e2$, which means m(o) = 1. So the final related strength between this parameter value with $e2$ is $\frac{1}{2 + 1} = 0.33$. All the related strength with $e3$ is labeled with a short slash as there is no test case triggering this failure in this iteration.  After this matrix has been determined, we can obtain the optimal test case with the ILP solver, which is $T_{1}'$--(1, 2, 2, 2, 0, 0, 0, 0), with its related strength 0.167, which is smaller than that all.
+
+This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $T_{1}$ to $T_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $T_{4}$ which triggered $e3$, we tried three times-- $T_{4}', T_{4}'', T_{4}'''$ to finally get a satisfied $T_{4}'''$ which passes the testing. Note that the \emph{related strength} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
 
 
 %\subsection{Complexity analysis}
