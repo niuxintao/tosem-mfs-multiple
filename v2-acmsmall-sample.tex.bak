@@ -581,7 +581,7 @@ It is noted that the motivating example in section \ref{sec:motiv} actually adop
 \subsection{Masking effects for FCI approaches} \label{sec:mask:fci}
 Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FCI approaches, masking effects can make problems worse.
 
-This is because due to the time and computing rescouses limitation, FCI approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ being ignored as discussed before, but also significantly impact on the inference process.
+This is because due to the time and computing rescouses limitation, FCI approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ be ignored as discussed before, but also significantly impact on the inference process.
 
 We offer an FCI example using the OFOT method \cite{nie2011minimal}.  Table \ref{ofot-identify} gives an example to illustrate this approach. For SUT($2^{3}$), assume the failing test case (1, 1, 1) is under analysing, then OFOT approach can be illustrated in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of test case \emph{t} at a time to generate additional test cases: $t_{1}; t_{2}; t_{3};t_{4}$. The pass of $t_{1}$ and $t_{3}$ indicates that these two test cases break the MFS in the original test case \emph{t}. So, (1,-,-,-) and (-,-,1,-) should be the failure-causing factors, and as the other test cases ($t_{2}, t_{3}$) all failed , indicating that no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS). Therefore, the MFS in \emph{t} is (1,-,1,-).
 
@@ -618,7 +618,7 @@ $\mathcal{T}((1, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
   }
   \end{table}
 
-For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as in Table \ref{ofot-identify-mask}. To make the OFOT approach works properly in this case,  without additional information,  we need to apply the previous \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other word, $t_{1}$ and $t_{3}$ should either be determined as \emph{Fail} or \emph{Pass}.
+For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as in Table \ref{ofot-identify-mask}. To make the OFOT approach work properly in this case,  without additional information,  we need to apply the previous \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other word, $t_{1}$ and $t_{3}$ should either be determined as \emph{Fail} or \emph{Pass}.
 
 \begin{table}[h]
 \tbl{OFOT masking example\label{ofot-identify-mask}}{
@@ -627,8 +627,8 @@ For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2
  $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\
  \hline
 \multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Other Failure} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Other Failure} \\
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \  \textbf{1}} & \textbf{Other Failure} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Other Failure} \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
 $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 %\hline
@@ -645,8 +645,8 @@ The details of process for OFOT using this two straggles are listed in Table \re
 \multicolumn{6}{c}{\bfseries  regarded as one failure} \\ \hline
 %\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
 $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Fail} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Fail} \\
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Fail} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Fail} \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
 $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 \hline
@@ -657,8 +657,8 @@ $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 \begin{tabular}{llllll}
 \multicolumn{6}{c}{\bfseries  distinguishing failures} \\ \hline
  $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Pass} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \ \  \textbf{1}} & \textbf{Pass} \\
+$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Pass} \\
+$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Pass} \\
 $t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
 $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 \hline
@@ -669,7 +669,7 @@ $t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
 }
 \end{table}
 
-Such deviations for these two strategies are casus by the reduction of the observed test cases. Here, as $t_{1}$ and $t_{2}$ are both triggered other failures, these two test cases cannot contribute to the MFS identification for the currently analysed fault. Besides this, the inference of OFOT are also impacted. We list the inference test cases for these strategies in Table \ref{ofot-infer-two}. It can be found that both these two strategies cannot obtain the correct inference test cases as in Table \ref{ofot-infer}. Specifically, 4 test cases, i.e., (0,0,1,0), (0,0,1,1), (0,1,1,0) and (0,1,1,1),  inferred by strategy \emph{regarded as one failure} actually cannot trigger the current failure; while for strategy \emph{distinguishing failures}, it does not infer additional test cases (marked as `---').
+Such deviations for these two strategies are casus by the reduction of the observed test cases. Here, as $t_{1}$ and $t_{2}$ are both triggered other failures, these two test cases cannot contribute to the MFS identification for the currently analysed fault. Besides this, the inference of OFOT are also affected. We list the inference test cases for these strategies in Table \ref{ofot-infer-two}. It can be found that both these two strategies cannot obtain the correct inference test cases as in Table \ref{ofot-infer}. Specifically, 4 test cases, i.e., (0,0,1,0), (0,0,1,1), (0,1,1,0) and (0,1,1,1),  inferred by strategy \emph{regarded as one failure} actually cannot trigger the current failure; while for strategy \emph{distinguishing failures}, it does not infer additional test cases (marked as `---').
 
 \begin{table}[h]
 \centering
@@ -1202,9 +1202,10 @@ So the \emph{related} function is the summation of similarity of all the super o
 
 
 \textbf{Accurate number: }
-Figure \ref{fig:21} shows the number of accurate schemas that each approach achieved.  It appears that there is no outstanding strategy, i.e., there does not exist a strategy that can always perform better or worse than others. For example, for the testing object 1, \emph{ILP} performed the best in obtaining the accurate MFS, while for the testing object 2, \emph{distinguishing failures} identified the most accurate MFS and for testing object 3, \emph{regarded as one failure} did the best. However, upon closer inspection, we can find that strategy \emph{distinguishing failures} performed a little better than strategy \emph{regarded as one failure}. This can be reflected in that there are four testing objects (1, 3, 11, and 15) on which strategy \emph{distinguishing failures} performed better, while for strategy \emph{regarded as one failure} there are only three superior testing objects (6, 8, and 14). This subtle difference
-%indicating these two strategies has no much avdvantges in two .
-can be explained by our formal analysis in Section \ref{sec:mask}. Specifically, for the strategy \emph{regarded as one failure}, only scenario 1 in Table  \ref{conditions-for-ro} can result in the FCI approaches identifying the schemas that are identical to some actual MFS, while for \emph{distinguishing failures}, there are two scenarios (scenarios 1 and 7 in Table \ref{conditions-for-df}). As a result, \emph{distinguishing failures} strategy has a slighter larger chance than \emph{regard as one failure} to identify the schemas that are identical to the actual MFS.
+Figure \ref{fig:21} shows the number of accurate schemas that each approach achieved.  It appears that there is no outstanding strategy, i.e., there does not exist a strategy that can always perform better or worse than others. For example, for the testing object 1, \emph{ILP} performed the best in obtaining the accurate MFS, while for the testing object 2, \emph{distinguishing failures} identified the most accurate MFS and for testing object 3, \emph{regarded as one failure} did the best. 
+%However, upon closer inspection, we can find that strategy \emph{distinguishing failures} performed a little better than strategy \emph{regarded as one failure}. This can be reflected in that there are four testing objects (1, 3, 11, and 15) on which strategy \emph{distinguishing failures} performed better, while for strategy \emph{regarded as one failure} there are only three superior testing objects (6, 8, and 14). This subtle difference
+%%indicating these two strategies has no much avdvantges in two .
+%can be explained by our formal analysis in Section \ref{sec:mask}. Specifically, for the strategy \emph{regarded as one failure}, only scenario 1 in Table  \ref{conditions-for-ro} can result in the FCI approaches identifying the schemas that are identical to some actual MFS, while for \emph{distinguishing failures}, there are two scenarios (scenarios 1 and 7 in Table \ref{conditions-for-df}). As a result, \emph{distinguishing failures} strategy has a slighter larger chance than \emph{regard as one failure} to identify the schemas that are identical to the actual MFS.
 
 
 We can further find that strategies \emph{replacement strategy based on ILP searching} (short for \emph{ILP}
