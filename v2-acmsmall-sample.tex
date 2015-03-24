@@ -727,27 +727,35 @@ With the \emph{suspiciousness} associated with a parameter value, we then define
 
 \begin{displaymath} Sp(f,F_{m})  = \frac{1}{k}\sum_{o \in f} Sp(o, F_{m}) \tag{EQ1} \label{eqn - 00p} \end{displaymath}
 
-where $k$ is the number of parameters in $f$, and $o$ is the specific parameter value in $f$. The \emph{suspiciousness} that a test case is related to a failure is defined as the average \emph{suspiciousness} of the relevance between each parameter value in the test case and this failure. For a selected test case, we want its ability  to trigger another failure to be as small as possible, such that the masking effects can be alleviated. In practice, the relevance \emph{suspiciousness} varies between test case with different failures. As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} that this test case is related to that failure is the least.  With this in mind, we have to settle for a test case, such that the maximal possible failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other word, we need to find a test case, so that the maximal \emph{suspiciousness} that it is related to another failure is minimal. Formally, we should choose a test case $f$, s.t.,
+where $k$ is the number of parameters in $f$, and $o$ is the specific parameter value in $f$. The \emph{suspiciousness} that a test case is related to a failure is defined as the average \emph{suspiciousness} of the relevance between each parameter value in the test case and this failure. For a selected test case, we want its ability  to trigger another failure to be as small as possible, such that the masking effects can be alleviated. In practice, the relevance \emph{suspiciousness} varies between test case with different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} that this test case is related to that failure is the least. 
 
-\begin{displaymath} \min_{f \in R} \max_{m \leq L \& m \neq n}  Sp(f, F_{m}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
-
-where $L$ is the number of failures, and $n$ is the current analysed failure. $R$ is the set of all possible test cases that contain the $fixed$ part except those that have been tested. The test case is from the set $R$ because the FCI approach needs to keep the $fixed$ part when generating additional test cases and the test case should not have been executed. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |\{t\ |\ t\ contains\ the\ fixed\ part\ \&\ t\ is\ executed\}|$.
+Table \ref{minimal_maximal} illustrates such an example for SUT($2^4$). Suppose the FCI approach is analysing MFS for failure $F_{1}$, and needs to replace a test case that triggers other failures, i.e., $F_{2}$ and $F_{3}$.  This table lists five candidate test cases under selecting, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obviously $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with failure $F_{2}$. These two test cases, however, should not be selected for their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 4).
 
 \begin{table}[ht]
 \centering
 \tbl{Select minimal maximal suspiciousness \label{minimal_maximal}}{
-  \begin{tabular}{ccc}
-candidate test cases&Ex2 &Ex3\\ \hline
-(1, 0, 1, 0)&         7      & 2\\
-(1, 0, 1, 1)&         2  &  7\\
-\textbf{(1, 1, 1, 0)}&         \textbf{4} &  \textbf{3}\\
+  \begin{tabular}{ccccc}
+ID & Candidate test cases& $F_{2}$& $F_{3}$ & Larger suspiciousness\\ \hline
+$t_{1}$ & (0, 0, 0, 0)&     7  & 2 &   $F_{2}$ : 7 \\
+$t_{2}$ &(1, 0, 1, 1)&      2  & 6 &   $F_{3}$ : 6\\
+$\textbf{t}_{\textbf{3}}$ &\textbf{(1, 1, 1, 0)}&\textbf{4} &  \textbf{3} & $\textbf{F}_{\textbf{2}}$ : \textbf{4}\\
+$t_{4}$ &(0, 0, 1, 0)&   3 & 5  &$F_{3}$ : 5\\
+$t_{5}$ &(0, 1, 0, 1)&   5 & 3  &$F_{2}$ : 5\\
 \hline
   \end{tabular}
   }
   \end{table}
 
+With this in mind, we have to settle for a test case, such that the maximal possible failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other word, we need to find a test case, so that the maximal \emph{suspiciousness} that it is related to another failure is minimal. Formally, we should choose a test case $f$, s.t.,
+
+\begin{displaymath} \min_{f \in R} \max_{m \leq L \& m \neq n}  Sp(f, F_{m}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
+
+where $L$ is the number of failures, and $n$ is the current analysed failure. $R$ is the set of all possible test cases that contain the $fixed$ part except those that have been tested. The test case is from the set $R$ because the FCI approach needs to keep the $fixed$ part when generating additional test cases and the test case should not have been executed. Obviously $|R| = \prod_{i \not\in fixed}(v_{i})\ - |\{t\ |\ t\ contains\ the\ fixed\ part\ \&\ t\ is\ executed\}|$.
+
+
 We can further resolve this problem. Consider the test case $f$ satisfies \ref{eqn - 0p}. Without loss of generality, we assume that the failure $F_{k}, k \neq n $ is the failure with which the test case $f$ has the maximal \emph{suspiciousness} compared to the other failures. Then, a natural property for $f$ is that any other test case $f'$ which satisfies that failure $F_{k}$ is the maximal related failure for this test case
-and must have $ Sp(f, F_{k}) <= Sp(f', F_{k})$. Formally, to obtain such a test case is to solve the following formula:
+and must have $ Sp(f, F_{k}) <= Sp(f', F_{k})$. For example in Table \ref{minimal_maximal}, test cases $t_{1}$,$t_{3}$ and $t_{5}$ have the maximal \emph{suspiciousness} with $F_{2}$ than other failures. Obviously, $ Sp(t_{3}, F_{2}) = 4 < Sp(t_{5}, F_{2}) = 5 < Sp(t_{1}, F_{2}) = 7$.
+Formally, to obtain such a test case is to solve the following formula:
 
 \begin{alignat}{2}
 \min\quad &  Sp(f, F_{k}) &{}& \tag{EQ3} \label{eqn - lp}\\
@@ -764,7 +772,9 @@ To solve \ref{eqn - 0p}, we just need to find a particular failure $F_{k}$, and 
 & f , F_{k}\ satisfies\ \ref{eqn - lp} &{}& {} \nonumber
 \end{alignat}
 
-According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. As to \ref{eqn - lp}, it can be formulated as an 0-1 integer linear programming (ILP) problem. Assume the SUT has $K$ parameters in which the $i$th parameter has $V_{i}$ values. And the SUT has $L$ failures. We then define the variable $x_{ij}$ as:
+According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases has the maximal suspiciousness with $F_{2}$ ($t_{1}$, $t_{7}$), while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
+ 
+As to \ref{eqn - lp}, it can be formulated as an 0-1 integer linear programming (ILP) problem. Assume the SUT has $K$ parameters in which the $i$th parameter has $V_{i}$ values. And the SUT has $L$ failures. We then define the variable $x_{ij}$ as:
 \begin{displaymath}
 x_{ij} = \begin{cases}1 & the\ \emph{i}th\ parameter\ of\ the\ test\ case\ take\ the\ \emph{j}th\ value\ for\ that\ parameter\\0 & otherwise\end{cases}
 \end{displaymath}
