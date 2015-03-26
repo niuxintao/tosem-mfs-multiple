@@ -160,6 +160,7 @@ To evaluate the effectiveness of our approach, we applied our strategy on the FC
 The main contributions of this paper are:
 \begin{itemize}
 \item We studied the impact of the masking effects caused by multiple failures on the isolation of the failure-inducing interactions in SUT.
+\item We studied the impact of the masking effects caused by multiple failures on the isolation of the failure-inducing interactions in SUT.
 \item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
 \item We designed an efficient test case searching method which can find a test case that does not trigger an unexpected failure.
 \item We conducted several empirical studies and showed that our strategy can assist FCI approaches to achieve better performance in identifying failure-inducing interactions in SUT with masking effects.
@@ -774,16 +775,7 @@ In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists
 & 1 \leq i \leq L \ \& \ i \neq m &\quad& {}\nonumber
 \end{alignat}
 
-%According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}.
 Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{3}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
-
-%Hence, to solve \ref{eqn - 0p}, we just need to find a particular failure $F_{k}$, and the corresponding test case $t$ that satisfies \ref{eqn - lp}, such that the \emph{suspiciousness} between  $t$ and $F_{k}$ is smaller than the \emph{suspiciousness} between any other failures and their corresponding test cases that satisfy \ref{eqn - lp}. Formally, we need to find:
-%\begin{alignat}{2}
-%\min\quad &  Sp(t, F_{k}) &{}& \tag{EQ4} \label{eqn - 2p}\\
-%\mbox{s.t.}\quad
-%& 1 \leq k \leq L \ \& \ k \neq n &\quad& {}\nonumber\\
-%& t , F_{k}\ satisfies\ \ref{eqn - lp} &{}& {} \nonumber
-%\end{alignat}
 
 %According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases ($t_{1}$, $t_{5}$) has the maximal suspiciousness with $F_{2}$, while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
 %
@@ -811,14 +803,14 @@ As the test case replacement problem is formulated into an integer programming p
 
 \begin{algorithm}[t]
 %\SetAlgoNoLine
-\KwIn{ failure $F_{m}$,fixed part $fix$, Parameter values $Param$, the suspiciousness matrix $Sp$}
+\KwIn{ failure $F_{m}$,fixed part $fixed$, executed test cases $T_{executed}$ Parameter values $Param$, the suspiciousness matrix $Sp$}
 \KwOut{ $t_{new}$ the regenerate test case }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 \While{\textbf{not} MeetEndCriteria()}{
        $optimal \leftarrow MAX$,
        $t_{new} \leftarrow null$ \;
        \ForAll {$F_{i} ( i = 1, ... m-1 , m+2,...L )$}{
-                $solver \leftarrow setup(Param, Fix, F_{i}, Sp)$\;
+                $solver \leftarrow setup(Param, fixed, T_{executed}, F_{i}, Sp)$\;
                \DontPrintSemicolon $(optimal', t_{new}') \leftarrow solver.getOptimalTest()$; \tcc*[f]{Use ILP solver to get $t_{F_{i}}$} \;
                 \If (\tcc*[f]{Select $t_{F_{i}}$ which has smaller suspiciousness}){$optimal' < optimal$}{
                        $t_{new} \leftarrow t_{new}'$\;
@@ -827,7 +819,7 @@ As the test case replacement problem is formulated into an integer programming p
           }
        $result \leftarrow execute(t_{new})$\;
        \DontPrintSemicolon   $updatetSuspiciousMatrix(t_{new})$ ; \tcc*[f]{newly executed test cases will change $Sp$} \;
-        \eIf (\tcc*[f]{either passes or triggers $F_{m}$ }) {$result == PASS\ or\ result ==  F_{m}$}{  
+        \eIf (\tcc*[f]{either passes or triggers $F_{m}$ }) {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
            }{
          continue\;
@@ -840,7 +832,7 @@ As the test case replacement problem is formulated into an integer programming p
 \end{algorithm}
 
 
-The inputs to this algorithm consist of the failure $F_{m}$, the fixed part $fix$ of which we want to keep from the original test case ,  Parameter values of the SUT $Param$ and the suspiciousness matrix $Sp$, which records the suspiciousness between each factor $o$ and each failure $F_{i}$, i.e., $Sp(o, F_{i})$( $o \in Param, 1 \leq i \leq L $ ). The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
+The inputs to this algorithm consist of the failure $F_{m}$ under analysing, the fixed part $fixed$ of which we want to keep from the original test case, executed test cases $T_{executed}$ with which redundant test cases can be avoided,  parameter values of the SUT $Param$ for generating valid test cases and the suspiciousness matrix $Sp$, which records the suspiciousness between each factor $o$ and each failure $F_{i}$, i.e., $Sp(o, F_{i})$( $o \in Param, 1 \leq i \leq L $ ). The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
 
 The outer loop of this algorithm (lines 1 - 19) contains two parts:
 
@@ -871,7 +863,7 @@ From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (
 
 This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $t_{1}$ to $t_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $t_{4}$ which triggered $e3$, we tried three times-- $t_{4}', t_{4}'', t_{4}'''$ to finally get a satisfied $t_{4}'''$ which passes the testing. Note that the \emph{suspiciousness} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
 
-Due to the replacement test cases, the FCI approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, - ,-, -,- ) (This is because only we mutate the first two parameter values, the test case will pass and hence the MFS is broken). In this example, test cases that trigger $e2$, $e3$ does not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$, $e3$ based on these test cases.
+Due to the replacement test cases, the FCI approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, - ,-, -,- ) (This is because only we mutate the first two parameter values, the test case will pass and hence the MFS is broken). In this example, test cases that trigger $e2$, $e3$ do not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$, $e3$ based on these test cases.
 
 
 %\subsection{Complexity analysis}
