@@ -159,12 +159,12 @@ To evaluate the effectiveness of our approach, we applied our strategy on the FI
 
 The main contributions of this paper are:
 \begin{itemize}
-\item We formally analysed the relationships between failure-inducing interaction and test sets. (Section 3) 
-\item We studied the impact of the masking effects caused by multiple failures on FII approaches. (Section 4) 
+\item We formally analysed the relationships between failure-inducing interactions and test sets. (Section 3)
+\item We studied the impact of the masking effects caused by multiple failures on FII approaches. (Section 4)
 \item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section 5)
-%\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects. 
+%\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
 %\item We designed an efficient test case searching method which can find a test case that does not trigger an unexpected failure.
-\item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in SUT with masking effects. (Section 6) 
+\item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in SUT with masking effects. (Section 6)
 \end{itemize}
 
 
@@ -725,13 +725,46 @@ This replacement may need to be executed multiple times for one fixed part as it
 
 To explain the \emph{suspiciousness} notion, we first introduce the \emph{suspiciousness} between a parameter value $o$ and a particular failure. We use $all(o)$ to represent the number of executed test cases that contain this parameter value, and $f_{i}(o)$ to indicate the number of test cases that trigger the failure $F_{i},  1 \leq i  \leq L$ and contain this parameter value. Then, the \emph{suspiciousness} that a parameter value is related to a particular failure, i.e., $Sp(o, F_{i})$, is $\frac{f_{i}(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a parameter value frequently appears in the test cases that trigger a particular failure, then it is more likely to be the inducing factor that triggers this failure. We add 1 in the denominator for two reasons:  (1) avoid division by zero when the parameter value has never appeared before, (2) reduce the bias when a parameter value rarely appears in the test set but coincidentally appears in a failing test case with a particular failure.
 
+Table \ref{suspciousness_example} gives an example to compute the suspiciousness between parameter values and particular failures. The left part of this table gives 4 executed test cases with their outcomes, in which failures $F_{1}$ and $F_{2}$ are triggered. The left part shows the suspiciousness between each parameter value and $F_{1}$, $F_{2}$. Specifically, consider the parameter $P_{1}$ taking value 0. There are three test cases $t_{1}$ , $t_{2}$, and $t_{4}$ contain this parameter value, and only  $t_{2}$ triggered $F_{1}$. Hence, $Sp(P_{1} = 0, F_{1})$ = $\frac{f_{1}(o)}{all(o) + 1}$ = $\frac{1}{3 + 1}$ = 1/4.
+
+\begin{table}[ht]
+\centering
+\tbl{Suspiciousness example \label{suspciousness_example}}{
+  \begin{tabular}{ccc}
+ID &  Test cases executed& Outcomes  \\ \hline
+$t_{1}$ &(0, 0, 0)& $Pass$ \\
+$t_{2}$ &(0, 1, 1)&  $F_{1}$ \\
+$t_{3}$ &(1, 1, 0)&  $F_{2}$\\
+$t_{4}$ &(0, 1, 1)&  $F_{2}$\\
+\hline
+  \end{tabular}
+  \hspace{1em}
+  \begin{tabular}{c|c|ccc}
+ \multicolumn{4}{c}{  Suspiciousness for $F1$} \\ \hline
+    & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
+ $0$ & 1/4 &  0   & 0 \\
+ $1$ &  0  &  $ 1/4 $  & $ 1/3$ \\
+\hline
+ \multicolumn{4}{c}{  Suspiciousness for $F2$} \\ \hline
+ & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
+$0$ & $1/4$  & 0   & $1/3$\\
+$1$ & $1/2$  & $1/2$  &  $1/3$ \\
+\hline
+  \end{tabular}
+  }
+  \end{table}
+
+
 With the \emph{suspiciousness} associated with a parameter value, we then define the \emph{suspiciousness} of a test case $t$ is related to a particular failure $F_{i}$ as:
 
 \begin{displaymath} Sp(t,F_{i})  = \frac{1}{k}\sum_{o \in t} Sp(o, F_{i}) \tag{EQ1} \label{eqn - 00p} \end{displaymath}
 
-where $k$ is the number of parameters in $t$, and $o$ is the specific parameter value in $t$. The \emph{suspiciousness} that a test case is related to a failure is defined as the average \emph{suspiciousness} between each parameter value in the test case and this failure. For a selected test case, we want its ability  to trigger another failure to be as small as possible, such that the masking effects can be alleviated. In practice, the \emph{suspiciousness} varies between test case and different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} that this test case is related to that failure is the least.
+where $k$ is the number of parameters in $t$, and $o$ is the specific parameter value in $t$. The \emph{suspiciousness} that a test case is related to a failure is defined as the average \emph{suspiciousness} between each parameter value in the test case and this failure. For example, considering an unexecuted test case (1, 0, 0). With the suspiciousness of all the parameter values listed Table \ref{suspciousness_example}, $Sp((1,0,0),F_{1})$ = $1/3 \times (0 + 0 + 0 ) = 0 $ and $Sp((1,0,0),F_{2})$ = $1/3 \times (1/2 + 0 + 1/3 ) = 5/18$.
 
-Table \ref{minimal_maximal} illustrates such an example for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace a test case (0,0,0,0) with fixed part (0, -, -, -) that triggers other failure, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases under selecting, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obviously $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with failure $F_{2}$. These two test cases, however, should not be selected for their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
+
+For a selected test case, we want its ability  to trigger other failures to be as small as possible, such that the masking effects can be alleviated. In practice, the \emph{suspiciousness} varies between test case and different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} that this test case is related to that failure is the least.
+
+Table \ref{minimal_maximal} illustrates such an scenario for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace a test case (0,0,0,0) with fixed part (0, -, -, -) that triggers other failure, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases under selecting, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obviously $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with failure $F_{2}$. These two test cases, however, should not be selected for their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
 
 \begin{table}[ht]
 \centering
@@ -748,7 +781,7 @@ $t_{5}$ &(0, 1, 0, 1)&   0.5 & 0.3  &$Sp(t_{5},F_{2})$ : 0.5\\
   }
   \end{table}
 
-With this in mind, we have to settle for a test case, such that the maximal possible failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other word, we need to find a test case, so that the maximal \emph{suspiciousness} that it is related to another failure is minimal. Formally, we should choose a test case $t$, s.t.,
+With this in mind, we have to settle for a test case, such that the maximal possible failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other word, we need to find a test case, so that the maximal \emph{suspiciousness} between this test case and the corresponding failure is minimal. Formally, we should choose a test case $t$, s.t.,
 
 \begin{displaymath} \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  Sp(t, F_{i}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
 
@@ -758,25 +791,25 @@ With this in mind, we have to settle for a test case, such that the maximal poss
 
 where $L$ is the number of failures, and $m$ is the current analysed failure. $R$ is the set of all possible test cases that contain the $fixed$ part except those that have been tested. As $fixed$ part is a set of parameter values which can be deemed as a schema, then obviously $R = \mathcal{T}(fixed)  \backslash T_{executed}$, where $\mathcal{T}(fixed)$ is all the test cases that contain this fixed part and $T_{executed}$ is those executed test cases. Additional test cases needs to be selected in set $R$, so that FII approaches can properly work.
 
-We can further resolve this problem. Consider the test case $t$ satisfies \ref{eqn - 0p}. Without loss of generality, we assume that the failure $F_{i}, i \neq m $ is the failure with which the test case $t$ has the maximal \emph{suspiciousness} compared to the other failures. Then, a natural property for $t$ is that $Sp(t, F_{i}) <= Sp(t', F_{i})$, in which test case $t'$ is any other test case which has the maximal suspiciousness with failure $F_{i}$ than other failures.  For example in Table \ref{minimal_maximal}, test cases $t_{1}$,$t_{3}$ and $t_{5}$ have the maximal \emph{suspiciousness} with $F_{2}$ than other failures. Obviously, $ Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{5}, F_{2}) = 0.5 < Sp(t_{1}, F_{2}) = 0.7$.  This property can be formulated as :
-
-\begin{alignat}{2}
-\min\quad &  Sp(t, F_{i}) &{}& \tag{EQ3} \label{eqn - lp}\\
-\mbox{s.t.}\quad
-&t \in R &\quad& {}\nonumber\\
-&Sp(t, F_{i}) > Sp(t, F_{j}), &{}& 1 \leq j \leq L\ \&\ j\neq i, m \nonumber
-\end{alignat}
-
-
-In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other word, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
-
-\begin{alignat}{2}
-\min\quad &  t_{F_{i}} &{}& \tag{EQ4} \label{eqn - 2p}\\
-\mbox{s.t.}\quad
-& 1 \leq i \leq L \ \& \ i \neq m &\quad& {}\nonumber
-\end{alignat}
-
-Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{3}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
+%We can further resolve this problem. Consider the test case $t$ satisfies \ref{eqn - 0p}. Without loss of generality, we assume that the failure $F_{i}, i \neq m $ is the failure with which the test case $t$ has the maximal \emph{suspiciousness} compared to the other failures. Then, a natural property for $t$ is that $Sp(t, F_{i}) <= Sp(t', F_{i})$, in which test case $t'$ is any other test case which has the maximal suspiciousness with failure $F_{i}$ than other failures.  For example in Table \ref{minimal_maximal}, test cases $t_{1}$,$t_{3}$ and $t_{5}$ have the maximal \emph{suspiciousness} with $F_{2}$ than other failures. Obviously, $ Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{5}, F_{2}) = 0.5 < Sp(t_{1}, F_{2}) = 0.7$.  This property can be formulated as :
+%
+%\begin{alignat}{2}
+%\min\quad &  Sp(t, F_{i}) &{}& \tag{EQ3} \label{eqn - lp}\\
+%\mbox{s.t.}\quad
+%&t \in R &\quad& {}\nonumber\\
+%&Sp(t, F_{i}) > Sp(t, F_{j}), &{}& 1 \leq j \leq L\ \&\ j\neq i, m \nonumber
+%\end{alignat}
+%
+%
+%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other word, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
+%
+%\begin{alignat}{2}
+%\min\quad &  t_{F_{i}} &{}& \tag{EQ4} \label{eqn - 2p}\\
+%\mbox{s.t.}\quad
+%& 1 \leq i \leq L \ \& \ i \neq m &\quad& {}\nonumber
+%\end{alignat}
+%
+%Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{4}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
 
 %According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases ($t_{1}$, $t_{5}$) has the maximal suspiciousness with $F_{2}$, while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
 %
@@ -800,7 +833,8 @@ Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$
 %In \ref{eqn - 3p}, constraints (1) and (2) indicate that the variable $x_{i,j}$ is a 0-1 integer. Constraint (3) indicates that a parameter in one test case can only take on one value. Constraint (4) indicates that the test case should not change values of the fixed part. Constraint (5) indicates that the suspiciousness between the test case and failure $F_{m}$ is higher than that of the other failures. In Constraint (6), $t[i]$ indicates the value of the $i$th parameter of test case $t$ in $T_{executed}$. Hence, this constraint points out that the test cases generated should not be the same as the test cases in $T_{executed}$.
 
 %As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize an ILP solver to solve this formula.
-As the test case replacement problem is formulated into an integer programming problem, we just need to utilize an ILP solver to solve this formula. In this paper, we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver that can handle satisfaction and optimization problems. 
+%\ref{eqn - 0p} can be further converted into an integer satisfaction and optimization problem (Details in Section \ref{sec:appendixs:covert} in the Appendix),
+ As \ref{eqn - 0p} is actually an integer satisfaction and optimization problem,  hence we can utilize an ILP solver to solve this problem. In this paper, we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver that can handle satisfaction and optimization problems.
 %The complete process of replacing a test case with a new one while keeping some fixed part is depicted in Algorithm 1.
 
 %\begin{algorithm}[t]
@@ -820,8 +854,8 @@ As the test case replacement problem is formulated into an integer programming p
 %                    }
 %          }
 %       $result \leftarrow execute(t_{new})$\;
-%       \DontPrintSemicolon   $updatetSuspiciousMatrix(t_{new})$ ; \tcc*[f]{newly executed test cases will change $Sp$} \;
-%        \eIf (\tcc*[f]{either passes or triggers $F_{m}$ }) {$result == PASS\ or\ result ==  F_{m}$}{
+%       $updatetSuspiciousMatrix(t_{new})$ \;
+%        \eIf  {$result == PASS\ or\ result ==  F_{m}$}{
 %         \Return $t_{new}$\;
 %           }{
 %         continue\;
@@ -850,8 +884,9 @@ As the test case replacement problem is formulated into an integer programming p
 \subsection{A case study using the replacement strategy}\label{sec:method:case}
 %Next we will take the FII approach--OFOT algorithm as the subject to see how our approach works on them.
 
-Suppose we have to test a system with eight parameters, each of which has three options. And when we execute the test case $t_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing; and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, and each executed test case corresponds to a specific label, $t_{1}$ -- $t_{8}$, at the left. The right main column lists the suspiciousness matrix when a test case triggers $e2$ or $e3$. In detail, the matrix records the suspiciousness between each parameter (Columns $P1$ -- $P8$) for each value it can take (Column v) with the unexpected failure (Column F). The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
-%the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
+Suppose we have to test a system with eight parameters, each of which has three options, i.e., SUT($3^8$). When we execute the test case $t_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing; and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, and each executed test case corresponds to a specific label, $t_{1}$ -- $t_{8}$, at the left. The underline part for each test case is the $fixed$ part according to FIC\_BS \cite{zhang2011characterizing}.  The right main column lists the suspiciousness matrix when a test case triggers $e2$ or $e3$.  The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
+%In detail, the matrix records the suspiciousness between each parameter (Columns $P1$ -- $P8$) for each value it can take (Column v) with the unexpected failure (Column F).
+%%the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=4.31in]{table.eps}
@@ -859,9 +894,9 @@ Suppose we have to test a system with eight parameters, each of which has three 
 \label{fig:fci_case_study}
 \end{figure}
 
-The completed MFS identifying process listed in Figure \ref{fig:fci_case_study} works as follows: firstly the original FII approach determines which $fixed$ part needed to be test in each iteration. Then the extra test case will be generated to fill in the remaining part. After executing the extra test case, if the result of the execution is normal, i.e., did not trigger unexpected failure ($e_{2}, e_{3}$), then the original FII process will continue until the MFS is identified. Otherwise,  the replacement strategy starts when an unexpected failure is triggered. The replacement process will mutate the parameter values that is not in the $fixed$ part according to Algorithm 1. After the replacement process, the control for the MFS identifying process will be passed back to the original FII approach.  Next we will specifically explain how the replacement works with an example in this figure.
+The completed MFS identifying process listed in Figure \ref{fig:fci_case_study} works as follows: firstly the original FII approach determines which $fixed$ part needed to be test in each iteration. Then the extra test case will be generated to fill in the remaining part. After executing the extra test case, if the result of the execution is normal, i.e., did not trigger unexpected failure ($e_{2}, e_{3}$), then the original FII process will continue until the MFS is identified. Otherwise,  the replacement strategy starts when an unexpected failure is triggered. The replacement process will mutate the parameter values that is not in the $fixed$ part according to \ref{eqn - 0p}. After the replacement process, the control for the MFS identifying process will be passed back to the original FII approach.  Next we will specifically explain how the replacement works with an example in this figure.
 
-From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2, 1, 1, 1, 0, 0, 0, 0) (in this case, the fixed part of the test case is (-, -, -, -, 0, 0, 0, 0), in which the last four parameter values are the same as the original test case $t_{0}$), we generate the related matrix at left. Each element in this matrix is computed as $\frac{f_{i}(o)}{all(o) + 1}$; for example, for the $P7$ parameter with value $0$, we can find two test cases that contain this element, i.e., $t_{0}$ and $t_{1}$, so $all(o)$ is 2. And only one test case triggers the failure $e2$, which means $f_{2}(o)$ = 1. So the final suspiciousness between this parameter value with $e2$ is $\frac{1}{2 + 1} = 0.33$. All the suspiciousness with $e3$ is labeled with a short slash as there is no test case triggering this failure in this iteration.  After this matrix has been determined, we can obtain the optimal test case with the ILP solver, which is $t_{1}'$--(1, 2, 2, 2, 0, 0, 0, 0), with its suspiciousness 0.167, which is smaller than that all.
+From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2, 1, 1, 1, 0, 0, 0, 0) (in this case, the fixed part of the test case is (-, -, -, -, 0, 0, 0, 0), in which the last four parameter values are the same as the original test case $t_{0}$), we generate the related matrix at left. Each element in this matrix is computed as \ref{eqn - 00p}. All the suspiciousness with $e3$ is labeled with a short slash as there is no test case triggering this failure in this iteration.  After this matrix has been determined, we can obtain the optimal test case with the ILP solver, which is $t_{1}'$--(1, 2, 2, 2, 0, 0, 0, 0), with its suspiciousness 0.167, which is smaller than that all.
 
 This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $t_{1}$ to $t_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $t_{4}$ which triggered $e3$, we tried three times-- $t_{4}', t_{4}'', t_{4}'''$ to finally get a satisfied $t_{4}'''$ which passes the testing. Note that the \emph{suspiciousness} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
 
@@ -1536,6 +1571,33 @@ As for the future work, we need to do more empirical studies to make our conclus
 
 \medskip
 %\section{Proof of $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$}
+%\section{Convert \ref{eqn - 0p}}\label{sec:appendixs:covert}
+%
+%Let $t_{F_{i}}$ be the solution of the following formula:
+%
+%\begin{alignat}{2}
+%\min\quad &  Sp(t, F_{i}) &{}& \tag{EQ3} \label{eqn - lp}\\
+%\mbox{s.t.}\quad
+%&t \in R &\quad& {}\nonumber\\
+%&Sp(t, F_{i}) > Sp(t, F_{j}), &{}& 1 \leq j \leq L\ \&\ j\neq i, m \nonumber
+%\end{alignat}
+%
+%Then the test case which satisfies \ref{eqn - 2p} is the solution of \ref{eqn - 0p}.
+%
+%\begin{alignat}{2}
+%\min\quad &  t_{F_{i}} &{}& \tag{EQ4} \label{eqn - 2p}\\
+%\mbox{s.t.}\quad
+%& 1 \leq i \leq L \ \& \ i \neq m &\quad& {}\nonumber
+%\end{alignat}
+
+
+%
+%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other word, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
+%
+
+%Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{4}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
+%
+%According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases ($t_{1}$, $t_{5}$) has the maximal suspiciousness with $F_{2}$, while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
 
 \section{The detail of the experiments}\label{sec:appdenxis:detailExper}
 
