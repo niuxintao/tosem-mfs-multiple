@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  27 MAR 2015 20:49
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 MAR 2015 02:52
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -506,51 +506,53 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
 [24]
+File: replacingtimes.eps Graphic file (type eps)
+ <replacingtimes.eps>
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
- [25]
+ [25] [26]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [26]
 [27]
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1416 replaced by U+FFFD.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+
 [29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30]
-[31] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
  [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [33])
 [34]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1607--1640
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1615--1648
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1644--1706
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1652--1714
 [] 
  []
 
@@ -558,10 +560,10 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 1644--1706
 
 ] [2] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3910 strings out of 430478
- 46085 string characters out of 3191502
- 188950 words of memory out of 3000000
- 6992 multiletter control sequences out of 15000+200000
+ 3913 strings out of 430478
+ 46136 string characters out of 3191502
+ 188980 words of memory out of 3000000
+ 6994 multiletter control sequences out of 15000+200000
  20570 words of font info for 64 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  32i,16n,24p,2034b,322s stack positions out of 5000i,500n,10000p,200000b,50000s
