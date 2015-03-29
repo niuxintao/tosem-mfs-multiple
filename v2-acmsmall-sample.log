@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 MAR 2015 14:44
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 MAR 2015 16:42
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -505,54 +505,54 @@ File: testCases.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
+[24]
 File: replacingtimes.eps Graphic file (type eps)
-
-<replacingtimes.eps> [24]
+ <replacingtimes.eps>
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [25]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [26]
 [27]
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1417 replaced by U+FFFD.
- [28] [29]
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1419 replaced by U+FFFD.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30]
-[31] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [28]
+[29] [30]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3260) has occurred while \output is active []
 
  [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [33])
 [34]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1608--1641
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1610--1643
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1645--1707
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1647--1709
 [] 
  []
 

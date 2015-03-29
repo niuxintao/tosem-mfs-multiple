@@ -1305,12 +1305,14 @@ The evaluation of this random-based approach is also shown in Figure \ref{fig:co
 
 Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics: accurate schemas, super-schemas, sub-schemas, ignored schemas, irrelevant schemas ( for some particular cases the ILP-based approach performs slightly better, e.g., in Figure \ref{fig:22} for the first testing object, the ILP-based approach identified less sub schemas than that of the Random-based approach and in Figure \ref{fig:23} still for the first object the ILP-based approach identified less super schemas than that of the random-based approach). The similar quality of the identified MFS between these two approaches is conceivable as they both use the \emph{test case replacement} strategy, although the test cases generated may be different.
 
-Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. To be more precisely, we compared the test cases used to replacement of the two approaches. Figure \ref{fig:replacing} shows the result.
+Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. To be more precisely, we compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- replacement strategy.
+
+Figure \ref{fig:replacing} shows the result. The data is normalized so that the results of the 15 objects can be shown together. For all subjects ILP reduce the test cases for replacement by about 5 to 40 percent when compared with the random-based approach. In average, for each call of the replacement algorithm, it can save about 0.44 test cases (labeled in each dot of the line). This may be trivial, however, considering the masking status in Table \ref{masking effect condition}, this cost reducing is significant for MFS identifying in practice.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=4.00in]{replacingtimes.eps}
-\caption{Replacing result}
+\caption{The comparison of the number of replacement test cases}
 \label{fig:replacing}
 \end{figure}
 
