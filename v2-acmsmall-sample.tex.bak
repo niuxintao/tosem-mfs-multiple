@@ -1068,6 +1068,44 @@ Next, we built the input model which consists of the options related to the fail
     2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
      2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} \\ \hline
 \end{tabular}
+\begin{tabular}{llllll}
+  \hline
+\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
+  \hline
+
+ \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{switch, table, pack}  \\
+  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{default, 7bit, 8bit, 16bit}  \\
+
+   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{true, false}  \\
+      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{true, false}  \\
+     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{true, false}  \\
+  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{true, false}  \\
+
+    \hline
+%   \multicolumn{6}{c}{  \bfseries common boolean options }\\
+%    \hline
+%    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
+%      \hline
+
+   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+     \hline
+    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ has, non, default}\\
+      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{ true, false }\\
+    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, default}\\
+       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{ true, false}\\
+     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{true, false}\\
+
+        \hline
+   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
+   \hline
+  1.4.1  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
+   1.4.2 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
+\end{tabular}
 }
 \end{table}
 
@@ -1310,11 +1348,16 @@ The setup of this case study is based on the second case study, and uses the sam
 \subsubsection{Results and discussion}\label{sec:emprical:cmILP:rs}
 The evaluation of this random-based approach is also shown in Figure \ref{fig:comparetotraditional}, in which the polygonal line marked with  '$\times$' in each sub-figure indicates the results. The raw data can also be found in the column 'R' of Table \ref{evaluation_all} in the appendix.
 
-Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics: accurate schemas, super-schemas, sub-schemas, ignored schemas, irrelevant schemas ( for some particular cases the ILP-based approach performs slightly better, e.g., in Figure \ref{fig:22} for the first testing object, the ILP-based approach identified less sub schemas than that of the Random-based approach and in Figure \ref{fig:23} still for the first object the ILP -based approach identified less super schemas than that of the random-based approach). The similar quality of the identified MFS between these two approaches is conceivable as they both use the \emph{test case replacement} strategy, although the test cases generated may be different.
+Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics: accurate schemas, super-schemas, sub-schemas, ignored schemas, irrelevant schemas ( for some particular cases the ILP-based approach performs slightly better, e.g., in Figure \ref{fig:22} for the first testing object, the ILP-based approach identified less sub schemas than that of the Random-based approach and in Figure \ref{fig:23} still for the first object the ILP-based approach identified less super schemas than that of the random-based approach). The similar quality of the identified MFS between these two approaches is conceivable as they both use the \emph{test case replacement} strategy, although the test cases generated may be different.
 
-Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. It shows that our integer programming based searching technique can find a satisfied test case more rapidly than the random approach.
+Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. To be more precisely, we compared the test cases used to replacement of the two approaches. Figure \ref{fig:replacing} shows the result.
 
-
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=4.00in]{replacingtimes.eps}
+\caption{Replacing result}
+\label{fig:replacing}
+\end{figure}
 
 
 In summary, the answer for \textbf{Q3} is that searching for a satisfied test case affects the performance of our approach, especially regarding the number of extra test cases, and the ILP-based test cases can handle the masking effects at a relatively smaller cost than the random-based approach.

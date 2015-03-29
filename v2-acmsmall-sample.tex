@@ -1030,23 +1030,24 @@ We first looked through the bug tracker forum and focused on the bugs which are 
 
 We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is constructed so that we can reproduce different failures by controlling the inputs to the test file. For each version, the source code of the testing file as well as other detailed information is available at https://code.google.com/p/merging-bug-file.
 
-Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed model information is shown in Tables \ref{modelHSQLDB} and \ref{modelJFlex} for HSQLDB and JFLex, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
+Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed models information is shown in Tables in \ref{modelHSQLDBJFlex} for HSQLDB and JFLex, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
 
 \begin{table}[ht]
-\tbl{Input model of HSQLDB\label{modelHSQLDB}}{
+\tbl{Input models of HSQLDB and JFlex\label{modelHSQLDBJFlex}}{
 \begin{tabular}{llllll}
+\multicolumn{6}{c}{ \emph{HSQLDB}} \\
   \hline
 \multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
- \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{server, webserver, inprocess}  \\
-  \multicolumn{3}{c}{  existed form}  & \multicolumn{3}{c}{mem, file}  \\
-   \multicolumn{3}{c}{ resultSetTypes}  & \multicolumn{3}{c}{forwad, insensitive, sensitive} \\
-   \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{read\_only, updatable}  \\
-  \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ hold, close} \\
-  \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{statement, prepared}  \\
-  \multicolumn{3}{c}{ sql.enforce\_strict\_size}  & \multicolumn{3}{c}{true, false}  \\
-  \multicolumn{3}{c}{  sql.enforce\_names}  &\multicolumn{3}{c}{ true, false} \\
-  \multicolumn{3}{c}{ sql.enforce\_refs }  &\multicolumn{3}{c}{true, false}  \\
+ \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{3}  \\
+  \multicolumn{3}{c}{  existed form}  & \multicolumn{3}{c}{2}  \\
+   \multicolumn{3}{c}{ resultSetTypes}  & \multicolumn{3}{c}{3} \\
+   \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ 2} \\
+  \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{ sql.enforce\_strict\_size}  & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  sql.enforce\_names}  &\multicolumn{3}{c}{2} \\
+  \multicolumn{3}{c}{ sql.enforce\_refs }  &\multicolumn{3}{c}{2}  \\
     \hline
 %   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
 %    \hline
@@ -1054,13 +1055,13 @@ Next, we built the input model which consists of the options related to the fail
 %      \hline
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
      \hline
-    2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{ true, false}\\
-      & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{ true, false }\\
-      & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{ next,previous,first,last}\\
-    2.2.5 &\multicolumn{2}{c}{  multiple} & \multicolumn{3}{c}{ one, multi, defailure}\\
-       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{ true, false}\\
-    2.2.9 & \multicolumn{2}{c}{ duplicate }& \multicolumn{3}{c}{ dup, single, defailure}\\
-     & \multicolumn{2}{c}{ defailure\_commit} & \multicolumn{3}{c}{ true, false} \\
+    2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{2}\\
+      & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
+      & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{4}\\
+    2.2.5 &\multicolumn{2}{c}{  multiple} & \multicolumn{3}{c}{3}\\
+       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
+    2.2.9 & \multicolumn{2}{c}{ duplicate }& \multicolumn{3}{c}{3}\\
+     & \multicolumn{2}{c}{ defailure\_commit} & \multicolumn{3}{c}{2} \\
         \hline
    \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
@@ -1068,42 +1069,34 @@ Next, we built the input model which consists of the options related to the fail
     2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
      2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} \\ \hline
 \end{tabular}
-}
-\end{table}
-
-\begin{table}[ht]
-\tbl{Input model of JFlex\label{modelJFlex}}{
+\hspace{2em}
 \begin{tabular}{llllll}
+\multicolumn{6}{c}{\emph{JFlex}} \\
   \hline
 \multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
 
- \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{switch, table, pack}  \\
-  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{default, 7bit, 8bit, 16bit}  \\
+ \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{3}  \\
+  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{4}  \\
 
-   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{true, false}  \\
-  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{true, false}  \\
-   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{true, false}  \\
-      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{true, false}  \\
-  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{true, false}  \\
-   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{true, false}  \\
-  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{true, false}  \\
-     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{true, false}  \\
-  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{true, false}  \\
+   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{2}  \\
+   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{2}  \\
+      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{2}  \\
+   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{2}  \\
+     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{2}  \\
 
     \hline
-%   \multicolumn{6}{c}{  \bfseries common boolean options }\\
-%    \hline
-%    \multicolumn{6}{c}{ public, apiprivate,cup,caseless,char,line,column,notunix, yyeof}\\
-%      \hline
-
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
      \hline
-    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{ has, non, default}\\
-      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{ true, false }\\
-    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{one, multi, default}\\
-       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{ true, false}\\
-     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{true, false}\\
+    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{3}\\
+      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{2}\\
+    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{3}\\
+       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{2}\\
+     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{2}\\
 
         \hline
    \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
