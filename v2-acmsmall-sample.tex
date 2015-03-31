@@ -56,8 +56,6 @@ JEFF Y. LEI
 \affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
 Hareton Leung and ALVIN CHAN
 \affil{Department of computing, Hong Kong Polytechnic University}
-Charlie Colbourn
-\affil{School of Computing, Informatics and Decision Systems Engineering, Arizona State University}
 }
 % NOTE! Affiliations placed here should be for the institution where the
 %       BULK of the research was done. If the author has gone to a new
@@ -82,7 +80,7 @@ Combinatorial testing (CT) has been proven effective in revealing the failures c
 \keywords{Software Testing, Combinatorial Testing, Failure-causing schemas, Masking effects}
 
 \acmformat{Xintao Niu,
-Changhai Nie,  Jeff Y. Lei,  Hareton Leung, Alvin Chan, and Charlie Colbourn, 2015.Identifying minimal failure-causing schemas in the presence of multiple failures.}
+Changhai Nie,  Jeff Y. Lei,  Hareton Leung, and Alvin Chan, 2015.Identifying minimal failure-causing schemas in the presence of multiple failures.}
 % At a minimum you need to supply the author names, year and a title.
 % IMPORTANT:
 % Full first names whenever they are known, surname last, followed by a period.
@@ -985,7 +983,7 @@ To investigate the impact of masking effects on FII approaches in real software 
 
 \subsection{The existence and characteristics of masking effects}\label{sec:emprical:exist}
 In the first study, we surveyed two kinds of open-source software systems to gain an insight into the existence of multiple failures and their effects. The software under study were HSQLDB and JFlex. The first is a database management software written in pure Java and the second is a lexical analyser generator. The reason that we chose these two systems is because they both contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of uncommented code, number of classes in the project, and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
-http://sourceforge.net/p/jflex/bugs  }for each of the software.
+http://sourceforge.net/p/jflex/bugs } for each of the software.
 
 %\begin{table}\renewcommand{\arraystretch}{1.3}
 %\caption{Software under survey}
@@ -1026,9 +1024,9 @@ JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
 % \footnote{http://sourceforge.net/projects/hsqldb/files/hsqldb/ }
 
 \subsubsection{Study setup}\label{sec:emprical:exist:set}
-We first looked through the bug tracker forum and focused on the bugs which are caused by the options interactions. For each such bug, we derived its MFS by analysing the bug description report and the associated test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing interaction for this bug is (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}). These three parameter values together form the condition that triggers the bug. The analysed result was later regarded as the ``prior MFS".
+We first looked through the bug tracker forum and focused on the bugs which are caused by the options interactions. For each of them, we derived its MFS by analysing the bug description report and the associated test file which can reproduce the bug. For example, through analysing the source code of the test file of bug\#981 for HSQLDB, we found the failure-inducing interaction for this bug is (\emph{preparestatement}, \emph{placeHolder}, \emph{Long string}). These three parameter values together form the condition that triggers the bug. The analysed result was later regarded as the ``prior MFS".
 
-We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is constructed so that we can reproduce different failures by controlling the inputs to the test file. For each version, the source code of the testing file as well as other detailed information is available at https://code.google.com/p/merging-bug-file.
+We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is constructed so that we can reproduce different failures by controlling the inputs to the test file. For each version, the source code of the testing file as well as other detailed information is available at http://gist.nju.edu.cn/doc/multi/.
 
 Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed models information is shown in Tables in \ref{modelHSQLDBJFlex} for HSQLDB and JFLex, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
 
@@ -1234,7 +1232,11 @@ So the \emph{related} function is the summation of similarity of all the super o
 
 % Table generated by Excel2LaTeX from sheet 'Sheet1'
 
- Figure \ref{fig:comparetotraditional} depicts the results of the second case study. There are seven sub-figures in this figure, i.e., Figure \ref{fig:21} to Figure \ref{fig:27}. They indicate the results of the number of accurate MFS each approach identified, the number of identified schemas which are the sub-schema / super-schema of some prior MFS, the number of ignored prior MFS, the number of identified schemas which are irrelevant to all the prior MFS, the aggregate value, and the extra test cases each algorithm needed, respectively. For each sub-figure, there are four polygonal lines, each of which shows the results for one of the four strategies: \emph{regarded as one failure}, \emph{distinguishing failures},  \emph{replacement strategy based on ILP searching},  \emph{replacement strategy based on random searching} (The last one will be discussed in the next case study). Specifically, each point in the polygonal line indicates the specific result of a particular strategy for the corresponding testing object. For example in Figure \ref{fig:21}, the point marked with `$\blacklozenge$' at (1,2) indicates that the approach using \emph{regarded as one failure} strategy identified 2 accurate MFS in the testing object--HSQLDB 2cr8. The raw data for this experiment can be found in Table \ref{evaluation_all} of the Appendix. Note that all the data except for the metric \emph{ignored number} are based on all failing test cases for each testing object, i.e., we got the data by comparing the union of the schemas identified in each the failing test cases to the prior actual MFS. As for metric \emph{ignored number}, however, we found that if we merged all the schemas identified in each failing test case, there is no MFS ignored. We therefore use the average score of \emph{ignored number} for each failing test case, which can be seen in the parentheses in Column \emph{ignore} of Table \ref{evaluation_all}.  Next we will discuss the results for each metric.
+ Figure \ref{fig:comparetotraditional} depicts the results of the second case study. There are seven sub-figures in this figure, i.e., Figure \ref{fig:21} to Figure \ref{fig:27}. They indicate the results of the number of accurate MFS each approach identified, the number of identified schemas which are the sub-schema / super-schema of some prior MFS, the number of ignored prior MFS, the number of identified schemas which are irrelevant to all the prior MFS, the aggregate value, and the extra test cases each algorithm needed, respectively.
+
+For each sub-figure, there are four polygonal lines, each of which shows the results for one of the four strategies: \emph{regarded as one failure}, \emph{distinguishing failures},  \emph{replacement strategy based on ILP searching},  \emph{replacement strategy based on random searching} (The last one will be discussed in the next case study). Specifically, each point in the polygonal line indicates the specific result of a particular strategy for the corresponding testing object. For example in Figure \ref{fig:21}, the point marked with `$\blacklozenge$' at (1,2) indicates that the approach using \emph{regarded as one failure} strategy identified 2 accurate MFS in the testing object--HSQLDB 2cr8.
+
+The raw data for this experiment can be found in Table \ref{evaluation_all} of the Appendix. Note that all the data except for the metric \emph{ignored number} are based on all failing test cases for each testing object, i.e., we got the data by comparing the union of the schemas identified in each the failing test cases to the prior actual MFS. As for metric \emph{ignored number}, however, we found that if we merged all the schemas identified in each failing test case, there is no MFS ignored. We therefore use the average score of \emph{ignored number} for each failing test case, which can be seen in the parentheses in Column \emph{ignore} of Table \ref{evaluation_all}.  Next we will discuss the results for each metric.
 
 
 \textbf{Accurate number: }
@@ -1277,11 +1279,11 @@ It is as expected  that \emph{ILP} performed better than \emph{distinguishing fa
 
 Above all, we draw three conclusions, which help to answer \textbf{Q2}:
 
-1) The results of strategy \emph{distinguishing failures} and \emph{regard one failure} are consistent with the previous formal analysis.
+1)  \emph{Distinguishing failures} strategy obtained more \emph{super number} and \emph{ignored number} than \emph{regard one failure} strategy, while the latter identified more \emph{sub number} and \emph{irrelevant number} than the former.  This result is consistent with the previous formal analysis in Section \ref{sec:mask}.
 
 2) Considering the quality of the MFS each approach identified, we can find that our \emph{ILP} approach achieves the best performance, followed by the strategy \emph{distinguishing failures}.
 
-3) Although our approach need more test cases than the other two strategies, it is an acceptable number.
+3) Although our approach need more test cases than the other two strategies, it is acceptable.
 
  %the answer we got for \textbf{Q2} is that: our approach achieves better performance than two traditional strategies when handling masking effects at an acceptable % extra cost.
 
@@ -1311,7 +1313,7 @@ Figure \ref{fig:replacing} shows the result. The data is normalized so that the 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=4.00in]{replacingtimes.eps}
+\includegraphics[width=4.10in]{replacingtimes.eps}
 \caption{The comparison of the number of replacement test cases}
 \label{fig:replacing}
 \end{figure}
@@ -1333,7 +1335,7 @@ In summary, the answer for \textbf{Q3} is that searching for a satisfied test ca
 The \emph{FDA-CIT} \cite{yilmaz2013reducing} approach can handle masking effects so that the generated covering array can cover all the $\tau$-degree schemas without being masked by the MFS. There is an integrated FII approach in the FDA-CIT, of which this FII approach has two versions, i.e., \emph{ternary-class} and \emph{multiple-class}. In this paper, we use the multiple-class version for our comparative approach, as Yilmaz claims that it performs better than the former \cite{yilmaz2013reducing}.   %, the configuration options for J48, is .
 
 
-The FDA-CIT process starts with generating a $t$-way covering array (In \cite{yilmaz2013reducing}, this is a test case-aware covering array \cite{yilmaz2013test}). After executing the test cases in this covering array, it records the outcome of each test case and then applies the classification tree method (Weka¡¯s implementation of C4.5 algorithm(J48) \cite{hall2009weka}) on the test cases to characterize the MFS of each failure. It then labels these MFS as the schemas that can trigger masking effects. And later if the interaction coverage is not satisfied (here the interaction coverage criteria is different from the traditional covering array, details see \cite{yilmaz2013reducing}), it will re-generate a covering array that aims to cover these schemas that were masked by these MFS labeled as masking effects and then repeat the previous steps.
+The FDA-CIT process starts with generating a $t$-way covering array (In \cite{yilmaz2013reducing}, this is a test case-aware covering array \cite{yilmaz2013test}). After executing the test cases in this covering array, it records the outcome of each test case and then applies the classification tree method (Weka¡¯s implementation of C4.5 algorithm(J48) \cite{hall2009weka}) on the test cases to characterize the MFS of each failure. It then labels these MFS as the schemas that can trigger masking effects. Later, if the interaction coverage is not satisfied (here the interaction coverage criteria is different from the traditional covering array \cite{yilmaz2013reducing}), it will re-generate a covering array that aims to cover these schemas that were masked by these MFS and then repeat the previous steps.
 
 The main target of FDA-CIT is to make the generated test cases to cover all the $\tau$-degree schemas. In order to achieve this goal, FDA-CIT needs to repeatedly identify the schemas that can trigger the masking effects. So to make the two approaches (FDA-CIT and ILP) comparable, we need to collect all the MFS that FDA-CIT characterized in each iteration and then compare them with the MFS identified by our approach.
 
@@ -1450,7 +1452,7 @@ Based on these observations, a recommendation for selecting masking handling tec
 %We use the five metrics to demonstrate the validate the effectiveness of our approach, this is derived from the intuitive point.
 
 \subsubsection{internal threats}\label{sec:threats:internal}
-There are two threats to internal validity. First, the characteristics of the actual MFS in the SUT can affect the FII results.  This is because the magnitude and location of the MFS can make the FII approaches generate different test cases. And as a result, it can make the observed failing test cases and inferred failing test cases different. In the worst case, the FII approach happens to identify the exact actual MFS, and in that condition our test case replacing strategy is of no use. In this paper, we used 15 testing objects, in which 5 are real software systems with real faults and 10 synthetic ones with injected faults. To reduce the influence caused by different characteristics of the MFS, we need to build more testing objects and injected more different types of faults for a more comprehensive study of our approach.
+There are two threats to internal validity. First, the characteristics of the actual MFS in the SUT can affect the FII results.  This is because the magnitude and location of the MFS can make the FII approaches generate different test cases. As a result, it can make the observed failing test cases and inferred failing test cases different. In the worst case, the FII approach happens to identify the exact actual MFS, and in that condition our test case replacing strategy is of no use. In this paper, we used 15 testing objects, in which 5 are real software systems with real faults and 10 synthetic ones with injected faults. To reduce the influence caused by different characteristics of the MFS, we need to build more testing objects and injected more different types of faults for a more comprehensive study of our approach.
 
 %
 % The identifying approach can affect.
