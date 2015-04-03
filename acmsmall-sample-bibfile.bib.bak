@@ -75,7 +75,7 @@
   organization={IEEE}
 }
 @article{yilmaz2013reducing,
-author={Yilmaz, C. and Dumlu, E. and Cohen, M.B. and Porter, A.},
+author={Yilmaz, C. and Dumlu, E. and Cohen, Myra B and Porter, Adam},
 journal={Software Engineering, IEEE Transactions on},
 title={Reducing Masking Effects in CombinatorialInteraction Testing: A Feedback DrivenAdaptive Approach},
 year={2014},
@@ -358,4 +358,14 @@ ISSN={0098-5589}
   pages={465--475},
   year={2003},
   organization={IEEE}
+}
+@article{lei2008ipog,
+  title={IPOG/IPOG-D: efficient test generation for multi-way combinatorial testing},
+  author={Lei, Yu and Kacker, Raghu and Kuhn, D Richard and Okun, Vadim and Lawrence, James},
+  journal={Software Testing, Verification and Reliability},
+  volume={18},
+  number={3},
+  pages={125--148},
+  year={2008},
+  publisher={Wiley Online Library}
 }
