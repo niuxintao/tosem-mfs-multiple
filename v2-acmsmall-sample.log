@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 APR 2015 21:39
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  6 APR 2015 23:23
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -430,18 +430,14 @@ Requested font "msbm7" at 7.0pt
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 128.
 
-[2]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
+[2] [3]
 Requested font "cmtt10" at 10.0pt
  -> cmtt10
-
-[4] [5]
+ [4] [5]
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
-Underfull \hbox (badness 1342) in paragraph at lines 452--454
+Underfull \hbox (badness 1342) in paragraph at lines 451--453
 [] [] \OT1/pnc/m/it/10 For any
  []
 
@@ -469,11 +465,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16]
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 975.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 974.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1031.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1030.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
@@ -490,7 +486,7 @@ File: ignore.eps Graphic file (type eps)
 File: irrelevant.eps Graphic file (type eps)
 
 <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1221--1221
+Underfull \hbox (badness 1259) in paragraph at lines 1220--1220
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -514,14 +510,14 @@ File: 3-way.eps Graphic file (type eps)
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps> [26]
 [27]
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1425 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1424 replaced by U+FFFD.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -540,12 +536,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [33])
 [34]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1616--1649
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1615--1648
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1653--1715
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1652--1714
 [] 
  []
 
