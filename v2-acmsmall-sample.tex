@@ -877,18 +877,17 @@ The complete process of replacing a test case with a new one while keeping some 
 \end{algorithm}
 %
 %
-The inputs to this algorithm consist of the failure $F_{m}$ under analysis, the candidate test cases $R = \mathcal{T}(fixed)  \backslash T_{executed}$  and the suspiciousness matrix $Sp$, which records the suspiciousness between each factor $o$ and each failure $F_{i}$, i.e., $Sp(o, F_{i})$( $1 \leq i \leq L $ ). The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
+The inputs to this algorithm consist of the failure $F_{m}$ under analysis, the candidate test cases $R = \mathcal{T}(fixed)  \backslash T_{executed}$  and the suspiciousness matrix $Sp$, which records the suspiciousness between each factor $o$ and each failure $F_{i}$, i.e., $Sp(o, F_{i})$ ($1 \leq i \leq L $). The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
 
 The outer loop of this algorithm (lines 1 - 10) contains three parts:
 
 The first part (lines 2 - 3) generates and executes a new test case which is supposed to be least likely to trigger failures different from $F_{m}$. The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems.
 
-The second part (line 4) updates the suspiciousness matrix ($Sp$) for each parameter value that is involved in this newly generated test case (line 4). Specifically, for $\frac{f_{i}(o)}{all(o) + 1}$, $all(o)$ increases by 1 and if this test case triggers failure $F_{i}$, then $f_{i}(o)$ increases by 1.
+The second part (line 4) updates the suspiciousness matrix ($Sp$) for each parameter value that is involved in this newly generated test case (line 4). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $Sp(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
 
 % basic idea for this part is to search each failure different from $F_{m}$ (line 3) and find the best test case that has the least suspiciousness with other failures. In detail, for each failure we set up an ILP solver (line 4) and use it to get an optimal test case for that failure, i.e., $t_{F_{i}},1 \leq i \leq L\ \&\ j\neq m$, according to \ref{eqn - lp} (line 5). We compare the optimal value for each failure, and choose the one with less suspiciousness with other failures (lines 6 - 9).
 
-The last part (lines 5 - 9) checks whether the newly generated test case is as expected .
-Specifically, if the test case passes or triggers the same failure -- $F_{m}$, a satisfied test case is obtained (line 5) and returned (line 6). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 7 - 8).
+The last part (lines 5 - 9) checks whether the newly generated test case is as expected. Specifically, if the test case passes or triggers the same failure -- $F_{m}$, a satisfied test case is obtained (line 5) and returned (line 6). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 7 - 8).
 
 Note that this algorithm has another exit, besides finding an expected test case (line 6), which is when the function \emph{MeetEndCriteria()} returns \emph{true} (line 1). We did not explicitly show function \emph{MeetEndCriteria()}, because this is dependent on the computing resource and the desired accuracy. In detail, if we want to get a high quality result and have enough computing resource, it is desirable to try many times to get the expected test case; otherwise, a relatively small number of attempts is recommended.
 

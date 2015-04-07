@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  7 APR 2015 23:37
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 APR 2015 00:36
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -502,7 +502,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [16]
 [17]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1042.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1041.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
@@ -518,54 +518,50 @@ File: ignore.eps Graphic file (type eps)
 File: irrelevant.eps Graphic file (type eps)
 
 <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1232--1232
+Underfull \hbox (badness 1259) in paragraph at lines 1231--1231
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
 File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22]
-[23]
+ <testCases.eps> [22] [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [24]
+[25]
 File: replacingtimes.eps Graphic file (type eps)
-
-<replacingtimes.eps> [25]
+ <replacingtimes.eps>
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [26]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [27]
 [28]
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
- [29] [30]
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31]
-[32] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [29]
+[30] [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -575,12 +571,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [34])
 [35]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1627--1660
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1626--1659
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1664--1726
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1663--1725
 [] 
  []
 
