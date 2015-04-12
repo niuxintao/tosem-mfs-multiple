@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 APR 2015 00:36
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 APR 2015 01:03
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -336,7 +336,7 @@ Requested font "cmex7" at 6.0pt
  -> cmex7
 Requested font "cmex7" at 5.0pt
  -> cmex7
-LaTeX Font Info:    Try loading font information for U+lasy on input line 97.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 98.
 
 (C:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -345,7 +345,7 @@ Requested font "lasy8" at 8.0pt
  -> lasy8
 Requested font "lasy5" at 5.0pt
  -> lasy5
-LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 98.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
@@ -356,7 +356,7 @@ Requested font "msam7" at 6.0pt
  -> msam7
 Requested font "msam5" at 5.0pt
  -> msam5
-LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+LaTeX Font Info:    Try loading font information for U+msb on input line 98.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -367,16 +367,17 @@ Requested font "msbm7" at 6.0pt
  -> msbm7
 Requested font "msbm5" at 5.0pt
  -> msbm5
-LaTeX Font Info:    Try loading font information for OMS+pnc on input line 97.
+LaTeX Font Info:    Try loading font information for OMS+pnc on input line 98.
 
 (C:\CTEX\MiKTeX\tex\latex\psnfss\omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
 Requested font "cmtt8" at 8.0pt
  -> cmtt8
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 99.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 100.
+
 
 (C:\CTEX\MiKTeX\tex\latex\psnfss\ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
@@ -384,13 +385,13 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 Requested font "phvr7t" at 12.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 99.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 100.
 Requested font "phvb7t" at 12.0pt
  -> phvb7t
 Requested font "phvr7t" at 10.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 99.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 100.
 Requested font "pncb7t" at 8.0pt
  -> pncb7t
 Requested font "pncri7t" at 8.0pt
@@ -398,11 +399,14 @@ Requested font "pncri7t" at 8.0pt
 Requested font "phvr7t" at 9.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 102.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 103.
 Requested font "phvb7t" at 9.0pt
  -> phvb7t
 Requested font "pncri7t" at 10.0pt
  -> pncri7t
+
+Underfull \vbox (badness 1838) has occurred while \output is active []
+
 
 Overfull \vbox (72.27pt too high) has occurred while \output is active []
 
@@ -428,7 +432,7 @@ Requested font "msbm10" at 10.0pt
 Requested font "msbm7" at 7.0pt
  -> msbm7
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 128.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
 
 [2] [3]
 Requested font "cmtt10" at 10.0pt
@@ -437,7 +441,7 @@ Requested font "cmtt10" at 10.0pt
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
-Underfull \hbox (badness 1342) in paragraph at lines 451--453
+Underfull \hbox (badness 1342) in paragraph at lines 452--454
 [] [] \OT1/pnc/m/it/10 For any
  []
 
@@ -459,7 +463,7 @@ Requested font "pncb7t" at 5.0pt
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 850.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 851.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -477,21 +481,21 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 872.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 873.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 872.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 873.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 872.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 873.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 875.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 876.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
  [15]
@@ -502,7 +506,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [16]
 [17]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1041.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1042.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
@@ -518,7 +522,7 @@ File: ignore.eps Graphic file (type eps)
 File: irrelevant.eps Graphic file (type eps)
 
 <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1231--1231
+Underfull \hbox (badness 1259) in paragraph at lines 1232--1232
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -545,14 +549,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [27]
 [28]
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1435 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1436 replaced by U+FFFD.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -571,12 +575,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [34])
 [35]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1626--1659
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1627--1660
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1663--1725
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1664--1726
 [] 
  []
 
