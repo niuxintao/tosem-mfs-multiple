@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  12 APR 2015 20:13
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  31 AUG 2015 02:34
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -402,21 +402,6 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 103.
 Requested font "phvb7t" at 9.0pt
  -> phvb7t
-Requested font "pncri7t" at 10.0pt
- -> pncri7t
-
-Underfull \vbox (badness 1838) has occurred while \output is active []
-
-
-Overfull \vbox (72.27pt too high) has occurred while \output is active []
-
-Requested font "pncr7t" at 7.0pt
- -> pncr7t
- [1
-
-]
-Requested font "phvr7t" at 8.0pt
- -> phvr7t
 Requested font "cmex7" at 7.0pt
  -> cmex7
 Requested font "lasy10" at 10.0pt
@@ -431,13 +416,29 @@ Requested font "msbm10" at 10.0pt
  -> msbm10
 Requested font "msbm7" at 7.0pt
  -> msbm7
+Requested font "pncr7t" at 7.0pt
+ -> pncr7t
+Requested font "pncri7t" at 10.0pt
+ -> pncri7t
+
+Overfull \vbox (72.27pt too high) has occurred while \output is active []
+
+ [1
+
+]
+Requested font "phvr7t" at 8.0pt
+ -> phvr7t
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
 
-[2] [3]
+[2]
+Underfull \vbox (badness 1189) has occurred while \output is active []
+
+ [3]
 Requested font "cmtt10" at 10.0pt
  -> cmtt10
- [4] [5]
+
+[4] [5]
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
