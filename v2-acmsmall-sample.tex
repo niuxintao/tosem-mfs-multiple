@@ -161,12 +161,12 @@ To evaluate the effectiveness of our approach, we applied our strategy on the FI
 
 The main contributions of this paper are:
 \begin{itemize}
-\item We formally analysed the relationships between failure-inducing interactions and test sets. (Section 3)
-\item We studied the impact of the masking effects caused by multiple failures on FII approaches. (Section 4)
-\item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section 5)
+\item We formally analysed the relationships between failure-inducing interactions and test sets. (Section \ref{sec:formal})
+\item We studied the impact of the masking effects caused by multiple failures on FII approaches. (Section \ref{sec:mask})
+\item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section \ref{sec:method})
 %\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
 %\item We designed an efficient test case searching method which can find a test case that does not trigger an unexpected failure.
-\item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in SUT with masking effects. (Section 6)
+\item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in SUT with masking effects. (Section \ref{sec:emprical})
 \end{itemize}
 
 
@@ -291,6 +291,14 @@ Different failures in the SUT can be distinguished by various information such a
 \end{assumption}
 This assumption indicates that the testers can detect different failures during testing. As different failures will complicate fault diagnosis tasks, distinguishing them is the first step to resolve them.
 
+\begin{assumption}
+All the tests are valid in the SUT, i.e., there is no inter-option constraints in the SUT.
+\end{assumption}
+This assumption shows that we can always determine the outcome after executing a test case, i.e., either pass or fail with some exceptions.
+
+In practice, these assumptions will not always be satisfied. Later we will discuss their impacts on the theories and approach proposed in this paper, as well as the measures to alleviate them. Particulary for the third assumption, we later will show that one type of inter-option constraint is essentially equal to a specific failure. Thus we can directly use the approach in this paper to solve it.
+
+
 %In practice, these two assumptions will not always be satisfied. Elimination of them can introduce the probabilistic and clustering parts into our model, which will further complicate our analysis and so we will not discuss them in this paper.
 Now let us consider the condition that some failures are triggered by some test cases. It is then desirable to determine the cause of these failures and hence some parameter values of the failing test cases must be analysed.
 %\end{definition}
@@ -322,7 +330,7 @@ If any test case which contains the schema $c$, and trigger a particular failure
 %Based on this, if a test case $t$ contain such a failure-inducing combination, say $c(F)$, it should trigger the failure $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts.
+In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failure are all option-realted \cite{yilmaz2006covering}. That is, all the failure are caused, ---------------------------.
 
 %We have the following proposition based on these basic definitions.
 %
@@ -978,6 +986,57 @@ With the replacement test cases, the FII approach can properly work. At last, th
 %
 %This complexity is well lay on the number of failures and the magnitude and location of the MFS of each schema, we only analysis the average performance of our approach. Also this approach also lay on the number of tests need to be executed about each algorithm.
 
+\section{Discussion about the influence of the assumptions}\label{sec:assumptions}
+
+In section \ref{sec:introd:mfs}, we introduced three assumptions that can simplify our formal modeling and proposed approach. In this section, we will discuss the influence of them on our propositions and approach, as well as some measures to alleviate their impacts.
+
+\subsection{Deal with non-deterministic problem}
+The first assumption is that the outcomes of all the tests are deterministic. In practice, re-executing the same test case may result in different outcomes. For example, if the program using some random variables, different runs of the test case will assign different values to these random variables. As a result, the control follow of the program may be changed and hence the outcome will be different. We called this type of failure the non-deterministic failure \cite{yilmaz2006covering,fouche2009incremental}. Non-deterministic failure will complicate the MFS identification, and even worse, it may lead to an unreliable result of the MFS identification. Consider the the following example in Table \ref{non-deterministic-example}, the only difference between the left with the right test set is the outcome of test case (0, 1, 1). This subtle difference result in the different results of the MFS identification. Hence, if there is one or more test cases which have non-deterministic executing results, the MFS identification is not reliable.
+ \begin{table}[ht]
+\centering
+\tbl{MFS of two similar test sets\label{non-deterministic-example}}{
+   \begin{tabular}{c c  c }
+$T_{fail}$ &$T_{pass}$ &  $MFS$\\ \hline
+ (0, 0, 0) &           &  (0, 0, -)\\
+ (0, 0, 1) &           &  (0, -, 0)\\
+ (0, 1, 0) &           & \\
+           & (0, 1, 1) & \\
+           & (1, 0, 0) & \\
+           & (1, 0, 1) & \\
+           & (1, 1, 0) & \\
+           & (1, 1, 1) & \\
+\hline  \end{tabular}
+  \hspace{1em}
+   \begin{tabular}{c c  c }
+$T_{fail}$ &$T_{pass}$ &  $MFS$\\ \hline
+ (0, 0, 0) &           &  (0, -, -)\\
+ (0, 0, 1) &           &  \\
+ (0, 1, 0) &           & \\
+ (0, 1, 1) &           & \\
+           & (1, 0, 0) & \\
+           & (1, 0, 1) & \\
+           & (1, 1, 0) & \\
+           & (1, 1, 1) & \\
+\hline  \end{tabular}
+  }
+  \end{table}
+
+Inspiring the idea that using multiple same-way covering arrays to identify the MFS \cite{fouche2009incremental}, one potential solution to alleviate this non-deterministic failure is by adding redundancy, i.e., through re-executing one test case to obtain the relatively stable outcome. However, this measure will increase the overall cost of the MFS identification, so the tradeoff between cost and the quality of MFS identification should be further studied.
+
+\subsection{Deal with failures distinguishing problem}
+The second assumption is that that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and should be replaced with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as one failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
+
+\subsection{Deal with inter-option constraints}
+
+Specifically, their are two types of inter-option constraints, prior or unknown.
+
+Inter-option constraints can result in test case invalid, so can lead to our work unworking.
+
+For those prior assumptions, we treat them as forbidden schema, and using SAT solver such as \cite{cohen2008constructing}. Specifically, we use the following formula to modify our original replacement strategy.
+
+
+For those un-decide, we can treat them as failures. like \cite{yilmaz2013reducing} do.
+
 
 \section{empirical studies}\label{sec:emprical}
 To investigate the impact of masking effects on FII approaches in real software testing scenarios and to evaluate the performance of our approach in handling this effect, we conducted several empirical studies. Each of the studies focuses on addressing one particular issue, as follows:
@@ -1484,10 +1543,12 @@ One threat to external validity comes from the real software we used.  In this p
 % Although we believe it is quite possibly a common phenomenon in most software that contains multiple failures which can mask each other, we need to investigate more software to support our belief.
 
 
-Another important threat is that our approach is based on the assumption that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as one failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
+
 %alleviate the impact of multiple faults is to take a trial-and-error process, i.e., initially classify failures by random and then identify the MFS and fix the bugs based on the classification, after which if the program still doesn't work, then the classification process will be refined and the previous steps continue.
 
-The third threat comes from the possible masking relationships between multiple failures in the real software.  In this paper, we just focus on the condition that the masking effects are transitive, i.e., if failure \emph{A} masks \emph{B}, and failure \emph{B} masks \emph{C}, then failure \emph{A} must mask failure \emph{C}. In practice, the relationships between multiple failures may be more complicated. One possible scenario is that two failures are in a loop, for which they can even mask each other in a particular condition. Such a case will make our formal analysis invalid and will significantly complicate the relationships between schemas and their corresponding test cases. A new formal model should be proposed to handle that type of masking effects.
+The second threat comes from the possible masking relationships between multiple failures in the real software.  In this paper, we just focus on the condition that the masking effects are transitive, i.e., if failure \emph{A} masks \emph{B}, and failure \emph{B} masks \emph{C}, then failure \emph{A} must mask failure \emph{C}. In practice, the relationships between multiple failures may be more complicated. One possible scenario is that two failures are in a loop, for which they can even mask each other in a particular condition. Such a case will make our formal analysis invalid and will significantly complicate the relationships between schemas and their corresponding test cases. A new formal model should be proposed to handle that type of masking effects.
+
+The third threat is that  it is important to emphasize the fact that the proposed approach is concerned with option-related failures.  It would also be interesting to evaluate and/or discuss how the proposed approach could deal with non-option-related failures. non-option-related failure will result in the MFS identification unsense. For example, may directly result in all the testing failure, i.e., with MFS identiciaiton, all the failure. However, it may related to just other information. This needs re-modeling, or even take other testing teachnqiues like program static analysis, e.g., slicing or the like. ----------------------------
 
 %
 % not the directly linear about multiple failures, i.e., failure a can mask the failure b, failure b can mask a . and failure c can mask failure c. Even worse, two failures can mask each other. When such scenorias happened, we need to recoonsruct the formal model of the schemas that when can be either be.  as the condition will significantly completed the relationships between the failures and schemas. But anyhow, our appraohc can still work in such a way, as the will always good to identify the MFS.

@@ -75,7 +75,7 @@
   organization={IEEE}
 }
 @article{yilmaz2013reducing,
-author={Yilmaz, C. and Dumlu, E. and Cohen, Myra B and Porter, Adam},
+author={Yilmaz, Cemal and Dumlu, Emine and Cohen, Myra B and Porter, Adam},
 journal={Software Engineering, IEEE Transactions on},
 title={Reducing Masking Effects in CombinatorialInteraction Testing: A Feedback DrivenAdaptive Approach},
 year={2014},
