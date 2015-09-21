@@ -1027,15 +1027,28 @@ Inspiring the idea that using multiple same-way covering arrays to identify the 
 The second assumption is that that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and should be replaced with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as one failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
 
 \subsection{Deal with inter-option constraints}
+The third assumption is that all the test cases are valid, i.e., SUT does not has any inter-option constraint. This is a very strong assumption. In this section, we will try to remove this assumption. In fact, with constraints has been known in prior, many studies in CT has proposed approaches to avoid them when generating test cases \cite{cohen2007exploiting,cohen2007interaction,cohen2008constructing,calvagna2008logic,yu2013efficient,petke2013efficiency,yu2015constraint}.
+Generally, with constrains known in prior, not all all test cases in the SUT are valid.  We set those valid test cases, i.e., do not contain any of the constraints as $T_{valid}$. Hence, the test cases we generated for MFS identification or replacement are limited to those in $T_{valid}$. Note that this can also make MFS identification unavailable. For example, in Table \ref{MFS-with-constriants}, assume test case(0, 1, 1) is invalid. Then without any more information, we can determine the MFS (See two different results in Table \ref{non-deterministic-example}).
 
-Specifically, their are two types of inter-option constraints, prior or unknown.
+\begin{table}[ht]
+\centering
+\tbl{MFS identification with constraints\label{MFS-with-constriants}}{
+   \begin{tabular}{c c c c }
+$T_{fail}$ &$T_{pass}$ &  $T_{invalid}$ \\ \hline
+ (0, 0, 0) &           &             \\
+ (0, 0, 1) &           &             \\
+ (0, 1, 0) &           &             \\
+           &           &  (0, 1, 1)  \\
+           & (1, 0, 0) &             \\
+           & (1, 0, 1) &             \\
+           & (1, 1, 0) &             \\
+           & (1, 1, 1) &             \\
+\hline  \end{tabular}
+  }
+  \end{table}
 
-Inter-option constraints can result in test case invalid, so can lead to our work unworking.
 
-For those prior assumptions, we treat them as forbidden schema, and using SAT solver such as \cite{cohen2008constructing}. Specifically, we use the following formula to modify our original replacement strategy.
-
-
-For those un-decide, we can treat them as failures. like \cite{yilmaz2013reducing} do.
+Another type of constraint is those that do not be found at first, but triggered later in testing\cite{yilmaz2013reducing}. The same as the approach proposed in \cite{yilmaz2013reducing}, we can just treat them as one type of failure, and then use MFS identification approach to identify them when encounter those invalid test cases.
 
 
 \section{empirical studies}\label{sec:emprical}

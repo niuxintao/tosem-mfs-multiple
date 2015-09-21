@@ -369,3 +369,19 @@ ISSN={0098-5589}
   year={2008},
   publisher={Wiley Online Library}
 }
+@inproceedings{mercan2014pinpointing,
+  title={Pinpointing Failure Inducing Event Orderings},
+  author={Mercan, Hanefi and Yilmaz, Cemal},
+  booktitle={Software Reliability Engineering Workshops (ISSREW), 2014 IEEE International Symposium on},
+  pages={232--237},
+  year={2014},
+  organization={IEEE}
+}
+@inproceedings{yu2015constraint,
+  title={Constraint handling in combinatorial test generation using forbidden tuples},
+  author={Yu, Linbin and Duan, Feng and Lei, Yu and Kacker, Raghu N and Kuhn, D Richard},
+  booktitle={Software Testing, Verification and Validation Workshops (ICSTW), 2015 IEEE Eighth International Conference on},
+  pages={1--9},
+  year={2015},
+  organization={IEEE}
+}

@@ -991,17 +991,43 @@ With the replacement test cases, the FII approach can properly work. At last, th
 In section \ref{sec:introd:mfs}, we introduced three assumptions that can simplify our formal modeling and proposed approach. In this section, we will discuss the influence of them on our propositions and approach, as well as some measures to alleviate their impacts.
 
 \subsection{Deal with non-deterministic problem}
-The first assumption is that the outcomes of all the tests are deterministic. In practice, re-executing the same test case may result in different outcomes. For example, if the program using some random variables, different runs of the test case will assign different values to these random variables. As a result, the control follow of the program may be changed and hence the outcome will be different. We called this type of failure the non-deterministic failure \cite{yilmaz2006covering,fouche2009incremental}. Non-deterministic failure will complicate the MFS identification, and even worse, it may lead to an unreliable result of the MFS identification. Consider the the following example, even one test case. If more than one test case non-deterministic, the condition will surely more worse. This example tells us that, in the MFS identification process, even one test different, will result in significantly different result. then  Hence, will significantly.
+The first assumption is that the outcomes of all the tests are deterministic. In practice, re-executing the same test case may result in different outcomes. For example, if the program using some random variables, different runs of the test case will assign different values to these random variables. As a result, the control follow of the program may be changed and hence the outcome will be different. We called this type of failure the non-deterministic failure \cite{yilmaz2006covering,fouche2009incremental}. Non-deterministic failure will complicate the MFS identification, and even worse, it may lead to an unreliable result of the MFS identification. Consider the the following example in Table \ref{non-deterministic-example}, the only difference between the left with the right test set is the outcome of test case (0, 1, 1). This subtle difference result in the different results of the MFS identification. Hence, if there is one or more test cases which have non-deterministic executing results, the MFS identification is not reliable.
+ \begin{table}[ht]
+\centering
+\tbl{MFS of two similar test sets\label{non-deterministic-example}}{
+   \begin{tabular}{c c  c }
+$T_{fail}$ &$T_{pass}$ &  $MFS$\\ \hline
+ (0, 0, 0) &           &  (0, 0, -)\\
+ (0, 0, 1) &           &  (0, -, 0)\\
+ (0, 1, 0) &           & \\
+           & (0, 1, 1) & \\
+           & (1, 0, 0) & \\
+           & (1, 0, 1) & \\
+           & (1, 1, 0) & \\
+           & (1, 1, 1) & \\
+\hline  \end{tabular}
+  \hspace{1em}
+   \begin{tabular}{c c  c }
+$T_{fail}$ &$T_{pass}$ &  $MFS$\\ \hline
+ (0, 0, 0) &           &  (0, -, -)\\
+ (0, 0, 1) &           &  \\
+ (0, 1, 0) &           & \\
+ (0, 1, 1) &           & \\
+           & (1, 0, 0) & \\
+           & (1, 0, 1) & \\
+           & (1, 1, 0) & \\
+           & (1, 1, 1) & \\
+\hline  \end{tabular}
+  }
+  \end{table}
 
-Inspiring the idea that using multiple same-way covering arrays to identify the MFS \cite{fouche2009incremental}, one potential solution to alleviate this non-deterministic failure is error complicatly, i.e., through re-executing. For example.  \cite{fouche2009incremental} supports that multiple covering array to testing . As a However, the tradeoff between re-executing and the befnits should be further studied.
+Inspiring the idea that using multiple same-way covering arrays to identify the MFS \cite{fouche2009incremental}, one potential solution to alleviate this non-deterministic failure is by adding redundancy, i.e., through re-executing one test case to obtain the relatively stable outcome. However, this measure will increase the overall cost of the MFS identification, so the tradeoff between cost and the quality of MFS identification should be further studied.
 
-If there is a very high-way MFS then it is also can be deem as non-deterministic problem and be ignored.
-
-\subsection{Deal with distinguish failures problem}
-The second assumption is that that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as one failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
+\subsection{Deal with failures distinguishing problem}
+The second assumption is that that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and should be replaced with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as one failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
 
 \subsection{Deal with inter-option constraints}
-
+The third assumption is that all the test cases are valid, i.e., they are without 
 Specifically, their are two types of inter-option constraints, prior or unknown.
 
 Inter-option constraints can result in test case invalid, so can lead to our work unworking.

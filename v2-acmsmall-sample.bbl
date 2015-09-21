@@ -422,6 +422,30 @@
 \showISSN{0098-5589}
 
 
+\bibitem[\protect\citeauthoryear{Yu, Duan, Lei, Kacker, and Kuhn}{Yu
+  et~al\mbox{.}}{2015}]%
+        {yu2015constraint}
+{Linbin Yu}, {Feng Duan}, {Yu Lei}, {Raghu~N Kacker}, {and} {D~Richard Kuhn}.
+  2015.
+\newblock \showarticletitle{Constraint handling in combinatorial test
+  generation using forbidden tuples}. In {\em Software Testing, Verification
+  and Validation Workshops (ICSTW), 2015 IEEE Eighth International Conference
+  on}. IEEE, 1--9.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yu, Lei, Nourozborazjany, Kacker, and Kuhn}{Yu
+  et~al\mbox{.}}{2013}]%
+        {yu2013efficient}
+{Linbin Yu}, {Yu Lei}, {Mehra Nourozborazjany}, {Raghu~N Kacker}, {and} {D~Rick
+  Kuhn}. 2013.
+\newblock \showarticletitle{An efficient algorithm for constraint handling in
+  combinatorial test generation}. In {\em Software Testing, Verification and
+  Validation (ICST), 2013 IEEE Sixth International Conference on}. IEEE,
+  242--251.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Zeller and Hildebrandt}{Zeller and
   Hildebrandt}{2002}]%
         {zeller2002simplifying}
