@@ -35,6 +35,8 @@ Warning--empty address in jones2007debugging
 Warning--empty publisher in li2012improved
 Warning--empty address in li2012improved
 Warning--empty address in martinez2008algorithms
+Warning--empty publisher in nie2013adaptive
+Warning--empty address in nie2013adaptive
 Warning--empty publisher in niu2013identifying
 Warning--empty address in niu2013identifying
 Warning--empty publisher in petke2013efficiency
@@ -48,6 +50,8 @@ Warning--empty publisher in song2012itree
 Warning--empty address in song2012itree
 Warning--empty publisher in wang2010adaptive
 Warning--empty address in wang2010adaptive
+Warning--empty publisher in weiser1981program
+Warning--empty address in weiser1981program
 Warning--empty publisher in yu2015constraint
 Warning--empty address in yu2015constraint
 Warning--empty publisher in yu2013efficient
@@ -56,4 +60,4 @@ Warning--empty publisher in zhang2011characterizing
 Warning--empty address in zhang2011characterizing
 Warning--empty publisher in zheng2006statistical
 Warning--empty address in zheng2006statistical
-(There were 55 warnings)
+(There were 59 warnings)

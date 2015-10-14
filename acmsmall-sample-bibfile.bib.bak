@@ -385,3 +385,19 @@ ISSN={0098-5589}
   year={2015},
   organization={IEEE}
 }
+@inproceedings{yu2013efficient,
+  title={An efficient algorithm for constraint handling in combinatorial test generation},
+  author={Yu, Linbin and Lei, Yu and Nourozborazjany, Mehra and Kacker, Raghu N and Kuhn, D Rick},
+  booktitle={Software Testing, Verification and Validation (ICST), 2013 IEEE Sixth International Conference on},
+  pages={242--251},
+  year={2013},
+  organization={IEEE}
+}
+@inproceedings{nie2013adaptive,
+  title={Adaptive combinatorial testing},
+  author={Nie, Changhai and Leung, Henry and Cai, Kai-Yuan},
+  booktitle={Quality Software (QSIC), 2013 13th International Conference on},
+  pages={284--287},
+  year={2013},
+  organization={IEEE}
+}

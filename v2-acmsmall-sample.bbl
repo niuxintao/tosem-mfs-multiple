@@ -298,6 +298,16 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Naish, Lee, and Ramamohanarao}{Naish
+  et~al\mbox{.}}{2011}]%
+        {naish2011model}
+{Lee Naish}, {Hua~Jie Lee}, {and} {Kotagiri Ramamohanarao}. 2011.
+\newblock \showarticletitle{A model for spectra-based software diagnosis}.
+\newblock {\em ACM Transactions on software engineering and methodology
+  (TOSEM)\/} {20}, 3 (2011), 11.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Nie and Leung}{Nie and Leung}{2011a}]%
         {nie2011minimal}
 {Changhai Nie} {and} {Hareton Leung}. 2011a.
@@ -313,6 +323,15 @@
 {Changhai Nie} {and} {Hareton Leung}. 2011b.
 \newblock \showarticletitle{A survey of combinatorial testing}.
 \newblock {\em ACM Computing Surveys (CSUR)\/} {43}, 2 (2011), 11.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nie, Leung, and Cai}{Nie
+  et~al\mbox{.}}{2013}]%
+        {nie2013adaptive}
+{Changhai Nie}, {Henry Leung}, {and} {Kai-Yuan Cai}. 2013.
+\newblock \showarticletitle{Adaptive combinatorial testing}. In {\em Quality
+  Software (QSIC), 2013 13th International Conference on}. IEEE, 284--287.
 \newblock
 
 
@@ -387,6 +406,14 @@
 \newblock \showarticletitle{Adaptive interaction fault location based on
   combinatorial testing}. In {\em Quality Software (QSIC), 2010 10th
   International Conference on}. IEEE, 495--502.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Weiser}{Weiser}{1981}]%
+        {weiser1981program}
+{Mark Weiser}. 1981.
+\newblock \showarticletitle{Program slicing}. In {\em Proceedings of the 5th
+  international conference on Software engineering}. IEEE Press, 439--449.
 \newblock
 
 

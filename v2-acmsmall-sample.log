@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  21 SEP 2015 15:09
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  13 OCT 2015 13:15
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -297,19 +297,19 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 97.
 \c@assumption=\count118
 
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Try loading font information for OT1+pnc on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Try loading font information for OT1+pnc on input line 47.
 
 (C:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
@@ -336,7 +336,7 @@ Requested font "cmex7" at 6.0pt
  -> cmex7
 Requested font "cmex7" at 5.0pt
  -> cmex7
-LaTeX Font Info:    Try loading font information for U+lasy on input line 98.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 101.
 
 (C:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -345,7 +345,7 @@ Requested font "lasy8" at 8.0pt
  -> lasy8
 Requested font "lasy5" at 5.0pt
  -> lasy5
-LaTeX Font Info:    Try loading font information for U+msa on input line 98.
+LaTeX Font Info:    Try loading font information for U+msa on input line 101.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
@@ -356,7 +356,7 @@ Requested font "msam7" at 6.0pt
  -> msam7
 Requested font "msam5" at 5.0pt
  -> msam5
-LaTeX Font Info:    Try loading font information for U+msb on input line 98.
+LaTeX Font Info:    Try loading font information for U+msb on input line 101.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -367,16 +367,17 @@ Requested font "msbm7" at 6.0pt
  -> msbm7
 Requested font "msbm5" at 5.0pt
  -> msbm5
-LaTeX Font Info:    Try loading font information for OMS+pnc on input line 98.
+LaTeX Font Info:    Try loading font information for OMS+pnc on input line 101.
+
 
 (C:\CTEX\MiKTeX\tex\latex\psnfss\omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 101.
 Requested font "cmtt8" at 8.0pt
  -> cmtt8
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 100.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 103.
 
 
 (C:\CTEX\MiKTeX\tex\latex\psnfss\ot1phv.fd
@@ -385,13 +386,13 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 Requested font "phvr7t" at 12.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 100.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 103.
 Requested font "phvb7t" at 12.0pt
  -> phvb7t
 Requested font "phvr7t" at 10.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 100.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 103.
 Requested font "pncb7t" at 8.0pt
  -> pncb7t
 Requested font "pncri7t" at 8.0pt
@@ -399,7 +400,7 @@ Requested font "pncri7t" at 8.0pt
 Requested font "phvr7t" at 9.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 103.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 106.
 Requested font "phvb7t" at 9.0pt
  -> phvb7t
 Requested font "cmex7" at 7.0pt
@@ -429,7 +430,7 @@ Overfull \vbox (72.27pt too high) has occurred while \output is active []
 Requested font "phvr7t" at 8.0pt
  -> phvr7t
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 132.
 
 [2]
 Underfull \vbox (badness 1189) has occurred while \output is active []
@@ -442,33 +443,44 @@ Requested font "cmtt10" at 10.0pt
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
-Underfull \hbox (badness 1342) in paragraph at lines 460--462
+Underfull \hbox (badness 1342) in paragraph at lines 463--465
 [] [] \OT1/pnc/m/it/10 For any
  []
 
 [8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 580--582
+[] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10
+ (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 , if $\OMS/cmsy/m/n/10
+ 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2
+ []
+
+[10] [11]
+Requested font "pncr7t" at 6.0pt
+ -> pncr7t
+Requested font "pncb7t" at 6.0pt
+ -> pncb7t
+Requested font "pncr7t" at 5.0pt
+ -> pncr7t
+Requested font "pncb7t" at 5.0pt
+ -> pncb7t
+
+Underfull \hbox (badness 10000) in paragraph at lines 669--670
+\OT1/pnc/m/n/10 = $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cm
+m/m/it/10 t[]; t[]; t[]; t[]\OMS/cmsy/m/n/10 g\OT1/cmr/m/n/10 )$ \OT1/pnc/m/n/1
+0 = (-, 1, -, 1). $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 T[] [] 
+T[]\OT1/cmr/m/n/10 ) [](\OML/cmm/m/it/10 T[] \OMS/cmsy/m/n/10 n
+ []
+
+[12]
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
-Requested font "pncr7t" at 6.0pt
- -> pncr7t
-Requested font "pncr7t" at 5.0pt
- -> pncr7t
- [10]
-Requested font "pncb7t" at 6.0pt
- -> pncb7t
-Requested font "pncb7t" at 5.0pt
- -> pncb7t
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-[12] [13] [14]
+ [13] [14] [15] [16] [17]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 859.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 992.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -486,36 +498,34 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 881.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1014.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 881.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1014.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 881.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1014.
+
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 884.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1017.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
- [15]
+ [18]
 File: table.eps Graphic file (type eps)
- <table.eps>
-Underfull \vbox (badness 3471) has occurred while \output is active []
-
- [16]
-[17] [18] [19]
+ <table.eps> [19] [20] [21] [22]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1114.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1260.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
- [20] [21] [22] [23]
+ [23]
+[24] [25] [26]
 File: accurate.eps Graphic file (type eps)
  <accurate.eps>
 File: sub.eps Graphic file (type eps)
@@ -523,11 +533,11 @@ File: sub.eps Graphic file (type eps)
 File: parent.eps Graphic file (type eps)
  <parent.eps>
 File: ignore.eps Graphic file (type eps)
-
-<ignore.eps>
+ <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
- <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1304--1304
+
+<irrelevant.eps>
+Underfull \hbox (badness 1259) in paragraph at lines 1450--1450
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -537,17 +547,17 @@ File: testCases.eps Graphic file (type eps)
  <testCases.eps>
 Underfull \vbox (badness 1337) has occurred while \output is active []
 
- [24]
-[25]
+ [27]
+[28]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26]
+ [29]
 File: replacingtimes.eps Graphic file (type eps)
 
 <replacingtimes.eps>
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
- [27] [28]
+ [30] [31]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
@@ -556,49 +566,53 @@ File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
 Underfull \vbox (badness 2418) has occurred while \output is active []
 
- [29]
-[30]
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1508 replaced by U+FFFD.
- [31] [32]
+ [32]
+[33]
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1654 replaced by U+FFFD.
+ [34] [35]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]
-[34] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+ [36]
+[37] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
+Underfull \vbox (badness 5893) has occurred while \output is active []
+
+ [38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ [39])
+[40]
+Requested font "pncri7t" at 6.0pt
+ -> pncri7t
+ [1
 
- [36])
-[37]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1701--1734
+]
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1927--1960
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1738--1800
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1964--2026
 [] 
  []
 
-[1
-
-] [2] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
+[2] [3] [4] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+ ) 
 Here is how much of TeX's memory you used:
- 3943 strings out of 430478
- 46527 string characters out of 3191502
- 187874 words of memory out of 3000000
- 7018 multiletter control sequences out of 15000+200000
- 25111 words of font info for 77 fonts, out of 3000000 for 9000
+ 3959 strings out of 430478
+ 46797 string characters out of 3191502
+ 194696 words of memory out of 3000000
+ 7034 multiletter control sequences out of 15000+200000
+ 25620 words of font info for 78 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,16n,29p,1751b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,18n,30p,2359b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (39 pages).
+Output written on v2-acmsmall-sample.pdf (44 pages).

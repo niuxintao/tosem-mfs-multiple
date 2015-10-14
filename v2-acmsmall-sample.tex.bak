@@ -41,6 +41,7 @@
 \acmMonth{3}
 
 \newtheorem{assumption}{Assumption}
+%\newtheorem{lemma}{Lemma}
 
 % Document starts
 \begin{document}
@@ -56,6 +57,8 @@ JEFF Y. LEI
 \affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
 Hareton Leung and ALVIN CHAN
 \affil{Department of computing, Hong Kong Polytechnic University}
+JEFF Y. LEI
+\affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
 }
 % NOTE! Affiliations placed here should be for the institution where the
 %       BULK of the research was done. If the author has gone to a new
@@ -292,9 +295,9 @@ Different failures in the SUT can be distinguished by various information such a
 This assumption indicates that the testers can detect different failures during testing. As different failures will complicate fault diagnosis tasks, distinguishing them is the first step to resolve them.
 
 \begin{assumption}
-All the tests are valid in the SUT, i.e., there is no inter-option constraints in the SUT.
+All the tests are valid in the SUT, i.e., there is no \emph{inter-option} constraints in the SUT.
 \end{assumption}
-This assumption shows that we can always determine the outcome after executing a test case, i.e., either pass or fail with some exceptions.
+Here \emph{option} indicates the parameter of a SUT. This assumption shows that we can always determine the outcome after executing a test case, i.e., either pass or fail with some exceptions.
 
 In practice, these assumptions will not always be satisfied. Later we will discuss their impacts on the theories and approach proposed in this paper, as well as the measures to alleviate them. Particulary for the third assumption, we later will show that one type of inter-option constraint is essentially equal to a specific failure. Thus we can directly use the approach in this paper to solve it.
 
@@ -330,7 +333,7 @@ If any test case which contains the schema $c$, and trigger a particular failure
 %Based on this, if a test case $t$ contain such a failure-inducing combination, say $c(F)$, it should trigger the failure $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failure are all option-realted \cite{yilmaz2006covering}. That is, all the failure are caused, ---------------------------.
+In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failure are caused by the interactions of the parameter values in the SUT.
 
 %We have the following proposition based on these basic definitions.
 %
@@ -541,7 +544,137 @@ In summary, these propositions provide the foundation of MFS identification (Pro
 %(b) For two subsuming test sets, their minimal schemas can be subsuming or irrelevant to each other.
 
 
+\subsection{Identify the MFS}\label{subsec:Formal:identi}
+In this section, we will study how traditional MFS identification approaches, i.e., FII approaches, identify the MFS. Let $T_{F}$ indicates all the failing test cases and $T_{P}$ all the passing test cases ( Note that $T_{F} \bigcap T_{P} = \varnothing$ and $T_{F} \bigcup T_{P} = T^{*}$ ). Then the MFS for the SUT is $\mathcal{C}(T_{F})$. Theoretically,  to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F}$. This is impossible in practice, especially when the testing space is very large.
 
+As it is impractical to get all the MFS, the appropriate is to determine some MFS of them. With the following proposition, we can learn that with knowing subset of the test cases, we can also determine some of them are MFS.
+
+\begin{proposition}[{Identical minimal schemas}]\label{pro:dsms}
+For $T_{1}$ and $T_{2}$, $T_{1} \subset T_{2}$. If $\exists c \in \mathcal{C}(T_{1})$, such that $ c \in \mathcal{C}(T_{2})$. Then, for any test set $T_{3}$, such that $T_{1} \subset T_{3} \subset T_{2}$, we have $c \in \mathcal{C}(T_{3})$.
+\end{proposition}
+
+\begin{proof}
+According to Proposition \ref{pro:sls}, $\forall c \in \mathcal{C}(T_{1})$, exists $c' \in \mathcal{C}(T_{3})$, such that either $c' \prec c$ or $c' = c$. Let us assume that $c' \prec c$. As there exists $c'' \in \mathcal{C}(T_{2})$, such that $c = c''$, then $c' \prec c''$. This is contradiction as $T_{3} \subset T_{2}$, so $\forall c' \in \mathcal{C}(T_{3})$, exists $c'' \in \mathcal{C}(T_{2})$, such that either $c'' \prec c'$ or $c'' = c'$. Hence, we have the assumption  $c' \prec c$ does not hold, indicating that $c' = c$.
+\end{proof}
+
+For example, Table \ref{example_identical_condition} shows the minimal schemas for $T_{1}$, $T_{2}$, $T_{3}$ and $T_{3}'$, where $T_{1} \subset T_{3} \subset T_{2}$ and $T_{1} \subset T_{3}' \subset T_{2}$. We can find that $\mathcal{C}(T_{1})$, i.e., (0, 0, -) is identical to that one in $\mathcal{C}(T_{2})$, which also in $\mathcal{C}(T_{3})$ and $\mathcal{C}(T_{3}')$.
+
+\begin{table}[ht]
+\centering
+\tbl{Identical minimal schemas of subsuming test sets\label{example_identical_condition}}{
+\begin{tabular}{lll|lll|lll|lll}
+\multicolumn{3}{c|}{$T_{1}$}    & \multicolumn{3}{c|}{$T_{2}$}    & \multicolumn{3}{c|}{$T_{3}$}    & \multicolumn{3}{c}{$T_{3}'$}   \\ \hline
+0       & 0       & 0      & 0       & 0       & 0      & 0       & 0       & 0      & 0       & 0       & 0     \\
+0       & 0       & 1      & 0       & 0       & 1      & 0       & 0       & 1      & 0       & 0       & 1     \\
+        &         &        & 1       & 1       & 1      & 1       & 1       & 1      & 1       & 1       & 0     \\
+        &         &        & 1       & 1       & 0      &         &         &        &         &         &       \\ \hline
+\multicolumn{3}{c|}{$\mathcal{C}(T_{1})$} & \multicolumn{3}{c|}{$\mathcal{C}(T_{2})$} & \multicolumn{3}{c|}{$\mathcal{C}(T_{3})$} & \multicolumn{3}{c}{$\mathcal{C}(T_{3})$'} \\ \hline
+0       & 0       & -      & 0       & 0       & -      & 0       & 0       & -      & 0       & 0       & -     \\
+        &         &        & 1       & 1       & -      & 1       & 1       & 1      & 1       & 1       & 0     \\ \hline
+\end{tabular}
+  }
+  \end{table}
+
+Based on this proposition, let $T_{F-known}$ be the given test cases which are known to be failing, and $T_{P-known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F-known} \bigcup T_{P-known})$ be the test cases that are not known to be failing or not. Based on Proposition \ref{pro:dsms}, we have the following lemma:
+
+\begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
+$\forall c \in \mathcal{C}(T_{F-known})$, if $\exists c' \in \mathcal{C}(T_{F-known} \bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
+\end{lemma}
+
+The proof of this lemma is obvious. With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify a MFS $c$, there still needs many test cases to execute; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with number of parameters in the SUT. Hence, traditional FII approaches will take some assumptions to further reduce the number of needed test cases to identify the MFS.
+
+Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F-infer}$ refer to the test cases that can be inferred to be failing and $T_{P-infer}$ the inferred passing test cases. With the test cases of which the outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F-known} \bigcup T_{F-infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F-known} \bigcup T_{F-infer})$, if it is identical to some schema in $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$, then $c$ must be MFS.
+
+The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is far beyond this paper. Next, we will only focus on describing the FIC\_BS appraoch\cite{zhang2011characterizing}--an efficient adaptive MFS identification approach.
+
+%\begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
+%$\forall c \in \mathcal{C}(T_{F-known})$, if it is identical to some schema in $\mathcal{C}(T_{F-known} \bigcup T_{unknown})$, then $c$ must be MFS.
+%\end{lemma}
+
+% Then the MFS identified by FII approaches can be depicted as: MFS = $\mathcal{C}(T_{f-obs} \bigcup T_{f-infer})$.
+%
+%Hence, Traditional approach may
+%Traditional FII approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. In this case, in order to identify the MFS, each of the remaining test cases (that are not observed) must be predicted to be failing or not.
+
+
+The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation. We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part in the original failing test case, we called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, we called them the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessary be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the latter proposed approach ).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
+
+
+%These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
+
+%The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
+
+\begin{table}[ht]
+\tbl{FIC\_BS running example\label{fic-bs-identify}}{
+\begin{tabular}{llllll}
+\hline
+\textbf{ID} & \multicolumn{4}{l}{\textbf{Test Case}} & \textbf{outcome} \\ \hline
+$t_{0}$ & 1     & 1     & 1     & 1     & fail    \\ \hline
+$t_{1}$ & 0     & 0     & 1     & 1     & pass    \\
+$t_{2}$ & 0     & 1     & 1     & 1     & fail    \\
+$t_{3}$ & 0     & 1     & 0     & 0     & pass    \\
+$t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
+\end{tabular}}
+\end{table}
+
+
+\begin{assumption} \label{ass:safevalue}
+The mutated part of each additional test cases consists of safe values, i.e., none of the parameter value in mutate part is the part of any MFS.
+\end{assumption}
+
+Based on this assumption, we have the following two lemmas:
+
+\begin{lemma}\label{lemma:inferpassing}
+ $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that the parameter values of the mutated part of $t$ ( against $t'$) are all safe values, then $t$ must be a passing test case.
+\end{lemma}
+
+\begin{proof}
+Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $t$ is the super schema of $c$ or identical to $c$ (Based on Proposition \ref{pro:sbS}). In other word, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (Assumption \ref{ass:safevalue}), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus muta)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
+\end{proof}
+
+For example, if (0, 0, 0, 0) is known to be passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
+
+\begin{lemma} \label{lemma:inferfailing}
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that the mutated part of $t'$ (against $t$) consists of safe values, then $t$ must be a failing test case.
+\end{lemma}
+
+This lemma can be proved according to  Lemma \ref{lemma:inferpassing}. As a example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
+
+Based on these two lemmas, we can easily infer some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assume assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing;  the mutated part of the known failing test case $t_{16}$ against the unknown test case $t_{14}$ is still the safe value (-, -, 0, -), so $t_{14}$ should be inferred to be failing.
+
+\begin{table}[ht]
+\tbl{Test outcomes for MFS(- 1 - 1)\label{realMFS-for-11}}{
+\begin{tabular}{l|llll|l|l}
+\hline
+ID  & \multicolumn{4}{l|}{Test Case} & Outcome  & State  \\ \hline
+$\textbf{t}_{\textbf{1}}$  &\textbf{0}      & \textbf{0}     & \textbf{0}     & \textbf{0}     & \textbf{pass} & \textbf{infer} \\
+$\textbf{t}_{\textbf{2}}$  & \textbf{0}      & \textbf{0}     & \textbf{0}     & \textbf{1}     & \textbf{pass} & \textbf{infer}\\
+$\textbf{t}_{\textbf{3}}$  & \textbf{0}      & \textbf{0}     & \textbf{1}     & \textbf{0}     & \textbf{pass} & \textbf{infer}\\
+$t_{4}$  & 0      & 0     & 1     & 1     & pass   & known    \\
+$t_{5}$  & 0      & 1     & 0     & 0     & pass    & known   \\
+$t_{6}$  & 0      & 1     & 0     & 1     & fail    & known   \\
+$t_{7}$  & 0      & 1     & 1     & 0     & - & unkonwn\\
+$t_{8}$  & 0      & 1     & 1     & 1     & fail   & known    \\
+$t_{9}$  & 1      & 0     & 0     & 0     & - & unkonwn\\
+$t_{10}$ & 1      & 0     & 0     & 1     & - & unkonwn\\
+$t_{11}$ & 1      & 0     & 1     & 0     & - & unkonwn\\
+$t_{12}$ & 1      & 0     & 1     & 1     & - & unkonwn\\
+$t_{13}$ & 1      & 1     & 0     & 0     & - & unkonwn\\
+$\textbf{t}_{\textbf{14}}$ & \textbf{1}      & \textbf{1}     & \textbf{0}     & \textbf{1}     & \textbf{fail} & \textbf{infer}\\
+$t_{15}$ & 1      & 1     & 1     & 0     & - & unkonwn\\
+$t_{16}$ & 1      & 1     & 1     & 1     & fail  & known     \\ \hline
+\end{tabular}}
+\end{table}
+
+After these test cases having been inferred, we can find that $\mathcal{C}(T_{F-known} \bigcup T_{F-infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1). $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can learn that (-, 1, -, 1) must be MFS.
+
+%In our model, to identify MFS (-, 1, -, 1), we should execute all the test cases, and test cases in $\mathcal{T}((1, -, 1, -))$ should fail.  As listed in Table \ref{realMFS-for-11}, apart from the observed test cases in Table \ref{ofot-identify} (in bold), the outcomes of other test cases should be inferred. These results can be inferred based on the basic assumptions of FIC\_BS. For example, test case $t_{3}$ should pass, as if not so, (-, -, -, 0) must be failure-inducing factor (comparing $t_{3}$ and $t_{4}$), which contradicts the factor (-, -, -, 0) are safe value. Similarly, $t_{2}$ (Comparing $t_{2}$ and $t_{4}$), $t_{1}$ (Comparing $t_{1}$ and $t_{5}$) should pass. Additionally, $t_{14}$ should fail, because if not so, (0, -, -, -) must be failure-inducing (Comparing $t_{6}$ and $t_{14}$).
+
+
+%Note that the process of FIC\_BS approach is consistent with the MFS identification model we built before. In the example listed in Table \ref{fic-bs-identify}, all the observed passing test cases, i.e., $T_{p-obs}$, is \{ $t_{1}$, $t_{3}$ \}, and all the observed failing test cases, i.e.,  $T_{f-obs}$, is  \{ $t_{0}$, $t_{2}$, $t_{4}$ \}.
+
+
+This example illustrate that the FII approach cannot execute all the test cases, but with proper assumptions, the schemas identified by FII can be approximate to or even equal to the exactly correct MFS in the SUT. Other FII approaches can also be built into our formal model for MFS identification, but this will not be discussed here as it is not the point of this paper. Even though each FII approach tries to identify the MFS as accurately as possible, however, masking effects will negatively affect the observed outcomes and the inferred results. We next discuss the masking problem.
 
 \section{Masking effect} \label{sec:mask}
 As discussed before, $\mathcal{C}(T_{F_{m}})$ is the MFS set of failure $F_{m}$ in theory.  When considering the masking effects between multiple failures, however, this formula is not correct.
@@ -872,7 +1005,7 @@ The complete process of replacing a test case with a new one while keeping some 
 %          }
        $t_{new} \leftarrow \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  Sp(t, F_{i})$\;
        $result \leftarrow execute(t_{new})$\;
-       $updatet\_SP(t_{new})$ \;
+       $update\_SP(t_{new})$ \;
         \eIf  {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
            }{
@@ -902,6 +1035,20 @@ Note that this algorithm has another exit, besides finding an expected test case
 
 %In this paper, we just set 3 as the greatest number of iterations for this function. When it ends with \emph{MeetEndCriteria()} returning true, it will return null (line 18), which means we cannot find an expected test case.
 
+
+
+\section{Illustration of the approach}\label{sec:appraoch}
+
+This section will illustrate the complete approach, which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
+
+\subsection{MFS identification}
+
+fixed part is that . The additionl test case just need to maintain the fixed part.
+
+
+\subsection{MFS identification with replacement strategy}
+
+
 \subsection{A case study using the replacement strategy}\label{sec:method:case}
 %Next we will take the FII approach--OFOT algorithm as the subject to see how our approach works on them.
 
@@ -922,7 +1069,6 @@ From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (
 This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $t_{1}$ to $t_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $t_{4}$ which triggered $e3$, we tried three times-- $t_{4}', t_{4}'', t_{4}'''$ to finally get a satisfied $t_{4}'''$ which passes the testing. Note that the \emph{suspiciousness} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
 
 With the replacement test cases, the FII approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, -, -, -, - ) (Test cases passed when we mutated the first two parameter values of the original failing cases). In this example, test cases that trigger $e2$ and $e3$ do not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$ and $e3$ based on these test cases.
-
 
 %\subsection{Complexity analysis}
 %The complexity of our approach relies on two variables: the number of test cases that triggered other failures which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effect test case. The complexity is the product of these two variables.
@@ -1027,15 +1173,28 @@ Inspiring the idea that using multiple same-way covering arrays to identify the 
 The second assumption is that that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and should be replaced with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as one failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
 
 \subsection{Deal with inter-option constraints}
-The third assumption is that all the test cases are valid, i.e., they are without 
-Specifically, their are two types of inter-option constraints, prior or unknown.
+The third assumption is that all the test cases are valid, i.e., SUT does not has any inter-option constraint. This is a very strong assumption. In this section, we will try to remove this assumption. In fact, with constraints has been known in prior, many studies in CT has proposed approaches to avoid them when generating test cases \cite{cohen2007exploiting,cohen2007interaction,cohen2008constructing,calvagna2008logic,yu2013efficient,petke2013efficiency,yu2015constraint}.
+Generally, with constraints known in prior, not all all test cases in the SUT are valid.  We set those valid test cases, i.e., do not contain any of the constraints as $T_{valid}$. Hence, the test cases we generated for MFS identification or replacement are limited to those in $T_{valid}$. Note that this can also make MFS identification unavailable. For example, in Table \ref{MFS-with-constriants}, assume test case(0, 1, 1) is invalid. Then without any more information, we can determine the MFS (See two different results in Table \ref{non-deterministic-example}).
 
-Inter-option constraints can result in test case invalid, so can lead to our work unworking.
+\begin{table}[ht]
+\centering
+\tbl{MFS identification with constraints\label{MFS-with-constriants}}{
+   \begin{tabular}{c c c c }
+$T_{fail}$ &$T_{pass}$ &  $T_{invalid}$ \\ \hline
+ (0, 0, 0) &           &             \\
+ (0, 0, 1) &           &             \\
+ (0, 1, 0) &           &             \\
+           &           &  (0, 1, 1)  \\
+           & (1, 0, 0) &             \\
+           & (1, 0, 1) &             \\
+           & (1, 1, 0) &             \\
+           & (1, 1, 1) &             \\
+\hline  \end{tabular}
+  }
+  \end{table}
 
-For those prior assumptions, we treat them as forbidden schema, and using SAT solver such as \cite{cohen2008constructing}. Specifically, we use the following formula to modify our original replacement strategy.
 
-
-For those un-decide, we can treat them as failures. like \cite{yilmaz2013reducing} do.
+Another type of constraint is those that do not be found at first, but triggered later in testing\cite{yilmaz2013reducing}. The same as the approach proposed in \cite{yilmaz2013reducing}, we can just treat them as one type of failure, and then use MFS identification approach to identify them when encounter those invalid test cases.
 
 
 \section{empirical studies}\label{sec:emprical}
@@ -1548,7 +1707,7 @@ One threat to external validity comes from the real software we used.  In this p
 
 The second threat comes from the possible masking relationships between multiple failures in the real software.  In this paper, we just focus on the condition that the masking effects are transitive, i.e., if failure \emph{A} masks \emph{B}, and failure \emph{B} masks \emph{C}, then failure \emph{A} must mask failure \emph{C}. In practice, the relationships between multiple failures may be more complicated. One possible scenario is that two failures are in a loop, for which they can even mask each other in a particular condition. Such a case will make our formal analysis invalid and will significantly complicate the relationships between schemas and their corresponding test cases. A new formal model should be proposed to handle that type of masking effects.
 
-The third threat is that  it is important to emphasize the fact that the proposed approach is concerned with option-related failures.  It would also be interesting to evaluate and/or discuss how the proposed approach could deal with non-option-related failures. non-option-related failure will result in the MFS identification unsense. For example, may directly result in all the testing failure, i.e., with MFS identiciaiton, all the failure. However, it may related to just other information. This needs re-modeling, or even take other testing teachnqiues like program static analysis, e.g., slicing or the like. ----------------------------
+The third threat is that all the failures in the experiments are option-related. In practice, some failures may not related to the parameters you modeled in the SUT. For example, consider the Internet Explorer option-compliant testing problem \cite{nie2013adaptive}. Initially we may not properly model the options we should test, as a result, it can happen the explorer will always crash no matter we change which option in the initial model. This will cause the MFS identification non-sense, as all the test cases fail during testing. To solve this problem, one potential solution is to re-model the options we should test, as the error may be related to other options in the SUT (For example, those options which are set to default value). Or alternately, we should try other testing techniques to assist original CT. For example, if the error is related to the internal code instead of those configuration options, we may try programming slicing technique \cite{weiser1981program} or spectrum-based approaches \cite{naish2011model}. In such case, the parameters that we model for the SUT should not only limited to be configuration options or simple inputs, but also those variables, predicates, or other logical structures and data in the software we test.
 
 %
 % not the directly linear about multiple failures, i.e., failure a can mask the failure b, failure b can mask a . and failure c can mask failure c. Even worse, two failures can mask each other. When such scenorias happened, we need to recoonsruct the formal model of the schemas that when can be either be.  as the condition will significantly completed the relationships between the failures and schemas. But anyhow, our appraohc can still work in such a way, as the will always good to identify the MFS.
@@ -1679,6 +1838,86 @@ As for the future work, we need to do more empirical studies to make our conclus
 %Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{4}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
 %
 %According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases ($t_{1}$, $t_{5}$) has the maximal suspiciousness with $F_{2}$, while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
+\section{The detail algorithms of FIC\_BS and its variation with replacement strategy }
+\begin{algorithm}[ht]
+%\SetAlgoNoLine
+\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
+\KwOut{ The $MFS$ in the $t_{original}$ }
+%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+
+$C_{free} \leftarrow NULL $ \;
+$MFS  \leftarrow NULL $ \;
+\While{true}{
+        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
+       % $U \leftarrow C_{free} $ \;
+        \While{$| C_{cand} | > 1$ \&\& $ContainMFS\_factor(\ C_{cand}\ )$}{
+            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
+            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  C_{free} )$\;
+            \eIf  {$Run (testCase) == PASS$}{
+                $C_{cand} \leftarrow C_{low} $\;
+            }{
+                $C_{cand} \leftarrow C_{high}$\;
+                $C_{free} \leftarrow C_{low} \bigcup C_{free}$\;
+            }
+        }
+      %  $C_{free} \leftarrow U$\;
+       % $element \leftarrow C_{cand}$\;
+
+        \If  {$C_{cand} == NULL$}{
+            break \;
+           }
+         $MFS  \leftarrow   MFS \bigcup {C_{cand}}$  \;
+     }
+     \Return $MFS$ \;
+
+\caption{The algorithm of  FIC\_BS }
+\label{alg:fic}
+\end{algorithm}
+
+Here, $C_{free}$ indicates the parameter values in $t_{original}$ that is not related to the failure. $C_{cand}$ are the set of parameter values in $t_{original}$  that is needed to check in one iteration (Note that $C_{cand}$ must contain at least one factor of MFS (line 5)). This algorithm consists of two loops. The outer loop (line 3 - 19) is to repeatedly search failure-inducing parameter values in $t_{original}$ and append them in $MFS$ (line 18), until none of failure-inducing parameter value is found (line 15).  The inter loop (line 5 - 14) focus on finding one failure-inducing parameter value in $C_{cand}$  (Those parameters which have been determined to be part of MFS or in $C_{free}$ is omitted (line 4) ). To reach this target, the inter loop repeatedly use binary search technique to reduce the scope of parameter values ($C_{cand}$) that need to check (line 5 - 14). In each iteration, $C_{cand}$ is split into two equally size part, i.e., $C_{low}$ and $C_{high}$ (line 6). Then a new test case is generated by mutating the $C_{free}$ part and $C_{low}$ part of the original failing test case $t_{original}$ (line 7). For example, assume the original failing test case is (1, 1, 1, 1). The $C_{free}$ is the second parameter value, i.e., (-, 1, -, -) and $C_{low}$ part is the third parameter value (-, -, 1, -). Then a new test case may be generated like (1, 0, 0, 1). Note that the mutated values should be one of safe values set ($SV$), and the parameter values that is not mutated in this iteration is called \emph{fixed} part. If the newly generated test case passed (This indicates that MFS was broken. As $C_{free}$ is not related to the failure, hence, at least one element in $C_{low}$ is failure-inducing), then the scope of failure-inducing elements will be reduced to $C_{low}$ (line 8 - 9). Otherwise, it will be reduced to $C_{high}$ part (line 11) (This is because MFS was not broken, indicating that MFS is in $C_{high}$). In this case, $C_{low}$ will be appended to the $C_{free}$ part (line 12), as it does not related to the MFS. The inter loop ends when $C_{cand}$ has just one element (one failure-inducing parameter value is found, and should appended to MFS (line 18)), or is empty (no more failure-inducing parameter value can be found, the algorithm ends (line 15- 17)).
+
+%\begin{proposition}[{Determine failure-inducing parameter value}] \label{pro:mfs-identiy}
+%For schemas $c_{1}$, $c_{2}$, if $c_{1} \prec c_{2}$, then all the test cases that contain $c_{2}$ must also contain $c_{1}$, i.e., $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
+%\end{proposition}
+%
+%\begin{proof}
+%  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
+%\end{proof}
+
+\begin{algorithm}[ht]
+%\SetAlgoNoLine
+\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
+\KwOut{ The $MFS$ in the $t_{original}$ }
+%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+
+$C_{free} \leftarrow NULL $ \;
+$MFS  \leftarrow NULL $ \;
+\While{true}{
+        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
+        $U \leftarrow C_{free} $ \;
+        \While{$| C_{cand} | > 1$}{
+            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
+            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  U )$\;
+            \eIf  {$Run (testCase) == PASS$}{
+                $C_{cand} \leftarrow C_{low} $\;
+            }{
+                $C_{cand} \leftarrow C_{high}$\;
+                $U \leftarrow C_{low}$\;
+            }
+        }
+        $C_{free} \leftarrow U$\;
+        $element \leftarrow C_{cand}$\;
+
+        \If  {$element == NULL$}{
+            break \;
+           }
+         $MFS  \leftarrow   MFS \bigcup {element}$  \;
+     }
+     \Return $MFS$ \;
+
+\caption{The algorithm of  FIC\_BS with replacement strategy}
+\label{alg:fic-replacement}
+\end{algorithm}
 
 \section{The detail of the experiments}\label{sec:appdenxis:detailExper}
 
