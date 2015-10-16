@@ -57,8 +57,8 @@ JEFF Y. LEI
 \affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
 Hareton Leung and ALVIN CHAN
 \affil{Department of computing, Hong Kong Polytechnic University}
-JEFF Y. LEI
-\affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
+Xiaoyin Wang
+\affil{Department of Computer Science, University of Texas at San Antonio}
 }
 % NOTE! Affiliations placed here should be for the institution where the
 %       BULK of the research was done. If the author has gone to a new
@@ -731,44 +731,15 @@ It is noted that the motivating example in section \ref{sec:motiv} actually adop
 
 
 \subsection{Masking effects for FII approaches} \label{sec:mask:fci}
-Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FII approaches, masking effects can make problems worse.
+Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FII approaches, masking effects can make problems worse. This is because FII approaches, with masking effects, not only unable determine $T_{mask(F_{m})}$ as discussed before, but also make wrong inferring outcomes of some test cases without executing, i.e., wrong $T_{F-infer}$ and $T_{P-infer}$ as mentioned in Section \ref{subsec:Formal:identi}.
 
-This is because due to the time and computing rescouses limitation, FII approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ be ignored as discussed before, but also significantly impact on the inference process.
+%This is because due to the time and computing rescouses limitation, FII approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result.
 
-Consider an FII example using the OFOT method \cite{nie2011minimal}.  Table \ref{ofot-identify} gives an example to illustrate this approach. For SUT($2^{4}$), assume the failing test case (1, 1, 1, 1) is being analysed, then OFOT approach can be illustrated as shown in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of \emph{t} at a time to generate additional test cases: $t_{1}; t_{2}; t_{3};t_{4}$. The passings of $t_{1}$ and $t_{3}$ indicate that these two test cases break the MFS in the original test case \emph{t}. So, (1,-,-,-) and (-,-,1,-) should be the failure-causing factors, and the other test cases ($t_{2}, t_{4}$) all failed, indicating that no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS). Therefore, the MFS in \emph{t} is (1,-,1,-).
 
-\begin{table}[ht]
-\tbl{OFOT example\label{ofot-identify}}{
-\begin{tabular}{llllll}
-\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
- $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\
- \hline
-\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
-$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1  \ \ \  1 } & Pass \\
-$t_{2}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  1  \ \ \  1 } & Fail \\
-$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
-$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
-\hline
-\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  1  \ \ \  - ) }  \\
-\hline \end{tabular}}
-\end{table}
+Consider a FII example that still use the FIC\_BS method \cite{zhang2011characterizing}.  Similar to the example listed in Table \ref{fic-bs-identify}, assume the test case (1, 1, 1, 1) failed with $F_{1}$. Then assume that an known MFS that trigger $F_{2}$, where failure $F_{2}$ can mask $F_{1}$. Next we will illustrate how FIC\_BS works using  strategies the \emph{regarded as one strategy} and \emph{distinguishing failures strategy}, respectively.  The details using this two strategies are listed in Table \ref{ofot-identify-mask-two}, with the left part for \emph{regarded as one failure} and the right part for \emph{distinguishing failures}.
 
-According to the MFS definition, all the test cases contain (1, -, 1, -) should fail.  That is, test cases of $\mathcal{T}((1, -, 1, -))$ as listed in Table \ref{ofot-infer} should fail. Combining the observed failing test cases in Table \ref{ofot-identify}, the failing test case inferred by OFOT in this case is (1, 0, 1, 0) as shown in Column `inferred $T_{f}$' of Table \ref{ofot-infer}.
+For the first strategy, i.e., \emph{regarded as one failure}, $t_{1}$ and $t_{2}$ are both determined as \emph{fail}. As a result, only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
 
-\begin{table}[ht]
-\centering
-\tbl{Inferred test cases by OFOT\label{ofot-infer}}{
-  \begin{tabular}{ccc}
-$\mathcal{T}((1, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
-(1, 0, 1, 0)&               & (1, 0, 1, 0) \\
-(1, 0, 1, 1)& (1, 0, 1, 1)  & \\
-(1, 1, 1, 0)& (1, 1, 1, 0)  & \\
-(1, 1, 1, 1)& (1, 1, 1, 1)  & \\
-\hline
-  \end{tabular}
-  }
-  \end{table}
 
 For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as shown in Table \ref{ofot-identify-mask}. To make the OFOT approach work properly in this case,  without additional information,  we need to apply the \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other word, $t_{1}$ and $t_{2}$ should either be determined as \emph{Fail} or \emph{Pass}.
 
@@ -1195,6 +1166,10 @@ $T_{fail}$ &$T_{pass}$ &  $T_{invalid}$ \\ \hline
 
 
 Another type of constraint is those that do not be found at first, but triggered later in testing\cite{yilmaz2013reducing}. The same as the approach proposed in \cite{yilmaz2013reducing}, we can just treat them as one type of failure, and then use MFS identification approach to identify them when encounter those invalid test cases.
+
+\subsection{Deal with safe values}
+With safe value,
+
 
 
 \section{empirical studies}\label{sec:emprical}
