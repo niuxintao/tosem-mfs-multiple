@@ -333,7 +333,7 @@ If any test case which contains the schema $c$, and trigger a particular failure
 %Based on this, if a test case $t$ contain such a failure-inducing combination, say $c(F)$, it should trigger the failure $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failure are caused by the interactions of the parameter values in the SUT.
+In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failure are caused by the interactions of the parameter values in the SUT. Another noteworthy thing is that, in practice, the MFS definition (Section 3.5) may not be valid. This is because in some specific cases,  e.g., the masking problems which we will discussed later, we may not determine whether some test cases will trigger the particular failure $F$, or not.
 
 %We have the following proposition based on these basic definitions.
 %
@@ -680,7 +680,7 @@ This example illustrate that the FII approach cannot execute all the test cases,
 As discussed before, $\mathcal{C}(T_{F_{m}})$ is the MFS set of failure $F_{m}$ in theory.  When considering the masking effects between multiple failures, however, this formula is not correct.
 
 \begin{definition}
-A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular failure, but it does not trigger the expected failure because another failure was triggered ahead of it that prevents $t$ from being normally checked.
+A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular failure, but it does not trigger the expected failure because other unexpected event, such another failure or unaccounted control dependency, was triggered ahead of it that prevents $t$ from being normally checked.
 \end{definition}
 
 Taking the masking effects into account, when identifying the MFS of a specific failure $F_{m}$, we should not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of failure $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
