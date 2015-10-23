@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  18 OCT 2015 14:48
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  22 OCT 2015 20:31
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -620,9 +620,6 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 1941--2003
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.aux)
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
