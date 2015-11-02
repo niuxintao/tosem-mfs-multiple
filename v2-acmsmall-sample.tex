@@ -578,7 +578,7 @@ For example, Table \ref{example_identical_condition} shows the minimal schemas f
 Based on this proposition, let $T_{F-known}$ be the given test cases which are known to be failing, and $T_{P-known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F-known} \bigcup T_{P-known})$ be the test cases that are not known to be failing or not. Based on Proposition \ref{pro:dsms}, we have the following lemma:
 
 \begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
-$\forall c \in \mathcal{C}(T_{F-known})$, if $\exists c' \in \mathcal{C}(T_{F-known} \bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
+$\forall c \in \mathcal{C}(T_{F-known})$, if $\exists c' \in \mathcal{C}(T_{F-known} $ $\bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
 \end{lemma}
 
 The proof of this lemma is obvious. With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify a MFS $c$, there still needs many test cases to execute; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with number of parameters in the SUT. Hence, traditional FII approaches will take some assumptions to further reduce the number of needed test cases to identify the MFS.
@@ -629,7 +629,7 @@ Based on this assumption, we have the following two lemmas:
 \end{lemma}
 
 \begin{proof}
-Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $t$ is the super schema of $c$ or identical to $c$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (Assumption \ref{ass:safevalue}), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus muta)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
+Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $t$ is the super schema of $c$ or identical to $c$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (Assumption \ref{ass:safevalue}), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
 \end{proof}
 
 For example, if (0, 0, 0, 0) is known to be passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
@@ -666,7 +666,7 @@ $t_{16}$ & 1      & 1     & 1     & 1     & fail  & known     \\ \hline
 \end{tabular}}
 \end{table}
 
-After these test cases having been inferred, we can find that $\mathcal{C}(T_{F-known} \bigcup T_{F-infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1). $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can learn that (-, 1, -, 1) must be MFS.
+After these test cases having been inferred, we can find that $\mathcal{C}(T_{F-known} \bigcup T_{F-infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1), and $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can learn that (-, 1, -, 1) must be MFS.
 
 %In our model, to identify MFS (-, 1, -, 1), we should execute all the test cases, and test cases in $\mathcal{T}((1, -, 1, -))$ should fail.  As listed in Table \ref{realMFS-for-11}, apart from the observed test cases in Table \ref{ofot-identify} (in bold), the outcomes of other test cases should be inferred. These results can be inferred based on the basic assumptions of FIC\_BS. For example, test case $t_{3}$ should pass, as if not so, (-, -, -, 0) must be failure-inducing factor (comparing $t_{3}$ and $t_{4}$), which contradicts the factor (-, -, -, 0) are safe value. Similarly, $t_{2}$ (Comparing $t_{2}$ and $t_{4}$), $t_{1}$ (Comparing $t_{1}$ and $t_{5}$) should pass. Additionally, $t_{14}$ should fail, because if not so, (0, -, -, -) must be failure-inducing (Comparing $t_{6}$ and $t_{14}$).
 
@@ -736,81 +736,32 @@ Based on previous analysis, even though exhaustive testing is conducted to obtai
 %This is because due to the time and computing rescouses limitation, FII approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result.
 
 
-Consider a FII example that still use the FIC\_BS method \cite{zhang2011characterizing}.  Similar to the example listed in Table \ref{fic-bs-identify}, assume the test case (1, 1, 1, 1) failed with $F_{1}$ (The MFS is still assumed to be (-, 1, -, 1) as Table \ref{fic-bs-identify}). Then assume that an known MFS (-, 1, 0, -) that trigger $F_{2}$, where failure $F_{2}$ can mask $F_{1}$. Next we will illustrate how FIC\_BS works using  strategies the \emph{regarded as one strategy} and \emph{distinguishing failures strategy}, respectively.  The details using this two strategies are listed in Table \ref{ofot-identify-mask-two}, with the left part for \emph{regarded as one failure} and the right part for \emph{distinguishing failures}.
+Consider a FII example that still use the FIC\_BS method \cite{zhang2011characterizing}.  Similar to the example listed in Table \ref{fic-bs-identify}, assume the test case (1, 1, 1, 1) failed with $F_{1}$ (The MFS is still assumed to be (-, 1, -, 1) as Table \ref{fic-bs-identify}). Then assume that an known MFS (-, 1, 0, -) that trigger $F_{2}$, where failure $F_{2}$ can mask $F_{1}$. Next we will illustrate how FIC\_BS works using  strategies the \emph{regarded as one strategy} and \emph{distinguishing failures strategy}, respectively.  
 
-For the first strategy, i.e., \emph{regarded as one failure}, $t_{1}$ and $t_{2}$ are both determined as \emph{fail}. As a result, only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
+First, for the first strategy, i.e., \emph{regarded as one strategy}, we list how it works in Fig. \ref{fig:maskingeffects1}, as well as the masking effects it suffers. With this strategy, it just needs three additional test cases to determine the MFS in the original failing test case $t$, i.e., $t_{1}$, $t_{2}$, and $t_{3}$ (listed in the left part of Fig. \ref{fig:maskingeffects1}). 
+ The right part of Fig. \ref{fig:maskingeffects1} shows the MFS it obtained is (-, 1, -, -), which is obviously wrong (See the correct result in Table \ref{realMFS-for-11}, which should be (-, 1, -, 1), but this strategy treat the sub-schema (-, 1, -, -) of it to be MFS). The middle part of Fig. \ref{fig:maskingeffects1} explains why this strategy can get this result. Specifically, it treats all failures as the same failure, i.e., $F_{1}$. Hence, test case $t_{5}$ in the middle of Fig. \ref{fig:maskingeffects1} (Marked \emph{Strategy} in the column `State ') is determined to trigger $F_{1}$. Here, the test case $t_{5}$ corresponds to the test case $t_{3}$ in the left part of Fig.\ref{fig:maskingeffects1} ( The ID we refer to one test case next are all in the middle part).  According to the Assumption \ref{lemma:inferpassing} and \ref{lemma:inferfailing}, test cases $t_{1}$, $t_{2}$, $t_{3}$, $t_{6}$, $t_{7}$, $t_{13}$, $t_{14}$, and $t_{15}$ are determined to be pass or fail with $F_{1}$, respectively. After then, we can determine that (-, 1, -, -) should be the MFS. This is because, $\mathcal{C}(T_{F_{1}})$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{13}, t_{14}, t_{15}, t_{16} \})$ = (-, 1, -, -), which has been included in $\mathcal{C}(T_{F_{1}} \bigcup T_{unknown}$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{14}, t_{15}, t_{16}\})$ = (1, -, -, -), (-, 1, -, -).
+
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=4.31in]{example-of-masking-effects1.eps}
+\includegraphics[width=4.99in]{example-of-masking-effects1.eps}
 \caption{Masking effects of strategy Regarded as one failure}
 \label{fig:maskingeffects1}
 \end{figure}
 
+For the second strategy, i.e., \emph{distinguishing failures}, we list the result in Fig. \ref{fig:maskingeffects2}. Different from the first strategy, it treat the different filure other than $F_{1}$ as pass. As a result, test case $t_{5}$ and $t_{6}$ in the middle part of Fig. \ref{fig:maskingeffects2} are determined to be pass.  Then combining the inferred test cases, it finally get the MFS (-, 1, 1, 1), which is also not correct (This schema is the super-schema of the original MFS (-, 1, -, 1)).
+
+%only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=4.31in]{example-of-masking-effects2.eps}
+\includegraphics[width=4.99in]{example-of-masking-effects2.eps}
 \caption{Masking effects of strategy Distinguishing failures}
 \label{fig:maskingeffects2}
 \end{figure}
 
 
-%\begin{table}[ht]
-%\tbl{OFOT with two strategies\label{ofot-identify-mask-two}}{
-%\begin{tabular}{llllll}
-%\multicolumn{6}{c}{\bfseries  regarded as one failure} \\ \hline
-%%\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
-%$t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & $F_{1}$ \\ \hline
-%$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  1 \ \ \   1} &  Pass \\
-%$t_{2}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1 \ \ \   1} &  $F_{1}$ \\
-%$\textbf{t}_{\textbf{3}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{0}  \ \ \  \textbf{0}} & $\textbf{F}_{\textbf{2}}$ \\
-%%$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
-%\hline
-%\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-%\multicolumn{6}{c}{(-  \ \ \ \  1 \ \ \ \  - \ \ \ \ -  ) }  \\
-%\hline \end{tabular}
-%  \hspace{1em}
-%\begin{tabular}{llllll}
-%\multicolumn{6}{c}{\bfseries  distinguishing failures} \\ \hline
-% $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & $F_{1}$ \\ \hline
-%$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  0 \ \ \ \  1 \ \ \   1} &  Pass \\
-%$t_{2}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1 \ \ \   1} &  $F_{1}$ \\
-%$\textbf{t}_{\textbf{3}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{0}  \ \ \  \textbf{0}} & $\textbf{F}_{\textbf{2}}$ \\
-%$\textbf{t}_{\textbf{4}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{0}  \ \ \  \textbf{1} } & $\textbf{F}_{\textbf{2}}$ \\
-%$t_{5}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & pass \\
-%\hline
-%\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-%\multicolumn{6}{c}{(0  \ \ \ \  1 \ \ \ \  1 \ \ \ \ 1) }  \\
-%\hline \end{tabular}
-%}
-%\end{table}
-
-
-%For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as shown in Table \ref{ofot-identify-mask}. To make the OFOT approach work properly in this case,  without additional information,  we need to apply the \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other words, $t_{1}$ and $t_{2}$ should either be determined as \emph{Fail} or \emph{Pass}.
-%
-%\begin{table}[ht]
-%\tbl{OFOT masking example\label{ofot-identify-mask}}{
-%\begin{tabular}{llllll}
-%\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
-% $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\
-% \hline
-%\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
-%$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \  \textbf{1}} & \textbf{Other Failure} \\
-%$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Other Failure} \\
-%$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
-%$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
-%%\hline
-%%\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-%%\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  -) }  \\
-%\hline \end{tabular}}
-%\end{table}
-%
-%The details using this two strategies are listed in Table \ref{ofot-identify-mask-two}, with the left part for \emph{regarded as one failure} and the right part for \emph{distinguishing failures}. For the first strategy, $t_{1}$ and $t_{2}$ are both determined as \emph{fail}. As a result, only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
-
-
-
-Such deviations for these two strategies are caused by the reduction of the observed test cases. Here, as $t_{1}$ and $t_{2}$ both triggered other failures, these two test cases cannot contribute to the MFS identification for the currently analysed failure. Besides this, the inference of OFOT are also affected. We list the inference test cases for these strategies in Table \ref{ofot-infer-two}. It can be found that both strategies cannot obtain the correct inference test cases as shown in Table \ref{ofot-infer}. Specifically, 4 test cases, i.e., (0, 0, 1, 0), (0, 0, 1, 1), (0, 1, 1, 0) and (0, 1, 1, 1),  inferred by strategy \emph{regarded as one failure} actually cannot trigger the current failure; while  strategy \emph{distinguishing failures} does not infer additional test cases (marked as `---').
+Such deviations for these two strategies are caused by the reduction of the test cases which are known to be failing with specific failure. Here, test cases (0, 1, 0, 0) and (0, 1 0, 1) both triggered other failures, among which the second test case (0, 1, 0, 1) should trigger $F_{1}$ if failure $F_{2}$ was not triggered first, while the first test case not. Hence, neither strategy \emph{Regarded as one failure} nor \emph{Distinguishing failures} can make a perfect determination of the result of these two test cases. Besides this, the incorrect determination of these test cases negatively affect the the inference of FII approach-- FIC\_BS.  For example, with  strategy \emph{Regarded as one failure}, it wrongly infer the test case $t_{15}$ (1, 1, 1 ,0) to be fail with $F_{1}$ (See the middle part of Fig. \ref{fig:maskingeffects1}), which should be marked as `Unknown' in Table \ref{realMFS-for-11}. With strategy \emph{Distinguishing failures}, however, it marked test case $t_{14}$ (1, 1, 0, 1) as `Unknown' (See the middle part of Fig. \ref{fig:maskingeffects2}), which should be inferred to be fail with $F_{1}$ in Table \ref{realMFS-for-11}.
 
 %\begin{table}[ht]
 %\centering
@@ -1029,13 +980,44 @@ Note that this algorithm has another exit, besides finding an expected test case
 \section{Illustration of the approach}\label{sec:appraoch}
 
 This section will illustrate the complete approach, which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
-
-\subsection{MFS identification}
-
-fixed part is that . The additionl test case just need to maintain the fixed part.
+%
+%\subsection{MFS identification}
+%
+%fixed part is that . The additionl test case just need to maintain the fixed part.
 
 
 \subsection{MFS identification with replacement strategy}
+
+\begin{algorithm}[ht]
+%\SetAlgoNoLine
+\KwIn{ failure $F_{m}$, all the candidate test cases $R$, the suspiciousness matrix $Sp$}
+\KwOut{ $t_{new}$ the regenerate test case }
+%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+\While{\textbf{not} MeetEndCriteria()}{
+%       $optimal \leftarrow MAX$,
+%       $t_{new} \leftarrow null$ \;
+%       \ForAll {$F_{i} ( i = 1, ... m-1 , m+2,...L )$}{
+%                $solver \leftarrow setup(Param, fixed, T_{executed}, F_{i}, Sp)$\;
+%               \DontPrintSemicolon $(optimal', t_{new}') \leftarrow solver.getOptimalTest()$; \tcc*[f]{Use ILP solver to get $t_{F_{i}}$} \;
+%                \If (\tcc*[f]{Select $t_{F_{i}}$ which has smaller suspiciousness}){$optimal' < optimal$}{
+%                       $t_{new} \leftarrow t_{new}'$\;
+%                       $optimal \leftarrow optimal'$\;
+%                    }
+%          }
+       $t_{new} \leftarrow \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  Sp(t, F_{i})$\;
+       $result \leftarrow execute(t_{new})$\;
+       $update\_SP(t_{new})$ \;
+        \eIf  {$result == PASS\ or\ result ==  F_{m}$}{
+         \Return $t_{new}$\;
+           }{
+         continue\;
+         }
+       }
+       \Return \emph{null}
+
+\caption{MFS identification with Replacing test cases strategy}
+\label{alg:two}
+\end{algorithm}
 
 
 \subsection{A case study using the replacement strategy}\label{sec:method:case}
@@ -1877,40 +1859,40 @@ Here, $C_{free}$ indicates the parameter values in $t_{original}$ that is not re
 %  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 %\end{proof}
 
-\begin{algorithm}[ht]
-%\SetAlgoNoLine
-\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
-\KwOut{ The $MFS$ in the $t_{original}$ }
-%$index$ = 0; $FreNum_{\alpha}$ = -1\;
-
-$C_{free} \leftarrow NULL $ \;
-$MFS  \leftarrow NULL $ \;
-\While{true}{
-        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
-        $U \leftarrow C_{free} $ \;
-        \While{$| C_{cand} | > 1$}{
-            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
-            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  U )$\;
-            \eIf  {$Run (testCase) == PASS$}{
-                $C_{cand} \leftarrow C_{low} $\;
-            }{
-                $C_{cand} \leftarrow C_{high}$\;
-                $U \leftarrow C_{low}$\;
-            }
-        }
-        $C_{free} \leftarrow U$\;
-        $element \leftarrow C_{cand}$\;
-
-        \If  {$element == NULL$}{
-            break \;
-           }
-         $MFS  \leftarrow   MFS \bigcup {element}$  \;
-     }
-     \Return $MFS$ \;
-
-\caption{The algorithm of  FIC\_BS with replacement strategy}
-\label{alg:fic-replacement}
-\end{algorithm}
+%\begin{algorithm}[ht]
+%%\SetAlgoNoLine
+%\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
+%\KwOut{ The $MFS$ in the $t_{original}$ }
+%%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+%
+%$C_{free} \leftarrow NULL $ \;
+%$MFS  \leftarrow NULL $ \;
+%\While{true}{
+%        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
+%        $U \leftarrow C_{free} $ \;
+%        \While{$| C_{cand} | > 1$}{
+%            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
+%            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  U )$\;
+%            \eIf  {$Run (testCase) == PASS$}{
+%                $C_{cand} \leftarrow C_{low} $\;
+%            }{
+%                $C_{cand} \leftarrow C_{high}$\;
+%                $U \leftarrow C_{low}$\;
+%            }
+%        }
+%        $C_{free} \leftarrow U$\;
+%        $element \leftarrow C_{cand}$\;
+%
+%        \If  {$element == NULL$}{
+%            break \;
+%           }
+%         $MFS  \leftarrow   MFS \bigcup {element}$  \;
+%     }
+%     \Return $MFS$ \;
+%
+%\caption{The algorithm of  FIC\_BS with replacement strategy}
+%\label{alg:fic-replacement}
+%\end{algorithm}
 
 \section{The detail of the experiments}\label{sec:appdenxis:detailExper}
 
