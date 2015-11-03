@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  29 OCT 2015 16:05
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  2 NOV 2015 23:04
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -446,14 +446,7 @@ Underfull \hbox (badness 1342) in paragraph at lines 463--465
 [] [] \OT1/pnc/m/it/10 For any
  []
 
-[8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 580--582
-[] [] $\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 c \OMS/cmsy/m/n/10 2 C\OT1/cmr/m/n/10
- (\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 )$\OT1/pnc/m/it/10 , if $\OMS/cmsy/m/n/10
- 9\OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 2
- []
-
-[10] [11]
+[8] [9] [10] [11]
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
 Requested font "pncb7t" at 6.0pt
@@ -463,11 +456,11 @@ Requested font "pncr7t" at 5.0pt
 Requested font "pncb7t" at 5.0pt
  -> pncb7t
 
-Underfull \hbox (badness 10000) in paragraph at lines 669--670
+Underfull \hbox (badness 6859) in paragraph at lines 669--670
 \OT1/pnc/m/n/10 = $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cm
 m/m/it/10 t[]; t[]; t[]; t[]\OMS/cmsy/m/n/10 g\OT1/cmr/m/n/10 )$ \OT1/pnc/m/n/1
-0 = (-, 1, -, 1). $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 T[] [] 
-T[]\OT1/cmr/m/n/10 ) [](\OML/cmm/m/it/10 T[] \OMS/cmsy/m/n/10 n
+0 = (-, 1, -, 1), and $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 T[]
+ [] T[]\OT1/cmr/m/n/10 ) [](\OML/cmm/m/it/10 T[] \OMS/cmsy/m/n/10 n
  []
 
 [12]
@@ -476,35 +469,22 @@ Requested font "pncri7t" at 7.0pt
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
  [13]
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 739.
-Requested font "pncb7t" at 10.0pt
- -> pncb7t
-
-
-LaTeX Warning: Reference `ofot-identify-mask-two' on page 14 undefined on input
- line 739.
-
 File: example-of-masking-effects1.eps Graphic file (type eps)
-<example-of-masking-effects1.eps>
+ <example-of-masking-effects1.eps>
 File: example-of-masking-effects2.eps Graphic file (type eps)
  <example-of-masking-effects2.eps>
-
-LaTeX Warning: Reference `ofot-infer-two' on page 14 undefined on input line 81
-3.
-
-
-LaTeX Warning: Reference `ofot-infer' on page 14 undefined on input line 813.
-
 [14]
-Underfull \vbox (badness 4582) has occurred while \output is active []
+Underfull \vbox (badness 4505) has occurred while \output is active []
 
  [15]
-[16]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+[17]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 981.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 932.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -522,40 +502,47 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1003.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 954.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1003.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 954.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1003.
-
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 954.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
- [17]
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 957.
+Requested font "pncb7t" at 10.0pt
+ -> pncb7t
+ [18]
 File: table.eps Graphic file (type eps)
- <table.eps> [18] [19] [20] [21]
+ <table.eps> [19] [20]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+[22]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1253.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
- [22] [23] [24] [25]
+ [23] [24] [25] [26]
 File: accurate.eps Graphic file (type eps)
  <accurate.eps>
 File: sub.eps Graphic file (type eps)
-
-<sub.eps>
+ <sub.eps>
 File: parent.eps Graphic file (type eps)
  <parent.eps>
 File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
- <irrelevant.eps>
+
+<irrelevant.eps>
 Underfull \hbox (badness 1259) in paragraph at lines 1443--1443
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
@@ -563,50 +550,49 @@ Underfull \hbox (badness 1259) in paragraph at lines 1443--1443
 File: overall.eps Graphic file (type eps)
 <overall.eps>
 File: testCases.eps Graphic file (type eps)
- <testCases.eps> [26] [27]
+ <testCases.eps> [27] [28]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28]
-[29]
+ [29]
+[30]
 File: replacingtimes.eps Graphic file (type eps)
  <replacingtimes.eps>
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
- [30] [31]
+ [31]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps>
-[32]
+ <4-way.eps> [32]
+[33]
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1647 replaced by U+FFFD.
-
-[34]
+ [34]
+[35] [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [36]
+ [37]
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-[37]
+Underfull \vbox (badness 6141) has occurred while \output is active []
+
+ [38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38])
-[39]
+ [39])
+[40]
 Requested font "pncri7t" at 6.0pt
  -> pncri7t
  [1
@@ -621,19 +607,15 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 1957--2019
 [] 
  []
 
-[2] [3] [4]
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[2] [3]
+(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.aux) ) 
 Here is how much of TeX's memory you used:
- 3963 strings out of 430478
- 46991 string characters out of 3191501
- 194726 words of memory out of 3000000
- 7036 multiletter control sequences out of 15000+200000
+ 3960 strings out of 430478
+ 46927 string characters out of 3191501
+ 189948 words of memory out of 3000000
+ 7033 multiletter control sequences out of 15000+200000
  25620 words of font info for 78 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,18n,30p,2359b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,20n,30p,2359b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on v2-acmsmall-sample.pdf (43 pages).
