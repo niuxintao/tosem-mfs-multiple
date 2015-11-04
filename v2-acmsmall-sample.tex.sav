@@ -47,16 +47,18 @@
 \begin{document}
 
 % Page heads
-\markboth{X. Niu et al.}{Identifying failure-causing schemas in the presence of multiple failures}
+\markboth{X. Niu et al.}{Identifying failure-causing schemas in the presence of multiple faults}
 
 % Title portion
-\title{Identifying minimal failure-causing schemas in the presence of multiple failures}
+\title{Identifying minimal failure-causing schemas in the presence of multiple faults}
 \author{XINTAO NIU and CHANGHAI NIE
 \affil{State Key Laboratory for Novel Software Technology, Nanjing University}
 JEFF Y. LEI
 \affil{Department of Computer Science and Engineering, The University of Texas at Arlington}
 Hareton Leung and ALVIN CHAN
 \affil{Department of computing, Hong Kong Polytechnic University}
+Xiaoyin Wang
+\affil{Department of Computer Science, University of Texas at San Antonio}
 }
 % NOTE! Affiliations placed here should be for the institution where the
 %       BULK of the research was done. If the author has gone to a new
@@ -66,13 +68,13 @@ Hareton Leung and ALVIN CHAN
 %       currently affiliated with NASA.
 
 \begin{abstract}
-Combinatorial testing (CT) has been proven effective in revealing the failures caused by the interaction of factors that affect the behavior of a system. The theory of Minimal Failure-Causing Schema (MFS) has been proposed to isolate the root cause of a failure after CT. Most algorithms that aim to identify MFS focus on handling a single failure in the System Under Test (SUT). However, we argue that multiple failures are more common in practice, under which masking effects may be triggered so that some failures cannot be observed. The traditional MFS theory lacks a mechanism to handle such effects; hence, they may incorrectly isolate the MFS. To address this problem, we propose a new MFS model that takes into account multiple failures. We first formally analyse the impact of the multiple failures on existing MFS identifying algorithms, especially in situations where masking effects are triggered by multiple failures. We then develop an approach that can assist traditional algorithms to better handle multiple failures. Empirical studies were conducted using several kinds of open-source software, which showed that multiple failures with masking effects do negatively affect traditional MFS identifying approaches and that our approach can help to alleviate these effects.
-%Combinatorial testing (CT) has been proven effective in revealing the failures caused by the interaction of factors that affect the behavior of a system. The theory of Minimal Failure-Causing Schema (MFS) has been proposed to isolate the root cause of a failure after CT. Most algorithms that aim to identify MFS focus on handling a single failure in the System Under Test (SUT). However, we argue that multiple failures are the more common testing scenario, under which masking effects may be triggered so that some failures cannot be observed. The traditional MFS theory, as well as the related identifying algorithms, lack a mechanism to handle such effects; hence, they may incorrectly isolate the MFS in the SUT.  To address this problem, we propose a new MFS model that takes into account multiple failures. We first formally analyse the impact of the multiple failures on existing MFS identifying algorithms, especially in situations where masking effects are triggered by multiple failures. We then develop an approach that can assist traditional algorithms to better handle multiple failures scenario. Empirical studies were conducted using several kinds of open-source software, which showed that multiple failures with masking effects do negatively affect traditional MFS identifying approaches and that our approach can help to alleviate these effects.
+Combinatorial testing (CT) has been proven effective in revealing the failures caused by the interaction of factors that affect the behavior of a system. The theory of Minimal Failure-Causing Schema (MFS) has been proposed to isolate the root cause of a failure after CT. Most algorithms that aim to identify MFS focus on handling a single fault in the System Under Test (SUT). However, we argue that multiple faults are more common in practice, under which masking effects may be triggered so that some failures cannot be observed. The traditional MFS theory lacks a mechanism to handle such effects; hence, they may incorrectly isolate the MFS. To address this problem, we propose a new MFS model that takes into account multiple faults. We first formally analyse the impact of the multiple faults on existing MFS identifying algorithms, especially in situations where masking effects are triggered by multiple faults. We then develop an approach that can assist traditional algorithms to better handle multiple faults. Empirical studies were conducted using several kinds of open-source software, which showed that multiple faults with masking effects do negatively affect traditional MFS identifying approaches and that our approach can help to alleviate these effects.
+%Combinatorial testing (CT) has been proven effective in revealing the failures caused by the interaction of factors that affect the behavior of a system. The theory of Minimal Failure-Causing Schema (MFS) has been proposed to isolate the root cause of a failure after CT. Most algorithms that aim to identify MFS focus on handling a single failure in the System Under Test (SUT). However, we argue that multiple faults are the more common testing scenario, under which masking effects may be triggered so that some failures cannot be observed. The traditional MFS theory, as well as the related identifying algorithms, lack a mechanism to handle such effects; hence, they may incorrectly isolate the MFS in the SUT.  To address this problem, we propose a new MFS model that takes into account multiple faults. We first formally analyse the impact of the multiple faults on existing MFS identifying algorithms, especially in situations where masking effects are triggered by multiple faults. We then develop an approach that can assist traditional algorithms to better handle multiple faults scenario. Empirical studies were conducted using several kinds of open-source software, which showed that multiple faults with masking effects do negatively affect traditional MFS identifying approaches and that our approach can help to alleviate these effects.
 
-%Many algorithms has been proposed to find the MFS in SUT, in our recently studies, however, we find these approaches cannot behave effectively when encounter multiple failures. The main reason why these methods failed to behave normally is that most of them ignore the masking effects hiding test cases, which can bias their identified results. In this paper, we extend the MFS theory to make it support the multiple failures testing scenarios, and hence can deal masking effects. Based on this, we gave an approach to identify the MFS which can alleviate the impacts of masking effects for multiple failures.
+%Many algorithms has been proposed to find the MFS in SUT, in our recently studies, however, we find these approaches cannot behave effectively when encounter multiple faults. The main reason why these methods failed to behave normally is that most of them ignore the masking effects hiding test cases, which can bias their identified results. In this paper, we extend the MFS theory to make it support the multiple faults testing scenarios, and hence can deal masking effects. Based on this, we gave an approach to identify the MFS which can alleviate the impact of masking effects for multiple faults.
 
-%analysed how the masking effect of multiple failures affect on the isolation of failure-inducing combinations. We further give a strategy of selecting test cases to alleviate this impact, which works by pruning these test cases that may trigger masking effect and replacing them with no-masking-effect ones. The test case selecting process repeated until we get enough information to isolate the failure-inducing combinations. We conducted some empirical studies on several open-source software. The result of the studies shows that multiple failures as well as the masking effects do exist in real software and our approach can assist combinatorial-based failure-inducing identifying methods to get a better result when handling multiple failures in SUT.
-%A key problem in CT is to isolate the failure-inducing combinations of the related failure as it can facilitate the debugging efforts by reducing the scope of code that needs to be inspected. Many algorithms has been proposed to identify such combinations, however, most of these studies either just consider the condition of one failure or ignore masking effects among multiple failures which can bias their identified results.
+%analysed how the masking effect of multiple faults affect on the isolation of failure-inducing combinations. We further give a strategy of selecting test cases to alleviate this impact, which works by pruning these test cases that may trigger masking effect and replacing them with no-masking-effect ones. The test case selecting process repeated until we get enough information to isolate the failure-inducing combinations. We conducted some empirical studies on several open-source software. The result of the studies shows that multiple faults as well as the masking effects do exist in real software and our approach can assist combinatorial-based failure-inducing identifying methods to get a better result when handling multiple faults in SUT.
+%A key problem in CT is to isolate the failure-inducing combinations of the related failure as it can facilitate the debugging efforts by reducing the scope of code that needs to be inspected. Many algorithms has been proposed to identify such combinations, however, most of these studies either just consider the condition of one failure or ignore masking effects among multiple faults which can bias their identified results.
 \end{abstract}
 
 
@@ -82,7 +84,7 @@ Combinatorial testing (CT) has been proven effective in revealing the failures c
 \keywords{Software Testing, Combinatorial Testing, Failure-causing schemas, Masking effects}
 
 \acmformat{Xintao Niu,
-Changhai Nie,  Jeff Y. Lei,  Hareton Leung, and Alvin Chan, 2015.Identifying minimal failure-causing schemas in the presence of multiple failures.}
+Changhai Nie,  Jeff Y. Lei,  Hareton Leung, and Alvin Chan, 2015.Identifying minimal failure-causing schemas in the presence of multiple faults.}
 % At a minimum you need to supply the author names, year and a title.
 % IMPORTANT:
 % Full first names whenever they are known, surname last, followed by a period.
@@ -120,21 +122,21 @@ id& \emph{Highlight} & \emph{Status bar} & \emph{Bookmarks}& \emph{Smart tags} &
   }
 \end{table}
 
-To address this problem, prior work \cite{nie2011minimal} specifically studied the properties of the failure-inducing interactions in SUT, based on which additional test cases were generated to identify them.
+To address this problem, prior work \cite{nie2011minimal} specifically studied the properties of the failure-inducing interactions in the SUT, based on which additional test cases were generated to identify them.
 %the MFS theory was proposed, it propose the complete life circle of software, studied the properties of the failure-inducing combinations and the test cases, based on which, it propose the . This task, in detail, following the detecting process in the CT life-cycle\cite{nie2011minimal,nie2011survey}, needs to. The proposed MFS theory \cite{nie2011minimal} present a completed seven-step methodology to detect and isolate such failure-inducing combinations, in which this is belong to the failure diagnosis circle.
-Other approaches to identify the failure-inducing interactions in SUT include building a tree model \cite{yilmaz2006covering}, adaptively generating additional test cases according to the outcome of the last test case \cite{zhang2011characterizing}, ranking suspicious interactions based on some rules \cite{ghandehari2012identifying}, and using graphic-based deduction \cite{martinez2008algorithms}, among others.
+Other approaches to identify the failure-inducing interactions in the SUT include building a tree model \cite{yilmaz2006covering}, adaptively generating additional test cases according to the outcome of the last test case \cite{zhang2011characterizing}, ranking suspicious interactions based on some rules \cite{ghandehari2012identifying}, and using graphic-based deduction \cite{martinez2008algorithms}, among others.
 
 
 %These approaches can be partitioned into two categories \cite{colbourn2008locating} according to how the additional test cases are generated: \emph{adaptive}--additional test cases are chosen based on the outcomes of the executed tests \cite{nie2011minimal,ghandehari2012identifying,niu2013identifying,zhang2011characterizing,shakya2012isolating,wang2010adaptive,li2012improved}or \emph{nonadaptive}--additional test cases are chosen independently and can be executed parallel \cite{yilmaz2006covering,colbourn2008locating,martinez2008algorithms,martinez2009locating,fouche2009incremental}.
 
-Most existing approaches mainly focus on the ideal scenario in which SUT only contains one failure, under which the outcomes of test cases can be simply categorized into fail or pass. However, in this paper, we argue that SUT with multiple distinguished failures is the more common testing scenario in practice, and moreover, this affects the effectiveness of Failure-inducing Interactions Identifying (FII) approaches. One main impact of multiple failures on FII approaches is the masking effect.  A masking effect \cite{dumlu2011feedback,yilmaz2013reducing} occurs when some failures prevent test cases from checking interactions that are supposed to be tested. Take the Linux command \emph{Grep} for example. We noticed that there are two different failures reported in the bug tracker system. The first \footnote{http://savannah.gnu.org/bugs/?29537}  claims that Grep incorrectly matches unicode patterns with `\textbackslash$<$\textbackslash$>$', while the second \footnote{http://savannah.gnu.org/bugs/?33080} claims an incompatibility between option `-c' and `-o'. When we put these two scenarios into one test case, only one failure will be observed, which means the other failure is masked by the observed failure. This effect will prevent test cases from executing normally, leading to incorrect judgment of the correlation between the interactions checked in the test case and the failure that has been masked. This effect was firstly noted by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can prevent traditional covering array in testing some interactions.
-%and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FII) approach :  Classification Tree Approach(CTA) \cite{yilmaz2006covering}, of which CTA has two versions, i.e., ternary-class and multiple-class.
+Most existing approaches mainly focus on the ideal scenario in which SUT only contains one fault, under which the outcomes of test cases can be simply categorized into failure or pass. However, in this paper, we argue that SUT with multiple faults is the more common testing scenario in practice, which will result in many distinguished failures as outcomes of test cases, and moreover, this affects the effectiveness of Failure-inducing Interactions Identifying (FII) approaches. One main impact of multiple faults on FII approaches is the masking effect.  A masking effect \cite{dumlu2011feedback,yilmaz2013reducing} occurs when some failures prevent test cases from checking interactions that are supposed to be tested. Take the Linux command \emph{Grep} for example. We noticed that there are two different failures reported in the bug tracker system. The first \footnote{http://savannah.gnu.org/bugs/?29537}  claims that Grep incorrectly matches unicode patterns with `\textbackslash$<$\textbackslash$>$', while the second \footnote{http://savannah.gnu.org/bugs/?33080} claims an incompatibility between option `-c' and `-o'. When we put these two scenarios into one test case, only one failure will be observed, which means the other failure is masked by the observed failure. This effect will prevent test cases from executing normally, leading to incorrect judgment of the correlation between the interactions checked in the test case and the failure that has been masked. This effect was firstly noted by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can prevent traditional covering array in testing some interactions.
+%and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impact on the Failure-inducing Combinations Identifying(FII) approach :  Classification Tree Approach(CTA) \cite{yilmaz2006covering}, of which CTA has two versions, i.e., ternary-class and multiple-class.
 
-%While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple failures in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impacts on the Failure-inducing Combinations Identifying(FII) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering}, of which CTA has two versions, i.e., ternary-class and multiple-class.
+%While all these approaches can help developers to isolate the failure-inducing combinations in failing test cases, in our recently studies on several open-source software, however, we found these approaches suffered from \emph{masking effects} of multiple faults in SUT. This effect was firstly introduced by Dumlu and Yilmaz in \cite{dumlu2011feedback}, in which they found that the masking effects in CT can make traditional covering array failed detecting some combinations and they proposed a feedback-driven approach to work around them. Their recent work \cite{yilmaz2013reducing} further empirically studied the impact on the Failure-inducing Combinations Identifying(FII) approach :  Classification Tree Approach(CTA)\cite{yilmaz2006covering}, of which CTA has two versions, i.e., ternary-class and multiple-class.
 
 %Obviously this fact do trouble these algorithms as it make them unable to judge whether the test case under testing trigger only the failure observed or triggered both two failures. As a result, it will make wrong analysis in the failure-inducing interactions for these masked failures.
 
-As masking effect can negatively affect the performance of FII approaches, a natural question is how this effect biases the results of these approaches. In this paper, we formalize the process of identifying the failure-inducing interactions under the circumstances in which masking effects exist in the SUT and try to answer this question. One insight from the formal analysis is that we cannot completely avoid the impact of masking effects even if we do exhaustive testing. Even worse, either ignoring the masking effects or treating multiple failures as one failure is detrimental to the FII process.
+As masking effect can negatively affect the performance of FII approaches, a natural question is how this effect biases the results of these approaches. In this paper, we formalize the process of identifying the failure-inducing interactions under the circumstances in which masking effects exist in the SUT and try to answer this question. One insight from the formal analysis is that we cannot completely avoid the impact of masking effects even if we do exhaustive testing. Even worse, either ignoring the masking effects or treating different failures as one failure is detrimental to the FII process.
 
 To address this concern, we propose a strategy to alleviate this impact by adopting a divide and conquer framework. With this framework, FII approaches is scheduled to separately handle each failure in the SUT. Specifically, for a particular failure, FII approaches only focus on the test cases that either pass or trigger the same failure under analysis. Test cases that triggered other different failures will be replaced with some newly generated test cases. In this way, FII approaches can properly work with little interference from the negative masking effects.
 %By this, our strategy can reduce the interference by any failure other than the failure under analysis.  trigger different failures, we will replace them with some newly regenerated test cases. These new test cases should either pass or trigger the same failure under analysis.
@@ -156,22 +158,22 @@ The key to our strategy is to search for a test case that does not trigger \emph
 
 %The key to the strategy is to prune test cases that may trigger a masking effect and then select or generate other test cases to test the interactions which were supposed to be tested in these pruned ones. We will keep these pruned test cases for the next iteration to isolate the failure-inducing interactions in these test cases. The process repeated until we characterize all the interactions for each failure. A point need to be noted is that these interactions supposed to be tested in the pruned test cases for one interaction vary in different algorithms we adopted. For example, for the classified tree method, we will generate more test cases that keep the same coverage, and for the one fact one time, we will generate test cases to keep the same.
 
-To evaluate the effectiveness of our approach, we applied our strategy on the FII approach FIC\_BS \cite{zhang2011characterizing}. The subjects used were two open-source software systems found in the developers' forum in the Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manuals, we built a testing model which can reproduce the reported bugs with given test cases. We then compared the FII approach augmented with our strategy to the original FII approach. We further empirically studied the performance of the important component of our strategy -- searching satisfied test cases. To conduct this study, we compared our approach with the augmented FII approach by randomly searching satisfied test cases. We finally compared our approach with the only existing masking handling technique -- FDA-CIT \cite{yilmaz2013reducing}. Our studies showed that our replacing strategy as well as the searching test case component achieved a better performance than the traditional approaches when the subject encountered  multiple failures, especially when these failures can induce masking effects.
+To evaluate the effectiveness of our approach, we applied our strategy on the FII approach FIC\_BS \cite{zhang2011characterizing}. The subjects used were two open-source software systems found in the developers' forum in the Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user's manuals, we built a testing model which can reproduce the reported bugs with given test cases. We then compared the FII approach augmented with our strategy to the original FII approach. We further empirically studied the performance of the important component of our strategy -- searching satisfied test cases. To conduct this study, we compared our approach with the augmented FII approach by randomly searching satisfied test cases. We finally compared our approach with the only existing masking handling technique -- FDA-CIT \cite{yilmaz2013reducing}. Our studies showed that our replacing strategy as well as the searching test case component achieved a better performance than the traditional approaches when the subject encountered  multiple faults, especially when these faults can induce masking effects.
 
 %applied the traditional FII approaches and their augmented versions to identify the failure-inducing combinations in the subjects respectively. The results of our empirical studies shows that the masking effects do impact on the FII approaches, although to what the extent varies, and the approaches augmented with our strategy can identify failure-inducing combinations more accurately than traditional ones when facing masking effects, and moreover, this performance can get further improvement with using voting system.
 
 The main contributions of this paper are:
 \begin{itemize}
 \item We formally analysed the relationships between failure-inducing interactions and test sets. (Section \ref{sec:formal})
-\item We studied the impact of the masking effects caused by multiple failures on FII approaches. (Section \ref{sec:mask})
+\item We studied the impact of the masking effects caused by multiple faults on FII approaches. (Section \ref{sec:mask})
 \item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section \ref{sec:method})
 %\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
 %\item We designed an efficient test case searching method which can find a test case that does not trigger an unexpected failure.
-\item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in SUT with masking effects. (Section \ref{sec:emprical})
+\item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in the SUT with masking effects. (Section \ref{sec:emprical})
 \end{itemize}
 
 
-%In our recent studies, however, we find these algorithms cannot behave as expected in some subject software. Through a deep analysis, we find that there are multiple failures with different levels in these subject. It means that when we set up a test configuration and execute the SUT to observe the result, the high level failure will trigger first and perturb we examining the code that may trigger the low level failure. As a result we will omit some options or component in this test configuration that may be the cause of the low level failure. We call this a masking effect which make the MFS identifying algorithms not able to work properly.
+%In our recent studies, however, we find these algorithms cannot behave as expected in some subject software. Through a deep analysis, we find that there are multiple faults with different levels in these subject. It means that when we set up a test configuration and execute the SUT to observe the result, the high level failure will trigger first and perturb we examining the code that may trigger the low level failure. As a result we will omit some options or component in this test configuration that may be the cause of the low level failure. We call this a masking effect which make the MFS identifying algorithms not able to work properly.
 
 %In this paper, we propose a approach that can assist these algorithms to avoid these masking effect. Our framework consists of three parts: first, it will use the statistic analysis technique--dominate tree to analysis the test script and then collect the information traditional identifying algorithms. of code lines in this script. Second, we will support a interface called "Record" for the MFS identifying algorithms that each time the algorithm encounter a failure should call this interface. So that we can record this failure as well as the code lines that trigger this failure. Last, this framework support these algorithms the interface "analysis" that can tell them whether the failure they encounter having masked some failure else.
 
@@ -259,7 +261,7 @@ Note that in this example we did not get the expected result with traditional FI
 
 % if more than two failures, and the masking element is more, the result we got will be more noisy so that we cannot figure out the reals result
 
-Now consider the source code of \emph{foo}. We can find that if Ex 1 is triggered, it will stop executing the remaining code and report the exception result. In other word, Ex 1 may mask Ex 2. Let us re-examine the interaction (-,-,4,5). If we suppose that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 if they did not trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing interaction of Ex 2, which is identical to the expected one.
+Now consider the source code of \emph{foo}. We can find that if Ex 1 is triggered, it will stop executing the remaining code and report the exception result. In other words, Ex 1 may mask Ex 2. Let us re-examine the interaction (-,-,4,5). If we suppose that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 if they did not trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing interaction of Ex 2, which is identical to the expected one.
 
 Unless we fix the code that triggers Ex 1 and re-execute all the test cases, we cannot validate the supposition that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 when they did not trigger Ex 1. So in practice, when we lack resources to execute all the test cases repeatedly or can only do black-box testing, a more economical and efficient approach to alleviate the masking effect on FII approaches is desired.
 
@@ -268,11 +270,11 @@ This section presents some definitions and propositions for a formal description
 
 \subsection{Minimal Failure-causing Schemas in CT} \label{sec:introd:mfs}
 
-Assume that the behaviour of SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,...,\emph{k}). In practice, these parameters can represent many factors, such as input variables, run-time options, building options, etc. Next we will give some formal definitions, some of them (Definitions \ref{de:test}, \ref{de:tuple}, \ref{de:sub}) were originally defined in \cite{nie2011survey}.
+Assume that the behaviour of a SUT is influenced by \emph{k} parameters, and each parameter $p_{i}$ has $a_{i}$ discrete values from the finite set $V_{i}$, i.e., $a_{i}$ = $|V_{i}|$ ($i$ = 1,2,...,\emph{k}). In practice, these parameters can represent many factors, such as input variables, run-time options, building options, etc. Next we will give some formal definitions, some of them (Definitions \ref{de:test}, \ref{de:tuple}, \ref{de:sub}) were originally defined in \cite{nie2011survey}.
 
 %\newdef{definition}{Definition}
 \begin{definition}\label{de:test}
-A \emph{test case} of SUT is an array of \emph{k} values, one for each parameter of the SUT, which is denoted as a \emph{k}-tuple ($v_{1}$, $v_{2}$,...,$v_{k}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{k} \in V_{k}$.
+A \emph{test case} of a SUT is an array of \emph{k} values, one for each parameter of the SUT, which is denoted as a \emph{k}-tuple ($v_{1}$, $v_{2}$,...,$v_{k}$), where $v_{1}\in V_{1}$, $v_{2} \in V_{2}$ ... $v_{k} \in V_{k}$.
 \end{definition}
 
 For the example in Section \ref{sec:motiv}, ($a = 7$, $b = 2$, $c = 4$, $d = 3$) is a test case, which is actually a group of values being assigned to each input parameter.
@@ -281,7 +283,7 @@ For the example in Section \ref{sec:motiv}, ($a = 7$, $b = 2$, $c = 4$, $d = 3$)
 \begin{definition}
 A \emph{failure} is an abnormal execution of a test case.
 \end{definition}
-In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact of multiple \emph{failures} on failure-inducing interactions identification. To facilitate our discussion, we introduce the following assumptions that will be used throughout this paper:
+In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact of multiple different \emph{failures} on failure-inducing interactions identification. To facilitate our discussion, we introduce the following assumptions that will be used throughout this paper:
 
 \begin{assumption}
 The execution result of a test case is deterministic.
@@ -318,7 +320,7 @@ When $\tau = k$, $\tau$-degree \emph{schema} is actually a test case. Furthermor
 For example,  (-, 4, 4, -) in  Table \ref{identify-example} is a $2$-degree schema. And the test case (7, 4, 4, 3) contains this schema.
 
 \begin{definition} \label{de:sub}
-Let $c_{1}$ be a \emph{m}-degree schema, $c_{2}$ be an \emph{n}-degree schema in SUT, and $m < n$. If all the fixed parameter values in $c_{1}$ are also in $c_{2}$, then $c_{2}$ \emph{subsumes} $c_{1}$. In this case, we can also say that $c_{1}$ is a \emph{sub-schema} of $c_{2}$, and $c_{2}$ is a \emph{super-schema} of $c_{1}$, denoted as $c_{1} \prec  c_{2}$.
+Let $c_{1}$ be a \emph{m}-degree schema, $c_{2}$ be an \emph{n}-degree schema in the SUT, and $m < n$. If all the fixed parameter values in $c_{1}$ are also in $c_{2}$, then $c_{2}$ \emph{subsumes} $c_{1}$. In this case, we can also say that $c_{1}$ is a \emph{sub-schema} of $c_{2}$, and $c_{2}$ is a \emph{super-schema} of $c_{1}$, denoted as $c_{1} \prec  c_{2}$.
 \end{definition}
 
 For example, in the motivating example, the $2$-degree schema (-, 4, 4, -) is a sub-schema of the $3$-degree schema (-, 4, 4, 5), that is, (-,4,4,-) $\prec$ (-,4,4,5).
@@ -327,26 +329,26 @@ According to definition 3.4, it is obvious that the subsuming relationship `$\pr
 %Note that as a test case $t$ can be deemed as a $k$-degree schema, if it contains a schema $c$, then it can be regarded as $c \prec t$.
 
 \begin{definition} \label{de:mfs}
-If any test case which contains the schema $c$, and trigger a particular failure $F$, then we call $c$ the \emph{failure-causing schema} of $F$. Additionally, if none of the sub-schema of $c$ is the \emph{failure-causing schema} of $F$, we then call $c$ the \emph{Minimal Failure-causing Schema} (MFS) of $F$.
+If for any test case, as long as it contains the schema $c$, it will trigger a particular failure $F$. Then we call $c$ the \emph{failure-causing schema} of $F$. Additionally, if none of the sub-schema of $c$ is the \emph{failure-causing schema} of $F$, we then call $c$ the \emph{Minimal Failure-causing Schema} (MFS) of $F$.
 %Based on this, if a test case $t$ contain such a failure-inducing combination, say $c(F)$, it should trigger the failure $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failure are caused by the interactions of the parameter values in the SUT.
+In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failure are caused by the interactions of the parameter values in the SUT. Another noteworthy thing is that, in practice, the MFS definition (Section 3.5) may not be valid. This is because in some specific cases,  e.g., the masking problems which we will discussed later, we may not determine whether some test cases will trigger the particular failure $F$, or not.
 
 %We have the following proposition based on these basic definitions.
 %
 Some notations used later are listed below for convenient reference:
 \begin{itemize}
 \item $k$ : The number of parameters that influence the SUT.
-\item $V_{i}$ : The set of discrete values that the $i$th parameter of SUT can take.
+\item $V_{i}$ : The set of discrete values that the $i$th parameter of the SUT can take.
 \item $T^{*}$ :  The exhaustive set of test cases for the SUT. For a SUT with $k$ parameters, and each parameter can take $|V_{i}|$ values, the number of test cases in $T^{*}$ is $\prod_{i = 1}^{i <= k} |V_{i}|$. Note that some test cases may be invalid if there exists constraints among the parameters.
 \item $T$ : A set of test cases. (Similarly for $T_{i},\ T_{j}, ...$. )
 \item $\bar{T}$ : The complementary test set of T, i.e., $\bar{T} \bigcup T = T^{*},\ \bar{T} \bigcap T = \varnothing$.
 \item $A \backslash B$ :  The set of elements that belong to set $A$ but not to $B$. For example $T_{i} \backslash T_{j}$ indicates the set of test cases that belong to set $T_{i}$, but not to $T_{j}$.
-\item $L$ : The number of failures contained in the SUT.
-\item $F_{m}$ : The $m$th failure in the SUT ($1 \leq m \leq L$); for different failures, we can differentiate them based on their exception traces or other information.
-\item $T_{F_{m}}$ :  All the test cases that can trigger the failure $F_{m}$ in the SUT.
-\item $\mathcal{T}(c)$ :  All the test cases that contain the schema $c$ in the SUT. Based on the definition of MFS, we know that if schema $c$ is an MFS of $F_{m}$, then $\mathcal{T}(c) \subseteq T_{F_{m}}$.
+\item $L$ : The number of faults contained in the SUT.
+\item $F_{m}$ : The $m$th fault in the SUT ($1 \leq m \leq L$); for different failures, we can differentiate them based on their exception traces or other information.
+\item $T_{F_{m}}$ :  All the test cases that can trigger the fault $F_{m}$ in the SUT.
+\item $\mathcal{T}(c)$ :  All the test cases that contain the schema $c$ in the SUT. Based on the definition of MFS, we know that if schema $c$ is an MFS of $F_{m}$, then $\mathcal{T}(c) \subseteq T_{F_{m}}$. Note that, there may be multiple MFS for $F_{m}$
 %\item $T_{mask(F_{m})}$ :  All the test cases that contain the
 %\item $T_{mask(F_{m})}$ :
 %\item $T_{mask(F_{m})}$ :
@@ -372,11 +374,11 @@ Some notations used later are listed below for convenient reference:
 For schemas $c_{1}$, $c_{2}$, if $c_{1} \prec c_{2}$, then all the test cases that contain $c_{2}$ must also contain $c_{1}$, i.e., $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 \end{proposition}
 
-\begin{proof}
-  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
-\end{proof}
+%\begin{proof}
+%  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
+%\end{proof}
 
-Suppose a SUT with four binary parameters, which can be denoted as SUT($2^4$). Table \ref{example_subsume} illustrates an example of the Proposition \ref{pro:shl}. The left column lists the schema $c_{2}$ = (0,0,-,-) as well as all the test cases in $\mathcal{T}(c_{2})$, while the right column lists the schema $c_{1}$ = (0,-,-,-) and $\mathcal{T}(c_{1})$. We can see that when $c_{1} \prec c_{2}$, $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
+We omit the proof of this proposition as it is quite obvious. Suppose a SUT with four binary parameters, which can be denoted as SUT($2^4$). Table \ref{example_subsume} illustrates an example of the Proposition \ref{pro:shl}. The left column lists the schema $c_{2}$ = (0,0,-,-) as well as all the test cases in $\mathcal{T}(c_{2})$, while the right column lists the schema $c_{1}$ = (0,-,-,-) and $\mathcal{T}(c_{1})$. We can see that when $c_{1} \prec c_{2}$, $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 
 \begin{table}[ht]
 \centering
@@ -451,7 +453,7 @@ $T^{*}$ & $T$ &$\bar{T}$ & $\mathcal{S}(T)$ & $\mathcal{C}(T)$\\ \hline
   }
   \end{table}
 
-Let $T_{F_{m}}$ denotes the set of all the test cases triggering failure $F_{m}$, then $\mathcal{C}(T_{F_{m}})$ actually is the MFS set of $F_{m}$.
+Let $T_{F_{m}}$ denotes the set of all the test cases triggering fault $F_{m}$, then $\mathcal{C}(T_{F_{m}})$ actually is the MFS set of $F_{m}$.
 
 %And obviously $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
 
@@ -537,7 +539,7 @@ $\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
   }
   \end{table}
 
-In summary, these propositions provide the foundation of MFS identification (Propositions \ref{pro:stct} and \ref{pro:ash}), and more meaningful, they clarify the relationships between the minimal schemas of two different test sets (Propositions \ref{pro:sls} and \ref{pro:ssp}), which is the key to explain the impacts of masking effects in the following section.
+In summary, these propositions provide the foundation of MFS identification (Propositions \ref{pro:stct} and \ref{pro:ash}), and more meaningful, they clarify the relationships between the minimal schemas of two different test sets (Propositions \ref{pro:sls} and \ref{pro:ssp}), which is the key to explain the impact of masking effects in the following section.
 %For any test sets in the SUT, it has a set of minimal schemas.
 %(b) For two subsuming test sets, their minimal schemas can be subsuming or irrelevant to each other.
 
@@ -576,10 +578,10 @@ For example, Table \ref{example_identical_condition} shows the minimal schemas f
 Based on this proposition, let $T_{F-known}$ be the given test cases which are known to be failing, and $T_{P-known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F-known} \bigcup T_{P-known})$ be the test cases that are not known to be failing or not. Based on Proposition \ref{pro:dsms}, we have the following lemma:
 
 \begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
-$\forall c \in \mathcal{C}(T_{F-known})$, if it is identical to some schema in $\mathcal{C}(T_{F-known} \bigcup T_{unknown})$, then $c$ must be MFS.
+$\forall c \in \mathcal{C}(T_{F-known})$, if $\exists c' \in \mathcal{C}(T_{F-known} $ $\bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
 \end{lemma}
 
-The proof of this lemma is obvious. With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify a MFS $c$, there still needs many test cases to execute; at least, we should  obtain the failing test cases $T_{F-known}$ to be equal to $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with number of parameters in the SUT. Hence, traditional FII approaches will take some assumptions to further reduce the number of needed test cases to identify the MFS.
+The proof of this lemma is obvious. With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify a MFS $c$, there still needs many test cases to execute; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with number of parameters in the SUT. Hence, traditional FII approaches will take some assumptions to further reduce the number of needed test cases to identify the MFS.
 
 Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F-infer}$ refer to the test cases that can be inferred to be failing and $T_{P-infer}$ the inferred passing test cases. With the test cases of which the outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F-known} \bigcup T_{F-infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F-known} \bigcup T_{F-infer})$, if it is identical to some schema in $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$, then $c$ must be MFS.
 
@@ -595,7 +597,7 @@ The assumptions and corresponding inferring process vary with different FII appr
 %Traditional FII approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. In this case, in order to identify the MFS, each of the remaining test cases (that are not observed) must be predicted to be failing or not.
 
 
-The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation. We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part in the original failing test case, we called the \emph{fixed} part; and the part with values different from the original failing one, we called them the \emph{mutated} part. For example, for test case $t_{1}$, the \emph{fixed} part is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessary be value (0, 0, -, -). We just need make them different than the original one (This is important to the latter proposed approach ).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
+The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation. We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part in the original failing test case, we called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, we called them the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessary be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the latter proposed approach ).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
 
 
 %These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
@@ -608,30 +610,37 @@ The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding
 \hline
 \textbf{ID} & \multicolumn{4}{l}{\textbf{Test Case}} & \textbf{outcome} \\ \hline
 $t_{0}$ & 1     & 1     & 1     & 1     & fail    \\ \hline
-$t_{1}$ & 0     & \textbf{0}     & 1     & 1     & pass    \\
-$t_{2}$ & 0     & \textbf{1}     & 1     & 1     & fail    \\
-$t_{3}$ & 0     & 1     & 0     & \textbf{0}     & pass    \\
-$t_{4}$ & 0     & 1     & 0     & \textbf{1}     & fail    \\ \hline
+$t_{1}$ & 0     & 0     & 1     & 1     & pass    \\
+$t_{2}$ & 0     & 1     & 1     & 1     & fail    \\
+$t_{3}$ & 0     & 1     & 0     & 0     & pass    \\
+$t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 \end{tabular}}
 \end{table}
 
 
-\begin{assumption}
+\begin{assumption} \label{ass:safevalue}
 The mutated part of each additional test cases consists of safe values, i.e., none of the parameter value in mutate part is the part of any MFS.
 \end{assumption}
 
-Based on this assumption, we have the following lemma:
+Based on this assumption, we have the following two lemmas:
 
-\begin{lemma}
-For a test case $t \in T_{unknown}$, if the difference between it and a passing observed test case are safe values. Then it must be passing.
+\begin{lemma}\label{lemma:inferpassing}
+ $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that the parameter values of the mutated part of $t$ ( against $t'$) are all safe values, then $t$ must be a passing test case.
 \end{lemma}
 
-\begin{lemma}
-For a test case $t \in T_{unknown}$, if the difference between it and a failing observed test case are safe values. Then it must be failing.
+\begin{proof}
+Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (Assumption \ref{ass:safevalue}), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
+\end{proof}
+
+For example, if (0, 0, 0, 0) is known to be passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
+
+\begin{lemma} \label{lemma:inferfailing}
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that the mutated part of $t'$ (against $t$) consists of safe values, then $t$ must be a failing test case.
 \end{lemma}
 
-These two lemmas are very obvious 
-+and we will omit their proofs. Based on these two lemmas, we can easily infer some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assume assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' \emph{infer}. For example, the difference between $t_{2}$ between known passing test case $t_{4}$ is the (-, -, 0, -) which is safe value, so $t_{2}$ should be inferred to be passing;  the difference between $t_{14}$ between known failing test case $t_{16}$ is still (-, -, 0, -) which is safe value, so $t_{14}$ should be inferred to be failing.
+This lemma can be proved according to  Lemma \ref{lemma:inferpassing}. As a example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
+
+Based on these two lemmas, we can easily infer some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assume assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing;  the mutated part of the known failing test case $t_{16}$ against the unknown test case $t_{14}$ is still the safe value (-, -, 0, -), so $t_{14}$ should be inferred to be failing.
 
 \begin{table}[ht]
 \tbl{Test outcomes for MFS(- 1 - 1)\label{realMFS-for-11}}{
@@ -657,7 +666,7 @@ $t_{16}$ & 1      & 1     & 1     & 1     & fail  & known     \\ \hline
 \end{tabular}}
 \end{table}
 
-After these test cases having been inferred, we can find that $\mathcal{C}(T_{F-known} \bigcup T_{F-infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1). $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can learn that (-, 1, -, 1) must be MFS.
+After these test cases having been inferred, we can find that $\mathcal{C}(T_{F-known} \bigcup T_{F-infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1), and $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can learn that (-, 1, -, 1) must be MFS.
 
 %In our model, to identify MFS (-, 1, -, 1), we should execute all the test cases, and test cases in $\mathcal{T}((1, -, 1, -))$ should fail.  As listed in Table \ref{realMFS-for-11}, apart from the observed test cases in Table \ref{ofot-identify} (in bold), the outcomes of other test cases should be inferred. These results can be inferred based on the basic assumptions of FIC\_BS. For example, test case $t_{3}$ should pass, as if not so, (-, -, -, 0) must be failure-inducing factor (comparing $t_{3}$ and $t_{4}$), which contradicts the factor (-, -, -, 0) are safe value. Similarly, $t_{2}$ (Comparing $t_{2}$ and $t_{4}$), $t_{1}$ (Comparing $t_{1}$ and $t_{5}$) should pass. Additionally, $t_{14}$ should fail, because if not so, (0, -, -, -) must be failure-inducing (Comparing $t_{6}$ and $t_{14}$).
 
@@ -665,23 +674,23 @@ After these test cases having been inferred, we can find that $\mathcal{C}(T_{F-
 %Note that the process of FIC\_BS approach is consistent with the MFS identification model we built before. In the example listed in Table \ref{fic-bs-identify}, all the observed passing test cases, i.e., $T_{p-obs}$, is \{ $t_{1}$, $t_{3}$ \}, and all the observed failing test cases, i.e.,  $T_{f-obs}$, is  \{ $t_{0}$, $t_{2}$, $t_{4}$ \}.
 
 
-This example illustrate that the FII approach cannot execute all the test cases, but with proper assumptions, the schemas identified by FII can be approximate to or even equal to the exactly correct MFS in the SUT. Other FII test cases can also be built into our formal model for MFS identification, which will not be discussed here as it is not the point of this paper. Even though each FII approach tries to identify the MFS as accurately as possible, however, masking effects will negatively affect the observed outcomes and the inferred results. We next discuss the masking problem.
+This example illustrate that the FII approach cannot execute all the test cases, but with proper assumptions, the schemas identified by FII can be approximate to or even equal to the exactly correct MFS in the SUT. Other FII approaches can also be built into our formal model for MFS identification, but this will not be discussed here as it is not the point of this paper. Even though each FII approach tries to identify the MFS as accurately as possible, however, masking effects will negatively affect the observed outcomes and the inferred results. We next discuss the masking problem.
 
 \section{Masking effect} \label{sec:mask}
-As discussed before, $\mathcal{C}(T_{F_{m}})$ is the MFS set of failure $F_{m}$ in theory.  When considering the masking effects between multiple failures, however, this formula is not correct.
+As discussed before, $\mathcal{C}(T_{F_{m}})$ is the MFS set of fault $F_{m}$ in theory.  When considering the masking effects between multiple faults, however, this formula is not correct.
 
 \begin{definition}
-A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular failure, but it does not trigger the expected failure because another failure was triggered ahead of it that prevents $t$ from being normally checked.
+A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular fault, but it does not trigger the expected fault because other unexpected event, such another fault or unaccounted control dependency, was triggered ahead of it that prevents $t$ from being normally checked.
 \end{definition}
 
-Taking the masking effects into account, when identifying the MFS of a specific failure $F_{m}$, we should not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of failure $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
+Taking the masking effects into account, when identifying the MFS of a specific fault $F_{m}$, we should not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of fault $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
 
 
 Going back to the motivating example in Section \ref{sec:motiv}, as \emph{test case 6} and \emph{test case 18} should trigger Ex 2 in case they did not trigger Ex 1, $T_{mask(F_{2})}$ is \{ (7,4,4,5),(11,4,4,5)\}. Hence, the MFS of $Ex 2$ is $\mathcal{C}(T_{F_{2}} \bigcup T_{mask(F_{2})})$, which is (-,-,4,5) instead of the incorrect schema set $\{(-,2,4,5), (-,5,4,5)\}$.
 
 In practice with masking effects, however, it is not possible to correctly identifying the MFS, unless we fix some bugs in the SUT and re-execute the test cases to figure out $T_{mask(F_{m})}$.
 
-For traditional FII approaches, without the knowledge of  $T_{mask(F_{m})}$,  two common strategies can be adopted to deal with the multiple failures problem, i.e., \emph{regarded as one failure}  and \emph{distinguishing failures}.  The former strategy treats all types of failures as one failure--\emph{fail}, and others as \emph{pass}, while the latter distinguishes the failures but with no special consideration of the masking effects, i.e., if a test case fails with a particular type of failure, this strategy presumes it does not contain other types of failures.
+For traditional FII approaches, without the knowledge of  $T_{mask(F_{m})}$,  two common strategies can be adopted to deal with the multiple faults problem, i.e., \emph{regarded as one failure}  and \emph{distinguishing failures}.  The former strategy treats all types of faults as one fault--\emph{failure}, and others as \emph{pass}, while the latter distinguishes the failures but with no special consideration of the masking effects, i.e., if a test case fails with a particular type of fault, this strategy presumes it does not contain other types of faults.
 %We will separately discuss the two strategies under exhaustive testing condition and normal FII testing condition.
 %\subsection{Masking effects under exhaustive testing}
 
@@ -711,7 +720,7 @@ $\mathcal{C}(T_{F_{1}} \bigcup T_{mask(F_{1})})$& $\mathcal{C}( T_{F_{1}} \bigcu
   \end{table}
 
 \subsection{Distinguishing failures strategy} \label{sec:mask:df}
-Distinguishing the failures by the exception traces or error code can help identify the MFS related to a particular failure. Yilmaz \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of the \emph{ternary-class} approach to make the characterizing process more accurate. Besides, other approaches can also be easily extended using this strategy for testing SUT with multiple failures.
+Distinguishing the failures by the exception traces or error code can help identify the MFS related to a particular failure. Yilmaz \cite{yilmaz2013reducing} proposed the \emph{multiple-class} failure characterizing method instead of the \emph{ternary-class} approach to make the characterizing process more accurate. Besides, other approaches can also be easily extended using this strategy for testing the SUT with multiple faults.
 %We call this strategy \emph{distinguishing failures}.
 
 This strategy focuses on identifying the set of $\mathcal{C}(T_{F_{m}})$. As $T_{F_{m}} \bigcup T_{mask(F_{m})} \supseteq T_{F_{m}} $, by Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the super-schema of some actual MFS. Moreover, some MFS may be irrelevant to the schemas obtained by this strategy, which means that this strategy will \emph{ignore} these actual MFS.
@@ -722,126 +731,66 @@ It is noted that the motivating example in section \ref{sec:motiv} actually adop
 
 
 \subsection{Masking effects for FII approaches} \label{sec:mask:fci}
-Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FII approaches, masking effects can make problems worse.
+Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FII approaches, masking effects can make problems worse. This is because FII approaches, with masking effects, not only unable determine $T_{mask(F_{m})}$ as discussed before, but also make wrong inferring outcomes of some test cases without executing, i.e., wrong $T_{F-infer}$ and $T_{P-infer}$ as mentioned in Section \ref{subsec:Formal:identi}.
 
-This is because due to the time and computing rescouses limitation, FII approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result. Masking effects, however, not only makes $T_{mask(F_{m})}$ be ignored as discussed before, but also significantly impact on the inference process.
+%This is because due to the time and computing rescouses limitation, FII approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result.
 
-Consider an FII example using the OFOT method \cite{nie2011minimal}.  Table \ref{ofot-identify} gives an example to illustrate this approach. For SUT($2^{4}$), assume the failing test case (1, 1, 1, 1) is being analysed, then OFOT approach can be illustrated as shown in Table \ref{ofot-identify}. In this table, test case \emph{t} failed, and OFOT mutated one parameter value of \emph{t} at a time to generate additional test cases: $t_{1}; t_{2}; t_{3};t_{4}$. The passings of $t_{1}$ and $t_{3}$ indicate that these two test cases break the MFS in the original test case \emph{t}. So, (1,-,-,-) and (-,-,1,-) should be the failure-causing factors, and the other test cases ($t_{2}, t_{4}$) all failed, indicating that no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS). Therefore, the MFS in \emph{t} is (1,-,1,-).
 
-\begin{table}[ht]
-\tbl{OFOT example\label{ofot-identify}}{
-\begin{tabular}{llllll}
-\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
- $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\
- \hline
-\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
-$t_{1}$ &\multicolumn{4}{l}{0  \ \ \ \  1 \ \ \ \  1  \ \ \  1 } & Pass \\
-$t_{2}$ &\multicolumn{4}{l}{1  \ \ \ \  0 \ \ \ \  1  \ \ \  1 } & Fail \\
-$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
-$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
-\hline
-\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  1  \ \ \  - ) }  \\
-\hline \end{tabular}}
-\end{table}
+Consider a FII example that still use the FIC\_BS method \cite{zhang2011characterizing}.  Similar to the example listed in Table \ref{fic-bs-identify}, assume the test case (1, 1, 1, 1) failed with $F_{1}$ (The MFS is still assumed to be (-, 1, -, 1) as Table \ref{fic-bs-identify}). Then assume that an known MFS (-, 1, 0, -) that trigger $F_{2}$, where failure $F_{2}$ can mask $F_{1}$. Next we will illustrate how FIC\_BS works using  strategies the \emph{regarded as one strategy} and \emph{distinguishing failures strategy}, respectively.
 
-According to the MFS definition, all the test cases contain (1, -, 1, -) should fail.  That is, test cases of $\mathcal{T}((1, -, 1, -))$ as listed in Table \ref{ofot-infer} should fail. Combining the observed failing test cases in Table \ref{ofot-identify}, the failing test case inferred by OFOT in this case is (1, 0, 1, 0) as shown in Column `inferred $T_{f}$' of Table \ref{ofot-infer}.
+First, for the first strategy, i.e., \emph{regarded as one strategy}, we list how it works in Fig. \ref{fig:maskingeffects1}, as well as the masking effects it suffers. With this strategy, it just needs three additional test cases to determine the MFS in the original failing test case $t$, i.e., $t_{1}$, $t_{2}$, and $t_{3}$ (listed in the left part of Fig. \ref{fig:maskingeffects1}).
+ The right part of Fig. \ref{fig:maskingeffects1} shows the MFS it obtained is (-, 1, -, -), which is obviously wrong (See the correct result in Table \ref{realMFS-for-11}, which should be (-, 1, -, 1), but this strategy treat the sub-schema (-, 1, -, -) of it to be MFS). The middle part of Fig. \ref{fig:maskingeffects1} explains why this strategy can get this result. Specifically, it treats all failures as the same failure, i.e., $F_{1}$. Hence, test case $t_{5}$ in the middle of Fig. \ref{fig:maskingeffects1} (Marked \emph{Strategy} in the column `State ') is determined to trigger $F_{1}$. Here, the test case $t_{5}$ corresponds to the test case $t_{3}$ in the left part of Fig.\ref{fig:maskingeffects1} ( The ID we refer to one test case next are all in the middle part).  According to the Assumption \ref{lemma:inferpassing} and \ref{lemma:inferfailing}, test cases $t_{1}$, $t_{2}$, $t_{3}$, $t_{6}$, $t_{7}$, $t_{13}$, $t_{14}$, and $t_{15}$ are determined to be pass or fail with $F_{1}$, respectively. After then, we can determine that (-, 1, -, -) should be the MFS. This is because, $\mathcal{C}(T_{F_{1}})$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{13}, t_{14}, t_{15}, t_{16} \})$ = (-, 1, -, -), which has been included in $\mathcal{C}(T_{F_{1}} \bigcup T_{unknown}$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{14}, t_{15}, t_{16}\})$ = (1, -, -, -), (-, 1, -, -).
 
-\begin{table}[ht]
+
+\begin{figure}[htbp]
 \centering
-\tbl{Inferred test cases by OFOT\label{ofot-infer}}{
-  \begin{tabular}{ccc}
-$\mathcal{T}((1, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
-(1, 0, 1, 0)&               & (1, 0, 1, 0) \\
-(1, 0, 1, 1)& (1, 0, 1, 1)  & \\
-(1, 1, 1, 0)& (1, 1, 1, 0)  & \\
-(1, 1, 1, 1)& (1, 1, 1, 1)  & \\
-\hline
-  \end{tabular}
-  }
-  \end{table}
+\includegraphics[width=4.99in]{example-of-masking-effects1.eps}
+\caption{Masking effects of strategy Regarded as one failure}
+\label{fig:maskingeffects1}
+\end{figure}
 
-For the same OFOT example in Table \ref{ofot-identify}, assume $t_{1}$ and $t_{2}$ (in bold) triggered other failures as shown in Table \ref{ofot-identify-mask}. To make the OFOT approach work properly in this case,  without additional information,  we need to apply the \emph{regarded as one strategy} or \emph{distinguishing failures strategy}. In other word, $t_{1}$ and $t_{2}$ should either be determined as \emph{Fail} or \emph{Pass}.
+For the second strategy, i.e., \emph{distinguishing failures}, we list the result in Fig. \ref{fig:maskingeffects2}. Different from the first strategy, it treat the different filure other than $F_{1}$ as pass. As a result, test case $t_{5}$ and $t_{6}$ in the middle part of Fig. \ref{fig:maskingeffects2} are determined to be pass.  Then combining the inferred test cases, it finally get the MFS (-, 1, 1, 1), which is also not correct (This schema is the super-schema of the original MFS (-, 1, -, 1)).
 
-\begin{table}[ht]
-\tbl{OFOT masking example\label{ofot-identify-mask}}{
-\begin{tabular}{llllll}
-\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
- $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\
- \hline
-\multicolumn{5}{c}{\bfseries additional test cases} &  \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \  \textbf{1}} & \textbf{Other Failure} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Other Failure} \\
-$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
-$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
+%only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=4.99in]{example-of-masking-effects2.eps}
+\caption{Masking effects of strategy Distinguishing failures}
+\label{fig:maskingeffects2}
+\end{figure}
+
+
+Such deviations for these two strategies are caused by the reduction of the test cases which are known to be failing with specific failure. Here, test cases (0, 1, 0, 0) and (0, 1 0, 1) both triggered other failures, among which the second test case (0, 1, 0, 1) should trigger $F_{1}$ if failure $F_{2}$ was not triggered first, while the first test case not. Hence, neither strategy \emph{Regarded as one failure} nor \emph{Distinguishing failures} can make a perfect determination of the result of these two test cases. Besides this, the incorrect determination of these test cases negatively affect the the inference of FII approach-- FIC\_BS.  For example, with  strategy \emph{Regarded as one failure}, it wrongly infer the test case $t_{15}$ (1, 1, 1 ,0) to be fail with $F_{1}$ (See the middle part of Fig. \ref{fig:maskingeffects1}), which should be marked as `Unknown' in Table \ref{realMFS-for-11}. With strategy \emph{Distinguishing failures}, however, it marked test case $t_{14}$ (1, 1, 0, 1) as `Unknown' (See the middle part of Fig. \ref{fig:maskingeffects2}), which should be inferred to be fail with $F_{1}$ in Table \ref{realMFS-for-11}.
+
+%\begin{table}[ht]
+%\centering
+%\tbl{Inferred test cases for two strategies\label{ofot-infer-two}}{
+%  \begin{tabular}{ccc}
+%\multicolumn{3}{c}{\bfseries  regarded as one failure} \\ \hline
+%$\mathcal{T}((-, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
+%(0, 0, 1, 0)&               & (0, 0, 1, 0) \\
+%(0, 0, 1, 1)&               & (0, 0, 1, 1)\\
+%(0, 1, 1, 0)&               & (0, 1, 1, 0)\\
+%(0, 1, 1, 1)&               & (0, 1, 1, 1)\\
+%(1, 0, 1, 0)&               & (1, 0, 1, 0) \\
+%(1, 0, 1, 1)&               & (1, 0, 1, 1)\\
+%(1, 1, 1, 0)& (1, 1, 1, 0)  & \\
+%(1, 1, 1, 1)& (1, 1, 1, 1)  & \\
 %\hline
-%\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-%\multicolumn{6}{c}{(1  \ \ \ \  - \ \ \ \  -) }  \\
-\hline \end{tabular}}
-\end{table}
+%  \end{tabular}
+%  \hspace{1em}
+%  \begin{tabular}{ccc}
+%\multicolumn{3}{c}{\bfseries  distinguishing failures} \\ \hline
+%$\mathcal{T}((1, 1, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
+%(1, 1, 1, 0)& (1, 1, 1, 0)  &    ---      \\
+%(1, 1, 1, 1)& (1, 1, 1, 1)  &          \\
+%\hline
+%  \end{tabular}
+%  }
+%  \end{table}
 
-The details using this two strategies are listed in Table \ref{ofot-identify-mask-two}, with the left part for \emph{regarded as one failure} and the right part for \emph{distinguishing failures}. For the first strategy, $t_{1}$ and $t_{2}$ are both determined as \emph{fail}. As a result, only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
-
-\begin{table}[ht]
-\tbl{OFOT with two strategies\label{ofot-identify-mask-two}}{
-\begin{tabular}{llllll}
-\multicolumn{6}{c}{\bfseries  regarded as one failure} \\ \hline
-%\multicolumn{5}{c}{\bfseries  test case under analysing} & \bfseries Outcome \\ \hline
-$t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Fail} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Fail} \\
-$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
-$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
-\hline
-\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-\multicolumn{6}{c}{(-  \ \ \ \  - \ \ \ \  1 \ \ \ \ -  ) }  \\
-\hline \end{tabular}
-  \hspace{1em}
-\begin{tabular}{llllll}
-\multicolumn{6}{c}{\bfseries  distinguishing failures} \\ \hline
- $t$ & \multicolumn{4}{l}{1 \ \ \ \ 1 \ \ \ \  1  \ \ \  1 } & Fail \\ \hline
-$\textbf{t}_{\textbf{1}}$ &\multicolumn{4}{l}{\textbf{0}  \ \ \ \  \textbf{1} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Pass} \\
-$\textbf{t}_{\textbf{2}}$ &\multicolumn{4}{l}{\textbf{1}  \ \ \ \  \textbf{0} \ \ \ \  \textbf{1} \ \ \   \textbf{1}} & \textbf{Pass} \\
-$t_{3}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  0  \ \ \  1 } & Pass \\
-$t_{4}$ &\multicolumn{4}{l}{1  \ \ \ \  1 \ \ \ \  1  \ \ \  0 } & Fail \\
-\hline
-\multicolumn{6}{c}{\bfseries MFS}  \\ \hline
-\multicolumn{6}{c}{(1  \ \ \ \  1 \ \ \ \  1 \ \ \ \ -) }  \\
-\hline \end{tabular}
-
-}
-\end{table}
-
-Such deviations for these two strategies are caused by the reduction of the observed test cases. Here, as $t_{1}$ and $t_{2}$ both triggered other failures, these two test cases cannot contribute to the MFS identification for the currently analysed failure. Besides this, the inference of OFOT are also affected. We list the inference test cases for these strategies in Table \ref{ofot-infer-two}. It can be found that both strategies cannot obtain the correct inference test cases as shown in Table \ref{ofot-infer}. Specifically, 4 test cases, i.e., (0, 0, 1, 0), (0, 0, 1, 1), (0, 1, 1, 0) and (0, 1, 1, 1),  inferred by strategy \emph{regarded as one failure} actually cannot trigger the current failure; while  strategy \emph{distinguishing failures} does not infer additional test cases (marked as `---').
-
-\begin{table}[ht]
-\centering
-\tbl{Inferred test cases for two strategies\label{ofot-infer-two}}{
-  \begin{tabular}{ccc}
-\multicolumn{3}{c}{\bfseries  regarded as one failure} \\ \hline
-$\mathcal{T}((-, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
-(0, 0, 1, 0)&               & (0, 0, 1, 0) \\
-(0, 0, 1, 1)&               & (0, 0, 1, 1)\\
-(0, 1, 1, 0)&               & (0, 1, 1, 0)\\
-(0, 1, 1, 1)&               & (0, 1, 1, 1)\\
-(1, 0, 1, 0)&               & (1, 0, 1, 0) \\
-(1, 0, 1, 1)&               & (1, 0, 1, 1)\\
-(1, 1, 1, 0)& (1, 1, 1, 0)  & \\
-(1, 1, 1, 1)& (1, 1, 1, 1)  & \\
-\hline
-  \end{tabular}
-  \hspace{1em}
-  \begin{tabular}{ccc}
-\multicolumn{3}{c}{\bfseries  distinguishing failures} \\ \hline
-$\mathcal{T}((1, 1, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
-(1, 1, 1, 0)& (1, 1, 1, 0)  &    ---      \\
-(1, 1, 1, 1)& (1, 1, 1, 1)  &          \\
-\hline
-  \end{tabular}
-  }
-  \end{table}
-
-As masking effect significantly impact on the FII approaches, alleviating this negative effect is desired to improve the quality of the identified MFS.
+As masking effect has significant impact on the FII approaches, alleviating this negative effect is desired to improve the quality of the identified MFS.
 
 %\subsection{Summary of the masking effects on the FII approach}
 %From the analysis of the formal model, we can learn that masking effect does influence the FII approaches, and even worse, both the \emph{regarded as one failure} and \emph{distinguishing failures} strategies have their own problems in handling this effect. Specifically when compared with the \emph{knowing masking effects} condition, the strategy \emph{regarded as one failure} has a larger possibility of getting more sub-schemas of the actual MFS and getting more schemas which are irrelevant to the MFS, while strategy \emph{distinguishing failures}  may get more super schemas of the MFS and can also get more irrelevant MFS. Note that strategy \emph{regarded as one failure} has a larger chance than \emph{distinguishing failures} at identifying irrelevant schemas. Further, both strategies may ignore the actual MFS with the \emph{distinguishing failures} strategy more likely to ignore the MFS than the \emph{regarded as one failure} strategy.
@@ -849,7 +798,7 @@ As masking effect significantly impact on the FII approaches, alleviating this n
 %Note that our discussion is based on a SUT using deterministic software, i.e., the random failing information of a test case will be ignored. The non-deterministic problem will result in a more complex test scenario, which will not be discussed in this paper.
 
 \section{Test case replacing strategy} \label{sec:method}
-The main reason that the FII approach fails to work properly is that it cannot determine $T_{mask(F_{m})}$. In other word, if the test case triggers other unexpected failures which are different from the currently analysed $F_{m}$, it cannot figure out whether this test case will trigger $F_{m}$ because of the masking effects. So to limit the impact of this effect on the FII approach, it is important to reduce the number of test cases that trigger other different failures, as it can reduce the probability that the expected failure may be masked by other failures.
+The main reason that the FII approach fails to work properly is that it cannot determine $T_{mask(F_{m})}$. In other words, if the test case triggers other unexpected failures which are different from the currently analysed $F_{m}$, it cannot figure out whether this test case will trigger $F_{m}$ because of the masking effects. So to limit the impact of this effect on the FII approach, it is important to reduce the number of test cases that trigger other different failures, as it can reduce the probability that the expected failure may be masked by other failures.
 % strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subseteq \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other failures as much as possible.
 
 For the exhaustive testing model, i.e., $\mathcal{C}(T_{F_{m}})$, as all the test cases will be used to identify the MFS, there is no room left to improve the performance unless we fix other failures and re-execute all the test cases. However, if only a subset of all test cases is used to identify the MFS (which is how the traditional FII approach works), it is important to make the right selection to limit the size of $T_{mask(F_{m})}$ to be as small as possible.
@@ -905,7 +854,7 @@ where $k$ is the number of parameters in $t$, and $o$ is the specific parameter 
 
 For a selected test case, we want its ability  to trigger other failures to be as small as possible, such that the masking effects can be alleviated. In practice, the \emph{suspiciousness} varies between test cases and different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} between this test case and that failure is the least.
 
-Table \ref{minimal_maximal} illustrates such a scenario for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace test case (0,0,0,0) with fixed part (0, -, -, -) that triggers other failure, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obvious that $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with failure $F_{2}$. These two test cases, however, should not be selected for their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
+Table \ref{minimal_maximal} illustrates such a scenario for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace test case (0,0,0,0) with fixed part (0, -, -, -) that triggers other failures, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obvious that $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with failure $F_{2}$. These two test cases, however, should not be selected for their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
 
 \begin{table}[ht]
 \centering
@@ -922,7 +871,7 @@ $t_{5}$ &(0, 1, 0, 1)&   0.5 & 0.3  &$Sp(t_{5},F_{2})$ : 0.5\\
   }
   \end{table}
 
-With this in mind, we have to settle for a test case, such that the maximal possible failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other word, we need to find a test case, so that the maximal \emph{suspiciousness} between this test case and the corresponding failure is minimal. Formally, we should choose a test case $t$, s.t.,
+With this in mind, we have to settle for a test case, such that the most likely failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other words, we need to find a test case, so that the maximal \emph{suspiciousness} between this test case and the most likely failure it can trigger is minimal. Formally, we should choose a test case $t$, s.t.,
 
 \begin{displaymath} \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  Sp(t, F_{i}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
 
@@ -942,7 +891,7 @@ where $L$ is the number of failures, and $m$ is the current analysed failure. $R
 %\end{alignat}
 %
 %
-%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other word, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
+%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other words, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
 %
 %\begin{alignat}{2}
 %\min\quad &  t_{F_{i}} &{}& \tag{EQ4} \label{eqn - 2p}\\
@@ -1022,7 +971,7 @@ The second part (line 4) updates the suspiciousness matrix ($Sp$) for each param
 
 The last part (lines 5 - 9) checks whether the newly generated test case is as expected. Specifically, if the test case passes or triggers the same failure -- $F_{m}$, a satisfied test case is obtained (line 5) and returned (line 6). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 7 - 8).
 
-Note that this algorithm has another exit, besides finding an expected test case (line 6), which is when the function \emph{MeetEndCriteria()} returns \emph{true} (line 1). We did not explicitly show function \emph{MeetEndCriteria()}, because this is dependent on the computing resource and the desired accuracy. In detail, if we want to get a high quality result and have enough computing resource, it is desirable to try many times to get the expected test case; otherwise, a relatively small number of attempts is recommended.
+Note that this algorithm has another exit, besides finding an expected test case (line 6), which is when the function \emph{MeetEndCriteria()} returns \emph{true} (line 1). We did not explicitly show function \emph{MeetEndCriteria()}, because this is dependent on the computing resource and the desired accuracy. In detail, if we want to get a high quality result and have enough computing resource, it is desirable to try many times to get the expected test case; otherwise, a relatively small number of attempts to find a proper test case is recommended.
 
 %In this paper, we just set 3 as the greatest number of iterations for this function. When it ends with \emph{MeetEndCriteria()} returning true, it will return null (line 18), which means we cannot find an expected test case.
 
@@ -1030,20 +979,76 @@ Note that this algorithm has another exit, besides finding an expected test case
 
 \section{Illustration of the approach}\label{sec:appraoch}
 
-This section will illustrate the complete approach, which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
+This section will completely illustrate the MFS identification approach that combines the traditional MFS identification procedure with test cases replacement strategy.
 
-\subsection{MFS identification}
-
-fixed part is that . The additionl test case just need to maintain the fixed part.
+%which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
+%
+%\subsection{MFS identification}
+%
+%fixed part is that . The additionl test case just need to maintain the fixed part.
 
 
 \subsection{MFS identification with replacement strategy}
+
+Algorithm \ref{alg:two} shows the procedure of the approach. The inputs to this algorithm are the fault $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is to give the MFS for fault $F_{m}$ in the test case $t$. Variable $SP$ is to record the suspicious value between each parameter value with each fault. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with fault $F_{m}$ or not, and $T_{F-Known}$ is the set of test cases that are deemed to trigger the fault $F_{m}$. This algorithm loops until some MFS are determined (line 25 ~ 27). This is based on Lemma \ref{pro:dsmfs} in Section 3.3. Specifically,  by computing the minimal schemas of $T_{F-Known}$, i.e., $\mathcal{C}(T_{F-Known})$, and minimal schemas of $T_{F-Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F-Known})$ are MFS if they are contained in $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$.
+
+In each iteration of this algorithm, it will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration (See Algorithm \ref{alg:fic} in the Appendix for detail). Then the approach will execute this test case (line 8) and update the suspicious matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on Lemma \ref{lemma:inferfailing} and \ref{lemma:inferpassing}. After that, we should updated the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
+
+\begin{algorithm}[ht]
+%\SetAlgoNoLine
+\KwIn{ failure $F_{m}$, original failing test case $t$ }
+\KwOut{ $MFS$ return the determined MFS }
+%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+
+$Sp \leftarrow init\_Suspicious\_Matrix(t)$ \;
+$T_{Unknown} \leftarrow  T_{ALL} \setminus t $ \;
+$T_{F-Known} \leftarrow \{ t \} $ \;
+$MFS \leftarrow empty$ \;
+\While{ $true$}{
+%       $optimal \leftarrow MAX$,
+%       $t_{new} \leftarrow null$ \;
+%       \ForAll {$F_{i} ( i = 1, ... m-1 , m+2,...L )$}{
+%                $solver \leftarrow setup(Param, fixed, T_{executed}, F_{i}, Sp)$\;
+%               \DontPrintSemicolon $(optimal', t_{new}') \leftarrow solver.getOptimalTest()$; \tcc*[f]{Use ILP solver to get $t_{F_{i}}$} \;
+%                \If (\tcc*[f]{Select $t_{F_{i}}$ which has smaller suspiciousness}){$optimal' < optimal$}{
+%                       $t_{new} \leftarrow t_{new}'$\;
+%                       $optimal \leftarrow optimal'$\;
+%                    }
+%          }
+       $ R \leftarrow  \mathcal{T}(current\_fixed\_part)$ \;
+       $t_{next} \leftarrow random\_pick(R)$\;
+       $result \leftarrow execute(t_{next})$\;
+       $update\_SP(t_{next})$ \;
+        \If  {$result \neq PASS\ and \ result \neq  F_{m}$}{
+         $t_{next} \leftarrow Replacing(F_{m}, Sp, R) $\;
+          \If  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
+          $result \leftarrow F_{m}$}{}
+           }{ }
+            \eIf  {$result == F_{m}$}{
+           $T_{infer-F} \leftarrow InferringFailing (t_{next}, SV) $\;
+           $T_{F-Known} \leftarrow T_{F-Known} \bigcup t_{next} \bigcup T_{infer-F}$\;
+           $T_{Unknown} \leftarrow T_{Unknown} \setminus (t_{next} \bigcup T_{infer-F}) $ \;
+           }{ $T_{infer-P} \leftarrow InferringPassing (t_{next}, SV) $\;
+           $T_{Unknown} \leftarrow T_{Unknown} \setminus  (t_{next} \bigcup T_{infer-P}) $ \;}
+
+
+           $MFS \leftarrow \mathcal{C}(T_{F-Known})$ \;
+           $M_{Possible} \leftarrow \mathcal{C}(T_{F-Known} \bigcup T_{Unknown})  $ \;
+            \If{ $ MFS \subseteq M_{Possible} $}{break\;}{}
+
+       }
+       \Return $M_{Candidate}$
+
+\caption{MFS identification with Replacing test cases strategy}
+\label{alg:two}
+\end{algorithm}
+
 
 
 \subsection{A case study using the replacement strategy}\label{sec:method:case}
 %Next we will take the FII approach--OFOT algorithm as the subject to see how our approach works on them.
 
-Suppose we have to test a system with eight parameters, each of which has three options, i.e., SUT($3^8$). When we execute the test case $t_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, with each executed test case corresponding to a specific label, $t_{1}$ -- $t_{8}$, at the left. The underline part for each test case is the $fixed$ part according to FIC\_BS \cite{zhang2011characterizing}.  The right main column lists the suspiciousness matrix when a test case triggers $e2$ or $e3$.  The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
+In this section, we will give a case study to illustrate the approach. Suppose we have to test a system with eight parameters, each of which has three options, i.e., SUT($3^8$). When we execute the test case $t_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, with each executed test case corresponding to a specific label, $t_{1}$ -- $t_{8}$, at the left. The underline part for each test case is the $fixed$ part according to FIC\_BS \cite{zhang2011characterizing}.  The right main column lists the suspiciousness matrix when a test case triggers $e2$ or $e3$.  The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
 %In detail, the matrix records the suspiciousness between each parameter (Columns $P1$ -- $P8$) for each value it can take (Column v) with the unexpected failure (Column F).
 %%the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
 \begin{figure}[htbp]
@@ -1059,7 +1064,9 @@ From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (
 
 This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $t_{1}$ to $t_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $t_{4}$ which triggered $e3$, we tried three times-- $t_{4}', t_{4}'', t_{4}'''$ to finally get a satisfied $t_{4}'''$ which passes the testing. Note that the \emph{suspiciousness} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
 
-With the replacement test cases, the FII approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, -, -, -, - ) (Test cases passed when we mutated the first two parameter values of the original failing cases). In this example, test cases that trigger $e2$ and $e3$ do not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$ and $e3$ based on these test cases.
+With the replacement test cases, the FII approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, -, -, -, - ) (Test cases passed when we mutated the first two parameter values of the original failing cases). Note that, we did not show the theoretic process to obtain the MFS (0, 0, -, -, -, -, -, -). This is because we need to list all the possible test cases ($3^8 = 6561$ test cases in total) to illustrate this process, which is not applicable in this paper.
+
+Another notable point is that, in this example, test cases that trigger $e2$ and $e3$ do not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$ and $e3$ based on these test cases.
 
 %\subsection{Complexity analysis}
 %The complexity of our approach relies on two variables: the number of test cases that triggered other failures which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effect test case. The complexity is the product of these two variables.
@@ -1125,7 +1132,7 @@ With the replacement test cases, the FII approach can properly work. At last, th
 
 \section{Discussion about the influence of the assumptions}\label{sec:assumptions}
 
-In section \ref{sec:introd:mfs}, we introduced three assumptions that can simplify our formal modeling and proposed approach. In this section, we will discuss the influence of them on our propositions and approach, as well as some measures to alleviate their impacts.
+In section \ref{sec:introd:mfs}, we introduced three assumptions that can simplify our formal modeling and proposed approach, and in section \ref{subsec:Formal:identi}, we introduced the safe value assumption which can reduce the number of test cases to identify MFS. In this section, we will discuss the influence of them on our propositions and approach, as well as some measures to alleviate their impacts.
 
 \subsection{Deal with non-deterministic problem}
 The first assumption is that the outcomes of all the tests are deterministic. In practice, re-executing the same test case may result in different outcomes. For example, if the program using some random variables, different runs of the test case will assign different values to these random variables. As a result, the control follow of the program may be changed and hence the outcome will be different. We called this type of failure the non-deterministic failure \cite{yilmaz2006covering,fouche2009incremental}. Non-deterministic failure will complicate the MFS identification, and even worse, it may lead to an unreliable result of the MFS identification. Consider the the following example in Table \ref{non-deterministic-example}, the only difference between the left with the right test set is the outcome of test case (0, 1, 1). This subtle difference result in the different results of the MFS identification. Hence, if there is one or more test cases which have non-deterministic executing results, the MFS identification is not reliable.
@@ -1187,12 +1194,16 @@ $T_{fail}$ &$T_{pass}$ &  $T_{invalid}$ \\ \hline
 
 Another type of constraint is those that do not be found at first, but triggered later in testing\cite{yilmaz2013reducing}. The same as the approach proposed in \cite{yilmaz2013reducing}, we can just treat them as one type of failure, and then use MFS identification approach to identify them when encounter those invalid test cases.
 
+\subsection{Deal with safe values}
+The last assumption is the safe value, i.e., .
+
+
 
 \section{empirical studies}\label{sec:emprical}
 To investigate the impact of masking effects on FII approaches in real software testing scenarios and to evaluate the performance of our approach in handling this effect, we conducted several empirical studies. Each of the studies focuses on addressing one particular issue, as follows:
 
 %In this section, we conducted several empirical studies to address the following questions:
-\textbf{Q1}: Do masking effects exist in real software that contains multiple failures?
+\textbf{Q1}: Do masking effects exist in real software that contains multiple faults?
 
 \textbf{Q2}: How well does our approach perform compared to traditional approaches?
 
@@ -1203,10 +1214,10 @@ To investigate the impact of masking effects on FII approaches in real software 
 
 %\textbf{Q5}: Does voting system that consists of different approaches can make improvements?
 %
-%Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple failures and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
+%Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
 \subsection{The existence and characteristics of masking effects}\label{sec:emprical:exist}
-In the first study, we surveyed two kinds of open-source software systems to gain an insight into the existence of multiple failures and their effects. The software under study were HSQLDB and JFlex. The first is a database management software written in pure Java and the second is a lexical analyser generator. The reason that we chose these two systems is because they both contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of uncommented code, number of classes in the project, and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
+In the first study, we surveyed two kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were HSQLDB and JFlex. The first is a database management software written in pure Java and the second is a lexical analyser generator. The reason that we chose these two systems is because they both contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of uncommented code, number of classes in the project, and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
 http://sourceforge.net/p/jflex/bugs } for each of the software.
 
 %\begin{table}\renewcommand{\arraystretch}{1.3}
@@ -1348,9 +1359,9 @@ JFlex & 1.4.1 & 36864 & 24576 &6144 (25\%)\\ \hline
 }
 \end{table}
 
-We observed that for each version of the software under analysis listed in Table \ref{masking effect condition}, test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In fact, there are about 768 out of 4608 test cases (16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, and 16.7\%, respectively, for the remaining software versions.
+We observed that for each version of the software under analysis listed in Table \ref{masking effect condition}, test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In fact, there are  768 out of 4608 test cases (about 16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, and 16.7\%, respectively, for the remaining software versions.
 
-So the answer to \textbf{Q1} is that in practice, when SUT have multiple failures, masking effects do exist widely.
+So the answer to \textbf{Q1} is that in practice, when SUTs have multiple faults, masking effects do exist widely.
 
 It is notable that in Yilmaz's \cite{yilmaz2013reducing} paper, a similar study about the existence of the masking effects has been conducted. The main difference between that work and ours is that their work quantifies the impact of the masking effects as the number of $\tau$-degree schemas that only appear in the test cases that triggered other failures. Here, the $\tau$-degree schemas can be either MFS or not. Our work, however, quantifies the masking effects as the number of test cases that are masked by different failures. These test cases should contain some MFS, i.e., they should have triggered the expected failure if they did not trigger any other failure.  The reason that we quantify the masking effects in such way is because our work seeks to overcome the masking effects in the MFS identifying process. As the test cases which contain the MFS but do not produce the corresponding failure will significantly affect the MFS identifying results, their number can better reflect the impact of the masking effects on the FII approach.
 
@@ -1385,7 +1396,7 @@ syn10 & $2^{7}\times 3^{3} \times 4^{1}$ & $e_{1} > e_{2}$ &$ (0_{1},3_{0},4_{1}
 
 
 \subsubsection{Study setup}\label{sec:emprical:cmtradition:set}
-After preparing the objects under testing, we then applied our approach (FIC\_BS with replacement strategy) to identify the MFS. Specifically, for each SUT we selected each test case that failed during testing and fed it into our FII approach as the input. Then, after the identifying process was completed, we recorded the identified MFS and the extra test cases needed. For the traditional FIC\_BS approach, we designed the same experiment. But as the objects being tested have multiple failures for which the traditional FIC\_BS can not be applied directly, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one failure} and \emph{distinguishing failures} as described in Section \ref{sec:mask:fci}.  The purpose of recording the generated additional test cases is to quantify the additive cost of our approach.
+After preparing the objects under testing, we then applied our approach (FIC\_BS with replacement strategy) to identify the MFS. Specifically, for each SUT we selected each test case that failed during testing and fed it into our FII approach as the input. Then, after the identifying process was completed, we recorded the identified MFS and the extra test cases needed. For the traditional FIC\_BS approach, we designed the same experiment. But as the objects being tested have multiple faults for which the traditional FIC\_BS can not be applied directly, we adopted two traditional strategies on the FIC\_BS algorithm, i.e., \emph{regarded as one failure} and \emph{distinguishing failures} as described in Section \ref{sec:mask:fci}.  The purpose of recording the generated additional test cases is to quantify the additive cost of our approach.
 
 We next compared the identified MFS of each approach with the prior MFS to quantify the degree that each suffers from masking effects. There are five metrics used in this study, listed as follows:
  \begin{enumerate}
@@ -1478,7 +1489,7 @@ Figure \ref{fig:22} and \ref{fig:23} depicts the results for \emph{sub number} a
 
 %there are 6 scenarios (scenarios 3, 5, 6, 7, 8, 9 listed in Table \ref{conditions-for-ro}) for  strategy \emph{regarded as one fault} that can lead to the identified schemas being sub schemas of actual MFS, while \emph{distinguishing failures} strategy has 2 such scenarios (scenarios 3, 7  in Table \ref{conditions-for-df}). But for the scenarios that can result in the schemas being super schemas of actual MFS, strategy \emph{regarded as one failure} only has one (scenario 2 in Table \ref{conditions-for-ro}), while \emph{distinguishing failure} has 5 such scenarios (scenarios 2, 5, 6,7, 8 in Table \ref{conditions-for-df}).
 
-Although offering similar result as \emph{distinguishing failures} strategy, our strategy \emph{ILP} tend to identify fewer sub schemas and super schemas of actual MFS than strategy \emph{distinguishing failures} (testing objects 1, 9 in Figure \ref{fig:22} and testing objects 3, 4,7,9,10 13 in Figure \ref{fig:23}). We believe this is an improvement, as too many sub schemas and super schemas will make it harder to identify the actual MFS. One issue is the redundancy problem, as many sub or super schemas in fact point to the same actual MFS.
+Although offering similar result as \emph{distinguishing failures} strategy, our strategy \emph{ILP} tend to identify fewer sub schemas and super schemas of actual MFS than strategy \emph{distinguishing failures} (testing objects 1, 9 in Figure \ref{fig:22} and testing objects 3, 4,7,9,10 13 in Figure \ref{fig:23}). We believe this is an improvement, because too many sub or super schemas in fact point to the same actual MFS, which results in duplication and makes it hard to identify the actual MFS.
 
 \textbf{Ignore number \& irrelevant number: }
 The results of the two negative performance metrics are given in Figure \ref{fig:24} and \ref{fig:25}, respectively. One observation is that, comparing with strategy \emph{regarded as one failure},  \emph{distinguishing failures} obtained fewer irrelevant schemas, but ignored more actual MFS. This is also consistent with formal analysis in Section \ref{sec:mask}.
@@ -1561,7 +1572,7 @@ The \emph{FDA-CIT} \cite{yilmaz2013reducing} approach can handle masking effects
 
 The FDA-CIT process starts with generating a $t$-way covering array (In \cite{yilmaz2013reducing}, this is a test case-aware covering array \cite{yilmaz2013test}). After executing the test cases in this covering array, it records the outcome of each test case and then applies the classification tree method (Weka¡¯s implementation of C4.5 algorithm(J48) \cite{hall2009weka}) on the test cases to characterize the MFS of each failure. It then labels these MFS as the schemas that can trigger masking effects. Later, if the interaction coverage is not satisfied (here the interaction coverage criteria is different from the traditional covering array \cite{yilmaz2013reducing}), it will re-generate a covering array that aims to cover these schemas that were masked by these MFS and then repeat the previous steps.
 
-The main target of FDA-CIT is to produce the generated test cases that cover all the $\tau$-degree schemas. To achieve this goal, FDA-CIT needs to repeatedly identify the schemas that can trigger the masking effects. So to make the two approaches (FDA-CIT and ILP) comparable, we need to collect all the MFS that FDA-CIT characterized in each iteration and then compare them with the MFS identified by our approach.
+The main target of FDA-CIT is to guarantee that the generated test cases should cover all the $\tau$-degree schemas. To achieve this goal, FDA-CIT needs to repeatedly identify the schemas that can trigger the masking effects. So to make the two approaches (FDA-CIT and ILP) comparable, we need to collect all the MFS that FDA-CIT characterized in each iteration and then compare them with the MFS identified by our approach.
 
 \subsubsection{Study setup}\label{sec:emprical:cmFD:set}
 
@@ -1690,24 +1701,24 @@ The second threat is that we just applied our test case replacing strategy on on
 \subsubsection{external threats}\label{sec:threats:external}
 
 One threat to external validity comes from the real software we used.  In this paper we have only surveyed two types of open-source software with five different versions, of which the program scale is medium-sized. This may impact the generality of our results.
-% Although we believe it is quite possibly a common phenomenon in most software that contains multiple failures which can mask each other, we need to investigate more software to support our belief.
+% Although we believe it is quite possibly a common phenomenon in most software that contains multiple faults which can mask each other, we need to investigate more software to support our belief.
 
 
 
 %alleviate the impact of multiple faults is to take a trial-and-error process, i.e., initially classify failures by random and then identify the MFS and fix the bugs based on the classification, after which if the program still doesn't work, then the classification process will be refined and the previous steps continue.
 
-The second threat comes from the possible masking relationships between multiple failures in the real software.  In this paper, we just focus on the condition that the masking effects are transitive, i.e., if failure \emph{A} masks \emph{B}, and failure \emph{B} masks \emph{C}, then failure \emph{A} must mask failure \emph{C}. In practice, the relationships between multiple failures may be more complicated. One possible scenario is that two failures are in a loop, for which they can even mask each other in a particular condition. Such a case will make our formal analysis invalid and will significantly complicate the relationships between schemas and their corresponding test cases. A new formal model should be proposed to handle that type of masking effects.
+The second threat comes from the possible masking relationships between multiple faults in the real software.  In this paper, we just focus on the condition that the masking effects are transitive, i.e., if failure \emph{A} masks \emph{B}, and failure \emph{B} masks \emph{C}, then failure \emph{A} must mask failure \emph{C}. In practice, the relationships between multiple faults may be more complicated. One possible scenario is that two failures are in a loop, for which they can even mask each other in a particular condition. Such a case will make our formal analysis invalid and will significantly complicate the relationships between schemas and their corresponding test cases. A new formal model should be proposed to handle that type of masking effects.
 
 The third threat is that all the failures in the experiments are option-related. In practice, some failures may not related to the parameters you modeled in the SUT. For example, consider the Internet Explorer option-compliant testing problem \cite{nie2013adaptive}. Initially we may not properly model the options we should test, as a result, it can happen the explorer will always crash no matter we change which option in the initial model. This will cause the MFS identification non-sense, as all the test cases fail during testing. To solve this problem, one potential solution is to re-model the options we should test, as the error may be related to other options in the SUT (For example, those options which are set to default value). Or alternately, we should try other testing techniques to assist original CT. For example, if the error is related to the internal code instead of those configuration options, we may try programming slicing technique \cite{weiser1981program} or spectrum-based approaches \cite{naish2011model}. In such case, the parameters that we model for the SUT should not only limited to be configuration options or simple inputs, but also those variables, predicates, or other logical structures and data in the software we test.
 
 %
-% not the directly linear about multiple failures, i.e., failure a can mask the failure b, failure b can mask a . and failure c can mask failure c. Even worse, two failures can mask each other. When such scenorias happened, we need to recoonsruct the formal model of the schemas that when can be either be.  as the condition will significantly completed the relationships between the failures and schemas. But anyhow, our appraohc can still work in such a way, as the will always good to identify the MFS.
+% not the directly linear about multiple faults, i.e., failure a can mask the failure b, failure b can mask a . and failure c can mask failure c. Even worse, two failures can mask each other. When such scenorias happened, we need to recoonsruct the formal model of the schemas that when can be either be.  as the condition will significantly completed the relationships between the failures and schemas. But anyhow, our appraohc can still work in such a way, as the will always good to identify the MFS.
 
 \section{related works}\label{sec:related}
 
 Shi and Nie presented an approach for failure revealing and failure diagnosis in CT \cite{shi2005software}, which first tests the SUT with a covering array, then reduces the value schemas contained in the failing test case by eliminating those appearing in the passing test cases. If the failure-causing schema is found in the reduced schema set, failure diagnosis is completed with the identification of the specific input values which caused the failure; otherwise, a further test suite based on SOFOT is developed for each failing test case, and the schema set is then further reduced, until no more faults are found or the fault is located. Based on this work, Wang proposed an AIFL approach which extended the SOFOT process by adaptively mutating factors in the original failing test cases in each iteration to characterize failure-inducing interactions \cite{wang2010adaptive}.
 
-Nie et al. introduced the notion of Minimal Failure-causing Schema(MFS) and proposed the OFOT approach which is an extension of SOFOT that can isolate the MFS in SUT \cite{nie2011minimal}. This approach mutates one value for that parameter, hence generating a group of additional test cases each time to be executed. Compared with SOFOT, this approach  strengthens the validation of the factor under analysis and can also detect the newly imported faulty interactions.
+Nie et al. introduced the notion of Minimal Failure-causing Schema(MFS) and proposed the OFOT approach which is an extension of SOFOT that can isolate the MFS in the SUT \cite{nie2011minimal}. This approach mutates one value for that parameter, hence generating a group of additional test cases each time to be executed. Compared with SOFOT, this approach  strengthens the validation of the factor under analysis and can also detect the newly imported faulty interactions.
 
 Delta debugging \cite{zeller2002simplifying} is an adaptive divide-and-conquer approach to locate interaction failure. It is very efficient and has been applied to real software environment. Zhang et al. also proposed a similar approach that can efficiently identify the failure-inducing interactions that has no overlapped part \cite{zhang2011characterizing}. Later, Li improved the delta-debugging based approach by exploiting useful information in the executed covering array \cite{li2012improved}.
 
@@ -1723,27 +1734,27 @@ In addition to the studies that aim at identifying the failure-inducing interact
 
 Constraints handling become more and more popular in CT these years. A constraint is an invalid interaction that should not appear in the test case. It can be deemed as the masking effect which are known in prior \cite{yilmaz2013reducing}.  Cohen \cite{cohen2007exploiting,cohen2007interaction,cohen2008constructing} studied the impact of the constraints that render some generated test cases invalid in CT. They also proposed an approach that integrates the incremental SAT solver with the covering arrays generating algorithm to avoid those invalid interactions. Further study was conducted \cite{petke2013efficiency} to show that with consideration of constraints, higher-strength covering arrays with early failure detection are practical.
 
-Besides, there are additional works that aim to study the impacts of constraints for CT \cite{garvin2011evaluating,bryce2006prioritized,calvagna2008logic,grindal2006handling,yilmaz2013test}.
+Besides, there are additional works that aim to study the impact of constraints for CT \cite{garvin2011evaluating,bryce2006prioritized,calvagna2008logic,grindal2006handling,yilmaz2013test}.
 Among them, \cite{bryce2006prioritized} distinguished the constraints into two types: \emph{hard} and \emph{soft}, which the former cannot be included in the test case, while the latter can be permitted, but not desirable.  \cite{grindal2006handling} comprehensively compared the performance of four strategies at handling the constraints in the covering array. \cite{calvagna2008logic} proposed an heuristic strategy to handle the constraints. It can support an ad-hoc inclusion or exclusion of interactions such that the user can customize output of the covering array. \cite{garvin2011evaluating} refined the simulated annealing algorithm to efficiently construct the covering array while considering the constraints. \cite{yilmaz2013test} introduced the test case-specific constraints; differing from the system-wide constraints, these constraints can only be triggered in some specific test cases.
  %These approaches use some rules or to avoid these invalidated test cases to improve the efficiency when examine the test cases.
 
 Chen et al. addressed the issues of shielding parameters in combinatorial testing and proposed the Mixed Covering Array with Shielding Parameters (MCAS) to solve the problem caused by shielding parameters \cite{chen2010combinatorial}. The shielding parameters can disable some parameter values to expose additional interaction errors, which can be regarded as a special case of masking effects.
 
-Dumlu and Yilmaz proposed a feedback-driven approach to work around the masking effects \cite{dumlu2011feedback}. Specifically, they first used classification tree to classify the possible failure-inducing interactions and eliminate them. Then they generate new test cases to detect possible masked interaction in the next iteration. They further extended their work \cite{yilmaz2013reducing} by proposing a multiple-class CTA approach to distinguish failures in SUT. In addition, they empirically studied the impacts of masking effects on both ternary-class and multiple-class CTA approaches.
+Dumlu and Yilmaz proposed a feedback-driven approach to work around the masking effects \cite{dumlu2011feedback}. Specifically, they first used classification tree to classify the possible failure-inducing interactions and eliminate them. Then they generate new test cases to detect possible masked interaction in the next iteration. They further extended their work \cite{yilmaz2013reducing} by proposing a multiple-class CTA approach to distinguish failures in the SUT. In addition, they empirically studied the impact of masking effects on both ternary-class and multiple-class CTA approaches.
 
 
-These works can be categorized into 3 groups according to their relationships with our work. First, the works that aim to identifying the MFS in the SUT. Our work also focuses on identifying the MFS, but instead of single failure, our work considers the impacts of multiple failures on the FII approaches, and based on this, a test case replacement strategy is proposed that can assist these FII approaches in reducing the negative effects. Second, the works that aim to deal with the constraints. As discussed before the constraints can be deemed as a special masking effect. Our work differs from them in that the masking effects handled in this paper are those that can be dynamically triggered; that is, we did not know them in prior. Another difference between our work with these constraints handling works is that their target is to avoid the constraints when generating covering array. However, our work aims to remove the masking effects of the FII approaches.  Last, the work that is most similar to our work \cite{yilmaz2013reducing}, which also considered the masking effects that are dynamically appeared in test cases. But different from our work, it mainly focused on reducing the masking effects in the covering array, so that the covering array can support a comprehensive validation of all the $\tau$-degree schemas. The approach used to reduce this negative effect is to use the FII approach to identify the schemas that can trigger this effect in each iteration. Our approach, however, addresses the masking effects that happened in these FII approaches themselves, and our approach alleviates the masking effects by augmenting the FII approaches with a test case replacement strategy.
+These works can be categorized into 3 groups according to their relationships with our work. First, we discuss the works that aim to identifying the MFS in the SUT. Our work also focuses on identifying the MFS, but instead of single failure, our work considers the impact of multiple faults on the FII approaches, and based on this, a test case replacement strategy is proposed that can assist these FII approaches in reducing the negative effects. Second, the works that aim to deal with the constraints. As discussed before the constraints can be deemed as a special masking effect. Our work differs from them in that the masking effects handled in this paper are those that can be dynamically triggered; that is, we did not know them in prior. Another difference between our work with these constraints handling works is that their target is to avoid the constraints when generating covering array. However, our work aims to remove the masking effects of the FII approaches.  Last, the work that is most similar to our work \cite{yilmaz2013reducing}, which also considered the masking effects that are dynamically appeared in test cases. But different from our work, it mainly focused on reducing the masking effects in the covering array, so that the covering array can support a comprehensive validation of all the $\tau$-degree schemas. The approach used to reduce this negative effect is to use the FII approach to identify the schemas that can trigger this effect in each iteration. Our approach, however, addresses the masking effects that happened in these FII approaches themselves, and our approach alleviates the masking effects by augmenting the FII approaches with a test case replacement strategy.
 %\cite{shi2005software,wang2010adaptive,nie2011minimal,zhang2011characterizing,li2012improved,colbourn2008locating,martinez2008algorithms ,martinez2009locating,yilmaz2006covering,shakya2012isolating,ghandehari2012identifying,niu2013identifying}
 %Our work differs from these mainly in that we formally studied the masking effects on FII approaches and further proposed a divide-and-conquer strategy to alleviate this impact.
 
 \section{Conclusions}\label{sec:conclusion}
-Masking effects of multiple failures in SUT can bias the results of traditional failure-inducing interactions identifying approaches. In this paper, we formally analysed the impact of masking effects on FII approaches and showed that the two traditional strategies, i.e., \emph{regarded as one fault} and \emph{distinguishing failures}, are both inefficient in handling such impact. We further presented a test case replacement strategy for FII approaches to alleviate such impact.
+Masking effects of multiple faults in the SUT can bias the results of traditional failure-inducing interactions identifying approaches. In this paper, we formally analysed the impact of masking effects on FII approaches and showed that the two traditional strategies, i.e., \emph{regarded as one fault} and \emph{distinguishing failures}, are both inefficient in handling such impact. We further presented a test case replacement strategy for FII approaches to alleviate such impact.
 
 %This strategy separately handle each failure in SUT, and for a particular failure, it will discard these test cases that trigger failures different from the one under analysis and only keep those that either pass or trigger the expected failure. Additional test cases for compensation will be generated after discarding unsatisfied test cases.
 
-In our empirical studies, we extended FIC\_BS \cite{zhang2011characterizing} with our strategy. The comparison between our approach and traditional approaches was performed on several open-source software. The results indicated our strategy assists the traditional FII approach in achieving better performance when facing masking effects in SUT. We also empirically evaluated the efficiency of the test case searching component by comparing it with the random searching based FII approach. The results showed that the ILP-based test case searching method can perform more efficiently. Last, we compared our approach with existing technique for handling masking effects -- FDA-CIT \cite{yilmaz2013reducing}, and observed that our approach achieved a more precise result which can better support  debugging, though our approach required more test cases than FDA-CIT.
+In our empirical studies, we extended FIC\_BS \cite{zhang2011characterizing} with our strategy. The comparison between our approach and traditional approaches was performed on several open-source software. The results indicated our strategy assists the traditional FII approach in achieving better performance when facing masking effects in the SUT. We also empirically evaluated the efficiency of the test case searching component by comparing it with the random searching based FII approach. The results showed that the ILP-based test case searching method can perform more efficiently. Last, we compared our approach with existing technique for handling masking effects -- FDA-CIT \cite{yilmaz2013reducing}, and observed that our approach achieved a more precise result which can better support  debugging, though our approach required more test cases than FDA-CIT.
 
-As for the future work, we need to do more empirical studies to make our conclusions more general. Our current experiments focus on medium-sized software. We would like to extend our approach to more complicated, large-scaled testing scenarios. Another promising work in the future is to integrate the white-box testing technique into the FII approaches. We believe gaining insight into source code can help figure out the relationships between multiple failures, and hence facilitate the FII approaches obtaining more accurate results. And last, because the extent to which the FII suffers from masking effects varies with different algorithms, combining these different FII approaches would be desired in the future to further improve identifying MFS of multiple failures.
+As for the future work, we need to do more empirical studies to make our conclusions more general. Our current experiments focus on medium-sized software. We would like to extend our approach to more complicated, large-scaled testing scenarios. Another promising work in the future is to integrate the white-box testing technique into the FII approaches. We believe gaining insight into source code can help figure out the relationships between multiple faults, and hence facilitate the FII approaches obtaining more accurate results. And last, because the extent to which the FII suffers from masking effects varies with different algorithms, combining these different FII approaches would be desired in the future to further improve identifying MFS of multiple faults.
 
 
 
@@ -1823,7 +1834,7 @@ As for the future work, we need to do more empirical studies to make our conclus
 
 
 %
-%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other word, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
+%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other words, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
 %
 
 %Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{4}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
@@ -1875,40 +1886,40 @@ Here, $C_{free}$ indicates the parameter values in $t_{original}$ that is not re
 %  $ \forall t \in \mathcal{T}(c_{2})$,  $t$ contains $c_{2}$. As $t$ is a $k$-degree schema, then it has $c_{2} \prec t$ .  As $c_{1} \prec c_{2}$, then $c_{1} \prec t$, indicating that $t$ contains $c_{1}$. Therefore, $t \in \mathcal{T}(c_{1})$. So it follows that $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
 %\end{proof}
 
-\begin{algorithm}[ht]
-%\SetAlgoNoLine
-\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
-\KwOut{ The $MFS$ in the $t_{original}$ }
-%$index$ = 0; $FreNum_{\alpha}$ = -1\;
-
-$C_{free} \leftarrow NULL $ \;
-$MFS  \leftarrow NULL $ \;
-\While{true}{
-        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
-        $U \leftarrow C_{free} $ \;
-        \While{$| C_{cand} | > 1$}{
-            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
-            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  U )$\;
-            \eIf  {$Run (testCase) == PASS$}{
-                $C_{cand} \leftarrow C_{low} $\;
-            }{
-                $C_{cand} \leftarrow C_{high}$\;
-                $U \leftarrow C_{low}$\;
-            }
-        }
-        $C_{free} \leftarrow U$\;
-        $element \leftarrow C_{cand}$\;
-
-        \If  {$element == NULL$}{
-            break \;
-           }
-         $MFS  \leftarrow   MFS \bigcup {element}$  \;
-     }
-     \Return $MFS$ \;
-
-\caption{The algorithm of  FIC\_BS with replacement strategy}
-\label{alg:fic-replacement}
-\end{algorithm}
+%\begin{algorithm}[ht]
+%%\SetAlgoNoLine
+%\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
+%\KwOut{ The $MFS$ in the $t_{original}$ }
+%%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+%
+%$C_{free} \leftarrow NULL $ \;
+%$MFS  \leftarrow NULL $ \;
+%\While{true}{
+%        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
+%        $U \leftarrow C_{free} $ \;
+%        \While{$| C_{cand} | > 1$}{
+%            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
+%            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  U )$\;
+%            \eIf  {$Run (testCase) == PASS$}{
+%                $C_{cand} \leftarrow C_{low} $\;
+%            }{
+%                $C_{cand} \leftarrow C_{high}$\;
+%                $U \leftarrow C_{low}$\;
+%            }
+%        }
+%        $C_{free} \leftarrow U$\;
+%        $element \leftarrow C_{cand}$\;
+%
+%        \If  {$element == NULL$}{
+%            break \;
+%           }
+%         $MFS  \leftarrow   MFS \bigcup {element}$  \;
+%     }
+%     \Return $MFS$ \;
+%
+%\caption{The algorithm of  FIC\_BS with replacement strategy}
+%\label{alg:fic-replacement}
+%\end{algorithm}
 
 \section{The detail of the experiments}\label{sec:appdenxis:detailExper}
 

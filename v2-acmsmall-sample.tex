@@ -506,7 +506,11 @@ $\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \su
 For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subseteq T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $, $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
 \end{proposition}
 
-Proposition \ref{pro:sls} is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
+\begin{proof}
+Assume that $\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \subseteq T_{1}$. According to Proposition \ref{pro:sbS}, $c_{2} \in \mathcal{S}(T_{1})$. By definitions of $\mathcal{S}(T)$ and $\mathcal{C}(T)$, $\exists c_{1} \in \mathcal{C}(T_{1}), s.t., c_{1} = c_{2},\ or\ c_{1} \prec c_{2}$.
+\end{proof}
+
+We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
 
 We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subseteq T_{1}$. In the left part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
 
@@ -979,7 +983,9 @@ Note that this algorithm has another exit, besides finding an expected test case
 
 \section{Illustration of the approach}\label{sec:appraoch}
 
-This section will illustrate the complete approach, which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
+This section will completely illustrate the MFS identification approach that combines the traditional MFS identification procedure with test cases replacement strategy.
+
+%which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
 %
 %\subsection{MFS identification}
 %
@@ -988,16 +994,20 @@ This section will illustrate the complete approach, which give a description for
 
 \subsection{MFS identification with replacement strategy}
 
+Algorithm \ref{alg:two} shows the procedure of the approach. The inputs to this algorithm are the fault $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is to give the MFS for fault $F_{m}$ in the test case $t$. Variable $SP$ is to record the suspicious value between each parameter value with each fault. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with fault $F_{m}$ or not, and $T_{F-Known}$ is the set of test cases that are deemed to trigger the fault $F_{m}$. This algorithm loops until some MFS are determined (line 25 ~ 27). This is based on Lemma \ref{pro:dsmfs} in Section 3.3. Specifically,  by computing the minimal schemas of $T_{F-Known}$, i.e., $\mathcal{C}(T_{F-Known})$, and minimal schemas of $T_{F-Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F-Known})$ are MFS if they are contained in $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$.
+
+In each iteration of this algorithm, it will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration (See Algorithm \ref{alg:fic} in the Appendix for detail). Then the approach will execute this test case (line 8) and update the suspicious matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on Lemma \ref{lemma:inferfailing} and \ref{lemma:inferpassing}. After that, we should updated the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
+
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
-\KwIn{ failure $F_{m}$, original failing test case $t$, all the possible test cases in the SUT $T_{ALL}$, Safe Values $SV$}
+\KwIn{ failure $F_{m}$, original failing test case $t$ }
 \KwOut{ $MFS$ return the determined MFS }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 
 $Sp \leftarrow init\_Suspicious\_Matrix(t)$ \;
 $T_{Unknown} \leftarrow  T_{ALL} \setminus t $ \;
 $T_{F-Known} \leftarrow \{ t \} $ \;
-$M_{Candidate} \leftarrow empty$
+$MFS \leftarrow empty$ \;
 \While{ $true$}{
 %       $optimal \leftarrow MAX$,
 %       $t_{new} \leftarrow null$ \;
@@ -1013,9 +1023,9 @@ $M_{Candidate} \leftarrow empty$
        $t_{next} \leftarrow random\_pick(R)$\;
        $result \leftarrow execute(t_{next})$\;
        $update\_SP(t_{next})$ \;
-        \If  {$result == PASS\ or\ result ==  F_{m}$}{
+        \If  {$result \neq PASS\ and \ result \neq  F_{m}$}{
          $t_{next} \leftarrow Replacing(F_{m}, Sp, R) $\;
-          \If  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;  
+          \If  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
           $result \leftarrow F_{m}$}{}
            }{ }
             \eIf  {$result == F_{m}$}{
@@ -1024,11 +1034,11 @@ $M_{Candidate} \leftarrow empty$
            $T_{Unknown} \leftarrow T_{Unknown} \setminus (t_{next} \bigcup T_{infer-F}) $ \;
            }{ $T_{infer-P} \leftarrow InferringPassing (t_{next}, SV) $\;
            $T_{Unknown} \leftarrow T_{Unknown} \setminus  (t_{next} \bigcup T_{infer-P}) $ \;}
-           
-           
-           $M_{Candidate} \leftarrow \mathcal{C}(T_{F-Known})$ \;
+
+
+           $MFS \leftarrow \mathcal{C}(T_{F-Known})$ \;
            $M_{Possible} \leftarrow \mathcal{C}(T_{F-Known} \bigcup T_{Unknown})  $ \;
-            \If{ $ M_{Candidate} \subseteq M_{Possible} $}{break\;}{}
+            \If{ $ MFS \subseteq M_{Possible} $}{break\;}{}
 
        }
        \Return $M_{Candidate}$
@@ -1038,10 +1048,11 @@ $M_{Candidate} \leftarrow empty$
 \end{algorithm}
 
 
+
 \subsection{A case study using the replacement strategy}\label{sec:method:case}
 %Next we will take the FII approach--OFOT algorithm as the subject to see how our approach works on them.
 
-Suppose we have to test a system with eight parameters, each of which has three options, i.e., SUT($3^8$). When we execute the test case $t_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, with each executed test case corresponding to a specific label, $t_{1}$ -- $t_{8}$, at the left. The underline part for each test case is the $fixed$ part according to FIC\_BS \cite{zhang2011characterizing}.  The right main column lists the suspiciousness matrix when a test case triggers $e2$ or $e3$.  The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
+In this section, we will give a case study to illustrate the approach. Suppose we have to test a system with eight parameters, each of which has three options, i.e., SUT($3^8$). When we execute the test case $t_{0}$ -- (0, 0, 0, 0, 0, 0, 0, 0), a failure--$e1$ is triggered. Furthermore, there are two more potential failures, $e2$ and $e3$, that may be triggered during the testing and they will mask the desired failure $e1$. Next, we will use FIC\_BS \cite{zhang2011characterizing} with replacement strategy to identify the MFS of $e1$.  The process is shown in Figure \ref{fig:fci_case_study}. In this figure, there are two main columns. The left main column indicates the executed test cases during testing as well as the executed results, with each executed test case corresponding to a specific label, $t_{1}$ -- $t_{8}$, at the left. The underline part for each test case is the $fixed$ part according to FIC\_BS \cite{zhang2011characterizing}.  The right main column lists the suspiciousness matrix when a test case triggers $e2$ or $e3$.  The executed test case, shown in bold, indicates the one that triggers the other failure and should be replaced in the next iteration.
 %In detail, the matrix records the suspiciousness between each parameter (Columns $P1$ -- $P8$) for each value it can take (Column v) with the unexpected failure (Column F).
 %%the test case which are labeled with a deleted line represent the original test case generated by OFOT, and it will be replaced by the regenerated test case which are labeled with a wave line under it.
 \begin{figure}[htbp]
@@ -1057,7 +1068,9 @@ From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (
 
 This replacement process is started each time a new test case that triggered another failure until we finally get the MFS. Sometimes we could not find a satisfied replacing test case in just one trial like $t_{1}$ to $t_{1}'$.  When this happened, we needed to repeat searching the proper test case. For example, for $t_{4}$ which triggered $e3$, we tried three times-- $t_{4}', t_{4}'', t_{4}'''$ to finally get a satisfied $t_{4}'''$ which passes the testing. Note that the \emph{suspiciousness} matrix continues to change as the test case is generated and executed so that we can adaptively find an optimal one.
 
-With the replacement test cases, the FII approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, -, -, -, - ) (Test cases passed when we mutated the first two parameter values of the original failing cases). In this example, test cases that trigger $e2$ and $e3$ do not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$ and $e3$ based on these test cases.
+With the replacement test cases, the FII approach can properly work. At last, the MFS identified for failure $e1$ is (0,0, -, -, -, -, -, - ) (Test cases passed when we mutated the first two parameter values of the original failing cases). Note that, we did not show the theoretic process to obtain the MFS (0, 0, -, -, -, -, -, -). This is because we need to list all the possible test cases ($3^8 = 6561$ test cases in total) to illustrate this process, which is not applicable in this paper.
+
+Another notable point is that, in this example, test cases that trigger $e2$ and $e3$ do not contribute to the MFS identification. In real-world scenario, however, it is appealing to iteratively start MFS identification for $e2$ and $e3$ based on these test cases.
 
 %\subsection{Complexity analysis}
 %The complexity of our approach relies on two variables: the number of test cases that triggered other failures which need to be replaced, and the number of test cases that need to be tried to generate a non-masking-effect test case. The complexity is the product of these two variables.
@@ -1123,7 +1136,7 @@ With the replacement test cases, the FII approach can properly work. At last, th
 
 \section{Discussion about the influence of the assumptions}\label{sec:assumptions}
 
-In section \ref{sec:introd:mfs}, we introduced three assumptions that can simplify our formal modeling and proposed approach. In this section, we will discuss the influence of them on our propositions and approach, as well as some measures to alleviate their impacts.
+In section \ref{sec:introd:mfs}, we introduced three assumptions that can simplify our formal modeling and proposed approach, and in section \ref{subsec:Formal:identi}, we introduced the safe value assumption which can reduce the number of test cases to identify MFS. In this section, we will discuss the influence of them on our propositions and approach, as well as some measures to alleviate their impacts.
 
 \subsection{Deal with non-deterministic problem}
 The first assumption is that the outcomes of all the tests are deterministic. In practice, re-executing the same test case may result in different outcomes. For example, if the program using some random variables, different runs of the test case will assign different values to these random variables. As a result, the control follow of the program may be changed and hence the outcome will be different. We called this type of failure the non-deterministic failure \cite{yilmaz2006covering,fouche2009incremental}. Non-deterministic failure will complicate the MFS identification, and even worse, it may lead to an unreliable result of the MFS identification. Consider the the following example in Table \ref{non-deterministic-example}, the only difference between the left with the right test set is the outcome of test case (0, 1, 1). This subtle difference result in the different results of the MFS identification. Hence, if there is one or more test cases which have non-deterministic executing results, the MFS identification is not reliable.
@@ -1186,9 +1199,9 @@ $T_{fail}$ &$T_{pass}$ &  $T_{invalid}$ \\ \hline
 Another type of constraint is those that do not be found at first, but triggered later in testing\cite{yilmaz2013reducing}. The same as the approach proposed in \cite{yilmaz2013reducing}, we can just treat them as one type of failure, and then use MFS identification approach to identify them when encounter those invalid test cases.
 
 \subsection{Deal with safe values}
-With safe value,
+The last assumption is the safe value, i.e., each parameter has one value that is not the part of any MFS. With this assumption, based on Lemma \ref{lemma:inferfailing} and \ref{lemma:inferpassing}, we can infer the result of many test cases without executing them. On the contrary, if this assumption does not hold, those test cases may be inferred to the wrong results. As a result, the MFS that identified by FII approaches are not accurate.
 
-
+In theory, to solve this problem, we should exhaustively execute all the test cases of which the results could be inferred. This is a costly process, and hence, some approaches have been proposed to handle such problem.  Martinez \cite{martinez2008algorithms,martinez2009locating} proposed two approaches without the safe value assumption, but both of them either needs to know the number of the MFS or the degrees of them in prior. Then either through generating higher-way covering array or adaptively generating additional test case, they can determine the MFS. We \cite{niu2013identifying} have also proposed one approach to alleviate this problem. In that work, we repeatedly check the same schema to reduce the impacts of non-safe values problem.
 
 \section{empirical studies}\label{sec:emprical}
 To investigate the impact of masking effects on FII approaches in real software testing scenarios and to evaluate the performance of our approach in handling this effect, we conducted several empirical studies. Each of the studies focuses on addressing one particular issue, as follows:
