@@ -204,7 +204,7 @@ We constructed a small example to illustrate the motivation of our approach. Ass
 
 There are two potential failures of \emph{foo}: first, in step 1 we can get an \emph{Arithmetic Exception} when $b$ is equal to $c$, i.e.,  $b = 4$ and $c = 4$, that causes a division by zero. Second, another \emph{Arithmetic Exception} will be triggered in step 2 when $c < d$, i.e., $c = 4$ and $d = 5$, taking square root of a negative number. So the expected failure-inducing interactions in this example should be (-, 4, 4, -) and (-, -, 4, 5).
 
-Traditional FII algorithms do not consider the code detail; instead, they apply black-box testing, i.e., feed inputs to the programs and execute them to observe the result. The basic justification behind these approaches is that the failure-inducing interactions for a particular failure can only appear in those test cases that trigger this failure. Traditional FII approaches often aim at using as few test cases as possible to get the same (or approximate) result as exhaustive testing, so the results derived from an exhaustive testing set are the best that these FII approaches can achieve. Next, we will show how exhaustive testing works to identify the failure-inducing interactions for the program.
+FII approaches do not consider the code detail; instead, they apply black-box testing, i.e., feed inputs to the programs and execute them to observe the result. The basic proposition of FII approaches is that the failure-inducing interactions for a particular failure can only appear in those test cases that trigger this failure. FII approaches often aim at using as few test cases as possible to get the same (or approximate) result as exhaustive testing, so the results derived from an exhaustive testing set are the best that FII approaches can achieve. Here, we will show how exhaustive testing works to identify the failure-inducing interactions for the program.
 
 \begin{table}[ht]
   \tbl{test cases and their corresponding result\label{test-example}}{
@@ -261,9 +261,11 @@ Note that in this example we did not get the expected result with traditional FI
 
 % if more than two failures, and the masking element is more, the result we got will be more noisy so that we cannot figure out the reals result
 
-Now consider the source code of \emph{foo}. We can find that if Ex 1 is triggered, it will stop executing the remaining code and report the exception result. In other words, Ex 1 may mask Ex 2. Let us re-examine the interaction (-,-,4,5). If we suppose that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 if they did not trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing interaction of Ex 2, which is identical to the expected one.
+Now consider the source code of \emph{foo}. If Ex 1 is triggered, it will stop executing the remaining code and report the exception result. In other words, Ex 1 may mask Ex 2. Let us re-examine the interaction (-,-,4,5). If we suppose that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 if they did not trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing interaction of Ex 2, which is identical to the expected one. However, we cannot get this result, unless we fix the code that triggers Ex 1 and re-execute all the test cases.
+ 
+% we cannot validate the supposition that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 when they did not trigger Ex 1.
 
-Unless we fix the code that triggers Ex 1 and re-execute all the test cases, we cannot validate the supposition that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 when they did not trigger Ex 1. So in practice, when we lack resources to execute all the test cases repeatedly or can only do black-box testing, a more economical and efficient approach to alleviate the masking effect on FII approaches is desired.
+ So in practice, \emph{when we lack resources to execute all the test cases repeatedly or can only do black-box testing, a more economical and efficient approach to alleviate the masking effect on FII approaches is desired}.
 
 \section{Formal model of Minimal Failure-causing schema} \label{sec:formal}
 This section presents some definitions and propositions for a formal description of failure-inducing interactions and test sets.
@@ -506,7 +508,13 @@ $\forall c_{2} \in \mathcal{C}(T_{2})$,  $\mathcal{T}(c_{2}) \subseteq T_{2} \su
 For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subseteq T_{1}$. Then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $, $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
 \end{proposition}
 
-Proposition \ref{pro:sls} is exactly the antithesis of Proposition \ref{pro:ssp}. We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
+\begin{proof}
+Assume that $\exists c_{1} \in \mathcal{C}(T_{1})$,  s.t., $\exists c_{2} \in \mathcal{C}(T_{2}), c_{2} \prec c_{1}$. According to Proposition \ref{pro:sls}, as $T_{2} \subseteq T_{1}$, so $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1}' \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1}' = c_{2} \ or\  c_{1}' \prec c_{2}$. Combining them, we can get that $c_{1}' \prec c_{1}$. This is a obvious contradiction, as $c_{1}$ and $c_{1}'$ are both minimal schemas in  $\mathcal{C}(T_{1})$.
+
+Hence, apart from the impossible relationship $c_{2} \prec c_{1}$, then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $, $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
+\end{proof}
+
+We need to note the third case, i.e., $\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{1} \prec c_{2}\ or\ c_{1} = c_{2},\ or\ c_{2} \prec c_{1}.$ We refer to this case as $c_{1}$ is \emph{irrelevant} to $\mathcal{C}(T_{2})$. Furthermore, we can also say a schema is \emph{irrelevant} to another schema if these two schemas are neither identical nor subsuming each other.
 
 We illustrate these scenarios with examples in Table \ref{example_three_condition} for SUT($2^{3}$). There are two parts in this table, with each part showing two test sets: $T_{1}$ and $T_{2}$, which have $T_{2} \subseteq T_{1}$. In the left part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0), both are the super-schemas of the one in $\mathcal{C}(T_{1})$:(0,-,-). While in the right part, the schemas in $\mathcal{C}(T_{2})$: (0, 0, -) and (0, -, 0) are both also in $\mathcal{C}(T_{1})$. Furthermore, one schema in $\mathcal{C}(T_{1})$: (1,1,-) is irrelevant to $\mathcal{C}(T_{2})$.
 
@@ -539,7 +547,7 @@ $\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
   }
   \end{table}
 
-In summary, these propositions provide the foundation of MFS identification (Propositions \ref{pro:stct} and \ref{pro:ash}), and more meaningful, they clarify the relationships between the minimal schemas of two different test sets (Propositions \ref{pro:sls} and \ref{pro:ssp}), which is the key to explain the impact of masking effects in the following section.
+In summary, these propositions provide the foundation of MFS identification (Propositions \ref{pro:stct} and \ref{pro:ash}), and more meaningful, they clarify the relationships between the minimal schemas of two different test sets (Propositions \ref{pro:sls} and \ref{pro:ssp}), which is the key to explain the impact of masking effects later.
 %For any test sets in the SUT, it has a set of minimal schemas.
 %(b) For two subsuming test sets, their minimal schemas can be subsuming or irrelevant to each other.
 
@@ -549,7 +557,7 @@ In this section, we will study how traditional MFS identification approaches, i.
 
 As it is impractical to get all the MFS, the appropriate is to determine some MFS of them. With the following proposition, we can learn that with knowing subset of the test cases, we can also determine some of them are MFS.
 
-\begin{proposition}[{Identical minimal schemas}]\label{pro:dsms}
+\begin{proposition}[{Equal minimal schemas}]\label{pro:dsms}
 For $T_{1}$ and $T_{2}$, $T_{1} \subset T_{2}$. If $\exists c \in \mathcal{C}(T_{1})$, such that $ c \in \mathcal{C}(T_{2})$. Then, for any test set $T_{3}$, such that $T_{1} \subset T_{3} \subset T_{2}$, we have $c \in \mathcal{C}(T_{3})$.
 \end{proposition}
 
@@ -696,7 +704,7 @@ For traditional FII approaches, without the knowledge of  $T_{mask(F_{m})}$,  tw
 
 \subsection{Regarded as one failure strategy} \label{sec:mask:ro}
 %, as it does not distinguish the failures, i.e., it treats all types of failures as one failure--\emph{failure}, and others as \emph{pass}.
-This is the most common strategy. With this strategy, the minimal schemas are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$, where $L$ is the number of all the failures in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subseteq \bigcup_{i = 1}^{L}T_{F_{i}}$ .  By Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
+This is the most common strategy. With this strategy, the minimal schemas are the set $\mathcal{C}(\bigcup_{i = 1}^{L}T_{F_{i}})$, where $L$ is the number of all the faults in the SUT. Obviously, $T_{F_{m}} \bigcup T_{mask(F_{m})} \subseteq \bigcup_{i = 1}^{L}T_{F_{i}}$ .  By Proposition \ref{pro:sls}, some schemas obtained by this strategy may be the sub-schemas of some of the actual MFS, or be irrelevant to the actual MFS.
 
 As an example, consider the test cases in Table \ref{masking-effects-exhaustive}. Assume we need to characterize the MFS of \emph{failure 1}. All the test cases that triggered \emph{failure 1} are listed in column \emph{$T_{F_{1}}$}; similarly, we list the test cases that triggered other failures in column \emph{$T_{mask(F_{1})}$} and \emph{$T_{non\_mask}$}, respectively, in which the former masked \emph{failure 1}, while the latter did not. Actually the MFS of \emph{failure 1}  should be (1,1,-,-) and (-,1,1,1) as we listed them in the column `actual MFS of \emph{failure 1}'. However, when we use the \emph{regarded as one failure} strategy, the minimal schemas obtained will be (-,-,0,0), (1,1,-,-), (-,-,1,1), in which (-,-,0,0) is irrelevant to the actual MFS of \emph{failure 1}, and (-,-,1,1) is a sub-schema of the actual MFS (-,1,1,1).
 
@@ -803,7 +811,8 @@ The main reason that the FII approach fails to work properly is that it cannot d
 
 For the exhaustive testing model, i.e., $\mathcal{C}(T_{F_{m}})$, as all the test cases will be used to identify the MFS, there is no room left to improve the performance unless we fix other failures and re-execute all the test cases. However, if only a subset of all test cases is used to identify the MFS (which is how the traditional FII approach works), it is important to make the right selection to limit the size of $T_{mask(F_{m})}$ to be as small as possible.
 \subsection{Replacing test cases that trigger unexpected failures}\label{sec:method:describe}
-The basic idea is to pick the test cases that trigger other failures and generate new test cases to replace them. The regenerated test cases should either pass in the execution or trigger $F_{m}$. The replacement must satisfy the condition that the newly generated ones will not negatively influence the original identifying process.
+The basic idea is to pick the test cases that trigger other failures and generate new test cases to replace them. The regenerated test cases should either pass in the execution or trigger $F_{m}$.
+%The replacement must satisfy the condition that the newly generated ones will not negatively influence the original identifying process.
 
 Normally, when we replace the test case that triggers an unexpected failure with a new test case, we should keep some part of the original test case. We call this part the \emph{fixed part}, and mutate the other part with different values from the original one. For example, if a test case (1,1,1,1) triggered an unexpected failure, and the fixed part is (-,-,1,1). Then, we can replace it with a test case (0,0,1,1) which may either pass or trigger the same failure as currently analysed.
 
@@ -963,7 +972,7 @@ The inputs to this algorithm consist of the failure $F_{m}$ under analysis, the 
 
 The outer loop of this algorithm (lines 1 - 10) contains three parts:
 
-The first part (lines 2 - 3) generates and executes a new test case which is supposed to be least likely to trigger failures different from $F_{m}$. The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems.
+The first part (lines 2 - 3) generates and executes a new test case which is supposed to be least likely to trigger failures different from $F_{m}$. The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems. (Note that a simpler linear search algorithm can also be applied in our approach to find a proper test case. However, as this problem to search a proper test case is related to Integers (a test case consists of discrete parameters with discrete values), so we use Integer Linear Programming (ILP) technique instead.)
 
 The second part (line 4) updates the suspiciousness matrix ($Sp$) for each parameter value that is involved in this newly generated test case (line 4). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $Sp(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
 
@@ -1242,7 +1251,7 @@ http://sourceforge.net/p/jflex/bugs } for each of the software.
 \begin{table}[ht]\renewcommand{\arraystretch}{1.3}
 \tbl{Software under survey\label{software description}}{
 \begin{tabular}{c|c|c|c|c} \hline
-software & versions & LOC & classes & bug pairs \\ \hline
+software & versions & LOC & classes & bugs \\ \hline
 
 HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005 \\
 	   &2.2.5 & 156066 & 508 & \#1173 \&  \#1179\\

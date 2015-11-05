@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  3 NOV 2015 21:06
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  4 NOV 2015 21:34
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -442,7 +442,7 @@ Requested font "cmtt10" at 10.0pt
 Requested font "pncrc7t" at 10.0pt
  -> pncrc7t
  [6] [7]
-Underfull \hbox (badness 1342) in paragraph at lines 463--465
+Underfull \hbox (badness 1342) in paragraph at lines 465--467
 [] [] \OT1/pnc/m/it/10 For any
  []
 
@@ -456,7 +456,7 @@ Requested font "pncr7t" at 5.0pt
 Requested font "pncb7t" at 5.0pt
  -> pncb7t
 
-Underfull \hbox (badness 6859) in paragraph at lines 673--674
+Underfull \hbox (badness 6859) in paragraph at lines 677--678
 \OT1/pnc/m/n/10 = $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cm
 m/m/it/10 t[]; t[]; t[]; t[]\OMS/cmsy/m/n/10 g\OT1/cmr/m/n/10 )$ \OT1/pnc/m/n/1
 0 = (-, 1, -, 1), and $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 T[]
@@ -473,15 +473,11 @@ File: example-of-masking-effects1.eps Graphic file (type eps)
  <example-of-masking-effects1.eps>
 File: example-of-masking-effects2.eps Graphic file (type eps)
  <example-of-masking-effects2.eps>
-[14]
-Underfull \vbox (badness 4505) has occurred while \output is active []
-
- [15]
-[16] [17]
+[14] [15] [16] [17]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 936.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 941.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -499,21 +495,21 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 958.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 963.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 958.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 963.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 958.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 963.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 961.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 966.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
  [18]
@@ -524,17 +520,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [21]
 [22] [23]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1266.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1271.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
- [24] [25] [26]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ [24] [25]
+Underfull \vbox (badness 5203) has occurred while \output is active []
 
- [27]
+ [26]
+[27]
 File: accurate.eps Graphic file (type eps)
-
-<accurate.eps>
+ <accurate.eps>
 File: sub.eps Graphic file (type eps)
  <sub.eps>
 File: parent.eps Graphic file (type eps)
@@ -543,7 +539,7 @@ File: ignore.eps Graphic file (type eps)
  <ignore.eps>
 File: irrelevant.eps Graphic file (type eps)
  <irrelevant.eps>
-Underfull \hbox (badness 1259) in paragraph at lines 1456--1456
+Underfull \hbox (badness 1259) in paragraph at lines 1461--1461
 []\OT1/pnc/m/n/8 (e) Re-sult of the num-ber of i-den-ti-fied ir-rel-e-van-t
  []
 
@@ -554,9 +550,9 @@ File: testCases.eps Graphic file (type eps)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30]
+[31]
 File: replacingtimes.eps Graphic file (type eps)
-
-<replacingtimes.eps> [31]
+ <replacingtimes.eps>
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
  [32]
@@ -565,34 +561,28 @@ File: 2-way.eps Graphic file (type eps)
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [33]
+ <4-way.eps> [33]
 [34]
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1660 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1665 replaced by U+FFFD.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35]
-[36]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37]
+[36] [37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38]
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6141) has occurred while \output is active []
 
  [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -604,12 +594,12 @@ Requested font "pncri7t" at 6.0pt
  [1
 
 ]
-Overfull \hbox (135.63506pt too wide) in paragraph at lines 1933--1966
+Overfull \hbox (135.63506pt too wide) in paragraph at lines 1938--1971
 [] 
  []
 
 
-Overfull \hbox (145.56282pt too wide) in paragraph at lines 1970--2032
+Overfull \hbox (145.56282pt too wide) in paragraph at lines 1975--2037
 [] 
  []
 
@@ -618,7 +608,7 @@ Overfull \hbox (145.56282pt too wide) in paragraph at lines 1970--2032
 Here is how much of TeX's memory you used:
  3960 strings out of 430478
  46927 string characters out of 3191501
- 189948 words of memory out of 3000000
+ 189946 words of memory out of 3000000
  7033 multiletter control sequences out of 15000+200000
  25620 words of font info for 78 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
