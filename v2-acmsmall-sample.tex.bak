@@ -285,7 +285,9 @@ For the example in Section \ref{sec:motiv}, ($a = 7$, $b = 2$, $c = 4$, $d = 3$)
 \begin{definition}
 A \emph{failure} is an abnormal execution of a test case.
 \end{definition}
-In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, we focus on studying the impact of multiple different \emph{failures} on failure-inducing interactions identification. 
+In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, failures are classified according to the the particular faults. faultuniformly treat these failure-causes as \emph{faults} in this paper, and we will classify failures by the caused fault, i.e., failures  the same fault information are determined as the same type, or same failure. these information, i.e., if failures  .
+
+In this paper, we focus on studying the impact of multiple different \emph{failures} on failure-inducing interactions identification.
 
 To facilitate our discussion, we introduce the following assumptions that will be used throughout this paper:
 
