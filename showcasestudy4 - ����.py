@@ -97,36 +97,36 @@ if __name__ == "__main__":
     irrelevant2 = [0.1733333333333333,0.18000000000000002,1.0266666666666666]
     testNum2 = [458.93,358.15]
     
-    fig = plt.figure(figsize=(6.5, 4))
+    fig = plt.figure(figsize=(7, 3))
 
     ax1= fig.add_subplot(1,7,6)
     x = np.array([0])
-    rects1, rects2 = show(ax1, x, avg[0][0], avg[0][1])
+    rects1, rects2, rects3 = show2(ax1, x, avg[0][0], avg[0][1],avg[0][2])
     ax1.set_xlabel('Aggregative')
 
     ax2= fig.add_subplot(1,7,1)
     x = np.array([0])
-    show(ax2, x, avg[1][0], avg[1][1])
+    show2(ax2, x, avg[1][0], avg[1][1],avg[1][2])
     ax2.set_xlabel('Accuate')
 
     ax3= fig.add_subplot(1,7,2)
     x = np.array([0])
-    show(ax3, x, avg[2][0], avg[2][1])
+    show2(ax3, x, avg[2][0], avg[2][1], avg[2][2])
     ax3.set_xlabel('Super')
 
     ax4= fig.add_subplot(1,7,3)
     x = np.array([0])
-    show(ax4, x, avg[3][0], avg[3][1])
+    show2(ax4, x, avg[3][0], avg[3][1],avg[3][2])
     ax4.set_xlabel('Sub')
 
     ax5= fig.add_subplot(1,7,4)
     x = np.array([0])
-    show(ax5, x, avg[4][0], avg[4][1])
+    show2(ax5, x, avg[4][0], avg[4][1],avg[4][2])
     ax5.set_xlabel('Ignore')
 
     ax6= fig.add_subplot(1,7,5)
     x = np.array([0])
-    show(ax6, x, avg[5][0], avg[5][1])
+    show2(ax6, x, avg[5][0], avg[5][1], avg[5][2])
     ax6.set_xlabel('Irrelevant')
 
 
@@ -181,19 +181,19 @@ if __name__ == "__main__":
     ax7.set_ylim(0, high)
     
     
-    ax1.set_xlim(-0.04, 0.54)
-    ax2.set_xlim(-0.04, 0.54)
-    ax3.set_xlim(-0.04, 0.54)
-    ax4.set_xlim(-0.04, 0.54)
-    ax5.set_xlim(-0.04, 0.54)
-    ax6.set_xlim(-0.04, 0.54)
+    ax1.set_xlim(-0.08, 1.0)
+    ax2.set_xlim(-0.08, 1.0)
+    ax3.set_xlim(-0.08, 1.0)
+    ax4.set_xlim(-0.08, 1.0)
+    ax5.set_xlim(-0.08, 1.0)
+    ax6.set_xlim(-0.08, 1.0)
     ax7.set_xlim(-0.04, 0.54)
 
    # ax1.set_ylabel('number of schemas')
    # plt.title('(a)Result for the 2-way covering array')
    # ax1.set_xticks(x + bar_width, x)
-    fig.legend([rects1, rects2], ['FDA-CIT', 'ILP'],'upper left',
-           ncol=2,prop={'size':10})
+    fig.legend([rects1, rects2, rects3], ['FDA-CIT', 'ILP', 'FDA-CITs'],'upper left',
+           ncol=3,prop={'size':10})
 
     #plt.tight_layout()
     plt.subplots_adjust(left=0.01, bottom=0.26, right=0.97, top=0.88, wspace=0, hspace=0.25)
