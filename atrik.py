@@ -34,7 +34,7 @@ out_testNum = array[6]
 
 
 #define figure and figure size figsize=(width, height)
-fig = plt.figure(figsize=(0.8, 0.8))
+fig = plt.figure(figsize=(11, 22))
 
 #define subplots 3x6
 # 1        2    3 
@@ -45,91 +45,91 @@ fig = plt.figure(figsize=(0.8, 0.8))
 # 16    17    18
 
 
-##axmetric = fig.add_subplot(4,2,6) #gas1
-##axmetricn = fig.add_subplot(4,2,6, sharex=axmetric, sharey=axmetric, frameon=False) #gas1 nomeeritud
-##axmetricn1 = fig.add_subplot(4,2,6, sharex=axmetric, sharey=axmetric, frameon=False) #gas1 nomeeritud
-##axmetricn2 = fig.add_subplot(4,2,6, sharex=axmetric, sharey=axmetric, frameon=False) #gas1 nomeeritud
-##
-##
-##axaccuate = fig.add_subplot(4,2,1) #out9
-##axaccuaten = fig.add_subplot(4,2,1, sharex=axaccuate,sharey=axaccuate, frameon=False) #out9
-##axaccuaten1 = fig.add_subplot(4,2,1, sharex=axaccuate, sharey=axaccuate, frameon=False) #gas1 nomeeritud
-##axaccuaten2 = fig.add_subplot(4,2,1, sharex=axaccuate, sharey=axaccuate, frameon=False) #gas1 nomeeritud
-##
-##
-##axtestnum = fig.add_subplot(4,2,7) #out8
-##axtestnumn = fig.add_subplot(4,2,7, sharex=axtestnum, sharey=axtestnum, frameon=False) #out8
-##axtestnumn1 = fig.add_subplot(4,2,7, sharex=axtestnum, sharey=axtestnum, frameon=False) #gas1 nomeeritud
-##axtestnumn2 = fig.add_subplot(4,2,7, sharex=axtestnum, sharey=axtestnum, frameon=False) #gas1 nomeeritud
-##
-##
-##
-##axparent = fig.add_subplot(4,2,3) #out8
-##axparentn = fig.add_subplot(4,2,3, sharex=axparent, sharey=axparent, frameon=False) #out8
-##axparentn1 = fig.add_subplot(4,2,3, sharex=axparent, sharey=axparent, frameon=False) #gas1 nomeeritud
-##axparentn2 = fig.add_subplot(4,2,3, sharex=axparent, sharey=axparent, frameon=False) #gas1 nomeeritud
-##
-##
-##axchild = fig.add_subplot(4,2,2) #out8
-##axchildn = fig.add_subplot(4,2,2, sharex=axchild, sharey=axchild, frameon=False) #out8
-##axchildn1 = fig.add_subplot(4,2,2, sharex=axchild, sharey=axchild, frameon=False) #gas1 nomeeritud
-##axchildn2 = fig.add_subplot(4,2,2, sharex=axchild, sharey=axchild, frameon=False) #gas1 nomeeritud
-##
-##axignore = fig.add_subplot(4,2,4) #out8
-##axignoren = fig.add_subplot(4,2,4, sharex=axignore, sharey=axignore, frameon=False) #out8
-##axignoren1 = fig.add_subplot(4,2,4, sharex=axignore, sharey=axignore, frameon=False) #gas1 nomeeritud
-##axignoren2 = fig.add_subplot(4,2,4, sharex=axignore, sharey=axignore, frameon=False) #gas1 nomeeritud
-##
-axirrelevant = fig.add_subplot(1,1,1) #out8
-axirrelevantn = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #out8
-axirrelevantn1 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
-axirrelevantn2 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
+axmetric = fig.add_subplot(4,2,6) #gas1
+axmetricn = fig.add_subplot(4,2,6, sharex=axmetric, sharey=axmetric, frameon=False) #gas1 nomeeritud
+axmetricn1 = fig.add_subplot(4,2,6, sharex=axmetric, sharey=axmetric, frameon=False) #gas1 nomeeritud
+axmetricn2 = fig.add_subplot(4,2,6, sharex=axmetric, sharey=axmetric, frameon=False) #gas1 nomeeritud
+
+
+axaccuate = fig.add_subplot(4,2,1) #out9
+axaccuaten = fig.add_subplot(4,2,1, sharex=axaccuate,sharey=axaccuate, frameon=False) #out9
+axaccuaten1 = fig.add_subplot(4,2,1, sharex=axaccuate, sharey=axaccuate, frameon=False) #gas1 nomeeritud
+axaccuaten2 = fig.add_subplot(4,2,1, sharex=axaccuate, sharey=axaccuate, frameon=False) #gas1 nomeeritud
+
+
+axtestnum = fig.add_subplot(4,2,7) #out8
+axtestnumn = fig.add_subplot(4,2,7, sharex=axtestnum, sharey=axtestnum, frameon=False) #out8
+axtestnumn1 = fig.add_subplot(4,2,7, sharex=axtestnum, sharey=axtestnum, frameon=False) #gas1 nomeeritud
+axtestnumn2 = fig.add_subplot(4,2,7, sharex=axtestnum, sharey=axtestnum, frameon=False) #gas1 nomeeritud
+
+
+
+axparent = fig.add_subplot(4,2,3) #out8
+axparentn = fig.add_subplot(4,2,3, sharex=axparent, sharey=axparent, frameon=False) #out8
+axparentn1 = fig.add_subplot(4,2,3, sharex=axparent, sharey=axparent, frameon=False) #gas1 nomeeritud
+axparentn2 = fig.add_subplot(4,2,3, sharex=axparent, sharey=axparent, frameon=False) #gas1 nomeeritud
+
+
+axchild = fig.add_subplot(4,2,2) #out8
+axchildn = fig.add_subplot(4,2,2, sharex=axchild, sharey=axchild, frameon=False) #out8
+axchildn1 = fig.add_subplot(4,2,2, sharex=axchild, sharey=axchild, frameon=False) #gas1 nomeeritud
+axchildn2 = fig.add_subplot(4,2,2, sharex=axchild, sharey=axchild, frameon=False) #gas1 nomeeritud
+
+axignore = fig.add_subplot(4,2,4) #out8
+axignoren = fig.add_subplot(4,2,4, sharex=axignore, sharey=axignore, frameon=False) #out8
+axignoren1 = fig.add_subplot(4,2,4, sharex=axignore, sharey=axignore, frameon=False) #gas1 nomeeritud
+axignoren2 = fig.add_subplot(4,2,4, sharex=axignore, sharey=axignore, frameon=False) #gas1 nomeeritud
+
+axirrelevant = fig.add_subplot(4,2,5) #out8
+axirrelevantn = fig.add_subplot(4,2,5, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #out8
+axirrelevantn1 = fig.add_subplot(4,2,5, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
+axirrelevantn2 = fig.add_subplot(4,2,5, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
 
 
 #plot data and normalized data 
-##line_1, = axmetric.plot(x, out_metric[0],  marker="s",  color="k")
-##line_2, = axmetricn.plot(x, out_metric[1], ls="--", marker="d",   color="k")
-##line_3, = axmetricn1.plot(x, out_metric[2], ls=":", marker="o", mfc="None",   color="k")
-##line_4, = axmetricn2.plot(x, out_metric[3], ls="-.", marker="*", mfc="None",   color="k")
-##
-##axaccuate.plot(x, out_accuate[0],  marker="s", color="k")
-##axaccuaten.plot(x, out_accuate[1], ls="--", marker="d",   color="k")
-##axaccuaten1.plot(x, out_accuate[2], ls=":", marker="o", mfc="None",   color="k")
-##axaccuaten2.plot(x, out_accuate[3], ls="-.", marker="*", mfc="None",   color="k")
-##
-##axtestnum.plot(x, out_testNum[0],  marker="s", color="k")
-##axtestnumn.plot(x, out_testNum[1], ls="--",marker="d",  color="k")
-##axtestnumn1.plot(x, out_testNum[2], ls=":", marker="o", mfc="None",   color="k")
-##axtestnumn2.plot(x, out_testNum[3], ls="-.", marker="*", mfc="None",   color="k")
-##
-##
-##axparent.plot(x, out_parent[0],  marker="s", color="k")
-##axparentn.plot(x, out_parent[1], ls="--",marker="d",  color="k")
-##axparentn1.plot(x, out_parent[2], ls=":", marker="o", mfc="None",   color="k")
-##axparentn2.plot(x, out_parent[3], ls="-.", marker="*", mfc="None",   color="k")
-##
-##
-##axchild.plot(x, out_child[0],  marker="s", color="k")
-##axchildn.plot(x, out_child[1], ls="--",marker="d", color="k")
-##axchildn1.plot(x, out_child[2], ls=":", marker="o", mfc="None",   color="k")
-##axchildn2.plot(x, out_child[3], ls="-.", marker="*", mfc="None",   color="k")
-##
-##
-##axignore.plot(x, out_ignore[0],  marker="s", color="k")
-##axignoren.plot(x, out_ignore[1], ls="--",marker="d",color="k")
-##axignoren1.plot(x, out_ignore[2], ls=":", marker="o", mfc="None",   color="k")
-##axignoren2.plot(x, out_ignore[3], ls="-.", marker="*", mfc="None",   color="k")
-##
+line_1, = axmetric.plot(x, out_metric[0],  marker="s",  color="k")
+line_2, = axmetricn.plot(x, out_metric[1], ls="--", marker="d",   color="k")
+line_3, = axmetricn1.plot(x, out_metric[2], ls=":", marker="o", mfc="None",   color="k")
+line_4, = axmetricn2.plot(x, out_metric[3], ls="-.", marker="*", mfc="None",   color="k")
 
-line_1, = axirrelevant.plot(x, out_irrelevant[0],  marker="s", color="k")
-line_2, = axirrelevantn.plot(x, out_irrelevant[1], ls="--",marker="d", color="k")
-line_3, = axirrelevantn1.plot(x, out_irrelevant[2], ls=":", marker="o", mfc="None",   color="k")
-line_4, = axirrelevantn2.plot(x, out_irrelevant[3], ls="-.", marker="*", mfc="None",   color="k")
+axaccuate.plot(x, out_accuate[0],  marker="s", color="k")
+axaccuaten.plot(x, out_accuate[1], ls="--", marker="d",   color="k")
+axaccuaten1.plot(x, out_accuate[2], ls=":", marker="o", mfc="None",   color="k")
+axaccuaten2.plot(x, out_accuate[3], ls="-.", marker="*", mfc="None",   color="k")
+
+axtestnum.plot(x, out_testNum[0],  marker="s", color="k")
+axtestnumn.plot(x, out_testNum[1], ls="--",marker="d",  color="k")
+axtestnumn1.plot(x, out_testNum[2], ls=":", marker="o", mfc="None",   color="k")
+axtestnumn2.plot(x, out_testNum[3], ls="-.", marker="*", mfc="None",   color="k")
+
+
+axparent.plot(x, out_parent[0],  marker="s", color="k")
+axparentn.plot(x, out_parent[1], ls="--",marker="d",  color="k")
+axparentn1.plot(x, out_parent[2], ls=":", marker="o", mfc="None",   color="k")
+axparentn2.plot(x, out_parent[3], ls="-.", marker="*", mfc="None",   color="k")
+
+
+axchild.plot(x, out_child[0],  marker="s", color="k")
+axchildn.plot(x, out_child[1], ls="--",marker="d", color="k")
+axchildn1.plot(x, out_child[2], ls=":", marker="o", mfc="None",   color="k")
+axchildn2.plot(x, out_child[3], ls="-.", marker="*", mfc="None",   color="k")
+
+
+axignore.plot(x, out_ignore[0],  marker="s", color="k")
+axignoren.plot(x, out_ignore[1], ls="--",marker="d",color="k")
+axignoren1.plot(x, out_ignore[2], ls=":", marker="o", mfc="None",   color="k")
+axignoren2.plot(x, out_ignore[3], ls="-.", marker="*", mfc="None",   color="k")
+
+
+axirrelevant.plot(x, out_irrelevant[0],  marker="s", color="k")
+axirrelevantn.plot(x, out_irrelevant[1], ls="--",marker="d", color="k")
+axirrelevantn1.plot(x, out_irrelevant[2], ls=":", marker="o", mfc="None",   color="k")
+axirrelevantn2.plot(x, out_irrelevant[3], ls="-.", marker="*", mfc="None",   color="k")
 
 
 #configure legend
-##fig.legend([line_1, line_2, line_3, line_4], ['regard one', 'distin', 'ILP', 'random'],'upper left',
-##           ncol=4,prop={'size':10})
+fig.legend([line_1, line_2, line_3, line_4], ['regard one', 'distin', 'ILP', 'random'],'upper left',
+           ncol=4,prop={'size':10})
 
 
 #configure axis
@@ -178,29 +178,29 @@ line_4, = axirrelevantn2.plot(x, out_irrelevant[3], ls="-.", marker="*", mfc="No
 ##ax6n.set_yticklabels([])
 
 
-##axmetric.yaxis.tick_left()
-##axaccuate.yaxis.tick_left()
-##axtestnum.yaxis.tick_left()
-##
-##
-###set Y labels
-##axaccuate.set_xlabel(r"$(a)\ Result\ of\ the\ number\ of\ accurately\ identified\ MFS$")
-##axmetric.set_xlabel(r"$(f)\ The\ aggregative\ result\ for\ the\ five\ metrics$")
-##axtestnum.set_xlabel(r"$(g)\ Needed\ test\ cases$")
-##axparent.set_xlabel(r"$(c)\ Result\ of\ the\ number\ of\ identified\ super-schemas\ of\ the\ MFS$")
-##axchild.set_xlabel(r"$(b)\ Result\ of\ the\ number\ of\ identified\ sub-schemas\ of\ the\ MFS$")
-##axignore.set_xlabel(r"$(d)\ Result\ of\ the\ number\ of\ ignored\ MFS$")
-#axirrelevant.set_xlabel(r"$(e)\ Result\ of\ the\ number\ of\ identified\ irrelevant\ schemas\ of\ the\ MFS$")
+axmetric.yaxis.tick_left()
+axaccuate.yaxis.tick_left()
+axtestnum.yaxis.tick_left()
+
+
+#set Y labels
+axaccuate.set_xlabel(r"$(a)\ Result\ of\ the\ number\ of\ accurately\ identified\ MFS$")
+axmetric.set_xlabel(r"$(f)\ The\ aggregative\ result\ for\ the\ five\ metrics$")
+axtestnum.set_xlabel(r"$(g)\ Needed\ test\ cases$")
+axparent.set_xlabel(r"$(c)\ Result\ of\ the\ number\ of\ identified\ super-schemas\ of\ the\ MFS$")
+axchild.set_xlabel(r"$(b)\ Result\ of\ the\ number\ of\ identified\ sub-schemas\ of\ the\ MFS$")
+axignore.set_xlabel(r"$(d)\ Result\ of\ the\ number\ of\ ignored\ MFS$")
+axirrelevant.set_xlabel(r"$(e)\ Result\ of\ the\ number\ of\ identified\ irrelevant\ schemas\ of\ the\ MFS$")
 
 
 #set X labels
-##axmetric.set_ylabel(r"$AGGREGATIVE\ VALUE$")
-##axaccuate.set_ylabel(r"$ACCURATE\ NUMBER$")
-##axtestnum.set_ylabel(r"$NUMBER\ OF\ TEST\ CASES$")
-##axparent.set_ylabel(r"$SUPER\ NUMBER$")
-##axchild.set_ylabel(r"$SUB\ NUMBER$")
-##axignore.set_ylabel(r"$IGNORE\ NUMBER$")
-#axirrelevant.set_ylabel(r"$IRRELEVANT\ NUMBER$")
+axmetric.set_ylabel(r"$AGGREGATIVE\ VALUE$")
+axaccuate.set_ylabel(r"$ACCURATE\ NUMBER$")
+axtestnum.set_ylabel(r"$NUMBER\ OF\ TEST\ CASES$")
+axparent.set_ylabel(r"$SUPER\ NUMBER$")
+axchild.set_ylabel(r"$SUB\ NUMBER$")
+axignore.set_ylabel(r"$IGNORE\ NUMBER$")
+axirrelevant.set_ylabel(r"$IRRELEVANT\ NUMBER$")
 
 #adjust plot spacing
 plt.subplots_adjust(left=0.07, bottom=0.08, right=0.97, top=0.96, wspace=0.20, hspace=0.25)
