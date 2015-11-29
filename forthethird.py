@@ -40,7 +40,7 @@ out_testTrial = array[9]
 
 
 #define figure and figure size figsize=(width, height)
-fig = plt.figure(figsize=(0.8, 0.8))
+fig = plt.figure(figsize=(8, 4))
 
 #define subplots 3x6
 # 1        2    3 
@@ -88,8 +88,8 @@ fig = plt.figure(figsize=(0.8, 0.8))
 ##
 axirrelevant = fig.add_subplot(1,1,1) #out8
 axirrelevantn = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #out8
-axirrelevantn1 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
-axirrelevantn2 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
+#axirrelevantn1 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
+#axirrelevantn2 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant, frameon=False) #gas1 nomeeritud
 
 
 #plot data and normalized data 
@@ -127,15 +127,15 @@ axirrelevantn2 = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant
 ##axignoren2.plot(x, out_ignore[3], ls="-.", marker="*", mfc="None",   color="k")
 ##
 
-line_1, = axirrelevant.plot(x, out_irrelevant[0],  marker="s", color="k")
-line_2, = axirrelevantn.plot(x, out_irrelevant[1], ls="--",marker="d", color="k")
-line_3, = axirrelevantn1.plot(x, out_irrelevant[2], ls=":", marker="o", mfc="None",   color="k")
-line_4, = axirrelevantn2.plot(x, out_irrelevant[3], ls="-.", marker="*", mfc="None",   color="k")
+#line_1, = axirrelevant.plot(x, out_testTrial[0],  marker="s", color="k")
+#line_2, = axirrelevantn.plot(x, out_testTrial[1], ls="--",marker="d", color="k")
+line_3, = axirrelevant.plot(x, out_testTrial[0], ls=":", marker="o",    color="k")
+line_4, = axirrelevantn.plot(x, out_testTrial[1], ls="-.", marker="*",    color="k")
 
 
 #configure legend
-##fig.legend([line_1, line_2, line_3, line_4], ['regard one', 'distin', 'ILP', 'random'],'upper left',
-##           ncol=4,prop={'size':10})
+fig.legend([line_3, line_4], ['ILP', 'random'],'upper left',
+           ncol=2,prop={'size':10})
 
 
 #configure axis
@@ -206,10 +206,10 @@ line_4, = axirrelevantn2.plot(x, out_irrelevant[3], ls="-.", marker="*", mfc="No
 ##axparent.set_ylabel(r"$SUPER\ NUMBER$")
 ##axchild.set_ylabel(r"$SUB\ NUMBER$")
 ##axignore.set_ylabel(r"$IGNORE\ NUMBER$")
-#axirrelevant.set_ylabel(r"$IRRELEVANT\ NUMBER$")
+axirrelevant.set_ylabel(r"$Num\ of\ test\ cases\ for\ one\ replacement$")
 
 #adjust plot spacing
-plt.subplots_adjust(left=0.07, bottom=0.08, right=0.97, top=0.96, wspace=0.20, hspace=0.25)
+plt.subplots_adjust(left=0.09, bottom=0.08, right=0.97, top=0.90, wspace=0.20, hspace=0.25)
 
 #finally draw the plot
 plt.show()

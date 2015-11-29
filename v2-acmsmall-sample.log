@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 NOV 2015 00:51
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 NOV 2015 01:39
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -609,13 +609,9 @@ File: replacingtimes.eps Graphic file (type eps)
 <replacingtimes.eps> [32]
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
-
-Underfull \vbox (badness 1231) has occurred while \output is active []
-
  [33]
 File: 2-way.eps Graphic file (type eps)
-
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
