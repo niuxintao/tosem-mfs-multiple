@@ -38,9 +38,31 @@ out_needReplacenum = array[8]
 
 out_testTrial = array[9]
 
+a = out_testTrial[0]
+b = out_testTrial[1]
+##
+print(a)
+print(b)
+##
+c = out_needReplacenum[0]
+d = out_needReplacenum[1]
+##
+print(c)
+print(d)
+##
+e = []
+f = []
+for i in range(len(a)):
+    #print(str(a[i])+ "  "+str(c[i])+ "  " + str(b[i]) + " "+str(d[i]) )
+    e.append(a[i]*c[i])
+    f.append(b[i]*d[i])
+##
+print(d)
+print(e)
+
 
 #define figure and figure size figsize=(width, height)
-fig = plt.figure(figsize=(8, 4))
+fig = plt.figure(figsize=(7, 4.5))
 
 #define subplots 3x6
 # 1        2    3 
@@ -129,8 +151,8 @@ axirrelevantn = fig.add_subplot(1,1,1, sharex=axirrelevant, sharey=axirrelevant,
 
 #line_1, = axirrelevant.plot(x, out_testTrial[0],  marker="s", color="k")
 #line_2, = axirrelevantn.plot(x, out_testTrial[1], ls="--",marker="d", color="k")
-line_3, = axirrelevant.plot(x, out_testTrial[0], ls=":", marker="o",    color="k")
-line_4, = axirrelevantn.plot(x, out_testTrial[1], ls="-.", marker="*",    color="k")
+line_3, = axirrelevant.plot(x, c, ls="-.", marker="o", mfc="None",      color="k")
+line_4, = axirrelevantn.plot(x, d, ls="-", marker="*",  mfc="None",  color="k")
 
 
 #configure legend
@@ -206,7 +228,7 @@ fig.legend([line_3, line_4], ['ILP', 'random'],'upper left',
 ##axparent.set_ylabel(r"$SUPER\ NUMBER$")
 ##axchild.set_ylabel(r"$SUB\ NUMBER$")
 ##axignore.set_ylabel(r"$IGNORE\ NUMBER$")
-axirrelevant.set_ylabel(r"$Num\ of\ test\ cases\ for\ one\ replacement$")
+axirrelevant.set_ylabel(r"$NUM\ OF\ TEST\ CASES\ FOR\ REPLACEMENT$")
 
 #adjust plot spacing
 plt.subplots_adjust(left=0.09, bottom=0.08, right=0.97, top=0.90, wspace=0.20, hspace=0.25)
