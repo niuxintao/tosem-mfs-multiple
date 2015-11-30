@@ -1358,33 +1358,27 @@ Next, we built the input model which consists of the options related to the fail
 \multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
   \hline
 
- \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{3}  \\
-  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{4}  \\
+ \multicolumn{3}{c}{ -E } & \multicolumn{3}{c}{2}  \\
+  \multicolumn{3}{c}{  -i }  & \multicolumn{3}{c}{2}  \\
 
-   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{2}  \\
-   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{2}  \\
-      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{2}  \\
-   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{2}  \\
-     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{2}  \\
+   \multicolumn{3}{c}{ -V or --color } & \multicolumn{3}{c}{3}  \\
 
     \hline
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
      \hline
-    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{3}\\
-      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{2}\\
-    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{3}\\
-       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{2}\\
-     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{2}\\
-
+    2.6.3 & \multicolumn{2}{c}{ ascii} & \multicolumn{3}{c}{2}\\
+      & \multicolumn{2}{c}{ command} & \multicolumn{3}{c}{2}\\
+    &\multicolumn{2}{c}{ word } & \multicolumn{3}{c}{2}\\
+       & \multicolumn{2}{c}{ charset} & \multicolumn{3}{c}{2}\\
+  2.22  &\multicolumn{2}{c}{ -A or -B or -C } & \multicolumn{3}{c}{3}\\
+       & \multicolumn{2}{c}{ value} & \multicolumn{3}{c}{4}\\
+       & \multicolumn{2}{c}{ only-matching} & \multicolumn{3}{c}{2}\\
+      & \multicolumn{2}{c}{ --count} & \multicolumn{3}{c}{2}\\
         \hline
    \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
-  2.6.3  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
-   2.22 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
+  2.6.3  & \multicolumn{3}{c}{$2^{5} \times 3^{1} \times 4^{1} $} &\multicolumn{2}{c}{} \\
+   2.22 &  \multicolumn{3}{c}{$2^{4} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
 \end{tabular}
 }
 \end{table}
@@ -1404,8 +1398,8 @@ HSQLDB & 2cr8 & 18432 & 4608 & 768 (16.7\%)\\ \hline
      - & 2.2.9 & 6912 & 3456 &1728 (50\%)\\ \hline
 JFlex & 1.4.1 & 36864 & 24576 &6144 (25\%)\\ \hline
      -& 1.4.2 & 73728 & 36864 &6144 (16.7\%)\\ \hline
-Grep  & 2.6.3 & 36864 & 24576 &6144 (25\%)\\ \hline
-     -& 2.22 & 73728 & 36864 &6144 (16.7\%)\\ \hline
+Grep  & 2.6.3 & 384 & 24576 &6144 (25\%)\\ \hline
+     -& 2.22 & 576 & 36864 &6144 (16.7\%)\\ \hline
 \end{tabular}
 }
 \end{table}
@@ -1431,8 +1425,8 @@ H2.2.5 & $2^{8} \times 3^{3}$ & $ e_{1} > e_{2}$ & $ (6_{1},7_{0})_{e_{1}}, (5_{
 H2.2.9 & $2^{8} \times 3^{3}$& $e_{1} > e_{2} > e_{3}$ & $ (6_{0})_{e_{1}}, (0_{1},5_{1},7_{0})_{e_{2}}, (0_{0},5_{1},7_{0})_{e_{2}}, (5_{1},7_{0})_{e_{3}} $ \\ \hline
 J1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ e_{1} > e_{2} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
 J1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $e_{1} > e_{2}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
-G2.6.3 & $2^{10} \times 3^{2} \times 4^{1}$& $ e_{1} > e_{2} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
-G2.22 & $2^{11} \times 3^{2} \times 4^{1}$& $e_{1} > e_{2}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
+G2.6.3 & $2^{5} \times 3^{1} \times 4^{1} $& $ e_{1} > e_{2} > e_{3} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
+G2.22 & $2^{4} \times 3^{2} \times 4^{1} $& $e_{1} > e_{2} > e_{3}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
 syn1 & $2^{5}\times 3^{3}\times 4^{1}$& $e_{1} > e_{2}$ &$ (2_{1},3_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (1_{0},3_{0})_{e_{2}}$ \\ \hline
 syn2 & $2^{6}\times 3^{2}\times 4^{1}$ & $e_{1} > e_{2} > e_{3} $ &$ (4_{1},6_{0},7_{1},8_{0})_{e_{1}}, (1_{1},3_{1},5_{1})_{e_{2}}, (2_{0},3_{1},6_{0})_{e_{3}} $\\ \hline
 syn3 & $2^{5}\times 3^{3}$ & $e_{1} > e_{2} > e_{3}$ &$ (2_{1},3_{0})_{e_{1}},  (1_{0})_{e_{2}}, (4_{1})_{e_{2}}, (6_{0},7_{0})_{e_{3}} $\\ \hline
