@@ -1281,6 +1281,7 @@ Next, we built the input model which consists of the options related to the fail
 
 \begin{table}[ht]
 \tbl{Input models of HSQLDB, JFlex and Grep \label{modelHSQLDBJFlex}}{
+\setlength\tabcolsep{0.8pt}
 \begin{tabular}{llllll}
 \multicolumn{6}{c}{ \emph{HSQLDB}} \\
   \hline
@@ -1316,7 +1317,7 @@ Next, we built the input model which consists of the options related to the fail
     2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
      2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} \\ \hline
 \end{tabular}
-\hspace{2em}
+%\hspace{1em}
 \begin{tabular}{llllll}
 \multicolumn{6}{c}{\emph{JFlex}} \\
   \hline
@@ -1391,15 +1392,16 @@ Table \ref{masking effect condition} lists the results of our survey. Column ``a
 %[!ht]
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{Number of failures and their masking effects\label{masking effect condition}}{
-\begin{tabular}{c|c|c|c|c} \hline
-software & versions & all tests & failure & masking\\ \hline
-HSQLDB & 2cr8 & 18432 & 4608 & 768 (16.7\%)\\ \hline
-     - & 2.2.5 & 6912 & 3456 & 576 (16.7\%)\\ \hline
-     - & 2.2.9 & 6912 & 3456 &1728 (50\%)\\ \hline
-JFlex & 1.4.1 & 36864 & 24576 &6144 (25\%)\\ \hline
-     -& 1.4.2 & 73728 & 36864 &6144 (16.7\%)\\ \hline
-Grep  & 2.6.3 & 384 & 24576 &6144 (25\%)\\ \hline
-     -& 2.22 & 576 & 36864 &6144 (16.7\%)\\ \hline
+\setlength\tabcolsep{2pt}
+\begin{tabular}{c|c|c|c|c|c|c|c} \hline
+software & versions & all tests & \multicolumn{3}{c|}{failure} & masking & total\\ \hline
+HSQLDB & 2cr8 & 18432 & \#1(2304) &\#2(1152) & \#3(1152)&\#1$>$\#2\#3(768) &768 (16.7\%)\\ \hline
+     - & 2.2.5 & 6912 & \#1(1728) &\#2(1728) &- & \#1$>$\#2(576)&576 (16.7\%)\\ \hline
+     - & 2.2.9 & 6912 & \#1(2304) &\#2(768) & \#3(384)&\#1$>$\#2\#3(960) \#2$>$\#3(768) &1728 (50\%)\\ \hline
+JFlex & 1.4.1 & 36864 & \#1(12288) &\#2(12288) & -&\#1$>$\#2(6144) &6144 (25\%)\\ \hline
+     -& 1.4.2 & 73728 & \#1(18432) &\#2(18432) & -&\#1$>$\#2(6144) &6144 (16.7\%)\\ \hline
+Grep  & 2.6.3 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
 \end{tabular}
 }
 \end{table}
@@ -1417,7 +1419,7 @@ Table \ref{testing_models} lists the testing model for both the real and synthet
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{The testing models used in the case study\label{testing_models}}{
-\setlength\tabcolsep{1pt}
+\setlength\tabcolsep{0.1pt}
 \begin{tabular}{c|c|c|c} \hline
 Object & Model & Faults & MFS of each fault\\ \hline
 H2cr8 & $2^{9} \times 3^{2} \times 4^{1}$ & $e_{1} > e_{2} > e_{3} $ & $ (5_{1},6_{0},7_{0})_{e_{1}}, (5_{1},8_{2},9_{2})_{e_{2}}, (5_{1},8_{2},9_{1})_{e_{2}}, (5_{1},8_{3},9_{2})_{e_{3}}, (5_{1},8_{3},9_{1})_{e_{3}}$ \\ \hline
@@ -1425,13 +1427,13 @@ H2.2.5 & $2^{8} \times 3^{3}$ & $ e_{1} > e_{2}$ & $ (6_{1},7_{0})_{e_{1}}, (5_{
 H2.2.9 & $2^{8} \times 3^{3}$& $e_{1} > e_{2} > e_{3}$ & $ (6_{0})_{e_{1}}, (0_{1},5_{1},7_{0})_{e_{2}}, (0_{0},5_{1},7_{0})_{e_{2}}, (5_{1},7_{0})_{e_{3}} $ \\ \hline
 J1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ e_{1} > e_{2} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
 J1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $e_{1} > e_{2}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
-G2.6.3 & $2^{5} \times 3^{1} \times 4^{1} $& $ e_{1} > e_{2} > e_{3} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
-G2.22 & $2^{4} \times 3^{2} \times 4^{1} $& $e_{1} > e_{2} > e_{3}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
-syn1 & $2^{5}\times 3^{3}\times 4^{1}$& $e_{1} > e_{2}$ &$ (2_{1},3_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (1_{0},3_{0})_{e_{2}}$ \\ \hline
-syn2 & $2^{6}\times 3^{2}\times 4^{1}$ & $e_{1} > e_{2} > e_{3} $ &$ (4_{1},6_{0},7_{1},8_{0})_{e_{1}}, (1_{1},3_{1},5_{1})_{e_{2}}, (2_{0},3_{1},6_{0})_{e_{3}} $\\ \hline
-syn3 & $2^{5}\times 3^{3}$ & $e_{1} > e_{2} > e_{3}$ &$ (2_{1},3_{0})_{e_{1}},  (1_{0})_{e_{2}}, (4_{1})_{e_{2}}, (6_{0},7_{0})_{e_{3}} $\\ \hline
-syn4 & $2^{7}\times 3^{2}\times 4^{1}$ & $e_{1} > e_{2} > e_{3}$ &$ (0_{1},2_{1},5_{0},6_{1})_{e_{1}}, (2_{1},4_{0})_{e_{2}}, (6_{1},7_{0})_{e_{2}}, (3_{0},4_{0},5_{0})_{e_{3}} $\\ \hline
-syn5 & $2^{4}\times 3^{3} \times 4^{2}$ & $e_{1} > e_{2}$ &$ (0_{0},1_{1},3_{0},6_{1},8_{0})_{e_{1}}, (2_{0},3_{0},4_{1})_{e_{2}}$\\ \hline
+G2.6.3 & $2^{5} \times 3^{1} \times 4^{1} $& $ e_{1} > e_{2} > e_{3} $ &$(0_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (3_{0},4_{1})_{e_{3}},(3_{1},4_{1})_{e_{3}},(3_{2},4_{1})_{e_{3}} $ \\ \hline
+G2.22 & $2^{4} \times 3^{2} \times 4^{1} $& $e_{1} > e_{2} > e_{3}$ &$(0_{0})_{e_{1}}, (1_{0},2_{3})_{e_{2}}, (1_{1},2_{3})_{e_{2}},(3_{0},4_{0})_{e_{3}} $ \\ \hline
+syn1 & $2^{7}\times 3^{2}\times 4^{1}$& $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (2_{0},7_{0})_{e_{1}}, (3_{1},5_{1})_{e_{2}}, (4_{0})_{e_{2}}, (6_{0},7_{2})_{e_{3}}, (6_{1},8_{2})_{e_{4}}$ \\ \hline
+syn2 & $2^{4} \times 3^{2} \times 4^{1} $ & $e_{3} > e_{2} > e_{1} $ &$ (2_{0},3_{0})_{e_{1}}, (2_{0},5_{1})_{e_{1}}, (4_{0},6_{1})_{e_{2}}, (3_{1},6_{0})_{e_{2}}, (2_{2},4_{3})_{e_{3}}$\\ \hline
+syn3 & $2^{4}\times 3^{3} \times 4^{1}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0},1_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (2_{1},3_{1})_{e_{2}}, (4_{1},7_{1})_{e_{3}}, (5_{2},6_{2})_{e_{4}}$\\ \hline
+syn4 & $2^{7}\times 3^{2}\times 4^{1}$ & $e_{5} > e_{4} > e_{3}> e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (1_{1},3_{0})_{e_{2}}, (2_{1})_{e_{3}}, (4_{0},5_{0})_{e_{4}}, (6_{0})_{e_{5}} $\\ \hline
+syn5 & $3^{7}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (2_{0},3_{0})_{e_{2}}, (2_{1},4_{1})_{e_{2}}, (1_{2},2_{2})_{e_{3}}, (0_{2},6_{0})_{e_{4}} $\\ \hline
 \end{tabular}
 }
 \end{table}
@@ -1998,7 +2000,7 @@ testNum    & R               & 8.12      & 8.66       & 9.16       & 23.5      &
         \item[2] $D$ denotes the strategy \emph{distinguishing failures}.
         \item[3] $I$ denotes the replacement strategy based on ILP searching.
         \item[4] $R$ denotes the replacement strategy based on randomly searching.
-        \item[4] $p(I,R)$ denotes the p-value of a test of significance is the probability that ILP and Random
+        \item[4] $p(I,R)$ denotes the p-value of a test of significance is the probability that the results of ILP and Random are equal
       \end{tablenotes}
 %  \label{tab:addlabel}%
 \end{threeparttable}
