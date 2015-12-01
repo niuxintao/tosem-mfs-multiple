@@ -1,12 +1,12 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  1 DEC 2015 02:10
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  1 DEC 2015 03:59
 entering extended mode
 **v2-acmsmall-sample.tex
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\acmsmall.cls
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\acmsmall.cls
 Document Class: acmsmall 2012/03/05, fonts included on 28 June 2010
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\url.sty
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
@@ -97,7 +97,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `normal'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3619.
 LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3620.
-) (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\algorithm2e.sty
+) (C:\Users\xintao\Desktop\tosem-mfs-multiple\algorithm2e.sty
 Invalid UTF-8 byte or sequence at line 322 replaced by U+FFFD.
 Package: algorithm2e 2008/00/00 v3.10 algorithms environments
 \c@AlgoLine=\count91
@@ -299,11 +299,7 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 97.
 )
 \c@assumption=\count118
 
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.aux
-
-LaTeX Warning: Label `testing_models' multiply defined.
-
-)
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
 LaTeX Font Info:    ... okay on input line 48.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
@@ -317,7 +313,8 @@ LaTeX Font Info:    ... okay on input line 48.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
 LaTeX Font Info:    ... okay on input line 48.
 LaTeX Font Info:    Try loading font information for OT1+pnc on input line 48.
- (C:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
+
+(C:\CTEX\MiKTeX\tex\latex\psnfss\ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
 )
 Requested font "pncr7t" at 10.0pt
@@ -537,79 +534,27 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
- [25] [26]
-Underfull \vbox (badness 4403) has occurred while \output is active []
+ [25]
+Underfull \vbox (badness 3679) has occurred while \output is active []
 
- [27]
+ [26]
+[27]
 File: study2.eps Graphic file (type eps)
-
-<study2.eps>
-Overfull \hbox (8.71243pt too wide) in paragraph at lines 1473--1474
+ <study2.eps>
+Overfull \hbox (8.71243pt too wide) in paragraph at lines 1474--1475
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 12.4207pt on input line 1476.
-
-
-LaTeX Warning: Reference `fig:21' on page 28 undefined on input line 1481.
-
-
-LaTeX Warning: Reference `fig:27' on page 28 undefined on input line 1481.
+LaTeX Warning: Float too large for page by 12.4207pt on input line 1477.
 
 [28] [29]
-
-LaTeX Warning: Reference `fig:21' on page 30 undefined on input line 1483.
-
-
-LaTeX Warning: Reference `fig:21' on page 30 undefined on input line 1489.
-
-
-LaTeX Warning: Reference `fig:22' on page 30 undefined on input line 1499.
-
-
-LaTeX Warning: Reference `fig:23' on page 30 undefined on input line 1499.
-
-
-LaTeX Warning: Reference `fig:22' on page 30 undefined on input line 1503.
-
-
-LaTeX Warning: Reference `fig:23' on page 30 undefined on input line 1503.
-
-
-LaTeX Warning: Reference `fig:24' on page 30 undefined on input line 1506.
-
-
-LaTeX Warning: Reference `fig:25' on page 30 undefined on input line 1506.
-
-
-LaTeX Warning: Reference `fig:24' on page 30 undefined on input line 1514.
-
-
-LaTeX Warning: Reference `fig:25' on page 30 undefined on input line 1514.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30]
-
-LaTeX Warning: Reference `fig:26' on page 31 undefined on input line 1518.
-
-
-LaTeX Warning: Reference `fig:26' on page 31 undefined on input line 1518.
-
-
-LaTeX Warning: Reference `fig:27' on page 31 undefined on input line 1523.
-
 [31]
-
-LaTeX Warning: Reference `fig:22' on page 32 undefined on input line 1554.
-
-
-LaTeX Warning: Reference `fig:23' on page 32 undefined on input line 1554.
-
 File: replacingtimes.eps Graphic file (type eps)
-<replacingtimes.eps> [32]
+ <replacingtimes.eps> [32]
 Missing character: There is no ¡ in font pncr7t!
 Missing character: There is no ¯ in font pncr7t!
  [33]
@@ -623,25 +568,26 @@ Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [34]
 [35]
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1681 replaced by U+FFFD.
- [36]
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1682 replaced by U+FFFD.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37]
+ [36]
+[37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [39]
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -656,27 +602,20 @@ Requested font "pncri7t" at 6.0pt
  [1
 
 ]
-Overfull \hbox (112.90709pt too wide) in paragraph at lines 1954--2007
+Overfull \hbox (112.90709pt too wide) in paragraph at lines 1955--2008
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 22.05pt on input line 2090.
+LaTeX Warning: Float too large for page by 22.05pt on input line 2091.
 
-[2] [3] [4]
-(C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
+[2] [3] [4] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
  ) 
 Here is how much of TeX's memory you used:
- 3952 strings out of 430478
- 46875 string characters out of 3191501
- 186691 words of memory out of 3000000
- 7028 multiletter control sequences out of 15000+200000
+ 3946 strings out of 430478
+ 46772 string characters out of 3191502
+ 186627 words of memory out of 3000000
+ 7022 multiletter control sequences out of 15000+200000
  25620 words of font info for 78 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,20n,30p,2359b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
