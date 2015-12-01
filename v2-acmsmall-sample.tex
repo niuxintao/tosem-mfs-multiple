@@ -1229,7 +1229,7 @@ To investigate the impact of masking effects on FII approaches in real software 
 %Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
 \subsection{The existence and characteristics of masking effects}\label{sec:emprical:exist}
-In the first study, we surveyed two kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were HSQLDB and JFlex. The first is a database management software written in pure Java and the second is a lexical analyser generator. The reason that we chose these two systems is because they both contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of uncommented code, number of classes in the project, and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
+In the first study, we surveyed three kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were HSQLDB, JFlex and Grep. The first is a database management software written in pure Java, the second is a lexical analyser generator, and the last one is a command-line utility for searching plain-text data sets for lines matching a regular expression.  The reason that we chose these these systems is because they  contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of uncommented code, number of classes in the project, and the bug's id \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
 http://sourceforge.net/p/jflex/bugs \\ http://savannah.gnu.org/bugs/ } for each of the software.
 
 %\begin{table}\renewcommand{\arraystretch}{1.3}
@@ -1254,7 +1254,7 @@ http://sourceforge.net/p/jflex/bugs \\ http://savannah.gnu.org/bugs/ } for each 
 \begin{table}[ht]\renewcommand{\arraystretch}{1.3}
 \tbl{Software under survey\label{software description}}{
 \begin{tabular}{c|c|c|c|c} \hline
-software & versions & LOC & classes & bugs \\ \hline
+software & versions & LOC & classes & bugs' id \\ \hline
 
 HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005 \\
 	   &2.2.5 & 156066 & 508 & \#1173 \&  \#1179\\
@@ -1277,7 +1277,7 @@ We first looked through the bug tracker forum and focused on the bugs which are 
 
 We further built the testing scenario for each version of the software listed in Table \ref{software description}. The testing scenario is constructed so that we can reproduce different failures by controlling the inputs to the test file. For each version, the source code of the testing file as well as other detailed information is available at http://gist.nju.edu.cn/doc/multi/.
 
-Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed models information is shown in Table \ref{modelHSQLDBJFlex} for HSQLDB and JFLex, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
+Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed models information is shown in Table \ref{modelHSQLDBJFlex} for HSQLDB, JFLex and Grep, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
 
 \begin{table}[ht]
 \tbl{Input models of HSQLDB, JFlex and Grep \label{modelHSQLDBJFlex}}{
@@ -1387,7 +1387,7 @@ Next, we built the input model which consists of the options related to the fail
 We then generated the exhaustive test set consisting of all possible interactions of these options. For each of them, we executed the prepared testing file. We recorded the output of each test case to observe whether there were test cases containing prior MFS that did not produce the corresponding bug. Later we refer to those test cases that contain the MFS but did not trigger the expected failure as the \emph{masked} test cases.
 \subsubsection{Results and discussion}\label{sec:emprical:exist:rs}
 
-Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" gives the total number of test cases executed.  Column ``failure" indicates the number of test cases that failed during testing, and column ``masking" indicates the number of masked test cases.  The percentage in the parentheses indicates the proportion of masked test cases and the failing test cases.
+Table \ref{masking effect condition} lists the results of our survey. Column ``all tests" gives the total number of test cases executed.  Column ``failure" indicates the number of test cases that failed during testing. Specifically, we give the specific number of failing test cases of each fault (labeled in the form \#n). Note that the faults we listed here include some uncontrolled dependencies, so there are more faults than Table \ref{software description}. Column ``masking" indicates the specific number of test cases that are masked by each fault. In this column, we use the form (\#m $>$ \#n\#n'... ) to indicate that  fault \#m masks faults (\#n\#n'...).  The last column ``total'' shows the number of masked test cases in total (for all the faults). The percentage in the parentheses in this column indicates the proportion of masked test cases and the failing test cases.
 
 %[!ht]
 \begin{table}\renewcommand{\arraystretch}{1.3}
@@ -1406,7 +1406,7 @@ Grep  & 2.6.3 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(1
 }
 \end{table}
 
-We observed that for each version of the software under analysis listed in Table \ref{masking effect condition}, test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In fact, there are  768 out of 4608 test cases (about 16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, and 16.7\%, respectively, for the remaining software versions.
+We observed that for each version of the software under analysis listed in Table \ref{masking effect condition}, test cases with masking effects do exist, i.e., test cases containing MFS did not trigger the corresponding bug. In fact, there are  768 out of 4608 test cases (about 16.7\%) in hsqldb with 2rc8 version. This rate is about 16.7\%, 50\%, 25\%, 16.7\%, 36.4\%, and 28.6\% respectively, for the remaining software versions.
 
 So the answer to \textbf{Q1} is that in practice, when SUTs have multiple faults, masking effects do exist widely.
 
