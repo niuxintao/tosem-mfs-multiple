@@ -1551,11 +1551,15 @@ The setup of this case study is based on the second case study, and uses the sam
 %Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
 
 \subsubsection{Results and discussion}\label{sec:emprical:cmILP:rs}
-The evaluation of this random-based approach is also shown in Figure \ref{fig:comparetotraditional}, in which the polygonal line marked with  '$\times$' in each sub-figure indicates the results. The raw data can also be found in the column 'R' of Table \ref{evaluation_all} in the appendix.
+The evaluation of this random-based approach is also shown in Figure \ref{fig:comparetotraditional}, in which the polygonal line marked with  `$\star$' in each sub-figure indicates the results. The raw data can also be found in the Row `R' of Table \ref{evaluation_all} in the appendix. In addition, as the approach is based on random, we offer the t-test to test whether. The p-value is also given in the Row `P(I,R)' Table \ref{evaluation_all}.
 
 Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics: accurate schemas, super-schemas, sub-schemas, ignored schemas, irrelevant schemas ( for some particular cases the ILP-based approach performs slightly better, e.g., in Figure \ref{fig:comparetotraditional}(b) for the first testing object, the ILP-based approach identified fewer sub schemas than that of the Random-based approach and in Figure \ref{fig:comparetotraditional}(c) still for the first object the ILP-based approach identified fewer super schemas than that of the random-based approach). The similar quality of the identified MFS between these two approaches is conceivable as they both use the \emph{test case replacement} strategy, although the test cases generated may be different.
 
-Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. To be precise, we next compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- replacement strategy.
+Secondly, when considering the cost, we find that the ILP-based approach performs better, which can reduce on average 1 to 2 test cases compared to the random-based procedure. 
+
+At last, considering the p-value.
+
+To be precise, we next compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- replacement strategy.
 
 Figure \ref{fig:replacing} shows the result. The data is normalized so that the results of the 15 objects can be shown together. For all subjects ILP reduce the test cases for replacement by about 5 to 40 percent when compared with the random-based approach. On average, for each call of the replacement algorithm, it can save about 0.44 test cases (labeled in each dot of the line). This may be trivial. But considering the masking status in Table \ref{masking effect condition}, this cost reduction is significant for MFS identifying in practice.
 
