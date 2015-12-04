@@ -368,6 +368,16 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Rokach and Maimon}{Rokach and Maimon}{2005}]%
+        {rokach2005top}
+{Lior Rokach} {and} {Oded Maimon}. 2005.
+\newblock \showarticletitle{Top-down induction of decision trees classifiers-a
+  survey}.
+\newblock {\em Systems, Man, and Cybernetics, Part C: Applications and Reviews,
+  IEEE Transactions on\/} {35}, 4 (2005), 476--487.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Shakya, Xie, Li, Lei, Kacker, and Kuhn}{Shakya
   et~al\mbox{.}}{2012}]%
         {shakya2012isolating}
