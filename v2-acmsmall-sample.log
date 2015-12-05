@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 DEC 2015 00:11
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 DEC 2015 08:10
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -553,80 +553,64 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30]
 [31]
-Underfull \hbox (badness 5533) in paragraph at lines 1549--1550
-[]\OT1/pnc/m/n/10 The sim-i-lar-i-ty of . The sim-i-lar qual-i-ty of the i-den-
-ti-fied MF-S be-tween
- []
-
-
-Underfull \hbox (badness 6364) in paragraph at lines 1549--1550
-\OT1/pnc/m/n/10 these t-wo ap-proach-es is con-ceiv-able as they both use the \
-OT1/pnc/m/it/10 test case re-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1549--1550
-\OT1/pnc/m/it/10 place-men-t \OT1/pnc/m/n/10 s-trat-e-gy, al-though the test ca
-s-es gen-er-at-ed may be d-if-fer-en-t.
- []
-
 File: replacingtimes.eps Graphic file (type eps)
-<replacingtimes.eps> [32] [33]
+ <replacingtimes.eps> [32] [33]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 1670--1673
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35]
+Underfull \hbox (badness 10000) in paragraph at lines 1669--1672
 []\OT1/pnc/m/n/10 It is not-ed that, these ob-ser-va-tion-s are al-l stat-i-cal
 -ly sig-nif-i-can-t.
  []
 
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1685 replaced by U+FFFD.
 
-Underfull \vbox (badness 2418) has occurred while \output is active []
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
- [34]
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1686 replaced by U+FFFD.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
-[36]
+ [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38]
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl [39]
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 2556) has occurred while \output is active []
-
- [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40])
-[41]
+ [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41])
+[42]
 Requested font "pncri7t" at 6.0pt
  -> pncri7t
  [1
 
 ]
-Overfull \hbox (112.90709pt too wide) in paragraph at lines 1962--2015
+Overfull \hbox (112.90709pt too wide) in paragraph at lines 1961--2014
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 22.05pt on input line 2098.
+LaTeX Warning: Float too large for page by 22.05pt on input line 2097.
 
 [2] [3] [4] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
  ) 
@@ -639,4 +623,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  33i,20n,30p,2359b,503s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (45 pages).
+Output written on v2-acmsmall-sample.pdf (46 pages).

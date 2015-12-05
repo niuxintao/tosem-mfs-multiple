@@ -630,23 +630,23 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 
 
 \begin{assumption} \label{ass:safevalue}
-The mutated part of each additional test cases consists of safe values, i.e., none of the parameter value in mutate part is the part of any MFS.
+None of the parameter values of the mutated part of each additional test cases is the part of any MFS.
 \end{assumption}
 
-Based on this assumption, we have the following two lemmas:
+We later refer to the parameter values which is not the part of MFS as \emph{safe values}. Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two lemmas:
 
 \begin{lemma}\label{lemma:inferpassing}
- $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that the parameter values of the mutated part of $t$ ( against $t'$) are all safe values, then $t$ must be a passing test case.
+ $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that $t$ is reached by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
 \end{lemma}
 
 \begin{proof}
-Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (Assumption \ref{ass:safevalue}), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
+Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (c is a MFS), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
 \end{proof}
 
 For example, if (0, 0, 0, 0) is known to be passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
 \begin{lemma} \label{lemma:inferfailing}
-$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that t is reached by mutating some parameter values of t',  and the mutated  values are all safe values,....the mutated part of $t'$ (against $t$) consists of safe values, then $t$ must be a failing test case.
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that $t$ is reached by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
 \end{lemma}
 
 This lemma can be proved according to  Lemma \ref{lemma:inferpassing}. As a example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
@@ -1544,9 +1544,14 @@ The setup of this case study is based on the second case study, and uses the sam
 \subsubsection{Results and discussion}\label{sec:emprical:cmILP:rs}
 The evaluation of this random-based approach is also shown in Figure \ref{fig:comparetotraditional}, in which the polygonal line marked with  `$\star$' in each sub-figure indicates the results. The raw data can also be found in the Row `R' of Table \ref{evaluation_all} in the appendix. It is noted that for the random approach we just give the average result of of 30 tries.  We offer the p-value in the Row `P(I,R)' of Table \ref{evaluation_all}. Note that A p-value smaller than 0.05 indicates that the performance of these two approaches are statistically different with each other with 95\% confidence.
 
-Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics super-schemas and sub-schemas. For metric accurate number, the ILP-based approach performs slightly better (see testing objects 1, 6, 7, 11, where ILP obtained more number of accurate MFS), and for metrics ignore and irrelevant number, the ILP-based approach also has a better performance, i.e., ILP obtained smaller number of these schemas which is of no-use for testing. Combining these, we can learn that the ILP-based approach has a similar performance of the random-based approach at the quality of identified MFS (The former may perform slightly better at some testing objects). This is consistent to Figure \ref{fig:comparetotraditional}(f).
+Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics super-schemas and sub-schemas. For metric accurate number, the ILP-based approach performs slightly better (see testing objects 1, 6, 7, 11, where ILP obtained more number of accurate MFS), and for metrics ignore and irrelevant number, the ILP-based approach also has a slightly better performance, i.e., ILP obtained smaller number of these schemas which is of no-use for testing. Combining these, we can learn that the ILP-based approach has a similar performance of the random-based approach at the quality of identified MFS (The former may perform slightly better at some testing objects). This is consistent to Figure \ref{fig:comparetotraditional}(f).
 
-The similarity of . The similar quality of the identified MFS between these two approaches is conceivable as they both use the \emph{test case replacement} strategy, although the test cases generated may be different. *************************************************************
+The similar quality of MFS identification of these two approaches can also be embodied with the p-values we obtained. From Table \ref{evaluation_all} in the Appendix, we can learn that, for all these metrics except for `testNum'( which will be discussed later), there some p-values that are NaN (Not a number). This is because even if we repeated 30 times, the basic 
+
+Hence, they are always obtain the same result.
+
+
+The similar quality of the identified MFS between these two approaches is conceivable as they both use the \emph{test case replacement} strategy, although the test cases generated may be different. *************************************************************
 
 
 \begin{figure}[htbp]
@@ -1561,7 +1566,7 @@ Secondly, when considering the cost, we find that the ILP-based approach perform
 
 
 To be precise, we next compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- replacement strategy. Figure \ref{fig:replacing} shows the result. We can learn that on average,  for each call of the replacement algorithm, it can save about 0.44 test cases (labeled in each dot of the line). This may be trivial. But considering the masking status in Table \ref{masking effect condition}, this cost reduction is significant for MFS identifying in practice.  We listed the original data and p-value on Table \ref{replacementavg}, we can learn that this is significant, as
-
+*************************************************************
 
 
 
