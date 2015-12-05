@@ -346,12 +346,12 @@ Some notations used later are listed below for convenient reference:
 \begin{itemize}
 \item $k$ : The number of parameters that influence the SUT.
 \item $V_{i}$ : The set of discrete values that the $i$th parameter of the SUT can take.
-\item $T^{*}$ :  The exhaustive set of test cases for the SUT. For a SUT with $k$ parameters, and each parameter can take $|V_{i}|$ values, the number of test cases in $T^{*}$ is $\prod_{i = 1}^{i <= k} |V_{i}|$. Note that some test cases may be invalid if there exists constraints among the parameters.
+\item $T^{*}$ :  The exhaustive set of test cases for the SUT. For a SUT with $k$ parameters, and each parameter can take $|V_{i}|$ values, the number of test cases in $T^{*}$ is $\prod_{i = 1}^{k} |V_{i}|$. Note that some test cases may be invalid if there exists constraints among the parameters.
 \item $T$ : A set of test cases. (Similarly for $T_{i},\ T_{j}, ...$. )
 \item $\bar{T}$ : The complementary test set of T, i.e., $\bar{T} \bigcup T = T^{*},\ \bar{T} \bigcap T = \varnothing$.
 \item $A \backslash B$ :  The set of elements that belong to set $A$ but not to $B$. For example $T_{i} \backslash T_{j}$ indicates the set of test cases that belong to set $T_{i}$, but not to $T_{j}$.
 \item $L$ : The number of faults contained in the SUT.
-\item $F_{m}$ : The $m$th fault in the SUT ($1 \leq m \leq L$);  A failure which is classified to fault \emph{fault} $F_{m}$ is called \emph{failure} of $F_{m}$.
+\item $F_{m}$ : The $m$th fault in the SUT ($1 \leq m \leq L$);  A failure which is classified to \emph{fault} $F_{m}$ is called \emph{failure} of $F_{m}$.
 \item $T_{F_{m}}$ :  All the test cases that can trigger the failure of $F_{m}$ in the SUT.
 \item $\mathcal{T}(c)$ :  All the test cases that contain the schema $c$ in the SUT. Based on the definition of MFS, we know that if schema $c$ is an MFS of $F_{m}$, then $\mathcal{T}(c) \subseteq T_{F_{m}}$. Note that, there may be multiple MFS for $F_{m}$
 %\item $T_{mask(F_{m})}$ :  All the test cases that contain the
@@ -414,7 +414,7 @@ $c_{1}$ \\ \hline
   }
   \end{table}
 
-\begin{proposition}[Special schema set of test Set T]\label{pro:stct}
+\begin{proposition}[Property of S(T): special schema set of test set T]\label{pro:stct}
 For any test set $T$ of the SUT,  $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$.
 \end{proposition}
 \begin{proof}
@@ -425,7 +425,7 @@ On the other hand, $\forall t \in T$,  $\exists c' \in \mathcal{I}(t)$, such tha
 
 
 
-\begin{proposition}[Minimal schema set of test Set T]\label{pro:ash}
+\begin{proposition}[Property of C(T): minimal schema set of test Set T]\label{pro:ash}
 For any test set $T$ of the SUT, $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) = T$.
 \end{proposition}
 
@@ -466,7 +466,7 @@ According to the definition of $\mathcal{C}(T)$, one observation is  $\mathcal{C
 % Another obvious observation is that
 %Then, we have the following proposition.
 \begin{proposition} [Minimal schema of the subset of test set $T$]\label{pro:sbS}
- For any test set $T$ and schema $c$ of the  SUT, if $\mathcal{T}(c) \subseteq T$,  $c \in \mathcal{S}(T) $.
+ For any test set $T$ and schema $c$ of the  SUT, if $\mathcal{T}(c) \subseteq T$, then  $c \in \mathcal{S}(T) $.
 \end{proposition}
 \begin{proof}
  Assume $c \not\in \mathcal{S}(T)$, i.e., $c \not\in \mathcal{I}(T) \backslash \mathcal{I}(\bar{T})$, then $c \in \mathcal{I}(\bar{T})$. It indicates that $\exists t \in \bar{T}, t \in \mathcal{T}(c)$, which contradicts that $\mathcal{T}(c) \subseteq T$. Therefore, $c \in \mathcal{S}(T)$.
@@ -512,7 +512,7 @@ For $T_{1}$ and $T_{2}$ of the SUT, $T_{2} \subseteq T_{1}$. Then $\forall c_{1}
 \end{proposition}
 
 \begin{proof}
-Assume that $\exists c_{1} \in \mathcal{C}(T_{1})$,  s.t., $\exists c_{2} \in \mathcal{C}(T_{2}), c_{2} \prec c_{1}$. According to Proposition \ref{pro:sls}, as $T_{2} \subseteq T_{1}$, so $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1}' \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1}' = c_{2} \ or\  c_{1}' \prec c_{2}$. Combining them, we can get that $c_{1}' \prec c_{1}$. This is a obvious contradiction, as $c_{1}$ and $c_{1}'$ are both minimal schemas in  $\mathcal{C}(T_{1})$.
+Assume that $\exists c_{1} \in \mathcal{C}(T_{1})$,  s.t., $\exists c_{2} \in \mathcal{C}(T_{2}), c_{2} \prec c_{1}$. According to Proposition \ref{pro:ssp}, as $T_{2} \subseteq T_{1}$, so $\forall c_{2} \in \mathcal{C}(T_{2})$, $\exists c_{1}' \in \mathcal{C}(T_{1}), s.t.,\ either\ c_{1}' = c_{2} \ or\  c_{1}' \prec c_{2}$. Combining them, we can get that $c_{1}' \prec c_{1}$. This is a obvious contradiction, as $c_{1}$ and $c_{1}'$ are both minimal schemas in  $\mathcal{C}(T_{1})$.
 
 Hence, apart from the impossible relationship $c_{2} \prec c_{1}$, then $\forall c_{1} \in \mathcal{C}(T_{1})\ $, $\exists c_{2} \in  \mathcal{C}(T_{2}), s.t., \ (1)\ c_{1} = c_{2} $, $or\ (2)\ c_{1} \prec c_{2}\ $, $ or \ (3)\ \not\exists c_{2} \in \mathcal{C}(T_{2}), s.t., c_{2} \prec c_{1}\ or\ c_{2} = c_{1},\ or\ c_{1} \prec c_{2}.$
 \end{proof}
@@ -558,14 +558,14 @@ In summary, these propositions provide the foundation of MFS identification (Pro
 \subsection{Identify the MFS}\label{subsec:Formal:identi}
 In this section, we will study how traditional MFS identification approaches, i.e., FII approaches, identify the MFS. Let $T_{F}$ indicates all the failing test cases and $T_{P}$ all the passing test cases ( Note that $T_{F} \bigcap T_{P} = \varnothing$ and $T_{F} \bigcup T_{P} = T^{*}$ ). Then the MFS for the SUT is $\mathcal{C}(T_{F})$. Theoretically,  to accurately figure out the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F}$. This is impossible in practice, especially when the testing space is very large.
 
-As it is impractical to get all the MFS, the appropriate is to determine some MFS of them. With the following proposition, we can learn that with knowing subset of the test cases, we can also determine some of them are MFS.
+As it is impractical to get all the MFS, the appropriate is to determine some MFS of them. With the following proposition, we can learn that with existing subset of the test cases, we can also identify some of them.
 
 \begin{proposition}[{Equal minimal schemas}]\label{pro:dsms}
 For $T_{1}$ and $T_{2}$, $T_{1} \subset T_{2}$. If $\exists c \in \mathcal{C}(T_{1})$, such that $ c \in \mathcal{C}(T_{2})$. Then, for any test set $T_{3}$, such that $T_{1} \subset T_{3} \subset T_{2}$, we have $c \in \mathcal{C}(T_{3})$.
 \end{proposition}
 
 \begin{proof}
-According to Proposition \ref{pro:sls}, $\forall c \in \mathcal{C}(T_{1})$, exists $c' \in \mathcal{C}(T_{3})$, such that either $c' \prec c$ or $c' = c$. Let us assume that $c' \prec c$. As there exists $c'' \in \mathcal{C}(T_{2})$, such that $c = c''$, then $c' \prec c''$. This is contradiction as $T_{3} \subset T_{2}$, so $\forall c' \in \mathcal{C}(T_{3})$, exists $c'' \in \mathcal{C}(T_{2})$, such that either $c'' \prec c'$ or $c'' = c'$. Hence, we have the assumption  $c' \prec c$ does not hold, indicating that $c' = c$.
+According to Proposition \ref{pro:sls}, $\forall c \in \mathcal{C}(T_{1})$, exists $c' \in \mathcal{C}(T_{3})$, such that either $c' \prec c$ or $c' = c$. Let us assume that $c' \prec c$. As there exists $c'' \in \mathcal{C}(T_{2})$, such that $c = c''$, then $c' \prec c''$. This is contradiction as $T_{3} \subset T_{2}$. Hence, we have the assumption  $c' \prec c$ does not hold, indicating that $c' = c$.
 \end{proof}
 
 For example, Table \ref{example_identical_condition} shows the minimal schemas for $T_{1}$, $T_{2}$, $T_{3}$ and $T_{3}'$, where $T_{1} \subset T_{3} \subset T_{2}$ and $T_{1} \subset T_{3}' \subset T_{2}$. We can find that $\mathcal{C}(T_{1})$, i.e., (0, 0, -) is identical to that one in $\mathcal{C}(T_{2})$, which also in $\mathcal{C}(T_{3})$ and $\mathcal{C}(T_{3}')$.
@@ -586,13 +586,13 @@ For example, Table \ref{example_identical_condition} shows the minimal schemas f
   }
   \end{table}
 
-Based on this proposition, let $T_{F-known}$ be the given test cases which are known to be failing, and $T_{P-known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F-known} \bigcup T_{P-known})$ be the test cases that are not known to be failing or not. Based on Proposition \ref{pro:dsms}, we have the following lemma:
+Based on Proposition \ref{pro:dsms}, let $T_{F-known}$ be the given test cases which are known to be failing, and $T_{P-known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F-known} \bigcup T_{P-known})$ be the test cases that are not known to be failing or not, we have the following lemma:
 
 \begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
 $\forall c \in \mathcal{C}(T_{F-known})$, if $\exists c' \in \mathcal{C}(T_{F-known} $ $\bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
 \end{lemma}
 
-The proof of this lemma is obvious. With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify a MFS $c$, there still needs many test cases to execute; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with number of parameters in the SUT. Hence, traditional FII approaches will take some assumptions to further reduce the number of needed test cases to identify the MFS.
+The proof of this lemma is obvious. This is because whatever the outcomes of the test cases  $T_{unknown}$ will be, the actual failing test cases (let it to be $T_{F-acutal}$), must have $T_{F-known} \subset T_{F-acutal} \subset (T_{F-known}\bigcup T_{unknown})$. Based on Proposition \ref{pro:dsms}, this lemma holds.  With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify a MFS $c$, there still needs many test cases to execute; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with number of parameters in the SUT. Hence, traditional FII approaches will take some assumptions to further reduce the number of needed test cases to identify the MFS.
 
 Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F-infer}$ refer to the test cases that can be inferred to be failing and $T_{P-infer}$ the inferred passing test cases. With the test cases of which the outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F-known} \bigcup T_{F-infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F-known} \bigcup T_{F-infer})$, if it is identical to some schema in $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$, then $c$ must be MFS.
 
@@ -646,7 +646,7 @@ Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c
 For example, if (0, 0, 0, 0) is known to be passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
 \begin{lemma} \label{lemma:inferfailing}
-$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that the mutated part of $t'$ (against $t$) consists of safe values, then $t$ must be a failing test case.
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that t is reached by mutating some parameter values of t',  and the mutated  values are all safe values,....the mutated part of $t'$ (against $t$) consists of safe values, then $t$ must be a failing test case.
 \end{lemma}
 
 This lemma can be proved according to  Lemma \ref{lemma:inferpassing}. As a example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
@@ -691,7 +691,7 @@ This example illustrate that the FII approach cannot execute all the test cases,
 As discussed before, $\mathcal{C}(T_{F_{m}})$ is the MFS set of fault $F_{m}$ in theory.  When considering the masking effects between multiple faults, however, this formula is not correct.
 
 \begin{definition}
-A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular fault, but it does not trigger the expected fault because other unexpected event, such another fault or unaccounted control dependency, was triggered ahead of it that prevents $t$ from being normally checked.
+A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular fault, but it does not trigger the expected fault because other unexpected event, such as the other fault or unaccounted control dependency, was triggered ahead of it that prevents $t$ from being normally checked.
 \end{definition}
 
 Taking the masking effects into account, when identifying the MFS of a specific fault $F_{m}$, we should not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of fault $F_{m}$ should be $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
@@ -749,8 +749,8 @@ Based on previous analysis, even though exhaustive testing is conducted to obtai
 
 Consider a FII example that still use the FIC\_BS method \cite{zhang2011characterizing}.  Similar to the example listed in Table \ref{fic-bs-identify}, assume the test case (1, 1, 1, 1) failed with $F_{1}$ (The MFS is still assumed to be (-, 1, -, 1) as Table \ref{fic-bs-identify}). Then assume that an known MFS (-, 1, 0, -) that trigger $F_{2}$, where fault $F_{2}$ can mask $F_{1}$. Next we will illustrate how FIC\_BS works using  strategies the \emph{regarded as one strategy} and \emph{distinguishing failures strategy}, respectively.
 
-First, for the first strategy, i.e., \emph{regarded as one strategy}, we list how it works in Fig. \ref{fig:maskingeffects1}, as well as the masking effects it suffers. With this strategy, it just needs three additional test cases to determine the MFS in the original failing test case $t$, i.e., $t_{1}$, $t_{2}$, and $t_{3}$ (listed in the left part of Fig. \ref{fig:maskingeffects1}).
- The right part of Fig. \ref{fig:maskingeffects1} shows the MFS it obtained is (-, 1, -, -), which is obviously wrong (See the correct result in Table \ref{realMFS-for-11}, which should be (-, 1, -, 1), but this strategy treat the sub-schema (-, 1, -, -) of it to be MFS). The middle part of Fig. \ref{fig:maskingeffects1} explains why this strategy can get this result. Specifically, it treats all failures as the same failure, i.e., failure of $F_{1}$. Hence, test case $t_{5}$ in the middle of Fig. \ref{fig:maskingeffects1} (Marked \emph{Strategy} in the column `State ') is determined to trigger $F_{1}$. Here, the test case $t_{5}$ corresponds to the test case $t_{3}$ in the left part of Fig.\ref{fig:maskingeffects1} ( The ID we refer to one test case next are all in the middle part).  According to the Assumption \ref{lemma:inferpassing} and \ref{lemma:inferfailing}, test cases $t_{1}$, $t_{2}$, $t_{3}$, $t_{6}$, $t_{7}$, $t_{13}$, $t_{14}$, and $t_{15}$ are determined to be pass or fail with $F_{1}$, respectively. After then, we can determine that (-, 1, -, -) should be the MFS. This is because, $\mathcal{C}(T_{F_{1}})$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{13}, t_{14}, t_{15}, t_{16} \})$ = (-, 1, -, -), which has been included in $\mathcal{C}(T_{F_{1}} \bigcup T_{unknown}$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{14}, t_{15}, t_{16}\})$ = (1, -, -, -), (-, 1, -, -).
+First, for the first strategy, i.e., \emph{regarded as one strategy}, we list how it works in Fig. \ref{fig:maskingeffects1}, as well as the masking effects it suffers. With this strategy, it just needs three additional test cases to determine the MFS in the original failing test case $t$, i.e., $t_{1}'$, $t_{2}'$, and $t_{3}'$ (listed in the left part of Fig. \ref{fig:maskingeffects1}).
+ The right part of Fig. \ref{fig:maskingeffects1} shows the MFS it obtained is (-, 1, -, -), which is obviously wrong (See the correct result in Table \ref{realMFS-for-11}, which should be (-, 1, -, 1), but this strategy treat the sub-schema (-, 1, -, -) of it to be MFS). The middle part of Fig. \ref{fig:maskingeffects1} explains why this strategy can get this result. Specifically, it treats all failures as the same failure, i.e., failure of $F_{1}$. Hence, test case $t_{5}$ in the middle of Fig. \ref{fig:maskingeffects1} (Marked \emph{Strategy} in the column `State ') is determined to trigger $F_{1}$. Here, the test case $t_{5}$ corresponds to the test case $t_{3}'$ in the left part of Fig.\ref{fig:maskingeffects1}.  According to the Assumption \ref{lemma:inferpassing} and \ref{lemma:inferfailing}, test cases $t_{1}$, $t_{2}$, $t_{3}$, $t_{6}$, $t_{7}$, $t_{13}$, $t_{14}$, and $t_{15}$ are determined to be pass or fail with $F_{1}$, respectively. After then, we can determine that (-, 1, -, -) should be the MFS. This is because, $\mathcal{C}(T_{F_{1}})$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{13}, t_{14}, t_{15}, t_{16} \})$ = (-, 1, -, -), which has been included in $\mathcal{C}(T_{F_{1}} \bigcup T_{unknown}$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{14}, t_{15}, t_{16}\})$ = (1, -, -, -), (-, 1, -, -).
 
 
 \begin{figure}[htbp]
@@ -760,7 +760,7 @@ First, for the first strategy, i.e., \emph{regarded as one strategy}, we list ho
 \label{fig:maskingeffects1}
 \end{figure}
 
-For the second strategy, i.e., \emph{distinguishing failures}, we list the result in Fig. \ref{fig:maskingeffects2}. Different from the first strategy, it treat the different failure other than failure of $F_{1}$ as pass. As a result, test case $t_{5}$ and $t_{6}$ in the middle part of Fig. \ref{fig:maskingeffects2} are determined to be pass.  Then combining the inferred test cases, it finally get the MFS (-, 1, 1, 1), which is also not correct (This schema is the super-schema of the original MFS (-, 1, -, 1)).
+For the second strategy, i.e., \emph{distinguishing failures}, we list the result in Fig. \ref{fig:maskingeffects2}. Different from the first strategy, it treat the different failure other than failure of $F_{1}$ as pass. As a result, test case $t_{5}$ and $t_{6}$ in the middle part of Fig. \ref{fig:maskingeffects2} are determined to be pass.  Then combining the inferred test cases, it finally get the MFS (-, 1, 1, 1), which is also not correct (This schema is the super-schema of the original MFS of $F_{1}$ (-, 1, -, 1)).
 
 %only $t_{3}$ breaks the MFS. In this case, the MFS is considered to be (-, -, 1, -), which is the sub-schema of the original one.  While for the second strategy, i.e., \emph{distinguishing failures}, it determines $t_{1}$ and $t_{2}$ as \emph{pass}. Under this condition, test cases $t_{1}$, $t_{2}$ and $t_{3}$ breaks the MFS; hence, the MFS is (1, 1, 1, -), which is the super-schema of the original MFS.
 
@@ -944,19 +944,10 @@ The complete process of replacing a test case with a new one while keeping some 
 \KwIn{ fault $F_{m}$, all the candidate test cases $R$, the suspiciousness matrix $Sp$}
 \KwOut{ $t_{new}$ the regenerate test case }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
-\While{\textbf{not} MeetEndCriteria()}{
-%       $optimal \leftarrow MAX$,
-%       $t_{new} \leftarrow null$ \;
-%       \ForAll {$F_{i} ( i = 1, ... m-1 , m+2,...L )$}{
-%                $solver \leftarrow setup(Param, fixed, T_{executed}, F_{i}, Sp)$\;
-%               \DontPrintSemicolon $(optimal', t_{new}') \leftarrow solver.getOptimalTest()$; \tcc*[f]{Use ILP solver to get $t_{F_{i}}$} \;
-%                \If (\tcc*[f]{Select $t_{F_{i}}$ which has smaller suspiciousness}){$optimal' < optimal$}{
-%                       $t_{new} \leftarrow t_{new}'$\;
-%                       $optimal \leftarrow optimal'$\;
-%                    }
-%          }
+\While{\textbf{not} $R$ is empty }{
        $t_{new} \leftarrow \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  Sp(t, F_{i})$\;
        $result \leftarrow execute(t_{new})$\;
+       $R \leftarrow R \backslash t_{new} $\;
        $update\_SP(t_{new})$ \;
         \eIf  {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
@@ -973,17 +964,17 @@ The complete process of replacing a test case with a new one while keeping some 
 %
 The inputs to this algorithm consist of the fault $F_{m}$ under analysis, the candidate test cases $R = \mathcal{T}(fixed)  \backslash T_{executed}$  and the suspiciousness matrix $Sp$, which records the suspiciousness between each factor $o$ and each fault $F_{i}$, i.e., $Sp(o, F_{i})$ ($1 \leq i \leq L $). The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
 
-The outer loop of this algorithm (lines 1 - 10) contains three parts:
+The outer loop of this algorithm (lines 1 - 11) contains three parts:
 
-The first part (lines 2 - 3) generates and executes a new test case which is supposed to be least likely to trigger faults different from $F_{m}$. The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems. (Note that a simpler linear search algorithm can also be applied in our approach to find a proper test case. However, as this problem to search a proper test case is related to Integers (a test case consists of discrete parameters with discrete values), so we use Integer Linear Programming (ILP) technique instead.)
+The first part (lines 2 - 3) generates and executes a new test case which is supposed to be least likely to trigger faults different from $F_{m}$. The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems. (Note that a simpler linear search algorithm can also be applied in our approach to find a proper test case. However, as this problem to search a proper test case is related to Integers (a test case consists of discrete parameters with discrete values), so we use Integer Linear Programming (ILP) technique instead.) When a test case is generated, we remove it from the candidate test case set $R$ to avoid redundancy (line 4).
 
-The second part (line 4) updates the suspiciousness matrix ($Sp$) for each parameter value that is involved in this newly generated test case (line 4). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure of $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure of $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $Sp(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
+The second part (line 5) updates the suspiciousness matrix ($Sp$) for each parameter value that is involved in this newly generated test case (line 5). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure of $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure of $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $Sp(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
 
 % basic idea for this part is to search each failure different from $F_{m}$ (line 3) and find the best test case that has the least suspiciousness with other failures. In detail, for each failure we set up an ILP solver (line 4) and use it to get an optimal test case for that failure, i.e., $t_{F_{i}},1 \leq i \leq L\ \&\ j\neq m$, according to \ref{eqn - lp} (line 5). We compare the optimal value for each failure, and choose the one with less suspiciousness with other failures (lines 6 - 9).
 
-The last part (lines 5 - 9) checks whether the newly generated test case is as expected. Specifically, if the test case passes or triggers the same failure of fault -- $F_{m}$, a satisfied test case is obtained (line 5) and returned (line 6). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 7 - 8).
+The last part (lines 6 - 10) checks whether the newly generated test case is as expected. Specifically, if the test case passes or triggers the same failure of fault -- $F_{m}$, a satisfied test case is obtained (line 6) and returned (line 7). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 8 - 9).
 
-Note that this algorithm has another exit, besides finding an expected test case (line 6), which is when the function \emph{MeetEndCriteria()} returns \emph{true} (line 1). We did not explicitly show function \emph{MeetEndCriteria()}, because this is dependent on the computing resource and the desired accuracy. In detail, if we want to get a high quality result and have enough computing resource, it is desirable to try many times to get the expected test case; otherwise, a relatively small number of attempts to find a proper test case is recommended.
+%Note that the ending condition of this  algorithm has another exit, besides finding an expected test case (line 6), which is when the function \emph{MeetEndCriteria()} returns \emph{true} (line 1). We did not explicitly show function \emph{MeetEndCriteria()}, because this is dependent on the computing resource and the desired accuracy. In detail, if we want to get a high quality result and have enough computing resource, it is desirable to try many times to get the expected test case; otherwise, a relatively small number of attempts to find a proper test case is recommended.
 
 %In this paper, we just set 3 as the greatest number of iterations for this function. When it ends with \emph{MeetEndCriteria()} returning true, it will return null (line 18), which means we cannot find an expected test case.
 
@@ -1413,7 +1404,7 @@ So the answer to \textbf{Q1} is that in practice, when SUTs have multiple faults
 It is notable that in Yilmaz's \cite{yilmaz2013reducing} paper, a similar study about the existence of the masking effects has been conducted. The main difference between that work and ours is that their work quantifies the impact of the masking effects as the number of $\tau$-degree schemas that only appear in the test cases that triggered failures of other faults. Here, the $\tau$-degree schemas can be either MFS or not. Our work, however, quantifies the masking effects as the number of test cases that are masked by different failures. These test cases should contain some MFS, i.e., they should have triggered the expected failure if they did not trigger any other different failure.  The reason that we quantify the masking effects in such way is because our work seeks to overcome the masking effects in the MFS identifying process. As the test cases which contain the MFS but do not produce the corresponding failure will significantly affect the MFS identifying results, their number can better reflect the impact of the masking effects on the FII approach.
 
 \subsection{Comparing our approach with traditional approaches}\label{sec:emprical:cmtradition}
-The second study aims to compare the performance of our approach with traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we need to apply our approach and traditional algorithms to identify MFS in a  variety of software and evaluate their results. The seven versions of software in Table \ref{software description} used as test objects are far from the requirement for a general evaluation. However, to construct real testing objects for evaluations is time-consuming. This is because we must carefully study the detail of that software as well as the bug tracker reports.  To compromise, we synthesized 5 more testing objects. These synthesized objects are five small programs which can directly return outputs when executed with given inputs (details of them are also available at http://gist.nju.edu.cn/doc/multi/.).
+The second study aims to compare the performance of our approach with traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we need to apply our approach and traditional algorithms to identify MFS in a  variety of software and evaluate their results. The seven versions of software in Table \ref{software description} used as test objects are far from the requirement for a general evaluation. However, to construct real testing objects for evaluations is time-consuming. This is because we must carefully study the detail of that software as well as the bug tracker reports.  To compromise, we synthesized 5 more testing objects. These synthesized objects are five small programs which can directly return outputs when executed with given inputs (details of them are also available at http://gist.nju.edu.cn/doc/multi/).
 %To make the synthetic objects as similar as possible to the real software, we firstly analysed the characterizations, such as the number of parameters, the number of faults, and the possible masking effects, of the real software. We observed that the number of parameters of the SUT ranged from 8 to 30, the number of different failures in the SUT ranged from 2 to 4, and the number of MFS of a fault ranged from 1 to 2, in which the degree of the MFS ranged from 1 to 6. Then for each characterization, we randomly selected one value in the corresponding range and assigned it to the input model by adjusting the relationships between the inputs and outputs of these programs.
 
 Table \ref{testing_models} lists the testing model for both the real and synthetic testing objects. In this table, column `Object' indicates the SUT under test. For the real SUT listed in Table \ref{software description}, we label the seven software as $H2cr8$, $H2.2.5$, $H2.2.9$, $J1.4.1$, $J1.4.2$, $G2.6.3$ and $G2.22$ respectively. While for the synthesized ones, we label them in the form of `\emph{syn}+ \emph{id}'. Column `Model' presents the input space for each testing object. Column 'Faults' shows the different faults in the software and their masking relationships. In this column, `$>$' means the left fault will mask the right fault, i.e., if the a failure of the left fault is triggered, then the failure of the right fault will not be triggered. Furthermore, '$>$' is transitive so that the left fault can mask all the faults in the right.  For example, for the $H2cr8$ object, we can find three faults : $e_{1}$, $e_{2}$, and $e_{3}$. By using the formula $e_{1} > e_{2} > e_{3}$, we indicate that fault $e_{2}$ will mask $e_{3}$; and $e_{1}$ will mask both $e_{2}$ and $e_{3}$. Here for the simplicity of the experiment, we did not build more complex testing scenarios such as the masking effects can be in the form $e_{1} > e_{2},\ e_{2} > e_{3},\ e_{3} > e_{1}$ or even $e_{1} > e_{2},\ e_{2} > e_{1}$. The last column shows the MFS of each fault. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}_{fault}$, e.g., for the object $H2cr8$, $(5_{1},6_{0},7_{0})_{e_{1}}$ actually means (-, -, -, -, -, 1, 0, 0, -, -, -, - ) is the MFS of fault $e_{1}$.
@@ -1659,7 +1650,7 @@ First, for every metric in our study, the performance of each approach is relati
 %%(See area B in Figure \ref{fig:fci_process}),
 % so that we can get the schemas more close to the actual MFS.
 
-Second, comparing to \emph{ILP}, the schemas identified by \emph{FDA-CIT} tend to be super schemas rather than sub schemas of the original MFS. We believe this result is due to the use of the classification tree analysis. Note that the way that CTA constructing decision trees usually work top-down, by choosing a parameter value at each step that best splits the set of test cases \cite{rokach2005top}. After that, one path (conjunction of nodes from the root to one leaf in the tree) in this tree is deemed as an MFS. Consequently, the MFS identified by FDA-CIT tends to share some common nodes (here, a node represents a parameter value), e.g. the root node, which result in the schemas identified by \emph{FDA-CIT} may contain some unnecessary parameter value. This induces the so-called `over fitting' problem. As a result, the schemas identified by \emph{FDA-CIT} and \emph{FDA-CITs} tend to be the super schemas of the actual MFS.
+Second, comparing to \emph{ILP}, the schemas identified by \emph{FDA-CIT} tend to be super schemas rather than sub schemas of the original MFS. We believe this result is due to the use of the classification tree analysis. Note that the way that CTA constructing decision trees usually work top-down, by choosing a parameter value at each step that best splits the set of test cases \cite{rokach2005top}. After that, one path (conjunction of nodes from the root to one leaf in the tree) in this tree is deemed as an MFS. Consequently, the MFS identified by FDA-CIT tends to share some common nodes (here, a node represents a parameter value), e.g. the root node, which result in the schemas identified by \emph{FDA-CIT} may contain some unnecessary parameter value. This induces the so-called `over fitting' problem. As a result, the schemas identified by \emph{FDA-CIT} tend to be the super schemas of the actual MFS.
 
 %Other observations include:
 
@@ -1668,14 +1659,16 @@ Second, comparing to \emph{ILP}, the schemas identified by \emph{FDA-CIT} tend t
 %
 %This result indicates that the number of test cases is a key factor that affects the performance of the approach FDA-CIT. And the more test cases are, the better the FDA-CIT will perform, though FDA-CIT would also identified more super schemas of the actual MFS.
 
-Third, in terms of the quality of the MFS identified, we can clearly find that our approach performed better than FDA-CIT. This is manifested in that our approach obtained more accurate schemas. We believe this gap is mainly caused by the FII approach. However, this result does not mean that FIC\_BS is better than the classification tree method under all conditions. In fact, the classification tree method has its own advantage, i.e., it is flexible and does not need to generate additional test cases, . and also, which can be directly applied on the testing .
- 
+Third, in terms of the quality of the MFS identified, we can clearly find that our approach performed better than FDA-CIT. This is manifested in that our approach obtained more accurate schemas. We believe this gap is mainly caused by the FII approach. However, this result does not mean that FIC\_BS is better than the classification tree method under all conditions. In fact, the classification tree method has its own advantage, i.e., it is flexible and does not need to generate additional test cases. As a result, FDA-CIT can be applied on some complex testing scenarios, e.g., occasional failures, and incompatibilities between test cases and configurations \cite{yilmaz2013reducing}.
+
 %and as a result, \emph{FDA-CIT} generated fewer test cases than that of \emph{ILP}.
 
-In fact, another reason that our approach generated more test cases is that the FII approach, i.e., FIC\_BS, works on single test case, so when there are many failing test cases in the covering array, we need to repeatedly use our approach to identify the MFS for each failing test case. This process may produce many redundant test cases, because many failing test cases contain the same MFS, and when we have already identified the MFS in one test case, there is no need to identify it again in other failing test cases. Jieli \cite{li2012improved} introduced a method that utilizes the previous generated test cases to reduce such redundance. Here we did not use this technique to simplify our experiment. We believe if we utilize the MFS that has been already identified in previous iteration, the overall number of test cases will decrease.
+At last, when considering the cost of these two approaches. We can learn that the gap is very small. Note that this result is depending on the fact that FDA-CIT is based on $\tau$+1 way covering array, hence, FDA-CIT can get better performance when using $\tau$-way covering array.
 
-It is noted that, these observations are all statiscally signifcant.
+%In fact, another reason that our approach generated more test cases is that the FII approach, i.e., FIC\_BS, works on single test case, so when there are many failing test cases in the covering array, we need to repeatedly use our approach to identify the MFS for each failing test case. This process may produce many redundant test cases, because many failing test cases contain the same MFS, and when we have already identified the MFS in one test case, there is no need to identify it again in other failing test cases. Jieli \cite{li2012improved} introduced a method that utilizes the previous generated test cases to reduce such redundance. Here we did not use this technique to simplify our experiment. We believe if we utilize the MFS that has been already identified in previous iteration, the overall number of test cases will decrease.
 
+It is noted that, these observations are all statically significant.
+*************************************************************
 % The second reason that why our approach generated more test cases than \emph{FDA-CIT} is that .
 
 
@@ -1692,11 +1685,12 @@ Above all, we can conclude three points in this experiment, which provide answer
 
 %1) FDA serial 保守, and the ILP 更加开放，因此更加适合。
 
-1)The degree \emph{t} of the covering array does not affect the order of the performance of different approaches, but for each approach, the bigger the \emph{t} is, the better its performance.
+1)The degree $\tau$ of the covering array does not affect the overall performance of approaches, but for approach FDA-CIT, it may get better performance at reducing the \emph{ignore number} and \emph{irrelevant number} when using higher-$\tau$-way covering array.
 
-2)When taking the test cases generated by our \emph{ILP} approach, \emph{FDA-CITs} performed better than the original \emph{FDA-CIT} approach.
+2)When taking account into the quality of MFS identification, \emph{ILP} approach preforms better.
 
-3)Considering the quality of the MFS each approach identified, \emph{ILP} performed better than the other two approaches, although it needed more test cases.
+3)Without additional measures, FDA-CIT is a better choice when handling some complex testing scenarios.
+%Considering the quality of the MFS each approach identified, \emph{ILP} performed better than the other two approaches, although it needed more test cases.
 
 %Based on these observations, a recommendation for selecting masking handling techniques in practice is that to get a more precise identification of the  MFS in the SUT, \emph{ILP} is preferred, and for lower number of test cases,  \emph{FDA-CIT} may be a better choice.
 

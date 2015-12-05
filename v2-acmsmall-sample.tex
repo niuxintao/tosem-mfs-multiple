@@ -630,23 +630,23 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 
 
 \begin{assumption} \label{ass:safevalue}
-The mutated part of each additional test cases consists of safe values, i.e., none of the parameter value in mutate part is the part of any MFS.
+None of the parameter values of the mutated part of each additional test cases is the part of any MFS.
 \end{assumption}
 
-Based on this assumption, we have the following two lemmas:
+We later refer to the parameter values which is not the part of MFS as \emph{safe values}. Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two lemmas:
 
 \begin{lemma}\label{lemma:inferpassing}
- $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that the parameter values of the mutated part of $t$ ( against $t'$) are all safe values, then $t$ must be a passing test case.
+ $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that $t$ is reached by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
 \end{lemma}
 
 \begin{proof}
-Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (Assumption \ref{ass:safevalue}), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
+Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (c is a MFS), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
 \end{proof}
 
 For example, if (0, 0, 0, 0) is known to be passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
 \begin{lemma} \label{lemma:inferfailing}
-$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that the mutated part of $t'$ (against $t$) consists of safe values, then $t$ must be a failing test case.
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that $t$ is reached by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
 \end{lemma}
 
 This lemma can be proved according to  Lemma \ref{lemma:inferpassing}. As a example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
