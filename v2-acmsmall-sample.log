@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  16 DEC 2015 01:48
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  16 DEC 2015 02:03
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -557,13 +557,21 @@ Overfull \hbox (8.71243pt too wide) in paragraph at lines 1466--1467
 
 LaTeX Warning: Float too large for page by 12.4207pt on input line 1469.
 
-[28] [29]
+
+Underfull \vbox (badness 1253) has occurred while \output is active []
+
+ [28]
+[29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30]
 [31]
 File: replacingtimes.eps Graphic file (type eps)
- <replacingtimes.eps> [32] [33]
+ <replacingtimes.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+[33]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
@@ -583,7 +591,7 @@ Invalid UTF-8 byte or sequence at line 1688 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1688 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1688 replaced by U+FFFD.
  [36]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 7379) has occurred while \output is active []
 
  [37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -593,7 +601,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2418) has occurred while \output is active []
 
  [40]
 Underfull \vbox (badness 10000) has occurred while \output is active []
