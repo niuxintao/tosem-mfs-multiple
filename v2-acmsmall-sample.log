@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  16 DEC 2015 02:03
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  17 DEC 2015 19:33
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -499,7 +499,11 @@ File: example-of-masking-effects1.eps Graphic file (type eps)
  <example-of-masking-effects1.eps>
 File: example-of-masking-effects2.eps Graphic file (type eps)
 
-<example-of-masking-effects2.eps> [15] [16] [17]
+<example-of-masking-effects2.eps> [15]
+Underfull \vbox (badness 2245) has occurred while \output is active []
+
+ [16]
+[17]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
@@ -540,8 +544,11 @@ Requested font "pncb7t" at 10.0pt
  -> pncb7t
  [18]
 File: table.eps Graphic file (type eps)
- <table.eps> [19] [20]
-[21] [22] [23]
+ <table.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+[20] [21] [22] [23]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1268.
 
