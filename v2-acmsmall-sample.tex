@@ -107,7 +107,7 @@ This work was supported by the National Natural Science Foundation of China (No.
 \section{Introduction} \label{sec:introd}
 With the increasing complexity and size of modern software, many factors, such as input parameters and configuration options, can affect the behaviour of the SUT. The failures caused by the interaction of these factors can make software testing challenging, especially when the interaction space is large. In the worst case, we need to examine every possible interaction of these factors as each interaction may cause unique failure \cite{song2012itree}. While exhaustive testing achieves maximal test coverage, it is impractical and uneconomical. One remedy for this problem is Combinatorial Testing (CT)\footnote{ Another term for CT is Combinatorial Interaction Testing, which is abbreviated as CIT. In this paper, they are uniformly cited as Combinatorial testing (CT).}, which systematically samples the interaction space and selects a relatively small set of test cases that cover all valid interactions, with the number of factors involved in each interaction no more than a prior fixed integer, i.e., the \emph{strength} of the interaction. Many works in CT aim to construct the smallest set of test cases \cite{cohen1997aetg,bryce2005framework,cohen2003constructing,lei2008ipog}, which is also called \emph{covering array}.
 
-Once failures are detected by a covering array, the failure-inducing interactions in the failing test cases should be isolated. This task is important as it can facilitate debugging efforts by reducing the scope of code that is needed for inspection. \cite{ghandehari2012identifying}. However, information from a covering array sometimes is not sufficient to identify the location and number of the failure-inducing interactions \cite{colbourn2008locating}. Thus, additional information is often needed. Consider the following example \cite{bach2004pairwise}, Table \ref{MS_word} presents a two-way covering array for testing an MS-Word application in which we want to examine various interactions of options for `Highlight', `Status Bar', `Bookmarks' and `Smart tags'. Assume the third test case failed. We can get six  two-way suspicious interactions that may be responsible for this failure. They are (Highlight: Off, Status Bar: On), (Highlight: Off, Bookmarks: Off), (Highlight: Off, Smart tags: Off), (Status Bar: On, Bookmarks: Off), (Status Bar: On, Smart tags: Off),  and (Bookmarks: Off, Smart tags: Off). Without additional information, it is difficult to figure out the specific interactions in this suspicious set that caused the failure. In fact, considering that the higher strength interactions could also be failure-inducing interactions, e.g., (Highlight: Off, Status Bar: On, Smart tags: Off), the problem becomes more complicated.
+Once failures are detected by a covering array, the failure-inducing interactions in the failing test cases should be isolated. This task is important as it can facilitate debugging efforts by reducing the scope of code that is needed for inspection. \cite{ghandehari2012identifying}. However, information from a covering array sometimes is not sufficient to identify the failure-inducing interactions \cite{colbourn2008locating}. Thus, additional information is often needed. Consider the following example \cite{bach2004pairwise}, Table \ref{MS_word} presents a two-way covering array for testing an MS-Word application in which we want to examine various interactions of options for `Highlight', `Status Bar', `Bookmarks' and `Smart tags'. Assume the third test case failed. We can get six  two-way suspicious interactions that may be responsible for this failure. They are (Highlight: Off, Status Bar: On), (Highlight: Off, Bookmarks: Off), (Highlight: Off, Smart tags: Off), (Status Bar: On, Bookmarks: Off), (Status Bar: On, Smart tags: Off),  and (Bookmarks: Off, Smart tags: Off). Without additional information, it is difficult to figure out the specific interactions in this suspicious set that caused the failure. In fact, considering that the higher strength interactions could also be failure-inducing interactions, e.g., (Highlight: Off, Status Bar: On, Smart tags: Off), the problem becomes more complicated.
 
 \begin{table}
   \tbl{MS word example\label{MS_word}}{
@@ -608,8 +608,9 @@ The assumptions and corresponding inferring process vary with different FII appr
 %Hence, Traditional approach may
 %Traditional FII approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. In this case, in order to identify the MFS, each of the remaining test cases (that are not observed) must be predicted to be failing or not.
 
-
-The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation. We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessarily have to be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
+%
+%The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation. 
+We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessarily have to be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
 
 
 %These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
@@ -996,7 +997,9 @@ This section will illustrate the complete MFS identification approach that combi
 
 Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the fault $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is to give the MFS for fault $F_{m}$ in the test case $t$. Variable $\mathcal{SP}$ is to record the suspicious value between each parameter value with each fault. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with fault $F_{m}$ or not, and $T_{F-Known}$ is the set of test cases that are deemed to trigger the fault $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section 3.3. Specifically,  by computing the minimal schemas of $T_{F-Known}$, i.e., $\mathcal{C}(T_{F-Known})$, and minimal schemas of $T_{F-Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F-Known})$ are MFS if they are contained in $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$.
 
-In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration (See Algorithm \ref{alg:fic} in the Appendix for detail). Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on Lemma \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
+In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration. 
+%(See Algorithm \ref{alg:fic} in the Appendix for detail)
+Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on Lemma \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
 
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
@@ -1875,43 +1878,43 @@ As for the future work, we plan to do more empirical studies to make our conclus
 %Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{4}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
 %
 %According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases ($t_{1}$, $t_{5}$) has the maximal suspiciousness with $F_{2}$, while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
-\section{The detail algorithms of FIC\_BS}
-\begin{algorithm}[ht]
-%\SetAlgoNoLine
-\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
-\KwOut{ The $MFS$ in the $t_{original}$ }
-%$index$ = 0; $FreNum_{\alpha}$ = -1\;
-
-$C_{free} \leftarrow NULL $ \;
-$MFS  \leftarrow NULL $ \;
-\While{true}{
-        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
-       % $U \leftarrow C_{free} $ \;
-        \While{$| C_{cand} | > 1$ \&\& $ContainMFS\_factor(\ C_{cand}\ )$}{
-            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
-            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  C_{free} )$\;
-            \eIf  {$Run (testCase) == PASS$}{
-                $C_{cand} \leftarrow C_{low} $\;
-            }{
-                $C_{cand} \leftarrow C_{high}$\;
-                $C_{free} \leftarrow C_{low} \bigcup C_{free}$\;
-            }
-        }
-      %  $C_{free} \leftarrow U$\;
-       % $element \leftarrow C_{cand}$\;
-
-        \If  {$C_{cand} == NULL$}{
-            break \;
-           }
-         $MFS  \leftarrow   MFS \bigcup {C_{cand}}$  \;
-     }
-     \Return $MFS$ \;
-
-\caption{The algorithm of  FIC\_BS }
-\label{alg:fic}
-\end{algorithm}
-
-Here, $C_{free}$ indicates the parameter values in $t_{original}$ that is not related to the failure. $C_{cand}$ represents the set of parameter values in $t_{original}$  that is needed to check in one iteration (Note that $C_{cand}$ must contain at least one factor of MFS (line 5)). This algorithm consists of two loops. The outer loop (line 3 - 19) repeatedly searches failure-inducing parameter values in $t_{original}$ and appends them in $MFS$ (line 18), until none of failure-inducing parameter value is found (line 15).  The inter loop (line 5 - 14) focuses on finding one failure-inducing parameter value in $C_{cand}$  (Those parameters which have been determined to be part of MFS or in $C_{free}$ is omitted (line 4) ). To reach this target, the inter loop repeatedly uses binary search technique to reduce the scope of parameter values ($C_{cand}$) that need to be checked (line 5 - 14). In each iteration, $C_{cand}$ is split into two equally size parts, i.e., $C_{low}$ and $C_{high}$ (line 6). Then a new test case is generated by mutating the $C_{free}$ part and $C_{low}$ part of the original failing test case $t_{original}$ (line 7). For example, assume the original failing test case is (1, 1, 1, 1). The $C_{free}$ is the second parameter value, i.e., (-, 1, -, -) and $C_{low}$ part is the third parameter value (-, -, 1, -). Then a new test case may be generated like (1, 0, 0, 1). Note that the mutated values should be one of safe values set ($SV$), and the parameter values that are not mutated in this iteration is called \emph{fixed} part. If the newly generated test case passed (This indicates that MFS was broken. As $C_{free}$ is not related to the failure, hence, at least one element in $C_{low}$ is failure-inducing), then the scope of failure-inducing elements will be reduced to $C_{low}$ (line 8 - 9). Otherwise, it will be reduced to $C_{high}$ part (line 11) (This is because MFS was not broken, indicating that MFS is in $C_{high}$). In this case, $C_{low}$ will be appended to the $C_{free}$ part (line 12), as it does not relate to the MFS. The inter loop ends when $C_{cand}$ has just one element (one failure-inducing parameter value is found, and should appended to MFS (line 18)), or is empty (no more failure-inducing parameter value can be found, and the algorithm ends (line 15- 17)).
+%\section{The detail algorithms of FIC\_BS}
+%\begin{algorithm}[ht]
+%%\SetAlgoNoLine
+%\KwIn{ Failing test case $t_{original}$, Safe values of parameter $SV$}
+%\KwOut{ The $MFS$ in the $t_{original}$ }
+%%$index$ = 0; $FreNum_{\alpha}$ = -1\;
+%
+%$C_{free} \leftarrow NULL $ \;
+%$MFS  \leftarrow NULL $ \;
+%\While{true}{
+%        $C_{cand} \leftarrow t_{original} \setminus C_{free}  \setminus MFS $ \;
+%       % $U \leftarrow C_{free} $ \;
+%        \While{$| C_{cand} | > 1$ \&\& $ContainMFS\_factor(\ C_{cand}\ )$}{
+%            $(C_{low}, C_{high}) \leftarrow BinaryPartition(C_{cand})$ \;
+%            $testCase \leftarrow  Mutate( t_{original},  SV,  C_{low} \bigcup  C_{free} )$\;
+%            \eIf  {$Run (testCase) == PASS$}{
+%                $C_{cand} \leftarrow C_{low} $\;
+%            }{
+%                $C_{cand} \leftarrow C_{high}$\;
+%                $C_{free} \leftarrow C_{low} \bigcup C_{free}$\;
+%            }
+%        }
+%      %  $C_{free} \leftarrow U$\;
+%       % $element \leftarrow C_{cand}$\;
+%
+%        \If  {$C_{cand} == NULL$}{
+%            break \;
+%           }
+%         $MFS  \leftarrow   MFS \bigcup {C_{cand}}$  \;
+%     }
+%     \Return $MFS$ \;
+%
+%\caption{The algorithm of  FIC\_BS }
+%\label{alg:fic}
+%\end{algorithm}
+%
+%Here, $C_{free}$ indicates the parameter values in $t_{original}$ that is not related to the failure. $C_{cand}$ represents the set of parameter values in $t_{original}$  that is needed to check in one iteration (Note that $C_{cand}$ must contain at least one factor of MFS (line 5)). This algorithm consists of two loops. The outer loop (line 3 - 19) repeatedly searches failure-inducing parameter values in $t_{original}$ and appends them in $MFS$ (line 18), until none of failure-inducing parameter value is found (line 15).  The inter loop (line 5 - 14) focuses on finding one failure-inducing parameter value in $C_{cand}$  (Those parameters which have been determined to be part of MFS or in $C_{free}$ is omitted (line 4) ). To reach this target, the inter loop repeatedly uses binary search technique to reduce the scope of parameter values ($C_{cand}$) that need to be checked (line 5 - 14). In each iteration, $C_{cand}$ is split into two equally size parts, i.e., $C_{low}$ and $C_{high}$ (line 6). Then a new test case is generated by mutating the $C_{free}$ part and $C_{low}$ part of the original failing test case $t_{original}$ (line 7). For example, assume the original failing test case is (1, 1, 1, 1). The $C_{free}$ is the second parameter value, i.e., (-, 1, -, -) and $C_{low}$ part is the third parameter value (-, -, 1, -). Then a new test case may be generated like (1, 0, 0, 1). Note that the mutated values should be one of safe values set ($SV$), and the parameter values that are not mutated in this iteration is called \emph{fixed} part. If the newly generated test case passed (This indicates that MFS was broken. As $C_{free}$ is not related to the failure, hence, at least one element in $C_{low}$ is failure-inducing), then the scope of failure-inducing elements will be reduced to $C_{low}$ (line 8 - 9). Otherwise, it will be reduced to $C_{high}$ part (line 11) (This is because MFS was not broken, indicating that MFS is in $C_{high}$). In this case, $C_{low}$ will be appended to the $C_{free}$ part (line 12), as it does not relate to the MFS. The inter loop ends when $C_{cand}$ has just one element (one failure-inducing parameter value is found, and should appended to MFS (line 18)), or is empty (no more failure-inducing parameter value can be found, and the algorithm ends (line 15- 17)).
 
 %\begin{proposition}[{Determine failure-inducing parameter value}] \label{pro:mfs-identiy}
 %For schemas $c_{1}$, $c_{2}$, if $c_{1} \prec c_{2}$, then all the test cases that contain $c_{2}$ must also contain $c_{1}$, i.e., $\mathcal{T}(c_{2}) \subseteq \mathcal{T}(c_{1})$.
