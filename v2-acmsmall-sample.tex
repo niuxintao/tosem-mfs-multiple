@@ -609,7 +609,7 @@ The assumptions and corresponding inferring process vary with different FII appr
 %Traditional FII approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. In this case, in order to identify the MFS, each of the remaining test cases (that are not observed) must be predicted to be failing or not.
 
 %
-%The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation. 
+%The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation.
 We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessarily have to be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
 
 
@@ -630,6 +630,10 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 \end{tabular}}
 \end{table}
 
+
+The mutated part of each additional test cases consists of safe
+
+values, i.e., none of the parameter value in mutate part is the part of any MFS.
 
 \begin{assumption} \label{ass:safevalue}
 None of the parameter values of the mutated part of each additional test cases is the part of any MFS.
@@ -997,7 +1001,7 @@ This section will illustrate the complete MFS identification approach that combi
 
 Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the fault $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is to give the MFS for fault $F_{m}$ in the test case $t$. Variable $\mathcal{SP}$ is to record the suspicious value between each parameter value with each fault. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with fault $F_{m}$ or not, and $T_{F-Known}$ is the set of test cases that are deemed to trigger the fault $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section 3.3. Specifically,  by computing the minimal schemas of $T_{F-Known}$, i.e., $\mathcal{C}(T_{F-Known})$, and minimal schemas of $T_{F-Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F-Known})$ are MFS if they are contained in $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$.
 
-In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration. 
+In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration.
 %(See Algorithm \ref{alg:fic} in the Appendix for detail)
 Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on Lemma \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
 
