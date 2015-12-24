@@ -634,6 +634,7 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 The mutated part of each additional test cases consists of safe
 
 values, i.e., none of the parameter value in mutate part is the part of any MFS.
+
 \begin{assumption} \label{ass:safevalue}
 None of the parameter values of the mutated part of each additional test cases is the part of any MFS.
 \end{assumption}
@@ -1566,7 +1567,7 @@ The similar quality of MFS identification of these two approaches can also be em
 \end{figure}
 
 
-Secondly, when considering the cost, we find that the ILP-based approach performs better, as it can reduce on average 1 to 2 test cases compared to the random-based procedure (See testing objects of Figure \ref{fig:comparetotraditional}(g)). This conclusion is  statistically significant, as we can learn that the p-value of these two approaches for this metric is extremely small, which ranged from 1.74E-26 to 1.26E-71 (See Row `testNum' of Table \ref{evaluation_all} in the Appendix).
+Secondly, when considering the cost, we find that the ILP-based approach performs better. In fact, for , as it can reduce on average 1 to 2 test cases compared to the random-based procedure (See testing objects of Figure \ref{fig:comparetotraditional}(g)). This conclusion is  statistically significant, as we can learn that the p-value of these two approaches for this metric is extremely small, which ranged from 1.74E-26 to 1.26E-71 (See Row `testNum' of Table \ref{evaluation_all} in the Appendix).
 
 
 To be precise, we next compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- the replacement strategy. Figure \ref{fig:replacing} shows the result. We can learn that on average,  for each call of the replacement algorithm, ILP can save about 1 test case. This may be trivial. But considering the masking status in Table \ref{masking effect condition}, this cost reduction is significant for MFS identifying in practice.  We listed the original data and p-values in Table \ref{replacementavg}. It can be easily learned that the difference between these two approaches is also statistically significant, as the Row `$\mathcal{P}$' shows all p-values are very small.
