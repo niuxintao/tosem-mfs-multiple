@@ -166,7 +166,7 @@ To evaluate the effectiveness of our approach, we applied our strategy on the FI
 The main contributions of this paper are:
 \begin{itemize}
 \item We formally analysed the relationships between failure-inducing interactions and test sets. (Section \ref{sec:formal})
-\item We provide an unified framework for explaining how traditional FII approaches work. (Section \ref{subsec:Formal:identi})
+\item We provide an theoretical framework for explaining how traditional FII approaches work. (Section \ref{subsec:Formal:identi})
 \item We studied the impact of the masking effects caused by multiple faults on FII approaches. (Section \ref{sec:mask})
 \item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section \ref{sec:method}).
 %\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
@@ -335,11 +335,11 @@ According to definition 3.4, it is obvious that the subsuming relationship `$\pr
 %Note that as a test case $t$ can be deemed as a $k$-degree schema, if it contains a schema $c$, then it can be regarded as $c \prec t$.
 
 \begin{definition} \label{de:mfs}
-If for any test case, as long as it contains the schema $c$, it will trigger a particular fault $F$. Then we call $c$ the \emph{failure-causing schema} of $F$. Additionally, if none of the sub-schema of $c$ is the \emph{failure-causing schema} of $F$, we then call $c$ the \emph{Minimal Failure-causing Schema} (MFS) of $F$.
+If for any test case, as long as it contains the schema $c$, it will trigger the failure of particular fault $F$. Then we call $c$ the \emph{failure-causing schema} of $F$. Additionally, if none of the sub-schema of $c$ is the \emph{failure-causing schema} of $F$, we then call $c$ the \emph{Minimal Failure-causing Schema} (MFS) of $F$.
 %Based on this, if a test case $t$ contain such a failure-inducing combination, say $c(F)$, it should trigger the failure $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failures are caused by the interactions of the parameter values in the SUT. Another noteworthy point is that, in practice, the MFS definition (Section 3.5) may not be valid. This is because in some specific cases,  e.g., the masking problems which we will discussed later, we may not determine whether some test cases will trigger the particular failure of $F$, or not.
+In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failures are caused by the interactions of the parameter values in the SUT. Another noteworthy point is that, in practice, we may not accurately obtain the MFS according to the MFS definition (Section 3.5). This is because in some specific cases,  e.g., the masking problems which we will discussed later, we may not determine whether some test cases will trigger the failure of particular failure of $F$, or not.
 
 %We have the following proposition based on these basic definitions.
 %
@@ -459,7 +459,7 @@ $T^{*}$ & $T$ &$\bar{T}$ & $\mathcal{S}(T)$ & $\mathcal{C}(T)$\\ \hline
   }
   \end{table}
 
-Let $T_{F_{m}}$ denote the set of all the test cases triggering failure of $F_{m}$, then $\mathcal{C}(T_{F_{m}})$ actually is the MFS set of $F_{m}$.
+Let $T_{F_{m}}$ denote the set of all the test cases triggering the failure of $F_{m}$, then $\mathcal{C}(T_{F_{m}})$ actually is the MFS set of $F_{m}$.
 
 %And obviously $\forall c_{m}$ we have $\mathcal{C}(\mathcal{T}(c_{m})) = \{c_{m}\}$.
 
@@ -551,12 +551,12 @@ $\mathcal{C}(T_{2})$& $\mathcal{C}(T_{1})$ \\ \hline
   }
   \end{table}
 
-In summary, these propositions provide the foundation of MFS identification (Propositions \ref{pro:stct} and \ref{pro:ash}), and more importantly, they clarify the relationships between the minimal schemas of two different test sets (Propositions \ref{pro:sls} and \ref{pro:ssp}), which are the keys to explain the impact of masking effects later.
+In summary, these propositions provide the foundation of MFS identification (Propositions \ref{pro:stct} and \ref{pro:ash}), and more importantly, they clarify the relationships between the minimal schemas of two different test sets (Propositions \ref{pro:sls} and \ref{pro:ssp}). As will be shown in Section \ref{sec:mask}, under the masking effects, the actual failing test set is either to be the super-set or sub-set of the observed failing test set. Hence, Propositions \ref{pro:sls} and \ref{pro:ssp} will describe the impact of masking effects on MFS identification later.
 %For any test sets in the SUT, it has a set of minimal schemas.
 %(b) For two subsuming test sets, their minimal schemas can be subsuming or irrelevant to each other.
 
 
-\subsection{MFS identification}\label{subsec:Formal:identi}
+\section{MFS identification}\label{subsec:Formal:identi}
 In this section, we will study how traditional MFS identification approaches, i.e., FII approaches, identify the MFS. Let $T_{F}$ indicate all the failing test cases and $T_{P}$ all the passing test cases ( Note that $T_{F} \bigcap T_{P} = \varnothing$ and $T_{F} \bigcup T_{P} = T^{*}$ ). Then the MFS for the SUT is $\mathcal{C}(T_{F})$. Theoretically,  to figure out all the MFS in the SUT, we need to exhaustively execute each possible test case, and collect the failing test cases $T_{F}$. This is impossible in practice, especially when the testing space is very large.
 
 As it is impractical to get all the MFS, an appropriate strategy is to determine some MFS of them. With the following proposition, we can learn that with the existing subset of test cases, we can also identify some of them.
@@ -610,7 +610,7 @@ The assumptions and corresponding inferring process vary with different FII appr
 
 %
 %The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation.
-We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessarily have to be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following assumption.
+We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessarily have to be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
 
 
 %These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
@@ -631,15 +631,15 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 \end{table}
 
 
-The mutated part of each additional test cases consists of safe
-
-values, i.e., none of the parameter value in mutate part is the part of any MFS.
+%The mutated part of each additional test cases consists of safe
+%
+%values, i.e., none of the parameter value in mutate part is the part of any MFS.
 
 \begin{assumption} \label{ass:safevalue}
-None of the parameter values of the mutated part of each additional test cases is the part of any MFS.
+Each parameter value of the mutated part of each additional test cases is \emph{safe value}, i.e., a value that is not the part of any MFS.
 \end{assumption}
 
-We later refer to the parameter values which is not the part of MFS as \emph{safe values}. Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two lemmas:
+Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two lemmas:
 
 \begin{lemma}\label{lemma:inferpassing}
  $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
@@ -649,7 +649,7 @@ We later refer to the parameter values which is not the part of MFS as \emph{saf
 Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (c is an MFS), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
 \end{proof}
 
-For example, if (0, 0, 0, 0) is known to be a passing test case, and (-, -, -, 1) is safe value, then test case (0, 0, 0, 1) must be a passing test case.
+For example, if (0, 0, 0, 0) is known to be a passing test case, and (-, -, -, 1) \footnote{Here we use the 1-degree schema (-, -, $v_{i_{j}}$, -, -) to denote the value \emph{j} of the \emph{i}th parameter of the SUT.}  is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
 \begin{lemma} \label{lemma:inferfailing}
 $\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
@@ -697,7 +697,7 @@ This example illustrates that the FII approach does not execute all the test cas
 As discussed before, $\mathcal{C}(T_{F_{m}})$ is considered to be the MFS set of fault $F_{m}$ in theory.  When accounting for the masking effects between multiple faults, however, this consideration is not correct.
 
 \begin{definition}
-A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular fault, but it does not trigger the expected fault because other unexpected event, such as the other fault or unaccounted control dependency, was triggered earlier that prevents $t$ from being normally checked.
+A \emph{masking effect} occurs when a test case \emph{t} contains an MFS of a particular fault, but it does not trigger the failure of expected fault because other unexpected event, such as the failure of other fault or unaccounted control dependency, was triggered earlier that prevents $t$ from being normally checked.
 \end{definition}
 
 Taking the masking effects into account, when identifying the MFS of a specific fault $F_{m}$, we must not ignore those test cases which did not trigger $F_{m}$ but should have triggered it. We call these test cases $T_{mask(F_{m})}$. Hence, the MFS of fault $F_{m}$ should be revised as $\mathcal{C}(T_{F_{m}} \bigcup T_{mask(F_{m})})$.
