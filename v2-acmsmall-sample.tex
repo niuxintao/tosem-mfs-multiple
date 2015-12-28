@@ -168,7 +168,7 @@ The main contributions of this paper are:
 \item We formally analysed the relationships between failure-inducing interactions and test sets. (Section \ref{sec:formal})
 \item We provide an theoretical framework for explaining how traditional FII approaches work. (Section \ref{subsec:Formal:identi})
 \item We studied the impact of the masking effects caused by multiple faults on FII approaches. (Section \ref{sec:mask})
-\item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section \ref{sec:method}).
+\item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section \ref{sec:method}), and gave an MFS identification approach augmented with this replacement strategy (Section \ref{sec:appraoch}).
 %\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
 %\item We designed an efficient test case searching method which can find a test case that does not trigger an unexpected failure.
 \item We conducted several empirical studies and showed that our strategy can assist FII approaches to achieve better performance in identifying failure-inducing interactions in the SUT with masking effects. (Section \ref{sec:emprical})
@@ -415,7 +415,7 @@ $c_{1}$ \\ \hline
   }
   \end{table}
 
-\begin{proposition}[Property of S(T): special schema set of test set T]\label{pro:stct}
+\begin{proposition}[Property of special schema set of test set T]\label{pro:stct}
 For any test set $T$ of the SUT,  $\bigcup_{c \in \mathcal{S}(T)}\mathcal{T}(c) = T$.
 \end{proposition}
 \begin{proof}
@@ -426,7 +426,7 @@ On the other hand, $\forall t \in T$,  $\exists c' \in \mathcal{I}(t)$, such tha
 
 
 
-\begin{proposition}[Property of C(T): minimal schema set of test Set T]\label{pro:ash}
+\begin{proposition}[Property of minimal schema set of test Set T]\label{pro:ash}
 For any test set $T$ of the SUT, $\bigcup_{c \in \mathcal{C}(T)} \mathcal{T}(c) = T$.
 \end{proposition}
 
@@ -561,7 +561,7 @@ In this section, we will study how traditional MFS identification approaches, i.
 
 As it is impractical to get all the MFS, an appropriate strategy is to determine some MFS of them. With the following proposition, we can learn that with the existing subset of test cases, we can also identify some of them.
 
-\begin{proposition}[{Equal minimal schemas}]\label{pro:dsms}
+\begin{proposition}[{Same minimal schemas in different test sets}]\label{pro:dsms}
 For $T_{1}$ and $T_{2}$, $T_{1} \subset T_{2}$. If $\exists c \in \mathcal{C}(T_{1})$, such that $ c \in \mathcal{C}(T_{2})$. Then, for any test set $T_{3}$, such that $T_{1} \subset T_{3} \subset T_{2}$, we have $c \in \mathcal{C}(T_{3})$.
 \end{proposition}
 
@@ -1797,7 +1797,8 @@ Masking effects of multiple faults in the SUT can bias the results of traditiona
 
 %This strategy separately handle each failure in SUT, and for a particular failure, it will discard these test cases that trigger failures different from the one under analysis and only keep those that either pass or trigger the expected failure. Additional test cases for compensation will be generated after discarding unsatisfied test cases.
 
-In our empirical studies, we extended FIC\_BS \cite{zhang2011characterizing} with our strategy. A comparison between our approach and traditional approaches was performed on several open-source software. The results indicate that our strategy assists the traditional FII approach in achieving better performance when facing masking effects in the SUT. We also empirically evaluated the efficiency of the test case searching component by comparing it with the random searching based FII approach. The results showed that the ILP-based test case searching method can perform more efficiently. Last, we compared our approach with existing technique for handling masking effects -- FDA-CIT \cite{yilmaz2013reducing}, and observed that our approach achieved a more precise result which can better support  debugging, though our approach required more test cases than FDA-CIT.
+In our empirical studies, we extended FIC\_BS \cite{zhang2011characterizing} with our strategy. A comparison between our approach and traditional approaches was performed on several open-source software. The results indicate that our strategy assists the traditional FII approach in achieving better performance when facing masking effects in the SUT. We also empirically evaluated the efficiency of the test case searching component by comparing it with the random searching based FII approach. The results showed that the ILP-based test case searching method can perform more efficiently. Last, we compared our approach with existing technique for handling masking effects -- FDA-CIT \cite{yilmaz2013reducing}, and observed that our approach achieved a more precise result which can better support  debugging.
+%, though our approach required more test cases than FDA-CIT.
 
 As for the future work, we plan to do more empirical studies to make our conclusions more general. Our current experiments focus on medium-sized software. We would like to extend our approach to more complicated, large-scaled testing scenarios. Another promising work in the future is to integrate the white-box testing technique into the FII approaches. We believe gaining insight into source code can help figure out the relationships between multiple faults, and hence facilitate the FII approaches obtaining more accurate results. And last, because the extent to which the FII suffers from masking effects varies with different algorithms, combining these different FII approaches would be desired in the future to further improve identifying MFS of multiple faults.
 
