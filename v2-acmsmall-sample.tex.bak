@@ -42,7 +42,7 @@
 \acmMonth{3}
 
 \newtheorem{assumption}{Assumption}
-\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
 
 % Document starts
 \begin{document}
@@ -639,11 +639,11 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 Each parameter value of the mutated part of each additional test cases is \emph{safe value}, i.e., a value that is not the part of any MFS.
 \end{assumption}
 
-Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two lemmas:
+Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two corollaries:
 
-\begin{lemma}\label{lemma:inferpassing}
+\begin{corollary}\label{lemma:inferpassing}
  $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
-\end{lemma}
+\end{corollary}
 
 \begin{proof}
 Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c \in \mathcal{C}(T_{F})$, such that $c \prec t $ or  $c = t$ (Based on Proposition \ref{pro:sbS}). In other words, $\forall e \in c$, it has $e \in t$.  As $c$ has no parameter value that is safe value (c is an MFS), so $\forall e \in c$, it has $e \in (t \setminus mutate)$, where $mutate$ indicates the mutated part of $t$ against $t'$. However, as $t'$ also contain $(t \setminus mutate)$, so $t'$ should be a failing test case, which is contradiction. Hence, $t$ must be a passing test case.
@@ -651,13 +651,13 @@ Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c
 
 For example, if (0, 0, 0, 0) is known to be a passing test case, and (-, -, -, 1) \footnote{Here we use the 1-degree schema (-, -, $v_{i_{j}}$, -, -) to denote the value \emph{j} of the \emph{i}th parameter of the SUT.}  is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
-\begin{lemma} \label{lemma:inferfailing}
+\begin{corollary} \label{lemma:inferfailing}
 $\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
-\end{lemma}
+\end{corollary}
 
-This lemma can be proved according to  Lemma \ref{lemma:inferpassing}. As an example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
+This corollary can be proved according to Corollary \ref{lemma:inferpassing}. As an example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
 
-Based on these two lemmas, we can easily infer that some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assumes that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' of \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing;  the mutated part of the known failing test case $t_{16}$ against the unknown test case $t_{14}$ is still the safe value (-, -, 0, -), so $t_{14}$ should be inferred to be failing.
+Based on these two corollaries, we can easily infer that some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assumes that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' of \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing;  the mutated part of the known failing test case $t_{16}$ against the unknown test case $t_{14}$ is still the safe value (-, -, 0, -), so $t_{14}$ should be inferred to be failing.
 
 \begin{table}[ht]
 \tbl{Test outcomes for MFS(- 1 - 1)\label{realMFS-for-11}}{
@@ -756,7 +756,7 @@ Based on previous analysis, even though exhaustive testing is conducted to obtai
 Consider a FII example that still use the FIC\_BS method \cite{zhang2011characterizing}.  Similar to the example listed in Table \ref{fic-bs-identify}, assume the test case (1, 1, 1, 1) failed with $F_{1}$ (The MFS is still assumed to be (-, 1, -, 1) as Table \ref{fic-bs-identify}). Then assume that there exists an MFS (-, 1, 0, -) that triggers $F_{2}$, where fault $F_{2}$ can mask $F_{1}$. Next we will illustrate how FIC\_BS works using  strategies the \emph{regarded as same failure} strategy and \emph{distinguishing failures} strategy, respectively.
 
 First, for the \emph{regarded as same failure} strategy, we list how it works in Fig. \ref{fig:maskingeffects1}, as well as the masking effects it suffers. With this strategy, it just needs three additional test cases to determine the MFS in the original failing test case $t$, i.e., $t_{1}'$, $t_{2}'$, and $t_{3}'$ (listed in the left part of Fig. \ref{fig:maskingeffects1}).
- The right part of Fig. \ref{fig:maskingeffects1} shows the MFS it obtained is (-, 1, -, -), which is obviously wrong (See the correct result in Table \ref{realMFS-for-11}, which should be (-, 1, -, 1), but this strategy treats its sub-schema (-, 1, -, -) to be MFS). The middle part of Fig. \ref{fig:maskingeffects1} explains why this strategy obtained this result. Specifically, it treats all failures as the same failure, i.e., failure of $F_{1}$. Hence, test case $t_{5}$ in the middle of Fig. \ref{fig:maskingeffects1} (Marked \emph{Strategy} in the column `State ') is determined to trigger $F_{1}$. Here, the test case $t_{5}$ corresponds to the test case $t_{3}'$ in the left part of Fig.\ref{fig:maskingeffects1}.  According to the Assumption \ref{lemma:inferpassing} and \ref{lemma:inferfailing}, test cases $t_{1}$, $t_{2}$, $t_{3}$, $t_{6}$, $t_{7}$, $t_{13}$, $t_{14}$, and $t_{15}$ are determined to be pass or fail with $F_{1}$, respectively. Afterward, we can determine that (-, 1, -, -) should be the MFS. This is because, $\mathcal{C}(T_{F_{1}})$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{13}, t_{14}, t_{15}, t_{16} \})$ = (-, 1, -, -), which has been included in $\mathcal{C}(T_{F_{1}} \bigcup T_{unknown}$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{14}, t_{15}, t_{16}\})$ = (1, -, -, -), (-, 1, -, -).
+ The right part of Fig. \ref{fig:maskingeffects1} shows the MFS it obtained is (-, 1, -, -), which is obviously wrong (See the correct result in Table \ref{realMFS-for-11}, which should be (-, 1, -, 1), but this strategy treats its sub-schema (-, 1, -, -) to be MFS). The middle part of Fig. \ref{fig:maskingeffects1} explains why this strategy obtained this result. Specifically, it treats all failures as the same failure, i.e., failure of $F_{1}$. Hence, test case $t_{5}$ in the middle of Fig. \ref{fig:maskingeffects1} (Marked \emph{Strategy} in the column `State ') is determined to trigger $F_{1}$. Here, the test case $t_{5}$ corresponds to the test case $t_{3}'$ in the left part of Fig.\ref{fig:maskingeffects1}.  According to the corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}, test cases $t_{1}$, $t_{2}$, $t_{3}$, $t_{6}$, $t_{7}$, $t_{13}$, $t_{14}$, and $t_{15}$ are determined to be pass or fail with $F_{1}$, respectively. Afterward, we can determine that (-, 1, -, -) should be the MFS. This is because, $\mathcal{C}(T_{F_{1}})$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{13}, t_{14}, t_{15}, t_{16} \})$ = (-, 1, -, -), which has been included in $\mathcal{C}(T_{F_{1}} \bigcup T_{unknown}$ = $\mathcal{C}(\{t_{5}, t_{6}, t_{7}, t_{8}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{14}, t_{15}, t_{16}\})$ = (1, -, -, -), (-, 1, -, -).
 
 
 \begin{figure}[htbp]
@@ -1003,7 +1003,7 @@ Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this 
 
 In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6). The fixed part is different in each iteration.
 %(See Algorithm \ref{alg:fic} in the Appendix for detail)
-Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on Lemma \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
+Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and re-check if the ending condition is satisfied (line 27).
 
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
@@ -1179,7 +1179,7 @@ $T_{fail}$ &$T_{pass}$ &  $MFS$\\ \hline
 Inspired by the idea that using multiple same-way covering arrays to identify the MFS \cite{fouche2009incremental}, one potential solution to alleviate this non-deterministic failure is by adding redundancy, i.e., through re-executing the same test case to obtain the relatively stable outcome. However, this measure will increase the overall cost of the MFS identification, so the tradeoff between cost and the quality of MFS identification should be further studied.
 
 \subsection{Deal with failures distinguishing problem}
-The second assumption is that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as same failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS.
+The second assumption is that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as same failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS. Note that 
 
 \subsection{Deal with inter-option constraints}
 The third assumption is that all the test cases are valid, i.e., SUT does not have any inter-option constraint. This is a very strong assumption. In this section, we will try to remove this assumption. In fact, with constraints known in prior, many studies in CT have proposed approaches to avoid them when generating test cases \cite{cohen2007exploiting,cohen2007interaction,cohen2008constructing,calvagna2008logic,yu2013efficient,petke2013efficiency,yu2015constraint}.
@@ -1206,7 +1206,7 @@ $T_{fail}$ &$T_{pass}$ &  $T_{invalid}$ \\ \hline
 Another type of constraint includes those that can not be found at first, but triggered a failure later in testing\cite{yilmaz2013reducing}. The same as the approach proposed in \cite{yilmaz2013reducing}, we can just treat them as one type of failure, and then use the MFS identification approach to identify them when encountering any invalid test cases.
 
 \subsection{Deal with safe values}
-The last assumption is the safe value, i.e., each parameter has one value that is not the part of any MFS. With this assumption, based on Lemma \ref{lemma:inferfailing} and \ref{lemma:inferpassing}, we can infer the result of many test cases without executing them. On the contrary, if this assumption does not hold, those test cases may be inferred incorrectly. As a result, the MFS that identified by FII approaches are not accurate.
+The last assumption is the safe value, i.e., each parameter has one value that is not the part of any MFS. With this assumption, based on corollaries \ref{lemma:inferfailing} and \ref{lemma:inferpassing}, we can infer the result of many test cases without executing them. On the contrary, if this assumption does not hold, those test cases may be inferred incorrectly. As a result, the MFS that identified by FII approaches are not accurate.
 
 In theory, to solve this problem, we should exhaustively execute all the test cases of which the results could be inferred. This is a costly process, and hence, some approaches have been proposed to handle such problem.  Mart{\'\i}nez \cite{martinez2008algorithms,martinez2009locating} proposed two approaches without the safe value assumption, but both of them needs to know the number of MFS or the degrees of them in prior. Then either through generating higher-way covering array or adaptively generating additional test case, they can determine the MFS. We \cite{niu2013identifying} have also proposed an approach to alleviate this problem. In that work, we repeatedly check the same schema to reduce the impact of non-safe values.
 
