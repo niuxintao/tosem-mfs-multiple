@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  2 JAN 2016 19:21
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2015.10.14)  4 JAN 2016 21:26
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Documents\GitHub\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -551,13 +551,9 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
- [24] [25] [26] [27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
+ [24] [25] [26] [27] [28]
 File: study2.eps Graphic file (type eps)
-
-<study2.eps>
+ <study2.eps>
 Overfull \hbox (8.71243pt too wide) in paragraph at lines 1475--1476
  [][] 
  []
@@ -579,21 +575,24 @@ File: replacingtimes.eps Graphic file (type eps)
 Underfull \vbox (badness 1286) has occurred while \output is active []
 
  [32]
-[33]
+Underfull \vbox (badness 1924) has occurred while \output is active []
+
+ [33]
 File: 2-way.eps Graphic file (type eps)
- <2-way.eps>
+
+<2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
  <4-way.eps> [34] [35]
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1698 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1697 replaced by U+FFFD.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -613,12 +612,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [41])
 [42]
-Overfull \hbox (112.90709pt too wide) in paragraph at lines 1975--2028
+Overfull \hbox (112.90709pt too wide) in paragraph at lines 1974--2027
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 22.05pt on input line 2111.
+LaTeX Warning: Float too large for page by 22.05pt on input line 2110.
 
 [1
 
