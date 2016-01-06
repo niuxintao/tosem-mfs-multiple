@@ -287,8 +287,8 @@ For the example in Section \ref{sec:motiv}, ($a = 7$, $b = 2$, $c = 4$, $d = 3$)
 \begin{definition}
 A \emph{failure} is an abnormal execution of a test case.
 \end{definition}
-In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation. In this paper, failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure. The main point in this paper is to study the impact of multiple different \emph{failures} on failure-inducing interactions identification.
-
+In CT, such a \emph{failure} can be a thrown exception, compilation error, assertion failure or constraint violation.
+%In this paper, The main point in this paper is to study the impact of multiple different \emph{failures} on failure-inducing interactions identification.
 To facilitate our discussion, we introduce the following assumptions that will be used throughout this paper:
 
 \begin{assumption}
@@ -296,8 +296,10 @@ The execution result of a test case is deterministic.
 \end{assumption}
 This assumption is a common assumption of CT fault diagnosis\cite{wang2010adaptive,zhang2011characterizing,ghandehari2012identifying,li2012improved,niu2013identifying}. It indicates that the outcome of executing a test case is reproducible and will not be affected by some random events.
 \begin{assumption}
-Different failures in the SUT can be distinguished by various information such as exception traces, state conditions, or the like.
+Different failures in the SUT can be distinguished and classified by different types of faults, such as various information such as exception traces, state conditions, or the like.
 \end{assumption}
+failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure. In many cases, the same type of failures is caused by the same fault. In this paper, we only deal with the failure, when we say a failure, one type of failure.
+
 This assumption indicates that the testers can detect different failures during testing. As different failures will complicate fault diagnosis tasks, distinguishing them is the first step to resolve them.
 
 \begin{assumption}
@@ -587,23 +589,23 @@ For example, Table \ref{example_identical_condition} shows the minimal schemas f
   }
   \end{table}
 
-Based on Proposition \ref{pro:dsms}, let $T_{F-known}$ be the given test cases which are known to be failing, and $T_{P-known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F-known} \bigcup T_{P-known})$ be the test cases that are not known to be failing or not, we have the following lemma:
+Based on Proposition \ref{pro:dsms}, let $T_{F\_known}$ be the given test cases which are known to be failing, and $T_{P\_known}$ be the known passing test cases. $T_{unknown} = T^{*} \setminus (T_{F\_known} \bigcup T_{P\_known})$ be the test cases that are not known to be failing or not, we have the following lemma:
 
 \begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
-$\forall c \in \mathcal{C}(T_{F-known})$, if $\exists c' \in \mathcal{C}(T_{F-known} $ $\bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
+$\forall c \in \mathcal{C}(T_{F\_known})$, if $\exists c' \in \mathcal{C}(T_{F\_known} $ $\bigcup T_{unknown})$, such that $c = c'$, then $c$ must be MFS.
 \end{lemma}
 
-The proof of this lemma is obvious. This is because whatever the outcomes of the test cases  $T_{unknown}$ will be, the actual failing test cases (denoted as $T_{F-acutal}$), must have $T_{F-known} \subset T_{F-acutal} \subset (T_{F-known}\bigcup T_{unknown})$. Based on Proposition \ref{pro:dsms}, this lemma holds.  With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify an MFS $c$, there still needs many test cases to be executed; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F-known}|$ = $2^{8-2} = 64$. This number grows exponentially with the number of parameters in the SUT. Hence, traditional FII approaches will make some assumptions to further reduce the number of needed test cases to identify the MFS.
+The proof of this lemma is obvious. This is because whatever the outcomes of the test cases  $T_{unknown}$ will be, the actual failing test cases (denoted as $T_{F\_acutal}$), must have $T_{F\_known} \subset T_{F\_acutal} \subset (T_{F\_known}\bigcup T_{unknown})$. Based on Proposition \ref{pro:dsms}, this lemma holds.  With this lemma, we can determine some MFS in the SUT without executing all the test cases. However, to identify an MFS $c$, there still needs many test cases to be executed; at least, we should execute all the test cases in $ \mathcal{T}(c)$. For example, for SUT($2^{8}$), to identify the MFS (1, 1, -, -, -, -, -, -), we should make sure all the test cases contain this schema must fail, of which the number is $|T_{F\_known}|$ = $2^{8-2} = 64$. This number grows exponentially with the number of parameters in the SUT. Hence, traditional FII approaches will make some assumptions to further reduce the number of needed test cases to identify the MFS.
 
-Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F-infer}$ refer to the test cases that can be inferred to be failing and $T_{P-infer}$ the inferred passing test cases. With the test cases whose outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F-known} \bigcup T_{F-infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F-known} \bigcup T_{F-infer})$, if it is identical to some schema in $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$, then $c$ must be MFS.
+Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F\_infer}$ refer to the test cases that can be inferred to be failing and $T_{P\_infer}$ the inferred passing test cases. With the test cases whose outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F\_known} \bigcup T_{F\_infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F\_known} \bigcup T_{F\_infer})$, if it is identical to some schema in $\mathcal{C}((T_{F\_known} \bigcup T_{F\_infer}) \bigcup (T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})))$, then $c$ must be MFS.
 
 The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the FIC\_BS appraoch\cite{zhang2011characterizing}--an efficient adaptive MFS identification approach.
 
 %\begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
-%$\forall c \in \mathcal{C}(T_{F-known})$, if it is identical to some schema in $\mathcal{C}(T_{F-known} \bigcup T_{unknown})$, then $c$ must be MFS.
+%$\forall c \in \mathcal{C}(T_{F\_known})$, if it is identical to some schema in $\mathcal{C}(T_{F\_known} \bigcup T_{unknown})$, then $c$ must be MFS.
 %\end{lemma}
 
-% Then the MFS identified by FII approaches can be depicted as: MFS = $\mathcal{C}(T_{f-obs} \bigcup T_{f-infer})$.
+% Then the MFS identified by FII approaches can be depicted as: MFS = $\mathcal{C}(T_{f-obs} \bigcup T_{f\_infer})$.
 %
 %Hence, Traditional approach may
 %Traditional FII approaches select a subset of the exhaustive test cases to execute. Hence, we can only observe the outcomes of a part of the whole test cases. In this case, in order to identify the MFS, each of the remaining test cases (that are not observed) must be predicted to be failing or not.
@@ -642,7 +644,7 @@ Each parameter value of the mutated part of each additional test cases is \emph{
 Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two corollaries:
 
 \begin{corollary}\label{lemma:inferpassing}
- $\forall t \in T_{unknown}$, if $\exists t' \in T_{P-known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
+ $\forall t \in T_{unknown}$, if $\exists t' \in T_{P\_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
 \end{corollary}
 
 \begin{proof}
@@ -652,7 +654,7 @@ Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c
 For example, if (0, 0, 0, 0) is known to be a passing test case, and (-, -, -, 1) \footnote{Here we use the 1-degree schema (-, -, $v_{i_{j}}$, -, -) to denote the value \emph{j} of the \emph{i}th parameter of the SUT.}  is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
 \begin{corollary} \label{lemma:inferfailing}
-$\forall t \in T_{unknown}$, if $\exists t' \in T_{F_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F\_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
 \end{corollary}
 
 This corollary can be proved according to Corollary \ref{lemma:inferpassing}. As an example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
@@ -683,7 +685,7 @@ $t_{16}$ & 1      & 1     & 1     & 1     & fail  & known     \\ \hline
 \end{tabular}}
 \end{table}
 
-After inferring these test cases, we can find that $\mathcal{C}(T_{F-known} \bigcup T_{F-infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1), and $\mathcal{C}((T_{F-known} \bigcup T_{F-infer}) \bigcup (T_{unknown} \setminus (T_{F-infer} \bigcup T_{P-infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can derive that (-, 1, -, 1) must be MFS.
+After inferring these test cases, we can find that $\mathcal{C}(T_{F\_known} \bigcup T_{F\_infer})$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}\})$ = (-, 1, -, 1), and $\mathcal{C}((T_{F\_known} \bigcup T_{F\_infer}) \bigcup (T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})))$ = $\mathcal{C}(\{t_{6}, t_{8}, t_{14}, t_{16}, t_{7}, t_{9}, t_{10}, t_{11}, t_{12}, t_{13}, t_{13}, t_{15}\})$ = (1, -, -, -), (-, 1, 1, -), (-, 1, -, 1). Hence, we can derive that (-, 1, -, 1) must be MFS.
 
 %In our model, to identify MFS (-, 1, -, 1), we should execute all the test cases, and test cases in $\mathcal{T}((1, -, 1, -))$ should fail.  As listed in Table \ref{realMFS-for-11}, apart from the observed test cases in Table \ref{ofot-identify} (in bold), the outcomes of other test cases should be inferred. These results can be inferred based on the basic assumptions of FIC\_BS. For example, test case $t_{3}$ should pass, as if not so, (-, -, -, 0) must be failure-inducing factor (comparing $t_{3}$ and $t_{4}$), which contradicts the factor (-, -, -, 0) are safe value. Similarly, $t_{2}$ (Comparing $t_{2}$ and $t_{4}$), $t_{1}$ (Comparing $t_{1}$ and $t_{5}$) should pass. Additionally, $t_{14}$ should fail, because if not so, (0, -, -, -) must be failure-inducing (Comparing $t_{6}$ and $t_{14}$).
 
@@ -748,7 +750,7 @@ It is noted that the motivating example in section \ref{sec:motiv} actually adop
 
 
 \subsection{Masking effects for FII approaches} \label{sec:mask:fci}
-Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FII approaches, masking effects can make problems worse. This is because these approaches, with masking effects, are not only unable to determine $T_{mask(F_{m})}$ as discussed before, but also unable to correctly infer the outcomes of some unexecuted test cases, i.e., wrong $T_{F-infer}$ and $T_{P-infer}$ as mentioned in Section \ref{subsec:Formal:identi}.
+Based on previous analysis, even though exhaustive testing is conducted to obtain $T_{F_{m}}$, we cannot determine the MFS set because of the masking effects. For traditional MFS identification approaches, i.e., FII approaches, masking effects can make problems worse. This is because these approaches, with masking effects, are not only unable to determine $T_{mask(F_{m})}$ as discussed before, but also unable to correctly infer the outcomes of some unexecuted test cases, i.e., wrong $T_{F\_infer}$ and $T_{P\_infer}$ as mentioned in Section \ref{subsec:Formal:identi}.
 
 %This is because due to the time and computing rescouses limitation, FII approaches can only execute part of the whole test cases. Consequently, only part of $T_{F_{m}}$ can be observed. Under this condition, the remaining of $T_{F_{m}}$ need to be inferred. The inference process, which is based on the executed test cases and their outcomes, is key to the quality of the MFS identification result.
 
@@ -782,7 +784,7 @@ Such deviations from these two strategies are caused by the reduction of the tes
 
 %\begin{table}[ht]
 %\centering
-%\tbl{Inferred test cases for two strategies\label{ofot-infer-two}}{
+%\tbl{Inferred test cases for two strategies\label{ofot\_infer-two}}{
 %  \begin{tabular}{ccc}
 %\multicolumn{3}{c}{\bfseries  regarded as same failure} \\ \hline
 %$\mathcal{T}((-, -, 1, -))$&observed $T_{f}$ &inferred $T_{f}$\\ \hline
@@ -999,11 +1001,11 @@ This section will illustrate the complete MFS identification approach that combi
 
 \subsection{MFS identification with replacement strategy}
 
-Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the fault $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is the MFS for fault $F_{m}$ in the test case $t$. Variable $\mathcal{SP}$ is used to record the suspicious value of each parameter value with each fault. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with fault $F_{m}$ or not, and $T_{F-Known}$ is the set of test cases that are deemed to trigger the fault $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section \ref{subsec:Formal:identi}. Specifically,  by computing the minimal schemas of $T_{F-Known}$, i.e., $\mathcal{C}(T_{F-Known})$, and minimal schemas of $T_{F-Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F-Known})$ are MFS if they are contained in $\mathcal{C}(T_{F-Known} \bigcup T_{Unknown})$.
+Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the fault $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is the MFS for fault $F_{m}$ in the test case $t$. Variable $\mathcal{SP}$ is used to record the suspicious value of each parameter value with each fault. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with fault $F_{m}$ or not, and $T_{F\_Known}$ is the set of test cases that are deemed to trigger the fault $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section \ref{subsec:Formal:identi}. Specifically,  by computing the minimal schemas of $T_{F\_Known}$, i.e., $\mathcal{C}(T_{F\_Known})$, and minimal schemas of $T_{F\_Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F\_Known})$ are MFS if they are contained in $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$.
 
 In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6).
 %(See Algorithm \ref{alg:fic} in the Appendix for detail)
-Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F-known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and check if the ending condition is satisfied (line 27).
+Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same fault $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F\_known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and check if the ending condition is satisfied (line 27).
 
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
@@ -1013,7 +1015,7 @@ Then the approach will execute this test case (line 8) and update the suspicious
 
 $\mathcal{SP} \leftarrow init\_Suspicious\_Matrix(t)$ \;
 $T_{Unknown} \leftarrow  T_{ALL} \setminus t $ \;
-$T_{F-Known} \leftarrow \{ t \} $ \;
+$T_{F\_Known} \leftarrow \{ t \} $ \;
 $MFS \leftarrow empty$ \;
 \While{ $true$}{
 %       $optimal \leftarrow MAX$,
@@ -1037,14 +1039,14 @@ $MFS \leftarrow empty$ \;
            }{ }
             \eIf  {$result == F_{m}$}{
            $T_{infer-F} \leftarrow InferringFailing (t_{next}, SV) $\;
-           $T_{F-Known} \leftarrow T_{F-Known} \bigcup t_{next} \bigcup T_{infer-F}$\;
+           $T_{F\_Known} \leftarrow T_{F\_Known} \bigcup t_{next} \bigcup T_{infer-F}$\;
            $T_{Unknown} \leftarrow T_{Unknown} \setminus (t_{next} \bigcup T_{infer-F}) $ \;
            }{ $T_{infer-P} \leftarrow InferringPassing (t_{next}, SV) $\;
            $T_{Unknown} \leftarrow T_{Unknown} \setminus  (t_{next} \bigcup T_{infer-P}) $ \;}
 
 
-           $MFS \leftarrow \mathcal{C}(T_{F-Known})$ \;
-           $M_{Possible} \leftarrow \mathcal{C}(T_{F-Known} \bigcup T_{Unknown})  $ \;
+           $MFS \leftarrow \mathcal{C}(T_{F\_Known})$ \;
+           $M_{Possible} \leftarrow \mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})  $ \;
             \If{ $ MFS \subseteq M_{Possible} $}{break\;}{}
 
        }
