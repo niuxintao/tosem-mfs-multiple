@@ -300,7 +300,7 @@ Different failures in the SUT can be distinguished by various information such a
 \end{assumption}
 This assumption indicates that the testers can detect different failures during testing. As different failures will complicate fault diagnosis tasks, distinguishing them is the first step to resolve them.
 
-In this paper, failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of paper, we mean one type of failure (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
+In this paper, failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of this paper, we mean one type of failure (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
 
 \begin{assumption}
 All the tests are valid in the SUT, i.e., there is no \emph{inter-option} constraints in the SUT.
@@ -353,7 +353,7 @@ Some notations used later are listed below for ease of reference:
 \item $T$ : A set of test cases. (Similarly for $T_{i},\ T_{j}, ...$. )
 \item $\bar{T}$ : The complementary test set of T, i.e., $\bar{T} \bigcup T = T^{*},\ \bar{T} \bigcap T = \varnothing$.
 \item $A \backslash B$ :  The set of elements that belong to set $A$ but not to $B$. For example $T_{i} \backslash T_{j}$ indicates the set of test cases that belong to set $T_{i}$, but not to $T_{j}$.
-\item $L$ : The number of faults contained in the SUT.
+\item $L$ : The number of types of failures contained in the SUT.
 \item $F_{m}$ : The $m$th fault in the SUT ($1 \leq m \leq L$);  A failure which is classified to \emph{fault} $F_{m}$ is called \emph{failure} of $F_{m}$.
 \item $T_{F_{m}}$ :  All the test cases that can trigger the failure of $F_{m}$ in the SUT.
 \item $\mathcal{T}(c)$ :  All the test cases that contain the schema $c$ in the SUT. Based on the definition of MFS, we know that if schema $c$ is an MFS of $F_{m}$, then $\mathcal{T}(c) \subseteq T_{F_{m}}$. Note that, there may be multiple MFS for $F_{m}$
