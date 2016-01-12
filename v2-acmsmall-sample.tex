@@ -159,7 +159,7 @@ The key to our strategy is to search for a test case that does not trigger \emph
 
 %The key to the strategy is to prune test cases that may trigger a masking effect and then select or generate other test cases to test the interactions which were supposed to be tested in these pruned ones. We will keep these pruned test cases for the next iteration to isolate the failure-inducing interactions in these test cases. The process repeated until we characterize all the interactions for each failure. A point need to be noted is that these interactions supposed to be tested in the pruned test cases for one interaction vary in different algorithms we adopted. For example, for the classified tree method, we will generate more test cases that keep the same coverage, and for the one fact one time, we will generate test cases to keep the same.
 
-To evaluate the effectiveness of our approach, we applied our strategy on the FII approach FIC\_BS \cite{zhang2011characterizing}. The subjects used were two open-source software systems found in the developers' forum in the Source-Forge community. Through studying their bug reports in the bug tracker system as well as their user manuals, we built a testing model which can reproduce the reported bugs with given test cases. We then compared the FII approach augmented with our strategy to the original FII approach. We further empirically studied the performance of the important component of our strategy -- searching for desired test cases. To conduct this study, we compared our approach with the augmented FII approach by randomly searching for desired test cases. We finally compared our approach with the only existing masking handling technique -- FDA-CIT \cite{yilmaz2013reducing}. Our studies show that our replacing strategy as well as the test case searching component achieved a better performance than the traditional approaches when the subject encountered  multiple faults, especially when these faults can induce masking effects.
+To evaluate the effectiveness of our approach, we applied our strategy on the FII approach FIC\_BS \cite{zhang2011characterizing}. The subjects used were three open-source software systems found in the developers' forum. Through studying their bug reports in the bug tracker system as well as their user manuals, we built a testing model which can reproduce the reported bugs with given test cases. We then compared the FII approach augmented with our strategy to the original FII approach. We further empirically studied the performance of the important component of our strategy -- searching for desired test cases. To conduct this study, we compared our approach with the augmented FII approach by randomly searching for desired test cases. We finally compared our approach with the only existing masking handling technique -- FDA-CIT \cite{yilmaz2013reducing}. Our studies show that our replacing strategy as well as the test case searching component achieved a better performance than the traditional approaches when the subject encountered  multiple faults, especially when these faults can induce masking effects.
 
 %applied the traditional FII approaches and their augmented versions to identify the failure-inducing combinations in the subjects respectively. The results of our empirical studies shows that the masking effects do impact on the FII approaches, although to what the extent varies, and the approaches augmented with our strategy can identify failure-inducing combinations more accurately than traditional ones when facing masking effects, and moreover, this performance can get further improvement with using voting system.
 
@@ -206,7 +206,7 @@ We use a small example to motivate our approach. Assume a method \emph{foo} has 
 
 There are two potential failures of \emph{foo}: first, in step 1 we can get an \emph{Arithmetic Exception} when $b$ is equal to $c$, i.e.,  $b = 4$ and $c = 4$, that causes a division by zero. Second, another \emph{Arithmetic Exception} will be triggered in step 2 when $c < d$, i.e., $c = 4$ and $d = 5$, taking square root of a negative number. So the expected failure-inducing interactions in this example should be (-, 4, 4, -) and (-, -, 4, 5).
 
-FII approaches do not consider the code detail; instead, they apply black-box testing, i.e., feed inputs to the programs and execute them to observe the result. The basic proposition of FII approaches is that the failure-inducing interactions for a particular failure can only appear in those test cases that trigger this failure. FII approaches often aim at using as few test cases as possible to get the same (or approximate) result as exhaustive testing, so the results derived from an exhaustive testing set are the best that FII approaches can achieve. Here, we will show how exhaustive testing works to identify the failure-inducing interactions for the program.
+FII approaches normally applies black-box testing, i.e., feed inputs to the programs and execute them to observe the result. The basic proposition of FII approaches is that the failure-inducing interactions for a particular failure can only appear in those test cases that trigger this failure. FII approaches often aim at using as few test cases as possible to get the same (or approximate) result as exhaustive testing, so the results derived from an exhaustive testing set are the best that FII approaches can achieve. Here, we will show how exhaustive testing works to identify the failure-inducing interactions for the program.
 
 \begin{table}[ht]
   \tbl{Test cases and their corresponding result\label{test-example}}{
@@ -263,7 +263,7 @@ Note that in this example we did not get the expected result with traditional FI
 
 % if more than two failures, and the masking element is more, the result we got will be more noisy so that we cannot figure out the reals result
 
-Now consider the source code of \emph{foo}. If Ex 1 is triggered, it will stop executing the remaining code and report the exception result. In other words, Ex 1 may mask Ex 2. Let us re-examine the interaction (-,-,4,5). If we suppose that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 if they did not trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing interaction of Ex 2, which is identical to the expected one. However, we cannot get this result, unless we fix the code that triggers Ex 1 and re-execute all the test cases.
+Getting back to the program \emph{foo}, it can be found that if Ex 1 is triggered, it will stop executing the remaining code and report the exception result. In other words, Ex 1 may mask Ex 2. Let us re-examine the interaction (-,-,4,5). If we suppose that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 if they did not trigger Ex 1, then we can conclude that (-,-,4,5) should be the failure-inducing interaction of Ex 2, which is identical to the expected one. However, we cannot get this result, unless we fix the code that triggers Ex 1 and re-execute all the test cases.
 
 % we cannot validate the supposition that \emph{test case 6} and \emph{test case 18} should trigger Ex 2 when they did not trigger Ex 1.
 
@@ -296,11 +296,11 @@ The execution result of a test case is deterministic.
 \end{assumption}
 This assumption is a common assumption of CT fault diagnosis\cite{wang2010adaptive,zhang2011characterizing,ghandehari2012identifying,li2012improved,niu2013identifying}. It indicates that the outcome of executing a test case is reproducible and will not be affected by some random events.
 \begin{assumption}
-Different failures in the SUT can be distinguished by various information such as various information such as exception traces, state conditions, or the like.
+Different failures in the SUT can be distinguished by various information such as exception traces, state conditions, or the like.
 \end{assumption}
 This assumption indicates that the testers can detect different failures during testing. As different failures will complicate fault diagnosis tasks, distinguishing them is the first step to resolve them.
 
-In this paper, failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of this paper, we mean one type of failure (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
+In this paper, failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of this paper, we mean \emph{one type of failure} (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
 
 \begin{assumption}
 All the tests are valid in the SUT, i.e., there is no \emph{inter-option} constraints in the SUT.
@@ -353,8 +353,8 @@ Some notations used later are listed below for ease of reference:
 \item $T$ : A set of test cases. (Similarly for $T_{i},\ T_{j}, ...$. )
 \item $\bar{T}$ : The complementary test set of T, i.e., $\bar{T} \bigcup T = T^{*},\ \bar{T} \bigcap T = \varnothing$.
 \item $A \backslash B$ :  The set of elements that belong to set $A$ but not to $B$. For example $T_{i} \backslash T_{j}$ indicates the set of test cases that belong to set $T_{i}$, but not to $T_{j}$.
-\item $L$ : The number of types of failures can be triggered of the SUT.
-\item $F_{m}$ : The $m$th type of failure in the SUT ($1 \leq m \leq L$); 
+\item $L$ : The number of types of failures can be triggered in the SUT.
+\item $F_{m}$ : The $m$th type of failure in the SUT ($1 \leq m \leq L$);
 % A failure which is classified to \emph{fault} $F_{m}$ is called \emph{failure} of $F_{m}$.
 \item $T_{F_{m}}$ :  All the test cases that can trigger the failure $F_{m}$ in the SUT.
 \item $\mathcal{T}(c)$ :  All the test cases that contain the schema $c$ in the SUT. Based on the definition of MFS, we know that if schema $c$ is an MFS of $F_{m}$, then $\mathcal{T}(c) \subseteq T_{F_{m}}$. Note that, there may be multiple MFS for $F_{m}$
@@ -1747,7 +1747,7 @@ The second threat is that we just applied our test case replacing strategy on on
 
 \subsubsection{external threats}\label{sec:threats:external}
 
-One threat to external validity comes from the real software we used.  In this paper we have only surveyed two types of open-source software with five different versions, of which the program scale is medium-sized. This may impact the generality of our results.
+One threat to external validity comes from the real software we used.  In this paper we have only surveyed three types of open-source software with seven different versions, of which the program scale is medium-sized. This may impact the generality of our results.
 % Although we believe it is quite possibly a common phenomenon in most software that contains multiple faults which can mask each other, we need to investigate more software to support our belief.
 
 
