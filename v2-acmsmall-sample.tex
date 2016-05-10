@@ -166,7 +166,7 @@ To evaluate the effectiveness of our approach, we applied our strategy on the FI
 The main contributions of this paper are:
 \begin{itemize}
 \item We formally analysed the relationships between failure-inducing interactions and test sets. (Section \ref{sec:formal})
-\item We provided an theoretical framework for explaining how traditional FII approaches work. (Section \ref{subsec:Formal:identi})
+\item We provided a theoretical framework for explaining how traditional FII approaches work. (Section \ref{subsec:Formal:identi})
 \item We studied the impact of the masking effects caused by multiple faults on FII approaches. (Section \ref{sec:mask})
 \item We proposed an efficient test case replacement strategy to alleviate the impact of these effects (Section \ref{sec:method}), and showed an MFS identification approach augmented with this replacement strategy (Section \ref{sec:appraoch}).
 %\item We proposed a divide and conquer strategy for selecting test cases to alleviate the impact of these effects.
@@ -300,7 +300,7 @@ Different failures in the SUT can be distinguished by various information such a
 \end{assumption}
 This assumption indicates that the testers can detect different failures during testing. As different failures will complicate fault diagnosis tasks, distinguishing them is the first step to resolve them.
 
-In this paper, failures are classified according to the the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of this paper, we mean \emph{one type of failure} (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
+In this paper, failures are classified according to the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of this paper, we mean \emph{one type of failure} (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
 
 \begin{assumption}
 All the tests are valid in the SUT, i.e., there is no \emph{inter-option} constraints in the SUT.
@@ -341,7 +341,7 @@ If for any test case, as long as it contains the schema $c$, it will trigger the
 %Based on this, if a test case $t$ contain such a failure-inducing combination, say $c(F)$, it should trigger the failure $F$, for which the test case can be put as $t(F)$
 \end{definition}
 
-In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failures are caused by the interactions of the parameter values in the SUT. Another noteworthy point is that, in practice, we may not accurately obtain the MFS according to the MFS definition (See Section \ref{sec:mask}). This is because in some specific cases,  e.g., the masking problems which we will discussed later, we may not determine whether some test cases will trigger the particular failure of $F$, or not.
+In fact, MFS is identical to the failure-inducing interactions discussed previously. Identifying MFS helps to focus on the root cause of a failure and thus facilitates the debugging efforts. Note that all the failures discussed in this paper are option-related \cite{yilmaz2006covering}. That is, all the failures are caused by the interactions of the parameter values in the SUT. Another noteworthy point is that, in practice, we may not accurately obtain the MFS according to the MFS definition (See Section \ref{sec:mask}). This is because in some specific cases,  e.g., the masking problems which we will discuss later, we may not determine whether some test cases will trigger the particular failure of $F$, or not.
 
 %We have the following proposition based on these basic definitions.
 %
@@ -600,7 +600,7 @@ The proof of this lemma is obvious. This is because whatever the outcomes of the
 
 Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F\_infer}$ refer to the test cases that can be inferred to be failing and $T_{P\_infer}$ the inferred passing test cases. With the test cases whose outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F\_known} \bigcup T_{F\_infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F\_known} \bigcup T_{F\_infer})$, if it is identical to some schema in $\mathcal{C}((T_{F\_known} \bigcup T_{F\_infer}) \bigcup (T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})))$, then $c$ must be MFS.
 
-The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the FIC\_BS appraoch\cite{zhang2011characterizing}--an efficient adaptive MFS identification approach.
+The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the FIC\_BS approach\cite{zhang2011characterizing}--an efficient adaptive MFS identification approach.
 
 %\begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
 %$\forall c \in \mathcal{C}(T_{F\_known})$, if it is identical to some schema in $\mathcal{C}(T_{F\_known} \bigcup T_{unknown})$, then $c$ must be MFS.
@@ -834,7 +834,7 @@ This replacement process may need to be executed multiple times for one fixed pa
 
 % which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other failures.
 
-To explain the \emph{suspiciousness} notion, we first introduce the \emph{suspiciousness} of a parameter value $o$ with respect to a particular failure $F_{i},  1 \leq i  \leq L$. We use $all(o)$ to represent the number of executed test cases that contain this parameter value, and $f_{i}(o)$ to indicate the number of test cases that trigger the failure $F_{i}$, and contain this parameter value. Then, the \emph{suspiciousness} of a parameter value \emph{o} with respect to the given failure $F_{i}$, i.e., $\mathcal{SP}(o, F_{i})$, is $\frac{f_{i}(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a parameter value frequently appears in the test cases that trigger a particular failure, then it is more likely to be an inducing factor that triggers this failure. We add 1 in the denominator for two reasons:  (1)to avoid division by zero when the parameter value has never appeared before, (2)to reduce the bias when a parameter value rarely appears in the test set but coincidentally appears in a failing test case with a particular failure.
+To explain the \emph{suspiciousness} notion, we first introduce the \emph{suspiciousness} of a parameter value $o$ with respect to a particular failure $F_{i},  1 \leq i  \leq L$. We use $all(o)$ to represent the number of executed test cases that contain this parameter value, and $f_{i}(o)$ to indicate the number of test cases that trigger the failure $F_{i}$, and contain this parameter value. Then, the \emph{suspiciousness} of a parameter value \emph{o} with respect to the given failure $F_{i}$, i.e., $\mathcal{SP}(o, F_{i})$, is $\frac{f_{i}(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a parameter value frequently appears in the test cases that trigger a particular failure, then it is more likely to be an inducing factor that triggers this failure. We add 1 in the denominator for two reasons:  (1) to avoid division by zero when the parameter value has never appeared before, (2) to reduce the bias when a parameter value rarely appears in the test set but coincidentally appears in a failing test case with a particular failure.
 
 Table \ref{suspciousness_example} gives an example to compute the suspiciousness of parameter values with respect to particular failures. The left part of this table gives 4 executed test cases with their outcomes, in which failures $F_{1}$ and $F_{2}$ are triggered. The right part shows the suspiciousness of each parameter value w.r.t. these two failures. Specifically, consider the parameter $P_{1}$ taking value 0. There are three test cases $t_{1}$, $t_{2}$, and $t_{4}$ that contain this parameter value, and only  $t_{2}$ triggered $F_{1}$. Hence, $\mathcal{SP}(P_{1} = 0, F_{1})$ = $\frac{f_{1}(o)}{all(o) + 1}$ = $\frac{1}{3 + 1}$ = 1/4.
 
@@ -1182,7 +1182,7 @@ $T_{fail}$ &$T_{pass}$ &  $MFS$\\ \hline
 Inspired by the idea that using multiple same-way covering arrays to identify the MFS \cite{fouche2009incremental}, one potential solution to alleviate this non-deterministic failure is by adding redundancy, i.e., through re-executing the same test case to obtain the relatively stable outcome. However, this measure will increase the overall cost of the MFS identification, so the tradeoff between cost and the quality of MFS identification should be further studied.
 
 \subsection{Deal with failures distinguishing problem}
-The second assumption is that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as same failure} strategy. With this strategy, we must aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS. Note that in the next section (empirical studies), all the failures can be distinguished from each other according to the exception traces.
+The second assumption is that different errors in the software can be easily distinguished by information such as exception traces, state conditions, or the like. If we cannot directly distinguish them, our approach does not work. This is because we cannot determine which test case should be replaced and with what. In such case, one potential solution is to use the clustering techniques to classify the failures according to available information \cite{zheng2006statistical,jones2007debugging,podgurski2003automated}. If we cannot classify them because we do not have enough information (e.g., the black box testing) or it is too costly, we believe the only approach is to take the \emph{regarded as same failure} strategy. With this strategy, we must be aware that the MFS identified are likely to be sub-schemas or irrelevant schemas of the actual MFS. Note that in the next section (empirical studies), all the failures can be distinguished from each other according to the exception traces.
 
 \subsection{Deal with inter-option constraints}
 The third assumption is that all the test cases are valid, i.e., SUT does not have any inter-option constraint. This is a very strong assumption. In this section, we will try to remove this assumption. In fact, with constraints known in prior, many studies in CT have proposed approaches to avoid them when generating test cases \cite{cohen2007exploiting,cohen2007interaction,cohen2008constructing,calvagna2008logic,yu2013efficient,petke2013efficiency,yu2015constraint}.
@@ -1380,7 +1380,7 @@ Next, we built the input model which consists of the options related to the fail
         \hline
    \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
-  2.6.3  & \multicolumn{3}{c}{$2^{5} \times 3^{1} \times 4^{1} $} &\multicolumn{2}{c}{} \\
+  2.6.3  & \multicolumn{3}{c}{$2^{6} \times 3^{1}  $} &\multicolumn{2}{c}{} \\
    2.22 &  \multicolumn{3}{c}{$2^{4} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
 \end{tabular}
 }
@@ -1535,7 +1535,7 @@ Above all, we draw three conclusions, which help to answer \textbf{Q2}:
 
 2) Considering the quality of the MFS each approach identified, we can find that our \emph{ILP} approach achieves the best performance, followed by the strategy \emph{distinguishing failures}.
 
-3) Although our approach need more test cases than the other two strategies, it is acceptable.
+3) Although our approach needs more test cases than the other two strategies, it is acceptable.
 
  %the answer we got for \textbf{Q2} is that: our approach achieves better performance than two traditional strategies when handling masking effects at an acceptable % extra cost.
 
@@ -1604,7 +1604,7 @@ In summary, the answer for \textbf{Q3} is that searching for a satisfied test ca
 %
 %\subsubsection{Result and discussion}
 \subsection{Comparison with Feedback driven combinatorial testing}\label{sec:emprical:cmFD}
-The \emph{FDA-CIT} \cite{yilmaz2013reducing} approach handle masking effects by generating covering array that can cover all the $\tau$-degree schemas without being masked by the MFS. There is an integrated FII approach in the FDA-CIT, which has two versions, i.e., \emph{ternary-class} and \emph{multiple-class}. In this paper, we use the multiple-class version for comparison, as it performs better than the former \cite{yilmaz2013reducing}.   %, the configuration options for J48, is .
+The \emph{FDA-CIT} \cite{yilmaz2013reducing} approach handles masking effects by generating covering array that can cover all the $\tau$-degree schemas without being masked by the MFS. There is an integrated FII approach in the FDA-CIT, which has two versions, i.e., \emph{ternary-class} and \emph{multiple-class}. In this paper, we use the multiple-class version for comparison, as it performs better than the former \cite{yilmaz2013reducing}.   %, the configuration options for J48, is .
 
 
 The FDA-CIT process starts with generating a covering array (In \cite{yilmaz2013reducing}, this is a test case-aware covering array \cite{yilmaz2013test}). After executing the test cases in this covering array, it records the outcome of each test case and then applies the classification tree method on the test cases to characterize the MFS of each failure. It then labels these MFS as the schemas that can trigger masking effects. Later, if the interaction coverage is not satisfied (here the interaction coverage criteria is different from the traditional covering array \cite{yilmaz2013reducing}), it will re-generate a covering array that aims to cover these schemas that were masked by the MFS and then repeat the previous steps.
