@@ -1221,9 +1221,9 @@ To investigate the impact of masking effects on FII approaches in real software 
 
 \textbf{Q2}: How well does our approach perform compared to traditional approaches?
 
-\textbf{Q3}: Is the ILP-based test case searching technique efficient compared to the random selection?
+%\textbf{Q3}: Is the ILP-based test case searching technique efficient compared to the random selection?
 
-\textbf{Q4}: Compared to the masking effects handling approach FDA-CIT \cite{yilmaz2013reducing}, does our approach have any advantages ?
+\textbf{Q3}: Compared to the masking effects handling approach FDA-CIT \cite{yilmaz2013reducing}, does our approach have any advantages ?
 %et improvement in handling effects and limiting the costs(reducing extra test cases).
 
 %\textbf{Q5}: Does voting system that consists of different approaches can make improvements?
@@ -1263,7 +1263,7 @@ HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005 \\
 	    &2.2.9 & 162784 &525 & \#1286 \& \#1280\\
 JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
       &1.4.2 &  10745 &61 &  \#98 \& \#93  \\
-Grep  &2.6.3 &  27046 &156 & \#7600 \& \#29537 \\
+Grep  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
       &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
 \hline\end{tabular}
 }
@@ -1369,7 +1369,7 @@ Next, we built the input model which consists of the options related to the fail
     \hline
    \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
      \hline
-    2.6.3 & \multicolumn{2}{c}{ ascii} & \multicolumn{3}{c}{2}\\
+    2.12 & \multicolumn{2}{c}{ ascii} & \multicolumn{3}{c}{2}\\
       & \multicolumn{2}{c}{ command} & \multicolumn{3}{c}{2}\\
     &\multicolumn{2}{c}{ word } & \multicolumn{3}{c}{2}\\
        & \multicolumn{2}{c}{ charset} & \multicolumn{3}{c}{2}\\
@@ -1380,7 +1380,7 @@ Next, we built the input model which consists of the options related to the fail
         \hline
    \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
    \hline
-  2.6.3  & \multicolumn{3}{c}{$2^{6} \times 3^{1}  $} &\multicolumn{2}{c}{} \\
+  2.12  & \multicolumn{3}{c}{$2^{6} \times 3^{1}  $} &\multicolumn{2}{c}{} \\
    2.22 &  \multicolumn{3}{c}{$2^{4} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
 \end{tabular}
 }
@@ -1404,7 +1404,7 @@ HSQLDB & 2rc8 & 18432 & \#1(2304) &\#2(1152) & \#3(1152)&\#1$>$\#2\#3(768) &768 
      - & 2.2.9 & 6912 & \#1(2304) &\#2(768) & \#3(384)&\#1$>$\#2\#3(960) \#2$>$\#3(768) &1728 (50\%)\\ \hline
 JFlex & 1.4.1 & 36864 & \#1(12288) &\#2(12288) & -&\#1$>$\#2(6144) &6144 (25\%)\\ \hline
      -& 1.4.2 & 73728 & \#1(18432) &\#2(18432) & -&\#1$>$\#2(6144) &6144 (16.7\%)\\ \hline
-Grep  & 2.6.3 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+Grep  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
      -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
 \end{tabular}
 }
@@ -1420,7 +1420,7 @@ It is notable that in Yilmaz's \cite{yilmaz2013reducing} paper, a similar study 
 The second study aims to compare the performance of our approach with traditional approaches in identifying MFS under the impact of masking effects. To conduct this study, we need to apply our approach and traditional algorithms to identify MFS in a  variety of software and evaluate their results. The seven versions of software in Table \ref{software description} used as test objects are far from the requirement for a general evaluation. However, to construct real testing objects for evaluations is time-consuming. This is because we must carefully study the detail of software systems as well as their bug tracker reports.  To compromise, we synthesized 5 more testing objects. These synthesized objects are five small programs which work as follows: 1) it first judges whether a given test case contain some prior MFS, 2) and then outputs a failure with respect to the MFS it contains (if there exists multiple MFS in one test case, output the failure of the MFS which will not be masked by others) (details of them are also available at http://gist.nju.edu.cn/doc/multi/). These synthesized objects are created such that their testing models are similar to those real systems, i.e., to make the number of parameters, the number of failures, and the possible masking effects similar to that of those real ones listed in Table \ref{masking effect condition}. Specifically, we limited the number of parameters of the SUT ranged from 7 to 15, the number of different failures in the SUT ranged from 2 to 5, and the number of MFS of a failure ranged from 1 to 2, in which the degree of the MFS ranged from 1 to 3.
 %To make the synthetic objects as similar as possible to the real software, we firstly analysed the characterizations, such as the number of parameters, the number of faults, and the possible masking effects, of the real software. We observed that the number of parameters of the SUT ranged from 8 to 30, the number of different failures in the SUT ranged from 2 to 4, and the number of MFS of a fault ranged from 1 to 2, in which the degree of the MFS ranged from 1 to 6. Then for each characterization, we randomly selected one value in the corresponding range and assigned it to the input model by adjusting the relationships between the inputs and outputs of these programs.
 
-Table \ref{testing_models} lists the testing model for both the real and synthetic testing objects. In this table, column `Object' indicates the SUT under test. For the real SUT listed in Table \ref{software description}, we label the seven software as $H2cr8$, $H2.2.5$, $H2.2.9$, $J1.4.1$, $J1.4.2$, $G2.6.3$ and $G2.22$ respectively. While for the synthesized ones, we label them in the form of `\emph{syn}+ \emph{id}'. Column `Model' presents the input space for each testing object. Column 'Failures' shows the different failures in the software and their masking relationships. In this column, `$>$' means the left failure can mask the right failure, i.e., if a failure of the left side is triggered, then the failure of the right side will not be triggered. Furthermore, '$>$' is transitive so that the left failure can mask all the failures in the right.  For example, for the $H2cr8$ object, we can find three failures : $e_{1}$, $e_{2}$, and $e_{3}$. The notation of $e_{1} > e_{2} > e_{3}$ indicates that failure $e_{2}$ will mask $e_{3}$; and $e_{1}$ will mask both $e_{2}$ and $e_{3}$. Here for the simplicity of the experiment, we did not build more complex testing scenarios such as masking effects in the form $e_{1} > e_{2},\ e_{2} > e_{3},\ e_{3} > e_{1}$ or even $e_{1} > e_{2},\ e_{2} > e_{1}$. The last column shows the MFS of each failure. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}_{failure}$, e.g., for the object $H2cr8$, $(5_{1},6_{0},7_{0})_{e_{1}}$ actually means (-, -, -, -, -, 1, 0, 0, -, -, -, - ) is the MFS of failure $e_{1}$.
+Table \ref{testing_models} lists the testing model for both the real and synthetic testing objects. In this table, column `Object' indicates the SUT under test. For the real SUT listed in Table \ref{software description}, we label the seven software as $H2cr8$, $H2.2.5$, $H2.2.9$, $J1.4.1$, $J1.4.2$, $G2.12$ and $G2.22$ respectively. While for the synthesized ones, we label them in the form of `\emph{syn}+ \emph{id}'. Column `Model' presents the input space for each testing object. Column 'Failures' shows the different failures in the software and their masking relationships. In this column, `$>$' means the left failure can mask the right failure, i.e., if a failure of the left side is triggered, then the failure of the right side will not be triggered. Furthermore, '$>$' is transitive so that the left failure can mask all the failures in the right.  For example, for the $H2cr8$ object, we can find three failures : $e_{1}$, $e_{2}$, and $e_{3}$. The notation of $e_{1} > e_{2} > e_{3}$ indicates that failure $e_{2}$ will mask $e_{3}$; and $e_{1}$ will mask both $e_{2}$ and $e_{3}$. Here for the simplicity of the experiment, we did not build more complex testing scenarios such as masking effects in the form $e_{1} > e_{2},\ e_{2} > e_{3},\ e_{3} > e_{1}$ or even $e_{1} > e_{2},\ e_{2} > e_{1}$. The last column shows the MFS of each failure. The MFS is presented in an abbreviated form $\{\#index_{\#value}\}_{failure}$, e.g., for the object $H2cr8$, $(5_{1},6_{0},7_{0})_{e_{1}}$ actually means (-, -, -, -, -, 1, 0, 0, -, -, -, - ) is the MFS of failure $e_{1}$.
 
 \begin{table}\renewcommand{\arraystretch}{1.3}
 \tbl{The testing models used in the case study\label{testing_models}}{
@@ -1432,7 +1432,7 @@ H2.2.5 & $2^{8} \times 3^{3}$ & $ e_{1} > e_{2}$ & $ (6_{1},7_{0})_{e_{1}}, (5_{
 H2.2.9 & $2^{8} \times 3^{3}$& $e_{1} > e_{2} > e_{3}$ & $ (6_{0})_{e_{1}}, (0_{1},5_{1},7_{0})_{e_{2}}, (0_{0},5_{1},7_{0})_{e_{2}}, (5_{1},7_{0})_{e_{3}} $ \\ \hline
 J1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ e_{1} > e_{2} $ &$(0_{0})_{e_{1}}, (1_{0})_{e_{2}} $ \\ \hline
 J1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $e_{1} > e_{2}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
-G2.6.3 & $2^{5} \times 3^{1} \times 4^{1} $& $ e_{1} > e_{2} > e_{3} $ &$(0_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (3_{0},4_{1})_{e_{3}},(3_{1},4_{1})_{e_{3}},(3_{2},4_{1})_{e_{3}} $ \\ \hline
+G2.12 & $2^{5} \times 3^{1} \times 4^{1} $& $ e_{1} > e_{2} > e_{3} $ &$(0_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (3_{0},4_{1})_{e_{3}},(3_{1},4_{1})_{e_{3}},(3_{2},4_{1})_{e_{3}} $ \\ \hline
 G2.22 & $2^{4} \times 3^{2} \times 4^{1} $& $e_{1} > e_{2} > e_{3}$ &$(0_{0})_{e_{1}}, (1_{0},2_{3})_{e_{2}}, (1_{1},2_{3})_{e_{2}},(3_{0},4_{0})_{e_{3}} $ \\ \hline
 syn1 & $2^{7}\times 3^{2}\times 4^{1}$& $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (2_{0},7_{0})_{e_{1}}, (3_{1},5_{1})_{e_{2}}, (4_{0})_{e_{2}}, (6_{0},7_{2})_{e_{3}}, (6_{1},8_{2})_{e_{4}}$ \\ \hline
 syn2 & $2^{4} \times 3^{2} \times 4^{1} $ & $e_{3} > e_{2} > e_{1} $ &$ (2_{0},3_{0})_{e_{1}}, (2_{0},5_{1})_{e_{1}}, (4_{0},6_{1})_{e_{2}}, (3_{1},6_{0})_{e_{2}}, (2_{2},4_{3})_{e_{3}}$\\ \hline
@@ -1582,7 +1582,7 @@ To be precise, we next compared the test cases only used for replacement of the 
 \setlength\tabcolsep{1.3pt}
 \begin{tabular}{|l|llllllllllll|}
 \hline
-&H2cr8 & H2.2.5 & H2.2.9 & J1.4.1 & J1.4.2 & G2.6.3 & G2.22 & syn1     & syn2     & syn3     & syn4     & syn5               \\ \hline
+&H2cr8 & H2.2.5 & H2.2.9 & J1.4.1 & J1.4.2 & G2.12 & G2.22 & syn1     & syn2     & syn3     & syn4     & syn5               \\ \hline
 ILP      & 1         & 1         & 1.77       & 1.75       & 1.66      & 2.34     & 1.73     & 2.24     & 0.16     & 3.3      & 1.04     & 2.81     \\
 Rand   & 2.11      & 1.66      & 2.22       & 2.5        & 2.66      & 3.37     & 2.64     & 2.29     & 0.24     & 3.38     & 1.54     & 2.85     \\
 $\mathcal{P}$  & 1.6E-60  & 1.1E-51  & 1.3E-51   & 2.5E-67   & 3.9E-70  & 8.0E-37 & 1.5E-42 & 2.5E-28 & 2.1E-28 & 1.1E-28 & 4.3E-45 & 3.2E-16 \\ \hline
