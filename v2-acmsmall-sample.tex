@@ -302,14 +302,13 @@ This assumption indicates that the testers can detect different failures during 
 
 In this paper, failures are classified according to the specific \emph{fault} information. For example, if failures have the same exception traces information, they are treated as the same failure.  For convenience, when we refer to a failure in the remaining part of this paper, we mean \emph{one type of failure} (with same fault information). Actually in many cases, the same type of failures is caused by the same fault.
 
-\begin{assumption}
-All the tests are valid in the SUT, i.e., there is no \emph{inter-option} constraints in the SUT.
-\end{assumption}
-Here \emph{option} indicates the parameter of a SUT. This assumption shows that we can always determine the outcome after executing a test case, i.e., either pass or fail with some exceptions.
+%\begin{assumption}
+%All the tests are valid in the SUT, i.e., there is no \emph{inter-option} constraints in the SUT.
+%\end{assumption}
+%Here \emph{option} indicates the parameter of a SUT. This assumption shows that we can always determine the outcome after executing a test case, i.e., either pass or fail with some exceptions.
 
-In practice, these assumptions may not be satisfied. In Section \ref{sec:assumptions}, we will discuss their impact on the theories and approach proposed in this paper, as well as the measures to alleviate them. Particularly for the third assumption, we will show that one type of inter-option constraint is essentially equal to a specific failure. Thus we can directly use the approach in this paper to solve it.
-
-
+In practice, these assumptions may not be satisfied. In Section \ref{sec:assumptions}, we will discuss their impact on the theories and approach proposed in this paper, as well as the measures to alleviate them.
+%Particularly for the third assumption, we will show that one type of inter-option constraint is essentially equal to a specific failure. Thus we can directly use the approach in this paper to solve it.
 %In practice, these two assumptions will not always be satisfied. Elimination of them can introduce the probabilistic and clustering parts into our model, which will further complicate our analysis and so we will not discuss them in this paper.
 Now let us consider the condition that some failures are triggered by some test cases. It is then desirable to determine the cause of these failures and hence some parameter values of the failing test cases must be analysed.
 %\end{definition}
@@ -600,7 +599,7 @@ The proof of this lemma is obvious. This is because whatever the outcomes of the
 
 Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F\_infer}$ refer to the test cases that can be inferred to be failing and $T_{P\_infer}$ the inferred passing test cases. With the test cases whose outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F\_known} \bigcup T_{F\_infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F\_known} \bigcup T_{F\_infer})$, if it is identical to some schema in $\mathcal{C}((T_{F\_known} \bigcup T_{F\_infer}) \bigcup (T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})))$, then $c$ must be MFS.
 
-The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the FIC\_BS approach\cite{zhang2011characterizing}--an efficient adaptive MFS identification approach.
+The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the OFOT approach\cite{nie2011minimal}--a well-known MFS identification approach.
 
 %\begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
 %$\forall c \in \mathcal{C}(T_{F\_known})$, if it is identical to some schema in $\mathcal{C}(T_{F\_known} \bigcup T_{unknown})$, then $c$ must be MFS.
@@ -613,7 +612,7 @@ The assumptions and corresponding inferring process vary with different FII appr
 
 %
 %The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation.
-We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that these mutated parts do not necessarily have to be value (0, 0, -, -). We just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
+We will give a simple example to illustrate how OFOT works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the OFOT approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, OFOT generates 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases mutates one factor against $t_{0}$. Note that we just need to these mutated values different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by OFOT is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
 
 
 %These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
@@ -621,15 +620,15 @@ We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$),
 %The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
 
 \begin{table}[ht]
-\tbl{FIC\_BS running example\label{fic-bs-identify}}{
+\tbl{OFOT running example\label{fic-bs-identify}}{
 \begin{tabular}{llllll}
 \hline
 \textbf{ID} & \multicolumn{4}{l}{\textbf{Test Case}} & \textbf{outcome} \\ \hline
 $t_{0}$ & 1     & 1     & 1     & 1     & fail    \\ \hline
-$t_{1}$ & 0     & 0     & 1     & 1     & pass    \\
-$t_{2}$ & 0     & 1     & 1     & 1     & fail    \\
-$t_{3}$ & 0     & 1     & 0     & 0     & pass    \\
-$t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
+$t_{1}$ & 0     & 1     & 1     & 1     & fail    \\
+$t_{2}$ & 1     & 0     & 1     & 1     & pass    \\
+$t_{3}$ & 1     & 1     & 0     & 1     & fail    \\
+$t_{4}$ & 1     & 1     & 1     & 0     & pass    \\ \hline
 \end{tabular}}
 \end{table}
 
@@ -816,8 +815,8 @@ As masking effect has significant impact on the FII approaches, alleviating this
 %From the analysis of the formal model, we can learn that masking effect does influence the FII approaches, and even worse, both the \emph{regarded as same failure} and \emph{distinguishing failures} strategies have their own problems in handling this effect. Specifically when compared with the \emph{knowing masking effects} condition, the strategy \emph{regarded as same failure} has a larger possibility of getting more sub-schemas of the actual MFS and getting more schemas which are irrelevant to the MFS, while strategy \emph{distinguishing failures}  may get more super schemas of the MFS and can also get more irrelevant MFS. Note that strategy \emph{regarded as same failure} has a larger chance than \emph{distinguishing failures} at identifying irrelevant schemas. Further, both strategies may ignore the actual MFS with the \emph{distinguishing failures} strategy more likely to ignore the MFS than the \emph{regarded as same failure} strategy.
 
 %Note that our discussion is based on a SUT using deterministic software, i.e., the random failing information of a test case will be ignored. The non-deterministic problem will result in a more complex test scenario, which will not be discussed in this paper.
-
-\section{Test case replacing strategy} \label{sec:method}
+\section{Illustration of the approach}
+\subsection{Test case replacing strategy} \label{sec:method}
 The main reason that the FII approach fails to work properly is that it cannot determine $T_{mask(F_{m})}$. In other words, if the test case triggers other unexpected failures which are different from the currently analysed $F_{m}$, it cannot figure out whether this test case will trigger $F_{m}$ because of the masking effects. So to limit the impact of this effect on the FII approach, it is important to reduce the number of test cases that trigger other different failures, as this can reduce the probability that the expected failure may be masked by other different failures.
 % strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subseteq \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other failures as much as possible.
 
@@ -1539,59 +1538,59 @@ Above all, we draw three conclusions, which help to answer \textbf{Q2}:
 
  %the answer we got for \textbf{Q2} is that: our approach achieves better performance than two traditional strategies when handling masking effects at an acceptable % extra cost.
 
-\subsection{Evaluating the ILP-based test case searching method}\label{sec:emprical:cmILP}
-%***************************************
-% gives the data for the replacing times and replacing numbers
-%****************************************
-The third empirical study aims to evaluate the efficiency of the ILP-based test case searching component of our approach. To conduct this study, we implemented an additional FII approach that is augmented by the \emph{replacing test cases} strategy with test case randomly replaced.
-
-%observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FII approaches with replacing test cases strategy described in Section 4.
-%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
-
-\subsubsection{Study setup}\label{sec:emprical:cmILP:set}
-The setup of this case study is based on the second case study, and uses the same SUT model as shown in Table \ref{testing_models}. We applied the new random searching based FII approach to identify the MFS in the prepared SUTs. To avoid the bias coming from the randomness, we repeated the new approach 30 times to identify the MFS in each failing test case. We then computed the average additional test cases as well as other metrics listed in section \ref{sec:emprical:cmtradition:set} for the random-based approach. As the approach involves the random replacement, we conducted t-test on the original 30 groups of data to test the difference between the random-based approach and the ILP-based approach.
-
-% We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
-%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
-
-\subsubsection{Results and discussion}\label{sec:emprical:cmILP:rs}
-The evaluation of this random-based approach is also shown in Figure \ref{fig:comparetotraditional}, in which the polygonal line marked with  `$\star$' indicates the results. The raw data can also be found in the Row `R' of Table \ref{evaluation_all} in the appendix. It is noted that for the random approach we just give the average result of 30 tries.  We offer the p-value in the Row `P(I,R)' of Table \ref{evaluation_all}. Note that A p-value smaller than 0.05 indicates that the performance of these two approaches are statistically different with each other at 95\% confidence.
-
-Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics super-schemas and sub-schemas. For metric accurate number, the ILP-based approach performs slightly better (see testing objects 1, 6, 7, 11, where ILP obtained more accurate MFS), and for metrics ignore and irrelevant number, the ILP-based approach also has a slightly better performance, i.e., ILP obtained smaller number of these schemas which are of no-use for testing. Combining these results, we conclude that the ILP-based approach has a similar performance as random-based approach at the quality of identified MFS (The former may perform slightly better at some testing objects). This is consistent to Figure \ref{fig:comparetotraditional}(f).
-
-The similar quality of MFS identification of these two approaches can also be embodied with the p-values we obtained. From Table \ref{evaluation_all} in the Appendix, we can learn that, for all these metrics except for `testNum'( which will be discussed later), there exists some p-values that are \emph{NaN} (Not a number). This is because for these testing objects, the results are the same for all the 30 tries. The reason that the results are the same is because the only random part of the approach is the test case replacement. This random process normally does not affect the determination of whether a schema is failure-inducing or not, as no matter which test case we choose, the replacement has the same ending condition, i.e., to find some test case that triggers the same failure or pass (The only exception is that different test cases for replacement may introduce some newly MFS of the same failure, which will interfere with the MFS identification process \cite{zhang2011characterizing} ). As a result, the MFS identified will be the same for the 30 tries for most cases.  Then as the random part normally does not affect the quality of the MFS identification, it is conceivable that these two approaches have a similar performance as they both use the \emph{test case replacement} strategy.
-
-%even if we repeated 30 times, the basic strategy is to replace a test case . For most cases, it will not, but for two the approach will not accurate, this is becasue safe value is not satisfied. As
-
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=4.10in]{replacingtimes.eps}
-\caption{The comparison of the number of replacement test cases}
-\label{fig:replacing}
-\end{figure}
-
-
-Secondly, when considering the cost, we find that the ILP-based approach performs better. In fact, for each failing test case, it can reduce on average 1 to 2 test cases (about 7.1\% to 14.2\% of the overall number of test cases needed for MFS identification) when compared to the random-based procedure (See testing objects of Figure \ref{fig:comparetotraditional}(g)).  In fact, when considering the total number of failing test cases of one software (See Table \ref{masking effect condition}), it can reduce thousands of test cases in total for MFS identification. This reduction is impressive, and it is also statistically significant. This is because the p-value of these two approaches for this metric is extremely small, which ranged from 1.74E-26 to 1.26E-71 (See Row `testNum' of Table \ref{evaluation_all} in the Appendix).
-
-
-To be precise, we next compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- the replacement strategy. Figure \ref{fig:replacing} shows the result. We can learn that on average,  for each call of the replacement algorithm, ILP can save about 1 test case. Note that this reduction is not trial when considering the overall number of test cases for MFS identification.  We listed the original data and p-values in Table \ref{replacementavg}. It can be easily learned that the difference between these two approaches is also statistically significant, as the Row `$\mathcal{P}$' shows all p-values are very small.
-
-\begin{table}\renewcommand{\arraystretch}{1.3}
-\tbl{The average test cases needed for one replacement\label{replacementavg}}{
-\setlength\tabcolsep{1.3pt}
-\begin{tabular}{|l|llllllllllll|}
-\hline
-&H2cr8 & H2.2.5 & H2.2.9 & J1.4.1 & J1.4.2 & G2.12 & G2.22 & syn1     & syn2     & syn3     & syn4     & syn5               \\ \hline
-ILP      & 1         & 1         & 1.77       & 1.75       & 1.66      & 2.34     & 1.73     & 2.24     & 0.16     & 3.3      & 1.04     & 2.81     \\
-Rand   & 2.11      & 1.66      & 2.22       & 2.5        & 2.66      & 3.37     & 2.64     & 2.29     & 0.24     & 3.38     & 1.54     & 2.85     \\
-$\mathcal{P}$  & 1.6E-60  & 1.1E-51  & 1.3E-51   & 2.5E-67   & 3.9E-70  & 8.0E-37 & 1.5E-42 & 2.5E-28 & 2.1E-28 & 1.1E-28 & 4.3E-45 & 3.2E-16 \\ \hline
-\end{tabular}
-}
-\end{table}
-
-
-In summary, the answer for \textbf{Q3} is that searching for a satisfied test case affects the performance of our approach, especially regarding the number of extra test cases, and the ILP-based approach can handle the masking effects at a relatively smaller cost than the random-based approach.
+%\subsection{Evaluating the ILP-based test case searching method}\label{sec:emprical:cmILP}
+%%***************************************
+%% gives the data for the replacing times and replacing numbers
+%%****************************************
+%The third empirical study aims to evaluate the efficiency of the ILP-based test case searching component of our approach. To conduct this study, we implemented an additional FII approach that is augmented by the \emph{replacing test cases} strategy with test case randomly replaced.
+%
+%%observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FII approaches with replacing test cases strategy described in Section 4.
+%%, and then we applied these augmented approaches to identify the failure-inducing combinations in the prepared subjects.
+%
+%\subsubsection{Study setup}\label{sec:emprical:cmILP:set}
+%The setup of this case study is based on the second case study, and uses the same SUT model as shown in Table \ref{testing_models}. We applied the new random searching based FII approach to identify the MFS in the prepared SUTs. To avoid the bias coming from the randomness, we repeated the new approach 30 times to identify the MFS in each failing test case. We then computed the average additional test cases as well as other metrics listed in section \ref{sec:emprical:cmtradition:set} for the random-based approach. As the approach involves the random replacement, we conducted t-test on the original 30 groups of data to test the difference between the random-based approach and the ILP-based approach.
+%
+%% We will also take a look at how many scores can the new approach get when measuring the aforementioned metrics, as the same, we just compare the average scores with traditional ones.
+%%Additionally, comparisons between the augmented approaches and three traditional ones will be quantified.
+%
+%\subsubsection{Results and discussion}\label{sec:emprical:cmILP:rs}
+%The evaluation of this random-based approach is also shown in Figure \ref{fig:comparetotraditional}, in which the polygonal line marked with  `$\star$' indicates the results. The raw data can also be found in the Row `R' of Table \ref{evaluation_all} in the appendix. It is noted that for the random approach we just give the average result of 30 tries.  We offer the p-value in the Row `P(I,R)' of Table \ref{evaluation_all}. Note that A p-value smaller than 0.05 indicates that the performance of these two approaches are statistically different with each other at 95\% confidence.
+%
+%Compared to the ILP-based approach, we can firstly observe that there is little distinction between them in terms of the metrics super-schemas and sub-schemas. For metric accurate number, the ILP-based approach performs slightly better (see testing objects 1, 6, 7, 11, where ILP obtained more accurate MFS), and for metrics ignore and irrelevant number, the ILP-based approach also has a slightly better performance, i.e., ILP obtained smaller number of these schemas which are of no-use for testing. Combining these results, we conclude that the ILP-based approach has a similar performance as random-based approach at the quality of identified MFS (The former may perform slightly better at some testing objects). This is consistent to Figure \ref{fig:comparetotraditional}(f).
+%
+%The similar quality of MFS identification of these two approaches can also be embodied with the p-values we obtained. From Table \ref{evaluation_all} in the Appendix, we can learn that, for all these metrics except for `testNum'( which will be discussed later), there exists some p-values that are \emph{NaN} (Not a number). This is because for these testing objects, the results are the same for all the 30 tries. The reason that the results are the same is because the only random part of the approach is the test case replacement. This random process normally does not affect the determination of whether a schema is failure-inducing or not, as no matter which test case we choose, the replacement has the same ending condition, i.e., to find some test case that triggers the same failure or pass (The only exception is that different test cases for replacement may introduce some newly MFS of the same failure, which will interfere with the MFS identification process \cite{zhang2011characterizing} ). As a result, the MFS identified will be the same for the 30 tries for most cases.  Then as the random part normally does not affect the quality of the MFS identification, it is conceivable that these two approaches have a similar performance as they both use the \emph{test case replacement} strategy.
+%
+%%even if we repeated 30 times, the basic strategy is to replace a test case . For most cases, it will not, but for two the approach will not accurate, this is becasue safe value is not satisfied. As
+%
+%
+%\begin{figure}[htbp]
+%\centering
+%\includegraphics[width=4.10in]{replacingtimes.eps}
+%\caption{The comparison of the number of replacement test cases}
+%\label{fig:replacing}
+%\end{figure}
+%
+%
+%Secondly, when considering the cost, we find that the ILP-based approach performs better. In fact, for each failing test case, it can reduce on average 1 to 2 test cases (about 7.1\% to 14.2\% of the overall number of test cases needed for MFS identification) when compared to the random-based procedure (See testing objects of Figure \ref{fig:comparetotraditional}(g)).  In fact, when considering the total number of failing test cases of one software (See Table \ref{masking effect condition}), it can reduce thousands of test cases in total for MFS identification. This reduction is impressive, and it is also statistically significant. This is because the p-value of these two approaches for this metric is extremely small, which ranged from 1.74E-26 to 1.26E-71 (See Row `testNum' of Table \ref{evaluation_all} in the Appendix).
+%
+%
+%To be precise, we next compared the test cases only used for replacement of the two approaches. By this we can eliminate the interference of other test cases for identifying MFS, and focus on the performance of the key part of these two approaches --- the replacement strategy. Figure \ref{fig:replacing} shows the result. We can learn that on average,  for each call of the replacement algorithm, ILP can save about 1 test case. Note that this reduction is not trial when considering the overall number of test cases for MFS identification.  We listed the original data and p-values in Table \ref{replacementavg}. It can be easily learned that the difference between these two approaches is also statistically significant, as the Row `$\mathcal{P}$' shows all p-values are very small.
+%
+%\begin{table}\renewcommand{\arraystretch}{1.3}
+%\tbl{The average test cases needed for one replacement\label{replacementavg}}{
+%\setlength\tabcolsep{1.3pt}
+%\begin{tabular}{|l|llllllllllll|}
+%\hline
+%&H2cr8 & H2.2.5 & H2.2.9 & J1.4.1 & J1.4.2 & G2.12 & G2.22 & syn1     & syn2     & syn3     & syn4     & syn5               \\ \hline
+%ILP      & 1         & 1         & 1.77       & 1.75       & 1.66      & 2.34     & 1.73     & 2.24     & 0.16     & 3.3      & 1.04     & 2.81     \\
+%Rand   & 2.11      & 1.66      & 2.22       & 2.5        & 2.66      & 3.37     & 2.64     & 2.29     & 0.24     & 3.38     & 1.54     & 2.85     \\
+%$\mathcal{P}$  & 1.6E-60  & 1.1E-51  & 1.3E-51   & 2.5E-67   & 3.9E-70  & 8.0E-37 & 1.5E-42 & 2.5E-28 & 2.1E-28 & 1.1E-28 & 4.3E-45 & 3.2E-16 \\ \hline
+%\end{tabular}
+%}
+%\end{table}
+%
+%
+%In summary, the answer for \textbf{Q3} is that searching for a satisfied test case affects the performance of our approach, especially regarding the number of extra test cases, and the ILP-based approach can handle the masking effects at a relatively smaller cost than the random-based approach.
 
 %\subsection{Voting System}
 %The last empirical study aims to observe the performance of our approach and compare it with the result got by the traditional approaches. Our approach augments the three traditional FII approaches with replacing test cases strategy described in Section 4.
@@ -2028,6 +2027,60 @@ testNum    & O               & 8.12      & 8.66       & 9.16       & 23.5      &
 %  \label{tab:addlabel}%
 \end{threeparttable}
 \end{table}%
+
+
+\begin{table}[]
+\centering
+\tbl{Result of the comparison between distinguishing failures and regarded as same failure \label{evaluation_all2}}{
+\begin{tabular}{|l|ll|ll|ll|ll|ll|ll|ll|}
+\hline
+        & \multicolumn{2}{l|}{Accurate} & \multicolumn{2}{l|}{Super} & \multicolumn{2}{l|}{Sub} & \multicolumn{2}{l|}{Ignore} & \multicolumn{2}{l|}{Irrelevant} & \multicolumn{2}{l|}{Aggregate} & \multicolumn{2}{l|}{TestNum} \\ \hline
+Subject & Distin         & One          & Distin        & One        & Distin       & One       & Distin        & One         & Distin          & One           & Distin          & One          & Distin        & One          \\ \hline
+Hsql1   & 0.67           & 0.25         & 0.08          & 0 & 0.17         & 0.58      & 0.08          & 0.17        & 0.08            & 0.17          & 0.84            & 0.50         & 11.92         & 8.13         \\
+Hsql2   & 0.83           & 0.83         & 0.17          & 0 & 0 & 0.17      & 0 & 0 & 0 & 0.67          & 0.92            & 0.77         & 7.67          & 8.67         \\
+Hsql3   & 0.72           & 0.72         & 0.17          & 0 & 0.06         & 0.28      & 0.06          & 0 & 0.06            & 0.67          & 0.87            & 0.58         & 8.61          & 9.17         \\
+Jflex1  & 0.75           & 1.00         & 0.25          & 0 & 0 & 0 & 0 & 0 & 0 & 5.75          & 0.88            & 0.42         & 6.50          & 23.50        \\
+Jflex2  & 0.83           & 0.83         & 0.17          & 0 & 0 & 0.17      & 0 & 0 & 0 & 3.83          & 0.92            & 0.52         & 9.00          & 20.50        \\
+Grep1   & 0.62           & 0.59         & 0.20          & 0 & 0.06         & 0.45      & 0.12          & 0 & 0.12            & 1.85          & 0.78            & 0.39         & 7.09          & 10.24        \\
+Grep2   & 0.70           & 0.70         & 0.20          & 0 & 0.05         & 0.32      & 0.05          & 0 & 0.05            & 1.43          & 0.86            & 0.51         & 6.48          & 9.50         \\
+Cli1    & 1.23           & 1.23         & 0.08          & 0 & 0 & 0.08      & 0 & 0 & 0 & 0.77          & 0.96            & 0.79         & 5.77          & 7.85         \\
+Cli2    & 0.82           & 0.24         & 0.18          & 0 & 0 & 0.71      & 0 & 0.06        & 0 & 0.24          & 0.94            & 0.54         & 6.53          & 6.41         \\
+Joda1   & 0.91           & 0.73         & 0.09          & 0 & 0 & 0.18      & 0 & 0.09        & 0 & 0.27          & 0.97            & 0.75         & 7.55          & 7.73         \\
+Joda2   & 0.88           & 0.88         & 0.13          & 0 & 0 & 0.13      & 0 & 0 & 0 & 0.25          & 0.96            & 0.81         & 6.75          & 7.13         \\
+Joda3   & 0.92           & 0.92         & 0.08          & 0 & 0 & 0.08      & 0 & 0 & 0 & 0.08          & 0.97            & 0.92         & 4.00          & 4.25         \\
+Lang1   & 0.86           & 0.71         & 0.14          & 0 & 0 & 0.29      & 0 & 0 & 0 & 0.14          & 0.95            & 0.79         & 6.43          & 6.71         \\
+Lang2   & 0.83           & 0.83         & 0.17          & 0 & 0 & 0.17      & 0 & 0 & 0 & 0.17          & 0.92            & 0.83         & 5.17          & 5.33         \\
+Jsoup1  & 0.09           & 0.06         & 0.12          & 0 & 1.15         & 1.47      & 0.12          & 0.11        & 0.42            & 1.02          & 0.49            & 0.41         & 8.27          & 10.11        \\
+Jsoup2  & 0.67           & 0.33         & 0.33          & 0 & 0 & 0.67      & 0 & 0 & 0 & 0.33          & 0.83            & 0.58         & 5.33          & 5.33         \\ \hline
+\end{tabular}}
+\end{table}
+
+\begin{table}[]
+\centering
+\tbl{Result of our approach\label{evaluation_all3}}{
+\setlength\tabcolsep{2pt}
+\begin{tabular}{|l|lll|lll|lll|lll|lll|lll|lll|}
+\hline
+        & \multicolumn{3}{l}{Accurate} & \multicolumn{3}{l|}{Super} & \multicolumn{3}{l|}{Sub}      & \multicolumn{3}{l|}{Ignore} & \multicolumn{3}{l|}{Irrelevant} & \multicolumn{3}{l|}{Aggregate} & \multicolumn{3}{l|}{TestNum} \\ \hline
+Subject & Rep   & p(R,D)    & p(R,O)   & Rep  & p(R,D)   & p(R,O)   & Rep  & p(R,D)      & p(R,O)   & Rep   & p(R,D)   & p(R,O)   & Rep    & p(R,D)     & p(R,O)    & Rep    & p(R,D)    & p(R,O)    & Rep    & p(R,D)   & p(R,O)   \\ \hline
+Hsql1   & 0.54  & 7E-50  & 2E-60 & 0.02 & 6E-46 & 8E-32 & 0.17 & 0.33 & 2E-57 & 0.27  & 3E-48 & 6E-41 & 0.27   & 3E-48   & 6E-41  & 0.67   & 3E-51  & 1E-50  & 17.72  & 3E-70 & 1E-76 \\
+Hsql2   & 0.83  & NaN       & NaN      & 0.17 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.92   & NaN       & 0         & 11.30  & 8E-67 & 9E-63 \\
+Hsql3   & 0.67  & 0         & 0        & 0.11 & 0        & 0        & 0.22 & 0           & 0        & 0.00  & 0        & NaN      & 0.00   & 0          & 0         & 0.89   & 0         & 0         & 13.13  & 9E-68 & 4E-66 \\
+Jflex1  & 1.00  & 0         & NaN      & 0.00 & 0        & NaN      & 0.00 & NaN         & NaN      & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 1.00   & 0         & 0         & 9.68   & 1E-77 & 4E-96 \\
+Jflex2  & 0.83  & NaN       & NaN      & 0.17 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.92   & NaN       & 0         & 13.12  & 1E-83 & 6E-91 \\
+Grep1   & 0.76  & 5E-37  & 1E-39 & 0.04 & 1E-35 & 3E-19 & 0.08 & 3E-07    & 6E-43 & 0.12  & 0.53     & 3E-32 & 0.12   & 0.53       & 2E-65  & 0.82   & 8E-26  & 3E-54  & 13.61  & 2E-53 & 5E-45 \\
+Grep2   & 0.86  & 3E-37  & 3E-37 & 0.02 & 0        & 0        & 0.07 & 4E-10    & 1E-38 & 0.05  & 0.20     & 3E-21 & 0.05   & 0.20       & 5E-64  & 0.91   & 8E-28  & 7E-53  & 14.33  & 5E-51 & 7E-45 \\
+Cli1    & 1.23  & NaN       & NaN      & 0.08 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.96   & NaN       & 0         & 6.77   & 0        & 0        \\
+Cli2    & 0.82  & NaN       & 0        & 0.18 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & 0        & 0.00   & NaN        & 0         & 0.94   & NaN       & 0         & 7.53   & 0        & 0        \\
+Joda1   & 0.91  & NaN       & 0        & 0.09 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & 0        & 0.00   & NaN        & 0         & 0.97   & NaN       & 0         & 9.61   & 3E-58 & 5E-57 \\
+Joda2   & 1.00  & 0         & 0        & 0.00 & 0        & NaN      & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 1.00   & 0         & 0         & 9.19   & 1E-57 & 1E-55 \\
+Joda3   & 1.00  & 0         & 0        & 0.00 & 0        & NaN      & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 1.00   & 0         & 0         & 5.37   & 6E-50 & 2E-47 \\
+Lang1   & 0.86  & NaN       & 0        & 0.14 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.95   & NaN       & 0         & 9.14   & 0        & 0        \\
+Lang2   & 0.83  & NaN       & NaN      & 0.17 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.92   & NaN       & 0         & 7.21   & 2E-48 & 2E-47 \\
+Jsoup1  & 0.11  & 2E-17  & 2E-29 & 0.11 & 0        & 0        & 1.23 & 5E-18    & 1E-31 & 0.15  & 3E-10 & 2E-14 & 0.98   & 6E-35   & 4E-05  & 0.41   & 2E-37  & 3E-04  & 14.49  & 2E-48 & 4E-44 \\
+Jsoup2  & 0.67  & NaN       & 0        & 0.33 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.83   & NaN       & 0         & 11.67  & 0        & 0        \\ \hline
+\end{tabular}}
+\end{table}
 
 \begin{table}[htbp]
 \begin{threeparttable}
