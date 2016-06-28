@@ -615,7 +615,13 @@ The assumptions and corresponding inferring process vary with different FII appr
 We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that if the number of values for each parameter is more than 2, these mutated parts do not necessarily have to be value (0, 0, -, -). For example, assume each parameter can be assigned to be 0, 1 or 2, then the mutated part can be (2, 2, -, -), (2, 1, -, -), (1, 2, -, -,) or (1, 1, -, -). In fact, we just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).
 
 The overall theory of how FIC\_BS choose additional test cases, in short, is: 1) when the last generated test case fails, the next generated test case should increase the factors to be mutated, 2) when the last generated test case passes, the next generated test case should decrease the factors to be mutated. This is because, when last test case fails, it means that test case still contains some MFS, so we need to mutate more parts to break the MFS, such that the failure-inducing factors can be revealed; and when the last test case passes, it means that we have already broken some failure-inducing factors, the next step is to narrow down the mutated (those mutated parts may not all be the failure-inducing factors, and we should filter those non-failure-inducing ones to obtain the MFS).
- 
+
+
+
+---------------------------------------------------------------
+need to show how they get t1 to t4
+---------------------------------------------------------------
+
 
 The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
 
@@ -647,6 +653,11 @@ Each parameter has \emph{safe value}, that is, one value not the part of any MFS
 \end{assumption}
 
 Let us get back to the previous example with this assumption. Considering all the additional generated test cases, i.e., $t_{1}$ to $t_{4}$ are mutated from the original failing test case $t_{0}$ with \emph{safe values}. In other word, (0, -, -, -), (-, 0, -, -,), (-, -, 0, -) and (-, -, -, 0) are all safe values. Consequently, the fail of $t_{1}$ has nothing to do with (0, -, -, -), and only relates to the remaining parameter values. On the other hand, the pass of $t_{2}$ indicates that
+
+---------------------------------------------------------------
+need to re-say
+---------------------------------------------------------------
+
 
 
 To be more specific and formal, we have the following two corollaries:
@@ -828,7 +839,7 @@ As masking effect has significant impact on the FII approaches, alleviating this
 
 %Note that our discussion is based on a SUT using deterministic software, i.e., the random failing information of a test case will be ignored. The non-deterministic problem will result in a more complex test scenario, which will not be discussed in this paper.
 \section{Illustration of the approach}
-\subsection{Test case replacing strategy} \label{sec:method}
+%\subsection{Test case replacing strategy} \label{sec:method}
 The main reason that the FII approach fails to work properly is that it cannot determine $T_{mask(F_{m})}$. In other words, if the test case triggers other unexpected failures which are different from the currently analysed $F_{m}$, it cannot figure out whether this test case will trigger $F_{m}$ because of the masking effects. So to limit the impact of this effect on the FII approach, it is important to reduce the number of test cases that trigger other different failures, as this can reduce the probability that the expected failure may be masked by other different failures.
 % strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subseteq \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other failures as much as possible.
 
@@ -845,73 +856,70 @@ This replacement process may need to be executed multiple times for one fixed pa
 
 % which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other failures.
 
-To explain the \emph{suspiciousness} notion, we first introduce the \emph{suspiciousness} of a parameter value $o$ with respect to a particular failure $F_{i},  1 \leq i  \leq L$. We use $all(o)$ to represent the number of executed test cases that contain this parameter value, and $f_{i}(o)$ to indicate the number of test cases that trigger the failure $F_{i}$, and contain this parameter value. Then, the \emph{suspiciousness} of a parameter value \emph{o} with respect to the given failure $F_{i}$, i.e., $\mathcal{SP}(o, F_{i})$, is $\frac{f_{i}(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a parameter value frequently appears in the test cases that trigger a particular failure, then it is more likely to be an inducing factor that triggers this failure. We add 1 in the denominator for two reasons:  (1) to avoid division by zero when the parameter value has never appeared before, (2) to reduce the bias when a parameter value rarely appears in the test set but coincidentally appears in a failing test case with a particular failure.
-
-Table \ref{suspciousness_example} gives an example to compute the suspiciousness of parameter values with respect to particular failures. The left part of this table gives 4 executed test cases with their outcomes, in which failures $F_{1}$ and $F_{2}$ are triggered. The right part shows the suspiciousness of each parameter value w.r.t. these two failures. Specifically, consider the parameter $P_{1}$ taking value 0. There are three test cases $t_{1}$, $t_{2}$, and $t_{4}$ that contain this parameter value, and only  $t_{2}$ triggered $F_{1}$. Hence, $\mathcal{SP}(P_{1} = 0, F_{1})$ = $\frac{f_{1}(o)}{all(o) + 1}$ = $\frac{1}{3 + 1}$ = 1/4.
-
-\begin{table}[ht]
-\centering
-\tbl{Suspiciousness example \label{suspciousness_example}}{
-  \begin{tabular}{ccc}
-ID &  Test cases executed& Outcomes  \\ \hline
-$t_{1}$ &(0, 0, 0)& $Pass$ \\
-$t_{2}$ &(0, 1, 1)&  $F_{1}$ \\
-$t_{3}$ &(1, 1, 0)&  $F_{2}$\\
-$t_{4}$ &(0, 1, 1)&  $F_{2}$\\
-\hline
-  \end{tabular}
-  \hspace{1em}
-  \begin{tabular}{c|c|ccc}
- \multicolumn{4}{c}{  Suspiciousness for $F1$} \\ \hline
-    & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
- $0$ & 1/4 &  0   & 0 \\
- $1$ &  0  &  $ 1/4 $  & $ 1/3$ \\
-\hline
- \multicolumn{4}{c}{  Suspiciousness for $F2$} \\ \hline
- & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
-$0$ & $1/4$  & 0   & $1/3$\\
-$1$ & $1/2$  & $1/2$  &  $1/3$ \\
-\hline
-  \end{tabular}
-  }
-  \end{table}
-
-
-With the \emph{suspiciousness} associated with a parameter value, we then define the \emph{suspiciousness} between a test case $t$ and a particular failure $F_{i}$ as:
-
-\begin{displaymath} \mathcal{SP}(t,F_{i})  = \frac{1}{k}\sum_{o \in t} \mathcal{SP}(o, F_{i}) \tag{EQ1} \label{eqn - 00p} \end{displaymath}
-
-where $k$ is the number of parameters in $t$, and $o$ is the specific parameter value in $t$. The \emph{suspiciousness} of a test case w.r.t. a failure is actually the average \emph{suspiciousness} of each parameter value in the test case w.r.t. this failure. For example, considering an unexecuted test case (1, 0, 0). With the suspiciousness of all the parameter values listed in Table \ref{suspciousness_example}, $\mathcal{SP}((1,0,0),F_{1})$ = $1/3 \times (0 + 0 + 0 ) = 0 $ and $\mathcal{SP}((1,0,0),F_{2})$ = $1/3 \times (1/2 + 0 + 1/3 ) = 5/18$.
-
-
-For a selected test case, we want its ability  to trigger failures of other failures to be as small as possible, such that the masking effects can be alleviated. In practice, the \emph{suspiciousness} varies between test cases and different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} of this test case w.r.t. that failure is the least.
-
-Table \ref{minimal_maximal} illustrates such a scenario for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace test case (0,0,0,0) with fixed part (0, -, -, -) that triggers failures of other failures, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obvious that $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with $F_{2}$. These two test cases, however, should not be selected because their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
-
-\begin{table}[ht]
-\centering
-\tbl{Select minimal maximal suspiciousness \label{minimal_maximal}}{
-  \begin{tabular}{ccccc}
-ID & Candidate test cases& $\mathcal{SP}(t,F_{2})$& $\mathcal{SP}(t,F_{3})$ & $Max\ \mathcal{SP}(t, F_{m}), m = 2,3$ \\ \hline
-$t_{1}$ & (0, 0, 0, 1)&     0.7  & 0.2 &   $\mathcal{SP}(t_{1},F_{2})$ : 0.7 \\
-$t_{2}$ &(0, 0, 1, 0)&      0.2  & 0.6 &   $\mathcal{SP}(t_{2},F_{3})$ : 0.6\\
-$\textbf{t}_{\textbf{3}}$ &\textbf{(0, 0, 1, 1)}&\textbf{0.4} &  \textbf{0.3} & $\textbf{$\mathcal{SP}$(}\textbf{t}_{\textbf{3}},\textbf{F}_{\textbf{2}}\textbf{)}$ : \textbf{0.4}\\
-$t_{4}$ &(0, 1, 0, 0)&   0.3 & 0.5  &$\mathcal{SP}(t_{4},F_{3})$ : 0.5\\
-$t_{5}$ &(0, 1, 0, 1)&   0.5 & 0.3  &$\mathcal{SP}(t_{5},F_{2})$ : 0.5\\
-\hline
-  \end{tabular}
-  }
-  \end{table}
-
-With this in mind, we have to settle for a test case, such that the most likely failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other words, we need to find a test case, so that the maximal \emph{suspiciousness} of this test case w.r.t. a given failure is minimized. Formally, we should choose a test case $t$, such that,
-
-\begin{displaymath} \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  \mathcal{SP}(t, F_{i}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
-
-%*******
-% F_{m} F_{n} F_{k} needs to be unified
-%*******
-
-where $L$ is the number of types of failures, and $m$ is the current analysed failure. $R$ is the set of all possible test cases that contain the $fixed$ part except those that have been tested. As the $fixed$ part is a set of parameter values which can be deemed as a schema, then obviously $R = \mathcal{T}(fixed)  \backslash T_{executed}$, where $\mathcal{T}(fixed)$ represents all the test cases that contain this fixed part and $T_{executed}$ represents those executed test cases. Additional test cases need to be selected in set $R$, so that FII approaches can work properly.
+%To explain the \emph{suspiciousness} notion, we first introduce the \emph{suspiciousness} of a parameter value $o$ with respect to a particular failure $F_{i},  1 \leq i  \leq L$. We use $all(o)$ to represent the number of executed test cases that contain this parameter value, and $f_{i}(o)$ to indicate the number of test cases that trigger the failure $F_{i}$, and contain this parameter value. Then, the \emph{suspiciousness} of a parameter value \emph{o} with respect to the given failure $F_{i}$, i.e., $\mathcal{SP}(o, F_{i})$, is $\frac{f_{i}(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a parameter value frequently appears in the test cases that trigger a particular failure, then it is more likely to be an inducing factor that triggers this failure. We add 1 in the denominator for two reasons:  (1) to avoid division by zero when the parameter value has never appeared before, (2) to reduce the bias when a parameter value rarely appears in the test set but coincidentally appears in a failing test case with a particular failure.
+%
+%Table \ref{suspciousness_example} gives an example to compute the suspiciousness of parameter values with respect to particular failures. The left part of this table gives 4 executed test cases with their outcomes, in which failures $F_{1}$ and $F_{2}$ are triggered. The right part shows the suspiciousness of each parameter value w.r.t. these two failures. Specifically, consider the parameter $P_{1}$ taking value 0. There are three test cases $t_{1}$, $t_{2}$, and $t_{4}$ that contain this parameter value, and only  $t_{2}$ triggered $F_{1}$. Hence, $\mathcal{SP}(P_{1} = 0, F_{1})$ = $\frac{f_{1}(o)}{all(o) + 1}$ = $\frac{1}{3 + 1}$ = 1/4.
+%
+%\begin{table}[ht]
+%\centering
+%\tbl{Suspiciousness example \label{suspciousness_example}}{
+%  \begin{tabular}{ccc}
+%ID &  Test cases executed& Outcomes  \\ \hline
+%$t_{1}$ &(0, 0, 0)& $Pass$ \\
+%$t_{2}$ &(0, 1, 1)&  $F_{1}$ \\
+%$t_{3}$ &(1, 1, 0)&  $F_{2}$\\
+%$t_{4}$ &(0, 1, 1)&  $F_{2}$\\
+%\hline
+%  \end{tabular}
+%  \hspace{1em}
+%  \begin{tabular}{c|c|ccc}
+% \multicolumn{4}{c}{  Suspiciousness for $F1$} \\ \hline
+%    & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
+% $0$ & 1/4 &  0   & 0 \\
+% $1$ &  0  &  $ 1/4 $  & $ 1/3$ \\
+%\hline
+% \multicolumn{4}{c}{  Suspiciousness for $F2$} \\ \hline
+% & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
+%$0$ & $1/4$  & 0   & $1/3$\\
+%$1$ & $1/2$  & $1/2$  &  $1/3$ \\
+%\hline
+%  \end{tabular}
+%  }
+%  \end{table}
+%
+%
+%With the \emph{suspiciousness} associated with a parameter value, we then define the \emph{suspiciousness} between a test case $t$ and a particular failure $F_{i}$ as:
+%
+%\begin{displaymath} \mathcal{SP}(t,F_{i})  = \frac{1}{k}\sum_{o \in t} \mathcal{SP}(o, F_{i}) \tag{EQ1} \label{eqn - 00p} \end{displaymath}
+%
+%where $k$ is the number of parameters in $t$, and $o$ is the specific parameter value in $t$. The \emph{suspiciousness} of a test case w.r.t. a failure is actually the average \emph{suspiciousness} of each parameter value in the test case w.r.t. this failure. For example, considering an unexecuted test case (1, 0, 0). With the suspiciousness of all the parameter values listed in Table \ref{suspciousness_example}, $\mathcal{SP}((1,0,0),F_{1})$ = $1/3 \times (0 + 0 + 0 ) = 0 $ and $\mathcal{SP}((1,0,0),F_{2})$ = $1/3 \times (1/2 + 0 + 1/3 ) = 5/18$.
+%
+%
+%For a selected test case, we want its ability  to trigger failures of other failures to be as small as possible, such that the masking effects can be alleviated. In practice, the \emph{suspiciousness} varies between test cases and different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} of this test case w.r.t. that failure is the least.
+%
+%Table \ref{minimal_maximal} illustrates such a scenario for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace test case (0,0,0,0) with fixed part (0, -, -, -) that triggers failures of other failures, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obvious that $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with $F_{2}$. These two test cases, however, should not be selected because their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
+%
+%\begin{table}[ht]
+%\centering
+%\tbl{Select minimal maximal suspiciousness \label{minimal_maximal}}{
+%  \begin{tabular}{ccccc}
+%ID & Candidate test cases& $\mathcal{SP}(t,F_{2})$& $\mathcal{SP}(t,F_{3})$ & $Max\ \mathcal{SP}(t, F_{m}), m = 2,3$ \\ \hline
+%$t_{1}$ & (0, 0, 0, 1)&     0.7  & 0.2 &   $\mathcal{SP}(t_{1},F_{2})$ : 0.7 \\
+%$t_{2}$ &(0, 0, 1, 0)&      0.2  & 0.6 &   $\mathcal{SP}(t_{2},F_{3})$ : 0.6\\
+%$\textbf{t}_{\textbf{3}}$ &\textbf{(0, 0, 1, 1)}&\textbf{0.4} &  \textbf{0.3} & $\textbf{$\mathcal{SP}$(}\textbf{t}_{\textbf{3}},\textbf{F}_{\textbf{2}}\textbf{)}$ : \textbf{0.4}\\
+%$t_{4}$ &(0, 1, 0, 0)&   0.3 & 0.5  &$\mathcal{SP}(t_{4},F_{3})$ : 0.5\\
+%$t_{5}$ &(0, 1, 0, 1)&   0.5 & 0.3  &$\mathcal{SP}(t_{5},F_{2})$ : 0.5\\
+%\hline
+%  \end{tabular}
+%  }
+%  \end{table}
+%
+%With this in mind, we have to settle for a test case, such that the most likely failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other words, we need to find a test case, so that the maximal \emph{suspiciousness} of this test case w.r.t. a given failure is minimized. Formally, we should choose a test case $t$, such that,
+%
+%\begin{displaymath} \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  \mathcal{SP}(t, F_{i}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
+%
+%
+%where $L$ is the number of types of failures, and $m$ is the current analysed failure. $R$ is the set of all possible test cases that contain the $fixed$ part except those that have been tested. As the $fixed$ part is a set of parameter values which can be deemed as a schema, then obviously $R = \mathcal{T}(fixed)  \backslash T_{executed}$, where $\mathcal{T}(fixed)$ represents all the test cases that contain this fixed part and $T_{executed}$ represents those executed test cases. Additional test cases need to be selected in set $R$, so that FII approaches can work properly.
 
 %We can further resolve this problem. Consider the test case $t$ satisfies \ref{eqn - 0p}. Without loss of generality, we assume that the failure $F_{i}, i \neq m $ is the failure with which the test case $t$ has the maximal \emph{suspiciousness} compared to the other failures. Then, a natural property for $t$ is that $Sp(t, F_{i}) <= Sp(t', F_{i})$, in which test case $t'$ is any other test case which has the maximal suspiciousness with failure $F_{i}$ than other failures.  For example in Table \ref{minimal_maximal}, test cases $t_{1}$,$t_{3}$ and $t_{5}$ have the maximal \emph{suspiciousness} with $F_{2}$ than other failures. Obviously, $ Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{5}, F_{2}) = 0.5 < Sp(t_{1}, F_{2}) = 0.7$.  This property can be formulated as :
 %
@@ -1000,9 +1008,9 @@ The last part (lines 6 - 10) checks whether the newly generated test case is as 
 
 
 
-\section{Illustration of the approach}\label{sec:appraoch}
-
-This section will illustrate the complete MFS identification approach that combines the traditional MFS identification procedure with test cases replacement strategy.
+%\section{Illustration of the approach}\label{sec:appraoch}
+%
+%This section will illustrate the complete MFS identification approach that combines the traditional MFS identification procedure with test cases replacement strategy.
 
 %which give a description for the MFS identification with the test cases replacement operation. Before we talk about this, let us first recall the basic theory for the MFS identification.
 %
