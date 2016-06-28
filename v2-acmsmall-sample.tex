@@ -638,10 +638,13 @@ $t_{4}$ & 1     & 1     & 1     & 0     & pass    \\ \hline
 %values, i.e., none of the parameter value in mutate part is the part of any MFS.
 
 \begin{assumption} \label{ass:safevalue}
-Each parameter value of the mutated part of each additional test cases is \emph{safe value}, i.e., a value that is not the part of any MFS.
+Each parameter has \emph{safe value}, that is, one value not the part of any MFS, and the safe value is known in advance.
 \end{assumption}
 
-Hence, this assumption indicates that the mutated part of each additional test cases are all safe values. Based on this assumption, we have the following two corollaries:
+Let us get back to the previous example with this assumption. Considering all the additional generated test cases, i.e., $t_{1}$ to $t_{4}$ are mutated from the original failing test case $t_{0}$ with \emph{safe values}. 
+
+
+To be more specific and formal, we have the following two corollaries:
 
 \begin{corollary}\label{lemma:inferpassing}
  $\forall t \in T_{unknown}$, if $\exists t' \in T_{P\_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
