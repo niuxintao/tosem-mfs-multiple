@@ -599,7 +599,7 @@ The proof of this lemma is obvious. This is because whatever the outcomes of the
 
 Generally, with proper assumptions, apart from the test cases which have been executed, we can infer some of the remaining test cases to be passing or failing. Formally, let $T_{F\_infer}$ refer to the test cases that can be inferred to be failing and $T_{P\_infer}$ the inferred passing test cases. With the test cases whose outcomes can be inferred, the test cases which are known to failing is increased to be $T_{F\_known} \bigcup T_{F\_infer}$, and the unknown test cases decreased to be $T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})$.  Based on Lemma \ref{pro:dsmfs}, $\forall c \in \mathcal{C}(T_{F\_known} \bigcup T_{F\_infer})$, if it is identical to some schema in $\mathcal{C}((T_{F\_known} \bigcup T_{F\_infer}) \bigcup (T_{unknown} \setminus (T_{F\_infer} \bigcup T_{P\_infer})))$, then $c$ must be MFS.
 
-The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the OFOT approach\cite{nie2011minimal}--a well-known MFS identification approach.
+The assumptions and corresponding inferring process vary with different FII approaches. To specifically describe the inferring processes of different FII approaches is beyond this paper. Next, we will only focus on describing the FIC\_BS approach\cite{zhang2011characterizing}--an efficient adaptive MFS identification approach.
 
 %\begin{lemma}[{Determine some MFS}]\label{pro:dsmfs}
 %$\forall c \in \mathcal{C}(T_{F\_known})$, if it is identical to some schema in $\mathcal{C}(T_{F\_known} \bigcup T_{unknown})$, then $c$ must be MFS.
@@ -612,7 +612,12 @@ The assumptions and corresponding inferring process vary with different FII appr
 
 %
 %The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation.
-We will give a simple example to illustrate how OFOT works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the OFOT approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, OFOT generates 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases mutates one factor against $t_{0}$. Note that we just need to these mutated values different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).  The MFS obtained by OFOT is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
+We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that if the number of values for each parameter is more than 2, these mutated parts do not necessarily have to be value (0, 0, -, -). For example, assume each parameter can be assigned to be 0, 1 or 2, then the mutated part can be (2, 2, -, -), (2, 1, -, -), (1, 2, -, -,) or (1, 1, -, -). In fact, we just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).
+
+The overall theory of how FIC\_BS choose additional test cases, in short, is: 1) when the last generated test case fails, the next generated test case should increase the factors to be mutated, 2) when the last generated test case passes, the next generated test case should decrease the factors to be mutated. This is because, when last test case fails, it means that test case still contains some MFS, so we need to mutate more parts to break the MFS, such that the failure-inducing factors can be revealed; and when the last test case passes, it means that we have already broken some failure-inducing factors, the next step is to narrow down the mutated (those mutated parts may not all be the failure-inducing factors, and we should filter those non-failure-inducing ones to obtain the MFS).
+ 
+
+The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
 
 
 %These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
@@ -620,15 +625,15 @@ We will give a simple example to illustrate how OFOT works. For SUT($2^{4}$), as
 %The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
 
 \begin{table}[ht]
-\tbl{OFOT running example\label{fic-bs-identify}}{
+\tbl{FIC\_BS running example\label{fic-bs-identify}}{
 \begin{tabular}{llllll}
 \hline
 \textbf{ID} & \multicolumn{4}{l}{\textbf{Test Case}} & \textbf{outcome} \\ \hline
 $t_{0}$ & 1     & 1     & 1     & 1     & fail    \\ \hline
-$t_{1}$ & 0     & 1     & 1     & 1     & fail    \\
-$t_{2}$ & 1     & 0     & 1     & 1     & pass    \\
-$t_{3}$ & 1     & 1     & 0     & 1     & fail    \\
-$t_{4}$ & 1     & 1     & 1     & 0     & pass    \\ \hline
+$t_{1}$ & 0     & 0     & 1     & 1     & pass    \\
+$t_{2}$ & 0     & 1     & 1     & 1     & fail    \\
+$t_{3}$ & 0     & 1     & 0     & 0     & pass    \\
+$t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 \end{tabular}}
 \end{table}
 
@@ -641,7 +646,7 @@ $t_{4}$ & 1     & 1     & 1     & 0     & pass    \\ \hline
 Each parameter has \emph{safe value}, that is, one value not the part of any MFS, and the safe value is known in advance.
 \end{assumption}
 
-Let us get back to the previous example with this assumption. Considering all the additional generated test cases, i.e., $t_{1}$ to $t_{4}$ are mutated from the original failing test case $t_{0}$ with \emph{safe values}. 
+Let us get back to the previous example with this assumption. Considering all the additional generated test cases, i.e., $t_{1}$ to $t_{4}$ are mutated from the original failing test case $t_{0}$ with \emph{safe values}. In other word, (0, -, -, -), (-, 0, -, -,), (-, -, 0, -) and (-, -, -, 0) are all safe values. Consequently, the fail of $t_{1}$ has nothing to do with (0, -, -, -), and only relates to the remaining parameter values. On the other hand, the pass of $t_{2}$ indicates that
 
 
 To be more specific and formal, we have the following two corollaries:
@@ -657,10 +662,14 @@ Assume that $t$ is a failing test case. As $\{\ t\ \} \subset T_{F}$, $\exists c
 For example, if (0, 0, 0, 0) is known to be a passing test case, and (-, -, -, 1) \footnote{Here we use the 1-degree schema (-, -, $v_{i_{j}}$, -, -) to denote the value \emph{j} of the \emph{i}th parameter of the SUT.}  is safe value, then test case (0, 0, 0, 1) must be a passing test case.
 
 \begin{corollary} \label{lemma:inferfailing}
-$\forall t \in T_{unknown}$, if $\exists t' \in T_{F\_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a failing test case.
+$\forall t \in T_{unknown}$, if $\exists t' \in T_{F\_known}$, such that $t¡¯$ is obtained by mutating some parameter values of $t$, and the mutated part are all safe values, then $t$ must be a failing test case.
 \end{corollary}
 
-This corollary can be proved according to Corollary \ref{lemma:inferpassing}. As an example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
+\begin{proof}
+Assume $t$ is a passing test case, and $t¡¯$ is mutated from $t$, with the mutated part are all safe values, hence according to Corollary \ref{lemma:inferpassing}, $t¡¯$ must be a passing test case, which is contradiction. Hence, $t$ must be a failing test case, and Corollary \ref{lemma:inferfailing} holds.
+\end{proof}
+
+As an example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
 
 Based on these two corollaries, we can easily infer that some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assumes that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' of \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing;  the mutated part of the known failing test case $t_{16}$ against the unknown test case $t_{14}$ is still the safe value (-, -, 0, -), so $t_{14}$ should be inferred to be failing.
 
