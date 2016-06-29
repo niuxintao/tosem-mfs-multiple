@@ -631,7 +631,7 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 \end{tabular}}
 \end{table}
 
-The overall theory of how FIC\_BS select additional test cases, in short, is: 1) when the last generated test case fails, the next generated test case should increase the factors to be mutated, 2) when the last generated test case passes, the next generated test case should decrease the factors to be mutated. This is because, when last test case fails, it means that the last generated test case still contains some MFS, so we need to mutate more parameter values of original failing test case to break the MFS, such that the failure-inducing factors can be revealed; and when the last test case passes, it means that we have already broken some failure-inducing factors, the next step is to narrow down the mutated parameter values to obtain the failure-inducing factors. 
+The overall theory of how FIC\_BS select additional test cases, in short, is: 1) when the last generated test case fails, the next generated test case should increase the factors to be mutated, 2) when the last generated test case passes, the next generated test case should decrease the factors to be mutated. This is because, when last test case fails, it means that the last generated test case still contains some MFS, so we need to mutate more parameter values of original failing test case to break the MFS, such that the failure-inducing factors can be revealed; and when the last test case passes, it means that we have already broken some failure-inducing factors, the next step is to narrow down the mutated parameter values to obtain the failure-inducing factors.
 
 In this example, as $t_{0}$ fails, FIC\_BS increases the mutated parts, so it chooses the left half of factors in $t_{0}$, and changed it to be 0. The result pass indicates that $t_{1}$ breaks some failure-inducing factors of $t_{0}$, and these failure-inducing factors must be contained in the left half. As $t_{1}$ passes, it next narrows down the scope of mutated parts, so it then breaks the left two factors of $t_{1}$ into halves (each half now contains 1 parameter value), then only keeps the new left half (first parameter) remaining mutated, i.e., value 0, and let the new right half (second parameter) un-mutated, i.e., value 1. The fail of $t_{2}$ indicates that $t_{2}$ does not break the failure-inducing factors. Based on this, we can get that the failure-inducing factors must lie on the right half (the second parameter value), and get that (-, 0, -, -) must be one failure-inducing factor. The following two test cases, i.e., $t_{3}$ and $t_{4}$, are generated in the same way as $t_{1}$ and $t_{2}$, and we will obtain another failure-inducing factor (-, -, -, 0) . Finally, we can get that (-, 0, -, 0) must be the MFS.
 
@@ -846,6 +846,7 @@ The main reason that the FII approach fails to work properly is that it cannot d
 % strategies cannot accurately identify the MFS is that we cannot figure out the $T(mask_{F_{m}})$.  As $T(mask_{F_{m}}) \subseteq \bigcup_{i = 1 \& i \neq m }^{L}T_{F_{i}}$, in order to weaken the influence of $T(mask_{F_{m}})$, we need to reduce the number of test cases that trigger other failures as much as possible.
 
 For the exhaustive testing model, i.e., $\mathcal{C}(T_{F_{m}})$, as all the test cases will be used to identify the MFS, there is no room left to improve its performance unless we fix other different failures and re-execute all the test cases. However, if only a subset of all test cases is used to identify the MFS (which is how the traditional FII approach works), it is important to make the right selection to limit the size of $T_{mask(F_{m})}$ to be as small as possible.
+
 \subsection{Replacing test cases that trigger unexpected failures}\label{sec:method:describe}
 The basic idea is to pick the test cases that trigger other failures and generate new test cases to replace them. The regenerated test cases should either pass in the execution or trigger $F_{m}$.
 %The replacement must satisfy the condition that the newly generated ones will not negatively influence the original identifying process.
@@ -854,7 +855,9 @@ Normally, when we replace the test case that triggers an unexpected failure with
 
 The \emph{fixed part} can vary for different FII approaches. For example, for the OFOT \cite{nie2011minimal} algorithm, all parameter values are the fixed part except for the one that needs to be validated, while for the FIC\_BS \cite{zhang2011characterizing} approach, the fixed parts can be dynamically changed, depending on the outcome of the execution of last generated test case.
 
-This replacement process may need to be executed multiple times for one fixed part as it may not always be possible to find a test case that satisfies our requirement. One replacement method is randomly choosing test cases until the satisfied test case is found. While this method may be simple and straightforward, however, it may require many tries. To address this problem and reduce the cost, we propose a replacement approach by computing the \emph{suspiciousness} of the test case with the other failures, and then selecting the test case from a group of candidate test cases that has the least \emph{suspiciousness} with other failures.
+This replacement process may need to be executed multiple times for one fixed part as it may not always be possible to find a test case that satisfies our requirement. In this paper, the replacement process one test case from the candidate test cases and executed it until the satisfied test case is found. The complete process of replacing a test case with a new one while keeping some fixed part is depicted in Algorithm \ref{alg:one}.
+%While this method may be simple and straightforward, however, it may require many tries.
+%To address this problem and reduce the cost, we propose a replacement approach by computing the \emph{suspiciousness} of the test case with the other failures, and then selecting the test case from a group of candidate test cases that has the least \emph{suspiciousness} with other failures.
 
 % which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other failures.
 
@@ -967,18 +970,17 @@ This replacement process may need to be executed multiple times for one fixed pa
 %As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize an ILP solver to solve this formula.
 %\ref{eqn - 0p} can be further converted into an integer satisfaction and optimization problem (Details in Section \ref{sec:appendixs:covert} in the Appendix),
 % As \ref{eqn - 0p} is actually an integer satisfaction and optimization problem, we can utilize an ILP solver to solve this problem. In this paper, we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems.
-The complete process of replacing a test case with a new one while keeping some fixed part is depicted in Algorithm \ref{alg:one}.
+
 
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
-\KwIn{ failure $F_{m}$, all the candidate test cases $R$, the suspiciousness matrix $\mathcal{SP}$}
+\KwIn{ failure $F_{m}$, all the candidate test cases $R$}
 \KwOut{ $t_{new}$ the regenerate test case }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 \While{\textbf{not} $R$ is empty }{
-       $t_{new} \leftarrow \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  \mathcal{SP}(t, F_{i})$\;
+       $t_{new} \leftarrow random\_pick(R)$\;
        $result \leftarrow execute(t_{new})$\;
        $R \leftarrow R \backslash t_{new} $\;
-       $update\_SP(t_{new})$ \;
         \eIf  {$result == PASS\ or\ result ==  F_{m}$}{
          \Return $t_{new}$\;
            }{
@@ -992,17 +994,19 @@ The complete process of replacing a test case with a new one while keeping some 
 \end{algorithm}
 %
 %
-The inputs to this algorithm consist of the failure $F_{m}$ under analysis, the candidate test cases $R = \mathcal{T}(fixed)  \backslash T_{executed}$  and the suspiciousness matrix $\mathcal{SP}$, which records the suspiciousness of each factor $o$ with respect to each failure $F_{i}$, i.e., $\mathcal{SP}(o, F_{i})$ ($1 \leq i \leq L $). The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
+The inputs to this algorithm consist of the failure $F_{m}$ under analysis, and the candidate test cases $R = \mathcal{T}(fixed)  \backslash T_{executed}$. The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
 
-The outer loop of this algorithm (lines 1 - 11) contains three parts:
+The outer loop of this algorithm (lines 1 - 10) contains two parts:
 
-The first part (lines 2 - 3) generates and executes a new test case which is supposed to be least likely to trigger failures different from $F_{m}$. The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems. (Note that a simpler linear search algorithm can also be applied in our approach to find a proper test case. However, as the problem to search a proper test case is related to Integers (a test case consists of discrete parameters with discrete values), we use Integer Linear Programming (ILP) technique instead.) When a test case is generated, we remove it from the candidate test case set $R$ to avoid redundancy (line 4).
+The first part (lines 2 - 3) randomly generates and executes a new test case from the candidate test case set $R$.
+%The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems. (Note that a simpler linear search algorithm can also be applied in our approach to find a proper test case. However, as the problem to search a proper test case is related to Integers (a test case consists of discrete parameters with discrete values), we use Integer Linear Programming (ILP) technique instead.)
+When a test case is generated, we remove it from the candidate test case set $R$ to avoid redundancy (line 3).
 
-The second part (line 5) updates the suspiciousness matrix ($\mathcal{SP}$) for each parameter value that is involved in this newly generated test case (line 5). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $\mathcal{SP}(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
+%The second part (line 5) updates the suspiciousness matrix ($\mathcal{SP}$) for each parameter value that is involved in this newly generated test case (line 5). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $\mathcal{SP}(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
 
 % basic idea for this part is to search each failure different from $F_{m}$ (line 3) and find the best test case that has the least suspiciousness with other failures. In detail, for each failure we set up an ILP solver (line 4) and use it to get an optimal test case for that failure, i.e., $t_{F_{i}},1 \leq i \leq L\ \&\ j\neq m$, according to \ref{eqn - lp} (line 5). We compare the optimal value for each failure, and choose the one with less suspiciousness with other failures (lines 6 - 9).
 
-The last part (lines 6 - 10) checks whether the newly generated test case is as expected. Specifically, if the test case passes or triggers the same failure -- $F_{m}$, a satisfied test case is obtained (line 6) and returned (line 7). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 8 - 9).
+The second part (lines 5 - 9) checks whether the newly generated test case is as expected. Specifically, if the test case passes or triggers the same failure -- $F_{m}$, a satisfied test case is obtained (line 5) and returned (line 6). Otherwise, we will repeat the process, i.e., generate a new test case and check again (lines 7 - 8).
 
 %Note that the ending condition of this  algorithm has another exit, besides finding an expected test case (line 6), which is when the function \emph{MeetEndCriteria()} returns \emph{true} (line 1). We did not explicitly show function \emph{MeetEndCriteria()}, because this is dependent on the computing resource and the desired accuracy. In detail, if we want to get a high quality result and have enough computing resource, it is desirable to try many times to get the expected test case; otherwise, a relatively small number of attempts to find a proper test case is recommended.
 
@@ -1022,8 +1026,7 @@ The last part (lines 6 - 10) checks whether the newly generated test case is as 
 
 
 \subsection{MFS identification with replacement strategy}
-
-Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the failure $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is the MFS for failure $F_{m}$ in the test case $t$. Variable $\mathcal{SP}$ is used to record the suspicious value of each parameter value with each failure. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with failure $F_{m}$ or not, and $T_{F\_Known}$ is the set of test cases that are deemed to trigger the failure $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section \ref{subsec:Formal:identi}. Specifically,  by computing the minimal schemas of $T_{F\_Known}$, i.e., $\mathcal{C}(T_{F\_Known})$, and minimal schemas of $T_{F\_Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F\_Known})$ are MFS if they are contained in $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$.
+With this replacement process, its easy to illustrate the complete MFS identification approach that combines the traditional MFS identification procedure with test cases replacement strategy. Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the failure $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is the MFS for failure $F_{m}$ in the test case $t$. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with failure $F_{m}$ or not, and $T_{F\_Known}$ is the set of test cases that are deemed to trigger the failure $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section \ref{subsec:Formal:identi}. Specifically,  by computing the minimal schemas of $T_{F\_Known}$, i.e., $\mathcal{C}(T_{F\_Known})$, and minimal schemas of $T_{F\_Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F\_Known})$ are MFS if they are contained in $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$.
 
 In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6).
 %(See Algorithm \ref{alg:fic} in the Appendix for detail)
@@ -1031,11 +1034,11 @@ Then the approach will execute this test case (line 8) and update the suspicious
 
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
-\KwIn{ failure $F_{m}$, original failing test case $t$ }
+\KwIn{ failure $F_{m}$, original failing test case $t$, safe values $SV$ }
 \KwOut{ $MFS$ returning the determined MFS }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 
-$\mathcal{SP} \leftarrow init\_Suspicious\_Matrix(t)$ \;
+%$\mathcal{SP} \leftarrow init\_Suspicious\_Matrix(t)$ \;
 $T_{Unknown} \leftarrow  T_{ALL} \setminus t $ \;
 $T_{F\_Known} \leftarrow \{ t \} $ \;
 $MFS \leftarrow empty$ \;
@@ -1051,14 +1054,15 @@ $MFS \leftarrow empty$ \;
 %                    }
 %          }
        $ R \leftarrow  \mathcal{T}(current\_fixed\_part)$ \;
-       $t_{next} \leftarrow random\_pick(R)$\;
-       $result \leftarrow execute(t_{next})$\;
-       $update\_SP(t_{next})$ \;
-        \If  {$result \neq PASS\ and \ result \neq  F_{m}$}{
-         $t_{next} \leftarrow Replacing(F_{m}, \mathcal{SP}, R) $\;
-          \If  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
-          $result \leftarrow F_{m}$}{}
-           }{ }
+       $t_{next} \leftarrow Replacing(F_{m},R)$\;
+      \eIf  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
+          $result \leftarrow F_{m}$}{$result \leftarrow execute(t_{next})$\;}
+
+      % $update\_SP(t_{next})$ \;
+%        \If  {$result \neq PASS\ and \ result \neq  F_{m}$}{
+%         $t_{next} \leftarrow Replacing(F_{m}, \mathcal{SP}, R) $\;
+%
+%           }{ }
             \eIf  {$result == F_{m}$}{
            $T_{infer-F} \leftarrow InferringFailing (t_{next}, SV) $\;
            $T_{F\_Known} \leftarrow T_{F\_Known} \bigcup t_{next} \bigcup T_{infer-F}$\;
@@ -1072,7 +1076,7 @@ $MFS \leftarrow empty$ \;
             \If{ $ MFS \subseteq M_{Possible} $}{break\;}{}
 
        }
-       \Return $M_{Candidate}$
+       \Return $MFS$
 
 \caption{MFS identification with Replacing test cases strategy}
 \label{alg:two}
@@ -1426,6 +1430,14 @@ HSQLDB & 2rc8 & 18432 & \#1(2304) &\#2(1152) & \#3(1152)&\#1$>$\#2\#3(768) &768 
 JFlex & 1.4.1 & 36864 & \#1(12288) &\#2(12288) & -&\#1$>$\#2(6144) &6144 (25\%)\\ \hline
      -& 1.4.2 & 73728 & \#1(18432) &\#2(18432) & -&\#1$>$\#2(6144) &6144 (16.7\%)\\ \hline
 Grep  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
+CLI  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
+Joda  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
+Lang  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
+Jsoup  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
      -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
 \end{tabular}
 }
