@@ -614,18 +614,6 @@ The assumptions and corresponding inferring process vary with different FII appr
 %The algorithm of FIC\_BS is listed in the appendix, as well as the corresponding interpretation.
 We will give a simple example to illustrate how FIC\_BS works. For SUT($2^{4}$), assume the test case (1, 1, 1, 1) failed, then the FIC\_BS approach can be illustrated in Table \ref{fic-bs-identify}. In this table, to identify the MFS in $t_{0}$, FIC\_BS generated 4 more test cases, i.e., $t_{1}, t_{2}, t_{3}$ and $t_{4}$. Each of these test cases consists of two parts: the same part as in the original failing test case, called the \emph{fixed} part against $t_{0}$; and the part with values different from the original failing one, called the \emph{mutated} part against $t_{0}$. For example, for test case $t_{1}$, the \emph{fixed} part (against $t_{0}$) is (-, -, 1, 1) and the \emph{mutated} part is (0, 0, -, -). Note that if the number of values for each parameter is more than 2, these mutated parts do not necessarily have to be value (0, 0, -, -). For example, assume each parameter can be assigned to be 0, 1 or 2, then the mutated part can be (2, 2, -, -), (2, 1, -, -), (1, 2, -, -,) or (1, 1, -, -). In fact, we just need make them different from what are in $t_{0}$ (This is important to the approach we later propose in the paper).
 
-The overall theory of how FIC\_BS choose additional test cases, in short, is: 1) when the last generated test case fails, the next generated test case should increase the factors to be mutated, 2) when the last generated test case passes, the next generated test case should decrease the factors to be mutated. This is because, when last test case fails, it means that test case still contains some MFS, so we need to mutate more parts to break the MFS, such that the failure-inducing factors can be revealed; and when the last test case passes, it means that we have already broken some failure-inducing factors, the next step is to narrow down the mutated (those mutated parts may not all be the failure-inducing factors, and we should filter those non-failure-inducing ones to obtain the MFS).
-
-
-
----------------------------------------------------------------
-need to show how they get t1 to t4
----------------------------------------------------------------
-
-
-The MFS obtained by FIC\_BS is (-, 1, -, 1). This conclusion is based on the following \emph{safe value} assumption.
-
-
 %These test cases are generated to reduce the discrepancy between passing test cases and failing test cases as much as possible, and finally the only one difference between a failing test case and passing test case is determined to be failure-inducing (This process is inspired by delta debugging \cite{zeller2002simplifying}, which also focus on simplifying the differences between passing and failing test cases). For example, comparing test cases $t_{1}$ and $t_{2}$ in Table \ref{fic-bs-identify}, the only difference between them is the second factor (in bold), hence (-, 1, -, -) must be one parameter value of the MFS. Similarly,  by comparing $t_{3}$ and $t_{4}$, we can learn that (-, -, -, 1) must be another parameter value of the MFS. As $t_{4}$ fails, there is no more failure-inducing parameter values; otherwise, (0, 1, 0, 1) should pass as it only contains two failure-inducing parameter values (This conclusion is based on the assumption that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}, i.e., none of them is the part of any MFS). Hence, the MFS of $t_{0}$ is (-, 1, -, 1).
 
 %The pass of $t_{1}$ indicates that this test case breaks the MFS in the original test case \emph{t}. So, (1,-,-) should be one failure-causing factor, and as the other test cases ($t_{2}, t_{3}$) all failed , this means no other failure-inducing factors were broken (note that this conclusion is based on the assumption that $t$ only contains one MFS); therefore, the MFS in \emph{t} is (1,-,-).
@@ -643,6 +631,19 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 \end{tabular}}
 \end{table}
 
+The overall theory of how FIC\_BS select additional test cases, in short, is: 1) when the last generated test case fails, the next generated test case should increase the factors to be mutated, 2) when the last generated test case passes, the next generated test case should decrease the factors to be mutated. This is because, when last test case fails, it means that the last generated test case still contains some MFS, so we need to mutate more parameter values of original failing test case to break the MFS, such that the failure-inducing factors can be revealed; and when the last test case passes, it means that we have already broken some failure-inducing factors, the next step is to narrow down the mutated parameter values to obtain the failure-inducing factors. 
+
+In this example, as $t_{0}$ fails, FIC\_BS increases the mutated parts, so it chooses the left half of factors in $t_{0}$, and changed it to be 0. The result pass indicates that $t_{1}$ breaks some failure-inducing factors of $t_{0}$, and these failure-inducing factors must be contained in the left half. As $t_{1}$ passes, it next narrows down the scope of mutated parts, so it then breaks the left two factors of $t_{1}$ into halves (each half now contains 1 parameter value), then only keeps the new left half (first parameter) remaining mutated, i.e., value 0, and let the new right half (second parameter) un-mutated, i.e., value 1. The fail of $t_{2}$ indicates that $t_{2}$ does not break the failure-inducing factors. Based on this, we can get that the failure-inducing factors must lie on the right half (the second parameter value), and get that (-, 0, -, -) must be one failure-inducing factor. The following two test cases, i.e., $t_{3}$ and $t_{4}$, are generated in the same way as $t_{1}$ and $t_{2}$, and we will obtain another failure-inducing factor (-, -, -, 0) . Finally, we can get that (-, 0, -, 0) must be the MFS.
+
+
+To be more specific and formal, the conclusion that (-, 0, -, 0) is MFS is based on the following \emph{safe value} assumption, as well as the following two corollaries:
+
+
+%
+%---------------------------------------------------------------
+%need to show how they get t1 to t4
+%---------------------------------------------------------------
+
 
 %The mutated part of each additional test cases consists of safe
 %
@@ -652,15 +653,14 @@ $t_{4}$ & 0     & 1     & 0     & 1     & fail    \\ \hline
 Each parameter has \emph{safe value}, that is, one value not the part of any MFS, and the safe value is known in advance.
 \end{assumption}
 
-Let us get back to the previous example with this assumption. Considering all the additional generated test cases, i.e., $t_{1}$ to $t_{4}$ are mutated from the original failing test case $t_{0}$ with \emph{safe values}. In other word, (0, -, -, -), (-, 0, -, -,), (-, -, 0, -) and (-, -, -, 0) are all safe values. Consequently, the fail of $t_{1}$ has nothing to do with (0, -, -, -), and only relates to the remaining parameter values. On the other hand, the pass of $t_{2}$ indicates that
+%Let us get back to the previous example with this assumption. Considering all the additional generated test cases, i.e., $t_{1}$ to $t_{4}$ are mutated from the original failing test case $t_{0}$ with \emph{safe values}. In other word, (0, -, -, -), (-, 0, -, -,), (-, -, 0, -) and (-, -, -, 0) are all safe values. Consequently, the fail of $t_{1}$ has nothing to do with (0, -, -, -), and only relates to the remaining parameter values. On the other hand, the pass of $t_{2}$ indicates that
 
----------------------------------------------------------------
-need to re-say
----------------------------------------------------------------
+%---------------------------------------------------------------
+%need to re-say
+%---------------------------------------------------------------
 
 
 
-To be more specific and formal, we have the following two corollaries:
 
 \begin{corollary}\label{lemma:inferpassing}
  $\forall t \in T_{unknown}$, if $\exists t' \in T_{P\_known}$, such that $t$ is obtained by mutating some parameter values of $t'$, and the mutated part are all safe values, then $t$ must be a passing test case.
@@ -682,7 +682,9 @@ Assume $t$ is a passing test case, and $t¡¯$ is mutated from $t$, with the mutat
 
 As an example, assume (0, 0, 0, 0) is known to be a failing test case, and (-, -, -, 0) is safe value, then test case (0, 0, 0, 1) must be a failing test case.
 
-Based on these two corollaries, we can easily infer that some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assumes that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' of \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing;  the mutated part of the known failing test case $t_{16}$ against the unknown test case $t_{14}$ is still the safe value (-, -, 0, -), so $t_{14}$ should be inferred to be failing.
+Based on these two corollaries, we can easily infer that some unknown test cases to be failing or not. In table \ref{fic-bs-identify}, FIC\_BS assumes that (0, -, -, -),(-, 0, -, -) ,(-, -, 0, -) and (-, -, -, 0)  are \emph{safe values}. Then those inferred test cases are listed in Table \ref{realMFS-for-11} with column `State' of \emph{infer}. For example, the mutated part of $t_{2}$ against the known passing test case $t_{4}$ is the (-, -, 0, -), which is safe value, so $t_{2}$ should be inferred to be passing according to Corollary \ref{lemma:inferpassing};  as $t_{6}$ can be regarded as be mutated by $t_{14}$ by changed the first parameter value of $t_{14}$ to a safe value, and $t_{6}$ itself is a failing test case, hence, $t_{14}$  should be a failing test case according to Corollary \ref{lemma:inferfailing}.
+
+%T14 should be inferred by T6 (0, 1, 0, 1) which is known to fail. According to the newly expressed corollary 4.4 (The original one leads the wrong inference, and causes the mistake), as T6 is mutated by T14 by changed the first factor of T14 to a safe value, and T6 itself is a failing test case, hence, T14 should be a failing test case.
 
 \begin{table}[ht]
 \tbl{Test outcomes for MFS(- 1 - 1)\label{realMFS-for-11}}{
