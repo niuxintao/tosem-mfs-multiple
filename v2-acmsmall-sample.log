@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 JUN 2016 14:46
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  30 JUN 2016 17:02
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -440,9 +440,13 @@ LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10> not available
 
 [2] [3]
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 171.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 169.
 Requested font "pncb7t" at 10.0pt
  -> pncb7t
+
+
+LaTeX Warning: Reference `subsec:Formal:identi' on page 4 undefined on input li
+ne 169.
 
 
 LaTeX Warning: Reference `sec:method' on page 4 undefined on input line 171.
@@ -466,68 +470,31 @@ Underfull \hbox (badness 1342) in paragraph at lines 471--473
  []
 
 [8] [9]
-Underfull \hbox (badness 1102) in paragraph at lines 566--568
-[] [] \OT1/pnc/m/it/10 For $\OML/cmm/m/it/10 T[]$
- []
-
-Requested font "pncr7t" at 5.0pt
- -> pncr7t
 Requested font "pncri7t" at 7.0pt
  -> pncri7t
 Requested font "pncri7t" at 5.0pt
  -> pncri7t
-[10] [11]
-Missing character: There is no ¡ in font cmr10!
-Missing character: There is no ¯ in font cmr10!
-Missing character: There is no ¡ in font cmr10!
-Missing character: There is no ¯ in font cmr10!
-Missing character: There is no ¡ in font cmr10!
-Missing character: There is no ¯ in font cmr10!
 Requested font "pncr7t" at 6.0pt
  -> pncr7t
+Requested font "pncr7t" at 5.0pt
+ -> pncr7t
+
+Underfull \vbox (badness 3209) has occurred while \output is active []
+
+ [10]
+Underfull \vbox (badness 7907) has occurred while \output is active []
+
+ [11]
 Requested font "pncb7t" at 6.0pt
  -> pncb7t
 Requested font "pncb7t" at 5.0pt
  -> pncb7t
 
-Underfull \hbox (badness 6842) in paragraph at lines 713--714
-[]\OT1/pnc/m/n/10 After in-fer-ring these test cas-es, we can find that $\OMS/c
-msy/m/n/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[] [] T[]\OT1/cmr/m/n/10 )$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 713--714
-\OT1/pnc/m/n/10 = $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cm
-m/m/it/10 t[]; t[]; t[]; t[]\OMS/cmsy/m/n/10 g\OT1/cmr/m/n/10 )$ \OT1/pnc/m/n/1
-0 = (-, 1, -, 1), and $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 T[]
- [] T[]\OT1/cmr/m/n/10 ) [](\OML/cmm/m/it/10 T[] \OMS/cmsy/m/n/10 n
- []
-
-
-Underfull \hbox (badness 2065) in paragraph at lines 713--714
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 T[] [] T[]\OT1/cmr/m/n/10 )))$ \OT1/pnc/m/n/1
-0 = $\OMS/cmsy/m/n/10 C\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 t[];
- t[]; t[]; t[]; t[]; t[]; t[]; t[]; t[]; t[]; t[]; t[]\OMS/cmsy/m/n/10 g\OT1/cm
-r/m/n/10 )$ \OT1/pnc/m/n/10 = (1, -, -, -),
- []
-
-[12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13]
-[14]
-File: example-of-masking-effects1.eps Graphic file (type eps)
- <example-of-masking-effects1.eps>
-File: example-of-masking-effects2.eps Graphic file (type eps)
- <example-of-masking-effects2.eps>
-[15]
-Underfull \vbox (badness 2393) has occurred while \output is active []
-
- [16]
+[12] [13]
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 977.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1037.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -545,61 +512,83 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 989.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1049.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 989.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1049.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 989.
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1049.
+
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
 
-[17]
+
+LaTeX Warning: Reference `pro:dsmfs' on page 14 undefined on input line 1089.
+
+
+LaTeX Warning: Reference `subsec:Formal:identi' on page 14 undefined on input l
+ine 1089.
+
+[14]
+
+LaTeX Warning: Reference `lemma:inferpassing' on page 15 undefined on input lin
+e 1093.
+
+
+LaTeX Warning: Reference `lemma:inferfailing' on page 15 undefined on input lin
+e 1093.
+
 File: table.eps Graphic file (type eps)
- <table.eps> [18]
+<table.eps> [15]
 
-LaTeX Warning: Reference `eqn - 0p' on page 19 undefined on input line 1100.
+LaTeX Warning: Reference `eqn - 0p' on page 16 undefined on input line 1148.
 
+[16]
 
-LaTeX Warning: Reference `eqn - 00p' on page 19 undefined on input line 1102.
+LaTeX Warning: Reference `eqn - 00p' on page 17 undefined on input line 1150.
 
-
+[17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19]
-Underfull \vbox (badness 1540) has occurred while \output is active []
-
- [20]
-[21] [22]
+ [18]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1303.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1360.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
- [23]
-Underfull \vbox (badness 4940) has occurred while \output is active []
 
- [24]
-[25] [26]
+
+LaTeX Warning: Reference `modelHSQLDBJFlex' on page 19 undefined on input line 
+1364.
+
+[19] [20]
+Underfull \vbox (badness 7379) has occurred while \output is active []
+
+ [21]
+[22]
 File: study2.eps Graphic file (type eps)
  <study2.eps>
-Overfull \hbox (8.71243pt too wide) in paragraph at lines 1511--1512
+Overfull \hbox (8.71243pt too wide) in paragraph at lines 1571--1572
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 11.04436pt on input line 1514.
+LaTeX Warning: Float too large for page by 11.04436pt on input line 1574.
 
-[27] [28]
+
+Underfull \vbox (badness 1565) has occurred while \output is active []
+
+ [23]
+[24]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29]
-[30]
+ [25]
+[26]
 File: 2-way.eps Graphic file (type eps)
  <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
@@ -608,50 +597,50 @@ File: 4-way.eps Graphic file (type eps)
  <4-way.eps>
 Underfull \vbox (badness 2418) has occurred while \output is active []
 
+ [27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+
+[29] [30]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [31]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [32]
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1733 replaced by U+FFFD.
-
-[33]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
-[36] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37]
+ [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38])
-[39]
-Overfull \hbox (112.90709pt too wide) in paragraph at lines 2010--2063
+ [33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34])
+[35]
+Overfull \hbox (112.90709pt too wide) in paragraph at lines 2070--2123
 [] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2066.
+               Default added (so using `tbp') on input line 2126.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2092.
+               Default added (so using `tbp') on input line 2152.
 
 
-LaTeX Warning: Float too large for page by 22.05pt on input line 2200.
+LaTeX Warning: Float too large for page by 22.05pt on input line 2260.
 
 [1
 
@@ -662,12 +651,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3938 strings out of 430478
- 46624 string characters out of 3191502
- 218491 words of memory out of 3000000
- 7015 multiletter control sequences out of 15000+200000
+ 3931 strings out of 430478
+ 46436 string characters out of 3191502
+ 218360 words of memory out of 3000000
+ 7010 multiletter control sequences out of 15000+200000
  25111 words of font info for 77 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,29p,2361b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (43 pages).
+Output written on v2-acmsmall-sample.pdf (39 pages).
