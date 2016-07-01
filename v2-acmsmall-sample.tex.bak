@@ -1339,6 +1339,14 @@ JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
       &1.4.2 &  10745 &61 &  \#98 \& \#93  \\
 Grep  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
       &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
+Cli  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
+      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
+Joda  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
+      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
+Lang  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
+      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
+Jsoup  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
+      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
 \hline\end{tabular}
 }
 \end{table}
@@ -1355,110 +1363,110 @@ We further built the testing file for each version of the software listed in Tab
 
 Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed model information is shown in Table \ref{modelHSQLDBJFlex} for HSQLDB, JFLex and Grep, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
 
-\begin{table}[ht]
-\tbl{Input models of HSQLDB, JFlex and Grep \label{modelHSQLDBJFlex}}{
-\setlength\tabcolsep{0.8pt}
-\begin{tabular}{llllll}
-\multicolumn{6}{c}{ \emph{HSQLDB}} \\
-  \hline
-\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
-  \hline
- \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{3}  \\
-  \multicolumn{3}{c}{  existed form}  & \multicolumn{3}{c}{2}  \\
-   \multicolumn{3}{c}{ resultSetTypes}  & \multicolumn{3}{c}{3} \\
-   \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ 2} \\
-  \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{ sql.enforce\_strict\_size}  & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  sql.enforce\_names}  &\multicolumn{3}{c}{2} \\
-  \multicolumn{3}{c}{ sql.enforce\_refs }  &\multicolumn{3}{c}{2}  \\
-    \hline
-%   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
+%\begin{table}[ht]
+%\tbl{Input models of HSQLDB, JFlex and Grep \label{modelHSQLDBJFlex}}{
+%\setlength\tabcolsep{0.8pt}
+%\begin{tabular}{llllll}
+%\multicolumn{6}{c}{ \emph{HSQLDB}} \\
+%  \hline
+%\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
+%  \hline
+% \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{3}  \\
+%  \multicolumn{3}{c}{  existed form}  & \multicolumn{3}{c}{2}  \\
+%   \multicolumn{3}{c}{ resultSetTypes}  & \multicolumn{3}{c}{3} \\
+%   \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ 2} \\
+%  \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{ sql.enforce\_strict\_size}  & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  sql.enforce\_names}  &\multicolumn{3}{c}{2} \\
+%  \multicolumn{3}{c}{ sql.enforce\_refs }  &\multicolumn{3}{c}{2}  \\
 %    \hline
-%    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
-%      \hline
-   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-     \hline
-    2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{2}\\
-      & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
-      & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{4}\\
-    2.2.5 &\multicolumn{2}{c}{  multiple} & \multicolumn{3}{c}{3}\\
-       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
-    2.2.9 & \multicolumn{2}{c}{ duplicate }& \multicolumn{3}{c}{3}\\
-     & \multicolumn{2}{c}{ defailure\_commit} & \multicolumn{3}{c}{2} \\
-        \hline
-   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
-   \hline
-   2.0rc8 & \multicolumn{3}{c}{$2^{9} \times 3^{2} \times 4^{1}$} &\multicolumn{2}{c}{} \\
-    2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
-     2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} \\ \hline
-\end{tabular}
-%\hspace{1em}
-\begin{tabular}{llllll}
-\multicolumn{6}{c}{\emph{JFlex}} \\
-  \hline
-\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
-  \hline
-
- \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{3}  \\
-  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{4}  \\
-
-   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{2}  \\
-   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{2}  \\
-      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{2}  \\
-   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{2}  \\
-     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{2}  \\
-
-    \hline
-   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-     \hline
-    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{3}\\
-      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{2}\\
-    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{3}\\
-       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{2}\\
-     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{2}\\
-
-        \hline
-   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
-   \hline
-  1.4.1  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
-   1.4.2 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
-\end{tabular}
-
-\begin{tabular}{llllll}
-\multicolumn{6}{c}{\emph{Grep}} \\
-  \hline
-\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
-  \hline
-
- \multicolumn{3}{c}{ -E } & \multicolumn{3}{c}{2}  \\
-  \multicolumn{3}{c}{  -i }  & \multicolumn{3}{c}{2}  \\
-
-   \multicolumn{3}{c}{ -V or --color } & \multicolumn{3}{c}{3}  \\
-
-    \hline
-   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-     \hline
-    2.12 & \multicolumn{2}{c}{ ascii} & \multicolumn{3}{c}{2}\\
-      & \multicolumn{2}{c}{ command} & \multicolumn{3}{c}{2}\\
-    &\multicolumn{2}{c}{ word } & \multicolumn{3}{c}{2}\\
-       & \multicolumn{2}{c}{ charset} & \multicolumn{3}{c}{2}\\
-  2.22  &\multicolumn{2}{c}{ -A or -B or -C } & \multicolumn{3}{c}{3}\\
-       & \multicolumn{2}{c}{ value} & \multicolumn{3}{c}{4}\\
-       & \multicolumn{2}{c}{ only-matching} & \multicolumn{3}{c}{2}\\
-      & \multicolumn{2}{c}{ --count} & \multicolumn{3}{c}{2}\\
-        \hline
-   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
-   \hline
-  2.12  & \multicolumn{3}{c}{$2^{6} \times 3^{1}  $} &\multicolumn{2}{c}{} \\
-   2.22 &  \multicolumn{3}{c}{$2^{4} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
-\end{tabular}
-}
-\end{table}
+%%   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
+%%    \hline
+%%    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
+%%      \hline
+%   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+%     \hline
+%    2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{2}\\
+%      & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
+%      & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{4}\\
+%    2.2.5 &\multicolumn{2}{c}{  multiple} & \multicolumn{3}{c}{3}\\
+%       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
+%    2.2.9 & \multicolumn{2}{c}{ duplicate }& \multicolumn{3}{c}{3}\\
+%     & \multicolumn{2}{c}{ defailure\_commit} & \multicolumn{3}{c}{2} \\
+%        \hline
+%   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
+%   \hline
+%   2.0rc8 & \multicolumn{3}{c}{$2^{9} \times 3^{2} \times 4^{1}$} &\multicolumn{2}{c}{} \\
+%    2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
+%     2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} \\ \hline
+%\end{tabular}
+%%\hspace{1em}
+%\begin{tabular}{llllll}
+%\multicolumn{6}{c}{\emph{JFlex}} \\
+%  \hline
+%\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
+%  \hline
+%
+% \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{3}  \\
+%  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{4}  \\
+%
+%   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{2}  \\
+%   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{2}  \\
+%      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{2}  \\
+%   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{2}  \\
+%     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{2}  \\
+%
+%    \hline
+%   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+%     \hline
+%    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{3}\\
+%      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{2}\\
+%    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{3}\\
+%       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{2}\\
+%     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{2}\\
+%
+%        \hline
+%   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
+%   \hline
+%  1.4.1  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
+%   1.4.2 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
+%\end{tabular}
+%
+%\begin{tabular}{llllll}
+%\multicolumn{6}{c}{\emph{Grep}} \\
+%  \hline
+%\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
+%  \hline
+%
+% \multicolumn{3}{c}{ -E } & \multicolumn{3}{c}{2}  \\
+%  \multicolumn{3}{c}{  -i }  & \multicolumn{3}{c}{2}  \\
+%
+%   \multicolumn{3}{c}{ -V or --color } & \multicolumn{3}{c}{3}  \\
+%
+%    \hline
+%   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
+%     \hline
+%    2.12 & \multicolumn{2}{c}{ ascii} & \multicolumn{3}{c}{2}\\
+%      & \multicolumn{2}{c}{ command} & \multicolumn{3}{c}{2}\\
+%    &\multicolumn{2}{c}{ word } & \multicolumn{3}{c}{2}\\
+%       & \multicolumn{2}{c}{ charset} & \multicolumn{3}{c}{2}\\
+%  2.22  &\multicolumn{2}{c}{ -A or -B or -C } & \multicolumn{3}{c}{3}\\
+%       & \multicolumn{2}{c}{ value} & \multicolumn{3}{c}{4}\\
+%       & \multicolumn{2}{c}{ only-matching} & \multicolumn{3}{c}{2}\\
+%      & \multicolumn{2}{c}{ --count} & \multicolumn{3}{c}{2}\\
+%        \hline
+%   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
+%   \hline
+%  2.12  & \multicolumn{3}{c}{$2^{6} \times 3^{1}  $} &\multicolumn{2}{c}{} \\
+%   2.22 &  \multicolumn{3}{c}{$2^{4} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
+%\end{tabular}
+%}
+%\end{table}
 
 We then generated the exhaustive test set consisting of all possible interactions of these options. For each of them, we executed the prepared testing file. We recorded the output of each test case \footnote{A test case is a test configuration (consists of the assignments to the options of the SUT) in our experiments. The testing file of each software will be executed with given test configurations. } to observe whether there were test cases containing prior MFS that did not produce the corresponding bug. Later we refer to those test cases that contain the MFS but did not trigger the expected failure as the \emph{masked} test cases.
 \subsubsection{Results and discussion}\label{sec:emprical:exist:rs}
@@ -1516,11 +1524,14 @@ J1.4.1 & $2^{10} \times 3^{2} \times 4^{1}$& $ e_{1} > e_{2} $ &$(0_{0})_{e_{1}}
 J1.4.2 & $2^{11} \times 3^{2} \times 4^{1}$& $e_{1} > e_{2}$ &$(1_{0},2_{1})_{e_{1}}, (0_{1})_{e_{2}}  $\\ \hline
 G2.12 & $2^{5} \times 3^{1} \times 4^{1} $& $ e_{1} > e_{2} > e_{3} $ &$(0_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (3_{0},4_{1})_{e_{3}},(3_{1},4_{1})_{e_{3}},(3_{2},4_{1})_{e_{3}} $ \\ \hline
 G2.22 & $2^{4} \times 3^{2} \times 4^{1} $& $e_{1} > e_{2} > e_{3}$ &$(0_{0})_{e_{1}}, (1_{0},2_{3})_{e_{2}}, (1_{1},2_{3})_{e_{2}},(3_{0},4_{0})_{e_{3}} $ \\ \hline
-syn1 & $2^{7}\times 3^{2}\times 4^{1}$& $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (2_{0},7_{0})_{e_{1}}, (3_{1},5_{1})_{e_{2}}, (4_{0})_{e_{2}}, (6_{0},7_{2})_{e_{3}}, (6_{1},8_{2})_{e_{4}}$ \\ \hline
-syn2 & $2^{4} \times 3^{2} \times 4^{1} $ & $e_{3} > e_{2} > e_{1} $ &$ (2_{0},3_{0})_{e_{1}}, (2_{0},5_{1})_{e_{1}}, (4_{0},6_{1})_{e_{2}}, (3_{1},6_{0})_{e_{2}}, (2_{2},4_{3})_{e_{3}}$\\ \hline
-syn3 & $2^{4}\times 3^{3} \times 4^{1}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0},1_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (2_{1},3_{1})_{e_{2}}, (4_{1},7_{1})_{e_{3}}, (5_{2},6_{2})_{e_{4}}$\\ \hline
-syn4 & $2^{7}\times 3^{2}\times 4^{1}$ & $e_{5} > e_{4} > e_{3}> e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (1_{1},3_{0})_{e_{2}}, (2_{1})_{e_{3}}, (4_{0},5_{0})_{e_{4}}, (6_{0})_{e_{5}} $\\ \hline
-syn5 & $3^{7}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (2_{0},3_{0})_{e_{2}}, (2_{1},4_{1})_{e_{2}}, (1_{2},2_{2})_{e_{3}}, (0_{2},6_{0})_{e_{4}} $\\ \hline
+C1 & $2^{7}\times 3^{2}\times 4^{1}$& $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (2_{0},7_{0})_{e_{1}}, (3_{1},5_{1})_{e_{2}}, (4_{0})_{e_{2}}, (6_{0},7_{2})_{e_{3}}, (6_{1},8_{2})_{e_{4}}$ \\ \hline
+C2 & $2^{4} \times 3^{2} \times 4^{1} $ & $e_{3} > e_{2} > e_{1} $ &$ (2_{0},3_{0})_{e_{1}}, (2_{0},5_{1})_{e_{1}}, (4_{0},6_{1})_{e_{2}}, (3_{1},6_{0})_{e_{2}}, (2_{2},4_{3})_{e_{3}}$\\ \hline
+Joda1 & $2^{4}\times 3^{3} \times 4^{1}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0},1_{0})_{e_{1}}, (1_{1},2_{1})_{e_{2}}, (2_{1},3_{1})_{e_{2}}, (4_{1},7_{1})_{e_{3}}, (5_{2},6_{2})_{e_{4}}$\\ \hline
+Joda2 & $2^{7}\times 3^{2}\times 4^{1}$ & $e_{5} > e_{4} > e_{3}> e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (1_{1},3_{0})_{e_{2}}, (2_{1})_{e_{3}}, (4_{0},5_{0})_{e_{4}}, (6_{0})_{e_{5}} $\\ \hline
+L1 & $3^{7}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (2_{0},3_{0})_{e_{2}}, (2_{1},4_{1})_{e_{2}}, (1_{2},2_{2})_{e_{3}}, (0_{2},6_{0})_{e_{4}} $\\ \hline
+L2 & $3^{7}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (2_{0},3_{0})_{e_{2}}, (2_{1},4_{1})_{e_{2}}, (1_{2},2_{2})_{e_{3}}, (0_{2},6_{0})_{e_{4}} $\\ \hline
+Jsoup1 & $3^{7}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (2_{0},3_{0})_{e_{2}}, (2_{1},4_{1})_{e_{2}}, (1_{2},2_{2})_{e_{3}}, (0_{2},6_{0})_{e_{4}} $\\ \hline
+Jsoup2 & $3^{7}$ & $e_{4} > e_{3} > e_{2}> e_{1}$ &$ (0_{0})_{e_{1}}, (2_{0},3_{0})_{e_{2}}, (2_{1},4_{1})_{e_{2}}, (1_{2},2_{2})_{e_{3}}, (0_{2},6_{0})_{e_{4}} $\\ \hline
 \end{tabular}
 }
 \end{table}
@@ -2144,24 +2155,24 @@ Jsoup2  & 0.67           & 0.33         & 0.33          & 0 & 0 & 0.67      & 0 
 \setlength\tabcolsep{2pt}
 \begin{tabular}{|l|lll|lll|lll|lll|lll|lll|lll|}
 \hline
-        & \multicolumn{3}{l}{Accurate} & \multicolumn{3}{l|}{Super} & \multicolumn{3}{l|}{Sub}      & \multicolumn{3}{l|}{Ignore} & \multicolumn{3}{l|}{Irrelevant} & \multicolumn{3}{l|}{Aggregate} & \multicolumn{3}{l|}{TestNum} \\ \hline
-Subject & Rep   & p(R,D)    & p(R,O)   & Rep  & p(R,D)   & p(R,O)   & Rep  & p(R,D)      & p(R,O)   & Rep   & p(R,D)   & p(R,O)   & Rep    & p(R,D)     & p(R,O)    & Rep    & p(R,D)    & p(R,O)    & Rep    & p(R,D)   & p(R,O)   \\ \hline
-Hsql1   & 0.54  & 7E-50  & 2E-60 & 0.02 & 6E-46 & 8E-32 & 0.17 & 0.33 & 2E-57 & 0.27  & 3E-48 & 6E-41 & 0.27   & 3E-48   & 6E-41  & 0.67   & 3E-51  & 1E-50  & 17.72  & 3E-70 & 1E-76 \\
-Hsql2   & 0.83  & NaN       & NaN      & 0.17 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.92   & NaN       & 0         & 11.30  & 8E-67 & 9E-63 \\
-Hsql3   & 0.67  & 0         & 0        & 0.11 & 0        & 0        & 0.22 & 0           & 0        & 0.00  & 0        & NaN      & 0.00   & 0          & 0         & 0.89   & 0         & 0         & 13.13  & 9E-68 & 4E-66 \\
-Jflex1  & 1.00  & 0         & NaN      & 0.00 & 0        & NaN      & 0.00 & NaN         & NaN      & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 1.00   & 0         & 0         & 9.68   & 1E-77 & 4E-96 \\
-Jflex2  & 0.83  & NaN       & NaN      & 0.17 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.92   & NaN       & 0         & 13.12  & 1E-83 & 6E-91 \\
-Grep1   & 0.76  & 5E-37  & 1E-39 & 0.04 & 1E-35 & 3E-19 & 0.08 & 3E-07    & 6E-43 & 0.12  & 0.53     & 3E-32 & 0.12   & 0.53       & 2E-65  & 0.82   & 8E-26  & 3E-54  & 13.61  & 2E-53 & 5E-45 \\
-Grep2   & 0.86  & 3E-37  & 3E-37 & 0.02 & 0        & 0        & 0.07 & 4E-10    & 1E-38 & 0.05  & 0.20     & 3E-21 & 0.05   & 0.20       & 5E-64  & 0.91   & 8E-28  & 7E-53  & 14.33  & 5E-51 & 7E-45 \\
-Cli1    & 1.23  & NaN       & NaN      & 0.08 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.96   & NaN       & 0         & 6.77   & 0        & 0        \\
-Cli2    & 0.82  & NaN       & 0        & 0.18 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & 0        & 0.00   & NaN        & 0         & 0.94   & NaN       & 0         & 7.53   & 0        & 0        \\
-Joda1   & 0.91  & NaN       & 0        & 0.09 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & 0        & 0.00   & NaN        & 0         & 0.97   & NaN       & 0         & 9.61   & 3E-58 & 5E-57 \\
-Joda2   & 1.00  & 0         & 0        & 0.00 & 0        & NaN      & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 1.00   & 0         & 0         & 9.19   & 1E-57 & 1E-55 \\
-Joda3   & 1.00  & 0         & 0        & 0.00 & 0        & NaN      & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 1.00   & 0         & 0         & 5.37   & 6E-50 & 2E-47 \\
-Lang1   & 0.86  & NaN       & 0        & 0.14 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.95   & NaN       & 0         & 9.14   & 0        & 0        \\
-Lang2   & 0.83  & NaN       & NaN      & 0.17 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.92   & NaN       & 0         & 7.21   & 2E-48 & 2E-47 \\
-Jsoup1  & 0.11  & 2E-17  & 2E-29 & 0.11 & 0        & 0        & 1.23 & 5E-18    & 1E-31 & 0.15  & 3E-10 & 2E-14 & 0.98   & 6E-35   & 4E-05  & 0.41   & 2E-37  & 3E-04  & 14.49  & 2E-48 & 4E-44 \\
-Jsoup2  & 0.67  & NaN       & 0        & 0.33 & NaN      & 0        & 0.00 & NaN         & 0        & 0.00  & NaN      & NaN      & 0.00   & NaN        & 0         & 0.83   & NaN       & 0         & 11.67  & 0        & 0        \\ \hline
+        & Accurate &             &             & Super &             &             & Sub  &             &             & Ignore &             &             & Irrelevant &             &             & Aggregate &             &             & TestNum &             &             \\ \hline
+Subject & Rep      & p(R,D)      & p(R,O)      & Rep   & p(R,D)      & p(R,O)      & Rep  & p(R,D)      & p(R,O)      & Rep    & p(R,D)      & p(R,O)      & Rep        & p(R,D)      & p(R,O)      & Rep       & p(R,D)      & p(R,O)      & Rep     & p(R,D)      & p(R,O)      \\ \hline
+Hsql1   & 0.54     & 2.36241E-51 & 4.26434E-62 & 0.02  & 7.62853E-45 & 2.13891E-30 & 0.17 & 0.75        & 1.64502E-62 & 0.27   & 4.87923E-50 & 1.14388E-42 & 0.27       & 4.87923E-50 & 1.14388E-42 & 0.67      & 3.4152E-52  & 6.67377E-52 & 17.72   & 6.42772E-69 & 2.99558E-75 \\
+Hsql2   & 0.83     & NaN         & NaN         & 0.17  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.92      & NaN         & 0           & 11.29   & 2.68789E-69 & 3.09611E-65 \\
+Hsql3   & 0.67     & 0           & 0           & 0.11  & 0           & 0           & 0.22 & 0           & 0           & 0      & 0           & NaN         & 0          & 0           & 0           & 0.89      & 0           & 0           & 13.13   & 2.19778E-68 & 9.86817E-67 \\
+Jflex1  & 1        & 0           & NaN         & 0     & 0           & NaN         & 0    & NaN         & NaN         & 0      & NaN         & NaN         & 0          & NaN         & 0           & 1         & 0           & 0           & 9.68    & 3.54145E-80 & 1.09933E-98 \\
+Jflex2  & 0.83     & NaN         & NaN         & 0.17  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.92      & NaN         & 0           & 13.12   & 9.82961E-86 & 4.53225E-93 \\
+Grep1   & 0.76     & 1.55219E-34 & 4.6554E-37  & 0.04  & 1.26775E-36 & 2.97058E-20 & 0.08 & 6.00436E-08 & 1.51335E-44 & 0.12   & 0.23        & 3.77799E-30 & 0.12       & 0.23        & 3.16986E-63 & 0.82      & 8.19382E-20 & 1.71884E-48 & 13.63   & 6.81012E-51 & 1.30562E-42 \\
+Grep2   & 0.86     & 1.81743E-36 & 1.81743E-36 & 0.02  & 0           & 0           & 0.07 & 1.0267E-13  & 1.02707E-41 & 0.05   & 0.56        & 2.09781E-22 & 0.05       & 0.56        & 7.31382E-65 & 0.91      & 1.69117E-25 & 4.68886E-51 & 14.29   & 1.52939E-52 & 2.22004E-46 \\
+Cli1    & 1.23     & NaN         & NaN         & 0.08  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.96      & NaN         & 0           & 6.77    & 0           & 0           \\
+Cli2    & 0.82     & NaN         & 0           & 0.18  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & 0           & 0          & NaN         & 0           & 0.94      & NaN         & 0           & 7.53    & 0           & 0           \\
+Joda1   & 0.91     & NaN         & 0           & 0.09  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & 0           & 0          & NaN         & 0           & 0.97      & NaN         & 0           & 9.61    & 7.19928E-60 & 1.0372E-58  \\
+Joda2   & 1        & 0           & 0           & 0     & 0           & NaN         & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 1         & 0           & 0           & 9.19    & 1.73543E-56 & 2.18529E-54 \\
+Joda3   & 1        & 0           & 0           & 0     & 0           & NaN         & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 1         & 0           & 0           & 5.38    & 1.33447E-48 & 4.45484E-46 \\
+Lang1   & 0.86     & NaN         & 0           & 0.14  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.95      & NaN         & 0           & 9.14    & 0           & 0           \\
+Lang2   & 0.83     & NaN         & NaN         & 0.17  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.92      & NaN         & 0           & 7.22    & 6.43636E-49 & 7.50759E-48 \\
+Jsoup1  & 0.11     & 2.23042E-15 & 2.00736E-27 & 0.11  & 0           & 0           & 1.23 & 1.13037E-17 & 1.28205E-30 & 0.15   & 1.29948E-09 & 6.90895E-14 & 0.97       & 2.14291E-30 & 0.000256415 & 0.41      & 2.46405E-33 & 0.000338439 & 14.45   & 2.56136E-40 & 6.69897E-36 \\
+Jsoup2  & 0.67     & NaN         & 0           & 0.33  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.83      & NaN         & 0           & 11.67   & 0           & 0           \\ \hline
 \end{tabular}}
 \end{table}
 

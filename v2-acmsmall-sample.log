@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  30 JUN 2016 17:02
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  1 JUL 2016 13:37
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -581,6 +581,10 @@ Overfull \hbox (8.71243pt too wide) in paragraph at lines 1571--1572
 LaTeX Warning: Float too large for page by 11.04436pt on input line 1574.
 
 
+LaTeX Warning: Reference `evaluation_all' on page 23 undefined on input line 15
+81.
+
+
 Underfull \vbox (badness 1565) has occurred while \output is active []
 
  [23]
@@ -589,8 +593,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25]
 [26]
+
+LaTeX Warning: Reference `comparewithfda' on page 27 undefined on input line 17
+25.
+
+
+LaTeX Warning: Reference `evaluation_all' on page 27 undefined on input line 17
+25.
+
 File: 2-way.eps Graphic file (type eps)
- <2-way.eps>
+<2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
@@ -627,10 +639,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [34])
 [35]
-Overfull \hbox (112.90709pt too wide) in paragraph at lines 2070--2123
-[] 
- []
-
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 2126.
@@ -640,23 +648,31 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 2152.
 
 
-LaTeX Warning: Float too large for page by 22.05pt on input line 2260.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 2179.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 2206.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 2233.
 
 [1
 
-] [2] [3] [4]
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
+] [2] [3] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3931 strings out of 430478
- 46436 string characters out of 3191502
- 218360 words of memory out of 3000000
- 7010 multiletter control sequences out of 15000+200000
+ 3929 strings out of 430478
+ 46442 string characters out of 3191502
+ 199299 words of memory out of 3000000
+ 7008 multiletter control sequences out of 15000+200000
  25111 words of font info for 77 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,18n,29p,2361b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (39 pages).
+Output written on v2-acmsmall-sample.pdf (38 pages).
