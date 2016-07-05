@@ -921,114 +921,7 @@ In this paper, we randomly select one test case from the candidate test case set
 
 % which during the originally test, record the test cases that trigger other test cases and next replacement process will consult this set to avoid some test cases with a high probability to trigger other failures.
 
-%To explain the \emph{suspiciousness} notion, we first introduce the \emph{suspiciousness} of a parameter value $o$ with respect to a particular failure $F_{i},  1 \leq i  \leq L$. We use $all(o)$ to represent the number of executed test cases that contain this parameter value, and $f_{i}(o)$ to indicate the number of test cases that trigger the failure $F_{i}$, and contain this parameter value. Then, the \emph{suspiciousness} of a parameter value \emph{o} with respect to the given failure $F_{i}$, i.e., $\mathcal{SP}(o, F_{i})$, is $\frac{f_{i}(o)}{all(o) + 1}$. This heuristic formula is based on the idea that if a parameter value frequently appears in the test cases that trigger a particular failure, then it is more likely to be an inducing factor that triggers this failure. We add 1 in the denominator for two reasons:  (1) to avoid division by zero when the parameter value has never appeared before, (2) to reduce the bias when a parameter value rarely appears in the test set but coincidentally appears in a failing test case with a particular failure.
-%
-%Table \ref{suspciousness_example} gives an example to compute the suspiciousness of parameter values with respect to particular failures. The left part of this table gives 4 executed test cases with their outcomes, in which failures $F_{1}$ and $F_{2}$ are triggered. The right part shows the suspiciousness of each parameter value w.r.t. these two failures. Specifically, consider the parameter $P_{1}$ taking value 0. There are three test cases $t_{1}$, $t_{2}$, and $t_{4}$ that contain this parameter value, and only  $t_{2}$ triggered $F_{1}$. Hence, $\mathcal{SP}(P_{1} = 0, F_{1})$ = $\frac{f_{1}(o)}{all(o) + 1}$ = $\frac{1}{3 + 1}$ = 1/4.
-%
-%\begin{table}[ht]
-%\centering
-%\tbl{Suspiciousness example \label{suspciousness_example}}{
-%  \begin{tabular}{ccc}
-%ID &  Test cases executed& Outcomes  \\ \hline
-%$t_{1}$ &(0, 0, 0)& $Pass$ \\
-%$t_{2}$ &(0, 1, 1)&  $F_{1}$ \\
-%$t_{3}$ &(1, 1, 0)&  $F_{2}$\\
-%$t_{4}$ &(0, 1, 1)&  $F_{2}$\\
-%\hline
-%  \end{tabular}
-%  \hspace{1em}
-%  \begin{tabular}{c|c|ccc}
-% \multicolumn{4}{c}{  Suspiciousness for $F1$} \\ \hline
-%    & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
-% $0$ & 1/4 &  0   & 0 \\
-% $1$ &  0  &  $ 1/4 $  & $ 1/3$ \\
-%\hline
-% \multicolumn{4}{c}{  Suspiciousness for $F2$} \\ \hline
-% & $P_{1}$ & $P_{2}$ & $P_{3}$ \\ \hline
-%$0$ & $1/4$  & 0   & $1/3$\\
-%$1$ & $1/2$  & $1/2$  &  $1/3$ \\
-%\hline
-%  \end{tabular}
-%  }
-%  \end{table}
-%
-%
-%With the \emph{suspiciousness} associated with a parameter value, we then define the \emph{suspiciousness} between a test case $t$ and a particular failure $F_{i}$ as:
-%
-%\begin{displaymath} \mathcal{SP}(t,F_{i})  = \frac{1}{k}\sum_{o \in t} \mathcal{SP}(o, F_{i}) \tag{EQ1} \label{eqn - 00p} \end{displaymath}
-%
-%where $k$ is the number of parameters in $t$, and $o$ is the specific parameter value in $t$. The \emph{suspiciousness} of a test case w.r.t. a failure is actually the average \emph{suspiciousness} of each parameter value in the test case w.r.t. this failure. For example, considering an unexecuted test case (1, 0, 0). With the suspiciousness of all the parameter values listed in Table \ref{suspciousness_example}, $\mathcal{SP}((1,0,0),F_{1})$ = $1/3 \times (0 + 0 + 0 ) = 0 $ and $\mathcal{SP}((1,0,0),F_{2})$ = $1/3 \times (1/2 + 0 + 1/3 ) = 5/18$.
-%
-%
-%For a selected test case, we want its ability  to trigger failures of other failures to be as small as possible, such that the masking effects can be alleviated. In practice, the \emph{suspiciousness} varies between test cases and different failures.  As a result, we cannot always find a test case that, for any failure, the \emph{suspiciousness} of this test case w.r.t. that failure is the least.
-%
-%Table \ref{minimal_maximal} illustrates such a scenario for SUT($2^4$). Suppose the FII approach is analysing MFS for failure $F_{1}$, and needs to replace test case (0,0,0,0) with fixed part (0, -, -, -) that triggers failures of other failures, i.e., $F_{2}$ or $F_{3}$.  This table lists five candidate test cases, with their suspiciousness with $F_{2}$ and $F_{3}$ given in the corresponding columns.  It is obvious that $t_{1}$ has the least suspiciousness with failure $F_{3}$ and $t_{2} $ has the least suspiciousness with $F_{2}$. These two test cases, however, should not be selected because their suspiciousness with another failure is too high. Instead, $t_{3}$ is a good choice as both its suspiciousness with $F_{2}$ and $F_{3}$ is not high (The higher one is just 0.4).
-%
-%\begin{table}[ht]
-%\centering
-%\tbl{Select minimal maximal suspiciousness \label{minimal_maximal}}{
-%  \begin{tabular}{ccccc}
-%ID & Candidate test cases& $\mathcal{SP}(t,F_{2})$& $\mathcal{SP}(t,F_{3})$ & $Max\ \mathcal{SP}(t, F_{m}), m = 2,3$ \\ \hline
-%$t_{1}$ & (0, 0, 0, 1)&     0.7  & 0.2 &   $\mathcal{SP}(t_{1},F_{2})$ : 0.7 \\
-%$t_{2}$ &(0, 0, 1, 0)&      0.2  & 0.6 &   $\mathcal{SP}(t_{2},F_{3})$ : 0.6\\
-%$\textbf{t}_{\textbf{3}}$ &\textbf{(0, 0, 1, 1)}&\textbf{0.4} &  \textbf{0.3} & $\textbf{$\mathcal{SP}$(}\textbf{t}_{\textbf{3}},\textbf{F}_{\textbf{2}}\textbf{)}$ : \textbf{0.4}\\
-%$t_{4}$ &(0, 1, 0, 0)&   0.3 & 0.5  &$\mathcal{SP}(t_{4},F_{3})$ : 0.5\\
-%$t_{5}$ &(0, 1, 0, 1)&   0.5 & 0.3  &$\mathcal{SP}(t_{5},F_{2})$ : 0.5\\
-%\hline
-%  \end{tabular}
-%  }
-%  \end{table}
-%
-%With this in mind, we have to settle for a test case, such that the most likely failure (except for the one that is currently analysed) it can trigger should be the least likely to be triggered when compared with that of other test cases. In other words, we need to find a test case, so that the maximal \emph{suspiciousness} of this test case w.r.t. a given failure is minimized. Formally, we should choose a test case $t$, such that,
-%
-%\begin{displaymath} \min_{t \in R} \max_{1 \leq i \leq L \& i \neq m}  \mathcal{SP}(t, F_{i}) \tag{EQ2} \label{eqn - 0p}\end{displaymath}
-%
-%
-%where $L$ is the number of types of failures, and $m$ is the current analysed failure. $R$ is the set of all possible test cases that contain the $fixed$ part except those that have been tested. As the $fixed$ part is a set of parameter values which can be deemed as a schema, then obviously $R = \mathcal{T}(fixed)  \backslash T_{executed}$, where $\mathcal{T}(fixed)$ represents all the test cases that contain this fixed part and $T_{executed}$ represents those executed test cases. Additional test cases need to be selected in set $R$, so that FII approaches can work properly.
 
-%We can further resolve this problem. Consider the test case $t$ satisfies \ref{eqn - 0p}. Without loss of generality, we assume that the failure $F_{i}, i \neq m $ is the failure with which the test case $t$ has the maximal \emph{suspiciousness} compared to the other failures. Then, a natural property for $t$ is that $Sp(t, F_{i}) <= Sp(t', F_{i})$, in which test case $t'$ is any other test case which has the maximal suspiciousness with failure $F_{i}$ than other failures.  For example in Table \ref{minimal_maximal}, test cases $t_{1}$,$t_{3}$ and $t_{5}$ have the maximal \emph{suspiciousness} with $F_{2}$ than other failures. Obviously, $ Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{5}, F_{2}) = 0.5 < Sp(t_{1}, F_{2}) = 0.7$.  This property can be formulated as :
-%
-%\begin{alignat}{2}
-%\min\quad &  Sp(t, F_{i}) &{}& \tag{EQ3} \label{eqn - lp}\\
-%\mbox{s.t.}\quad
-%&t \in R &\quad& {}\nonumber\\
-%&Sp(t, F_{i}) > Sp(t, F_{j}), &{}& 1 \leq j \leq L\ \&\ j\neq i, m \nonumber
-%\end{alignat}
-%
-%
-%In fact, for each failure $F_{i}, 1 \leq i \leq L \ \& \ i \neq m$, there exists a test case satisfies \ref{eqn - lp}. In other words, for each failure $F_{i}$, exists a test case such that it has the maximal suspiciousness with $F_{i}$ than other failures, and the its suspiciousness with $F_{i}$ is smaller than other test cases which have the maximal suspiciousness with $F_{i}$.  We refer to such test case as $t_{F_{i}}$. Hence to find a test case that satisfies \ref{eqn - 0p}, we just need to find:
-%
-%\begin{alignat}{2}
-%\min\quad &  t_{F_{i}} &{}& \tag{EQ4} \label{eqn - 2p}\\
-%\mbox{s.t.}\quad
-%& 1 \leq i \leq L \ \& \ i \neq m &\quad& {}\nonumber
-%\end{alignat}
-%
-%Going back to the example in Table \ref{minimal_maximal}, $t_{F_{2}}$ is $t_{3}$ and $ t_{F_{3}}$ is $t_{4}$. As $Sp(t_{3}, F_{2}) = 0.4 < Sp(t_{4}, F_{3}) = 0.5$, $t_{3}$ is a better choice.
-
-%According to \ref{eqn - 2p}, to determine such a test case lies in solving \ref{eqn - lp} because if it is solved we just need to rank the one that has the minimal value from the solutions to \ref{eqn - lp}. For example in Table \ref{minimal_maximal}, $Sp(t_{3}, F_{2})$ is the minimal when comparing with that of other test cases ($t_{1}$, $t_{5}$) has the maximal suspiciousness with $F_{2}$, while $Sp(t_{4}, F_{3})$ is the minimal for $F_{3}$. As $Sp(t_{3}, F_{2}) < Sp(t_{4}, F_{3})$, $t_{3}$ is better choice.
-%
-%As to \ref{eqn - lp}, it can be formulated as an 0-1 integer linear programming (ILP) problem. Assume the SUT has $K$ parameters in which the $i$th parameter has $V_{i}$ values. And the SUT has $L$ failures. We then define the variable $x_{i,j}$ as:
-%\begin{displaymath}
-%x_{i,j} = \begin{cases}1 & the\ \emph{i}th\ parameter\ of\ the\ test\ case\  take\ the\ \emph{j}th\ value\ for\ that\ parameter\\0 & otherwise\end{cases}
-%\end{displaymath}
-%We then take $Sp((i,j), F_{m})$ to be the \emph{suspiciousness} between the \emph{j}th value of the \emph{i}th parameter of the SUT and the failure $F_{m}$. A set $Fix$ of parameter values to define the fixed part in the test case we should not change, i.e., $Fix = \{(i, j)\ |\ i\ is\ the\ fixed\ parameter\ in\ the\ test\ case, j\ is\ the\ corresponding\ value\}$. As we can generate redundant test cases, so we keep a test set $T_{executed}$ to guide the generation of different test cases. Then \ref{eqn - lp} can be transformed into following ILP formula:
-%
-%\begin{alignat}{2}
-%\min\quad & \frac{1}{|K|}\sum_{i = 0}^{K-1}\sum_{j = 0}^{V_{i}-1} Sp((i,j), F_{m}) \times x_{i,j} &{}& \tag{EQ5} \label{eqn - 3p}\\
-%\mbox{s.t.}\quad
-%& 0 \leq x_{i,j} \leq 1 &\quad& { i = 0 .. K - 1, j = 0,.. V_{i} - 1 }\\
-%&  x_{i,j} \in  \mathbb{Z}&\quad& { i = 0 .. K - 1, j = 0,.. V_{i} - 1 }\\
-%& \sum_{j = 0}^{V_{j}-1} x_{i,j} = 1&\quad& { i = 0 ... K - 1}\\
-%&  x_{i,j} = 1 &\quad& { (i,j) \in Fix }\\
-%& \sum_{i = 0}^{K-1}\sum_{j = 0}^{V_{i}-1} (Sp((i,j), F_{m}) - Sp((i,j), F_{m'}) ) \times  x_{ij} \geq 0 &\quad& {1 \leq m'  \leq L, m' \neq m}\\
-%& \sum_{i = 0}^{K-1}  x_{i,t[i]} < K &\quad& {t \in T_{executed}}
-%\end{alignat}
-%
-%In \ref{eqn - 3p}, constraints (1) and (2) indicate that the variable $x_{i,j}$ is a 0-1 integer. Constraint (3) indicates that a parameter in one test case can only take on one value. Constraint (4) indicates that the test case should not change values of the fixed part. Constraint (5) indicates that the suspiciousness between the test case and failure $F_{m}$ is higher than that of the other failures. In Constraint (6), $t[i]$ indicates the value of the $i$th parameter of test case $t$ in $T_{executed}$. Hence, this constraint points out that the test cases generated should not be the same as the test cases in $T_{executed}$.
-
-%As we have formulated the problem into a 0-1 integer programming problem, we just need to utilize an ILP solver to solve this formula.
-%\ref{eqn - 0p} can be further converted into an integer satisfaction and optimization problem (Details in Section \ref{sec:appendixs:covert} in the Appendix),
 % As \ref{eqn - 0p} is actually an integer satisfaction and optimization problem, we can utilize an ILP solver to solve this problem. In this paper, we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems.
 
 
@@ -1054,7 +947,7 @@ In this paper, we randomly select one test case from the candidate test case set
 \end{algorithm}
 %
 %
-The inputs to this algorithm consist of the failure $F_{m}$ under analysis, and the candidate test cases $R = \mathcal{T}(fixed)  \backslash T_{executed}$. The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
+The inputs to this algorithm consist of the failure $F_{m}$ under analysis, and the candidate test cases $R = \mathcal{T}(fixed)  \backslash (T_{executed}\bigcup T_{invalid})$, where $\mathcal{T}(fixed)$ represents all the test cases that contain this fixed part, $T_{executed}$ represents those executed test cases and $T_{invalid}$ indicates that the test cases that does not satisfy the specified constraints. The output of this algorithm is a test case $t_{new}$ which either triggers the expected $F_{m}$ or passes.
 
 The outer loop of this algorithm (lines 1 - 10) contains two parts:
 
@@ -1086,42 +979,62 @@ The second part (lines 5 - 9) checks whether the newly generated test case is as
 
 
 \subsection{MFS identification with replacement strategy}
-With this replacement process, its easy to illustrate the complete MFS identification approach that combines the traditional MFS identification procedure with test cases replacement strategy. Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the failure $F_{m}$ that is currently focused on and an original failing test case $t$. The output of this algorithm is the MFS for failure $F_{m}$ in the test case $t$. $T_{Unknown}$ is the set of test cases that is not yet determined to be fail with failure $F_{m}$ or not, and $T_{F\_Known}$ is the set of test cases that are deemed to trigger the failure $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27). This is based on Lemma \ref{pro:dsmfs} in Section \ref{subsec:Formal:identi}. Specifically,  by computing the minimal schemas of $T_{F\_Known}$, i.e., $\mathcal{C}(T_{F\_Known})$, and minimal schemas of $T_{F\_Known} \bigcup T_{Unknown}$, i.e., $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$, respectively, we can determine $\mathcal{C}(T_{F\_Known})$ are MFS if they are contained in $\mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})$.
+With this replacement process, its easy to illustrate the complete MFS identification approach. Algorithm \ref{alg:two} shows the procedure of our approach. The inputs to this algorithm are the failure $F_{m}$ that is currently focused on, an original failing test case $t$, and the specified constraints $Cons$. The output of this algorithm is the MFS for failure $F_{m}$ in the test case $t$. $T_{executed}$ is the set of test cases that have already been executed, and initially has one element -- test case $t$ (line 1). $T_{judge}$ is the set of test cases that are used to be identify the MFS, which also has the original failing test case $t$ (line 2). $T_{invalid}$ is the set of test cases which do not satisfy constraints $Cons$ (line 3). Note that here we just give a formal description of how to handle the constraints in CT. More details and implementations can be seen in works like \cite{cohen2007exploiting,cohen2008constructing,yu2015constraint}.
+%not yet determined to be fail with failure $F_{m}$ or not, and $T_{F\_Known}$ is the set of test cases that are deemed to trigger the failure $F_{m}$. This algorithm loops until some MFS are determined (line 25 - 27).
 
-In each iteration,  this algorithm will generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6).
-%(See Algorithm \ref{alg:fic} in the Appendix for detail)
-Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same failure $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F\_known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and check if the ending condition is satisfied (line 27).
+
+
+Our approach loops until $T_{judge}$ has enough test cases to determine which schemas in test case $t$ are MFS (line 5 - 8). In each iteration, one test case $t_{current}$ is obtained from the traditional MFS identification approach line (lin 9), executed (line 10), and appended in $T_{executed}$ (line 11). If $t_{current}$ passes or fails with $F_{m}$ (line 19), it will be added in the set of test cases $T_{judge}$ (line 20). Otherwise, we will start the replacement procedure (line 12 - 18) to obtain a new test case $t_{replace}$ which either passes or fails with $F_{m}$. Specifically, we will first get the \emph{fixed part} of $t_{current}$ which will not changed in the newly generated test case (line 13). Then we will obtain the set of candidate cases for selection (line 14). After using the replacement approach introduced in Algorithm \ref{alg:one} (line 16), we will added this newly generated test case $t_{replace}$ in $T_{judge}$ (line 17). Additionally,  the test cases generated and executed for this replacement (Those test cases which have already been used and eliminated from candidate test case set $R$) will be added in $T_{executed}$ (line 18).
+%generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6).
+%%(See Algorithm \ref{alg:fic} in the Appendix for detail)
+%Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same failure $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F\_known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and check if the ending condition is satisfied (line 27).
 
 \begin{algorithm}[ht]
 %\SetAlgoNoLine
-\KwIn{ failure $F_{m}$, original failing test case $t$, safe values $SV$ }
+\KwIn{ failure $F_{m}$, original failing test case $t$, Constraints $Cons$ }
 \KwOut{ $MFS$ returning the determined MFS }
 %$index$ = 0; $FreNum_{\alpha}$ = -1\;
 
 %$\mathcal{SP} \leftarrow init\_Suspicious\_Matrix(t)$ \;
-$T_{Unknown} \leftarrow  T_{ALL} \setminus t $ \;
-$T_{F\_Known} \leftarrow \{ t \} $ \;
-$MFS \leftarrow empty$ \;
+%$T_{Unknown} \leftarrow  T_{ALL} \setminus t $ \;
+%$T_{F\_Known} \leftarrow \{ t \} $ \;
+$T_{executed} \leftarrow \{ t \}$ \;
+$T_{judge} \leftarrow \{ t \}$ \;
+$T_{invalid} \leftarrow getInvalidTestCases(Cons)$ \;
 \While{ $true$}{
 
 %          }
-       $ R \leftarrow  \mathcal{T}(current\_fixed\_part)$ \;
-       $t_{next} \leftarrow Replacing(F_{m},R)$\;
-      \eIf  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
-          $result \leftarrow F_{m}$}{$result \leftarrow execute(t_{next})$\;}
+        \If{ $ isEnd(T_{judge}) $}{$MFS \leftarrow identified(T_{judge})$ \; break\;}{}
+        $t_{current} \leftarrow getTestCaseForExecution()$ \;
+        $result \leftarrow execute(t_{current})$\;
+        $T_{executed}.append(t_{current})$\;
+        \eIf  {$result \neq PASS\ and\ result \neq  F_{m}$}{
+       $fixed \leftarrow getCurrentFixedPart(t_{current})$\;
+       $ R \leftarrow  \mathcal{T}(fixed)  \backslash (T_{executed}\bigcup T_{invalid})$ \;
+       $ O = R.copy()$ \;
+       $t_{replace} \leftarrow Replacing(F_{m},R)$\;
+       $T_{judge}.append(t_{replace})$ \;
+       $T_{executed}.appendAll(O \backslash R)$ \;
+%      \eIf  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
+%       $result \leftarrow F_{m}$}{$result \leftarrow execute(t_{next})$\;}
+           }{
+         $T_{judge}.append(t_{current})$\;
+         }
 
 
-            \eIf  {$result == F_{m}$}{
-           $T_{infer-F} \leftarrow InferringFailing (t_{next}, SV) $\;
-           $T_{F\_Known} \leftarrow T_{F\_Known} \bigcup t_{next} \bigcup T_{infer-F}$\;
-           $T_{Unknown} \leftarrow T_{Unknown} \setminus (t_{next} \bigcup T_{infer-F}) $ \;
-           }{ $T_{infer-P} \leftarrow InferringPassing (t_{next}, SV) $\;
-           $T_{Unknown} \leftarrow T_{Unknown} \setminus  (t_{next} \bigcup T_{infer-P}) $ \;}
-
-
-           $MFS \leftarrow \mathcal{C}(T_{F\_Known})$ \;
-           $M_{Possible} \leftarrow \mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})  $ \;
-            \If{ $ MFS \subseteq M_{Possible} $}{break\;}{}
+%
+%
+%            \eIf  {$result == F_{m}$}{
+%           $T_{infer-F} \leftarrow InferringFailing (t_{next}, SV) $\;
+%           $T_{F\_Known} \leftarrow T_{F\_Known} \bigcup t_{next} \bigcup T_{infer-F}$\;
+%           $T_{Unknown} \leftarrow T_{Unknown} \setminus (t_{next} \bigcup T_{infer-F}) $ \;
+%           }{ $T_{infer-P} \leftarrow InferringPassing (t_{next}, SV) $\;
+%           $T_{Unknown} \leftarrow T_{Unknown} \setminus  (t_{next} \bigcup T_{infer-P}) $ \;}
+%
+%
+%           $MFS \leftarrow \mathcal{C}(T_{F\_Known})$ \;
+%           $M_{Possible} \leftarrow \mathcal{C}(T_{F\_Known} \bigcup T_{Unknown})  $ \;
+%            \If{ $ MFS \subseteq M_{Possible} $}{break\;}{}
 
        }
        \Return $MFS$

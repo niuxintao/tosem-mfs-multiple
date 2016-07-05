@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  1 JUL 2016 13:52
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 JUL 2016 17:03
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -494,7 +494,7 @@ Requested font "pncb7t" at 5.0pt
 Requested font "pncr7t" at 9.0pt
  -> pncr7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1037.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 930.
 Requested font "pncb7t" at 9.0pt
  -> pncb7t
 Requested font "cmr9" at 9.0pt
@@ -512,59 +512,42 @@ Requested font "msam10" at 9.0pt
 Requested font "msbm10" at 9.0pt
  -> msbm10
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <7> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1049.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 942.
 Requested font "pncb7t" at 7.0pt
  -> pncb7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <6.25002> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1049.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 942.
 Requested font "pncb7t" at 6.25002pt
  -> pncb7t
 Requested font "pncri7t" at 9.0pt
  -> pncri7t
 LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
-(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 1049.
-
+(Font)              Font shape `OT1/pnc/b/it' tried instead on input line 942.
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
-
-
-LaTeX Warning: Reference `pro:dsmfs' on page 14 undefined on input line 1089.
-
-
-LaTeX Warning: Reference `subsec:Formal:identi' on page 14 undefined on input l
-ine 1089.
-
-[14]
-
-LaTeX Warning: Reference `lemma:inferpassing' on page 15 undefined on input lin
-e 1093.
-
-
-LaTeX Warning: Reference `lemma:inferfailing' on page 15 undefined on input lin
-e 1093.
-
+ [14]
 File: table.eps Graphic file (type eps)
-<table.eps> [15]
+ <table.eps> [15]
 
-LaTeX Warning: Reference `eqn - 0p' on page 16 undefined on input line 1148.
+LaTeX Warning: Reference `eqn - 0p' on page 16 undefined on input line 1061.
 
 [16]
 
-LaTeX Warning: Reference `eqn - 00p' on page 17 undefined on input line 1150.
+LaTeX Warning: Reference `eqn - 00p' on page 17 undefined on input line 1063.
 
 [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1360.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1273.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
 
 
 LaTeX Warning: Reference `modelHSQLDBJFlex' on page 19 undefined on input line 
-1364.
+1277.
 
 [19] [20]
 Underfull \vbox (badness 7379) has occurred while \output is active []
@@ -573,16 +556,16 @@ Underfull \vbox (badness 7379) has occurred while \output is active []
 [22]
 File: study2.eps Graphic file (type eps)
  <study2.eps>
-Overfull \hbox (8.71243pt too wide) in paragraph at lines 1571--1572
+Overfull \hbox (8.71243pt too wide) in paragraph at lines 1484--1485
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 11.04436pt on input line 1574.
+LaTeX Warning: Float too large for page by 11.04436pt on input line 1487.
 
 
-LaTeX Warning: Reference `evaluation_all' on page 23 undefined on input line 15
-81.
+LaTeX Warning: Reference `evaluation_all' on page 23 undefined on input line 14
+94.
 
 
 Underfull \vbox (badness 1565) has occurred while \output is active []
@@ -594,12 +577,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [25]
 [26]
 
-LaTeX Warning: Reference `comparewithfda' on page 27 undefined on input line 17
-25.
+LaTeX Warning: Reference `comparewithfda' on page 27 undefined on input line 16
+38.
 
 
-LaTeX Warning: Reference `evaluation_all' on page 27 undefined on input line 17
-25.
+LaTeX Warning: Reference `evaluation_all' on page 27 undefined on input line 16
+38.
 
 File: 2-way.eps Graphic file (type eps)
 <2-way.eps>
@@ -613,14 +596,14 @@ Underfull \vbox (badness 2418) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1793 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
 
 [29] [30]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -641,23 +624,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [35]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2126.
+               Default added (so using `tbp') on input line 2039.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2152.
+               Default added (so using `tbp') on input line 2065.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2179.
+               Default added (so using `tbp') on input line 2092.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2206.
+               Default added (so using `tbp') on input line 2119.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2233.
+               Default added (so using `tbp') on input line 2146.
 
 [1
 
@@ -667,12 +650,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3929 strings out of 430478
- 46442 string characters out of 3191502
+ 3926 strings out of 430478
+ 46391 string characters out of 3191502
  199299 words of memory out of 3000000
- 7008 multiletter control sequences out of 15000+200000
+ 7005 multiletter control sequences out of 15000+200000
  25111 words of font info for 77 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,18n,29p,2361b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,15n,29p,2361b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on v2-acmsmall-sample.pdf (38 pages).
