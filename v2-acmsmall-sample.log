@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 JUL 2016 17:03
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  5 JUL 2016 21:32
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -526,121 +526,131 @@ LaTeX Font Info:    Font shape `OT1/pnc/bx/it' in size <9> not available
 Requested font "pncbi7t" at 9.0pt
  -> pncbi7t
  [14]
-File: table.eps Graphic file (type eps)
- <table.eps> [15]
 
-LaTeX Warning: Reference `eqn - 0p' on page 16 undefined on input line 1061.
+LaTeX Warning: Reference `fig:fci_case_study' on page 15 undefined on input lin
+e 1051.
 
-[16]
+[15]
 
-LaTeX Warning: Reference `eqn - 00p' on page 17 undefined on input line 1063.
+LaTeX Warning: Reference `eqn - 0p' on page 16 undefined on input line 1084.
 
-[17]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
+LaTeX Warning: Reference `fig:fci_case_study' on page 16 undefined on input lin
+e 1084.
+
+
+LaTeX Warning: Reference `fig:fci_case_study' on page 16 undefined on input lin
+e 1086.
+
+
+LaTeX Warning: Reference `eqn - 00p' on page 16 undefined on input line 1086.
+
+[16] [17]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1273.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 1296.
 
 Requested font "phvro7t" at 9.0pt
  -> phvro7t
-
+ [18]
 
 LaTeX Warning: Reference `modelHSQLDBJFlex' on page 19 undefined on input line 
-1277.
+1300.
 
-[19] [20]
-Underfull \vbox (badness 7379) has occurred while \output is active []
+[19]
+Underfull \vbox (badness 7291) has occurred while \output is active []
+
+ [20]
+Underfull \vbox (badness 2181) has occurred while \output is active []
 
  [21]
-[22]
 File: study2.eps Graphic file (type eps)
- <study2.eps>
-Overfull \hbox (8.71243pt too wide) in paragraph at lines 1484--1485
+
+<study2.eps>
+Overfull \hbox (8.71243pt too wide) in paragraph at lines 1507--1508
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 11.04436pt on input line 1487.
+LaTeX Warning: Float too large for page by 11.04436pt on input line 1510.
 
 
-LaTeX Warning: Reference `evaluation_all' on page 23 undefined on input line 14
-94.
+LaTeX Warning: Reference `evaluation_all' on page 22 undefined on input line 15
+17.
 
 
-Underfull \vbox (badness 1565) has occurred while \output is active []
+Underfull \vbox (badness 1253) has occurred while \output is active []
 
- [23]
-[24]
+ [22]
+[23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-[26]
+ [24]
+[25]
 
-LaTeX Warning: Reference `comparewithfda' on page 27 undefined on input line 16
-38.
+LaTeX Warning: Reference `comparewithfda' on page 26 undefined on input line 16
+61.
 
 
-LaTeX Warning: Reference `evaluation_all' on page 27 undefined on input line 16
-38.
+LaTeX Warning: Reference `evaluation_all' on page 26 undefined on input line 16
+61.
 
 File: 2-way.eps Graphic file (type eps)
 <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [27]
+ <4-way.eps> [26]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28]
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1706 replaced by U+FFFD.
+ [27]
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1729 replaced by U+FFFD.
 
-[29] [30]
+[28]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [31]
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5878) has occurred while \output is active []
 
  [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34])
-[35]
+ [33])
+[34]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2039.
+               Default added (so using `tbp') on input line 2062.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2065.
+               Default added (so using `tbp') on input line 2088.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2092.
+               Default added (so using `tbp') on input line 2115.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2119.
+               Default added (so using `tbp') on input line 2142.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2146.
+               Default added (so using `tbp') on input line 2169.
 
 [1
 
@@ -651,11 +661,11 @@ LaTeX Warning: There were undefined references.
  ) 
 Here is how much of TeX's memory you used:
  3926 strings out of 430478
- 46391 string characters out of 3191502
- 199299 words of memory out of 3000000
+ 46396 string characters out of 3191502
+ 199303 words of memory out of 3000000
  7005 multiletter control sequences out of 15000+200000
  25111 words of font info for 77 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,15n,29p,2361b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on v2-acmsmall-sample.pdf (38 pages).
+Output written on v2-acmsmall-sample.pdf (37 pages).
