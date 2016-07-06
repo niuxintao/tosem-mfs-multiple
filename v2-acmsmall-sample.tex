@@ -1080,7 +1080,7 @@ The completed MFS identifying process listed in Table \ref{ofot-replacement} wor
 The test case are generated and executed according to Algorithm \ref{alg:two}. That is, if additionally generated  test case does not trigger other failures (i.e., $t_{1}'$,$t_{2}''$,$t_{3}$,$t_{4}'$), the original FII process will continue until the MFS is identified. Otherwise, the replacement procedure starts when an unexpected failure is triggered. The replacement process will mutate the parameter values that are not in the $fixed$ part. For example, $t_{1}'$ changes the first parameter value from $0$ of $t_{1}$ to $2$. Note that here the duplicated test cases will be eliminated. Hence, we can not change $0$ to be $1$ , because $(1, 1, 1, 1)$ has already been executed. Also noted that there may needs more than 1 trial to get the satisfied test case. For example, when find $t_{2}$ fails with other failure, we repeated the replacing procedure for two times, until $t_{2}''$ is obtained.
 
 At last, all these test cases which either fails with expected failure or passes are appended in $T_{judge}$, i.e., $T_{judge} = \{t_{1}', t_{2}'', t_{3}, t_{4}\}$. Then we can learn that (1, -, 1, -) is the MFS according to OFOT (This is because only we changed the first and third parameter value, the test case passes, which means that these two parameter values break the MFS). This conclusion coincide with the correct result as said in Section \ref{sec:mask:fci}.
- 
+
 %After the replacement process, the control for the MFS identifying process will be passed back to the original FII approach.  Next we will specifically explain how the replacement works with an example in Figure \ref{fig:fci_case_study}.
 
 %From Figure \ref{fig:fci_case_study}, for the test case that triggered $e2$ -- (2, 1, 1, 1, 0, 0, 0, 0) (in this case, the fixed part of the test case is (-, -, -, -, 0, 0, 0, 0), in which the last four parameter values are the same as the original test case $t_{0}$), we generate the related matrix at left. Each element in this matrix is computed according to \ref{eqn - 00p}. All the suspiciousness with $e3$ is labeled with a short slash as there is no test case triggering this failure in this iteration.  After this matrix is determined, we can obtain the optimal test case with the ILP solver, which is $t_{1}'$--(1, 2, 2, 2, 0, 0, 0, 0), with its suspiciousness 0.167, which is smaller than all other test cases.
@@ -1242,7 +1242,7 @@ To investigate the impact of masking effects on FII approaches in real software 
 %Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
 \subsection{The existence and characteristics of masking effects}\label{sec:emprical:exist}
-In the first study, we surveyed three kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were HSQLDB, JFlex and Grep. The first is a database management software written in pure Java, the second is a lexical analyser generator, and the last one is a command-line utility for searching plain-text data sets for lines matching a regular expression.  The reason that we chose these systems is because they  contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of code, number of classes in the project, and the bug's ids \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
+In the first study, we surveyed seven kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were Hsqldb, Jflex, Grep, Commons Cli, Joda Time, Commons Lang, and Jsoup. The first is a database management software written in pure Java, the second is a lexical analyser generator, and the last one is a command-line utility for searching plain-text data sets for lines matching a regular expression.  The reason that we chose these systems is because they  contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of code, number of classes in the project, and the bug's ids \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
 http://sourceforge.net/p/jflex/bugs \\ http://savannah.gnu.org/bugs/ } for each of the software.
 
 %\begin{table}\renewcommand{\arraystretch}{1.3}
@@ -1266,24 +1266,25 @@ http://sourceforge.net/p/jflex/bugs \\ http://savannah.gnu.org/bugs/ } for each 
 %\end{table}
 \begin{table}[ht]\renewcommand{\arraystretch}{1.3}
 \tbl{Software under survey\label{software description}}{
-\begin{tabular}{c|c|c|c|c} \hline
-software & versions & LOC & classes & bugs' id \\ \hline
+\begin{tabular}{c|c|c|c|c|c} \hline
+software& info & versions & LOC & classes & bugs' id \\ \hline
 
-HSQLDB  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005 \\
-	   &2.2.5 & 156066 & 508 & \#1173 \&  \#1179\\
-	    &2.2.9 & 162784 &525 & \#1286 \& \#1280\\
-JFlex  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
-      &1.4.2 &  10745 &61 &  \#98 \& \#93  \\
-Grep  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
-      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
-Cli  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
-      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
-Joda  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
-      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
-Lang  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
-      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
-Jsoup  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
-      &2.22 &  48101 &297 &  \#33080 \& \#28588  \\
+Hsqldb& database management software  &2.0rc8 & 139425 & 495 &  \#981 \& \#1005 \\
+	 &written in pure Java  &2.2.5 & 156066 & 508 & \#1173 \&  \#1179\\
+	 &   &2.2.9 & 162784 &525 & \#1286 \& \#1280\\ \hline
+Jflex& lexical analyser generator  &1.4.1 &  10040 &58 & \#87 \& \#80 \\
+    &  &1.4.2 &  10745 &61 &  \#98 \& \#93  \\ \hline
+Grep& command-line utility for  &2.12 &  27046 &156 & \#7600 \& \#29537 \\
+    & searching plain-text data  &2.22 &  48101 &297 &  \#33080 \& \#28588  \\ \hline
+Cli&  parsing command line  &1.3.1 &  6433 &48 & \#265 \& \#255 \\
+   & options passed to programs  &1.2 &  4630 &44 &  \#230 \& \#213  \\ \hline
+Joda& de facto standard date    &2.8.2 &  85026 &329 & \#297 \& \#296 \\
+    & and time library for Java &2.9.1 &  85512 &330 &  \#361 \& \#347  \\
+    & &2.3 &  82158 &317 &  \#77 \& \#86  \\ \hline
+Lang&  provides these extra methods for &3.4 &  66047 &281 & \#1205 \& \#1215 \\
+    &  manipulation of core classes.  &3.2 &  61596 &247 &  \#1087 \& \#1081  \\ \hline
+Jsoup& Java HTML Parser &1.8.3 &  10295 &55 & \#688 \& \#689 \\
+     &  &1.9.1 &  10489 &56 &  \#652 \& \#611  \\
 \hline\end{tabular}
 }
 \end{table}
@@ -1418,21 +1419,22 @@ Column ``masking" indicates the specific number of test cases (in the parenthese
 \setlength\tabcolsep{2pt}
 \begin{tabular}{c|c|c|c|c|c|c|c} \hline
 software & versions & all tests & \multicolumn{3}{c|}{failure} & masking & total\\ \hline
-HSQLDB & 2rc8 & 18432 & \#1(2304) &\#2(1152) & \#3(1152)&\#1$>$\#2\#3(768) &768 (16.7\%)\\ \hline
+Hsqldb & 2rc8 & 18432 & \#1(2304) &\#2(1152) & \#3(1152)&\#1$>$\#2\#3(768) &768 (16.7\%)\\ \hline
      - & 2.2.5 & 6912 & \#1(1728) &\#2(1728) &- & \#1$>$\#2(576)&576 (16.7\%)\\ \hline
      - & 2.2.9 & 6912 & \#1(2304) &\#2(768) & \#3(384)&\#1$>$\#2\#3(960) \#2$>$\#3(768) &1728 (50\%)\\ \hline
-JFlex & 1.4.1 & 36864 & \#1(12288) &\#2(12288) & -&\#1$>$\#2(6144) &6144 (25\%)\\ \hline
+Jflex & 1.4.1 & 36864 & \#1(12288) &\#2(12288) & -&\#1$>$\#2(6144) &6144 (25\%)\\ \hline
      -& 1.4.2 & 73728 & \#1(18432) &\#2(18432) & -&\#1$>$\#2(6144) &6144 (16.7\%)\\ \hline
 Grep  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
      -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
-CLI  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
-     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
-Joda  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
-     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
-Lang  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
-     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
-Jsoup  & 2.12 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
-     -& 2.22 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
+Cli  & 1.3.1 & 256 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 1.2 & 256 & \#1(192) &\#2(64) &     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
+Joda  & 2.8.2 & 1440 & \#1(288) &\#2(288) &    &\#1$>$\#2(72)  &72 (12.5\%)\\ \hline
+     -& 2.9.1 & 864 & \#1(216) &\#2(72) &     &\#1$>$\#2(24)) &24 (8.3\%)\\ \hline
+     -& 2.3 & 2304 & \#1(576) &\#2(216) &     &\#1$>$\#2(72)  &72 (9.1\%)\\ \hline
+Lang  & 3.4 & 384 & \#1(128) &\#2(64) &   &\#1$>$\#2\#3(80)  &96 (36.4\%)\\ \hline
+     -& 3.2 & 576 & \#1(192) &\#2(64) &    &\#1$>$\#2\#3(80) &6144 (28.6\%)\\ \hline
+Jsoup  & 1.8.3 & 384 & \#1(128) &\#2(64) &\#3(72)   &\#1$>$\#2\#3(80) \#2$>$\#3(16) &96 (36.4\%)\\ \hline
+     -& 1.9.1 & 576 & \#1(192) &\#2(64) &\#3(80)     &\#1$>$\#2\#3(80) \#2$>$\#3(16) &6144 (28.6\%)\\ \hline
 \end{tabular}
 }
 \end{table}
@@ -1725,7 +1727,7 @@ At last, when considering the cost of these two approaches, our approach needs f
 %
 %Then we .
 
-Above all, we can conclude three points in this experiment, which provide answer to \textbf{Q4}:
+Above all, we can conclude three points in this experiment, which provide answer to \textbf{Q3}:
 
 %1) FDA serial 保守, and the ILP 更加开放，因此更加适合。
 
