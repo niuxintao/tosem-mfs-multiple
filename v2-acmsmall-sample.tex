@@ -1242,8 +1242,7 @@ To investigate the impact of masking effects on FII approaches in real software 
 %Specifically, section 6.1 surveyed several open-source software to gain a insight of the existence of multiple faults and their masking effects. Section 6.2 directly applied three MFS-identifying programs on the surveyed software and analysis their results. Section 6.3 applied our approach on the software and a comparison with traditional approaches will be discussed. Section 6.4 discuss the threats to validity of our empirical studies.
 
 \subsection{The existence and characteristics of masking effects}\label{sec:emprical:exist}
-In the first study, we surveyed seven kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were Hsqldb, Jflex, Grep, Commons Cli, Joda Time, Commons Lang, and Jsoup. The first is a database management software written in pure Java, the second is a lexical analyser generator, and the last one is a command-line utility for searching plain-text data sets for lines matching a regular expression.  The reason that we chose these systems is because they  contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of code, number of classes in the project, and the bug's ids \footnote{ http://sourceforge.net/p/hsqldb/bugs \\
-http://sourceforge.net/p/jflex/bugs \\ http://savannah.gnu.org/bugs/ } for each of the software.
+In the first study, we surveyed seven kinds of open-source software systems to gain an insight into the existence of multiple faults and their effects. The software under study were Hsqldb, Jflex, Grep, Commons Cli, Joda Time, Commons Lang, and Jsoup. The first is a database management software written in pure Java, the second is a lexical analyser generator, and the last one is a command-line utility for searching plain-text data sets for lines matching a regular expression.  The reason that we chose these systems is because they  contain different versions and are all highly configurable so that the options and their interactions can affect their behaviour. Additionally, they all have a developer community so that we can easily obtain the real bugs reported in the bug tracker forum. Table \ref{software description} lists the program, the versions surveyed, number of lines of code, number of classes in the project, and the bug's ids for each of the software.
 
 %\begin{table}\renewcommand{\arraystretch}{1.3}
 %\caption{Software under survey}
@@ -1301,110 +1300,6 @@ We further built the testing file for each version of the software listed in Tab
 
 Next, we built the input model which consists of the options related to the failure-inducing interactions and additional options that are commonly used. The detailed model information is shown in Table \ref{modelHSQLDBJFlex} for HSQLDB, JFLex and Grep, respectively. Each table is organised into three groups: (1) \emph{common options}, which lists the options as well as their values under which every version of this software can be tested; (2) \emph{specific options}, under which only the specific version can be tested; and (3) \emph{configure space}, which depicts the input model for each version of the software, presented in the abbreviated form $\#values^{\#number\ of\ parameters} \times ...$, e.g., $2^{9} \times 3^{2} \times 4^{1}$ indicates the software has 9 parameters that can take 2 values, 2 parameters 3 values, and only one parameter 4 values.
 
-%\begin{table}[ht]
-%\tbl{Input models of HSQLDB, JFlex and Grep \label{modelHSQLDBJFlex}}{
-%\setlength\tabcolsep{0.8pt}
-%\begin{tabular}{llllll}
-%\multicolumn{6}{c}{ \emph{HSQLDB}} \\
-%  \hline
-%\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
-%  \hline
-% \multicolumn{3}{c}{Server Type} & \multicolumn{3}{c}{3}  \\
-%  \multicolumn{3}{c}{  existed form}  & \multicolumn{3}{c}{2}  \\
-%   \multicolumn{3}{c}{ resultSetTypes}  & \multicolumn{3}{c}{3} \\
-%   \multicolumn{3}{c}{ resultSetConcurrencys}  & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  resultSetHoldabilitys}  &\multicolumn{3}{c}{ 2} \\
-%  \multicolumn{3}{c}{ StatementType }  &\multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{ sql.enforce\_strict\_size}  & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  sql.enforce\_names}  &\multicolumn{3}{c}{2} \\
-%  \multicolumn{3}{c}{ sql.enforce\_refs }  &\multicolumn{3}{c}{2}  \\
-%    \hline
-%%   \multicolumn{6}{c}{  \bfseries common Boolean options }\\
-%%    \hline
-%%    \multicolumn{6}{c}{   sql.enforce\_strict\_size, sql.enforce\_names, sql.enforce\_refs}\\
-%%      \hline
-%   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-%     \hline
-%    2.0rc8 & \multicolumn{2}{c}{ more} & \multicolumn{3}{c}{2}\\
-%      & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
-%      & \multicolumn{2}{c}{ cursorAction }& \multicolumn{3}{c}{4}\\
-%    2.2.5 &\multicolumn{2}{c}{  multiple} & \multicolumn{3}{c}{3}\\
-%       & \multicolumn{2}{c}{ placeHolder} & \multicolumn{3}{c}{2}\\
-%    2.2.9 & \multicolumn{2}{c}{ duplicate }& \multicolumn{3}{c}{3}\\
-%     & \multicolumn{2}{c}{ defailure\_commit} & \multicolumn{3}{c}{2} \\
-%        \hline
-%   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
-%   \hline
-%   2.0rc8 & \multicolumn{3}{c}{$2^{9} \times 3^{2} \times 4^{1}$} &\multicolumn{2}{c}{} \\
-%    2.2.5 &  \multicolumn{3}{c}{$2^{8} \times 3^{3}$ } & \multicolumn{2}{c}{} \\
-%     2.2.9 & \multicolumn{3}{c}{$2^{8} \times 3^{3}$} &\multicolumn{2}{c}{} \\ \hline
-%\end{tabular}
-%%\hspace{1em}
-%\begin{tabular}{llllll}
-%\multicolumn{6}{c}{\emph{JFlex}} \\
-%  \hline
-%\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
-%  \hline
-%
-% \multicolumn{3}{c}{ generation} & \multicolumn{3}{c}{3}  \\
-%  \multicolumn{3}{c}{  charset}  & \multicolumn{3}{c}{4}  \\
-%
-%   \multicolumn{3}{c}{ public} & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  apiprivate}  & \multicolumn{3}{c}{2}  \\
-%   \multicolumn{3}{c}{ cup} & \multicolumn{3}{c}{2}  \\
-%      \multicolumn{3}{c}{ caseless} & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  char}  & \multicolumn{3}{c}{2}  \\
-%   \multicolumn{3}{c}{ line} & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  column}  & \multicolumn{3}{c}{2}  \\
-%     \multicolumn{3}{c}{ notunix} & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  yyeof}  & \multicolumn{3}{c}{2}  \\
-%
-%    \hline
-%   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-%     \hline
-%    1.4.1 & \multicolumn{2}{c}{ hasReturn} & \multicolumn{3}{c}{3}\\
-%      & \multicolumn{2}{c}{ normal} & \multicolumn{3}{c}{2}\\
-%    1.4.2 &\multicolumn{2}{c}{ lookAhead} & \multicolumn{3}{c}{3}\\
-%       & \multicolumn{2}{c}{ type} & \multicolumn{3}{c}{2}\\
-%     & \multicolumn{2}{c}{ standalone }& \multicolumn{3}{c}{2}\\
-%
-%        \hline
-%   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
-%   \hline
-%  1.4.1  & \multicolumn{3}{c}{$2^{10} \times 3^{2} \times 4^{1} $} &\multicolumn{2}{c}{} \\
-%   1.4.2 &  \multicolumn{3}{c}{$2^{11} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
-%\end{tabular}
-%
-%\begin{tabular}{llllll}
-%\multicolumn{6}{c}{\emph{Grep}} \\
-%  \hline
-%\multicolumn{3}{c}{\bfseries common options} & \multicolumn{3}{c}{\bfseries values}  \\
-%  \hline
-%
-% \multicolumn{3}{c}{ -E } & \multicolumn{3}{c}{2}  \\
-%  \multicolumn{3}{c}{  -i }  & \multicolumn{3}{c}{2}  \\
-%
-%   \multicolumn{3}{c}{ -V or --color } & \multicolumn{3}{c}{3}  \\
-%
-%    \hline
-%   \bfseries versions &   \multicolumn{2}{c}{  \bfseries specific options}  & \multicolumn{3}{c}{  \bfseries values}\\
-%     \hline
-%    2.12 & \multicolumn{2}{c}{ ascii} & \multicolumn{3}{c}{2}\\
-%      & \multicolumn{2}{c}{ command} & \multicolumn{3}{c}{2}\\
-%    &\multicolumn{2}{c}{ word } & \multicolumn{3}{c}{2}\\
-%       & \multicolumn{2}{c}{ charset} & \multicolumn{3}{c}{2}\\
-%  2.22  &\multicolumn{2}{c}{ -A or -B or -C } & \multicolumn{3}{c}{3}\\
-%       & \multicolumn{2}{c}{ value} & \multicolumn{3}{c}{4}\\
-%       & \multicolumn{2}{c}{ only-matching} & \multicolumn{3}{c}{2}\\
-%      & \multicolumn{2}{c}{ --count} & \multicolumn{3}{c}{2}\\
-%        \hline
-%   \bfseries versions &  \multicolumn{3}{c}{\bfseries Config space}&\multicolumn{2}{c}{}\\
-%   \hline
-%  2.12  & \multicolumn{3}{c}{$2^{6} \times 3^{1}  $} &\multicolumn{2}{c}{} \\
-%   2.22 &  \multicolumn{3}{c}{$2^{4} \times 3^{2} \times 4^{1} $ } & \multicolumn{2}{c}{} \\ \hline
-%\end{tabular}
-%}
-%\end{table}
 
 We then generated the exhaustive test set consisting of all possible interactions of these options. For each of them, we executed the prepared testing file. We recorded the output of each test case \footnote{A test case is a test configuration (consists of the assignments to the options of the SUT) in our experiments. The testing file of each software will be executed with given test configurations. } to observe whether there were test cases containing prior MFS that did not produce the corresponding bug. Later we refer to those test cases that contain the MFS but did not trigger the expected failure as the \emph{masked} test cases.
 \subsubsection{Results and discussion}\label{sec:emprical:exist:rs}
@@ -2002,7 +1897,7 @@ As for the future work, we plan to do more empirical studies to make our conclus
 %\label{alg:fic-replacement}
 %\end{algorithm}
 
-\section{The detail of the experiments}\label{sec:appdenxis:detailExper}
+\section{The detail result of the experiments}\label{sec:appdenxis:detailExper}
 
 
 %\begin{table}[htbp]
@@ -2063,13 +1958,14 @@ As for the future work, we plan to do more empirical studies to make our conclus
 %\end{table}%
 
 
-\begin{table}[]
+\begin{table}[ht]
 \centering
+\begin{threeparttable}
 \tbl{Comparison between distinguishing failures and regarded as same failure \label{evaluation_all2}}{
 \begin{tabular}{|l|ll|ll|ll|ll|ll|ll|ll|}
 \hline
         & \multicolumn{2}{l|}{Accurate} & \multicolumn{2}{l|}{Super} & \multicolumn{2}{l|}{Sub} & \multicolumn{2}{l|}{Ignore} & \multicolumn{2}{l|}{Irrelevant} & \multicolumn{2}{l|}{Aggregate} & \multicolumn{2}{l|}{TestNum} \\ \hline
-Subject & Distin         & One          & Distin        & One        & Distin       & One       & Distin        & One         & Distin          & One           & Distin          & One          & Distin        & One          \\ \hline
+Subject & Distin  \tnote{1}       & One \tnote{2}         & Distin        & One        & Distin       & One       & Distin        & One         & Distin          & One           & Distin          & One          & Distin        & One          \\ \hline
 Hsql1   & 0.67           & 0.25         & 0.08          & 0 & 0.17         & 0.58      & 0.08          & 0.17        & 0.08            & 0.17          & 0.84            & 0.50         & 11.92         & 8.13         \\
 Hsql2   & 0.83           & 0.83         & 0.17          & 0 & 0 & 0.17      & 0 & 0 & 0 & 0.67          & 0.92            & 0.77         & 7.67          & 8.67         \\
 Hsql3   & 0.72           & 0.72         & 0.17          & 0 & 0.06         & 0.28      & 0.06          & 0 & 0.06            & 0.67          & 0.87            & 0.58         & 8.61          & 9.17         \\
@@ -2087,16 +1983,26 @@ Lang2   & 0.83           & 0.83         & 0.17          & 0 & 0 & 0.17      & 0 
 Jsoup1  & 0.09           & 0.06         & 0.12          & 0 & 1.15         & 1.47      & 0.12          & 0.11        & 0.42            & 1.02          & 0.49            & 0.41         & 8.27          & 10.11        \\
 Jsoup2  & 0.67           & 0.33         & 0.33          & 0 & 0 & 0.67      & 0 & 0 & 0 & 0.33          & 0.83            & 0.58         & 5.33          & 5.33         \\ \hline
 \end{tabular}}
+
+     \begin{tablenotes}
+        \footnotesize
+        \item[1] $Distin$ denotes the strategy \emph{distinguishing failures}.
+        \item[2] $One$ denotes the strategy \emph{regarded as same failure}.
+      \end{tablenotes}
+
+\end{threeparttable}
+
 \end{table}
 
-\begin{table}[]
+\begin{table}[ht]
+\begin{threeparttable}
 \centering
 \tbl{Result of our approach\label{evaluation_all3}}{
 \setlength\tabcolsep{2pt}
 \begin{tabular}{|l|lll|lll|lll|lll|lll|lll|lll|}
 \hline
         & \multicolumn{3}{l|}{Accurate} & \multicolumn{3}{l|}{Super} & \multicolumn{3}{l|}{Sub} & \multicolumn{3}{l|}{Ignore} & \multicolumn{3}{l|}{Irrelevant} & \multicolumn{3}{l|}{Aggregate} & \multicolumn{3}{l|}{TestNum} \\ \hline
-Subject & Rep      & p(R,D)      & p(R,O)      & Rep   & p(R,D)      & p(R,O)      & Rep  & p(R,D)      & p(R,O)      & Rep    & p(R,D)      & p(R,O)      & Rep        & p(R,D)      & p(R,O)      & Rep       & p(R,D)      & p(R,O)      & Rep     & p(R,D)      & p(R,O)      \\ \hline
+Subject & Rep \tnote{1}      & p(R,D) \tnote{2}      & p(R,O) \tnote{3}      & Rep   & p(R,D)      & p(R,O)      & Rep  & p(R,D)      & p(R,O)      & Rep    & p(R,D)      & p(R,O)      & Rep        & p(R,D)      & p(R,O)      & Rep       & p(R,D)      & p(R,O)      & Rep     & p(R,D)      & p(R,O)      \\ \hline
 Hsql1   & 0.54     & 2E-51 & 4E-62 & 0.02  & 7E-45 & 2E-30 & 0.17 & 0.75        & 1E-62 & 0.27   & 4E-50 & 1E-42 & 0.27       & 4E-50 & 1E-42 & 0.67      & 3E-52  & 6E-52 & 17.72   & 6E-69 & 2E-75 \\
 Hsql2   & 0.83     & NaN         & NaN         & 0.17  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.92      & NaN         & 0           & 11.29   & 2E-69 & 3E-65 \\
 Hsql3   & 0.67     & 0           & 0           & 0.11  & 0           & 0           & 0.22 & 0           & 0           & 0      & 0           & NaN         & 0          & 0           & 0           & 0.89      & 0           & 0           & 13.13   & 2E-68 & 9E-67 \\
@@ -2114,6 +2020,14 @@ Lang2   & 0.83     & NaN         & NaN         & 0.17  & NaN         & 0        
 Jsoup1  & 0.11     & 2E-15 & 2E-27 & 0.11  & 0           & 0           & 1.23 & 1E-17 & 1E-30 & 0.15   & 1E-09 & 6E-14 & 0.97       & 2E-30 & 2E-4 & 0.41      & 2E-33 & 3E-4 & 14.45   & 2.5E-40 & 6E-36 \\
 Jsoup2  & 0.67     & NaN         & 0           & 0.33  & NaN         & 0           & 0    & NaN         & 0           & 0      & NaN         & NaN         & 0          & NaN         & 0           & 0.83      & NaN         & 0           & 11.67   & 0           & 0           \\ \hline
 \end{tabular}}
+     \begin{tablenotes}
+        \footnotesize
+        \item[1] $Distin$ denotes the our approach, i.e., FII augmented with replacement strategy.
+        \item[2] $p(R,D)$ denotes the p-value of a test of significance for the probability that the results of \emph{Rep} and \emph{Distin} are equal
+        \item[3] $p(R,O)$ denotes the p-value of a test of significance for the probability that the results of \emph{Rep} and \emph{One} are equal
+      \end{tablenotes}
+
+\end{threeparttable}
 \end{table}
 
 \begin{table}[]
