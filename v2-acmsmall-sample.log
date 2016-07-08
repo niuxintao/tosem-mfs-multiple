@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 JUL 2016 13:56
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  8 JUL 2016 16:21
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -547,43 +547,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
 [24]
-
-LaTeX Warning: Reference `comparewithfda' on page 25 undefined on input line 15
-62.
-
-
-LaTeX Warning: Reference `evaluation_all' on page 25 undefined on input line 15
-62.
-
 File: 2-way.eps Graphic file (type eps)
-<2-way.eps>
+ <2-way.eps>
 File: 3-way.eps Graphic file (type eps)
  <3-way.eps>
 File: 4-way.eps Graphic file (type eps)
- <4-way.eps>
-Underfull \vbox (badness 2418) has occurred while \output is active []
-
- [25]
+ <4-way.eps> [25]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [26]
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 1630 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
 
 [27]
-Underfull \vbox (badness 7379) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [29]
-[30] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -593,39 +585,36 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [32])
 [33]
-Overfull \hbox (89.13939pt too wide) in paragraph at lines 1966--1996
+Overfull \hbox (89.13939pt too wide) in paragraph at lines 1965--1995
  [] 
  []
 
 
-Overfull \hbox (180.62689pt too wide) in paragraph at lines 2001--2033
+Overfull \hbox (180.62689pt too wide) in paragraph at lines 2000--2032
 [] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2035.
+               Default added (so using `tbp') on input line 2034.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2062.
+               Default added (so using `tbp') on input line 2061.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2089.
+               Default added (so using `tbp') on input line 2088.
 
 [1
 
-] [2] [3] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] [2] [3] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.aux) )
+ 
 Here is how much of TeX's memory you used:
- 3926 strings out of 430478
- 46394 string characters out of 3191502
+ 3924 strings out of 430478
+ 46362 string characters out of 3191502
  201323 words of memory out of 3000000
- 7005 multiletter control sequences out of 15000+200000
+ 7003 multiletter control sequences out of 15000+200000
  25111 words of font info for 77 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  33i,16n,29p,2361b,502s stack positions out of 5000i,500n,10000p,200000b,50000s
