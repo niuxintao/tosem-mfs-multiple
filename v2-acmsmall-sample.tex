@@ -986,7 +986,7 @@ With this replacement process, its easy to illustrate the complete MFS identific
 
 
 
-Our approach loops until $T_{judge}$ has enough test cases to determine which schemas in test case $t$ are MFS (line 5 - 8). In each iteration, one test case $t_{current}$ is obtained from the traditional MFS identification approach line (lin 9), executed (line 10), and appended in $T_{executed}$ (line 11). If $t_{current}$ passes or fails with $F_{m}$ (line 19), it will be added in the set of test cases $T_{judge}$ (line 20). Otherwise, we will start the replacement procedure (line 12 - 18) to obtain a new test case $t_{replace}$ which either passes or fails with $F_{m}$. Specifically, we will first get the \emph{fixed part} of $t_{current}$ which will not changed in the newly generated test case (line 13). Then we will obtain the set of candidate cases for selection (line 14). After using the replacement approach introduced in Algorithm \ref{alg:one} (line 16), we will added this newly generated test case $t_{replace}$ in $T_{judge}$ (line 17). Additionally,  the test cases generated and executed for this replacement (Those test cases which have already been used and eliminated from candidate test case set $R$) will be added in $T_{executed}$ (line 18).
+Our approach loops until $T_{judge}$ has enough test cases to determine which schemas in test case $t$ are MFS (line 5 - 8). In each iteration, one test case $t_{current}$ is obtained from the traditional MFS identification approach line (lin 9), executed (line 10), and appended in $T_{executed}$ (line 11). If $t_{current}$ passes or fails with $F_{m}$ (line 18), it will be added in the set of test cases $T_{judge}$ (line 19). Otherwise, we will start the replacement procedure (line 12 - 17) to obtain a new test case $t_{replace}$ which either passes or fails with $F_{m}$. Specifically, we will first get the \emph{fixed part} of $t_{current}$ which will not changed in the newly generated test case (line 13). Then we will obtain the set of candidate cases for selection (line 14). After using the replacement approach introduced in Algorithm \ref{alg:one} (line 15), we will added this newly generated test case $t_{replace}$ in $T_{judge}$ (line 16). Additionally,  the test cases generated and executed for this replacement (Those test cases which have already been used and eliminated from candidate test case set $R$) will be added in $T_{executed}$ (line 17).
 %generate one additional test case (line 7) to execute. This test case is randomly selected from a candidate set $R$ which has the same fixed part (line 6).
 %%(See Algorithm \ref{alg:fic} in the Appendix for detail)
 %Then the approach will execute this test case (line 8) and update the suspiciousness matrix (line 9) according to the execution result. If the result is pass or fail with the same failure $F_{m}$, then the generated test case is a proper test case for MFS identification; otherwise, we should run the replacement strategy (line 10 - 15) based on Algorithm \ref{alg:one}. Note that if we cannot find a proper test case by Algorithm \ref{alg:one}, we need to randomly select one test case in $R$ (line 13), and regard it as fail with $F_{m}$ (line 14). Next we will infer the result of some unknown test cases according to the result of the generated test case $t_{next}$ (line 17 - 24). This inferring procedure is exactly based on corollaries \ref{lemma:inferpassing} and \ref{lemma:inferfailing}. After that, we update the $T_{F\_known}$ and $T_{Unknown}$ (line 19 - 20, line 23), and check if the ending condition is satisfied (line 27).
@@ -1013,10 +1013,10 @@ $T_{invalid} \leftarrow getInvalidTestCases(Cons)$ \;
         \eIf  {$result \neq PASS\ and\ result \neq  F_{m}$}{
        $fixed \leftarrow getCurrentFixedPart(t_{current})$\;
        $ R \leftarrow  \mathcal{T}(fixed)  \backslash (T_{executed}\bigcup T_{invalid})$ \;
-       $ O = R.copy()$ \;
+ %      $ O = R.copy()$ \;
        $t_{replace} \leftarrow Replacing(F_{m},R)$\;
        $T_{judge}.append(t_{replace})$ \;
-       $T_{executed}.appendAll(O \backslash R)$ \;
+       $T_{executed}.append(getExcuted(R))$ \;
 %      \eIf  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
 %       $result \leftarrow F_{m}$}{$result \leftarrow execute(t_{next})$\;}
            }{
