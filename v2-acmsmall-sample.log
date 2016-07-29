@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  15 JUL 2016 13:50
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2014.9.10)  29 JUL 2016 15:42
 entering extended mode
 **v2-acmsmall-sample.tex
 (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.tex
@@ -516,7 +516,7 @@ Underfull \vbox (badness 1424) has occurred while \output is active []
 
  [14]
 [15]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4647) has occurred while \output is active []
 
  [16]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
@@ -565,17 +565,11 @@ Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 1629 replaced by U+FFFD.
 
-[27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
+[27] [28]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [29]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
-(C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
+[30] (C:\Users\xintao\Desktop\tosem-mfs-multiple\v2-acmsmall-sample.bbl
 Missing character: There is no ’ in font pncr7t!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -593,18 +587,6 @@ Overfull \hbox (89.13939pt too wide) in paragraph at lines 1965--1995
 Overfull \hbox (180.62689pt too wide) in paragraph at lines 2000--2032
 [] 
  []
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2034.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2061.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 2088.
 
 [1
 
