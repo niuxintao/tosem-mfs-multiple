@@ -944,7 +944,7 @@ In this paper, we randomly select one test case from the candidate test case set
        }
        \Return \emph{null}
 
-\caption{Replacing test cases triggering unexpected failures}
+\caption{Replacement}
 \label{alg:one}
 \end{algorithm}
 %
@@ -1006,15 +1006,15 @@ $T_{invalid} \leftarrow getInvalidTestCases(Cons)$ \;
 \While{ $true$}{
 
 %          }
-        \If{ $ isEnd(T_{judge}) $}{$MFS \leftarrow identified(T_{judge})$ \; break\;}{}
-        $t_{current} \leftarrow getTestCaseForExecution()$ \;
+        \If{ $ isEnd(T_{judge}) $}{$MFS \leftarrow identification(T_{judge})$ \; break\;}{}
+        $t_{current} \leftarrow getCurrentTestCase()$ \;
         $result \leftarrow execute(t_{current})$\;
         $T_{executed}.append(t_{current})$\;
         \eIf  {$result \neq PASS\ and\ result \neq  F_{m}$}{
        $fixed \leftarrow getCurrentFixedPart(t_{current})$\;
        $ R \leftarrow  \mathcal{T}(fixed)  \backslash (T_{executed}\bigcup T_{invalid})$ \;
  %      $ O = R.copy()$ \;
-       $t_{replace} \leftarrow Replacing(F_{m},R)$\;
+       $t_{replace} \leftarrow Replacement(F_{m},R)$\;
        $T_{judge}.append(t_{replace})$ \;
        $T_{executed}.append(getExcuted(R))$ \;
 %      \eIf  {$t_{next}  ==  null$}{$t_{next} \leftarrow random\_pick(R)$\;
@@ -1041,7 +1041,7 @@ $T_{invalid} \leftarrow getInvalidTestCases(Cons)$ \;
        }
        \Return $MFS$
 
-\caption{MFS identification with Replacing test cases strategy}
+\caption{MFS identification with Replacement}
 \label{alg:two}
 \end{algorithm}
 
