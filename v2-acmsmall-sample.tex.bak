@@ -955,7 +955,7 @@ The outer loop of this algorithm (lines 1 - 10) contains two parts:
 
 The first part (lines 2 - 3) randomly generates and executes a new test case from the candidate test case set $R$.
 %The new test case is generated according to \ref{eqn - 0p}. In our implementation,  we use the solver introduced in \cite{Berkelaar2004}, which is a mixed Integer Linear Programming (MILP) solver suitable for satisfaction and optimization problems. (Note that a simpler linear search algorithm can also be applied in our approach to find a proper test case. However, as the problem to search a proper test case is related to Integers (a test case consists of discrete parameters with discrete values), we use Integer Linear Programming (ILP) technique instead.)
-When a test case is generated, we remove it from the candidate test case set $R$ to avoid redundancy (line 3).
+When a test case is generated, we remove it from the candidate test case set $R$ to avoid redundancy (line 4).
 
 %The second part (line 5) updates the suspiciousness matrix ($\mathcal{SP}$) for each parameter value that is involved in this newly generated test case (line 5). Specifically, for a particular parameter value $o$, the number of executed test cases that contain $o$, i.e., $all(o)$, increases by 1. Additionally, if this test case triggers failure $F_{i}$ ($1 \leq i \leq L $) , then the number of test cases that contain $o$ and trigger failure $F_{i}$, i.e., $f_{i}(o)$, increases by 1. At last, the suspiciousness value will be re-computed according to formula $\mathcal{SP}(o, F_{i}) = \frac{f_{i}(o)}{all(o) + 1}$ ($1 \leq i \leq L $).
 
@@ -1006,8 +1006,8 @@ $T_{invalid} \leftarrow getInvalidTestCases(Cons)$ \;
 \While{ $true$}{
 
 %          }
-        \If{ $ isEnd(T_{judge}) $}{$MFS \leftarrow identified(T_{judge})$ \; break\;}{}
-        $t_{current} \leftarrow getTestCaseForExecution()$ \;
+        \If{ $ isEnd(T_{judge}) $}{$MFS \leftarrow identification(T_{judge})$ \; break\;}{}
+        $t_{current} \leftarrow getCurrentTestCase()$ \;
         $result \leftarrow execute(t_{current})$\;
         $T_{executed}.append(t_{current})$\;
         \eIf  {$result \neq PASS\ and\ result \neq  F_{m}$}{
